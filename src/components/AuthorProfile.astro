@@ -1,0 +1,217 @@
+---
+interface Props {
+  /** The verbatim Danish testimonial / personal note */
+  quote: string;
+  /** Author name. Defaults to "Aldin Glavas" */
+  name?: string;
+  /** Author title/role. Defaults to "Lystfisker" */
+  role?: string;
+  /** Author photo path. Defaults to "/images/aldin_glavas.png" */
+  image?: string;
+  /** Profile page URL. Defaults to "/om-mig/" */
+  href?: string;
+}
+
+const {
+  quote,
+  name = 'Aldin Glavas',
+  role = 'Lystfisker',
+  image = '/images/aldin_glavas.png',
+  href = '/om-mig/',
+} = Astro.props;
+---
+
+<aside class="author-card" aria-label={`Forfatter: ${name}`}>
+  <svg class="author-watermark" viewBox="0 0 32 32" aria-hidden="true">
+    <path d="M9.5 7C5.4 7 2 10.4 2 14.5S5.4 22 9.5 22h.5v-4h-.5C7.6 18 6 16.4 6 14.5S7.6 11 9.5 11h.5V7h-.5Zm14 0c-4.1 0-7.5 3.4-7.5 7.5S19.4 22 23.5 22h.5v-4h-.5c-1.9 0-3.5-1.6-3.5-3.5S21.6 11 23.5 11h.5V7h-.5Z" fill="currentColor" />
+  </svg>
+
+  <div class="author-media">
+    <span class="author-avatar">
+      <img src={image} alt={name} width="80" height="80" loading="lazy" />
+    </span>
+    <span class="author-badge">Fra forfatteren</span>
+  </div>
+
+  <div class="author-body">
+    <p class="author-quote">{quote}</p>
+    <a class="author-byline" href={href}>
+      <span class="author-meta">
+        <span class="author-name">{name}</span>
+        <span class="author-role">{role}</span>
+      </span>
+      <span class="author-cta">
+        <span>Læs mere</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </span>
+    </a>
+  </div>
+</aside>
+
+<style>
+  .author-card {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    padding: 2rem 2rem 1.875rem;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(196, 125, 10, 0.18) 0%, rgba(196, 125, 10, 0) 45%),
+      linear-gradient(135deg, #0d4a5e 0%, #0a3a4a 55%, #061f29 100%);
+    border-radius: 20px;
+    color: #f8fafc;
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.08),
+      0 30px 60px -30px rgba(13, 74, 94, 0.55);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .author-watermark {
+    position: absolute;
+    top: -14px;
+    right: -10px;
+    width: 140px;
+    height: 140px;
+    color: #c47d0a;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .author-media {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    width: 88px;
+  }
+
+  .author-avatar {
+    display: block;
+    width: 84px;
+    height: 84px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: #f1f5f9;
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 0.95),
+      0 0 0 5px rgba(196, 125, 10, 0.55),
+      0 12px 22px -10px rgba(0, 0, 0, 0.55);
+  }
+  .author-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .author-badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #fcd9a0;
+    background: rgba(196, 125, 10, 0.18);
+    border: 1px solid rgba(252, 217, 160, 0.35);
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .author-body {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+  }
+
+  .author-quote {
+    font-family: 'Georgia', 'Cambria', 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: #e2e8f0;
+    font-style: italic;
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.005em;
+  }
+
+  .author-byline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.18s ease;
+  }
+  .author-byline:hover { border-top-color: rgba(252, 217, 160, 0.4); }
+  .author-byline:hover .author-cta { color: #fcd9a0; }
+  .author-byline:hover .author-cta svg { transform: translateX(4px); }
+
+  .author-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    min-width: 0;
+  }
+  .author-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.005em;
+  }
+  .author-role {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.1875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .author-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #ffffff;
+    transition: color 0.15s ease;
+    white-space: nowrap;
+  }
+  .author-cta svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.18s ease;
+  }
+
+  @media (max-width: 560px) {
+    .author-card {
+      grid-template-columns: 1fr;
+      gap: 1.125rem;
+      padding: 1.625rem 1.375rem 1.5rem;
+    }
+    .author-media {
+      flex-direction: row;
+      width: auto;
+    }
+    .author-avatar {
+      width: 64px;
+      height: 64px;
+    }
+    .author-quote {
+      font-size: 1rem;
+    }
+    .author-watermark {
+      width: 110px;
+      height: 110px;
+    }
+  }
+</style>

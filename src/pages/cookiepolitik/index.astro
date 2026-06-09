@@ -1,0 +1,147 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const lastUpdated = "9. juni 2026";
+---
+
+<MainLayout
+  title="Cookiepolitik | Ude og Fiske"
+  description="Sådan bruger Ude og Fiske cookies — hvilke typer vi sætter, hvorfor, og hvordan du til enhver tid ændrer eller trækker dit samtykke tilbage."
+  canonical="https://udeogfiske.dk/cookiepolitik/"
+  pageType="website"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Cookiepolitik" },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <span>Cookiepolitik</span>
+      </nav>
+      <h1 class="pg-title">Cookiepolitik</h1>
+      <p class="pg-sub">Sådan bruger vi cookies på Ude og Fiske — og hvordan du selv bestemmer over dem.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <article class="article">
+        <p class="cp-meta">Senest opdateret: {lastUpdated}</p>
+
+        <h2>Hvad er cookies?</h2>
+        <p>En cookie er en lille tekstfil, som gemmes i din browser, når du besøger en hjemmeside. Cookies bruges blandt andet til at få siden til at fungere, til at huske dine valg og til at lave statistik over, hvordan siden bliver brugt. Nogle cookies sættes af os (førsteparts-cookies), mens andre sættes af tredjeparter, fx tjenester til prissammenligning.</p>
+
+        <h2>Dit samtykke</h2>
+        <p>Første gang du besøger Ude og Fiske, beder vi om dit samtykke til cookies, der ikke er strengt nødvendige. Du kan vælge at <strong>acceptere alle</strong>, <strong>afvise alle</strong> eller selv <strong>tilpasse</strong>, hvilke kategorier du vil tillade. Nødvendige cookies kræver ikke samtykke, da siden ikke fungerer uden dem.</p>
+        <p>Du kan til enhver tid ændre eller trække dit samtykke tilbage ved at klikke på <button type="button" class="cp-link-btn" onclick="window.uofCookies&&window.uofCookies.open()">Cookieindstillinger</button> — knappen findes også nederst på alle sider i sidefoden.</p>
+
+        <h2>Hvilke cookies bruger vi?</h2>
+
+        <h3>Nødvendige</h3>
+        <p>Sikrer grundlæggende funktioner og husker dit cookievalg, så du ikke bliver spurgt igen ved hvert besøg. Disse er altid aktive og kan ikke fravælges.</p>
+        <div class="cp-table-wrap">
+          <table class="cp-table">
+            <thead>
+              <tr><th>Navn</th><th>Formål</th><th>Type</th><th>Varighed</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Navn">uof-consent</td>
+                <td data-label="Formål">Husker dit valg af cookieindstillinger</td>
+                <td data-label="Type">Førstepart (local storage)</td>
+                <td data-label="Varighed">Indtil du rydder browseren</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Statistik</h3>
+        <p>Hjælper os med at forstå, hvordan siden bliver brugt, så vi kan forbedre indholdet. Data indsamles anonymt og aggregeret. Disse cookies sættes kun, hvis du giver samtykke til statistik.</p>
+
+        <h3>Marketing</h3>
+        <p>Bruges til prissammenligning og relevante grej-anbefalinger via tredjeparter som <strong>PriceRunner</strong>. Disse cookies sættes kun, hvis du giver samtykke til marketing. Når du klikker videre til en webshop via et affiliate-link, kan der desuden blive sat cookies hos den pågældende shop — det er omfattet af deres egen cookiepolitik.</p>
+
+        <h2>Sådan sletter du cookies</h2>
+        <p>Du kan altid slette eller blokere cookies i din browsers indstillinger. Vær opmærksom på, at siden måske ikke fungerer optimalt, hvis du blokerer nødvendige cookies. Vejledning til de mest brugte browsere finder du hos browserudbyderen (Chrome, Safari, Firefox og Edge).</p>
+
+        <h2>Ændringer i cookiepolitikken</h2>
+        <p>Vi opdaterer denne cookiepolitik, hvis vi ændrer den måde, vi bruger cookies på. Datoen øverst viser, hvornår politikken senest er opdateret.</p>
+
+        <h2>Kontakt</h2>
+        <p>Har du spørgsmål til vores brug af cookies, er du velkommen til at <a href="/om-mig/">kontakte os</a>.</p>
+      </article>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background: linear-gradient(120deg, #0d4a5e 0%, #082e3b 100%);
+    padding: 4rem 0 3.5rem;
+  }
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px;
+  }
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .cp-meta { font-size: 0.8125rem; color: #9aa3ae; margin-bottom: 2rem; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h3 {
+    font-size: 1.125rem; font-weight: 700; color: #0d4a5e;
+    margin: 1.75rem 0 0.625rem;
+  }
+
+  .cp-link-btn {
+    font: inherit; color: #0d4a5e; font-weight: 600;
+    background: none; border: none; padding: 0; cursor: pointer;
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .cp-link-btn:hover { color: #c47d0a; }
+
+  .cp-table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+  .cp-table {
+    width: 100%; border-collapse: collapse; font-size: 0.875rem;
+    border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden;
+  }
+  .cp-table th {
+    text-align: left; font-weight: 600; color: #111827;
+    background: #f8fafc; padding: 0.7rem 0.9rem; border-bottom: 1px solid #e5e7eb;
+  }
+  .cp-table td { padding: 0.7rem 0.9rem; color: #4b5563; border-bottom: 1px solid #f1f5f9; }
+  .cp-table tr:last-child td { border-bottom: none; }
+
+  @media (max-width: 560px) {
+    .cp-table, .cp-table thead, .cp-table tbody, .cp-table tr, .cp-table td { display: block; width: 100%; }
+    .cp-table thead { display: none; }
+    .cp-table tr { border-bottom: 1px solid #e5e7eb; padding: 0.5rem 0; }
+    .cp-table td { border: none; padding: 0.25rem 0.9rem; }
+    .cp-table td::before { content: attr(data-label) ": "; font-weight: 600; color: #111827; }
+  }
+</style>

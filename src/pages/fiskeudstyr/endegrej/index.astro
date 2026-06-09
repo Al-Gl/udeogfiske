@@ -1,0 +1,589 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import AuthorProfile from '../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import AffiliateTrio from '../../../components/AffiliateTrio.astro';
+import { getProduct, formatPrice } from '../../../lib/feed';
+
+// Endegrej-vælger — one recommended lure per target fish. Cards are pre-rendered
+// server-side and toggled client-side so the product swaps with the choice.
+const finder = [
+  {
+    key: 'havorred', label: 'Havørred', badge: 'Mit udgangspunkt',
+    type: 'Gennemløbsblink', weight: '12–24 g', where: 'Kyst & fjord', technique: 'Jævnt indtag + spinstop',
+    note: 'Gennemløbsblinket er det mest effektive til havørred på kysten — det kaster langt og kan fiskes i alle dybder. Fisk det jævnt ind med små spinstop undervejs; det er ofte i pausen, hugget kommer.',
+    productId: '502997',
+  },
+  {
+    key: 'regnbue', label: 'Regnbue (P&T)', badge: 'Klassikeren',
+    type: 'Spinner', weight: 'Str. 1–3', where: 'Put & Take & å', technique: 'Langsomt, jævnt indtag',
+    note: 'En lille spinner er det mest klassiske valg til regnbueørred i Put & Take — bladet blinker og vibrerer og trigger hug hele året. Fisk den langsomt, så bladet lige akkurat roterer.',
+    productId: '34536',
+  },
+  {
+    key: 'gedde', label: 'Gedde & sandart', badge: 'Til rovfisken',
+    type: 'Jig / gummifisk', weight: '10–25 cm', where: 'Sø, å & fjord', technique: 'Tag-pause langs bunden',
+    note: 'Bløde gummifisk på et jighoved imiterer en byttefisk og trigger hug, som hårde lokkemidler kommer til kort med. Fisk dem i tag-pauser nær bunden — og brug altid et stålforfang til gedde.',
+    productId: '76958',
+  },
+  {
+    key: 'torsk', label: 'Torsk & hav', badge: 'Til dybt vand',
+    type: 'Pilk / jig', weight: '100–300 g', where: 'Båd & dybt vand', technique: 'Vertikal pirkning',
+    note: 'Til torsk fra båd skal pilken være tung nok til at nå bunden trods strøm og drift. Lad den falde til bunden, og pirk den op-og-ned i store tag — de største torsk står dybt.',
+    productId: '74338',
+  },
+];
+
+const finderRods = finder.map((f) => {
+  const product = getProduct(f.productId);
+  if (!product) throw new Error(`Endegrej-vælger: product ${f.productId} not found in feed`);
+  return { ...f, product };
+});
+
+const related = [
+  {
+    title: "Fiskestænger",
+    description: "Endegrejet kaster ikke sig selv — stangens kastevægt afgør hvilke blink, fluer og jigs der reelt kan fiskes effektivt.",
+    href: "/fiskeudstyr/fiskestaenger/",
+    image: "/images/fiskestanger.png",
+    alt: "Spinnestang under fiskeri",
+    chip: "Udstyr",
+  },
+  {
+    title: "Fiskehjul",
+    description: "Det rette fastspolehjul gør forskellen mellem en kontrolleret indspoling af endegrejet og en kludret line.",
+    href: "/fiskeudstyr/fiskehjul/",
+    image: "/images/fiskehjul.png",
+    alt: "Fastspolehjul nærbillede",
+    chip: "Udstyr",
+  },
+  {
+    title: "Fluefiskeri",
+    description: "Fluerne er en hel verden for sig selv — hvilke mønstre der virker, og hvornår, hænger sammen med fiskeform og årstid.",
+    href: "/fiskeguide/fluefiskeri/",
+    image: "/images/fluefiskeri_card.jpg",
+    alt: "Fluefisker på kysten",
+    chip: "Fiskeform",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvad er endegrej?",
+    answer: "Endegrej er fællesbetegnelsen for alt det du binder til enden af linen for at lokke fisken til at bide — <strong>blink, gennemløbsblink, wobblere, spinnere, fluer, jigs og gummidyr</strong>. Det er det sidste led i fiskegrejet, og uden det rette valg kommer du ikke til at fange den fisk du går efter, uanset hvor god stangen og hjulet ellers er.",
+  },
+  {
+    question: "Hvilket endegrej skal jeg vælge til havørred?",
+    answer: "Til havørred på kysten er <strong>gennemløbsblink</strong> det mest effektive valg — de kan kastes langt og fiskes i alle dybder. Almindelige kystblink (15-25 g) virker også, og i fluefiskeri efter havørred er klassiske kystfluer som Magnus, Polar Magnus og Pattegrisen blandt de mest fangende mønstre.",
+  },
+  {
+    question: "Hvilket endegrej skal jeg vælge til Put & Take?",
+    answer: "<strong>Spinnere</strong> er det mest klassiske valg til Put & Take efter regnbueørred, og en lille mepps eller spinflue i størrelse 1-3 fanger fisk hele året. Power Bait, små UL-blink og fluer på bombarda fungerer også glimrende — variation er ofte vigtigere end ét bestemt valg.",
+  },
+  {
+    question: "Hvilket endegrej skal jeg vælge til gedde og sandart?",
+    answer: "Til <strong>gedde og sandart</strong> er <strong>jigs og gummifisk</strong> det mest effektive — bløde shads på et jighoved imiterer en byttefisk og fiskes i tag-pauser nær bunden. Til gedde bruger du store gummifisk (15-25 cm) og <strong>altid et stålforfang</strong>, så gedden ikke bider linen over. Til sandart går du ned i størrelse og fisker tættere på bunden.",
+  },
+  {
+    question: "Hvad er forskellen på et gennemløbsblink og et almindeligt blink?",
+    answer: "Et <strong>gennemløbsblink</strong> har linen ført gennem selve blinkets hus, så fisken ikke kan bruge blinket som vægtstang under fight — det reducerer markant antallet af mistede fisk. Et almindeligt blink er fast monteret på linen via en svirvel og kan derfor virke som en \"krog-fjerner\" hvis fisken ryster hovedet kraftigt.",
+  },
+  {
+    question: "Hvor meget endegrej skal jeg starte med?",
+    answer: "Færre typer, end du tror. Start med <strong>tre-fire gennemløbsblink</strong> i forskellige farver til kysten, en håndfuld <strong>spinnere</strong> til Put & Take, og lidt forfang og svirvler. Det er langt vigtigere at lære at fiske få agn ordentligt end at eje en grejkasse fuld af lokkemidler, du aldrig får prøvet.",
+  },
+  {
+    question: "Bestemmer fisken eller fiskeformen valget af endegrej?",
+    answer: "Begge dele — og i den rækkefølge. Først bestemmer du hvilken fisk du vil fange (havørred, regnbue, torsk, gedde, fladfisk), dernæst hvilken fiskeform (kyst, mole, å, Put & Take, fluefiskeri), og <em>derefter</em> vælger du det endegrej der passer til kombinationen. At købe lokkemidler uden at have besluttet de første to ting er den mest almindelige nybegynder-fejl.",
+  },
+];
+---
+
+<MainLayout
+  title="Valg af endegrej | Vælg det helt rigtige endegrej og fang flere fisk"
+  description="Endegrej er vigtigt når du skal øge chancen for at fange flere fisk. Brug endegrej-vælgeren og find det rette blink, spinner, jig eller pilk til din målfisk."
+  canonical="https://udeogfiske.dk/fiskeudstyr/endegrej/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeudstyr", url: "/fiskeudstyr/" },
+    { name: "Endegrej" },
+  ]}
+  articleData={{
+    headline: "Valg af endegrej",
+    image: "/images/endegrej.png",
+    datePublished: "2021-12-08",
+    dateModified: "2026-06-02",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/">Fiskeudstyr</a>
+        <span>›</span>
+        <span>Endegrej</span>
+      </nav>
+      <h1 class="pg-title">Valg af endegrej</h1>
+      <p class="pg-sub">Det sidste led mellem dig og fisken. Blink, gennemløbsblink, fluer, spinnere, jigs — det rette valg afgør om fisken bider eller bare svømmer forbi.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvilket endegrej skal jeg bruge?</h2>
+        <p class="ac-a">Vælg endegrej efter <strong>hvilken fisk du går efter</strong>, ikke omvendt. Til havørred på kysten er <strong>gennemløbsblink</strong> det mest effektive valg. Til Put & Take fungerer <strong>spinnere</strong> i størrelse 1-3 hele året. Til fluefiskeri efter havørred er klassiske kystfluer som Magnus og Pattegrisen et sikkert kort.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Jeg har lært det på den hårde måde: man begynder ikke med at vælge endegrejet — man begynder med at vælge fisken og fiskeformen, og så finder endegrejet sig selv. De første år havde jeg en grejtaske fyldt med blink i alle farver, men hver gang jeg gik på kysten, kom kun de samme to-tre gennemløbsblink op af tasken. Det er ikke variationen der fanger fisken; det er at have det rigtige til den rigtige situation."
+      />
+
+      <article class="article">
+        <p>Endegrej er et af de vigtigste instrumenter når det gælder at fange fisk. Det afgør om fisken bider på netop din krog eller ej!</p>
+
+        <p>Når man skal vælge endegrej, har det stor betydning om du vil fange en gedde, en torsk, en ørred eller noget helt fjerde. Derfor er det vigtigt at først og fremmest finde ud af hvilken fisk man vil fange, derefter kommer valget til endegrej. Og valg af endegrej findes der rigtig mange muligheder. Herunder kan du vælge det endegrej du er interesseret i at vide mere om.</p>
+
+        <DidYouKnow>
+          Et <strong>gennemløbsblink</strong> har linen ført direkte gennem selve blinkets hus i stedet for at være monteret via en svirvel. Det betyder at hvis fisken ryster hovedet under fight, kan blinket ikke bruges som vægtstang til at rive krogen ud — og det er en af hovedgrundene til at gennemløbsblink fanger flere havørreder hjem end de almindelige blink.
+        </DidYouKnow>
+
+        <StatHighlight
+          value="Fisken først"
+          caption="Vælg altid fisk og fiskeform før endegrej — at købe lokkemidler uden en plan er den hyppigste nybegynderfejl"
+          icon="ruler"
+        />
+
+        <h2>Hvilket endegrej passer til din målfisk?</h2>
+        <p>Endegrejet følger fisken. Vælg den fisk du går efter nedenfor, så får du min anbefaling til type, vægt, hvor du fisker det — og den teknik, der får det til at virke. Plus et konkret forslag til et lokkemiddel, der fanger:</p>
+      </article>
+
+      <div class="rod-finder" id="rod-finder">
+        <div class="rf-top">
+          <span class="rf-eyebrow">Endegrej-vælger</span>
+          <h3 class="rf-title">Find endegrejet til din målfisk</h3>
+        </div>
+
+        <div class="rf-tabs" role="tablist" aria-label="Vælg målfisk">
+          {finderRods.map((f, i) => (
+            <button type="button" class={`rf-tab ${i === 0 ? 'is-active' : ''}`} data-key={f.key} role="tab" aria-selected={i === 0 ? 'true' : 'false'}>{f.label}</button>
+          ))}
+        </div>
+
+        <div class="rf-specs" id="rf-specs">
+          <div class="rf-spec"><span class="rf-spec-label">Type</span><span class="rf-spec-value" id="rf-type">{finderRods[0].type}</span></div>
+          <div class="rf-spec"><span class="rf-spec-label">Størrelse</span><span class="rf-spec-value" id="rf-weight">{finderRods[0].weight}</span></div>
+          <div class="rf-spec"><span class="rf-spec-label">Hvor</span><span class="rf-spec-value" id="rf-where">{finderRods[0].where}</span></div>
+          <div class="rf-spec"><span class="rf-spec-label">Teknik</span><span class="rf-spec-value" id="rf-technique">{finderRods[0].technique}</span></div>
+        </div>
+
+        <p class="rf-note" id="rf-note">{finderRods[0].note}</p>
+
+        <div class="rf-products">
+          {finderRods.map((f, i) => (
+            <article class={`rf-product ${i === 0 ? 'is-active' : ''}`} data-key={f.key}>
+              <a class="rf-prod-img" href={f.product.url} target="_blank" rel="sponsored noopener" tabindex="-1" aria-hidden="true">
+                <img src={f.product.image} alt={f.product.name} loading="lazy" width="120" height="120" />
+              </a>
+              <div class="rf-prod-body">
+                <span class="rf-prod-badge">{f.badge}</span>
+                <p class="rf-prod-brand">{f.product.brand}</p>
+                <h4 class="rf-prod-name"><a href={f.product.url} target="_blank" rel="sponsored noopener">{f.product.name}</a></h4>
+                <div class="rf-prod-buy">
+                  <span class="rf-prod-price">{formatPrice(f.product.price)} <span class="rf-prod-cur">kr</span></span>
+                  <a class="rf-prod-cta" href={f.product.url} target="_blank" rel="sponsored noopener">
+                    <span>Se hos Fiskegrej</span>
+                    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <script define:vars={{ finderData: finder }}>
+        (function () {
+          const root = document.getElementById('rod-finder');
+          if (!root) return;
+
+          const byKey = {};
+          finderData.forEach((f) => { byKey[f.key] = f; });
+
+          const els = {
+            type: document.getElementById('rf-type'),
+            weight: document.getElementById('rf-weight'),
+            where: document.getElementById('rf-where'),
+            technique: document.getElementById('rf-technique'),
+            note: document.getElementById('rf-note'),
+          };
+          const specs = document.getElementById('rf-specs');
+          const tabs = root.querySelectorAll('.rf-tab');
+          const products = root.querySelectorAll('.rf-product');
+
+          tabs.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              const key = btn.getAttribute('data-key');
+              const d = byKey[key];
+              if (!d) return;
+
+              tabs.forEach((b) => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+              btn.classList.add('is-active');
+              btn.setAttribute('aria-selected', 'true');
+
+              els.type.textContent = d.type;
+              els.weight.textContent = d.weight;
+              els.where.textContent = d.where;
+              els.technique.textContent = d.technique;
+              els.note.textContent = d.note;
+
+              products.forEach((p) => p.classList.toggle('is-active', p.getAttribute('data-key') === key));
+
+              specs.classList.remove('rf-flash');
+              void specs.offsetWidth;
+              specs.classList.add('rf-flash');
+            });
+          });
+        })();
+      </script>
+
+      <article class="article">
+        <h2>Hvilket endegrej passer til hvilken fisk?</h2>
+        <p>Herunder kan du læse mere om de forskellige former for endegrej og hvilke fisk du kan fange. Jeg kommer med helt konkrete forslag til hvilket endegrej du skal købe for at øge din chance for at fange fisk.</p>
+
+        <h3>Fluer</h3>
+        <p>Fluer bruges primært til <a href="/fiskeguide/fluefiskeri/">fluefiskeri</a>, men kan dog også bruges med bombarda eller ophænger på et blink. Læs mere om hvilke fluer fungerer til hvilke fisk, og hvilke fluer fungerer bedst til de forskellige årstider.</p>
+
+        <h3><a href="/fiskeudstyr/endegrej/gennemlobsblink/">Gennemløbsblink</a></h3>
+        <p>Gennemløbsblink er meget effektivt og kan bruges til at fange mange forskellige fisk, bl.a. havørreder, regnbueørreder og hornfisk. <a href="/fiskeudstyr/endegrej/gennemlobsblink/">Læs den dedikerede gennemløbsblink-guide</a> og bliv klogere på hvorfor du skal vælge gennemløbsblink og hvilke du skal vælge — inklusive separate guider til <a href="/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-forar/">forår</a> og <a href="/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-sommer/">sommer</a>.</p>
+
+        <h3>Blink</h3>
+        <p>Blink er en af de mest brugte og effektive former for endegrej man kan finde og kan bruges til at fange næsten alle former for fisk. Læs med og bliv klogere på hvilke blink du skal vælge!</p>
+
+        <TipBox>
+          Start med tre-fire gennemløbsblink i forskellige farver fremfor 20 forskellige blink-typer. Farve-valget (sølv, kobber, sort/rød) varierer mere efter vand og lysforhold end efter fiskeart — og er du nybegynder, er det 100 gange vigtigere at lære at fiske et enkelt blink ordentligt end at have en grejkasse fyldt med variation.
+        </TipBox>
+
+        <h3>Spinner</h3>
+        <p>Spinnere er særdeles effektivt endegrej som primært bruges til <a href="/fiskeguide/put-take-fiskeri/">Put & Take fiskeri</a>, men som også er super effektivt ved lakse fiskeri i åen, eller havørredfiskeri <a href="/fiskeguide/fiskeri-i-aa/">i åen</a>.</p>
+
+        <h3>Jigs/Gummidyr</h3>
+        <p>Jigs og gummidyr er bløde imitationer af småfisk, krebs og orme, monteret på en blyhoved-krog. De fiskes med korte tag-pauser så de bevæger sig naturligt nær bunden — særligt effektivt til gedde, sandart, torsk og store aborrer, hvor den blødere bevægelse trigger bid som hårde lokkemidler kommer til kort med.</p>
+
+        <h2>Gennemløbsblink eller almindeligt blink?</h2>
+        <p>Det valg deler mange havørredfiskere — her er forskellen, og hvorfor jeg hælder mod gennemløberen til kysten:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Gennemløbsblink sammenlignet med almindeligt blink">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Bliktype</th>
+                <th scope="col">Linemontering</th>
+                <th scope="col">Mistede fisk under fight</th>
+                <th scope="col">Bedst til</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Bliktype">Gennemløbsblink</th>
+                <td data-label="Linemontering">Line gennem blinkets hus</td>
+                <td data-label="Mistede fisk under fight">Færre — kan ikke bruges som vægtstang</td>
+                <td data-label="Bedst til">Havørred på kyst</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Bliktype">Almindeligt blink</th>
+                <td data-label="Linemontering">Fast via svirvel</td>
+                <td data-label="Mistede fisk under fight">Flere ved kraftig hovedrysten</td>
+                <td data-label="Bedst til">Allround &amp; billigt</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Det der binder det hele sammen</h2>
+        <p>Selve lokkemidlet er kun halvdelen. Forfanget, forbindelsen til linen og lidt styr på opbevaringen er det, der gør, at endegrejet rent faktisk fisker — og holder. Her er tre ting jeg altid har i tasken:</p>
+
+        <AffiliateTrio
+          title="Det der binder det hele sammen"
+          intro="Det grej der gør endegrejet fiskeklart. Et fluorocarbon-forfang fisken ikke ser, en svirvel der forhindrer linen i at sno sig, og en æske der holder styr på blink og jigs."
+          products={[
+            {
+              productId: "78797",
+              badge: "Forfanget",
+              badgeTone: "teal",
+              highlight: true,
+              note: "Et fluorocarbon-forfang mellem fletline og lokkemiddel er næsten usynligt i vandet — og giver den smule stræk, der beskytter mod afbid ved hugget. Det vigtigste led, mange glemmer.",
+            },
+            {
+              productId: "500541",
+              badge: "Forbindelsen",
+              badgeTone: "slate",
+              note: "En svirvel forhindrer roterende agn (spinnere og blink) i at sno linen helt sammen. Et lille, billigt stykke grej, der sparer dig for store lin-frustrationer.",
+            },
+            {
+              productId: "72453",
+              badge: "Opbevaringen",
+              badgeTone: "orange",
+              note: "En lure box med rum holder dine blink, spinnere og jigs adskilt og rustfri — så krogene ikke filtrer sig sammen til ét stort hylster i bunden af tasken.",
+            },
+          ]}
+        />
+
+        <GuideLink
+          href="/fiskeudstyr/endegrej/gennemlobsblink/"
+          title="Læs den dedikerede gennemløbsblink-guide"
+          desc="Hvorfor gennemløbsblink fanger flere havørreder — og præcis hvilke du skal vælge."
+        />
+        <GuideLink
+          href="/fiskeguide/put-take-fiskeri/"
+          title="Læs guiden til Put & Take fiskeri"
+          desc="Spinnere, Power Bait og UL-blink efter regnbueørred — find søerne og teknikken."
+        />
+        <GuideLink
+          href="/guide-til-fisk/havorredfiskeri/"
+          title="Læs havørredfiskeri-guiden"
+          desc="Alt om havørred — agn, sæson og de bedste pladser på den danske kyst."
+        />
+      </article>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <RelatedRow items={related} />
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/endegrej.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-of-type { margin-top: 2.5rem; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+
+  .faq-heading {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 4rem auto 1rem;
+    max-width: 760px;
+  }
+
+  /* ─────────────  Endegrej-vælger (finder)  ───────────── */
+  .rod-finder {
+    max-width: 760px; margin: 1.5rem auto 2.75rem;
+    background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px;
+    padding: 1.5rem 1.625rem 1.625rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .rf-top { margin-bottom: 1.125rem; }
+  .rf-eyebrow {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em; color: #0d4a5e; margin-bottom: 0.375rem;
+  }
+  .rf-title {
+    margin: 0; font-size: 1.375rem; font-weight: 700; color: #111827; letter-spacing: -0.02em; line-height: 1.2;
+  }
+
+  .rf-tabs {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem;
+  }
+  .rf-tab {
+    flex: 1 1 auto;
+    padding: 0.55rem 0.8rem;
+    background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 999px;
+    font-size: 0.8125rem; font-weight: 600; color: #475569; cursor: pointer;
+    white-space: nowrap; transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .rf-tab:hover { border-color: #0d4a5e; color: #0d4a5e; }
+  .rf-tab.is-active {
+    background: #0d4a5e; border-color: #0d4a5e; color: #ffffff;
+    box-shadow: 0 6px 14px -10px rgba(13, 74, 94, 0.55);
+  }
+
+  .rf-specs {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border: 1px solid #eef2f6; border-radius: 12px; overflow: hidden; margin-bottom: 1rem;
+  }
+  .rf-spec {
+    padding: 0.75rem 0.875rem; text-align: left;
+    border-right: 1px solid #eef2f6; background: #f8fafc;
+  }
+  .rf-spec:last-child { border-right: none; }
+  .rf-spec-label {
+    display: block; font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #94a3b8; margin-bottom: 0.3rem;
+  }
+  .rf-spec-value { display: block; font-size: 0.875rem; font-weight: 700; color: #0d4a5e; line-height: 1.3; }
+  .rf-flash { animation: rf-fade 0.35s ease; }
+  @keyframes rf-fade { from { opacity: 0.4; } to { opacity: 1; } }
+
+  .rf-note {
+    margin: 0 0 1.25rem; padding: 0.875rem 1.05rem;
+    background: #f8fbfc; border-left: 3px solid #0d4a5e; border-radius: 8px;
+    font-size: 0.9375rem; line-height: 1.65; color: #374151;
+  }
+
+  /* swapping product cards */
+  .rf-product { display: none; }
+  .rf-product.is-active {
+    display: flex; gap: 1.125rem; align-items: center;
+    padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; background: #ffffff;
+    animation: rf-fade 0.3s ease;
+  }
+  .rf-prod-img {
+    flex-shrink: 0; width: 96px; height: 96px;
+    border: 1px solid #f1f5f9; border-radius: 10px; overflow: hidden; background: #ffffff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .rf-prod-img img { width: 100%; height: 100%; object-fit: contain; }
+  .rf-prod-body { flex: 1; min-width: 0; }
+  .rf-prod-badge {
+    display: inline-block; font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: #0d4a5e; background: #eef4f6;
+    padding: 0.2rem 0.55rem; border-radius: 999px; margin-bottom: 0.4rem;
+  }
+  .rf-prod-brand { margin: 0; font-size: 0.75rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; }
+  .rf-prod-name { margin: 0.1rem 0 0.5rem; font-size: 1rem; font-weight: 700; line-height: 1.3; }
+  .rf-prod-name a { color: #111827; text-decoration: none; }
+  .rf-prod-name a:hover { color: #0d4a5e; }
+  .rf-prod-buy { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+  .rf-prod-price { font-size: 1.125rem; font-weight: 800; color: #0d4a5e; letter-spacing: -0.01em; }
+  .rf-prod-cur { font-size: 0.8125rem; font-weight: 600; }
+  .rf-prod-cta {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 0.95rem; border-radius: 9px;
+    background: linear-gradient(135deg, #c47d0a 0%, #a06808 100%); color: #ffffff;
+    font-size: 0.8125rem; font-weight: 700; text-decoration: none;
+    box-shadow: 0 6px 14px -8px rgba(196, 125, 10, 0.5); transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .rf-prod-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 18px -8px rgba(196, 125, 10, 0.55); }
+
+  @media (max-width: 560px) {
+    .rod-finder { padding: 1.25rem 1.125rem 1.375rem; }
+    .rf-tab { flex: 1 1 calc(50% - 0.25rem); white-space: normal; }
+    .rf-specs { grid-template-columns: repeat(2, 1fr); }
+    .rf-spec:nth-child(2) { border-right: none; }
+    .rf-spec:nth-child(1), .rf-spec:nth-child(2) { border-bottom: 1px solid #eef2f6; }
+    .rf-product.is-active { flex-direction: column; align-items: flex-start; text-align: left; }
+    .rf-prod-img { width: 100%; height: 160px; }
+    .rf-prod-buy { width: 100%; }
+  }
+
+  /* ─────────────  Comparison table  ───────────── */
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; color: #374151; }
+  .prey-table thead { background: linear-gradient(to bottom, #f8fafc, #eef2f6); border-bottom: 1px solid #e5e7eb; }
+  .prey-table thead th {
+    padding: 0.85rem 1rem; text-align: left; font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; color: #475569; white-space: nowrap;
+  }
+  .prey-table tbody tr { border-top: 1px solid #f1f5f9; transition: background 0.15s ease; }
+  .prey-table tbody tr:hover { background: #f8fbfc; }
+  .prey-table th[scope="row"], .prey-table td {
+    padding: 0.95rem 1rem; vertical-align: top; text-align: left; line-height: 1.5; font-weight: 400;
+  }
+  .prey-table th[scope="row"] { font-weight: 700; color: #0d4a5e; white-space: nowrap; }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap { border-radius: 12px; }
+    .prey-table thead {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .prey-table, .prey-table tbody, .prey-table tr { display: block; width: 100%; }
+    .prey-table tr { padding: 1rem 1.125rem 1.125rem; border-top: 1px solid #f1f5f9; }
+    .prey-table th[scope="row"], .prey-table td {
+      display: grid; grid-template-columns: 130px 1fr; gap: 0.75rem; padding: 0.3rem 0; white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem; grid-template-columns: 1fr;
+      margin-bottom: 0.4rem; padding-bottom: 0.4rem; border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #6b7280; align-self: start; padding-top: 0.15rem;
+    }
+  }
+</style>

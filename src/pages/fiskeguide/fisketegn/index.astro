@@ -1,0 +1,451 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const FISKETEGN_URL = "https://fisketegn.fiskeristyrelsen.dk/";
+
+const related = [
+  {
+    title: "Fiskeri på kysten",
+    description: "Kystfiskeri kræver fisketegn — læs guiden til havørred på kysten.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Fiskeri i å",
+    description: "Åfiskeri kræver både fisketegn og ofte et lokalt dagkort — læs reglerne.",
+    href: "/fiskeguide/fiskeri-i-aa/",
+    image: "/images/aa_fiskeri.jpg",
+    alt: "Å med træer langs bredden",
+    chip: "Ferskvand",
+  },
+  {
+    title: "Put & Take fiskeri",
+    description: "I Put & Take søer behøver du ikke fisketegn — du betaler pladsleje i stedet.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og take sø i Danmark",
+    chip: "Sø",
+  },
+];
+---
+
+<MainLayout
+  title="Fisketegn – Hvornår skal du have det og hvor køber du det? | Ude og Fiske"
+  description="Få overblik over reglerne for fisketegn i Danmark — hvornår det kræves, undtagelser, og hvor du køber det."
+  canonical="https://udeogfiske.dk/fiskeguide/fisketegn/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Fisketegn" },
+  ]}
+  articleData={{
+    headline: "Fisketegn",
+    image: "/images/fisketegn_hero.png",
+    datePublished: "2025-07-22",
+  }}
+  faq={[
+    {
+      question: "Hvem skal have fisketegn?",
+      answer: "Alle mellem <strong>18 år og folkepensionsalderen</strong> skal have det statslige fisketegn for lovligt at fiske i danske vande. Fisketegnet købes på fisketegn.fiskeristyrelsen.dk.",
+    },
+    {
+      question: "Hvornår skal du have fisketegn?",
+      answer: "Du skal have fisketegn, når du fisker i <strong>saltvand</strong> (kyst, hav og fjord) og i offentligt <strong>ferskvand</strong> (åer og søer). I åer og søer skal du desuden ofte have et lokalt <strong>dag- eller fiskekort</strong> oveni.",
+    },
+    {
+      question: "Hvem kan fiske uden fisketegn?",
+      answer: "Fire grupper er fritaget: <strong>børn og unge under 18 år</strong>, personer <strong>fra folkepensionsalderen</strong>, <strong>ejeren og husstanden</strong> på grunden nærmest et ferskvand, samt alle der fisker i en <strong>Put &amp; Take sø</strong> (her betaler man pladsleje i stedet).",
+    },
+    {
+      question: "Hvor køber du fisketegn?",
+      answer: "Fisketegnet købes direkte hos staten på <strong>fisketegn.fiskeristyrelsen.dk</strong>. Du kan vælge mellem dagtegn, ugetegn og årstegn, og betale online på få minutter.",
+    },
+    {
+      question: "Hvad bruges pengene fra fisketegn til?",
+      answer: "Salget af fisketegn indbringer ca. <strong>30 mio. kr. om året</strong>, som går til fiskepleje, udsætning af fisk, restaurering af vandløb og andre tiltag for fiskenes velfærd. Pengene kommer altså tilbage til os som flere fisk i vandet.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Fisketegn</span>
+      </nav>
+      <h1 class="pg-title">Fisketegn</h1>
+      <p class="pg-sub">Hvornår kræves der fisketegn i Danmark, hvem er undtaget, og hvor køber du det?</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvem skal have fisketegn?</h2>
+        <p class="ac-a">Alle mellem <strong>18 år og folkepensionsalderen</strong> skal have det statslige fisketegn for lovligt at fiske i danske vande. Der er to undtagelser: <strong>ejeren og husstanden</strong> på grunden tættest på et ferskvand, samt fiskeri i <strong>Put &amp; Take søer</strong> hvor man betaler pladsleje. Fisketegnet købes på <a href="https://fisketegn.fiskeristyrelsen.dk/" target="_blank" rel="noopener">fisketegn.fiskeristyrelsen.dk</a>.</p>
+      </div>
+
+      <article class="article">
+        <p>Langt størstedelen af befolkningen ved, at man skal have det statslige fisketegn for at fiske i vores åer, fjorder og have. Alle over 18 år, der endnu ikke har nået folkepensionsalderen, skal altså have fisketegnet for lovligt at kunne fiske i de danske vande.</p>
+
+        <h2>Hvornår skal du have fisketegn?</h2>
+        <p>Kort sagt skal du have fisketegn, når du fisker i saltvand og i offentligt ferskvand — men der er en håndfuld undtagelser. Her er overblikket:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over hvornår der kræves fisketegn">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Hvor / hvem</th>
+                <th scope="col">Fisketegn?</th>
+                <th scope="col">Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Hvor / hvem">Kyst, hav og fjord</th>
+                <td data-label="Fisketegn?"><span class="ft-yes">Ja</span></td>
+                <td data-label="Note">Statsligt fisketegn kræves</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Hvor / hvem">Åer og søer (offentligt ferskvand)</th>
+                <td data-label="Fisketegn?"><span class="ft-yes">Ja</span></td>
+                <td data-label="Note">Ofte et lokalt dag-/fiskekort oveni</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Hvor / hvem">Put &amp; Take søer</th>
+                <td data-label="Fisketegn?"><span class="ft-no">Nej</span></td>
+                <td data-label="Note">Du betaler pladsleje i stedet</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Hvor / hvem">Børn og unge under 18 år</th>
+                <td data-label="Fisketegn?"><span class="ft-no">Nej</span></td>
+                <td data-label="Note">Fisker helt gratis</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Hvor / hvem">Fra folkepensionsalderen</th>
+                <td data-label="Fisketegn?"><span class="ft-no">Nej</span></td>
+                <td data-label="Note">Pensionister er fritaget</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Hvor / hvem">Ejer/husstand nærmest ferskvandet</th>
+                <td data-label="Fisketegn?"><span class="ft-no">Nej</span></td>
+                <td data-label="Note">Lovbestemt undtagelse</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Hvor køber du fisketegn?</h2>
+        <p>Fisketegnet købes direkte hos staten — det tager kun et par minutter, og du kan vælge mellem dagtegn, ugetegn og årstegn alt efter, hvor meget du fisker.</p>
+
+        <aside class="gov-cta">
+          <span class="gov-cta-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V10m14 11V10M4 10l8-6 8 6M9 21v-6h6v6" />
+            </svg>
+          </span>
+          <div class="gov-cta-body">
+            <span class="gov-cta-eyebrow">Officielt fisketegn</span>
+            <h3 class="gov-cta-title">Køb dit fisketegn hos Fiskeristyrelsen</h3>
+            <p class="gov-cta-desc">Fisketegnet købes og betales direkte hos staten. Det er den eneste officielle kanal — vælg dag-, uge- eller årstegn og se de aktuelle priser.</p>
+          </div>
+          <a class="gov-cta-btn" href={FISKETEGN_URL} target="_blank" rel="noopener">
+            <span>Gå til fisketegn.fiskeristyrelsen.dk</span>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </aside>
+
+        <TipBox label="Mit tip">
+          <p>Fisker du mere end nogle få gange om året, kan det hurtigt betale sig at vælge <strong>årstegnet</strong> frem for at købe dagtegn hver gang. Og husk: du skal kunne <strong>fremvise dit fisketegn</strong> ved kontrol — så hav kvitteringen liggende på telefonen.</p>
+        </TipBox>
+
+        <h2>Hvem kan fiske uden fisketegn?</h2>
+        <p>Ud over børn under 18 og personer fra folkepensionsalderen findes der to situationer, hvor du må fiske uden det statslige fisketegn.</p>
+
+        <DidYouKnow>
+          Bor du på grunden, der ligger <strong>nærmest et ferskvand</strong>, må både du og resten af din husstand fiske dér uden fisketegn. Det er en gammel undtagelse i loven, der gælder den ejendom, som ligger tættest på det vand, der fiskes i.
+        </DidYouKnow>
+
+        <p>Den anden måde at fiske uden fisketegn på er i en <strong>Put &amp; Take sø</strong>. Disse søer er privatejede og tager oftest betaling for, at man kan fiske der i nogle timer. Det koster selvfølgelig, men man behøver ikke det statslige fisketegn — hvilket også er med til at gøre søerne populære, ikke mindst for børnefamilier.</p>
+
+        <GuideLink
+          href="/fiskeguide/put-take-fiskeri/"
+          title="Læs guiden til Put & Take fiskeri"
+          desc="Fisk uden fisketegn — du betaler pladsleje og er næsten sikret fangst."
+        />
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <h2>Hvad bruges pengene fra fisketegn til?</h2>
+        <p>Når du betaler for det statslige fisketegn, er du med til at finansiere en lang række gode tiltag, som Fiskeristyrelsen (under Ministeriet for Fødevarer, Landbrug og Fiskeri) sætter i gang.</p>
+
+        <StatHighlight
+          value="~30 mio. kr."
+          caption="Salget af fisketegn indbringer det hvert år — pengene går til fiskepleje, udsætninger og restaurering af vandløb"
+          icon="fish"
+        />
+
+        <p>Det vil sige, at de penge, vi alle betaler i form af fisketegn, får vi glæde af igen i form af flere fisk i vores vandløb. Du kan læse meget mere på <a href="https://fiskeristyrelsen.dk/" target="_blank" rel="noopener">fiskeristyrelsen.dk</a>.</p>
+
+        <GuideLink
+          href="/fiskeguide/fiskeri-paa-kysten/"
+          title="Læs guiden til kystfiskeri"
+          desc="Klar med fisketegnet? Kom i gang efter havørred på den åbne kyst."
+        />
+        <GuideLink
+          href="/fiskeguide/fiskeri-i-aa/"
+          title="Læs guiden til fiskeri i å"
+          desc="Husk både fisketegn og det lokale dagkort, før du fisker i åen."
+        />
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/fisketegn_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+  .ac-a a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; }
+  .ac-a a:hover { color: #c47d0a; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li { font-size: 1rem; color: #374151; line-height: 1.75; margin-bottom: 0.375rem; list-style: disc; }
+
+  /* Government CTA */
+  .gov-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 2rem 0;
+    padding: 1.5rem 1.625rem;
+    background: linear-gradient(135deg, #0d4a5e 0%, #11607a 100%);
+    border-radius: 16px;
+    color: #ffffff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 18px 40px -24px rgba(13, 74, 94, 0.5);
+  }
+  .gov-cta-icon {
+    flex-shrink: 0;
+    width: 54px; height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #ffffff;
+  }
+  .gov-cta-icon svg { width: 28px; height: 28px; }
+  .gov-cta-body { flex: 1; min-width: 0; }
+  .gov-cta-eyebrow {
+    display: inline-block;
+    font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.35rem;
+  }
+  .gov-cta-title {
+    font-size: 1.25rem; font-weight: 700; color: #ffffff;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 0 0 0.4rem;
+  }
+  .gov-cta-desc {
+    font-size: 0.9375rem; color: rgba(255, 255, 255, 0.82);
+    line-height: 1.6; margin: 0;
+  }
+  .gov-cta-btn {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    padding: 0.9rem 1.4rem;
+    background: #c47d0a; color: #ffffff;
+    font-size: 0.9375rem; font-weight: 600; text-decoration: none;
+    border-radius: 10px; white-space: nowrap;
+    box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.4);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .gov-cta-btn svg { transition: transform 0.25s ease; }
+  .gov-cta-btn:hover { background: #d98c12; transform: translateY(-1px); }
+  .gov-cta-btn:hover svg { transform: translateX(3px); }
+
+  @media (max-width: 720px) {
+    .gov-cta { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.375rem 1.25rem; }
+    .gov-cta-btn { width: 100%; justify-content: center; }
+  }
+
+  /* Ja/Nej badges in the matrix table */
+  .ft-yes, .ft-no {
+    display: inline-flex; align-items: center;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.8125rem; font-weight: 700;
+    border-radius: 999px;
+  }
+  .ft-yes { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+  .ft-no  { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+
+  /* Comparison/matrix table */
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover { background: #f8fbfc; }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: normal;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap { border-radius: 12px; }
+    .prey-table thead {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .prey-table,
+    .prey-table tbody,
+    .prey-table tr { display: block; width: 100%; }
+    .prey-table tr {
+      padding: 1rem 1.125rem 1.125rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"],
+    .prey-table td {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      align-self: start;
+      padding-top: 0.15rem;
+    }
+  }
+
+</style>

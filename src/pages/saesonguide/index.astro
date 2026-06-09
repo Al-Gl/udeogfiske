@@ -1,0 +1,1066 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const monthFull = ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"];
+const monthShort = ["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Aug","Sep","Okt","Nov","Dec"];
+
+// Same monthData as the homepage — kept in lockstep so the sæsonguide and the front-page block can't drift.
+const monthData = [
+  { season: "Vinter",  color: "#1e40af", bg: "#eff6ff", fish: ["Torsk","Regnbueørred","Aborre"],          tip: "Januar er en stille måned på vandet — men torsk og regnbueørred belønner den tålmodige fisker." },
+  { season: "Vinter",  color: "#1e40af", bg: "#eff6ff", fish: ["Torsk","Regnbueørred","Gedde"],            tip: "Februar byder på koldt vand og aktive torsk fra kysten. Gedde er på toppen i ferskvand." },
+  { season: "Forår",   color: "#2d6a4f", bg: "#f0faf4", fish: ["Havørred","Gedde","Regnbueørred"],         tip: "Marts markerer opvågningen — havørreden søger ind mod kysten og gedden er aggressiv i ferskvand." },
+  { season: "Forår",   color: "#2d6a4f", bg: "#f0faf4", fish: ["Havørred","Hornfisk","Sild"],              tip: "April er forårets højdepunkt. Havørreden er aktiv langs hele kysten, hornfisken er på vej ind og sildestimerne starter." },
+  { season: "Forår",   color: "#2d6a4f", bg: "#f0faf4", fish: ["Hornfisk","Havørred","Sild"],              tip: "Maj bringer hornfisken i store mængder og sildestimerne topper i de sydlige farvande." },
+  { season: "Sommer",  color: "#b45309", bg: "#fffbeb", fish: ["Makrel","Hornfisk","Fladfisk"],             tip: "Juni er makrelfiskerens måned. Hornfisken er fortsat aktiv og fladfisken er udbredt på sandede bunde." },
+  { season: "Sommer",  color: "#b45309", bg: "#fffbeb", fish: ["Makrel","Fladfisk","Havørred"],             tip: "Juli giver de varmeste vande — makrel og fladfisk er i topform, og havørreden søger dybere." },
+  { season: "Sommer",  color: "#b45309", bg: "#fffbeb", fish: ["Makrel","Fladfisk","Aborre"],               tip: "August er sensommerens fiskemåned med masser af makrel og aktiv aborre i ferskvand." },
+  { season: "Efterår", color: "#92400e", bg: "#fff7ed", fish: ["Havørred","Torsk","Sild"],                  tip: "September er efterårets første måned — havørreden er på vej op, torsken søger ind mod land og efterårets sildestimer ankommer." },
+  { season: "Efterår", color: "#92400e", bg: "#fff7ed", fish: ["Havørred","Torsk","Sild"],                  tip: "Oktober er en af årets bedste måneder. Havørred og torsk er i topform, og efterårssilden er i de danske farvande." },
+  { season: "Efterår", color: "#92400e", bg: "#fff7ed", fish: ["Havørred","Torsk","Regnbueørred"],          tip: "November byder på de klassiske efterårsfangster — havørred og torsk dominerer langs kysterne." },
+  { season: "Vinter",  color: "#1e40af", bg: "#eff6ff", fish: ["Torsk","Regnbueørred","Havørred"],          tip: "December er torskens måned. Regnbueørreden er aktiv i put & take-søerne og havørreden er fortsat aktiv." },
+];
+
+const speciesList = [
+  { name: "Havørred",     image: "/images/havørred_card.jpeg",     href: "/guide-til-fisk/havorredfiskeri/" },
+  { name: "Torsk",        image: "/images/torsk_card.png",         href: "/guide-til-fisk/torskefiskeri/" },
+  { name: "Makrel",       image: "/images/makrel_card.png",        href: "/guide-til-fisk/makrelfiskeri/" },
+  { name: "Hornfisk",     image: "/images/hornfisk_card.png",      href: "/guide-til-fisk/hornfisk/" },
+  { name: "Fladfisk",     image: "/images/fladfisk_card.jpeg",     href: "/guide-til-fisk/fladfisk-fiskeri/" },
+  { name: "Sild",         image: "/images/sild_card.png",          href: "/guide-til-fisk/sildefiskeri/" },
+  { name: "Regnbueørred", image: "/images/regnbueørred_card.jpg",  href: "/guide-til-fisk/regnbueorredfiskeri/" },
+  { name: "Aborre",       image: "/images/aa_fiskeri.jpg",         href: "/guide-til-fisk/aborrefiskeri/" },
+  { name: "Gedde",        image: "/images/aafiskeri_hero.png",     href: "/guide-til-fisk/geddefiskeri/" },
+];
+
+type Cell = 'top' | 'good' | 'low';
+const cellLabel: Record<Cell, string> = { top: 'Top sæson', good: 'I sæson', low: 'Lav aktivitet' };
+
+const matrix = speciesList.map(s => ({
+  ...s,
+  months: monthData.map<Cell>(m => {
+    const idx = m.fish.indexOf(s.name);
+    if (idx === 0) return 'top';
+    if (idx > 0) return 'good';
+    return 'low';
+  }),
+}));
+
+const monthIndex = new Date().getMonth();
+const currentMonthName = monthFull[monthIndex];
+
+const faq = [
+  {
+    question: "Hvornår er den bedste tid til at fiske i Danmark?",
+    answer: "Det afhænger af hvilken fisk du vil fange. Havørred er bedst i april–maj og oktober. Makrel og hornfisk topper i juni–august. Torsk er bedst i de kolde måneder fra oktober til marts. Brug sæsonguiden herover til at planlægge din næste tur efter den fisk du jagter."
+  },
+  {
+    question: "Hvilke fisk kan man fange om vinteren i Danmark?",
+    answer: "Vinteren (december–februar) er torskens måneder — særligt fra mole og båd. Regnbueørred er aktiv i put & take-søer hele året. Gedde bider stadig i ferskvand, men du skal ofte gå langsommere efter dem i kulden."
+  },
+  {
+    question: "Hvornår starter havørredfiskeriet om foråret?",
+    answer: "Havørred bliver aktiv langs kysten fra marts, og april–maj er sæsonens første højdepunkt. Havørreden søger ind mod kysten efter føde efter vinterens fredning i ferskvand."
+  },
+  {
+    question: "Hvornår er hornfisk og makrel i sæson?",
+    answer: "Hornfisken trækker ind i april og topper i maj–juni. Makrellen ankommer typisk i juni og er i sæson hele sommeren til august. Begge er fremragende fra mole og bro i sommerhalvåret."
+  },
+  {
+    question: "Hvornår kommer sildestimerne til Danmark?",
+    answer: "Sild har to årlige sæsoner — forårets stimer i april–maj og efterårets stimer i september–oktober. I de to vinduer er sildefiskeri fra mole eller bro nogle af de mest tilgængelige fisketure i landet."
+  },
+];
+---
+
+<MainLayout
+  title="Sæsonguide — Hvornår fanger du hvilke fisk i Danmark? | Ude og Fiske"
+  description="Komplet sæsonkalender over hvornår de mest populære danske fisk er i sæson. Måned for måned for havørred, makrel, hornfisk, torsk, fladfisk og flere."
+  canonical="https://udeogfiske.dk/saesonguide/"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Sæsonguide" },
+  ]}
+  faq={faq}
+>
+  <section class="sg-hero">
+    <div class="sg-ctn">
+      <span class="sg-eyebrow">Sæsonguide</span>
+      <h1 class="sg-h1">Hvornår fanger du hvilke fisk?</h1>
+      <p class="sg-sub">Måned for måned for Danmarks ni mest populære fisk. Brug oversigten til at planlægge din næste fisketur efter den art der bider lige nu.</p>
+      <div class="sg-now">
+        <span class="sg-now-dot" aria-hidden="true"></span>
+        Du er her — <strong>{currentMonthName}</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-intro">
+    <div class="sg-ctn">
+      <div class="sg-intro-grid">
+        <div class="sg-intro-copy">
+          <span class="sg-eyebrow-dark">Sådan bruger du den</span>
+          <h2 class="sg-h2">Fiskene bestemmer — ikke kalenderen</h2>
+          <p>
+            Jeg har planlagt mine fisketure efter én simpel regel i mange år: lad fiskene bestemme. Det lyder banalt, men det er det ikke. Når man fisker i Danmark, er der ikke kun én "fiskesæson" — der er ti eller tolv, alt efter hvilken art man jagter.
+          </p>
+          <p>
+            Det her er kalenderen jeg selv bruger til at planlægge året. Den viser dig hvilke fisk der bider hvornår, og hvilken art der er den primære i hver måned. Hvis du er nybegynder, så start med den art der står som <strong>Top sæson</strong> i den måned du er i — det er den fisk der lige nu er nemmest at få noget på krogen.
+          </p>
+          <p>
+            Du kan gå to veje: scroll igennem matrixen længere nede og find din art, eller spring direkte til sæsonkortene under den og se hvad der er værd at gå efter den måned du planlægger din næste tur i.
+          </p>
+        </div>
+        <aside class="sg-intro-aside">
+          <div class="sg-aside-card">
+            <h3 class="sg-aside-h3">Året i grove træk</h3>
+            <ul class="sg-aside-list">
+              <li><span class="sg-aside-tag" style="--c: #1e40af; --b: #eff6ff;">Vinter</span> Torsk er din mest pålidelige fangst. Sænk farten.</li>
+              <li><span class="sg-aside-tag" style="--c: #2d6a4f; --b: #f0faf4;">Forår</span> Havørreden vågner. Hornfisk og sildestimer følger efter.</li>
+              <li><span class="sg-aside-tag" style="--c: #b45309; --b: #fffbeb;">Sommer</span> Stimerne kommer ind — makrel, fladfisk, hornfisk.</li>
+              <li><span class="sg-aside-tag" style="--c: #92400e; --b: #fff7ed;">Efterår</span> Bedste tid for kystfiskeri. Havørreden er fed.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-legend-wrap">
+    <div class="sg-ctn">
+      <ul class="sg-legend" role="list" aria-label="Forklaring til farverne">
+        <li><span class="sg-swatch top"></span> Top sæson <em>— art med højeste fokus i måneden</em></li>
+        <li><span class="sg-swatch good"></span> I sæson <em>— aktiv og fangbar</em></li>
+        <li><span class="sg-swatch low"></span> Lav aktivitet <em>— uden for sæson</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sg-matrix-wrap">
+    <div class="sg-ctn">
+      <div class="sg-matrix-scroll">
+        <table class="sg-matrix" aria-label="Sæsonkalender for danske fisk">
+          <thead>
+            <tr>
+              <th scope="col" class="sg-corner"><span class="sg-visually-hidden">Fiskeart</span></th>
+              {monthFull.map((m, i) => (
+                <th scope="col" class={`sg-mhead ${i === monthIndex ? 'is-now' : ''}`}>
+                  <span class="sg-mhead-short">{monthShort[i]}</span>
+                  <span class="sg-mhead-full">{m}</span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {matrix.map(row => (
+              <tr>
+                <th scope="row" class="sg-species">
+                  <a href={row.href} class="sg-species-link">
+                    <span class="sg-species-img" style={`background-image: url('${row.image}');`} aria-hidden="true"></span>
+                    <span class="sg-species-name">{row.name}</span>
+                    <svg class="sg-species-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </th>
+                {row.months.map((cell, i) => (
+                  <td
+                    class={`sg-cell sg-cell-${cell} ${i === monthIndex ? 'is-now' : ''}`}
+                    title={`${row.name} — ${monthFull[i]}: ${cellLabel[cell]}`}
+                    aria-label={`${row.name} ${monthFull[i]}: ${cellLabel[cell]}`}
+                  >
+                    <span class="sg-cell-inner" aria-hidden="true"></span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="sg-scroll-hint" aria-hidden="true">Scroll vandret for at se hele året →</p>
+    </div>
+  </section>
+
+  <section class="sg-seasons">
+    <div class="sg-ctn">
+      <div class="sg-sec-hd">
+        <span class="sg-eyebrow-dark">Sæsonens vigtigste lektion</span>
+        <h2 class="sg-h2">Det jeg har lært om de fire sæsoner</h2>
+        <p class="sg-sub-sm">Mine bedste råd til hver del af året — pakket i én sætning du kan huske, og en konkret tilgang du kan tage med på næste tur.</p>
+      </div>
+      <div class="sg-season-grid">
+        <article class="sg-season-card" style="--c: #1e40af; --b: #eff6ff;">
+          <header>
+            <span class="sg-season-tag">Vinter</span>
+            <h3 class="sg-season-title">Langsommere — ikke død</h3>
+          </header>
+          <p>Vinteren er ikke død — den er bare langsommere. Torsken er din mest pålidelige fangst fra mole og båd. Tag varmt tøj på, fisk omkring middagstid hvor vandet er en grad varmere, og sænk farten på dit indspoling. Hvis du har en dag hvor torsken ikke bider, så er regnbueørred i put &amp; take en garanteret backup.</p>
+        </article>
+        <article class="sg-season-card" style="--c: #2d6a4f; --b: #f0faf4;">
+          <header>
+            <span class="sg-season-tag">Forår</span>
+            <h3 class="sg-season-title">Det største skifte i året</h3>
+          </header>
+          <p>Forår er det største skifte i året. Når vandet rammer 5–6 grader langs kysten omkring marts–april, vågner havørreden og søger ind efter føde. Hornfisken følger efter i april–maj. Fra slutningen af april er der mere at fange på en god kystplads end på resten af året tilsammen — så det er nu jeg planlægger flest ture.</p>
+        </article>
+        <article class="sg-season-card" style="--c: #b45309; --b: #fffbeb;">
+          <header>
+            <span class="sg-season-tag">Sommer</span>
+            <h3 class="sg-season-title">Tidligt op, sent i seng</h3>
+          </header>
+          <p>Sommerfiskeri handler om timing — tidligt morgen og sen aften. Mellem klokken 11 og 16 ligger fiskene dybt og inaktivt. Makrelstimerne kommer ind fra juni og er den nemmeste sommerfisketur: find en mole med dybt vand, kast en sildepile-tackle og du er i gang. Husk solcreme og en kølepose, hvis du vil have din fangst med hjem.</p>
+        </article>
+        <article class="sg-season-card" style="--c: #92400e; --b: #fff7ed;">
+          <header>
+            <span class="sg-season-tag">Efterår</span>
+            <h3 class="sg-season-title">Det bedste vindue på året</h3>
+          </header>
+          <p>Efteråret er for mig årets bedste tid på kysten. Havørreden er på sit fedeste inden vinterens fredning, lyset er smukt, og presset på pladserne er lavt. Hvis du kun har fire fisketure tilbage på året, så læg dem mellem 1. september og 15. november på en god kystplads — det er det vindue der oftest giver mig de største fisk.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-months">
+    <div class="sg-ctn">
+      <div class="sg-sec-hd">
+        <h2 class="sg-h2">Måned for måned</h2>
+        <p class="sg-sub-sm">Hvad der sker hver enkelt måned, og hvilke arter der er værd at gå efter.</p>
+      </div>
+      <div class="sg-month-grid">
+        {monthData.map((m, i) => (
+          <article class={`sg-mcard ${i === monthIndex ? 'is-now' : ''}`} style={`--mc: ${m.color}; --mb: ${m.bg};`}>
+            <header class="sg-mcard-hd">
+              <span class="sg-mcard-season">{m.season}</span>
+              <h3 class="sg-mcard-month">{monthFull[i]}</h3>
+            </header>
+            <p class="sg-mcard-tip">{m.tip}</p>
+            <ul class="sg-mcard-fish">
+              {m.fish.map((f, fi) => {
+                const sp = speciesList.find(s => s.name === f);
+                return sp ? (
+                  <li>
+                    <a href={sp.href} class={`sg-mcard-chip ${fi === 0 ? 'is-top' : ''}`}>
+                      {fi === 0 && <span class="sg-mcard-star" aria-hidden="true">★</span>}
+                      {f}
+                    </a>
+                  </li>
+                ) : (
+                  <li><span class="sg-mcard-chip">{f}</span></li>
+                );
+              })}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-method">
+    <div class="sg-ctn">
+      <div class="sg-method-card">
+        <div class="sg-method-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+        <div class="sg-method-text">
+          <h2 class="sg-method-h2">Hvad ligger bag dataet?</h2>
+          <p>
+            Sæsonindikatorerne her er bygget på en kombination af mit eget fiskeri gennem mange år i danske farvande, vejledende sæsonangivelser fra Fiskeplejen og DTU Aqua, og praktiske observationer fra mine egne fisketurs-rapporter.
+          </p>
+          <p>
+            For tre arter — <a href="/guide-til-fisk/havorredfiskeri/">havørred</a>, <a href="/guide-til-fisk/makrelfiskeri/">makrel</a> og <a href="/guide-til-fisk/hornfisk/">hornfisk</a> — har jeg detaljerede peak/good/poor-kalendere på selve arts-guiderne med ekstra nuancer. For de resterende arter er denne side den primære oversigt. Jeg opdaterer kalenderen efter hver sæson hvis erfaringen viser noget nyt — så hvis du har en kommentar eller ser noget der ikke stemmer, så skriv endelig til mig.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-faq-wrap">
+    <div class="sg-ctn">
+      <div class="sg-sec-hd">
+        <h2 class="sg-h2">Ofte stillede spørgsmål</h2>
+      </div>
+      <div class="sg-faq">
+        {faq.map(q => (
+          <details class="sg-faq-item">
+            <summary>{q.question}</summary>
+            <p>{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .sg-ctn {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .sg-visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Hero ── */
+  .sg-hero {
+    position: relative;
+    padding: 4.5rem 0 4rem;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 0%, rgba(196, 125, 10, 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 100%, rgba(59, 130, 246, 0.16) 0%, transparent 65%),
+      linear-gradient(180deg, #0d4a5e 0%, #0e3a55 100%);
+    color: #ffffff;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .sg-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: center;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 30%, transparent 80%);
+  }
+
+  .sg-hero > * { position: relative; z-index: 1; }
+
+  .sg-eyebrow {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 0.35rem 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .sg-h1 {
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .sg-sub {
+    font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.65;
+    max-width: 640px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .sg-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(196, 125, 10, 0.18);
+    border: 1px solid rgba(196, 125, 10, 0.45);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+  }
+
+  .sg-now strong { color: #ffffff; font-weight: 700; }
+
+  .sg-now-dot {
+    width: 8px;
+    height: 8px;
+    background: #c47d0a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(196, 125, 10, 0.22);
+  }
+
+  /* ── Intro (Sådan bruger du den) ── */
+  .sg-intro {
+    background: #ffffff;
+    padding: 4.5rem 0 4rem;
+  }
+
+  .sg-intro-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .sg-intro-copy p {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .sg-intro-copy p:last-child { margin-bottom: 0; }
+
+  .sg-intro-copy strong {
+    color: #c47d0a;
+    font-weight: 700;
+  }
+
+  .sg-aside-card {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.5rem 1.375rem;
+    position: sticky;
+    top: 1.5rem;
+  }
+
+  .sg-aside-h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+
+  .sg-aside-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .sg-aside-list li {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.5;
+  }
+
+  .sg-aside-tag {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c);
+    background: var(--b);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
+  }
+
+  .sg-eyebrow-dark {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #c47d0a;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (max-width: 880px) {
+    .sg-intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .sg-aside-card { position: static; }
+  }
+
+  /* ── Legend ── */
+  .sg-legend-wrap {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1.5rem 0;
+  }
+
+  .sg-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sg-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .sg-legend em {
+    font-style: normal;
+    font-weight: 400;
+    color: #6b7280;
+    margin-left: 0.25rem;
+  }
+
+  .sg-swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    display: inline-block;
+    border: 1px solid transparent;
+    flex-shrink: 0;
+  }
+  .sg-swatch.top {
+    background: linear-gradient(180deg, #fef3c7 0%, #fcd34d 100%);
+    border-color: #f59e0b;
+    box-shadow: inset 0 3px 0 #c47d0a;
+  }
+  .sg-swatch.good {
+    background: linear-gradient(180deg, #eff6ff 0%, #bfdbfe 100%);
+    border-color: #93c5fd;
+    box-shadow: inset 0 3px 0 #3b82f6;
+  }
+  .sg-swatch.low {
+    background: #fafafa;
+    border: 1px dashed #e5e7eb;
+  }
+
+  /* ── Matrix ── */
+  .sg-matrix-wrap {
+    background: #f8fafc;
+    padding: 3rem 0 2rem;
+  }
+
+  .sg-matrix-scroll {
+    overflow-x: auto;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -22px rgba(13, 74, 94, 0.18);
+  }
+
+  .sg-matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 720px;
+  }
+
+  .sg-corner,
+  .sg-mhead {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 2;
+    padding: 0.875rem 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .sg-corner {
+    text-align: left;
+    width: 200px;
+    min-width: 180px;
+    left: 0;
+    z-index: 3;
+    border-right: 2px solid #e5e7eb;
+  }
+
+  .sg-mhead {
+    text-align: center;
+    width: 66px;
+  }
+
+  .sg-mhead-short { display: block; }
+  .sg-mhead-full { display: none; }
+
+  .sg-mhead.is-now {
+    color: #c47d0a;
+    background: #fff7ed;
+  }
+
+  .sg-species {
+    position: sticky;
+    left: 0;
+    background: #ffffff;
+    z-index: 1;
+    border-right: 2px solid #e5e7eb;
+    padding: 0;
+  }
+
+  .sg-species-link {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.625rem 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.18s ease;
+  }
+
+  .sg-species-link:hover {
+    background: #f8fafc;
+  }
+
+  .sg-species-img {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    background-color: #e5e7eb;
+    border: 1px solid #e5e7eb;
+  }
+
+  .sg-species-name {
+    flex: 1;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+  }
+
+  .sg-species-arrow {
+    color: #0d4a5e;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .sg-species-link:hover .sg-species-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .sg-matrix tbody tr {
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .sg-matrix tbody tr:hover .sg-species { background: #f8fafc; }
+  .sg-matrix tbody tr:hover td.sg-cell { background-color: rgba(248, 250, 252, 0.5); }
+
+  .sg-cell {
+    padding: 4px;
+    border-bottom: 1px solid #f1f5f9;
+    background: #ffffff;
+    height: 48px;
+  }
+
+  /* The actual coloured block lives inside .sg-cell-inner so we can keep
+     cell padding + give the colour rounded corners (matches SeasonCalendar's pill look). */
+  .sg-cell-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  }
+
+  /* TOP — orange-amber gradient with strong border-top accent (visual peak). */
+  .sg-cell-top .sg-cell-inner {
+    background: linear-gradient(180deg, #fef3c7 0%, #fcd34d 100%);
+    border-color: #f59e0b;
+    box-shadow: inset 0 3px 0 #c47d0a, 0 1px 2px rgba(196, 125, 10, 0.18);
+  }
+
+  /* GOOD — soft blue gradient. */
+  .sg-cell-good .sg-cell-inner {
+    background: linear-gradient(180deg, #eff6ff 0%, #bfdbfe 100%);
+    border-color: #93c5fd;
+    box-shadow: inset 0 3px 0 #3b82f6, 0 1px 2px rgba(59, 130, 246, 0.12);
+  }
+
+  /* LOW — barely-there. Hairline border to show "empty / out of season". */
+  .sg-cell-low .sg-cell-inner {
+    background: #fafafa;
+    border-color: #f1f5f9;
+    border-style: dashed;
+    opacity: 0.7;
+  }
+
+  .sg-cell:hover .sg-cell-inner {
+    transform: scale(1.02);
+    filter: brightness(1.03);
+  }
+
+  .sg-cell.is-now .sg-cell-inner {
+    outline: 2px solid #c47d0a;
+    outline-offset: 1px;
+  }
+
+  .sg-scroll-hint {
+    display: none;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin: 0.875rem 0 0;
+    text-align: center;
+  }
+
+  @media (max-width: 760px) {
+    .sg-scroll-hint { display: block; }
+  }
+
+  /* ── Season callouts (4 cards: Vinter / Forår / Sommer / Efterår) ── */
+  .sg-seasons {
+    background: #f8fafc;
+    padding: 4rem 0;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .sg-season-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .sg-season-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.5rem 1.375rem 1.625rem;
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .sg-season-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--c);
+    border-radius: 14px 14px 0 0;
+  }
+
+  .sg-season-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px -18px rgba(15, 23, 42, 0.18);
+    border-color: var(--c);
+  }
+
+  .sg-season-card header {
+    margin-bottom: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  .sg-season-tag {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--c);
+    background: var(--b);
+    padding: 0.28rem 0.625rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
+  }
+
+  .sg-season-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .sg-season-card p {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .sg-season-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .sg-season-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Month cards ── */
+  .sg-months {
+    background: #ffffff;
+    padding: 4rem 0 3.5rem;
+  }
+
+  .sg-sec-hd {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .sg-h2 {
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .sg-sub-sm {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .sg-month-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .sg-mcard {
+    background: var(--mb);
+    border: 1px solid #e5e7eb;
+    border-left: 3px solid var(--mc);
+    border-radius: 12px;
+    padding: 1.25rem 1.125rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .sg-mcard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -16px rgba(15, 23, 42, 0.18);
+  }
+
+  .sg-mcard.is-now {
+    background: #ffffff;
+    border-color: var(--mc);
+    box-shadow: 0 0 0 1px var(--mc), 0 14px 28px -14px rgba(196, 125, 10, 0.18);
+  }
+
+  .sg-mcard-hd {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+  }
+
+  .sg-mcard-season {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mc);
+  }
+
+  .sg-mcard-month {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .sg-mcard-tip {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0 0 0.875rem;
+  }
+
+  .sg-mcard-fish {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sg-mcard-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--mc);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .sg-mcard-chip:hover {
+    background: var(--mc);
+    color: #ffffff;
+    border-color: var(--mc);
+  }
+
+  .sg-mcard-chip.is-top {
+    background: var(--mc);
+    color: #ffffff;
+    border-color: var(--mc);
+  }
+
+  .sg-mcard-chip.is-top:hover {
+    opacity: 0.92;
+  }
+
+  .sg-mcard-star {
+    font-size: 0.6875rem;
+    color: #ffffff;
+  }
+
+  @media (max-width: 880px) {
+    .sg-month-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .sg-month-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Methodology (Hvad ligger bag dataet?) ── */
+  .sg-method {
+    background: #ffffff;
+    padding: 3.5rem 0 4rem;
+  }
+
+  .sg-method-card {
+    max-width: 880px;
+    margin: 0 auto;
+    background: #fafbfc;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 12px;
+    padding: 1.75rem 1.75rem 1.625rem;
+    display: flex;
+    gap: 1.125rem;
+    align-items: flex-start;
+  }
+
+  .sg-method-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: #ecfeff;
+    color: #0d4a5e;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sg-method-h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.015em;
+    margin: 0.125rem 0 0.625rem;
+    line-height: 1.3;
+  }
+
+  .sg-method-text p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .sg-method-text p:last-child { margin-bottom: 0; }
+
+  .sg-method-text a {
+    color: #0d4a5e;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(13, 74, 94, 0.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.15s ease;
+  }
+
+  .sg-method-text a:hover { text-decoration-color: #c47d0a; }
+
+  @media (max-width: 640px) {
+    .sg-method-card { flex-direction: column; gap: 0.875rem; }
+  }
+
+  /* ── FAQ ── */
+  .sg-faq-wrap {
+    background: #f8fafc;
+    padding: 4rem 0;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .sg-faq {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .sg-faq-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+
+  .sg-faq-item[open] { border-color: #c47d0a; }
+
+  .sg-faq-item summary {
+    cursor: pointer;
+    padding: 1rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #111827;
+    list-style: none;
+    position: relative;
+  }
+
+  .sg-faq-item summary::-webkit-details-marker { display: none; }
+
+  .sg-faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    color: #6b7280;
+    transition: transform 0.2s ease;
+  }
+
+  .sg-faq-item[open] summary::after {
+    content: '−';
+    color: #c47d0a;
+  }
+
+  .sg-faq-item p {
+    padding: 0 1.25rem 1rem;
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #4b5563;
+  }
+</style>

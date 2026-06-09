@@ -1,0 +1,219 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  widgetId?: string;
+  categoryId?: number;
+  partnerId?: string;
+  productLimit?: number;
+  brandIds?: string;
+  categoryLink?: string;
+  categoryLabel?: string;
+}
+
+const {
+  eyebrow = "Populært fiskegrej",
+  title = "Find den bedste pris",
+  subtitle = "Sammenlign priser på fiskestænger og hjul fra Danmarks førende prissammenligningstjeneste.",
+  widgetId = "pr-category-widget-03978500",
+  categoryId = 647,
+  partnerId = "adrunner_dk_udeogfiske",
+  productLimit = 5,
+  brandIds = "192887,166295",
+  categoryLink = "https://www.pricerunner.dk/cl/647/Fiskegrej",
+  categoryLabel = "Fiskegrej",
+} = Astro.props;
+
+const encodedBrandIds = encodeURIComponent(brandIds);
+const widgetSrc = `https://api.pricerunner.com/publisher-widgets/dk/category.js?productLimit=${productLimit}&categoryId=${categoryId}&partnerId=${partnerId}&brandIds=${encodedBrandIds}&widgetId=${widgetId}`;
+---
+
+<section class="pr-section">
+  <div class="pr-ctn">
+    <div class="pr-card">
+      <header class="pr-head">
+        <div class="pr-head-text">
+          <span class="pr-eyebrow">{eyebrow}</span>
+          <h2 class="pr-title">{title}</h2>
+          <p class="pr-sub">{subtitle}</p>
+        </div>
+        <span class="pr-badge" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+          Annonce
+        </span>
+      </header>
+
+      <div class="pr-widget">
+        <div id={widgetId} style="display:block;width:100%;"></div>
+      </div>
+
+      <footer class="pr-foot">
+        <a href={categoryLink} rel="nofollow sponsored" class="pr-foot-link">
+          Se hele {categoryLabel}-kategorien hos PriceRunner
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <span class="pr-foot-note">I samarbejde med <strong>PriceRunner</strong></span>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<!-- Gated behind marketing consent (see CookieConsent.astro). Loads only after the visitor accepts marketing cookies. -->
+<script is:inline type="text/plain" data-consent="marketing" async src={widgetSrc}></script>
+
+<style>
+  .pr-section {
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .pr-ctn {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pr-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 2rem 2rem 1.5rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 30px -18px rgba(13, 74, 94, 0.12);
+    overflow: hidden;
+  }
+
+  .pr-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c47d0a 0%, #0d4a5e 50%, #2563eb 100%);
+    border-radius: 18px 18px 0 0;
+    opacity: 0.85;
+  }
+
+  .pr-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed #e5e7eb;
+  }
+
+  .pr-head-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pr-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #c47d0a;
+    margin-bottom: 0.5rem;
+  }
+
+  .pr-title {
+    font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .pr-sub {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .pr-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .pr-widget {
+    min-height: 120px;
+    padding: 0.25rem 0;
+  }
+
+  /* Soft overrides for the PriceRunner iframe/widget so it sits cleanly inside the card */
+  .pr-widget :global(iframe) {
+    display: block;
+    width: 100% !important;
+    border: 0;
+    border-radius: 12px;
+    background: #fafafa;
+  }
+
+  .pr-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #e5e7eb;
+    flex-wrap: wrap;
+  }
+
+  .pr-foot-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0d4a5e;
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+  }
+
+  .pr-foot-link:hover {
+    gap: 10px;
+    color: #c47d0a;
+  }
+
+  .pr-foot-note {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #9ca3af;
+    letter-spacing: 0.01em;
+  }
+
+  .pr-foot-note strong {
+    font-weight: 700;
+    color: #6b7280;
+  }
+
+  @media (max-width: 640px) {
+    .pr-card { padding: 1.5rem 1.25rem 1.25rem; }
+    .pr-head { flex-direction: column-reverse; align-items: flex-start; gap: 0.875rem; }
+    .pr-badge { align-self: flex-start; }
+    .pr-foot { flex-direction: column; align-items: flex-start; }
+  }
+</style>

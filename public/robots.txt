@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# AI / LLM guide
+# llms.txt: https://udeogfiske.dk/llms.txt
+
+Sitemap: https://udeogfiske.dk/sitemap.xml

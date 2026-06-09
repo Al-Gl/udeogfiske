@@ -1,0 +1,296 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import AuthorProfile from '../../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../components/TipBox.astro';
+import StatHighlight from '../../../../components/StatHighlight.astro';
+
+const faqs = [
+  {
+    question: "Hvad er en overspringer, og hvorfor fokusere på dem i januar?",
+    answer: "En overspringer er en havørred, der har sprunget gydningen over og forblevet i saltvand. Mens de gydende fisk er udmattede og bør fredes, er overspringerne stadig i god kondition med en blank, sølvskinnende krop — og de jager aktivt selv i vinterkulden. Det gør dem til den primære målfisk i januar.",
+  },
+  {
+    question: "Hvor finder jeg havørreder i januar?",
+    answer: "Vælg fjorde og kyststrækninger med stabilt vand og lavere saltindhold. Mariager Fjord, Limfjorden og Roskilde Fjord er klassiske januar-pladser fordi vandet ofte er lidt varmere og saltindholdet lavere. Kystpladser med blandet bund, dybt vand og tangbælter virker også, og åmundinger kan tiltrække fisk — men tjek altid lokale fredninger.",
+  },
+  {
+    question: "Hvilke blink fanger flest havørreder i januar?",
+    answer: "Lange og slanke blink som Snurrebassen, Møresilda og Sandeel — de efterligner tobis og småfisk som havørreden jager om vinteren. Naturlige farver (sølv, blå) virker bedst i klart vand, skrigende farver (orange, rød/gul) i uklart vand. Gennemløbsblink som Westin D360° er gode på dybere vand fordi de tillader lange kast.",
+  },
+  {
+    question: "Hvilken indspinning virker bedst i koldt vand?",
+    answer: "Langsom og rolig — havørrederne er mindre aggressive i januar, og hurtige indspinninger ignoreres ofte. Lad blinket synke til bunden, spind langsomt ind med korte pauser så agnen \"svæver\" i vandet, og fisk tæt på bunden hvor fiskene typisk holder til.",
+  },
+  {
+    question: "Hvilket vejr giver bedst januar-fiskeri?",
+    answer: "Milde dage med højere temperaturer og let pålandsvind. Vinden skaber bevægelse i vandet og gør fiskene mere tilbøjelige til at jage. På solrige dage kan du have succes med at fiske dybere, hvor fiskene søger skygge. Undgå hård frost og isdannelse langs kysten — både farligt og fiskefjendsk.",
+  },
+];
+
+const about = [
+  {
+    name: "Havørred (Salmo trutta trutta)",
+    sameAs: "https://da.wikipedia.org/wiki/Hav%C3%B8rred",
+  },
+];
+---
+
+<MainLayout
+  title="Havørredfiskeri i Januar | Fang Overspringere i Vintermåneden"
+  description="Vil du fange havørred i januar? Læs vores guide til vinterfiskeri og få tips til de bedste fiskepladser, teknikker og agnvalg for at øge dine chancer i det kolde vand."
+  canonical="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-januar/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Guide til fisk", url: "/guide-til-fisk/" },
+    { name: "Havørredfiskeri", url: "/guide-til-fisk/havorredfiskeri/" },
+    { name: "Havørredfiskeri i Januar" },
+  ]}
+  articleData={{
+    headline: "Havørredfiskeri i Januar – Sådan Fanger Du Overspringere i Vintermåneden",
+    image: "/images/havørred_hero1.jpeg",
+    datePublished: "2024-11-05",
+    dateModified: "2026-05-07",
+  }}
+  faq={faqs}
+  about={about}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/">Guide til fisk</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/havorredfiskeri/">Havørredfiskeri</a>
+        <span>›</span>
+        <span>Januar</span>
+      </nav>
+      <h1 class="pg-title">Havørredfiskeri i Januar – Sådan Fanger Du Overspringere i Vintermåneden</h1>
+      <p class="pg-sub">Vinterkulden gør havørrederne træge, men de blanke overspringere jager stadig langs den danske kyst. Komplet guide til januar-fiskeri — fjorde, blink, vejr og den langsomme teknik der virker i koldt vand.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvorfor fiske havørred i januar?</h2>
+        <p class="ac-a">Januar er måneden hvor du fokuserer på <strong>overspringerne</strong> — havørreder der sprang gydningen over og stadig jager i saltvand i topkondition. Vælg fjorde med lavere saltindhold (Mariager, Limfjorden, Roskilde), fisk langsomt og tæt på bunden, og udnyt de milde dage. Tålmodighed slår grej i januar.</p>
+      </div>
+
+      <article class="article">
+        <p>Januar er en udfordrende måned for <a href="/guide-til-fisk/havorredfiskeri/">havørredfiskeri</a>, da vinterkulden har gjort vandet koldt og havørrederne mindre aktive. Alligevel kan der stadig være gode fangstmuligheder, især efter overspringerne – de blanke fisk, som springer gydningen over. I denne artikel gennemgår vi, hvordan du bedst griber havørredfiskeriet an i januar, hvilke teknikker og agn der virker bedst, og hvor du finder de bedste fiskepladser.</p>
+      </article>
+
+      <AuthorProfile
+        quote="Jeg har stået på molen mange januar-morgener i kulde og vind, og det er ikke uden grund jeg bliver ved med at vende tilbage. Når man endelig får hug i januar, er det næsten altid en blank overspringer i topkondition — den slags fisk der får mig til at glemme den frosne forfangslinje og de iskolde fingre. Tålmodighed og det rigtige tøj er to tredjedele af spillet i vintermåneden."
+      />
+
+      <article class="article">
+        <h2>Hvorfor Fiske Havørred i Januar?</h2>
+        <p>Selvom januar byder på kolde og barske vejrforhold, er det en af de få måneder, hvor du kan fokusere på at fange overspringere, som stadig er i saltvand og jager aktivt. Disse fisk har ikke deltaget i gydningen og er derfor stadig i god kondition med en blank og sølvskinnende farve. Vintermåneden kræver dog lidt ekstra tålmodighed og den rigtige tilgang for at få succes.</p>
+
+        <p><strong>Kendetegn ved havørreder i januar:</strong></p>
+        <ul>
+          <li>Overspringere har en blank, sølvfarvet krop.</li>
+          <li>De er ofte mindre aktive på grund af det kolde vand, men kan stadig jage, især på milde dage.</li>
+          <li>De findes typisk langs kysterne og i fjorde med moderat saltindhold.</li>
+        </ul>
+      </article>
+
+      <DidYouKnow>
+        Overspringere er ikke en separat art — det er almindelige havørreder der har valgt at springe ét gydeforløb over for at bevare energireserverne. De forbliver i saltvand hele vinteren og bruger den ekstra fødeoptag til at vokse hurtigere. Det er derfor vinterens overspringere ofte er de største og blankeste fisk i hele havet.
+      </DidYouKnow>
+
+      <article class="article">
+        <h2>De Bedste Fiskepladser i Januar</h2>
+        <p>Når det kommer til fiskeri i januar, er det vigtigt at vælge fiskepladser med stabilt vand og lavere saltindhold, hvor fiskene er mest tilbøjelige til at opholde sig. Fjorde og kyststrækninger med varieret bund og dybt vand er oplagte steder at starte.</p>
+
+        <p><strong>Populære fiskepladser i januar:</strong></p>
+        <ul>
+          <li><strong>Fjorde:</strong> Mariager Fjord, Limfjorden og Roskilde Fjord er populære steder, hvor du kan finde overspringere. Disse områder har ofte lidt højere temperatur og lavere saltindhold, hvilket tiltrækker fiskene. Her kan du finde store stimer af mindre fisk som gemmer sig i bunden af fjorden.</li>
+          <li><strong>Kyststrækninger:</strong> Kystpladser med blandet bund, dybt vand og tangområder kan være ideelle i januar. Havørrederne patruljerer ofte i disse områder på jagt efter føde.</li>
+          <li><strong>Åmundinger:</strong> Hvor åer løber ud i havet, skabes en blanding af fersk- og saltvand, som kan tiltrække havørreder i vintermånederne. Husk altid at være opmærksom på fredninger i området.</li>
+        </ul>
+      </article>
+
+      <figure class="full-bleed">
+        <img src="/images/havoerred_isefjorden.jpg" alt="Isefjorden i januar — klassisk vinter-overspringer-plads med lavere saltindhold" loading="lazy" />
+        <figcaption>Fjorde som Isefjord, Mariager Fjord og Roskilde Fjord har lavere saltindhold og lidt varmere vand end åbne kyststrækninger — derfor samles januar-overspringerne her.</figcaption>
+      </figure>
+
+      <article class="article">
+        <h2>De Mest Effektive Agn i Januar</h2>
+        <p>I det kolde vintervand er det vigtigt at bruge agn, der imiterer havørredens naturlige føde. Havørrederne jager stadig småfisk, rejer og tanglopper, men de kan være mere træge på grund af det kolde vand.</p>
+
+        <p><strong>Effektive agn til havørredfiskeri i januar:</strong></p>
+        <ul>
+          <li><strong>Blink:</strong> Lange og slanke blink som Snurrebassen, Møresilda og Sandeel fungerer godt, da de efterligner tobis og andre småfisk. Naturlige farver som sølv og blå virker bedst i klart vand, mens skrigende farver kan anvendes i uklart vand.</li>
+          <li><strong>Gennemløbsblink:</strong> Gennemløbsblink som Westin D360° giver mulighed for lange kast og er særligt effektive på dybere vand.</li>
+        </ul>
+
+        <p><strong>Fluer:</strong> Rejefluer og små fiskefluer kan være gode til bombardafiskeri. Brug en intermediate bombarda-flåd til at fiske langsomt i det kolde vand.</p>
+      </article>
+
+      <StatHighlight
+        icon="ruler"
+        value="3 fjorde"
+        caption="Mariager Fjord, Limfjorden og Roskilde Fjord — de klassiske januar-pladser hvor lavere saltindhold og lidt varmere vand samler vinterens overspringere."
+      />
+
+      <article class="article">
+        <h2>Teknikker til Havørredfiskeri i Januar</h2>
+        <p>Når vandet er koldt, er det afgørende at tilpasse dine fisketeknikker, så de matcher havørredens langsommere adfærd. Det kan kræve ekstra tålmodighed og en mere forsigtig tilgang for at få fiskene til at bide.</p>
+
+        <p><strong>Spinfiskeri:</strong></p>
+        <ul>
+          <li>Kast langs kysten og lad blinket synke til bunden, før du spinder ind med rolige og langsomme bevægelser. Brug pauser i indspinningen for at få blinket til at "svæve" i vandet.</li>
+          <li>Kast i forskellige retninger og dæk så meget vand som muligt, især på dage med skiftende vejrforhold.</li>
+          <li>Fisk tæt på bunden, hvor havørrederne ofte holder til i det kolde vand.</li>
+        </ul>
+
+        <p><strong>Fluefiskeri med Bombarda:</strong></p>
+        <ul>
+          <li>En langsom indspinning med bombardaflåd og en flue som Pattegrisen kan være meget effektiv, især hvis du fisker over lavere vanddybder i fjorde.</li>
+          <li>Fisk langsomt og hold fluen tæt på bunden for at øge chancerne for bid.</li>
+          <li>Vær opmærksom på strømforholdene, da det kan påvirke fluepræsentationen.</li>
+        </ul>
+      </article>
+
+      <TipBox>
+        <p><strong>Mit tip — fisk langsomt, virkelig langsomt.</strong> I koldt vand er havørredens stofskifte halveret. Den vil ikke jagte en hurtig agn — den vil have tid til at vurdere bytte. Spind så langsomt at du tror det er for langsomt, og indlæg pauser på 2-3 sekunder mellem hver omgang. Det er den ene faktor der oftest gør forskellen i januar.</p>
+      </TipBox>
+
+      <figure class="full-bleed">
+        <img src="/images/mole_fiskeri.jpg" alt="Vinter-molefiskeri efter havørred — tålmodighed og det rigtige tøj er halvdelen af succesen" loading="lazy" />
+        <figcaption>Mole- og kystfiskeri i januar kræver mere tøj end teknik — er du komfortabel og varm, kan du blive på pladsen længere og dermed øge sandsynligheden for at finde de få aktive fisk.</figcaption>
+      </figure>
+
+      <article class="article">
+        <h2>Vejret og Havørredens Adfærd i Januar</h2>
+        <p>Vejret spiller en stor rolle i januar, da havørrederne er stærkt påvirket af de kolde temperaturer. Det kan være en fordel at fiske på dage, hvor temperaturen er lidt højere, og hvor der er skyer eller let vind, som skaber bevægelse i vandet.</p>
+
+        <p><strong>Hvordan vejret påvirker fiskeriet:</strong></p>
+        <ul>
+          <li><strong>Mildt vejr:</strong> På milde dage med højere temperaturer kan havørrederne være mere aktive, især midt på dagen.</li>
+          <li><strong>Vind:</strong> En let pålandsvind kan skabe bølger og bevægelse i vandet, hvilket gør fiskene mere tilbøjelige til at jage.</li>
+          <li><strong>Klar himmel:</strong> På solrige dage kan du have succes med at fiske dybt, da fiskene ofte søger ned mod bunden for at finde skygge og beskyttelse.</li>
+        </ul>
+      </article>
+
+      <article class="article">
+        <h2>Tips og Tricks til Havørredfiskeri i Januar</h2>
+        <ul>
+          <li><strong>Vær tålmodig:</strong> Fiskeriet kan være langsomt, så det gælder om at være vedholdende og prøve forskellige teknikker og agn.</li>
+          <li><strong>Fisk langsomt:</strong> Langsom indspinning og pauser kan være afgørende, da havørrederne er mindre aggressive i koldt vand.</li>
+          <li><strong>Skift mellem agn:</strong> Hvis du ikke får hug, så prøv at skifte mellem blink og fluer for at finde det, der virker bedst på dagen. Prøv nogle aggressive farver, disse kan være med til at få havørreden til at hugge.</li>
+        </ul>
+
+        <p>Selvom januar kan være en udfordrende måned for havørredfiskeri, er det stadig muligt at fange flotte overspringere, hvis du er villig til at fiske tålmodigt og bruge de rette teknikker. Fjorde og kystområder med dybere vand er gode steder at lede, og med langsomme indspinninger og realistiske agn kan du få succes i vintermåneden. Det vigtigste er at man er komfortabel og ikke fryser i vandet. Så tag masser af tøj på og nyd, de ofte gode dage på kysten.</p>
+
+        <h2>FAQ</h2>
+
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary><h3>{f.question}</h3></summary>
+              <div class="faq-answer">
+                <p>{f.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </article>
+
+      <nav class="month-nav">
+        <span class="mn-label">Andre månedsguider:</span>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-februar/">Februar</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-marts/">Marts</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-april/">April</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-maj/">Maj</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-juni/">Juni</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-juli/">Juli</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-august/">August</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-september/">September</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-oktober/">Oktober</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-november/">November</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-december/">December</a>
+        <a href="/guide-til-fisk/havorredfiskeri/" class="mn-parent">↑ Tilbage til havørredfiskeri</a>
+      </nav>
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/mole_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li {
+    font-size: 1rem; color: #374151; line-height: 1.75;
+    margin-bottom: 0.5rem; list-style: disc;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+</style>

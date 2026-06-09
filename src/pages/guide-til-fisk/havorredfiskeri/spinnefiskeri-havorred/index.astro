@@ -1,0 +1,346 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import AuthorProfile from '../../../../components/AuthorProfile.astro';
+import DifficultyMeter from '../../../../components/DifficultyMeter.astro';
+import DidYouKnow from '../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../components/TipBox.astro';
+import StatHighlight from '../../../../components/StatHighlight.astro';
+
+const faqs = [
+  {
+    question: "Hvilken stang og hjul skal jeg bruge til spinnefiskeri efter havørred?",
+    answer: "Stang i 9-10 fod med kastevægt 10-40 g, og et fastspolehjul i størrelse 2500-4000. Det er en alsidig kombination der både kan kaste de tunge forårsblink og de mindre sommer-blink. Du behøver ikke dyrt grej for at komme i gang.",
+  },
+  {
+    question: "Hvilken line virker bedst til spinnefiskeri?",
+    answer: "Fletline 0,10-0,15 mm for ekstra følsomhed, eller monofil 0,20-0,25 mm hvis du vil have en blødere kastestil. Mit eget setup: fletline med en 60-70 cm fluorocarbon-spids på 0,25 mm — det giver bedste følsomhed og fluorocarbonen er sværere for fisken at se, især om sommeren.",
+  },
+  {
+    question: "Hvilke blink fanger flest havørreder?",
+    answer: "Blink på 12-20 g til længere kast er det grundlæggende. Naturlige farver som grøn, brun og sølv virker bedst i klart vand. Skarpe farver som orange og gul er bedre i grumset vand eller ved vinterfiskeri. Brug gerne en lille flue 30-50 cm foran blinket — det øger bidchancen markant.",
+  },
+  {
+    question: "Hvor finder jeg havørreder ved kysten?",
+    answer: "Områder med varierede bundforhold (sten, tangbælter, sandbund), strømrige kyster og rev hvor føden samles, samt fjorde og åudløb om vinteren og det tidlige forår. 90% af spinnefiskeri handler om at finde fisken — er fiskene der ikke, fanger du ingenting uanset hvor godt du fisker.",
+  },
+  {
+    question: "Hvor lang tid skal jeg blive på samme plads?",
+    answer: "Cirka én time. Mærker du ingen fisk eller ser ingen aktivitet, så flyt dig. Havørreder bevæger sig meget, og det handler om at finde dem fremfor at vente. Selv på en god plads bør du gå et par hundrede meter mellem kastene for at affiske et større areal.",
+  },
+  {
+    question: "Skal jeg have fisketegn for at fiske havørred?",
+    answer: "Ja, hvis du er mellem 18 og 65 år. Mindstemålet for havørred er 40 cm — genudsæt altid mindre fisk. Havørreden er fredet i gydedragt fra 15. november til 15. januar; tynde \"nedfaldsfisk\" efter gydning bør altid genudsættes så de kan opbygge kondition igen.",
+  },
+];
+
+const about = [
+  {
+    name: "Havørred (Salmo trutta trutta)",
+    sameAs: "https://da.wikipedia.org/wiki/Hav%C3%B8rred",
+  },
+];
+---
+
+<MainLayout
+  title="Spinnefiskeri efter Havørreder | Tips og tricks til flere fisk | Ude og Fiske"
+  description="Kom godt i gang med spinnefiskeri efter havørreder. Fang flere havørreder ved kysten, fjorden og åen med denne komplette guide."
+  canonical="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Guide til fisk", url: "/guide-til-fisk/" },
+    { name: "Havørredfiskeri", url: "/guide-til-fisk/havorredfiskeri/" },
+    { name: "Spinnefiskeri efter havørred" },
+  ]}
+  articleData={{
+    headline: "Spinnefiskeri efter havørreder",
+    image: "/images/havørred_hero1.jpeg",
+    datePublished: "2024-11-28",
+    dateModified: "2026-05-07",
+  }}
+  faq={faqs}
+  about={about}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/">Guide til fisk</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/havorredfiskeri/">Havørredfiskeri</a>
+        <span>›</span>
+        <span>Spinnefiskeri</span>
+      </nav>
+      <h1 class="pg-title">Spinnefiskeri efter havørreder</h1>
+      <p class="pg-sub">Den mest populære og tilgivende måde at komme i gang med havørredfiskeri. Komplet guide til udstyr, strategier, fødeemner og teknik der virker fra den danske kyst, fjord og å.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvorfor spinnefiskeri?</h2>
+        <p class="ac-a">Spinnefiskeri er den nemmeste og billigste indgang til havørredfiskeriet. Det kræver ikke avancerede kasteteknikker som fluefiskeri, og du kan fokusere på at lære pladserne og fiskens adfærd at kende. <strong>90% af succes handler om at finde fisken — kun 10% om at få den til at bide.</strong></p>
+      </div>
+
+      <article class="article">
+        <p>Spinnefiskeri efter havørred er en af de mest populære metoder blandt lystfiskere i Danmark. Det er en teknik, der kombinerer spænding, udfordring og masser af muligheder for fangst. Havørreden, en af de mest eftertragtede fisk, findes både ved kysterne, i fjordene og enkelte gange i åerne. I denne guide får du alt, hvad du skal bruge for at komme i gang med spinnefiskeri efter havørred – fra valg af udstyr til strategier og tips, der øger dine chancer for succes.</p>
+
+        <p>Især spinnefiskeri efter havørred er effektivt, men også en nem måde at komme i gang med havørredfiskeriet. Det kræver ikke meget øvelse for at starte spinnefiskeri, teknikkerne som virker på havørrederne kan man udvikle løbende mens man fisker.</p>
+
+        <p><a href="/guide-til-fisk/havorredfiskeri/">Her kan du se en guide til havørredfiskeri, så du kan blive en bedre havørredfisker.</a></p>
+      </article>
+
+      <AuthorProfile
+        quote="Spinnefiskeri var min indgang til havørreden, og det er stadig den teknik jeg falder tilbage på når jeg skal lære en ny plads at kende. Du kommer langt ud, du dækker meget vand, og du kan variere indtaget på en måde fluefiskeren ikke kan. Selv efter 30 års fiskeri er det stadig lige så spændende at mærke det første hug på et velvalgt blink."
+      />
+
+      <DifficultyMeter value={25} />
+
+      <article class="article">
+        <h2>Hvilket udstyr skal jeg bruge til spinnefiskeri efter havørred?</h2>
+        <p>Før du kaster dig ud i spinnefiskeriet, er det vigtigt at have det rigtige udstyr. Havørredfiskeri kræver ikke nødvendigvis dyrt grej, men nogle basale ting er essentielle.</p>
+
+        <p>Kvaliteten og hermed prisen på udstyret bestemmer du helt selv. Det er <strong>HELT OK</strong> at bruge udstyr fra Bilka eller Harald Nyborg, hvis du lige skal starte med at spinne fiske, men jeg vil altid anbefale at man snakker, med sin lokale fiskegrejsbutik, da de er rigtig gode til at hjælpe nybegyndere.</p>
+
+        <p>Jeg har lavet guides til valg af både fiskestænger og hjul. Tryk på links herunder for at gå direkte til disse guides.</p>
+
+        <h3>Fiskestang</h3>
+        <p>Se min <a href="/fiskeudstyr/kob-af-fiskestaenger/spinnestaenger/">guide til valg af spinnestænger</a>. Det vigtigste:</p>
+        <ul>
+          <li><strong>Længde</strong>: En stang på 9-10 fod giver god rækkevidde og fleksibilitet.</li>
+          <li><strong>Kastevægt</strong>: 10-40 gram er ideelt, så du kan kaste de typiske havørred-blink og gennemløbere. Du kan også vælge at gå ned i kastevægt så du kan kaste mindre blink, som kan være effektive om sommeren og efteråret.</li>
+        </ul>
+
+        <h3>Fiskehjul</h3>
+        <p>Se min <a href="/fiskeudstyr/koeb-af-fiskehjul/">guide til valg af fiskehjul</a>. Det vigtigste:</p>
+        <ul>
+          <li><strong>Størrelse</strong>: Et fastspolehjul i størrelse 2500-4000 passer perfekt til spinnefiskeri.</li>
+          <li><strong>Line</strong>: Brug enten en fletline (0,10-0,15 mm) for ekstra følsomhed eller en monofil line (0,20-0,25 mm), hvis du foretrækker en blødere kastestil.</li>
+        </ul>
+
+        <p>Jeg bruger selv en fletline, hvor de sidste 60-70 cm. er en fluorocarbon på 0.25. Her får du det bedste af begge verdener. Fluorocarbonen gør at havørreder har sværere ved at se linen, og dette kan især være vigtigt om sommeren.</p>
+
+        <h3>Endegrej</h3>
+        <p>Blink, gennemløbsblink, woblere og bombardaflåd med fluer er populære valg til havørreder. Sørg for at have en blanding af:</p>
+        <ul>
+          <li>Blink på 12-20 gram til længere kast. Kom gerne højere op hvis du fisker om sommeren og vinteren over dybt vand.</li>
+          <li>Naturlige farver som grøn, brun og sølv til klart vand.</li>
+          <li>Skarpe farver som orange og gul til grumset vand eller vinterfiskeri.</li>
+        </ul>
+
+        <h3>Tilbehør</h3>
+        <ul>
+          <li>Polaroidbriller for at spotte fisk og undgå genskin fra vandet. Dette er guld værd hvis man fisker i lang tid med solen oppe.</li>
+          <li>Waders er næsten et must. Mange af de gode fiskepladser kræver, at man står i vandet.</li>
+          <li>Et fangstnet til at lande fiskene og til skånsom genudsætning.</li>
+        </ul>
+      </article>
+
+      <DidYouKnow>
+        En lille flue 30-50 cm foran dit blink er en af de mest underraporterede tricks i dansk havørredfiskeri. Blinket fungerer som <strong>blikfang på lang afstand</strong>, og fluen ser ud som om den jages — og det er ofte fluen der får hugget. Mange fisk der ellers bare ville følge blinket bider med det samme på fluen.
+      </DidYouKnow>
+
+      <figure class="full-bleed">
+        <img src="/images/kyst_fiskeri.jpg" alt="Kystfisker med spinnestang fanger havørred fra dansk kyst" loading="lazy" />
+        <figcaption>Den klassiske spinnefiskeri-plads — varieret bund, sten og tangbælter, hvor havørrederne jager efter småfisk og krebsdyr.</figcaption>
+      </figure>
+
+      <article class="article">
+        <h2>Havørredens adfærd og fødeemner</h2>
+        <p>For at fange havørreder effektivt er det vigtigt at forstå deres adfærd og fødevalg. Når man ved hvad havørreden typisk spiser, så kan man nemmere imitere fødeemnerne og derved have nemmere ved at fange fiskene.</p>
+
+        <h3>Fødeemner</h3>
+        <p>Havørreder spiser bl.a.:</p>
+        <ul>
+          <li>Tanglopper</li>
+          <li>Kutlinger</li>
+          <li>Rejer</li>
+          <li>Børsteorme</li>
+          <li>Småfisk som tobiser og hundestejler</li>
+        </ul>
+
+        <p><a href="/guide-til-fisk/havorredfiskeri/#Havorredens_fodeemner">Jeg har skrevet et større afsnit om havørredens fødeemner som du kan læse her.</a></p>
+
+        <h3>Årstider og temperatur</h3>
+        <ul>
+          <li>Om vinteren foretrækker havørreder fjorde og varmere vand. Ellers er de ude på dybere vand som også er varmere.</li>
+          <li>Foråret bringer dem tættere på kysten, hvor de jager intensivt.</li>
+          <li>Sommeren kræver nat- og morgenfiskeri, da havørreder trækker ud på dybere og køligere vand midt på dagen.</li>
+          <li>Efteråret byder på vandring mod åer og fjorde – både blanke og gydedragtsfisk kan fanges.</li>
+        </ul>
+
+        <StatHighlight
+          icon="fish"
+          value="40 cm"
+          caption="Mindstemålet for havørred. Genudsæt altid mindre fisk, og husk fredning på gydedragtsfisk fra 15. november til 15. januar."
+        />
+      </article>
+
+      <article class="article">
+        <h2>Strategier og teknikker</h2>
+        <p>Følgende ordsprog har jeg hørt mange gange i mine snakke med andre lystfiskere.</p>
+
+        <p><strong>"For at fange en havørrede handler det 90% om at finde fisken, og 10% om at få den til at bide"</strong></p>
+
+        <p>Og efter at have brugt mange timer ved kysten of fjorden, kan jeg kun være enig i dette. At finde den rette plads, hvor fiskene højst sandsynligt befinder sig, er simpelthen det vigtigste. Er fiskene der ikke, så er det lige meget hvor god en fisker du er, du kommer ikke til at fange noget.</p>
+
+        <h3>Hvor finder man havørreden?</h3>
+        <ul>
+          <li>Områder med varierede bundforhold – sten, tangbælter og sandbund.</li>
+          <li>Strømrige kyster og rev, hvor føden samles.</li>
+          <li>Fjorde og åudløb om vinteren og det tidlige forår.</li>
+        </ul>
+
+        <h3>Kastetekninik og indtag</h3>
+        <ul>
+          <li>Kast langt ud for at dække så meget vand som muligt.</li>
+          <li>Variér din indspinning for at efterligne byttedyrenes bevægelse:
+            <ul>
+              <li>Langsom og jævn indspinning til tanglopper og rejer.</li>
+              <li>Hurtigere ryk for at efterligne flygtende småfisk som kutlinger og tobiser.</li>
+            </ul>
+          </li>
+          <li>Lav spinnestop – dette får blinket til at svæve i vandet, og det er ofte dette som udløser hugget.</li>
+        </ul>
+
+        <h3>Flue foran blink</h3>
+        <p>Bind en lille flue 30-50 cm foran dit blink. Dette øger chancerne for bid, især når havørreden tøver ved det større blink. Blinket kan ofte tiltrække fisken, da det kan ses på lang afstand. Fluen kan så være det som får havørreden til at bide på. Det kan også se ud som om blinket er en lille fisk som jager fluen, så vil havørreden se fluen som endnu mere spændende.</p>
+
+        <h3>Vær mobil</h3>
+        <p>Hvis du ikke mærker fisk inden for en time, så flyt dig. Havørreder bevæger sig meget, og det gælder om at finde dem fremfor at vente. Selv når du fisker, er det vigtigt at bevæge sig. På den måde affisker du et større areal og øger betydeligt chancen for fisk.</p>
+      </article>
+
+      <TipBox>
+        <p>Mit råd: vælg <strong>3-4 forskellige pladser</strong> og fokuser på dem. Lær dem at kende i de forskellige faser af tidevandet, i forskellige vejrforhold og over flere sæsoner. På den måde betydeligt øger du chancen for fisk — i stedet for konstant at jagte nye pladser uden at lære nogen rigtigt at kende.</p>
+      </TipBox>
+
+      <article class="article">
+        <h2>Tips til begyndere</h2>
+        <p>Spinnefiskeri efter havørreder kan være både spændende og udfordrende – især når man lige er begyndt. Havørreder er kendt for deres snedige adfærd og kan være svære at fange i starten, men lad det ikke slå dig ud! Hemmeligheden ligger i tålmodighed og læring.</p>
+
+        <p>Start med at udforske de lokale pladser. Havørreder elsker variation i vandet – kig efter områder med tangbælter, stenrev og strøm. Morgen- og aftentimerne er ofte de bedste tidspunkter, da fiskene er mest aktive der.</p>
+
+        <p>Husk også, at det ikke altid handler om udstyret, men om teknikken. Prøv forskellige indspinningsmetoder og agn for at finde ud af, hvad der virker bedst i netop dit område. Det kan tage tid at lære de gode pladser at kende og forstå fiskens mønstre, men det er en del af charmen.</p>
+
+        <p>Frem for alt: hold gejsten oppe. Mange oplever at skulle bruge tid på at få deres første havørred, men når det sker, er det det hele værd. Så nyd turene ved vandet, og se hvert kast som en ny mulighed!</p>
+
+        <h3>Praktiske tips</h3>
+        <ul>
+          <li><strong>Tidspunkt på dagen</strong>: Fisk tidligt om morgenen eller sent på aftenen, især om sommeren. Og prøv og planlæg dine fisketure så du fisker i faldende eller stigende vand. Jeg foretrækker at fiske ved faldende vand, men begge dele er gode.</li>
+          <li><strong>Vær opmærksom på fredning og mindstemål</strong>: Havørreden er fredet i gydedragt fra 15. november til 15. januar.</li>
+          <li>Mindstemålet er 40 cm – genudsæt altid mindre fisk.</li>
+          <li><strong>Hav tålmodighed</strong>: Havørredfiskeri kan være udfordrende. Bliv ved, selvom du ikke mærker bid med det samme. Det kræver øvelse at mestre teknikken.</li>
+        </ul>
+      </article>
+
+      <figure class="full-bleed">
+        <img src="/images/havorred_closeup.png" alt="Havørred i fight på spinnestang ved den danske kyst" loading="lazy" />
+        <figcaption>Belønningen ved at lære pladsen at kende — en blank kysthavørred på krogen efter timer med tålmodig spinnefiskeri.</figcaption>
+      </figure>
+
+      <article class="article">
+        <h2>Fordele ved spinnefiskeri efter havørred</h2>
+        <p>Spinnefiskeri er en fantastisk måde at komme i gang med havørredfiskeriet – især hvis du er nybegynder. En af de største fordele er, at det ofte er billigere at komme i gang sammenlignet med fx fluestangsfiskeri. Spinnestænger findes i mange prisklasser, og udvalget af hjul, liner og blink er stort, så du nemt kan finde noget, der passer til dit budget og dine behov.</p>
+
+        <p>Derudover er spinnefiskeri mere tilgivende for nybegyndere. Du behøver ikke at mestre komplicerede kasteteknikker, som du gør med fluestangen. Med en spinnestang kan du hurtigt få kastet din agn langt ud i vandet og komme i gang med at fiske. Det gør det lettere at fokusere på at lære pladserne og havørredens adfærd at kende.</p>
+
+        <p>Spinnefiskeri giver dig også mulighed for at eksperimentere med forskellige agn – alt fra blink og gennemløbere til woblere. Det giver variation og gør det sjovt at finde ud af, hvad der virker bedst på dagen.</p>
+
+        <p>Alt i alt er spinnefiskeri et tilgængeligt og effektivt valg, der giver dig masser af muligheder for succes ved kysten!</p>
+
+        <p>Spinnefiskeri efter havørred er en fantastisk måde at nyde naturen og samtidig udfordre dig selv som lystfisker. Med den rette viden, lidt øvelse og tålmodighed kan du snart stå med en blank og stærk havørred på krogen. Så find dit grej, udforsk nye fiskepladser, og nyd spændingen ved jagten på en af Danmarks mest ikoniske sportsfisk!</p>
+
+        <h2>FAQ</h2>
+
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary><h3>{f.question}</h3></summary>
+              <div class="faq-answer">
+                <p>{f.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/havørred_hero1.jpeg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li {
+    font-size: 1rem; color: #374151; line-height: 1.75;
+    margin-bottom: 0.5rem; list-style: disc;
+  }
+  .article ul li ul { margin: 0.4rem 0 0.6rem 1.25rem; }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+</style>

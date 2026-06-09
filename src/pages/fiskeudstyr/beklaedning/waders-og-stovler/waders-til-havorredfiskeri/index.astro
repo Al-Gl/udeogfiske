@@ -1,0 +1,265 @@
+---
+import MainLayout from '../../../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../../../components/AdsenseBanner.astro';
+import RelatedRow from '../../../../../components/RelatedRow.astro';
+import AuthorProfile from '../../../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../../components/TipBox.astro';
+
+const related = [
+  {
+    title: "Waders og Støvler",
+    description: "Den overordnede waders-guide — neopren vs åndbare, bootfoot vs stockingfoot, og hvilke producenter der er værd at kigge på.",
+    href: "/fiskeudstyr/beklaedning/waders-og-stovler/",
+    image: "/images/beklaedning.png",
+    alt: "Waders og fiskestøvler",
+    chip: "Udstyr",
+  },
+  {
+    title: "Vadejakke",
+    description: "Waders alene er ikke nok — vadejakken er den anden halvdel af den kompletterende beklædning til kystfiskeri.",
+    href: "/fiskeudstyr/beklaedning/vadejakke/",
+    image: "/images/havørred_hero1.jpeg",
+    alt: "Fisker i vadejakke",
+    chip: "Udstyr",
+  },
+  {
+    title: "Havørredfiskeri",
+    description: "Den ultimative guide til havørredfiskeri på den danske kyst — sæson, grej, teknik og pladsvalg.",
+    href: "/guide-til-fisk/havorredfiskeri/",
+    image: "/images/havørred_hero1.jpeg",
+    alt: "Havørred fra kysten",
+    chip: "Fiskearter",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvad er bedst til havørredfiskeri: Neopren eller åndbare waders?",
+    answer: "Til aktivt kystfiskeri, hvor du bevæger dig meget, er <strong>åndbare waders</strong> klart at foretrække. De leder sveden væk fra kroppen, så du ikke bliver kold og klam. Neopren waders er bedst egnet til meget koldt, stationært fiskeri eller til korte ture i vinterhalvåret, hvor isolering er vigtigere end mobilitet.",
+  },
+  {
+    question: "Hvad skal jeg have på under mine waders?",
+    answer: "Lag-på-lag princippet er afgørende. Inderst skal du bruge et sæt skiundertøj i <strong>merinould</strong> eller kunststof, der transporterer fugt væk fra huden. <strong>Glem alt om bomuld</strong> (f.eks. joggingbukser), da det suger fugt og gør dig kold. Som mellemlag bruger du fleecebukser eller PrimaLoft for isolering.",
+  },
+  {
+    question: "Hvor længe holder et par waders?",
+    answer: "Waders er en \"sliddel\". Hvis du fisker intensivt på kysten (vandrer meget, kravler over sten osv.), skal du forvente, at selv gode waders slides over tid. Et par kvalitetswaders kan holde i mange sæsoner med den rette pleje, men utætheder (pinholes) kan opstå. Det er nemt at lappe små huller med lim som Aquasure.",
+  },
+  {
+    question: "Skal jeg vælge filtsål eller gummisål med pigge?",
+    answer: "Til rent kystfiskeri på rullesten er <strong>filtsåler</strong> suveræne, da de står godt fast på glatte sten. Men vil du have den bedste all-round løsning, der også står fast i mudder, græs og sne på vej til vandet, anbefaler jeg en <strong>profileret gummisål med tungsten-pigge</strong>.",
+  },
+  {
+    question: "Hvordan vedligeholder jeg mine waders bedst?",
+    answer: "Det vigtigste er at skylle dem i ferskvand efter hver tur – saltvand og sand slider på materialet og lynlåse. Hæng dem altid til tørre et skyggefuldt sted (aldrig i direkte sollys, da UV-stråler nedbryder materialet). Sørg for, at de er helt tørre – både indvendigt og udvendigt – før du pakker dem væk.",
+  },
+];
+---
+
+<MainLayout
+  title="Waders til Havørredfiskeri: Guiden til de rigtige waders"
+  description="Går du langt efter fisken? Lær hvorfor åndbare waders og stockingfoot er det eneste rigtige valg for din mobilitet. Se hvilken model jeg selv bruger."
+  canonical="https://udeogfiske.dk/fiskeudstyr/beklaedning/waders-og-stovler/waders-til-havorredfiskeri/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeudstyr", url: "/fiskeudstyr/" },
+    { name: "Beklædning", url: "/fiskeudstyr/beklaedning/" },
+    { name: "Waders og Støvler", url: "/fiskeudstyr/beklaedning/waders-og-stovler/" },
+    { name: "Waders til havørredfiskeri" },
+  ]}
+  articleData={{
+    headline: "Waders til havørredfiskeri",
+    image: "/images/havørred_hero1.jpeg",
+    datePublished: "2025-12-12",
+    dateModified: "2026-05-13",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/">Fiskeudstyr</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/beklaedning/">Beklædning</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/beklaedning/waders-og-stovler/">Waders og Støvler</a>
+        <span>›</span>
+        <span>Waders til havørredfiskeri</span>
+      </nav>
+      <h1 class="pg-title">Waders til havørredfiskeri</h1>
+      <p class="pg-sub">Kystfiskeri er jagt. Mobilitet vinder over isolering 90% af året — og det stiller helt specifikke krav til dine waders.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvilke waders skal jeg vælge til havørredfiskeri?</h2>
+        <p class="ac-a">Til aktivt kystfiskeri er <strong>åndbare waders med stockingfoot og en separat vadestøvle</strong> det eneste seriøse valg — de leder sved væk og giver mobilitet. <strong>Neoprenwaders</strong> kun til meget koldt, stationært fiskeri (januar-februar, vandtemperatur under 4°C). Min personlige favorit: <strong>Patagonia Swiftcurrent Expedition</strong>.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Jeg har slidt adskillige par waders op gennem årene, og det er Patagonia Swiftcurrent Expedition der hænger på min knage i dag. På en god dag tilbagelægger jeg 5-8 kilometer langs kysten i jagten på sølvtøj — og det er præcis den slags fiskeri der adskiller en god wader fra et par billige rør. Mobilitet er ikke en luksus i kystfiskeri; det er hovedingrediensen i succes."
+      />
+
+      <article class="article">
+        <p>Havørredfiskeri er jagt. Det er ikke en disciplin, hvor vi sidder på en klapstol og venter. Succes på kysten handler om at dække vand, finde fisken og være i konstant bevægelse. På en god dag kan jeg nemt tilbagelægge 5-8 kilometer langs stranden i jagten på sølvtøj.</p>
+
+        <p>Når du bevæger dig så meget, stiller det nogle helt specifikke krav til dine waders. Det handler ikke længere kun om at holde vandet ude – det handler om biomekanik, varmeregulering og udholdenhed.</p>
+
+        <p>Her er min erfaring med at vælge den rigtige beklædning, når mobilitet er nøglen til fangst.</p>
+
+        <p><a href="/guide-til-fisk/havorredfiskeri/">Læs desuden den ultimative guide til havørredfiskeri her.</a></p>
+
+        <DidYouKnow>
+          En aktiv kystfisker producerer <strong>op til 1 liter sved i timen</strong> under hård vandring i waders. I ikke-åndbare neoprenwaders kan denne fugt ikke slippe ud — du ender med at være lige så våd indeni som hvis du havde gået i regnen uden jakke. Det er den primære grund til at åndbare waders er obligatoriske til opsøgende fiskeri, ikke en præference.
+        </DidYouKnow>
+
+        <h2>Hvorfor er åndbare waders din arbejdshest 90% af året?</h2>
+
+        <p>Lad mig slå det fast med det samme: Hvis du praktiserer opsøgende fiskeri, hvor du går langt for at finde fiskene, er <strong>åndbare waders</strong> det eneste seriøse valg.</p>
+
+        <p>Hvorfor? Fordi fugt er din værste fjende.</p>
+
+        <p>Når du vandrer i raskt tempo hen over rullesten og sand, producerer din krop enorme mængder varme og sved. I et par gammeldags gummi- eller neoprenwaders kan denne fugt ikke slippe ud. Resultatet er, at du bliver gennemblødt indefra. Når du så stopper op for at fiske (og står stille i koldt vand), bliver den fugtige underbeklædning til et iskoldt omslag. Du fryser, og din fiskedag slutter før tid.</p>
+
+        <h3>Fordelene ved åndbare waders til den mobile fisker</h3>
+
+        <ul>
+          <li><strong>Vægt:</strong> Moderne åndbare modeller vejer en brøkdel af neopren. Hvert gram tæller, når du løfter benene tusindvis af gange på en dag.</li>
+          <li><strong>Friktion:</strong> Materialet er tyndt og glat, hvilket minimerer modstanden i vandet, når du vader, og modstanden mellem benene, når du går.</li>
+          <li><strong>Lag-på-lag princippet:</strong> Du regulerer varmen med dit tøj indenunder. Er det koldt, tager du merinould og fleece på. Er det varmt, nøjes du med et tyndt lag. Det giver dig ét par waders, der virker fra april til november.</li>
+        </ul>
+
+        <h3>Designkrav til mobilitet</h3>
+
+        <p>Når du kigger på åndbare waders, skal du kigge efter "artikulerede knæ" (formsyede ben). Billige waders er ofte to lige rør. Kvalitetswaders er syet i en bue, der følger benets naturlige bøjning. Det gør en verden til forskel, når du skal kravle over en høfde eller gå op ad en stejl skrænt.</p>
+
+        <h2>Min personlige anbefaling: Patagonia Swiftcurrent Expedition</h2>
+
+        <p>Efter at have slidt adskillige par waders op gennem årene, er det <strong>Patagonia Swiftcurrent Expedition</strong>, der hænger på min knage i dag.</p>
+
+        <p>For mig er det den ultimative "arbejdshest". De forener en ekstrem slidstyrke (som man sjældent ser på åndbare modeller) med en pasform, der føles skræddersyet til bevægelse. De er forstærket alle de rigtige steder, og de "artikulerede knæ" gør, at jeg nærmest glemmer, jeg har dem på – selv på de lange ture langs kysten. Det er en investering, men kvaliteten og holdbarheden matcher prisen 1:1.</p>
+
+        <TipBox>
+          Køb <strong>én topkvalitets-wader frem for to par billige</strong>. Jeg har prøvet begge strategier, og den dyre wader holder ikke bare længere — den fisker også bedre hver dag den er ude. Mobilitet, tæthed og artikulerede knæ er ikke detaljer; de er forskellen mellem en 8-timers fisketur og en 3-timers tur hvor du går tidligt hjem.
+        </TipBox>
+
+        <h2>Hvornår skal jeg vælge neopren?</h2>
+
+        <p>Er neopren så helt ubrugeligt? Nej. Men det er et specialværktøj.</p>
+
+        <p>Jeg finder mine neoprenwaders frem i de absolut koldeste måneder (typisk januar og februar), eller når vandtemperaturen dykker under 4 grader. Men kun hvis jeg ved, at jeg skal fiske <strong>stationært</strong>.</p>
+
+        <p>Hvis strategien er at stå i et "badekar" i tre timer og vente på en trækfisk, så vinder isolering over mobilitet. Her er neoprenens tykkelse (4-5mm) uovertruffen til at holde kulden fra vandtrykket ude. Men så snart du skal gå mere end 500 meter, betaler du prisen i form af sved og tunge ben.</p>
+
+        <p><strong>Min tommelfingerregel:</strong></p>
+        <ul>
+          <li>Skal jeg gå mere end jeg skal stå? <strong>Vælg åndbare.</strong></li>
+          <li>Skal jeg stå mere end jeg skal gå (og er det frostvejr)? <strong>Vælg neopren.</strong></li>
+        </ul>
+
+        <h3>Støvlen er din motor</h3>
+
+        <p>Vi kan ikke tale mobilitet uden at tale fodtøj. Hvis du vil kunne gå langt, skal du vælge en løsning med <strong>stockingfoot</strong> (løs sok) og en separat <strong>vadestøvle</strong>.</p>
+
+        <p>Waders med fastmonteret gummistøvle (bootfoot) er en katastrofe for mobiliteten. De sidder løst omkring anklen, hvilket betyder, at din fod rutsjer rundt for hvert skridt. Det giver vabler, træthed og en markant øget risiko for at vrikke om på de glatte sten.</p>
+
+        <p>En separat vadestøvle snøres tæt som en vandrestøvle. Den giver den ankelstøtte, der skal til, for at du sikkert kan forcere tangbuske og glatte stenrev uden at blive træt i fødderne efter en time.</p>
+      </article>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål om waders til havørredfiskeri</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <RelatedRow items={related} />
+
+    </div>
+  </section>
+
+  <AdsenseBanner />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/havørred_hero1.jpeg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-body { padding: 3.5rem 0 5rem; }
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+  .ac-a a { color: #0d4a5e; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article ul {
+    margin: 0.5rem 0 1.5rem 1.5rem;
+    color: #374151;
+    line-height: 1.8;
+  }
+  .article ul li { margin-bottom: 0.5rem; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+
+  .faq-heading {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 4rem auto 1rem; max-width: 760px;
+  }
+</style>

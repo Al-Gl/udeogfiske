@@ -1,0 +1,230 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../../components/AdsenseBanner.astro';
+import RelatedRow from '../../../../components/RelatedRow.astro';
+import AuthorProfile from '../../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../components/TipBox.astro';
+
+const related = [
+  {
+    title: "Put & Take fiskeri",
+    description: "Den overordnede guide til Put & Take fiskeri i Danmark — sæson, sø-typer, regnbueørreden og pris.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Put & Take sø",
+    chip: "Fiskeform",
+  },
+  {
+    title: "Regnbueørredfiskeri",
+    description: "Den fulde guide til regnbueørreden — fisken du jagter i Put & Take søen.",
+    href: "/guide-til-fisk/regnbueorredfiskeri/",
+    image: "/images/regnbueoerred_card.png",
+    alt: "Regnbueørred",
+    chip: "Fiskearter",
+  },
+  {
+    title: "UL Fiskeri",
+    description: "Ultra-light spinnefiskeri — den letteste vej til at mærke kampen fra selv små Put & Take ørreder.",
+    href: "/fiskeguide/ul-fiskeri/",
+    image: "/images/ul-fiskeri_card.png",
+    alt: "UL spinnefiskeri",
+    chip: "Fiskeform",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvilken stang og hjul skal jeg bruge til spinnefiskeri i Put & Take?",
+    answer: "En <strong>let spinnestang på 7-9 fod med kastevægt 5-25 g</strong> dækker langt det meste P&T-fiskeri. Til hjulet er størrelse <strong>2000-2500</strong> det klassiske valg — Shimano, Daiwa eller Abu Garcia i den lette ende. Vil du have mere sportslig kamp på små regnbuer, så kig på UL-grej (kastevægt 1-7 g).",
+  },
+  {
+    question: "Hvilket endegrej fanger flest fisk i Put & Take?",
+    answer: "<strong>Spinnere</strong> i størrelse 1-3 (Mepps Aglia og Black Fury klassikere) er det mest effektive enkeltvalg. Små <strong>UL-blink</strong> på 3-7 g, <strong>spinfluer</strong> og <strong>Power Bait</strong> på bundrig fungerer også glimrende. Variation er ofte vigtigere end ét bestemt valg — hav 3-4 muligheder med.",
+  },
+  {
+    question: "Hvilken farve spinner virker bedst?",
+    answer: "Det varierer efter vand og dagslys, men en grundregel: <strong>klare/lyse farver i grumset vand</strong> (kobber, guld, klar metal) og <strong>mørke farver i klart vand</strong> (sort, brun, mørkerød). Når én farve ikke giver hug efter 15-20 kast, så skift — fiskerne har ofte set farverne mange gange før, og overraskelse fanger oftest fisk.",
+  },
+  {
+    question: "Hvor dybt skal jeg fiske spinneren?",
+    answer: "Det <strong>afhænger af temperatur og årstid</strong>. Om sommeren står fiskene tit dybt for at finde koldere vand — fisk langsomt og lad spinneren synke et par sekunder. Om vinteren og foråret står de højere — fisk lige under overfladen i jævnt tempo. Når du fanger den første fisk, så husk dybde og tempo og gentag.",
+  },
+  {
+    question: "Hvad er forskellen på spinnefiskeri og fluefiskeri i Put & Take?",
+    answer: "Spinnefiskeri er den <strong>nemmeste vej i gang</strong> — grejet koster mindre, kastet er hurtigere at lære, og effektiviteten er typisk højere på en typisk fisketur. Fluefiskeri er mere teknisk, men giver en mere intim fiskeoplevelse og er en bedre sportsudfordring når man først har lært kastet. <a href=\"/fiskeguide/fluefiskeri/fluefiskeri-i-put-take/\">Fluefiskeri i P&T</a> har sin egen guide.",
+  },
+];
+---
+
+<MainLayout
+  title="Spinnefiskeri i Put & Take | Guide til regnbueørreder med spinnestang"
+  description="Den komplette guide til spinnefiskeri i Put & Take — stang, hjul, endegrej, teknik og farvevalg. Sådan fanger du regnbueørreder år efter år."
+  canonical="https://udeogfiske.dk/fiskeguide/put-take-fiskeri/spinnefiskeri-i-put-take/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Put & Take fiskeri", url: "/fiskeguide/put-take-fiskeri/" },
+    { name: "Spinnefiskeri i Put & Take" },
+  ]}
+  articleData={{
+    headline: "Spinnefiskeri i Put & Take",
+    image: "/images/kyst_fiskeri.jpg",
+    datePublished: "2025-01-20",
+    dateModified: "2026-05-13",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <a href="/fiskeguide/put-take-fiskeri/">Put & Take fiskeri</a>
+        <span>›</span>
+        <span>Spinnefiskeri i Put & Take</span>
+      </nav>
+      <h1 class="pg-title">Spinnefiskeri i Put & Take</h1>
+      <p class="pg-sub">Den hurtigste vej til regnbueørreden — let spinnestang, små spinnere, og en teknik der er nem at lære, men svær at perfektionere.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvordan kommer jeg i gang med spinnefiskeri i Put & Take?</h2>
+        <p class="ac-a">En <strong>let spinnestang (7-9 fod, kastevægt 5-25 g)</strong>, et fastspolehjul i størrelse <strong>2000-2500</strong>, monofil line 0,22-0,25 mm, og en håndfuld <strong>spinnere i størrelse 1-3</strong> er hvad der skal til. Det er den nemmeste vej ind i fiskeriet i Danmark — og du fanger oftest fisk allerede på din første tur.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Spinnefiskeri i Put & Take var det fiskeri der gjorde mig hooked på lystfiskeri i sin tid, og det er stadig dér jeg sender folk hen når de spørger mig om hvordan man starter. Det er svært at slå kombinationen af lav adgangsbarriere, høj fangstchance og en fisk der kæmper godt for sin størrelse. Den allerførste spinnefisk jeg fangede var en regnbueørred på 1,2 kg på en Mepps Aglia størrelse 2 — og den teknik virker stadig 30 år senere."
+      />
+
+      <article class="article">
+        <p>Put & Take søerne er Danmarks bedste sted at lære spinnefiskeri. Fiskene er der, de er sultne, og du kan øve dig på kast, indspoling og fight uden at skulle bekymre dig om de udfordringer der følger med kystfiskeri efter havørred eller å-fiskeri efter ørred. Det er fiskeri uden ventetid — og det er præcis hvad nybegyndere har brug for.</p>
+
+        <p>I denne guide gennemgår jeg det grej, det endegrej og den teknik der har fanget mig flest regnbueørreder over årene. Pointen er ikke at fortælle dig at du skal bruge nøjagtigt det jeg bruger — pointen er at give dig et godt udgangspunkt, så du selv kan eksperimentere og finde det der virker for dig.</p>
+
+        <DidYouKnow>
+          Regnbueørreden i danske Put & Take søer er <strong>opdrættet</strong> og udsættes med jævne mellemrum. Det betyder at fisken <em>kender</em> de mest populære spinnerfarver fra opdrætsbassinet og fra tidligere fiskedage — derfor virker variation og overraskelse ofte bedre end at fiske den samme "guld-Mepps" som alle andre. Skift både farve, størrelse og tempo når du ikke får hug.
+        </DidYouKnow>
+
+        <h2>Hvilket grej skal jeg bruge til spinnefiskeri i Put & Take?</h2>
+
+        <p>Du har brug for fire ting: en stang, et hjul, en line og endegrej. Lad mig tage dem én ad gangen.</p>
+
+        <p><strong>Stangen:</strong> en let spinnestang på 7-9 fod med kastevægt 5-25 g rammer plet for almindeligt P&T-fiskeri. Den skal være let nok til at du kan kaste små spinnere præcist, og samtidig stiv nok til at kunne fight en regnbueørred på 1-2 kg uden at give efter. Vil du gå hele vejen i den lette ende, så kig på <a href="/fiskeguide/ul-fiskeri/">UL-stænger</a> i kastevægt 1-7 g — det er sportsligt fiskeri på højeste niveau.</p>
+
+        <p><strong>Hjulet:</strong> et fastspolehjul i størrelse 2000-2500 fra <strong>Shimano, Daiwa eller Abu Garcia</strong> er det klassiske valg. Hjulet skal være let, spinde linen jævnt ind, og have en pålidelig bremse. Læs <a href="/fiskeudstyr/fiskehjul/">fiskehjul-guiden</a> hvis du skal investere i et nyt.</p>
+
+        <p><strong>Linen:</strong> monofil 0,22-0,25 mm er en god allround størrelse. Flettet line er kun nødvendigt hvis du fisker meget langt eller skal mærke meget små hug — i de fleste P&T-søer er monofil nok.</p>
+
+        <h2>Hvilket endegrej fanger flest fisk?</h2>
+
+        <p><strong>Spinnere</strong> er den mest effektive enkeltkategori. Mepps Aglia, Black Fury og Panther Martin i størrelse 1-3 har fanget flere danske regnbueørreder end alle andre lokkemidler tilsammen. Hav 3-4 forskellige farver med (sølv, guld, kobber, sort/rød) og skift når én ikke giver hug efter 15-20 kast.</p>
+
+        <p>Udover spinnere virker <strong>små UL-blink</strong> (3-7 g) godt — særligt på dage hvor fiskene er kræsne. <strong>Spinfluer</strong> på bombarda er en anden klassiker. Og når intet andet virker, så er <strong>Power Bait</strong> på bundrig en sikker udvej — det er ikke det mest sportslige, men det fanger fisk.</p>
+
+        <TipBox>
+          Tag <strong>3-4 spinnere i forskellige farver</strong> fremfor 20 forskellige typer endegrej. Variation kommer fra at skifte farve og tempo, ikke fra at have et lager-niveau af lokkemidler. Mine personlige top-tre: Mepps Aglia sølv #2, Black Fury sort/rød #2, og en lille UL-blink i kobber. De tre alene har fanget mig hundredvis af fisk.
+        </TipBox>
+
+        <h2>Hvilken teknik virker bedst i Put & Take?</h2>
+
+        <p>Den klassiske P&T-teknik er <strong>jævnt tempo</strong> med spinneren — kast så langt du kan, lad den synke et par sekunder så den når den dybde fiskene står på, og spind så ind i et jævnt tempo der får spinnerens blade til at rotere stabilt. Ændr tempo og dybde indtil du finder kombinationen.</p>
+
+        <p><strong>Den vigtigste enkeltlære:</strong> stop indspolingen i 1-2 sekunder af og til, så spinneren synker en smule. Det er ofte i det øjeblik fisken hugger — fordi det får spinneren til at ligne en svag/skadet småfisk. Den teknik alene har givet mig flere fisk end nogen anden enkeltjustering.</p>
+
+        <p>Om <strong>sommeren</strong> står fiskene typisk dybere for at finde koldere vand — fisk langsomt og lad spinneren synke længe. Om <strong>foråret og efteråret</strong> står de højere — fisk lige under overfladen i jævnt tempo. Om <strong>vinteren</strong> bliver fiskeriet meget langsomt — små spinnere, langsom indspoling, og lange pauser.</p>
+
+        <p>Husk: når du fanger en fisk, så husk præcis hvor (afstand fra bredden), hvor dybt, og i hvilket tempo. Gentag og du fanger ofte 2-3 fisk fra samme spot på samme måde.</p>
+
+        <h2>Hvor finder jeg de bedste Put & Take søer?</h2>
+
+        <p>Der findes flere hundrede Put & Take søer i Danmark, og kvaliteten varierer enormt — fra små bynære søer med få fisk til store komplekser med flere søer og fisk i forskellige størrelser. Læs den overordnede <a href="/fiskeguide/put-take-fiskeri/">Put & Take guide</a> for sø-typer, sæson og prisinfo, eller læs guiden til <a href="/fiskeguide/fluefiskeri/fluefiskeri-i-put-take/">fluefiskeri i Put & Take</a> hvis du vil supplere spinnefiskeriet med en mere sportslig udfordring.</p>
+      </article>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <RelatedRow items={related} />
+
+    </div>
+  </section>
+
+  <AdsenseBanner />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/kyst_fiskeri.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-body { padding: 3.5rem 0 5rem; }
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+  .ac-a a { color: #0d4a5e; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+
+  .faq-heading {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 4rem auto 1rem; max-width: 760px;
+  }
+</style>

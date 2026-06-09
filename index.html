@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ude og Fiske - Din guide til fiskeri i Danmark. Find fiskeguides, udstyr anbefalinger, fiskepladser og ekspert tips til din næste fisketur.">
+    <meta name="keywords" content="fiskeri, fiskeguide, fiskeudstyr, fiskepladser, Danmark, lystfiskeri">
+    <meta name="author" content="Ude og Fiske">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://udeogfiske.dk/">
+    <meta property="og:title" content="Ude og Fiske - Inspiration til din fisketur">
+    <meta property="og:description" content="Find de bedste fiskeguides, udstyr og pladser til dit næste fiskeeventyr i Danmark.">
+    <meta property="og:image" content="https://udeogfiske.dk/wp-content/uploads/2020/03/fishermen-3953256_1920.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Ude og Fiske - Inspiration til din fisketur">
+    <meta property="twitter:description" content="Find de bedste fiskeguides, udstyr og pladser til dit næste fiskeeventyr i Danmark.">
+
+    <title>Ude og Fiske - Inspiration til din fisketur</title>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Ude og Fiske",
+      "url": "https://udeogfiske.dk/",
+      "description": "Din guide til fiskeri i Danmark",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://udeogfiske.dk/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e5a6e;
+            --primary-light: #2d7a8f;
+            --secondary-color: #3a7d44;
+            --accent-color: #d97706;
+            --accent-warm: #ea580c;
+            --water-blue: #0c4a6e;
+            --deep-water: #0a3d54;
+            --forest-green: #14532d;
+            --earth-brown: #78350f;
+            --sand-beige: #fef3c7;
+            --text-dark: #0f172a;
+            --text-medium: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-gradient: linear-gradient(135deg, #0c4a6e 0%, #1e5a6e 40%, #2d7a8f 70%, #d97706 100%);
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 40px -5px rgb(0 0 0 / 0.15);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(12, 74, 110, 0.015) 2px, rgba(12, 74, 110, 0.015) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(12, 74, 110, 0.015) 2px, rgba(12, 74, 110, 0.015) 4px);
+            background-size: 80px 80px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header with Glassmorphism */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 12px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            background: var(--bg-gradient);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(15, 118, 110, 0.05);
+        }
+
+        .nav-links a:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section with Photo Background */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            background-image: url('https://udeogfiske.dk/wp-content/uploads/2020/03/fishermen-3953256_1920.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+                background-position: 60% center;
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                rgba(12, 74, 110, 0.5) 0%,
+                rgba(30, 90, 110, 0.4) 30%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(30, 90, 110, 0.4) 70%,
+                rgba(12, 74, 110, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, rgba(248, 250, 252, 0.9), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            color: var(--white);
+            max-width: 900px;
+            padding: 3rem 2rem;
+            animation: fadeInUp 0.8s ease-out;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6),
+                         0 2px 10px rgba(0, 0, 0, 0.4),
+                         0 0 20px rgba(12, 74, 110, 0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1.125rem, 2vw, 1.4rem);
+            margin-bottom: 2.5rem;
+            opacity: 1;
+            line-height: 1.6;
+            font-weight: 500;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.6),
+                         0 1px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.125rem 3rem;
+            background: var(--white);
+            color: var(--water-blue);
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+                        0 0 0 2px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(12, 74, 110, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                        0 0 0 3px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.25rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            line-height: 1.6;
+        }
+
+        /* Bento Grid Categories */
+        .categories {
+            margin-bottom: 8rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            grid-auto-rows: 240px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--border-color);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card:nth-child(1) {
+            grid-column: span 7;
+            grid-row: span 2;
+        }
+
+        .category-card:nth-child(2) {
+            grid-column: span 5;
+        }
+
+        .category-card:nth-child(3) {
+            grid-column: span 5;
+        }
+
+        .category-card:nth-child(4) {
+            grid-column: span 7;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(30, 90, 110, 0.05) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(30, 90, 110, 0.25);
+            border-color: rgba(217, 119, 6, 0.3);
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
+        }
+
+        .category-image {
+            width: 100%;
+            flex: 1;
+            background: linear-gradient(135deg, var(--water-blue) 0%, var(--primary-color) 50%, var(--accent-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:nth-child(1) .category-image {
+            font-size: 6rem;
+        }
+
+        .category-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .category-content {
+            padding: 2rem;
+            background: var(--white);
+            position: relative;
+        }
+
+        .category-card:nth-child(1) .category-content {
+            padding: 2.5rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .category-card:nth-child(1) .category-title {
+            font-size: 2rem;
+        }
+
+        .category-description {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Featured Articles - Modern Grid */
+        .featured-articles {
+            margin-bottom: 6rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .article-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--water-blue), var(--accent-color));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(12, 74, 110, 0.25);
+        }
+
+        .article-card:hover::after {
+            opacity: 1;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, var(--water-blue) 0%, var(--primary-light) 50%, #94a3b8 100%);
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            background: linear-gradient(135deg, var(--water-blue), var(--primary-color));
+            color: var(--white);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            align-self: flex-start;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(12, 74, 110, 0.3);
+        }
+
+        .article-title {
+            font-size: 1.375rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .article-excerpt {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #1e293b 100%);
+            color: var(--white);
+            padding: 4rem 2.5rem 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.375rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            line-height: 1.8;
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(4px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--water-blue), var(--primary-color));
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(12, 74, 110, 0.4);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter Form */
+        .newsletter-form {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .newsletter-form input::placeholder {
+            color: #94a3b8;
+        }
+
+        .newsletter-form button {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: linear-gradient(135deg, var(--water-blue), var(--primary-color), var(--accent-color));
+            background-size: 200% 100%;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-position: right;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(12, 74, 110, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .category-card {
+                grid-column: span 6 !important;
+                grid-row: span 1 !important;
+            }
+
+            .category-card:nth-child(1) .category-image {
+                font-size: 4rem;
+            }
+
+            .category-card:nth-child(1) .category-title {
+                font-size: 1.5rem;
+            }
+
+            .category-card:nth-child(1) .category-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero-content {
+                padding: 2rem 1.5rem;
+                margin: 0 1rem;
+                background: rgba(0, 0, 0, 0.25);
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+
+            .hero p {
+                font-size: clamp(1rem, 3vw, 1.2rem);
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            main {
+                padding: 3rem 1.5rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+            }
+
+            .category-card {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 75vh;
+                background-position: 55% center;
+            }
+
+            .hero-content {
+                padding: 1.5rem 1rem;
+                margin: 0 0.5rem;
+                border-radius: 24px;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="/" class="logo">Ude og Fiske</a>
+            <ul class="nav-links">
+                <li><a href="/">Forside</a></li>
+                <li><a href="/fiskeguides">Fiskeguides</a></li>
+                <li><a href="/fiskeudstyr">Fiskeudstyr</a></li>
+                <li><a href="/fiskepladser">Fiskepladser</a></li>
+                <li><a href="/om">Om os</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Inspiration til din fisketur</h1>
+            <p>Find de bedste fiskeguides, udstyr og pladser til dit næste fiskeeventyr i Danmark</p>
+            <a href="#categories" class="cta-button">Udforsk guides</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Categories Section -->
+        <section class="categories" id="categories">
+            <h2 class="section-title">Populære kategorier</h2>
+            <p class="section-subtitle">Udforsk vores omfattende guides og find lige præcis det, du søger</p>
+
+            <div class="category-grid">
+                <a href="kategori.html" class="category-card">
+                    <div class="category-image">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 40C15 40 25 30 40 30C55 30 65 40 65 40M40 30V10M40 10L35 15M40 10L45 15M50 50C50 52.7614 47.7614 55 45 55C42.2386 55 40 52.7614 40 50C40 47.2386 42.2386 45 45 45C47.7614 45 50 47.2386 50 50Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Fiskeguides</h3>
+                        <p class="category-description">Omfattende guides til forskellige fisketyper og teknikker i Danmark</p>
+                    </div>
+                </a>
+
+                <a href="/fiskeudstyr" class="category-card">
+                    <div class="category-image">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="24" y="12" width="16" height="8" rx="2" stroke="white" stroke-width="2.5"/>
+                            <rect x="28" y="20" width="8" height="28" rx="1" stroke="white" stroke-width="2.5"/>
+                            <circle cx="32" cy="52" r="6" stroke="white" stroke-width="2.5"/>
+                            <path d="M20 32L44 32" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Fiskeudstyr</h3>
+                        <p class="category-description">Anbefalinger og reviews af det bedste fiskeudstyr på markedet</p>
+                    </div>
+                </a>
+
+                <a href="/fiskepladser" class="category-card">
+                    <div class="category-image">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="24" r="6" stroke="white" stroke-width="2.5"/>
+                            <path d="M32 30C32 30 16 38 16 50C16 54.4183 23.1634 58 32 58C40.8366 58 48 54.4183 48 50C48 38 32 30 32 30Z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+                            <path d="M32 6V18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Fiskepladser</h3>
+                        <p class="category-description">Discover de bedste fiskepladser rundt om i Danmark</p>
+                    </div>
+                </a>
+
+                <a href="/fisketure" class="category-card">
+                    <div class="category-image">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 30C10 30 14 22 20 18C26 14 32 12 40 14C48 16 54 22 56 30M10 30L8 50H56L54 30M10 30H54" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 50V54M44 50V54" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Fisketure</h3>
+                        <p class="category-description">Inspiration og planlægning af spændende fisketure</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Articles -->
+        <section class="featured-articles">
+            <h2 class="section-title">Seneste artikler</h2>
+            <p class="section-subtitle">Læs vores nyeste guides og tips til bedre fiskeoplevelser</p>
+
+            <div class="articles-grid">
+                <a href="artikel.html" class="article-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%2394a3b8' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EÅfiskeri%3C/text%3E%3C/svg%3E" alt="Fiskeri i å" class="article-image" loading="lazy">
+                    <div class="article-content">
+                        <span class="article-category">Fiskeguide</span>
+                        <h3 class="article-title">Fiskeri i å - Guide til å-fiskeri i Danmark</h3>
+                        <p class="article-excerpt">Lær alt om fiskeri i åer og vandløb. Vi guider dig gennem de bedste teknikker, udstyr og pladser.</p>
+                        <div class="article-meta">
+                            <span>📅 15. marts 2024</span>
+                            <span>⏱️ 8 min læsning</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/put-take-fiskeri" class="article-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%2357a5c4' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPut %26 Take%3C/text%3E%3C/svg%3E" alt="Put and Take fiskeri" class="article-image" loading="lazy">
+                    <div class="article-content">
+                        <span class="article-category">Fiskeguide</span>
+                        <h3 class="article-title">Put & Take fiskeri - Alt du skal vide</h3>
+                        <p class="article-excerpt">Komplet guide til Put & Take søer i Danmark. Find de bedste søer og lær de mest effektive teknikker.</p>
+                        <div class="article-meta">
+                            <span>📅 12. marts 2024</span>
+                            <span>⏱️ 6 min læsning</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/kystfiskeri" class="article-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%232d8ba8' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EKystfiskeri%3C/text%3E%3C/svg%3E" alt="Kystfiskeri" class="article-image" loading="lazy">
+                    <div class="article-content">
+                        <span class="article-category">Fiskeguide</span>
+                        <h3 class="article-title">Kystfiskeri - Fiskeri fra land ved kysten</h3>
+                        <p class="article-excerpt">Udforsk mulighederne for kystfiskeri langs de danske kyster. Tips til udstyr, årstider og teknikker.</p>
+                        <div class="article-meta">
+                            <span>📅 10. marts 2024</span>
+                            <span>⏱️ 7 min læsning</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/baadsfiskeri" class="article-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%231a5f7a' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBådfiskeri%3C/text%3E%3C/svg%3E" alt="Bådsfiskeri" class="article-image" loading="lazy">
+                    <div class="article-content">
+                        <span class="article-category">Fiskeguide</span>
+                        <h3 class="article-title">Bådsfiskeri - Fiskeri fra båd i Danmark</h3>
+                        <p class="article-excerpt">Alt om fiskeri fra båd - fra udstyr og sikkerhed til de bedste pladser og teknikker.</p>
+                        <div class="article-meta">
+                            <span>📅 8. marts 2024</span>
+                            <span>⏱️ 10 min læsning</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/laksefiskeri" class="article-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%2387ceeb' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ELaksefiskeri%3C/text%3E%3C/svg%3E" alt="Laksefiskeri" class="article-image" loading="lazy">
+                    <div class="article-content">
+                        <span class="article-category">Fiskeguide</span>
+                        <h3 class="article-title">Laksefiskeri - Guide til fangst af laks</h3>
+                        <p class="article-excerpt">Drømmer du om at fange laks? Få ekspert tips til udstyr, teknikker og de bedste lakseåer.</p>
+                        <div class="article-meta">
+                            <span>📅 5. marts 2024</span>
+                            <span>⏱️ 9 min læsning</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/geddefiskeri" class="article-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%23556b2f' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EGeddefiskeri%3C/text%3E%3C/svg%3E" alt="Geddefiskeri" class="article-image" loading="lazy">
+                    <div class="article-content">
+                        <span class="article-category">Fiskeguide</span>
+                        <h3 class="article-title">Geddefiskeri - Alt om fangst af gedder</h3>
+                        <p class="article-excerpt">Bliv en bedre geddefisker med vores omfattende guide til grej, teknikker og de bedste pladser.</p>
+                        <div class="article-meta">
+                            <span>📅 2. marts 2024</span>
+                            <span>⏱️ 11 min læsning</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ude og Fiske</h3>
+                <p>Din ultimative kilde til fiskeinspiration og ekspertguides i Danmark.</p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@udeogfiske" aria-label="YouTube">▶</a>
+                    <a href="https://www.instagram.com/udeogfiske/" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategorier</h3>
+                <ul class="footer-links">
+                    <li><a href="/fiskeguides">Fiskeguides</a></li>
+                    <li><a href="/fiskeudstyr">Fiskeudstyr</a></li>
+                    <li><a href="/fiskepladser">Fiskepladser</a></li>
+                    <li><a href="/fisketure">Fisketure</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Information</h3>
+                <ul class="footer-links">
+                    <li><a href="/om">Om os</a></li>
+                    <li><a href="/kontakt">Kontakt</a></li>
+                    <li><a href="/privatlivspolitik">Privatlivspolitik</a></li>
+                    <li><a href="/cookiepolitik">Cookiepolitik</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Nyhedsbrev</h3>
+                <p>Få de seneste fiske-tips og guides direkte i din indbakke.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Din email" required>
+                    <button type="submit">Tilmeld</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ude og Fiske. Alle rettigheder forbeholdes. | CVR: 44932422</p>
+        </div>
+    </footer>
+</body>
+</html>

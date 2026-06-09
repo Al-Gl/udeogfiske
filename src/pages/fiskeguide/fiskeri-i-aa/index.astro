@@ -1,0 +1,258 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const related = [
+  {
+    title: "Put & Take fiskeri",
+    description: "Den nemmeste måde at komme i gang med ferskvandsfiskeri i Danmark.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og take sø i Danmark",
+    chip: "Sø",
+  },
+  {
+    title: "Fiskeri på kysten",
+    description: "Over 8.000 km dansk kystlinje med havørred, torsk, fladfisk og mere.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Fiskeri på mole",
+    description: "Molefiskeri er en af de nemmeste måder at komme i gang med havfiskeri.",
+    href: "/fiskeguide/fiskeri-paa-mole/",
+    image: "/images/mole_fiskeri.jpg",
+    alt: "Mole der strækker sig ud i havet",
+    chip: "Hav",
+  },
+];
+---
+
+<MainLayout
+  title="Fiskeri i å – Guide til åfiskeri i Danmark | Ude og Fiske"
+  description="Komplet guide til åfiskeri i Danmark. Gudenåen, udstyr, teknikker og regler for gedde, sandart, aborre og ørred i rindende vand."
+  canonical="https://udeogfiske.dk/fiskeguide/fiskeri-i-aa/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Fiskeri i å" },
+  ]}
+  articleData={{
+    headline: "Fiskeri i å",
+    image: "/images/aafiskeri_hero.png",
+    datePublished: "2024-09-29",
+  }}
+  faq={[{
+    question: "Hvad kan du fange i de danske åer?",
+    answer: "De danske åer — med <strong>Gudenåen</strong> i spidsen — byder på en bred vifte af ferskvandsfisk. Toppen af fødekæden er gedden, der kan runde <strong>20 kg</strong>. Du kan også fange sandart, laks, aborre, skalle og havørred. Aborre og skaller kræver kun enkelt udstyr og er perfekte til begyndere — større fisk kræver en 9-fods stang og line på 5-6 kg. <strong>Statsfisketegn er lovpligtigt.</strong>",
+  }]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Fiskeri i å</span>
+      </nav>
+      <h1 class="pg-title">Fiskeri i å</h1>
+      <p class="pg-sub">Guide til åfiskeri i Danmark — find de bedste åer og lær at fange både store og små fisk i rindende vand.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad kan du fange i de danske åer?</h2>
+        <p class="ac-a">De danske åer — med <strong>Gudenåen</strong> i spidsen — byder på en bred vifte af ferskvandsfisk. Toppen af fødekæden er gedden, der kan runde <strong>20 kg</strong>. Du kan også fange sandart, laks, aborre, skalle og havørred. Aborre og skaller kræver kun enkelt udstyr og er perfekte til begyndere — større fisk kræver en 9-fods stang og line på 5-6 kg. <strong>Statsfisketegn er lovpligtigt.</strong></p>
+      </div>
+
+      <article class="article">
+        <p>Er man interesseret i at fiske i en å, findes der heldigvis en del åer i Danmark som er fyldte med forskellige fisk i forskellige størrelser. Gudenåen er den største å i Danmark og har den største diversitet når det kommer til ferskvandsfisk. Gudenåen udmunder i Randers og bliver til Randers Fjord, som byder på en helt anden fiske form og fisk, som du kan læse mere under kategorien kyst og fjordfiskeri. Men over hele Danmark findes der mange andre åer som er gode at fiske i.</p>
+
+        <p>I Gudenåen, ligesom i de fleste andre åer i Danmark, er det gedden som er den fisk som står øverst i hierarkiet. Gedder i danske åer og især i Gudenåen kan blive over 20 kg og spiser mere eller mindre alle andre fisk også andre gedder. Vil man fange en gedde skal man derfor op i nogle store agn størrelser, især hvis man gerne vil fange en af de helt store! Det er også kun størrelsen på fisken som er attraktiv for de fleste fiskere, da smagen ikke er specielt god.</p>
+
+        <h2>Store og små fisk i åen</h2>
+        <p>Vælger man at fiske i en å er der mange forskellige fisk at fange, hvilket også betyder at der er mange slags fiskeformer man kan bruge. Vil man fange de store fisk som gedder, laks og sandart skal man op og have noget robust fiskeudstyr da fiskene nemt kan komme over de 10 kg. En fiskestang i minimum 9 fod er et must, samtidigt med at man har en tykkere line, som kan klare 5-6 kg som minimum. Et godt hjul er også vigtigt da bremsen kan spille en afgørende rolle især når man får en stor fisk på krogen.</p>
+
+        <p>For at fange de store fisk, skal man have specielt endegrej til de fisk. Tager vi udgangspunkt i gedder, skal man have blink eller spinnere i de lidt større størrelser for at gedden gider bide. Gummi jigs og woblere er også en effektiv agn når man gerne vil fange nogle af de større fisk.</p>
+
+        <p>Jeg har fisket i Gudenåen i en stor del af mit liv, og især sandart har været en af de fisk jeg har været på jagt efter. Sandart er en af de bedste spisefisk man kan fange, men at fange den er en af de største udfordringer jeg har prøvet. Sandart er en nat fisk, så den jager om natten. Især omkring solnedgang er fisken aktiv — derfor har man et meget lille vindue hver dag hvor man kan fange fisken. Fisken elsker desuden at være tæt på bunden eller anden vegetation, hvilket desværre ofte ender i at man får bundbid og mister sit agn. Derfor er mit foretrukne agn en gummi jig når jeg fisker efter sandarter, da deres krog vender opad, og har sværere ved at sætte sig fast, og hvis uheldet er ude, mister man en jig til 20 kr frem for en wobler som kan være over 100 kr.</p>
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <p>Andre fisk som er sjove at fange i de danske åer, er bl.a. aborre og havørreder, karper og skaller. Aborre og skaller er nok de to fisk som man nemmest kan komme i gang med at fiske da de er til stede i stort set alle åer og kræver ikke fiskeudstyr i særklasse. Aborre kan nemt fanges med en almindelig fiskestang i alle størrelser med orm som agn. Sæt ormen på krogen og brug 1-2 meter line med en prop, og så er du klar til at fange aborre.</p>
+
+        <p>Det gode ved at fiske i en å, er den nemme adgang de fleste danskere har til en å og at du ikke skal bruge alt for avanceret udstyr for at fange fisk. En fiskestang fra Bilka vil være nok til at fange de fleste fisk i de danske åer.</p>
+
+        <p><strong>Din huskeliste til hvis du skal fiske i åen er:</strong></p>
+        <ul>
+          <li>Fiskestang (du kan sagtens bruge en billigere model)</li>
+          <li>Hjul og line (følger oftest med din stang)</li>
+          <li>Endegrej — her kan du bruge jigs eller blink hvis du gerne vil fange noget større</li>
+          <li>Prop og krog med orm — hvis du gerne vil fange ål og aborre</li>
+          <li>Gyldigt statsfisketegn</li>
+        </ul>
+
+        <h2>Husk fisketegn og andre regler</h2>
+        <p>Når du skal ud og fiske i en å i Danmark er det et krav at du har et gyldigt statsligt fisketegn som du kan få <a href="https://fisketegn.fiskeristyrelsen.dk/fisketegn/common/frontPageShow.jsp" target="_blank" rel="noopener">her</a>.</p>
+
+        <p>Når du bestiller et fisketegn gælder det et helt år, så du skal kun tænke på fornyelse en gang om året. Det er vigtigt du har dit fisketegn på dig når du er ude og fiske i tilfælde af at fiskerikontrollen kommer forbi.</p>
+
+        <p>En anden ting der er vigtig at huske hvis du har tænkt dig at fiske i en å, er at mange lystfiskeforeninger har specifikke områder på visse åer, hvor KUN de må fiske. Du skal derfor undersøge hvor du må og ikke må fiske.</p>
+
+        <p>Vil du gerne fiske i et område hvor det kun er medlemmer af en lystfiskeforening der må fiske, kan du altid tage kontakt til dem og høre om det er muligt at du fisker der. En anden mulighed er at melde dig ind i lystfiskeforeningen.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/aafiskeri_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 580px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+
+  .ac-q {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+  }
+
+  .ac-a {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .ac-a strong {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .article p {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .article p strong { color: #111827; font-weight: 700; }
+
+  .article p a {
+    color: #0d4a5e;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .article p a:hover { color: #c47d0a; }
+
+  .article h2 {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .article ul {
+    margin: 0 0 1.5rem 1.25rem;
+    padding: 0;
+  }
+
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 0.375rem;
+    list-style: disc;
+  }
+
+</style>

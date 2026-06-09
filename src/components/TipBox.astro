@@ -1,0 +1,56 @@
+---
+interface Props {
+  /** Override the pill label. Defaults to "Mit tip" */
+  label?: string;
+}
+const { label = 'Mit tip' } = Astro.props;
+---
+
+<aside class="tipbox">
+  <span class="tip-pill">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14">
+      <path d="M9 18h6" />
+      <path d="M10 22h4" />
+      <path d="M12 2a7 7 0 0 0-4 12.7c.7.7 1 1.6 1 2.5V18h6v-.8c0-.9.3-1.8 1-2.5A7 7 0 0 0 12 2z" />
+    </svg>
+    {label}
+  </span>
+  <div class="tip-body"><slot /></div>
+</aside>
+
+<style>
+  .tipbox {
+    margin: 2rem 0;
+    padding: 1.25rem 1.375rem 1.125rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #c47d0a;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+  .tip-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    padding: 0.3125rem 0.6875rem;
+    background: linear-gradient(135deg, #0d4a5e 0%, #1e3a8a 100%);
+    color: #ffffff;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    margin-bottom: 0.625rem;
+    box-shadow: 0 4px 10px -4px rgba(13, 74, 94, 0.5);
+  }
+  .tip-body {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: #1f2937;
+  }
+  .tip-body :global(p) { margin: 0 0 0.625rem; }
+  .tip-body :global(p:last-child) { margin-bottom: 0; }
+  .tip-body :global(strong) { color: #0d4a5e; }
+  .tip-body :global(ul) { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+  .tip-body :global(li) { margin: 0.25rem 0; }
+</style>

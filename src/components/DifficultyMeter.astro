@@ -1,0 +1,124 @@
+---
+interface Props {
+  /** Difficulty as a percentage 1–100 */
+  value: number;
+  /** Optional override for the label */
+  label?: string;
+}
+
+const { value, label = 'Sværhedsgrad' } = Astro.props;
+const clamped = Math.max(1, Math.min(100, Math.round(value)));
+
+const brackets = [
+  { max: 20,  name: 'Meget nem',   key: 'very-easy' },
+  { max: 40,  name: 'Nem',         key: 'easy' },
+  { max: 60,  name: 'Mellem',      key: 'medium' },
+  { max: 80,  name: 'Delvis svær', key: 'hard' },
+  { max: 100, name: 'Meget svær',  key: 'very-hard' },
+];
+
+const bracket = brackets.find((b) => clamped <= b.max)!;
+---
+
+<aside
+  class={`dm dm--${bracket.key}`}
+  aria-label={`${label}: ${bracket.name} (${clamped}%)`}
+>
+  <div class="dm-head">
+    <span class="dm-label">{label}</span>
+    <span class="dm-value">
+      <span class="dm-name">{bracket.name}</span>
+      <span class="dm-pct">{clamped}%</span>
+    </span>
+  </div>
+
+  <div
+    class="dm-track"
+    role="progressbar"
+    aria-valuenow={clamped}
+    aria-valuemin="1"
+    aria-valuemax="100"
+    style={`--dm-value: ${clamped}%;`}
+  >
+    <div class="dm-fill"></div>
+  </div>
+</aside>
+
+<style>
+  .dm {
+    --dm-color: #c47d0a;
+
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    padding: 1.125rem 1.375rem 1.125rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+
+  .dm--very-easy { --dm-color: #0369a1; }
+  .dm--easy      { --dm-color: #075985; }
+  .dm--medium    { --dm-color: #0c4a6e; }
+  .dm--hard      { --dm-color: #0d4a5e; }
+  .dm--very-hard { --dm-color: #061f29; }
+
+  .dm-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.625rem;
+  }
+  .dm-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6b7280;
+  }
+  .dm-value {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .dm-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--dm-color);
+    letter-spacing: -0.005em;
+  }
+  .dm-pct {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dm-track {
+    position: relative;
+    height: 10px;
+    border-radius: 999px;
+    background: #eef2f6;
+    overflow: hidden;
+  }
+  .dm-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      #7dd3fc 0%,
+      #38bdf8 25%,
+      #0284c7 50%,
+      #075985 75%,
+      #0d4a5e 100%
+    );
+    clip-path: inset(0 calc(100% - var(--dm-value)) 0 0);
+    transition: clip-path 0.5s ease;
+  }
+
+  @media (max-width: 480px) {
+    .dm { padding: 1rem 1.125rem; }
+    .dm-name { font-size: 0.875rem; }
+  }
+</style>

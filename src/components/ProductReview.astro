@@ -1,0 +1,532 @@
+---
+import { getProduct, formatPrice } from '../lib/feed';
+
+interface Props {
+  productId: string;
+  rating: number;
+  headline: string;
+  review: string;
+  pros: string[];
+  cons?: string[];
+  href?: string;
+  cta?: string;
+  image?: string;
+}
+
+const {
+  productId,
+  rating,
+  headline,
+  review,
+  pros,
+  cons = [],
+  href,
+  cta = 'Se prisen hos Fiskegrej.dk',
+  image,
+} = Astro.props;
+
+const product = getProduct(productId);
+
+if (!product) {
+  throw new Error(`ProductReview: product ${productId} not found in feed`);
+}
+
+const link = href ?? product.url;
+const imageSrc = image ?? product.image;
+const inStock = product.stock.toLowerCase().includes('in stock');
+const hasDiscount = product.oldPrice > product.price && product.oldPrice > 0;
+const discountPct = hasDiscount
+  ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
+  : 0;
+
+const fullStars = Math.floor(rating);
+const hasHalf = rating - fullStars >= 0.25 && rating - fullStars < 0.75;
+const totalDisplayed = hasHalf ? fullStars + 1 : Math.round(rating);
+const emptyStars = 5 - totalDisplayed;
+const ratingLabel = Number.isInteger(rating) ? `${rating}/5` : `${rating.toFixed(1)}/5`;
+---
+
+<aside class="pr" aria-label={`Anmeldelse: ${product.name}`}>
+  <header class="pr-ribbon">
+    <span class="pr-label">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l2.39 6.95H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.56L2 8.95h7.61L12 2z" />
+      </svg>
+      Min anbefaling
+    </span>
+    <span class="pr-rating" aria-label={`Bedømmelse: ${ratingLabel}`}>
+      <span class="pr-stars" aria-hidden="true">
+        {Array.from({ length: fullStars }).map(() => (
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 6.95H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.56L2 8.95h7.61L12 2z" /></svg>
+        ))}
+        {hasHalf && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id={`half-${productId}`}>
+                <stop offset="50%" stop-color="currentColor" />
+                <stop offset="50%" stop-color="currentColor" stop-opacity="0.22" />
+              </linearGradient>
+            </defs>
+            <path fill={`url(#half-${productId})`} d="M12 2l2.39 6.95H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.56L2 8.95h7.61L12 2z" />
+          </svg>
+        )}
+        {Array.from({ length: emptyStars }).map(() => (
+          <svg viewBox="0 0 24 24" fill="currentColor" opacity="0.22"><path d="M12 2l2.39 6.95H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.56L2 8.95h7.61L12 2z" /></svg>
+        ))}
+      </span>
+      <span class="pr-rating-num">{ratingLabel}</span>
+    </span>
+  </header>
+
+  <div class="pr-body">
+    <a class="pr-image" href={link} target="_blank" rel="sponsored noopener" tabindex="-1" aria-hidden="true">
+      <img src={imageSrc} alt={product.name} loading="lazy" width="360" height="360" />
+    </a>
+
+    <div class="pr-content">
+      <div class="pr-head">
+        <p class="pr-brand">{product.brand}</p>
+        <h3 class="pr-name">
+          <a href={link} target="_blank" rel="sponsored noopener">{product.name}</a>
+        </h3>
+        <p class="pr-headline">{headline}</p>
+      </div>
+
+      <p class="pr-review">{review}</p>
+
+      <div class="pr-verdict">
+        <div class="pr-col pr-col--pros">
+          <h4 class="pr-col-title">Det jeg kan li’</h4>
+          <ul>
+            {pros.map((p) => (
+              <li>
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 8.5l3.5 3.5L13 5" />
+                </svg>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {cons.length > 0 && (
+          <div class="pr-col pr-col--cons">
+            <h4 class="pr-col-title">Det du skal vide</h4>
+            <ul>
+              {cons.map((c) => (
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4l8 8M12 4l-8 8" />
+                  </svg>
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <div class="pr-meta">
+        <span class={`pr-chip ${inStock ? 'pr-chip--ok' : 'pr-chip--out'}`}>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            {inStock
+              ? <path d="M3 8.5l3.5 3.5L13 5" />
+              : <path d="M4 4l8 8M12 4l-8 8" />
+            }
+          </svg>
+          {inStock ? 'På lager' : 'Udsolgt'}
+        </span>
+        {product.delivery && (
+          <span class="pr-chip">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="8" cy="8" r="6.5" />
+              <path d="M8 4.5V8l2.25 1.5" />
+            </svg>
+            Leveres {product.delivery}
+          </span>
+        )}
+      </div>
+
+      <div class="pr-buy">
+        <div class="pr-price">
+          {hasDiscount && <span class="pr-price-old">{formatPrice(product.oldPrice)} kr</span>}
+          <span class="pr-price-now">
+            {formatPrice(product.price)}
+            <span class="pr-price-cur">kr</span>
+          </span>
+          {hasDiscount && <span class="pr-discount">Spar {discountPct}%</span>}
+        </div>
+        <a class="pr-cta" href={link} target="_blank" rel="sponsored noopener">
+          <span>{cta}</span>
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+
+      <p class="pr-disclosure">
+        Affiliate-link — køber du via linket, får jeg en lille kommission. Det koster dig ikke ekstra.
+      </p>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .pr {
+    position: relative;
+    margin: 3rem 0;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 14px 32px -18px rgba(13, 74, 94, 0.22),
+      0 36px 72px -44px rgba(13, 74, 94, 0.16);
+  }
+
+  .pr-ribbon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.5rem;
+    background: linear-gradient(95deg, #0d4a5e 0%, #145f78 50%, #0d4a5e 100%);
+    color: #ffffff;
+  }
+
+  .pr-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .pr-label svg {
+    width: 13px;
+    height: 13px;
+    color: #f3c46a;
+  }
+
+  .pr-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .pr-stars {
+    display: inline-flex;
+    gap: 2px;
+    color: #f3c46a;
+  }
+
+  .pr-stars svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .pr-rating-num {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.01em;
+  }
+
+  .pr-body {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+  }
+
+  .pr-image {
+    position: relative;
+    display: block;
+    background:
+      radial-gradient(ellipse at 50% 60%, rgba(13, 74, 94, 0.08) 0%, transparent 60%),
+      linear-gradient(160deg, #f9fbfc 0%, #eef4f6 100%);
+    border-right: 1px solid rgba(15, 23, 42, 0.06);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .pr-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1.75rem;
+    filter: drop-shadow(0 12px 20px rgba(13, 74, 94, 0.18));
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .pr:hover .pr-image img {
+    transform: scale(1.04);
+  }
+
+  .pr-content {
+    padding: 1.75rem 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .pr-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .pr-brand {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .pr-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.022em;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .pr-name a {
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease, color 0.2s ease;
+  }
+
+  .pr-name a:hover {
+    color: #0d4a5e;
+    background-size: 100% 1px;
+  }
+
+  .pr-headline {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: #334155;
+    margin: 0.35rem 0 0;
+    padding-left: 0.875rem;
+    border-left: 3px solid #c47d0a;
+  }
+
+  .pr-review {
+    font-size: 0.9875rem;
+    line-height: 1.75;
+    color: #374151;
+    margin: 0;
+  }
+
+  .pr-verdict {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+
+  .pr-col-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: #475569;
+    margin: 0 0 0.55rem;
+  }
+
+  .pr-col ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .pr-col li {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 0.5rem;
+    align-items: start;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #1f2937;
+  }
+
+  .pr-col li svg {
+    width: 14px;
+    height: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .pr-col--pros li svg { color: #047857; }
+  .pr-col--cons li svg { color: #b45309; }
+
+  .pr-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .pr-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.65rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 999px;
+  }
+
+  .pr-chip svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  .pr-chip--ok {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #047857;
+  }
+
+  .pr-chip--out {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #b91c1c;
+  }
+
+  .pr-buy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-top: 0.15rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #e5e7eb;
+  }
+
+  .pr-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+    line-height: 1;
+  }
+
+  .pr-price-old {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    text-decoration: line-through;
+  }
+
+  .pr-price-now {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #0d4a5e;
+    letter-spacing: -0.028em;
+  }
+
+  .pr-price-cur {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #475569;
+    letter-spacing: 0;
+  }
+
+  .pr-discount {
+    margin-top: 0.25rem;
+    padding: 0.15rem 0.45rem;
+    background: #fef3c7;
+    color: #b45309;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+  }
+
+  .pr-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.95rem 1.5rem;
+    background: #0d4a5e;
+    color: #ffffff;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 10px;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px -4px rgba(13, 74, 94, 0.45);
+    transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .pr-cta svg { transition: transform 0.25s ease; }
+  .pr-cta:hover {
+    background: #c47d0a;
+    box-shadow: 0 6px 18px -4px rgba(196, 125, 10, 0.5);
+    transform: translateY(-1px);
+  }
+  .pr-cta:hover svg { transform: translateX(3px); }
+
+  .pr-disclosure {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .pr { border-radius: 16px; margin: 2.25rem 0; }
+    .pr-ribbon { padding: 0.7rem 1rem; }
+    .pr-label { font-size: 0.6875rem; }
+    .pr-stars svg { width: 13px; height: 13px; }
+    .pr-rating-num { font-size: 0.75rem; }
+
+    .pr-body { grid-template-columns: 1fr; }
+
+    .pr-image {
+      aspect-ratio: 16 / 11;
+      border-right: none;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    .pr-image img { padding: 1.25rem; }
+
+    .pr-content { padding: 1.25rem 1.25rem 1.125rem; gap: 0.95rem; }
+    .pr-name { font-size: 1.2rem; }
+    .pr-headline { font-size: 0.9875rem; }
+    .pr-review { font-size: 0.9375rem; }
+
+    .pr-verdict { grid-template-columns: 1fr; padding: 0.85rem 0.95rem; }
+
+    .pr-buy {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+    .pr-price-now { font-size: 1.625rem; }
+    .pr-cta { justify-content: center; }
+  }
+</style>

@@ -1,0 +1,298 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import AuthorProfile from '../../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../components/TipBox.astro';
+import StatHighlight from '../../../../components/StatHighlight.astro';
+
+const faqs = [
+  {
+    question: "Er april en god måned for havørredfiskeri?",
+    answer: "April er en af årets absolut bedste måneder for havørredfiskeri på den danske kyst. Vandtemperaturen er steget tilstrækkeligt til at aktivere fiskene fuldt ud, tobis-stimerne begynder at trække ind på lavt vand, og overspringerne er fortsat blanke og i topkondition. April markerer forårets højdepunkt for kystfiskere.",
+  },
+  {
+    question: "Hvor finder jeg havørreder i april?",
+    answer: "Næsten alle danske kyster er i spil. Områder med blæretang, stenrev og varierende dybder er klassiske april-pladser, fordi byttefiskene samles her. Fjorde som Limfjorden, Mariager Fjord og Isefjorden er fortsat produktive, men nu trækker fiskene også ud på de åbne kyster i takt med at tobis-stimerne kommer ind.",
+  },
+  {
+    question: "Hvilke agn virker bedst i april?",
+    answer: "Tobis-imitationer dominerer. Slanke blink som Sandeel, Snurrebassen og Møresilda i naturlige farver (sølv, blå, grøn) er førstevalg. Til fluefiskeri: tobisfluer og Pattegrisen fisket med intermediate bombardaflåd. Mod slutningen af måneden virker også lidt større blink, da hornfisken begynder at vise sig på samme pladser.",
+  },
+  {
+    question: "Hvilken indspinning virker i april?",
+    answer: "Variation er nøglen. Start med en jævn, middelhurtig indspinning der efterligner en svømmende tobis. Hvis det ikke virker, prøv hurtigere ryk for at trigge en aggressiv reaktion, eller langsom indspinning med pauser tæt på bunden. April-fiskene er sultne efter vinteren og reagerer ofte hurtigt — er der ikke hug på 30 kast med samme teknik, så skift.",
+  },
+  {
+    question: "Hvilket vejr giver bedst april-fiskeri?",
+    answer: "Solrige forårsdage med svag pålandsvind er ideelle. Solen øger vandtemperaturen og fiskens aktivitet, vinden skaber bevægelse og presser byttedyr ind mod kysten. Overskyet vejr fungerer også godt — fiskene er mindre sky og jager højere i vandsøjlen. Undgå hård østenvind, der typisk køler vandet og slukker fiskeriet.",
+  },
+];
+
+const about = [
+  {
+    name: "Havørred (Salmo trutta trutta)",
+    sameAs: "https://da.wikipedia.org/wiki/Hav%C3%B8rred",
+  },
+];
+---
+
+<MainLayout
+  title="Havørredfiskeri i April | Forårets Højdepunkt på Kysten"
+  description="April er forårets højdepunkt for havørredfiskeri. Læs guiden til fiskepladser, agn og teknikker — fra tobis-trækket til de blanke forårsfisk i topkondition."
+  canonical="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-april/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Guide til fisk", url: "/guide-til-fisk/" },
+    { name: "Havørredfiskeri", url: "/guide-til-fisk/havorredfiskeri/" },
+    { name: "Havørredfiskeri i April" },
+  ]}
+  articleData={{
+    headline: "Havørredfiskeri i April – Forårets Højdepunkt på Kysten",
+    image: "/images/havørred_hero1.jpeg",
+    datePublished: "2026-05-07",
+    dateModified: "2026-05-07",
+  }}
+  faq={faqs}
+  about={about}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/">Guide til fisk</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/havorredfiskeri/">Havørredfiskeri</a>
+        <span>›</span>
+        <span>April</span>
+      </nav>
+      <h1 class="pg-title">Havørredfiskeri i April – Forårets Højdepunkt på Kysten</h1>
+      <p class="pg-sub">Tobis-stimerne kommer ind, vandet varmer op, og blanke havørreder jager aggressivt. Komplet guide til april-fiskeri på den danske kyst — forårets klassiske højdepunkt.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvorfor fiske havørred i april?</h2>
+        <p class="ac-a">April er <strong>forårets højdepunkt</strong> for kystfiskeri. Tobis-stimerne kommer ind på lavt vand, vandtemperaturen aktiverer havørrederne fuldt ud, og blanke fisk jager med en sult der kun ses denne tid på året. Næsten alle danske kyster er produktive — find tobis-aktivitet, og fiskene er der.</p>
+      </div>
+
+      <article class="article">
+        <p>April markerer forårets højdepunkt for <a href="/guide-til-fisk/havorredfiskeri/">havørredfiskeri</a> på den danske kyst. Vandtemperaturen er steget tilstrækkeligt til at aktivere havørrederne fuldt ud, og tobis-stimerne begynder at trække ind på lavt vand, hvilket trigger en intensiv jagtaktivitet. Det er nu, at de blanke overspringere viser sig fra deres bedste side, og at en stor del af de danske kystfiskere får sæsonens første rigtigt store fangster. I denne artikel vil vi guide dig gennem, hvordan du får succes med havørredfiskeri i april, hvilke teknikker og agn der virker bedst, og hvor du finder de bedste fiskepladser.</p>
+      </article>
+
+      <AuthorProfile
+        quote="April er den måned hvor jeg ikke kan holde mig væk fra kysten. Tobis-trækket er den ene begivenhed jeg planlægger hele forårets fiskeri omkring — finder jeg en plads med aktiv tobis i overfladen, ved jeg at havørrederne er i nærheden. Det er forårets højdepunkt, og det er den måned hvor jeg næsten altid får sæsonens første store fisk."
+      />
+
+      <article class="article">
+        <h2>Hvorfor Fiske Havørred i April?</h2>
+        <p>April er en af de mest produktive måneder for havørredfiskeri på den danske kyst. Vandet varmer langsomt op, og det aktiverer både havørrederne og deres byttefisk. Tobis-stimerne, der overvintrer ude på dybt vand, trækker nu ind på de lavere kystområder, og det udløser en regulær fødeperiode for havørrederne efter vinterens sparsomme kost.</p>
+
+        <p><strong>Kendetegn ved havørreder i april:</strong></p>
+        <ul>
+          <li>Mange fisk er blanke overspringere i topkondition.</li>
+          <li>Aktivitetsniveauet er højt, og fiskene er aggressive jægere.</li>
+          <li>De findes typisk på lavt vand tæt på tobis-stimerne, særligt morgen og aften.</li>
+        </ul>
+      </article>
+
+      <DidYouKnow>
+        Tobisen (Ammodytes marinus) er havørredens vigtigste forårsbytte og er årsagen til, at april og maj er kystens bedste fiskerimåneder. Tobis-stimerne kan tælle hundredtusindvis af individer, og når de trækker ind på lavt vand, samler havørrederne sig på de samme pladser — ofte er det forskellen på en tom dag og en sæson-rekord at finde en tobis-aktiv kyst.
+      </DidYouKnow>
+
+      <article class="article">
+        <h2>De Bedste Fiskepladser i April</h2>
+        <p>April åbner næsten alle danske kyster for produktivt fiskeri. Modsat de kolde vintermåneder, hvor fjordene var de eneste sikre kort, kan du nu også finde fisk på åbne kyststrækninger. Det handler om at finde områder, hvor tobis-stimerne samles.</p>
+
+        <p><strong>Populære fiskepladser i april:</strong></p>
+        <ul>
+          <li><strong>Åbne kyststrækninger:</strong> Strande med blæretang, stenrev og varierende dybder samler tobis-stimer og dermed havørreder. Sjællands østkyst, Fyns nordkyst og Jyllands østkyst er klassiske april-destinationer.</li>
+          <li><strong>Fjorde:</strong> Limfjorden, Mariager Fjord og Isefjorden fortsætter med at være produktive, særligt tidligt i måneden, hvor fiskene endnu ikke har spredt sig fuldt ud på de åbne kyster.</li>
+          <li><strong>Åmundinger:</strong> Hvor åerne løber ud i havet, samles både rejer og småfisk i ferskvands-saltvands-blandingen, og havørrederne udnytter det. Husk altid at overholde fredningszonen på 500 meter omkring åmundinger.</li>
+        </ul>
+      </article>
+
+      <figure class="full-bleed">
+        <img src="/images/kyst_fiskeri.jpg" alt="April-kystfiskeri efter havørred — tobis-stimer og blanke forårsfisk på lavt vand" loading="lazy" />
+        <figcaption>April-kysten i sin bedste form — tobis-stimerne trækker ind, og havørrederne følger med. Områder med blæretang, stenrev og varieret bund samler føden og dermed fiskene.</figcaption>
+      </figure>
+
+      <article class="article">
+        <h2>De Mest Effektive Agn i April</h2>
+        <p>April er tobis-månedernes start, og det betyder at agnvalget næsten skriver sig selv: alt der efterligner en tobis, virker. Naturlige farver dominerer, og slanke profiler er nøglen.</p>
+
+        <p><strong>Effektive agn til havørredfiskeri i april:</strong></p>
+        <ul>
+          <li><strong>Blink:</strong> Slanke blink som Sandeel, Snurrebassen og Møresilda er førstevalg. Naturlige farver (sølv, blå, grøn) virker bedst i klart vand, og lidt skarpere farver i uklart vand. 12-20 g vægt giver god kasterækkevidde uden at sky fiskene på lavt vand.</li>
+          <li><strong>Gennemløbsblink:</strong> Westin D360° eller Eelpout passer perfekt til april — de tillader lange kast og fisker effektivt i 1-3 meters dybde, hvor havørrederne typisk jager.</li>
+          <li><strong>Fluer:</strong> Tobisfluer og Pattegrisen fisket med en intermediate bombardaflåd er en killer-kombination. Mod slutningen af måneden, når hornfisken begynder at vise sig, virker også lidt længere fluer som havørred-imitationer.</li>
+        </ul>
+      </article>
+
+      <StatHighlight
+        icon="calendar"
+        value="Tobis-træk"
+        caption="April er måneden hvor tobisen trækker ind på lavt vand, og hvor havørredens aktivitet eksploderer. Det er kystens egentlige sæsonstart for de fleste fiskere."
+      />
+
+      <article class="article">
+        <h2>Teknikker til Havørredfiskeri i April</h2>
+        <p>Havørrederne er aktive og aggressive i april, men det betyder ikke at alting bare virker. Variation i indspinning og pladsvalg er stadig nøglen til konsistente fangster.</p>
+
+        <p><strong>Spinfiskeri:</strong></p>
+        <ul>
+          <li>Kast langs kysten og spind ind med en jævn, middelhurtig indspinning der efterligner en svømmende tobis. Lad ikke blinket synke for langt — havørrederne jager ofte i de øverste 1-2 meter på lavt vand.</li>
+          <li>Hvis den jævne indspinning ikke giver hug, så prøv at lægge små ryk eller pauser ind for at trigge en aggressiv reaktion.</li>
+          <li>Skift retning mellem kastene og dæk så meget vand som muligt. Tobis-stimer flytter sig konstant, og fiskene følger med.</li>
+        </ul>
+
+        <p><strong>Fluefiskeri med Bombarda:</strong></p>
+        <ul>
+          <li>En intermediate bombarda-flåd med en tobisflue eller Pattegrisen er april-klassikeren. Indtag fluen i langsomme, naturlige bevægelser med små ryk.</li>
+          <li>Fisk i 1-3 meters dybde — det er her tobisen er, og det er her havørrederne jager.</li>
+          <li>Skift mellem fluer hvis der ikke er hug. Nogle dage virker rejer, andre dage tobis-imitationer eller børsteormsfluer bedst.</li>
+        </ul>
+      </article>
+
+      <TipBox>
+        <p><strong>Mit tip — find tobisen, find fiskene.</strong> Brug de første 10 minutter på pladsen til bare at kigge. Plasker der noget i overfladen? Står mågerne og dykker ned i et bestemt område? Er der sølvskinnende glimt af tobis-stimer på det lave vand? Hvis ja, så er du på den rigtige plads — hvis nej, så overvej at flytte dig fremfor at kaste tomgang i en time.</p>
+      </TipBox>
+
+      <figure class="full-bleed">
+        <img src="/images/havørred_hero2.jpeg" alt="April-overspringer — blank forårsfisk i topkondition" loading="lazy" />
+        <figcaption>April-overspringere er ofte forårets smukkeste fisk — blanke som spejle, kompakte og i fantastisk kondition efter en vinter med rolig fødeoptag og uden gydetab.</figcaption>
+      </figure>
+
+      <article class="article">
+        <h2>Vejret og Havørredens Adfærd i April</h2>
+        <p>Vejret i april er omskifteligt, og det påvirker fiskeriet markant. De stigende temperaturer og længere dage er overordnet positive, men korte kuldeperioder kan stadig sætte fiskeriet i stå i et par dage.</p>
+
+        <p><strong>Hvordan vejret påvirker fiskeriet:</strong></p>
+        <ul>
+          <li><strong>Solrige dage:</strong> Øger vandtemperaturen og fiskens aktivitet. Morgenfiskeri og aftenfiskeri er ofte bedre end midt på dagen, hvor solen bager direkte ned.</li>
+          <li><strong>Pålandsvind:</strong> Let til moderat pålandsvind er ideelt — det skaber bevægelse i vandet og presser tobis-stimer ind mod kysten.</li>
+          <li><strong>Østenvind:</strong> Hård østenvind kan køle vandet og slukke fiskeriet i et par dage. På sådanne dage betaler det sig ofte at fiske dybere eller flytte til en mere beskyttet kyststrækning.</li>
+        </ul>
+      </article>
+
+      <article class="article">
+        <h2>Tips og Tricks til Havørredfiskeri i April</h2>
+        <ul>
+          <li><strong>Fisk morgen og aften:</strong> Fiskene er mest aktive i de tidlige og sene timer, hvor vandet ikke er overophedet af direkte sol.</li>
+          <li><strong>Hold udkig efter mågerne:</strong> Mågernes adfærd er en gratis fisk-indikator — dykker de ned i et bestemt område, er der højst sandsynligt tobis-stimer dér, og dermed havørreder.</li>
+          <li><strong>Vær mobil:</strong> April-fiskeri belønner mobilitet. Bliv ikke på samme plads i en time uden hug — flyt 200-300 meter, og prøv et nyt afsnit af kysten.</li>
+        </ul>
+
+        <p>April er den måned, hvor mange danske kystfiskere endelig får sæsonens første rigtigt store havørred. Med tobis-trækket, den stigende vandtemperatur og de blanke overspringeres aggressive jagt er forholdene de bedste hele året. Det handler om at være på vandet, finde tobis-aktiviteten og være klar til at fiske intensivt, når fiskene er der.</p>
+
+        <h2>FAQ</h2>
+
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary><h3>{f.question}</h3></summary>
+              <div class="faq-answer">
+                <p>{f.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </article>
+
+      <nav class="month-nav">
+        <span class="mn-label">Andre månedsguider:</span>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-januar/">Januar</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-februar/">Februar</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-marts/">Marts</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-maj/">Maj</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-juni/">Juni</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-juli/">Juli</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-august/">August</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-september/">September</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-oktober/">Oktober</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-november/">November</a>
+        <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-december/">December</a>
+        <a href="/guide-til-fisk/havorredfiskeri/" class="mn-parent">↑ Tilbage til havørredfiskeri</a>
+      </nav>
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/havørred_hero1.jpeg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li {
+    font-size: 1rem; color: #374151; line-height: 1.75;
+    margin-bottom: 0.5rem; list-style: disc;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+
+</style>

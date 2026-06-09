@@ -1,0 +1,598 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../../components/RelatedRow.astro';
+import AuthorProfile from '../../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../components/TipBox.astro';
+import StatHighlight from '../../../../components/StatHighlight.astro';
+import GuideLink from '../../../../components/GuideLink.astro';
+import AffiliateTrio from '../../../../components/AffiliateTrio.astro';
+import { getProduct, formatPrice } from '../../../../lib/feed';
+
+// Brille-vælger — one recommended lens per light condition. Cards are pre-rendered
+// server-side and toggled client-side so the product swaps with the choice.
+const finder = [
+  {
+    key: 'allround', label: 'Allround', badge: 'Mit udgangspunkt',
+    lens: 'Brun / amber', light: 'Alt lys', use: 'Allround & nybegyndere', contrast: 'God',
+    note: 'Brune/amber linser er det bedste allround-valg og fungerer i næsten al slags lys — også på skyede dage. Mit klare udgangspunkt, hvis du kun skal eje ét par. Denne model flyder oven i købet, hvis den ryger i vandet.',
+    productId: '75529',
+  },
+  {
+    key: 'sol', label: 'Skarpt sollys', badge: 'Til solen',
+    lens: 'Grå / grøn', light: 'Skarpt sollys', use: 'Hav & åbent vand i sol', contrast: 'Neutral',
+    note: 'Grå linser dæmper kraftigt lys uden at forvrænge farverne — bedst på de helt skarpe sommerdage på åbent vand. Holder også til at flyde, hvis du taber dem under wading.',
+    productId: '75528',
+  },
+  {
+    key: 'overskyet', label: 'Overskyet & lavt lys', badge: 'Til gråvejr',
+    lens: 'Gul / lysebrun', light: 'Overskyet / lavt lys', use: 'Tidlig morgen & gråvejr', contrast: 'Høj',
+    note: 'Gule linser løfter kontrasten og lukker mest muligt lys ind — perfekte til de grå morgener og overskyede dage, hvor det ofte fisker bedst.',
+    productId: '75527',
+  },
+  {
+    key: 'spotting', label: 'Sigtefiskeri', badge: 'Til at se fisken',
+    lens: 'Kobber m. spejl', light: 'Klart vand, sol', use: 'Sigtefiskeri i P&T & å', contrast: 'Maksimal',
+    note: 'Kobber/spejl-linser giver maksimal kontrast, så fisken træder tydeligt frem mod bunden — det ideelle valg til spotfiskeri i klare Put & Take-søer og åer, hvor du jagter synlige fisk.',
+    productId: '500691',
+  },
+];
+
+const finderRods = finder.map((f) => {
+  const product = getProduct(f.productId);
+  if (!product) throw new Error(`Brille-vælger: product ${f.productId} not found in feed`);
+  return { ...f, product };
+});
+
+const related = [
+  {
+    title: "Waders og støvler",
+    description: "Det vigtigste stykke beklædning til kystfiskeriet — guide til PVC, neopren og åndbare waders.",
+    href: "/fiskeudstyr/beklaedning/waders-og-stovler/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Waders til kystfiskeri",
+    chip: "Beklædning",
+  },
+  {
+    title: "Vadejakke",
+    description: "Den vandtætte yderjakke til kystfiskeri — beskytter mod vind, regn og bølgesprøjt under wading.",
+    href: "/fiskeudstyr/beklaedning/vadejakke/",
+    image: "/images/havørred_hero1.jpeg",
+    alt: "Vadejakke ved kysten",
+    chip: "Beklædning",
+  },
+  {
+    title: "Put & Take fiskeri",
+    description: "Spotfiskeri efter ørred i Put & Take søer — netop her bliver polaroid briller for alvor afgørende.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og Take søfiskeri",
+    chip: "Lokation",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvad gør polaroid briller egentlig?",
+    answer: "Polaroid briller — også kaldet polariserede solbriller — er udstyret med en speciel film i glasset som <strong>filtrerer det reflekterede lys</strong> fra vandoverfladen. Det betyder mindre genskin, mindre belastning på øjnene, og — for fiskere — at man pludselig kan se ned i vandet. Først når man har prøvet at fiske med et par, forstår man hvor stor forskellen er.",
+  },
+  {
+    question: "Hvorfor er polaroid briller vigtige til fiskeri?",
+    answer: "Tre grunde: <strong>forbedret synlighed</strong> (man ser fiskene og bunden), <strong>øjenbeskyttelse</strong> mod skadelige UVA/UVB-stråler, og <strong>komfort</strong> over en lang fiskedag — særligt i højt sollys reducerer brillerne øjenbelastningen markant. Man kan godt mærke det på øjnene efter et par timer på vandet uden polaroid briller.",
+  },
+  {
+    question: "Hvilken linsefarve skal jeg vælge?",
+    answer: "Til allround fiskeri er <strong>brune linser</strong> det bedste valg — de fungerer godt i næsten al slags lys, også på skyede dage. Det er den farve jeg anbefaler nybegyndere så de kan teste om polaroid briller er noget for dem. Mange modeller tilbyder udskiftelige linser i forskellige farver, hvilket kan være værd at overveje når du har vænnet dig til konceptet.",
+  },
+  {
+    question: "Hvilken linsefarve passer til skarpt sollys og til gråvejr?",
+    answer: "Til <strong>skarpt sollys</strong> på åbent vand er <strong>grå eller grønne linser</strong> bedst — de dæmper lyset uden at forvrænge farverne. Til <strong>overskyet vejr og lavt lys</strong> (fx tidlig morgen) løfter <strong>gule eller lysebrune linser</strong> kontrasten og lukker mest muligt lys ind. Skal du <strong>spotte fisk</strong> i klart vand, giver <strong>kobber/spejl-linser</strong> den højeste kontrast.",
+  },
+  {
+    question: "Hvad skal jeg ellers kigge efter ved valg af polaroid briller?",
+    answer: "Tre ting ud over linsefarven: <strong>rammestørrelse og design</strong> — den skal sidde godt og helst være indpakkende så lyset ikke kommer ind fra siderne. <strong>Materialet</strong> — letvægts og holdbart materiale som polykarbonat er ideelt; billigere modeller bliver hurtigt ridsede på glasset. Og <strong>pasformen</strong> — prøv dem hvis muligt, ellers er det værd at læse anmeldelser før du køber.",
+  },
+  {
+    question: "Kan jeg få polaroid briller med læsefelt eller forstørrelse?",
+    answer: "Ja. Der findes <strong>polaroidbriller med indbygget læsefelt</strong> (bifokale), og du kan også få <strong>clip-on forstørrelsesglas</strong>, der sættes på dine eksisterende briller. Begge dele er guld værd, når du skal binde små knuder eller skifte flue på vandet — særligt hvis nærsynet driller med årene.",
+  },
+  {
+    question: "Kan jeg bruge polaroid briller til alt fiskeri?",
+    answer: "Ja — men værdien afhænger af fiskeformen. Til <strong>spotfiskeri</strong> i klare Put & Take søer eller på lyse kystplader er de stort set uundværlige. Til <strong>natfiskeri</strong> eller fiskeri i mørke er de naturligvis mindre relevante. Også på meget skyede dage med diffust lys er forskellen mindre — men selv her giver de en lille fordel ved at skære den smule overflade-genskin der stadig er.",
+  },
+];
+---
+
+<MainLayout
+  title="Polaroid briller til fiskeri | Guide til valg af de bedste polaroid briller"
+  description="Polaroid briller skærer reflekserne fra vandoverfladen og lader dig se fiskene under vandet. Brug brille-vælgeren og find den rette linsefarve til lys, vejr og fiskeform."
+  canonical="https://udeogfiske.dk/fiskeudstyr/beklaedning/polaroid-briller/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeudstyr", url: "/fiskeudstyr/" },
+    { name: "Beklædning", url: "/fiskeudstyr/beklaedning/" },
+    { name: "Polaroid briller" },
+  ]}
+  articleData={{
+    headline: "Vælg de bedste polaroid briller til fiskeri",
+    image: "/images/Hero_leopardbund-min.jpg",
+    datePublished: "2023-06-22",
+    dateModified: "2026-06-02",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/">Fiskeudstyr</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/beklaedning/">Beklædning</a>
+        <span>›</span>
+        <span>Polaroid briller</span>
+      </nav>
+      <h1 class="pg-title">Vælg de bedste polaroid briller til fiskeri</h1>
+      <p class="pg-sub">Polaroid briller skærer reflekserne fra vandoverfladen og lader dig se fisken og bunden tydeligt — for mig er det en af de vigtigste investeringer en fisker overhovedet kan gøre.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvorfor er polaroid briller så vigtige til fiskeri?</h2>
+        <p class="ac-a">Polariserede glas <strong>filtrerer reflekteret lys</strong> fra vandoverfladen, så du pludselig kan se ned i vandet og spotte fiskene. De <strong>beskytter samtidig øjnene</strong> mod skadelige UV-stråler og reducerer øjenbelastningen markant over en lang fiskedag. Brune linser er det bedste allround-valg, og polykarbonat-rammer er lette og holdbare.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Når man først har prøvet at fiske med polaroid briller, kommer man aldrig til at fiske uden. En af mine yndlings-fiskemetoder er spotfiskeri efter ørreder i Put & Take søer med fluestang — jeg spotter fisken i vandet og kaster fluen ud i håbet om at den sluger den. Det kan kun lade sig gøre med polaroid briller; ellers ville det slet ikke være muligt at se fisken. For mig hører de til samme kategori som vandtæt jakke og en god kniv: grej man ikke tager med på fisketur, fordi man altid har det på."
+      />
+
+      <article class="article">
+        <p>Som fiskere ved vi hvor vigtigt det er at have det rigtige udstyr, og mange går også op i at have al det udstyr som gør at vi fanger flere fisk. Dog glemmer mange solbriller, hvilket er en vigtig del af fiskeriet. Både for at beskytte øjnene, men også for at se flere fisk i vandet hvis man fisker på den måde at man har behov for at se fiskene. Polaroid briller er for mig en af de vigtigste ting man som fisker kan investere i. Ikke nok med at de forbedre synligheden under vandet, men de beskytter øjnene mod skadelige UV-stråler.</p>
+
+        <h2>Hvad er polaroid briller?</h2>
+
+        <p>Polaroid briller, også kaldet polariserede solbriller, er specielt designet, så de reducerer genskin fra overflader som vand og sne. Glasset er udstyret med en speciel film som filtrer den lys fra, hvilket gør dem ideelle til fiskeri ved vand for at mindske belastningen på dine øjne. Men også for at se flere fisk i vandet! Når du har prøvet at fiske med polaroid briller en gang, så kommer du aldrig til at fiske uden. Det er især sjovt i Put & Take søer hvor man kan se ørrederne svømme mod sit agn og spise det.</p>
+
+        <p>En af mine yndlings fiskemetoder er spotfiskeri efter ørreder i Put & Take søer med min fluestang. Jeg spotter fisken i vandet og kaster fluen ud til fisken i håbet om at den sluger fluen. Dette kan naturligvis kun lade sig gøre med polaroid briller, ellers ville det ikke være muligt at se fisken!</p>
+
+        <DidYouKnow>
+          Polaroid-effekten kommer ikke af glasset i sig selv, men af en <strong>tynd film inde i glasset</strong>, der filtrerer det vandrette lys (det reflekterede genskin) fra og kun lader det lodrette lys passere. Det er samme princip som bruges i nogle kameralinser og solskærme.
+        </DidYouKnow>
+
+        <StatHighlight
+          value="UVA + UVB"
+          caption="Gode polaroidbriller blokerer næsten alt skadeligt UV-lys — øjenbeskyttelsen er lige så vigtig som det bedre udsyn i vandet"
+          icon="ruler"
+        />
+
+        <h2>Hvilke polaroid briller passer til dit lys?</h2>
+        <p>De fleste polaroid briller skærer genskinnet, men <strong>linsefarven</strong> afgør, hvornår de fungerer bedst. Vælg det lys og den fiskeform du oftest møder, så får du min anbefaling til linsefarve, lysforhold og kontrast — og et konkret forslag:</p>
+      </article>
+
+      <div class="rod-finder" id="rod-finder">
+        <div class="rf-top">
+          <span class="rf-eyebrow">Brille-vælger</span>
+          <h3 class="rf-title">Find linsefarven til dit fiskeri</h3>
+        </div>
+
+        <div class="rf-tabs" role="tablist" aria-label="Vælg lysforhold">
+          {finderRods.map((f, i) => (
+            <button type="button" class={`rf-tab ${i === 0 ? 'is-active' : ''}`} data-key={f.key} role="tab" aria-selected={i === 0 ? 'true' : 'false'}>{f.label}</button>
+          ))}
+        </div>
+
+        <div class="rf-specs" id="rf-specs">
+          <div class="rf-spec"><span class="rf-spec-label">Linsefarve</span><span class="rf-spec-value" id="rf-lens">{finderRods[0].lens}</span></div>
+          <div class="rf-spec"><span class="rf-spec-label">Lysforhold</span><span class="rf-spec-value" id="rf-light">{finderRods[0].light}</span></div>
+          <div class="rf-spec"><span class="rf-spec-label">Bedst til</span><span class="rf-spec-value" id="rf-use">{finderRods[0].use}</span></div>
+          <div class="rf-spec"><span class="rf-spec-label">Kontrast</span><span class="rf-spec-value" id="rf-contrast">{finderRods[0].contrast}</span></div>
+        </div>
+
+        <p class="rf-note" id="rf-note">{finderRods[0].note}</p>
+
+        <div class="rf-products">
+          {finderRods.map((f, i) => (
+            <article class={`rf-product ${i === 0 ? 'is-active' : ''}`} data-key={f.key}>
+              <a class="rf-prod-img" href={f.product.url} target="_blank" rel="sponsored noopener" tabindex="-1" aria-hidden="true">
+                <img src={f.product.image} alt={f.product.name} loading="lazy" width="120" height="120" />
+              </a>
+              <div class="rf-prod-body">
+                <span class="rf-prod-badge">{f.badge}</span>
+                <p class="rf-prod-brand">{f.product.brand}</p>
+                <h4 class="rf-prod-name"><a href={f.product.url} target="_blank" rel="sponsored noopener">{f.product.name}</a></h4>
+                <div class="rf-prod-buy">
+                  <span class="rf-prod-price">{formatPrice(f.product.price)} <span class="rf-prod-cur">kr</span></span>
+                  <a class="rf-prod-cta" href={f.product.url} target="_blank" rel="sponsored noopener">
+                    <span>Se hos Fiskegrej</span>
+                    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <script define:vars={{ finderData: finder }}>
+        (function () {
+          const root = document.getElementById('rod-finder');
+          if (!root) return;
+
+          const byKey = {};
+          finderData.forEach((f) => { byKey[f.key] = f; });
+
+          const els = {
+            lens: document.getElementById('rf-lens'),
+            light: document.getElementById('rf-light'),
+            use: document.getElementById('rf-use'),
+            contrast: document.getElementById('rf-contrast'),
+            note: document.getElementById('rf-note'),
+          };
+          const specs = document.getElementById('rf-specs');
+          const tabs = root.querySelectorAll('.rf-tab');
+          const products = root.querySelectorAll('.rf-product');
+
+          tabs.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              const key = btn.getAttribute('data-key');
+              const d = byKey[key];
+              if (!d) return;
+
+              tabs.forEach((b) => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+              btn.classList.add('is-active');
+              btn.setAttribute('aria-selected', 'true');
+
+              els.lens.textContent = d.lens;
+              els.light.textContent = d.light;
+              els.use.textContent = d.use;
+              els.contrast.textContent = d.contrast;
+              els.note.textContent = d.note;
+
+              products.forEach((p) => p.classList.toggle('is-active', p.getAttribute('data-key') === key));
+
+              specs.classList.remove('rf-flash');
+              void specs.offsetWidth;
+              specs.classList.add('rf-flash');
+            });
+          });
+        })();
+      </script>
+
+      <article class="article">
+        <h2>Hvorfor skal jeg bruge polaroid briller når jeg fisker?</h2>
+
+        <p>Der er flere grunde til, at polaroid briller er et must-have for fiskere. Her er nogle af de vigtigste fordele:</p>
+
+        <ul>
+          <li><strong>Forbedret synlighed</strong> — Polaroid briller reducerer genskin fra vandoverfladen, hvilket gør det nemmere at se fisk og andet under vandet. Det er nok den største fordel ved at bruge polaroid briller, selvfølgeligt hvis dit fiskeri kræver at du ser fiskene. Med polaroid briller ser man bare meget mere i vandet.</li>
+          <li><strong>Øjenbeskyttelse</strong> — Polaroid briller blokerer for næsten alle af de skadelige UVA og UVB stråler, beskytter dine øjne mod solskader. Dette kan på sigt være vigtigt da det kan reducere problemer med øjnene.</li>
+          <li><strong>Komfort</strong> — Ved at reducere genskin og skarpt lys kan polaroid briller forhindre øjenbelastning og gøre din fiskeoplevelse mere komfortabel. Især hvis du fisker i flere timer ved vandet med høj sol, kan dette være et vigtigt element. Man kan godt mærke på øjnene hvis man har fisket i et par timer uden polaroid briller.</li>
+        </ul>
+
+        <TipBox>
+          Hvis du står og overvejer dit allerførste par polaroid briller, så start med <strong>brune linser</strong>. De er det bedste allround-valg og fungerer i næsten al slags lys — også på skyede dage. Når du har vænnet dig til konceptet, kan du overveje en model med udskiftelige linser i flere farver.
+        </TipBox>
+
+        <h2>Hvordan vælger man de bedste polaroid briller til fiskeri?</h2>
+
+        <p>Når man skal ud og købe polaroid briller for første gang, er der nogle ting man bør overveje og have i tankerne. De fleste polaroid briller gør det samme, men der er dog forskel på brillerne og kvaliteten. Som med så meget andet hænger pris og kvalitet ofte sammen. Her er de tre vigtigste faktorer:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Hvad du skal kigge efter ved valg af polaroid briller">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Faktor</th>
+                <th scope="col">Min anbefaling</th>
+                <th scope="col">Hvorfor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Faktor">Linsefarve</th>
+                <td data-label="Min anbefaling">Brun til allround</td>
+                <td data-label="Hvorfor">Fungerer i næsten al slags lys, også gråvejr</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Faktor">Ramme &amp; design</th>
+                <td data-label="Min anbefaling">Indpakkende pasform</td>
+                <td data-label="Hvorfor">Holder lyset ude fra siderne — og sidder godt</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Faktor">Materiale</th>
+                <td data-label="Min anbefaling">Polykarbonat</td>
+                <td data-label="Hvorfor">Let og holdbart — billige glas ridser hurtigt</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Linse farve:</strong> De brune linser er de mest hyppige og de bedste at have til allround fiskeri. De fungerer godt i næsten al slags lys og ved skyet vejr. Jeg vil anbefale denne farve til nybegyndere så de kan teste og se om polaroid briller er noget for dem. Mange polaroid briller har linser som kan skiftes til forskellige farver. Dette kan også være værd at overveje hvis man ønsker at prøve de forskellige farver.</p>
+
+        <p><strong>Ramme størrelse og design:</strong> Vælg en ramme, der passer godt til dit ansigt og har en indpakning design for at beskytte dine øjne fra alle vinkler. Her er det også meget den personlige smag der kommer i spil, hvor design kan spille en rolle for den enkelte.</p>
+
+        <p><strong>Materiale:</strong> Polaroid briller lavet med letvægt og holdbart materiale som polykarbonat er ideelle for fiskeri. De billigere polaroid briller har en tendens til hurtigere at blive ridset på glasset hvilket kan forstyrre dit blik. Vælg derfor nogle der er lidt dyrere og som kan holde til lidt mere.</p>
+
+        <h2>Det der hører med</h2>
+        <p>Brillerne kommer sjældent alene. Her er tre småting jeg altid har med, og som passer perfekt til et par polaroidbriller på vandet:</p>
+
+        <AffiliateTrio
+          title="Det der hører med"
+          intro="De små ting der gør polaroidbrillerne endnu bedre. En kasket der skygger for det lys, der ellers kommer ovenfra, en brillesnor så de ikke ryger i vandet — og et clip-on forstørrelsesglas til de små knuder."
+          products={[
+            {
+              productId: "502979",
+              badge: "Skyggen",
+              badgeTone: "teal",
+              highlight: true,
+              note: "En kasket med skygge skærer det lys, der kommer ovenfra og ind over brillekanten — og forstærker dermed den polariserede effekt, så du ser endnu bedre ned i vandet.",
+            },
+            {
+              productId: "61891",
+              badge: "Sikringen",
+              badgeTone: "slate",
+              note: "En brillesnor holder brillerne om halsen, når du tager dem af — og forhindrer det værste mareridt: at de ryger direkte i vandet, mens du vader.",
+            },
+            {
+              productId: "72961",
+              badge: "Til knuderne",
+              badgeTone: "orange",
+              note: "Et clip-on forstørrelsesglas sættes på brillerne, så du nemt kan binde små knuder og skifte flue på vandet — guld værd, hvis nærsynet driller.",
+            },
+          ]}
+        />
+
+        <p>Polaroid briller er en essentiel investering for enhver seriøs fisker. De forbedrer ikke blot din synlighed under vandet, men sikrer også, at dine øjne er beskyttet mod skadelige solstråler. Husk at overveje faktorer som linse farve, ramme design og materiale, når du vælger dine polaroid briller til fiskeri. Godt fiskeri!</p>
+
+        <GuideLink
+          href="/fiskeguide/put-take-fiskeri/"
+          title="Læs guiden til Put & Take fiskeri"
+          desc="Spotfiskeri efter ørred — her bliver polaroidbrillerne for alvor afgørende."
+        />
+        <GuideLink
+          href="/fiskeguide/fluefiskeri/"
+          title="Læs guiden til fluefiskeri"
+          desc="Sigtefiskeri med flue kræver, at du kan se fisken — polaroidbriller er en forudsætning."
+        />
+        <GuideLink
+          href="/fiskeguide/fiskeri-paa-kysten/"
+          title="Læs guiden til kystfiskeri"
+          desc="Pladser, teknik og sæson — og hvorfor du ser langt flere fisk med polaroidbriller."
+        />
+      </article>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <RelatedRow items={related} />
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/Hero_leopardbund-min.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li { font-size: 1rem; color: #374151; line-height: 1.75; margin-bottom: 0.5rem; list-style: disc; }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .faq-heading {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 4rem auto 1rem;
+    max-width: 760px;
+  }
+
+  /* ─────────────  Brille-vælger (finder)  ───────────── */
+  .rod-finder {
+    max-width: 760px; margin: 1.5rem auto 2.75rem;
+    background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px;
+    padding: 1.5rem 1.625rem 1.625rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .rf-top { margin-bottom: 1.125rem; }
+  .rf-eyebrow {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em; color: #0d4a5e; margin-bottom: 0.375rem;
+  }
+  .rf-title {
+    margin: 0; font-size: 1.375rem; font-weight: 700; color: #111827; letter-spacing: -0.02em; line-height: 1.2;
+  }
+
+  .rf-tabs {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem;
+  }
+  .rf-tab {
+    flex: 1 1 auto;
+    padding: 0.55rem 0.8rem;
+    background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 999px;
+    font-size: 0.8125rem; font-weight: 600; color: #475569; cursor: pointer;
+    white-space: nowrap; transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .rf-tab:hover { border-color: #0d4a5e; color: #0d4a5e; }
+  .rf-tab.is-active {
+    background: #0d4a5e; border-color: #0d4a5e; color: #ffffff;
+    box-shadow: 0 6px 14px -10px rgba(13, 74, 94, 0.55);
+  }
+
+  .rf-specs {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border: 1px solid #eef2f6; border-radius: 12px; overflow: hidden; margin-bottom: 1rem;
+  }
+  .rf-spec {
+    padding: 0.75rem 0.875rem; text-align: left;
+    border-right: 1px solid #eef2f6; background: #f8fafc;
+  }
+  .rf-spec:last-child { border-right: none; }
+  .rf-spec-label {
+    display: block; font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #94a3b8; margin-bottom: 0.3rem;
+  }
+  .rf-spec-value { display: block; font-size: 0.875rem; font-weight: 700; color: #0d4a5e; line-height: 1.3; }
+  .rf-flash { animation: rf-fade 0.35s ease; }
+  @keyframes rf-fade { from { opacity: 0.4; } to { opacity: 1; } }
+
+  .rf-note {
+    margin: 0 0 1.25rem; padding: 0.875rem 1.05rem;
+    background: #f8fbfc; border-left: 3px solid #0d4a5e; border-radius: 8px;
+    font-size: 0.9375rem; line-height: 1.65; color: #374151;
+  }
+
+  /* swapping product cards */
+  .rf-product { display: none; }
+  .rf-product.is-active {
+    display: flex; gap: 1.125rem; align-items: center;
+    padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; background: #ffffff;
+    animation: rf-fade 0.3s ease;
+  }
+  .rf-prod-img {
+    flex-shrink: 0; width: 96px; height: 96px;
+    border: 1px solid #f1f5f9; border-radius: 10px; overflow: hidden; background: #ffffff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .rf-prod-img img { width: 100%; height: 100%; object-fit: contain; }
+  .rf-prod-body { flex: 1; min-width: 0; }
+  .rf-prod-badge {
+    display: inline-block; font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: #0d4a5e; background: #eef4f6;
+    padding: 0.2rem 0.55rem; border-radius: 999px; margin-bottom: 0.4rem;
+  }
+  .rf-prod-brand { margin: 0; font-size: 0.75rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; }
+  .rf-prod-name { margin: 0.1rem 0 0.5rem; font-size: 1rem; font-weight: 700; line-height: 1.3; }
+  .rf-prod-name a { color: #111827; text-decoration: none; }
+  .rf-prod-name a:hover { color: #0d4a5e; }
+  .rf-prod-buy { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+  .rf-prod-price { font-size: 1.125rem; font-weight: 800; color: #0d4a5e; letter-spacing: -0.01em; }
+  .rf-prod-cur { font-size: 0.8125rem; font-weight: 600; }
+  .rf-prod-cta {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 0.95rem; border-radius: 9px;
+    background: linear-gradient(135deg, #c47d0a 0%, #a06808 100%); color: #ffffff;
+    font-size: 0.8125rem; font-weight: 700; text-decoration: none;
+    box-shadow: 0 6px 14px -8px rgba(196, 125, 10, 0.5); transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .rf-prod-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 18px -8px rgba(196, 125, 10, 0.55); }
+
+  @media (max-width: 560px) {
+    .rod-finder { padding: 1.25rem 1.125rem 1.375rem; }
+    .rf-tab { flex: 1 1 calc(50% - 0.25rem); white-space: normal; }
+    .rf-specs { grid-template-columns: repeat(2, 1fr); }
+    .rf-spec:nth-child(2) { border-right: none; }
+    .rf-spec:nth-child(1), .rf-spec:nth-child(2) { border-bottom: 1px solid #eef2f6; }
+    .rf-product.is-active { flex-direction: column; align-items: flex-start; text-align: left; }
+    .rf-prod-img { width: 100%; height: 160px; }
+    .rf-prod-buy { width: 100%; }
+  }
+
+  /* ─────────────  Comparison table  ───────────── */
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; color: #374151; }
+  .prey-table thead { background: linear-gradient(to bottom, #f8fafc, #eef2f6); border-bottom: 1px solid #e5e7eb; }
+  .prey-table thead th {
+    padding: 0.85rem 1rem; text-align: left; font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; color: #475569; white-space: nowrap;
+  }
+  .prey-table tbody tr { border-top: 1px solid #f1f5f9; transition: background 0.15s ease; }
+  .prey-table tbody tr:hover { background: #f8fbfc; }
+  .prey-table th[scope="row"], .prey-table td {
+    padding: 0.95rem 1rem; vertical-align: top; text-align: left; line-height: 1.5; font-weight: 400;
+  }
+  .prey-table th[scope="row"] { font-weight: 700; color: #0d4a5e; white-space: nowrap; }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap { border-radius: 12px; }
+    .prey-table thead {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .prey-table, .prey-table tbody, .prey-table tr { display: block; width: 100%; }
+    .prey-table tr { padding: 1rem 1.125rem 1.125rem; border-top: 1px solid #f1f5f9; }
+    .prey-table th[scope="row"], .prey-table td {
+      display: grid; grid-template-columns: 130px 1fr; gap: 0.75rem; padding: 0.3rem 0; white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem; grid-template-columns: 1fr;
+      margin-bottom: 0.4rem; padding-bottom: 0.4rem; border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #6b7280; align-self: start; padding-top: 0.15rem;
+    }
+  }
+</style>

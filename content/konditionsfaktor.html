@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="da-DK"
+	prefix="og: https://ogp.me/ns#" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+
+	    <script>
+        (function (exports, d) {
+            var _isReady = false,
+                _event,
+                _fns = [];
+
+            function onReady(event) {
+                d.removeEventListener("DOMContentLoaded", onReady);
+                _isReady = true;
+                _event = event;
+                _fns.forEach(function (_fn) {
+                    var fn = _fn[0],
+                        context = _fn[1];
+                    fn.call(context || exports, window.jQuery);
+                });
+            }
+
+            function onReadyIe(event) {
+                if (d.readyState === "complete") {
+                    d.detachEvent("onreadystatechange", onReadyIe);
+                    _isReady = true;
+                    _event = event;
+                    _fns.forEach(function (_fn) {
+                        var fn = _fn[0],
+                            context = _fn[1];
+                        fn.call(context || exports, event);
+                    });
+                }
+            }
+
+            d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+            d.attachEvent && d.attachEvent("onreadystatechange", onReadyIe);
+
+            function domReady(fn, context) {
+                if (_isReady) {
+                    fn.call(context, _event);
+                }
+
+                _fns.push([fn, context]);
+            }
+
+            exports.mesmerizeDomReady = domReady;
+        })(window, document);
+    </script>
+    <link type="text/css" media="all" href="https://udeogfiske.dk/wp-content/cache/autoptimize/css/autoptimize_aa516e43512507a77ba6d67ab7d171a0.css" rel="stylesheet" /><link type="text/css" media="screen" href="https://udeogfiske.dk/wp-content/cache/autoptimize/css/autoptimize_a0794295273005c0897160b9763e826a.css" rel="stylesheet" /><title>Beregn Din Havørreds Konditionstal | Fultons Formel Forklaret</title>
+	
+	
+		<!-- All in One SEO 4.2.2 -->
+		<meta name="description" content="Lær alt om Fultons Formel og beregn nemt din havørreds konditionstal. Vores komplette guide forklarer betydningen bag tallene og hvorfor kondition er afgørende for havørreder. Inkl. gratis beregner!" />
+		<meta name="robots" content="max-image-preview:large" />
+		<link rel="canonical" href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/" />
+		<meta property="og:locale" content="da_DK" />
+		<meta property="og:site_name" content="Ude og Fiske - Inspiration til din fisketur -" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Beregn Din Havørreds Konditionstal | Fultons Formel Forklaret" />
+		<meta property="og:description" content="Lær alt om Fultons Formel og beregn nemt din havørreds konditionstal. Vores komplette guide forklarer betydningen bag tallene og hvorfor kondition er afgørende for havørreder. Inkl. gratis beregner!" />
+		<meta property="og:url" content="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/" />
+		<meta property="article:published_time" content="2025-03-10T13:41:08+00:00" />
+		<meta property="article:modified_time" content="2025-03-11T08:03:57+00:00" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Beregn Din Havørreds Konditionstal | Fultons Formel Forklaret" />
+		<meta name="twitter:description" content="Lær alt om Fultons Formel og beregn nemt din havørreds konditionstal. Vores komplette guide forklarer betydningen bag tallene og hvorfor kondition er afgørende for havørreder. Inkl. gratis beregner!" />
+		<script type="application/ld+json" class="aioseo-schema">
+			{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebSite","@id":"https:\/\/udeogfiske.dk\/#website","url":"https:\/\/udeogfiske.dk\/","name":"Ude og Fiske - Inspiration til din fisketur","inLanguage":"da-DK","publisher":{"@id":"https:\/\/udeogfiske.dk\/#organization"}},{"@type":"Organization","@id":"https:\/\/udeogfiske.dk\/#organization","name":"Ude og Fiske - Inspiration til din fisketur","url":"https:\/\/udeogfiske.dk\/"},{"@type":"BreadcrumbList","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/#breadcrumblist","itemListElement":[{"@type":"ListItem","@id":"https:\/\/udeogfiske.dk\/#listItem","position":1,"item":{"@type":"WebPage","@id":"https:\/\/udeogfiske.dk\/","name":"Home","description":"Ude og FIske - Fiskeguides, grejguides og meget mere. Oplev den fantastiske fiskeverden og nyd den danske natur.","url":"https:\/\/udeogfiske.dk\/"},"nextItem":"https:\/\/udeogfiske.dk\/guide-til-fisk\/#listItem"},{"@type":"ListItem","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/#listItem","position":2,"item":{"@type":"WebPage","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/","description":"Hvilke fisk kan man fange i vandene omkring Danmark? L\u00e6s med her og se hvilke fisk du kan fange ved at fiske i Danmark.","url":"https:\/\/udeogfiske.dk\/guide-til-fisk\/"},"nextItem":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/#listItem","previousItem":"https:\/\/udeogfiske.dk\/#listItem"},{"@type":"ListItem","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/#listItem","position":3,"item":{"@type":"WebPage","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/","name":"Hav\u00f8rredfiskeri - Fiskeri efter hav\u00f8rred p\u00e5 kyst og fjord","description":"Komplet guide til hav\u00f8rredfiskeri i Danmark 2025. L\u00e6r bedste teknikker, fiskepladser, \u00e5rstider, blink & regler. L\u00e6s med her!","url":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/"},"nextItem":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/#listItem","previousItem":"https:\/\/udeogfiske.dk\/guide-til-fisk\/#listItem"},{"@type":"ListItem","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/#listItem","position":4,"item":{"@type":"WebPage","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/","name":"Konditionsfaktor - Hav\u00f8rred","description":"L\u00e6r alt om Fultons Formel og beregn nemt din hav\u00f8rreds konditionstal. Vores komplette guide forklarer betydningen bag tallene og hvorfor kondition er afg\u00f8rende for hav\u00f8rreder. Inkl. gratis beregner!","url":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/"},"previousItem":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/#listItem"}]},{"@type":"WebPage","@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/#webpage","url":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/","name":"Beregn Din Hav\u00f8rreds Konditionstal | Fultons Formel Forklaret","description":"L\u00e6r alt om Fultons Formel og beregn nemt din hav\u00f8rreds konditionstal. Vores komplette guide forklarer betydningen bag tallene og hvorfor kondition er afg\u00f8rende for hav\u00f8rreder. Inkl. gratis beregner!","inLanguage":"da-DK","isPartOf":{"@id":"https:\/\/udeogfiske.dk\/#website"},"breadcrumb":{"@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/#breadcrumblist"},"image":{"@type":"ImageObject","@id":"https:\/\/udeogfiske.dk\/#mainImage","url":"https:\/\/udeogfiske.dk\/wp-content\/uploads\/2022\/07\/havorred_hero.jpg","width":1920,"height":672},"primaryImageOfPage":{"@id":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/#mainImage"},"datePublished":"2025-03-10T13:41:08+00:00","dateModified":"2025-03-11T08:03:57+00:00"}]}
+		</script>
+		<!-- All in One SEO -->
+
+
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<script data-cfasync="false" data-pagespeed-no-defer type="text/javascript">//<![CDATA[
+	var gtm4wp_datalayer_name = "dataLayer";
+	var dataLayer = dataLayer || [];
+//]]>
+</script>
+<!-- End Google Tag Manager for WordPress by gtm4wp.com --><link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//code.jquery.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Ude og Fiske - Inspiration til din fisketur &raquo; Feed" href="https://udeogfiske.dk/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Ude og Fiske - Inspiration til din fisketur &raquo;-kommentar-feed" href="https://udeogfiske.dk/comments/feed/" />
+		<!-- This site uses the Google Analytics by MonsterInsights plugin v10.1.3 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+							<script src="//www.googletagmanager.com/gtag/js?id=G-KH3MCDWBGT"  data-cfasync="false" data-wpfc-render="false" type="text/javascript" async></script>
+			<script data-cfasync="false" data-wpfc-render="false" type="text/javascript">
+				var mi_version = '10.1.3';
+				var mi_track_user = true;
+				var mi_no_track_reason = '';
+								var MonsterInsightsDefaultLocations = {"page_location":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/"};
+								if ( typeof MonsterInsightsPrivacyGuardFilter === 'function' ) {
+					var MonsterInsightsLocations = (typeof MonsterInsightsExcludeQuery === 'object') ? MonsterInsightsPrivacyGuardFilter( MonsterInsightsExcludeQuery ) : MonsterInsightsPrivacyGuardFilter( MonsterInsightsDefaultLocations );
+				} else {
+					var MonsterInsightsLocations = (typeof MonsterInsightsExcludeQuery === 'object') ? MonsterInsightsExcludeQuery : MonsterInsightsDefaultLocations;
+				}
+
+								var disableStrs = [
+										'ga-disable-G-KH3MCDWBGT',
+									];
+
+				/* Function to detect opted out users */
+				function __gtagTrackerIsOptedOut() {
+					for (var index = 0; index < disableStrs.length; index++) {
+						if (document.cookie.indexOf(disableStrs[index] + '=true') > -1) {
+							return true;
+						}
+					}
+
+					return false;
+				}
+
+				/* Disable tracking if the opt-out cookie exists. */
+				if (__gtagTrackerIsOptedOut()) {
+					for (var index = 0; index < disableStrs.length; index++) {
+						window[disableStrs[index]] = true;
+					}
+				}
+
+				/* Opt-out function */
+				function __gtagTrackerOptout() {
+					for (var index = 0; index < disableStrs.length; index++) {
+						document.cookie = disableStrs[index] + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+						window[disableStrs[index]] = true;
+					}
+				}
+
+				if ('undefined' === typeof gaOptout) {
+					function gaOptout() {
+						__gtagTrackerOptout();
+					}
+				}
+								window.dataLayer = window.dataLayer || [];
+
+				window.MonsterInsightsDualTracker = {
+					helpers: {},
+					trackers: {},
+				};
+				if (mi_track_user) {
+					function __gtagDataLayer() {
+						dataLayer.push(arguments);
+					}
+
+					function __gtagTracker(type, name, parameters) {
+						if (!parameters) {
+							parameters = {};
+						}
+
+						if (parameters.send_to) {
+							__gtagDataLayer.apply(null, arguments);
+							return;
+						}
+
+						if (type === 'event') {
+														parameters.send_to = monsterinsights_frontend.v4_id;
+							var hookName = name;
+							if (typeof parameters['event_category'] !== 'undefined') {
+								hookName = parameters['event_category'] + ':' + name;
+							}
+
+							if (typeof MonsterInsightsDualTracker.trackers[hookName] !== 'undefined') {
+								MonsterInsightsDualTracker.trackers[hookName](parameters);
+							} else {
+								__gtagDataLayer('event', name, parameters);
+							}
+							
+						} else {
+							__gtagDataLayer.apply(null, arguments);
+						}
+					}
+
+					__gtagTracker('js', new Date());
+					__gtagTracker('set', {
+						'developer_id.dZGIzZG': true,
+											});
+					if ( MonsterInsightsLocations.page_location ) {
+						__gtagTracker('set', MonsterInsightsLocations);
+					}
+										__gtagTracker('config', 'G-KH3MCDWBGT', {"forceSSL":"true","link_attribution":"true"} );
+										window.gtag = __gtagTracker;										(function () {
+						/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+						/* ga and __gaTracker compatibility shim. */
+						var noopfn = function () {
+							return null;
+						};
+						var newtracker = function () {
+							return new Tracker();
+						};
+						var Tracker = function () {
+							return null;
+						};
+						var p = Tracker.prototype;
+						p.get = noopfn;
+						p.set = noopfn;
+						p.send = function () {
+							var args = Array.prototype.slice.call(arguments);
+							args.unshift('send');
+							__gaTracker.apply(null, args);
+						};
+						var __gaTracker = function () {
+							var len = arguments.length;
+							if (len === 0) {
+								return;
+							}
+							var f = arguments[len - 1];
+							if (typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function') {
+								if ('send' === arguments[0]) {
+									var hitConverted, hitObject = false, action;
+									if ('event' === arguments[1]) {
+										if ('undefined' !== typeof arguments[3]) {
+											hitObject = {
+												'eventAction': arguments[3],
+												'eventCategory': arguments[2],
+												'eventLabel': arguments[4],
+												'value': arguments[5] ? arguments[5] : 1,
+											}
+										}
+									}
+									if ('pageview' === arguments[1]) {
+										if ('undefined' !== typeof arguments[2]) {
+											hitObject = {
+												'eventAction': 'page_view',
+												'page_path': arguments[2],
+											}
+										}
+									}
+									if (typeof arguments[2] === 'object') {
+										hitObject = arguments[2];
+									}
+									if (typeof arguments[5] === 'object') {
+										Object.assign(hitObject, arguments[5]);
+									}
+									if ('undefined' !== typeof arguments[1].hitType) {
+										hitObject = arguments[1];
+										if ('pageview' === hitObject.hitType) {
+											hitObject.eventAction = 'page_view';
+										}
+									}
+									if (hitObject) {
+										action = 'timing' === arguments[1].hitType ? 'timing_complete' : hitObject.eventAction;
+										hitConverted = mapArgs(hitObject);
+										__gtagTracker('event', action, hitConverted);
+									}
+								}
+								return;
+							}
+
+							function mapArgs(args) {
+								var arg, hit = {};
+								var gaMap = {
+									'eventCategory': 'event_category',
+									'eventAction': 'event_action',
+									'eventLabel': 'event_label',
+									'eventValue': 'event_value',
+									'nonInteraction': 'non_interaction',
+									'timingCategory': 'event_category',
+									'timingVar': 'name',
+									'timingValue': 'value',
+									'timingLabel': 'event_label',
+									'page': 'page_path',
+									'location': 'page_location',
+									'title': 'page_title',
+									'referrer' : 'page_referrer',
+								};
+								for (arg in args) {
+																		if (!(!args.hasOwnProperty(arg) || !gaMap.hasOwnProperty(arg))) {
+										hit[gaMap[arg]] = args[arg];
+									} else {
+										hit[arg] = args[arg];
+									}
+								}
+								return hit;
+							}
+
+							try {
+								f.hitCallback();
+							} catch (ex) {
+							}
+						};
+						__gaTracker.create = newtracker;
+						__gaTracker.getByName = newtracker;
+						__gaTracker.getAll = function () {
+							return [];
+						};
+						__gaTracker.remove = noopfn;
+						__gaTracker.loaded = true;
+						window['__gaTracker'] = __gaTracker;
+					})();
+									} else {
+										console.log("");
+					(function () {
+						function __gtagTracker() {
+							return null;
+						}
+
+						window['__gtagTracker'] = __gtagTracker;
+						window['gtag'] = __gtagTracker;
+					})();
+									}
+			</script>
+							<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/udeogfiske.dk\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.5"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+
+
+
+
+
+
+
+
+
+<link rel='stylesheet' id='jqueryuicss-css' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='select2css-css' href='//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css?ver=1.0' type='text/css' media='all' />
+
+
+
+
+
+
+
+<link rel='stylesheet' id='elementor-post-395-css' href='https://udeogfiske.dk/wp-content/cache/autoptimize/css/autoptimize_single_d054c9a711912116f6a5ad19a49a3b85.css?ver=1642427773' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-global-css' href='https://udeogfiske.dk/wp-content/cache/autoptimize/css/autoptimize_single_5adb01f1b6f2177d381caf1f4dfa87cf.css?ver=1642427774' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-post-2671-css' href='https://udeogfiske.dk/wp-content/cache/autoptimize/css/autoptimize_single_bd91f229cbef3f8b441c08c159b9af5f.css?ver=1741679195' type='text/css' media='all' />
+
+
+
+
+<link rel='stylesheet' id='mesmerize-fonts-css'  data-href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+
+
+<link rel='stylesheet' id='google-fonts-1-css'  data-href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=6.7.5' type='text/css' media='all' />
+<script>if (document.location.protocol != "https:") {document.location = document.URL.replace(/^http:/i, "https:");}</script>
+<script data-cfasync="false" data-wpfc-render="false" type="text/javascript" id='monsterinsights-frontend-script-js-extra'>/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"https:\/\/udeogfiske.dk","hash_tracking":"false","v4_id":"G-KH3MCDWBGT"};/* ]]> */
+</script>
+
+<script type="text/javascript" id="jquery-core-js-after">
+/* <![CDATA[ */
+    
+        (function () {
+            function setHeaderTopSpacing() {
+
+                setTimeout(function() {
+                  var headerTop = document.querySelector('.header-top');
+                  var headers = document.querySelectorAll('.header-wrapper .header,.header-wrapper .header-homepage');
+
+                  for (var i = 0; i < headers.length; i++) {
+                      var item = headers[i];
+                      item.style.paddingTop = headerTop.getBoundingClientRect().height + "px";
+                  }
+
+                    var languageSwitcher = document.querySelector('.mesmerize-language-switcher');
+
+                    if(languageSwitcher){
+                        languageSwitcher.style.top = "calc( " +  headerTop.getBoundingClientRect().height + "px + 1rem)" ;
+                    }
+                    
+                }, 100);
+
+             
+            }
+
+            window.addEventListener('resize', setHeaderTopSpacing);
+            window.mesmerizeSetHeaderTopSpacing = setHeaderTopSpacing
+            mesmerizeDomReady(setHeaderTopSpacing);
+        })();
+    
+    
+/* ]]> */
+</script>
+
+
+
+
+<link rel="https://api.w.org/" href="https://udeogfiske.dk/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://udeogfiske.dk/wp-json/wp/v2/pages/2671" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://udeogfiske.dk/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.7.5" />
+<link rel='shortlink' href='https://udeogfiske.dk/?p=2671' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://udeogfiske.dk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fudeogfiske.dk%2Fguide-til-fisk%2Fhavorredfiskeri%2Fkonditionsfaktor-havorred%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://udeogfiske.dk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fudeogfiske.dk%2Fguide-til-fisk%2Fhavorredfiskeri%2Fkonditionsfaktor-havorred%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.8.1" />
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<script data-cfasync="false" data-pagespeed-no-defer type="text/javascript">//<![CDATA[
+	var dataLayer_content = {"pagePostType":"page","pagePostType2":"single-page","pagePostAuthor":"admin-ag"};
+	dataLayer.push( dataLayer_content );//]]>
+</script>
+<script data-cfasync="false">//<![CDATA[
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TVVQZ49');//]]>
+</script>
+<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager for WordPress by gtm4wp.com -->    <script type="text/javascript" data-name="async-styles">
+        (function () {
+            var links = document.querySelectorAll('link[data-href]');
+            for (var i = 0; i < links.length; i++) {
+                var item = links[i];
+                item.href = item.getAttribute('data-href')
+            }
+        })();
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+(adsbygoogle = window.adsbygoogle || []).push({
+google_ad_client: "ca-pub-2311604251179357",
+enable_page_level_ads: true,
+tag_partner: "site_kit"
+});
+</script>
+		
+<!-- Schema & Structured Data For WP v1.9.98.1 - -->
+<script type="application/ld+json" class="saswp-schema-markup-output">
+[{"@context":"https://schema.org","@type":"BreadcrumbList","@id":"https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://udeogfiske.dk","name":"Ude og Fiske - Inspiration til din fisketur"}},{"@type":"ListItem","position":2,"item":{"@id":"https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/","name":"Havørredfiskeri &#8211; Fiskeri efter havørred på kyst og fjord"}},{"@type":"ListItem","position":3,"item":{"@id":"https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/","name":"Konditionsfaktor &#8211; Havørred"}}]}]
+</script>
+
+<script>
+	var rexAjax =
+		'https://udeogfiske.dk/wp-admin/admin-ajax.php';
+</script>
+
+
+		
+		    
+    </head>
+
+<body data-rsssl=1 class="page-template-default page page-id-2671 page-child parent-pageid-693 mesmerize-inner-page elementor-default elementor-kit-395 elementor-page elementor-page-2671">
+    
+    <a class="skip-link screen-reader-text" href="#page-content">Skip to content</a>
+    
+<div  id="page-top" class="header-top">
+	        <div class="header-top-bar ">
+            <div class="">
+                <div class="header-top-bar-inner row middle-xs start-xs ">
+                        <div class="header-top-bar-area  col-xs area-left">
+            </div>
+                            <div class="header-top-bar-area  col-xs-fit area-right">
+            <div data-type="group"  data-dynamic-mod="true" class="top-bar-social-icons">
+                      <a target="_blank"  class="social-icon" href="https://www.youtube.com/channel/UCpEXIoG-I_h_5G8NZ3purvA">
+                  <i class="fa fa-youtube-square"></i>
+              </a>
+                            <a target="_blank"  class="social-icon" href="https://www.instagram.com/udeogfiske/">
+                  <i class="fa fa-instagram"></i>
+              </a>
+                            <a target="_blank"  class="social-icon" href="https://udeogfiske.dk/cookie-og-privatlivspolitik/">
+                  <i class="fa fa-warning"></i>
+              </a>
+              
+    </div>
+
+        </div>
+                    </div>
+            </div>
+        </div>
+        	<div class="navigation-bar coloured-nav"  data-sticky='0'  data-sticky-mobile='1'  data-sticky-to='top' >
+    <div class="navigation-wrapper ">
+    	<div class="row basis-auto">
+	        <div class="logo_col col-xs col-sm-fit">
+	            <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="https://udeogfiske.dk/">Ude og Fiske - Inspiration til din fisketur</a>	        </div>
+	        <div class="main_menu_col col-xs">
+	            <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-194" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-194"><a href="https://udeogfiske.dk/fiskeguide/">Fiskeguides</a>
+<ul class="sub-menu">
+	<li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-229"><a href="https://udeogfiske.dk/fiskeguide/put-take-fiskeri/">Fiskeri i Put &#038; Take</a>
+	<ul class="sub-menu">
+		<li id="menu-item-2627" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2627"><a href="https://udeogfiske.dk/fiskeguide/put-take-fiskeri/spinnefiskeri-i-put-take/">Spinnefiskeri i Put &amp; Take</a></li>
+	</ul>
+</li>
+	<li id="menu-item-239" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-239"><a href="https://udeogfiske.dk/fiskeguide/fiskeri-i-aa/">Fiskeri i Å</a></li>
+	<li id="menu-item-242" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-242"><a href="https://udeogfiske.dk/fiskeguide/fiskeri-paa-mole/">Fiskeri på mole</a></li>
+	<li id="menu-item-250" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-250"><a href="https://udeogfiske.dk/fiskeguide/fiskeri-paa-kysten/">Fiskeri fra kysten</a></li>
+	<li id="menu-item-2090" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2090"><a href="https://udeogfiske.dk/fluefiskeri/">Fluefiskeri</a>
+	<ul class="sub-menu">
+		<li id="menu-item-2137" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2137"><a href="https://udeogfiske.dk/fluefiskeri/fluefiskeri-i-put-take/">Fluefiskeri i Put &#038; Take</a></li>
+	</ul>
+</li>
+	<li id="menu-item-656" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-656"><a href="#">Diverse</a>
+	<ul class="sub-menu">
+		<li id="menu-item-674" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-674"><a href="https://udeogfiske.dk/rens-af-orred/">Rensning af ørred</a></li>
+		<li id="menu-item-1468" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1468"><a href="https://udeogfiske.dk/ul-fiskeri/">UL Fiskeri</a></li>
+		<li id="menu-item-1491" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1491"><a href="https://udeogfiske.dk/bornefiskeri/">Fiskeri for børn</a></li>
+		<li id="menu-item-1604" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1604"><a href="https://udeogfiske.dk/fisketegn/">Fisketegn</a></li>
+		<li id="menu-item-1713" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1713"><a href="https://udeogfiske.dk/bombardafiskeri/">Bombarda fiskeri</a></li>
+		<li id="menu-item-1803" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1803"><a href="https://udeogfiske.dk/fiskeboger/">Fiskebøger</a></li>
+		<li id="menu-item-2004" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2004"><a href="https://udeogfiske.dk/fiskeri-fra-baad/">Fiskeri fra båd</a></li>
+		<li id="menu-item-2038" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2038"><a href="https://udeogfiske.dk/catch-and-release/">Catch And Release</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-62" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-62"><a href="https://udeogfiske.dk/fiskeudstyr/">Fiskeudstyr</a>
+<ul class="sub-menu">
+	<li id="menu-item-2179" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2179"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/">Producenter</a>
+	<ul class="sub-menu">
+		<li id="menu-item-2215" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2215"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/westin/">Westin</a></li>
+		<li id="menu-item-2240" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2240"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/savage-gear/">Savage Gear</a></li>
+		<li id="menu-item-2247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2247"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/geoff-anderson/">Geoff Anderson</a></li>
+	</ul>
+</li>
+	<li id="menu-item-175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-175"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/">Køb af fiskestænger</a>
+	<ul class="sub-menu">
+		<li id="menu-item-331" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-331"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/spinnestaenger/">Spinnestænger</a></li>
+		<li id="menu-item-288" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/fiskestang-til-havet/">Havfiskestænger</a></li>
+		<li id="menu-item-307" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-307"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/fluefiskestang/">Fluestænger</a></li>
+	</ul>
+</li>
+	<li id="menu-item-383" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a href="https://udeogfiske.dk/fiskeudstyr/fangstnet/">Fangstnet</a></li>
+	<li id="menu-item-1075" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1075"><a href="https://udeogfiske.dk/fiskeudstyr/fiskesaet-for-begyndere/">Fiskesæt</a></li>
+	<li id="menu-item-391" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-391"><a href="https://udeogfiske.dk/fiskeudstyr/waders-og-stovler/">Waders og Støvler</a>
+	<ul class="sub-menu">
+		<li id="menu-item-2860" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2860"><a href="https://udeogfiske.dk/fiskeudstyr/waders-og-stovler/waders-til-havorredfiskeri/">Waders til havørredfiskeri</a></li>
+	</ul>
+</li>
+	<li id="menu-item-781" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-781"><a href="https://udeogfiske.dk/fiskeudstyr/koeb-af-fiskehjul/">Fiskehjul</a></li>
+	<li id="menu-item-1594" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1594"><a href="https://udeogfiske.dk/vadejakke/">Vadejakke</a></li>
+	<li id="menu-item-1905" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1905"><a href="https://udeogfiske.dk/polaroid-briller/">Polaroid Briller</a></li>
+	<li id="menu-item-1002" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1002"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/">Endegrej</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1028" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1028"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/gennemlobsblink/">Gennemløbsblink</a></li>
+		<li id="menu-item-1354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1354"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-forar/">5 Bedste gennemløbsblink til Havørred til forår</a></li>
+		<li id="menu-item-2128" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2128"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-sommer/">5 Bedste gennemløbsblink til Havørred til sommer</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-352" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-352"><a href="https://udeogfiske.dk/guide-til-fisk/">Guides til fisk</a>
+<ul class="sub-menu">
+	<li id="menu-item-369" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-369"><a href="https://udeogfiske.dk/guide-til-fisk/torskefiskeri/">Torskefiskeri</a></li>
+	<li id="menu-item-710" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-710"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/">Havørredfiskeri</a>
+	<ul class="sub-menu">
+		<li id="menu-item-2677" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2671 current_page_item menu-item-2677"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/" aria-current="page">Konditionsfaktor – Havørred</a></li>
+		<li id="menu-item-2067" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2067"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/natfiskeri-efter-havorred/">Natfiskeri efter Havørred</a></li>
+		<li id="menu-item-2484" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2484"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/">Spinnefiskeri efter havørreder</a></li>
+		<li id="menu-item-2391" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2391"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-januar/">Havørredfiskeri i Januar</a></li>
+		<li id="menu-item-2401" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2401"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-februar/">Havørredfiskeri i Februar</a></li>
+		<li id="menu-item-2669" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2669"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-marts/">Havørredfiskeri i Marts</a></li>
+		<li id="menu-item-2320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2320"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-oktober/">Havørredfiskeri i Oktober</a></li>
+		<li id="menu-item-2332" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2332"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-november/">Havørredfiskeri i November</a></li>
+		<li id="menu-item-2346" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2346"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-december/">Havørredfiskeri i December</a></li>
+	</ul>
+</li>
+	<li id="menu-item-842" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-842"><a href="https://udeogfiske.dk/guide-til-fisk/fladfisk-fiskeri/">Fladfisk fiskeri</a></li>
+	<li id="menu-item-880" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-880"><a href="https://udeogfiske.dk/guide-til-fisk/makrelfiskeri/">Makrelfiskeri</a></li>
+	<li id="menu-item-902" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-902"><a href="https://udeogfiske.dk/guide-til-fisk/sildefiskeri/">Sildefiskeri</a></li>
+	<li id="menu-item-944" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-944"><a href="https://udeogfiske.dk/guide-til-fisk/regnbueorredfiskeri/">Regnbueørredfiskeri</a></li>
+	<li id="menu-item-1103" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1103"><a href="https://udeogfiske.dk/guide-til-fisk/hornfisk/">Hornfiske fiskeri</a></li>
+	<li id="menu-item-1931" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1931"><a href="https://udeogfiske.dk/guide-til-fisk/geddefiskeri/">Geddefiskeri</a></li>
+	<li id="menu-item-1954" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1954"><a href="https://udeogfiske.dk/guide-til-fisk/aborrefiskeri/">Aborrefiskeri</a></li>
+</ul>
+</li>
+<li id="menu-item-63" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-63"><a href="https://udeogfiske.dk/fisketure/">Fisketure</a>
+<ul class="sub-menu">
+	<li id="menu-item-1221" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1221"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-pa-stevns/">Stevns</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1238" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1238"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-pa-stevns/bogeskoven-15-januar-2022/">Bøgeskoven &#8211; 15 Januar 2022</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1401" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1401"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-i-isefjorden/">Isefjorden</a>
+	<ul class="sub-menu">
+		<li id="menu-item-599" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-599"><a href="https://udeogfiske.dk/fisketure/fisketur-til-hammer-bakke/">Hammer Bakker &#8211; Marts</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1785"><a href="https://udeogfiske.dk/fisketure/roskilde-fjord/">Roskilde Fjord</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1793" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1793"><a href="https://udeogfiske.dk/fisketure/roskilde-fjord/salvadsparken-16-juli-2022/">Salvadsparken &#8211; 16 Juli &#8211; 2022</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1513" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1513"><a href="https://udeogfiske.dk/fisketure/put-and-take-fisketure/">Put and Take Fisketure</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1400" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1400"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-i-isefjorden/orsted-orredvand/">Ørsted Ørredvand Fisketure</a>
+		<ul class="sub-menu">
+			<li id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-i-isefjorden/orsted-orredvand-19-nov-2021/">Ørsted Ørredvand &#8211; 19 Nov &#8211; 2021</a></li>
+			<li id="menu-item-651" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-651"><a href="https://udeogfiske.dk/fisketure/oersted-oerredvand-marts/">Ørsted Ørredvand &#8211; 13 Marts &#8211; 2020</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-61" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-61"><a href="https://udeogfiske.dk/fiskepladser/">Fiskepladser</a>
+<ul class="sub-menu">
+	<li id="menu-item-976" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-976"><a href="https://udeogfiske.dk/fiskepladser/fiskeri-i-koebenhavn/">Fiskeri i København</a></li>
+	<li id="menu-item-2789" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2789"><a href="https://udeogfiske.dk/fiskepladser/havoerredfiskeri-i-isefjorden/">Havørredfiskeri i Isefjorden</a></li>
+	<li id="menu-item-2815" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2815"><a href="https://udeogfiske.dk/fiskepladser/havoerredfiskeri-i-mariager-fjord/">Havørredfiskeri i Mariager Fjord</a></li>
+</ul>
+</li>
+<li id="menu-item-80" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-80"><a href="https://udeogfiske.dk/om-mig/">Kontakt</a></li>
+<li id="menu-item-2141" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2141"><a href="https://udeogfiske.dk/blog/">Blog</a>
+<ul class="sub-menu">
+	<li id="menu-item-2151" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2151"><a href="https://udeogfiske.dk/blog/5-grunde-til-at-du-ikke-fanger-noget-i-put-take/">5 Grunde til at du ikke fanger noget i Put &#038; Take</a></li>
+</ul>
+</li>
+<li id="menu-item-2538" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2538"><a href="https://udeogfiske.dk/en/">English</a>
+<ul class="sub-menu">
+	<li id="menu-item-2543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2543"><a href="https://udeogfiske.dk/en/seatrout-fishing-denmark/">Seatrout Fishing in Denmark</a></li>
+</ul>
+</li>
+</ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false">
+        <div class="bubble"></div>
+        <i class="fa fa-bars"></i>
+    </a>
+    <div id="offcanvas-wrapper" class="hide force-hide  offcanvas-right">
+        <div class="offcanvas-top">
+            <div class="logo-holder">
+                <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="https://udeogfiske.dk/">Ude og Fiske - Inspiration til din fisketur</a>            </div>
+        </div>
+        <div id="offcanvas-menu" class="menu-hovedmenu-container"><ul id="offcanvas_menu" class="offcanvas_menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-194"><a href="https://udeogfiske.dk/fiskeguide/">Fiskeguides</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-229"><a href="https://udeogfiske.dk/fiskeguide/put-take-fiskeri/">Fiskeri i Put &#038; Take</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2627"><a href="https://udeogfiske.dk/fiskeguide/put-take-fiskeri/spinnefiskeri-i-put-take/">Spinnefiskeri i Put &amp; Take</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-239"><a href="https://udeogfiske.dk/fiskeguide/fiskeri-i-aa/">Fiskeri i Å</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-242"><a href="https://udeogfiske.dk/fiskeguide/fiskeri-paa-mole/">Fiskeri på mole</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-250"><a href="https://udeogfiske.dk/fiskeguide/fiskeri-paa-kysten/">Fiskeri fra kysten</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2090"><a href="https://udeogfiske.dk/fluefiskeri/">Fluefiskeri</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2137"><a href="https://udeogfiske.dk/fluefiskeri/fluefiskeri-i-put-take/">Fluefiskeri i Put &#038; Take</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-656"><a href="#">Diverse</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-674"><a href="https://udeogfiske.dk/rens-af-orred/">Rensning af ørred</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1468"><a href="https://udeogfiske.dk/ul-fiskeri/">UL Fiskeri</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1491"><a href="https://udeogfiske.dk/bornefiskeri/">Fiskeri for børn</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1604"><a href="https://udeogfiske.dk/fisketegn/">Fisketegn</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1713"><a href="https://udeogfiske.dk/bombardafiskeri/">Bombarda fiskeri</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1803"><a href="https://udeogfiske.dk/fiskeboger/">Fiskebøger</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2004"><a href="https://udeogfiske.dk/fiskeri-fra-baad/">Fiskeri fra båd</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2038"><a href="https://udeogfiske.dk/catch-and-release/">Catch And Release</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-62"><a href="https://udeogfiske.dk/fiskeudstyr/">Fiskeudstyr</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2179"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/">Producenter</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2215"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/westin/">Westin</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2240"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/savage-gear/">Savage Gear</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2247"><a href="https://udeogfiske.dk/fiskeudstyr/producenter/geoff-anderson/">Geoff Anderson</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-175"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/">Køb af fiskestænger</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-331"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/spinnestaenger/">Spinnestænger</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/fiskestang-til-havet/">Havfiskestænger</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-307"><a href="https://udeogfiske.dk/fiskeudstyr/kob-af-fiskestaenger/fluefiskestang/">Fluestænger</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a href="https://udeogfiske.dk/fiskeudstyr/fangstnet/">Fangstnet</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1075"><a href="https://udeogfiske.dk/fiskeudstyr/fiskesaet-for-begyndere/">Fiskesæt</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-391"><a href="https://udeogfiske.dk/fiskeudstyr/waders-og-stovler/">Waders og Støvler</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2860"><a href="https://udeogfiske.dk/fiskeudstyr/waders-og-stovler/waders-til-havorredfiskeri/">Waders til havørredfiskeri</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-781"><a href="https://udeogfiske.dk/fiskeudstyr/koeb-af-fiskehjul/">Fiskehjul</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1594"><a href="https://udeogfiske.dk/vadejakke/">Vadejakke</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1905"><a href="https://udeogfiske.dk/polaroid-briller/">Polaroid Briller</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1002"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/">Endegrej</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1028"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/gennemlobsblink/">Gennemløbsblink</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1354"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-forar/">5 Bedste gennemløbsblink til Havørred til forår</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2128"><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-sommer/">5 Bedste gennemløbsblink til Havørred til sommer</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-352"><a href="https://udeogfiske.dk/guide-til-fisk/">Guides til fisk</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-369"><a href="https://udeogfiske.dk/guide-til-fisk/torskefiskeri/">Torskefiskeri</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-710"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/">Havørredfiskeri</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2671 current_page_item menu-item-2677"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/" aria-current="page">Konditionsfaktor – Havørred</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2067"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/natfiskeri-efter-havorred/">Natfiskeri efter Havørred</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2484"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/">Spinnefiskeri efter havørreder</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2391"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-januar/">Havørredfiskeri i Januar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2401"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-februar/">Havørredfiskeri i Februar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2669"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-marts/">Havørredfiskeri i Marts</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2320"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-oktober/">Havørredfiskeri i Oktober</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2332"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-november/">Havørredfiskeri i November</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2346"><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-december/">Havørredfiskeri i December</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-842"><a href="https://udeogfiske.dk/guide-til-fisk/fladfisk-fiskeri/">Fladfisk fiskeri</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-880"><a href="https://udeogfiske.dk/guide-til-fisk/makrelfiskeri/">Makrelfiskeri</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-902"><a href="https://udeogfiske.dk/guide-til-fisk/sildefiskeri/">Sildefiskeri</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-944"><a href="https://udeogfiske.dk/guide-til-fisk/regnbueorredfiskeri/">Regnbueørredfiskeri</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1103"><a href="https://udeogfiske.dk/guide-til-fisk/hornfisk/">Hornfiske fiskeri</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1931"><a href="https://udeogfiske.dk/guide-til-fisk/geddefiskeri/">Geddefiskeri</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1954"><a href="https://udeogfiske.dk/guide-til-fisk/aborrefiskeri/">Aborrefiskeri</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-63"><a href="https://udeogfiske.dk/fisketure/">Fisketure</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1221"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-pa-stevns/">Stevns</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1238"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-pa-stevns/bogeskoven-15-januar-2022/">Bøgeskoven &#8211; 15 Januar 2022</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1401"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-i-isefjorden/">Isefjorden</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-599"><a href="https://udeogfiske.dk/fisketure/fisketur-til-hammer-bakke/">Hammer Bakker &#8211; Marts</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1785"><a href="https://udeogfiske.dk/fisketure/roskilde-fjord/">Roskilde Fjord</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1793"><a href="https://udeogfiske.dk/fisketure/roskilde-fjord/salvadsparken-16-juli-2022/">Salvadsparken &#8211; 16 Juli &#8211; 2022</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1513"><a href="https://udeogfiske.dk/fisketure/put-and-take-fisketure/">Put and Take Fisketure</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1400"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-i-isefjorden/orsted-orredvand/">Ørsted Ørredvand Fisketure</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a href="https://udeogfiske.dk/fisketure/havorredfiskeri-i-isefjorden/orsted-orredvand-19-nov-2021/">Ørsted Ørredvand &#8211; 19 Nov &#8211; 2021</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-651"><a href="https://udeogfiske.dk/fisketure/oersted-oerredvand-marts/">Ørsted Ørredvand &#8211; 13 Marts &#8211; 2020</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-61"><a href="https://udeogfiske.dk/fiskepladser/">Fiskepladser</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-976"><a href="https://udeogfiske.dk/fiskepladser/fiskeri-i-koebenhavn/">Fiskeri i København</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2789"><a href="https://udeogfiske.dk/fiskepladser/havoerredfiskeri-i-isefjorden/">Havørredfiskeri i Isefjorden</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2815"><a href="https://udeogfiske.dk/fiskepladser/havoerredfiskeri-i-mariager-fjord/">Havørredfiskeri i Mariager Fjord</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-80"><a href="https://udeogfiske.dk/om-mig/">Kontakt</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2141"><a href="https://udeogfiske.dk/blog/">Blog</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2151"><a href="https://udeogfiske.dk/blog/5-grunde-til-at-du-ikke-fanger-noget-i-put-take/">5 Grunde til at du ikke fanger noget i Put &#038; Take</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2538"><a href="https://udeogfiske.dk/en/">English</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2543"><a href="https://udeogfiske.dk/en/seatrout-fishing-denmark/">Seatrout Fishing in Denmark</a></li>
+</ul>
+</li>
+</ul></div>
+            </div>
+    	        </div>
+	    </div>
+    </div>
+</div>
+</div>
+
+<div id="page" class="site">
+    <div class="header-wrapper">
+        <div  class='header  custom-mobile-image' style='; background-image:url(&quot;https://udeogfiske.dk/wp-content/uploads/2022/07/havorred_hero.jpg&quot;); background-color:#FFFFFF'>
+            								    <div class="inner-header-description gridContainer">
+        <div class="row header-description-row">
+    <div class="col-xs col-xs-12">
+        <h1 class="hero-title">
+            Konditionsfaktor &#8211; Havørred        </h1>
+            </div>
+        </div>
+    </div>
+        <script>
+        window.mesmerizeSetHeaderTopSpacing();
+    </script>
+                        </div>
+    </div>
+
+    <div id='page-content' class="page-content">
+        <div class="gridContainer content">
+            <div id="post-2671" class="post-2671 page type-page status-publish has-post-thumbnail hentry">
+  <div>
+   		<div data-elementor-type="wp-page" data-elementor-id="2671" class="elementor elementor-2671" data-elementor-settings="[]">
+						<div class="elementor-inner">
+							<div class="elementor-section-wrap">
+							<section class="elementor-section elementor-top-section elementor-element elementor-element-8bc9fea elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="8bc9fea" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3b163ee" data-id="3b163ee" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-f714e8f elementor-widget elementor-widget-text-editor" data-id="f714e8f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p>Er du interesseret i havørreder og deres sundhedstilstand? Har du nogensinde undret dig over, hvordan man vurderer, om en havørred er sund og i god form? Så er du kommet til det rette sted. I denne omfattende guide dykker vi ned i Fultons Formel, som er den mest anvendte metode til beregning af konditionstal for havørreder og andre fiskearter. Vi gennemgår alt, hvad du behøver at vide &#8211; fra grundlæggende principper til praktisk anvendelse.</p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-4131365 elementor-widget elementor-widget-heading" data-id="4131365" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Bergen Konditionstal</h2>		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-ad431a0 elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="ad431a0" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-521977f" data-id="521977f" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-cacda43 elementor-widget elementor-widget-html" data-id="cacda43" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<div id="fulton-calculator" class="fulton-calculator">
+    <div class="fulton-calculator-inner">
+        <div class="fulton-header">
+            <div class="fulton-icon">
+                <svg viewBox="0 0 24 24" width="36" height="36">
+                    <path fill="currentColor" d="M12,20L12.76,17C9.5,16.79 6.59,15.4 5.75,13.58C5.66,14.06 5.53,14.5 5.33,14.83C4.67,16 3.33,16 2,16C3.1,16 3.5,14.43 3.5,12.5C3.5,10.57 3.1,9 2,9C3.33,9 4.67,9 5.33,10.17C5.53,10.5 5.66,10.94 5.75,11.42C6.4,10 8.32,8.85 10.66,8.32L9,5C11,5 13,5 14.33,5.67C15.46,6.23 16.11,7.27 16.69,8.38C19.61,9.08 22,10.66 22,12.5C22,14.38 19.5,16 16.5,16.66C15.67,17.76 14.86,18.78 14.17,19.33C13.33,20 12.67,20 12,20M17,11A1,1 0 0,0 16,12A1,1 0 0,0 17,13A1,1 0 0,0 18,12A1,1 0 0,0 17,11Z" />
+                </svg>
+            </div>
+            <h3 class="fulton-title">Beregn Havørredens Konditionstal</h3>
+        </div>
+        
+        <div class="fulton-description">
+            Indtast din havørreds mål for at beregne dens konditionsfaktor med Fultons Formel.
+        </div>
+        
+        <div class="fulton-form">
+            <div class="fulton-form-group">
+                <label for="fulton-weight">
+                    <span class="fulton-label-text">Vægt (gram)</span>
+                    <div class="fulton-tooltip" data-tooltip="Ørredens vægt i gram, uden indhold">?</div>
+                </label>
+                <div class="fulton-input-wrapper">
+                    <input type="number" id="fulton-weight" placeholder="f.eks. 1200" min="0" step="1">
+                    <span class="fulton-unit">g</span>
+                </div>
+                <div class="fulton-slider-container">
+                    <input type="range" id="fulton-weight-slider" min="100" max="5000" step="10" value="1200">
+                    <div class="fulton-slider-labels">
+                        <span>100g</span>
+                        <span>5000g</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fulton-form-group">
+                <label for="fulton-length">
+                    <span class="fulton-label-text">Længde (centimeter)</span>
+                    <div class="fulton-tooltip" data-tooltip="Mål fra snudespids til halefinnens spids">?</div>
+                </label>
+                <div class="fulton-input-wrapper">
+                    <input type="number" id="fulton-length" placeholder="f.eks. 50" min="0" step="0.5">
+                    <span class="fulton-unit">cm</span>
+                </div>
+                <div class="fulton-slider-container">
+                    <input type="range" id="fulton-length-slider" min="20" max="100" step="1" value="50">
+                    <div class="fulton-slider-labels">
+                        <span>20cm</span>
+                        <span>100cm</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="fulton-button" id="fulton-calculate">
+                <span class="fulton-button-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M13.03 7.06L14.09 6L15.5 7.41L16.91 6L17.97 7.06L16.56 8.47L17.97 9.88L16.91 10.94L15.5 9.54L14.09 10.94L13.03 9.88L14.44 8.47L13.03 7.06M6.25 7.72H11.75V9.22H6.25V7.72M6 11H18V12.5H6V11M6 14H13V15.5H6V14Z" />
+                    </svg>
+                </span>
+                <span>Beregn Konditionsfaktor</span>
+            </button>
+        </div>
+        
+        <div class="fulton-result" id="fulton-result">
+            <div class="fulton-result-header">Resultatet er klar!</div>
+            
+            <div class="fulton-result-main">
+                <div class="fulton-gauge-container">
+                    <div class="fulton-gauge" id="fulton-gauge">
+                        <div class="fulton-gauge-value" id="fulton-gauge-value">0</div>
+                        <svg viewBox="0 0 120 120" class="fulton-gauge-svg">
+                            <circle class="fulton-gauge-background" cx="60" cy="60" r="54" />
+                            <circle class="fulton-gauge-progress" id="fulton-gauge-progress" cx="60" cy="60" r="54" stroke-dasharray="339.29" stroke-dashoffset="339.29" />
+                            
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="fulton-rating-container">
+                    <div class="fulton-result-title">Din havørred har:</div>
+                    <div class="fulton-trout-rating" id="fulton-rating">Afventer beregning...</div>
+                    <div class="fulton-rating-scale">
+                        <div class="fulton-rating-item" id="fulton-rating-poor">
+                            <span class="fulton-rating-dot"></span>
+                            <span>Under 0,8</span>
+                        </div>
+                        <div class="fulton-rating-item" id="fulton-rating-fair">
+                            <span class="fulton-rating-dot"></span>
+                            <span>0,8 - 0,99</span>
+                        </div>
+                        <div class="fulton-rating-item" id="fulton-rating-good">
+                            <span class="fulton-rating-dot"></span>
+                            <span>1 - 1,2</span>
+                        </div>
+                        <div class="fulton-rating-item" id="fulton-rating-excellent">
+                            <span class="fulton-rating-dot"></span>
+                            <span>Over 1,2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fulton-result-explanation">
+                <h4>Hvad betyder dette?</h4>
+                <p id="fulton-explanation">Konditionsfaktoren er en indikator for, hvor sund og velproportioneret din havørred er i forhold til dens længde. Den beregnes med Fultons Formel: K = (W × 100) / L³, hvor W er vægt i gram og L er længde i cm.</p>
+            </div>
+            
+            <button class="fulton-reset-button" id="fulton-reset">
+                <span>Beregn en ny</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+// Isoleret script for Fultons Ørredformel Beregner
+(function() {
+    // Få referencer til DOM-elementer
+    const weightInput = document.getElementById('fulton-weight');
+    const lengthInput = document.getElementById('fulton-length');
+    const weightSlider = document.getElementById('fulton-weight-slider');
+    const lengthSlider = document.getElementById('fulton-length-slider');
+    const calculateButton = document.getElementById('fulton-calculate');
+    const resetButton = document.getElementById('fulton-reset');
+    const resultContainer = document.getElementById('fulton-result');
+    const gaugeValue = document.getElementById('fulton-gauge-value');
+    const gaugeProgress = document.getElementById('fulton-gauge-progress');
+    const ratingText = document.getElementById('fulton-rating');
+    const ratingItems = {
+        poor: document.getElementById('fulton-rating-poor'),
+        fair: document.getElementById('fulton-rating-fair'),
+        good: document.getElementById('fulton-rating-good'),
+        excellent: document.getElementById('fulton-rating-excellent')
+    };
+    const explanationText = document.getElementById('fulton-explanation');
+    
+    // Synkroniser slider med input felt
+    weightInput.addEventListener('input', function() {
+        if (this.value && !isNaN(this.value)) {
+            weightSlider.value = Math.min(Math.max(this.value, weightSlider.min), weightSlider.max);
+        }
+    });
+    
+    lengthInput.addEventListener('input', function() {
+        if (this.value && !isNaN(this.value)) {
+            lengthSlider.value = Math.min(Math.max(this.value, lengthSlider.min), lengthSlider.max);
+        }
+    });
+    
+    weightSlider.addEventListener('input', function() {
+        weightInput.value = this.value;
+    });
+    
+    lengthSlider.addEventListener('input', function() {
+        lengthInput.value = this.value;
+    });
+    
+    // Håndter Konditonsfaktor beregning
+    calculateButton.addEventListener('click', function() {
+        // Hent inputværdier
+        const weight = parseFloat(weightInput.value);
+        const length = parseFloat(lengthInput.value);
+        
+        // Valider inputs
+        if (isNaN(weight) || isNaN(length) || weight <= 0 || length <= 0) {
+            alert('Indtast venligst gyldige vægt- og længdeværdier');
+            return;
+        }
+        
+        // Beregn Fultons konditionsfaktor: K = (W × 100) / L³
+        const conditionFactor = (weight * 100) / Math.pow(length, 3);
+        const roundedResult = conditionFactor.toFixed(2);
+        
+        // Opdater gauge
+        gaugeValue.textContent = roundedResult;
+        
+        // Beregn gauge progress (skala fra 0.5 til 1.5)
+        let progressPercent = (conditionFactor - 0.5) / 1.0;
+        progressPercent = Math.min(Math.max(progressPercent, 0), 1); // Hold mellem 0 og 1
+        
+        const circumference = 2 * Math.PI * 54; // 2πr, hvor r=54
+        const offset = circumference * (1 - progressPercent);
+        gaugeProgress.style.strokeDashoffset = offset;
+        
+        // Sæt farve på gauge baseret på konditionsfaktor
+        if (conditionFactor < 0.8) {
+            gaugeProgress.style.stroke = '#e53e3e'; // Dårlig - rød
+        } else if (conditionFactor < 1.0) {
+            gaugeProgress.style.stroke = '#e69b00'; // Rimelig - orange
+        } else if (conditionFactor < 1.2) {
+            gaugeProgress.style.stroke = '#2c9e60'; // God - grøn
+        } else {
+            gaugeProgress.style.stroke = '#38a169'; // Fremragende - mørkegrøn
+        }
+        
+        // Opdater konditionsvurdering og forklaring
+        resetRatingItems();
+        
+        if (conditionFactor < 0.8) {
+            ratingText.textContent = "Dårlig kondition";
+            ratingText.className = "fulton-trout-rating poor";
+            ratingItems.poor.classList.add('active');
+            explanationText.innerHTML = "Din havørred har en <strong>dårlig kondition</strong>. Dette indikerer, at fisken er underernæret og kan have svært ved at klare sig i perioder med begrænset fødetilgængelighed. Den har sandsynligvis begrænsede fedtreserver og kan være mere modtagelig for sygdomme og parasitter.";
+        } else if (conditionFactor < 1.0) {
+            ratingText.textContent = "Rimelig kondition";
+            ratingText.className = "fulton-trout-rating fair";
+            ratingItems.fair.classList.add('active');
+            explanationText.innerHTML = "Din havørred har en <strong>rimelig kondition</strong>. Den er ikke fuldt ud i topform, men har tilstrækkelige energireserver til at klare almindelige aktiviteter. Den har dog begrænsede reserver til at håndtere længere perioder med fødemangel eller stressede miljøforhold.";
+        } else if (conditionFactor < 1.2) {
+            ratingText.textContent = "God kondition";
+            ratingText.className = "fulton-trout-rating good";
+            ratingItems.good.classList.add('active');
+            explanationText.innerHTML = "Din havørred har en <strong>god kondition</strong>. Den har gode energireserver og er i fin form. Fisken er sund og har god modstandskraft mod sygdomme og miljøstress. Dette indikerer, at den kommer fra et godt habitat med tilstrækkelig føde.";
+        } else {
+            ratingText.textContent = "Fremragende kondition";
+            ratingText.className = "fulton-trout-rating excellent";
+            ratingItems.excellent.classList.add('active');
+            explanationText.innerHTML = "Din havørred har en <strong>fremragende kondition</strong>! Den har omfattende energireserver og er i optimal form. Den har høj overlevelsesrate under ugunstige forhold og høj sandsynlighed for succesfuld gydning. Dette indikerer et habitat af høj kvalitet med rigelig fødetilgængelighed.";
+        }
+        
+        // Vis resultat
+        resultContainer.style.display = 'block';
+        
+        // Scroll ned til resultatet
+        setTimeout(() => {
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    });
+    
+    // Reset knap
+    resetButton.addEventListener('click', function() {
+        // Skjul resultat
+        resultContainer.style.display = 'none';
+        
+        // Nulstil inputfelter
+        weightInput.value = '';
+        lengthInput.value = '';
+        weightSlider.value = weightSlider.min;
+        lengthSlider.value = lengthSlider.min;
+        
+        // Fokuser på vægtinput
+        weightInput.focus();
+    });
+    
+    // Hjælpefunktion til at nulstille rating items
+    function resetRatingItems() {
+        Object.values(ratingItems).forEach(item => {
+            item.classList.remove('active');
+        });
+    }
+    
+    // Sæt fokus på vægtinput når siden indlæses
+    setTimeout(() => {
+        weightInput.focus();
+    }, 500);
+})();
+</script>		</div>
+				</div>
+				<div class="elementor-element elementor-element-225f011 elementor-widget elementor-widget-heading" data-id="225f011" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Hvad er et konditionstal, og hvorfor er det vigtigt for havørreder?</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-6de59e1 elementor-widget elementor-widget-text-editor" data-id="6de59e1" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p class="whitespace-pre-wrap break-words">Konditionstallet er en numerisk værdi, der giver et præcist billede af fiskens fysiske tilstand baseret på forholdet mellem vægt og længde. Tænk på det som et BMI (Body Mass Index) for fisk. Dette tal er en afgørende indikator for havørreders generelle sundhed og velvære.</p><p class="whitespace-pre-wrap break-words">For havørreder, der lever et komplekst liv med vandringer mellem ferskvand og saltvand, er konditionstallet særligt betydningsfuldt. Disse vandringer kræver enorme mængder energi, og fiskens evne til at opbygge og bevare fedtreserver kan være forskellen mellem liv og død.</p><p class="whitespace-pre-wrap break-words">En havørred med et højt konditionstal har typisk:</p><ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7"><li class="whitespace-normal break-words">Bedre immunforsvar mod sygdomme og parasitter</li><li class="whitespace-normal break-words">Større modstandsdygtighed over for miljøstress</li><li class="whitespace-normal break-words">Højere overlevelsesrate under ekstreme vejrforhold</li><li class="whitespace-normal break-words">Bedre evne til at klare lange vandringer</li><li class="whitespace-normal break-words">Større reproduktiv succes under gydning</li></ul>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-68a268a elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="68a268a" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-838321b" data-id="838321b" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-c4bd130 elementor-widget elementor-widget-heading" data-id="c4bd130" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Den historiske baggrund for Fultons Formel</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-28ed4ae elementor-widget elementor-widget-text-editor" data-id="28ed4ae" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p class="whitespace-pre-wrap break-words">Fultons Formel blev udviklet af den skotske fiskeribiolog Thomas Wemyss Fulton i slutningen af 1800-tallet. Fulton var en pioner inden for havforskning og arbejdede ved &#8220;Fishery Board for Scotland&#8221;. Hans arbejde med at forstå fiskepopulationers dynamik førte til udviklingen af dette simple, men yderst effektive værktøj til vurdering af fisks sundhedstilstand.</p><p class="whitespace-pre-wrap break-words">Siden da har Fultons Formel været den foretrukne metode blandt både professionelle biologer og engagerede lystfiskere til at vurdere konditionstallet for en lang række fiskearter, herunder havørreder.</p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-a4d0bb9 elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="a4d0bb9" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-b560347" data-id="b560347" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-523bcc3 elementor-widget elementor-widget-heading" data-id="523bcc3" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Fultons Formel forklaret i detaljer</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-9067ca1 elementor-widget elementor-widget-text-editor" data-id="9067ca1" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p class="whitespace-pre-wrap break-words">Fultons Formel til beregning af konditionstal er elegant i sin enkelhed:</p><p class="whitespace-pre-wrap break-words">K = (W × 100) / L³</p><p class="whitespace-pre-wrap break-words">Hvor:</p><ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7"><li class="whitespace-normal break-words">K repræsenterer konditionstallet</li><li class="whitespace-normal break-words">W er fiskens vægt målt i gram</li><li class="whitespace-normal break-words">L er fiskens totallængde målt i centimeter</li><li class="whitespace-normal break-words">100 er en standardfaktor, der gør tallet mere håndterbart og letforståeligt</li></ul><p class="whitespace-pre-wrap break-words">Formlen tager højde for det grundlæggende princip, at en fisks vægt ideelt set bør øges proportionalt med længden i tredje potens. Dette afspejler det faktum, at en fisks volumen (og dermed vægt) ændrer sig med længden i tre dimensioner.</p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-08a3e89 elementor-widget elementor-widget-image" data-id="08a3e89" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<noscript><img fetchpriority="high" decoding="async" width="1024" height="187" src="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-1024x187.jpg" class="attachment-large size-large" alt="" srcset="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-1024x187.jpg 1024w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-300x55.jpg 300w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-768x140.jpg 768w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-1536x281.jpg 1536w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin.jpg 1640w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript><img fetchpriority="high" decoding="async" width="1024" height="187" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20187%22%3E%3C/svg%3E' data-src="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-1024x187.jpg" class="lazyload attachment-large size-large" alt="" data-srcset="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-1024x187.jpg 1024w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-300x55.jpg 300w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-768x140.jpg 768w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin-1536x281.jpg 1536w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_fin.jpg 1640w" data-sizes="(max-width: 1024px) 100vw, 1024px" />														</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-e3b165d elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="e3b165d" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-204c094" data-id="204c094" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-6847753 elementor-widget elementor-widget-heading" data-id="6847753" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Sådan måler du korrekt til beregning af konditionstal</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-7836605 elementor-widget elementor-widget-text-editor" data-id="7836605" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p class="whitespace-pre-wrap break-words">For at få et præcist konditionstal er det afgørende at foretage nøjagtige målinger. Her er en detaljeret guide til korrekt måling af havørreder:</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Længdemåling:</strong></h3><ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7"><li class="whitespace-normal break-words"><strong>Totallængde</strong>: Mål fisken fra snudespids til halespids med fisken liggende fladt på en målemåtte eller et målebånd.</li><li class="whitespace-normal break-words"><strong>Position</strong>: Sørg for at fisken er udstrakt naturligt, ikke bøjet eller strukket.</li><li class="whitespace-normal break-words"><strong>Halefinne</strong>: Inkluder halefinnen i målingen, men pres ikke finnerne sammen. Mål med finnerne i deres naturlige position.</li><li class="whitespace-normal break-words"><strong>Præcision</strong>: Mål til nærmeste millimeter for størst nøjagtighed.</li></ol><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Vægtmåling:</strong></h3><ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7"><li class="whitespace-normal break-words"><strong>Vægttype</strong>: Brug en digital vægt for størst præcision.</li><li class="whitespace-normal break-words"><strong>Tørring</strong>: Tør fisken let med en klud før vejning for at fjerne overskydende vand.</li><li class="whitespace-normal break-words"><strong>Vejebeholder</strong>: Hvis du bruger en beholder, husk at tarere vægten (nulstille med beholderen på).</li><li class="whitespace-normal break-words"><strong>Stabilitet</strong>: Sørg for at vægten står på et stabilt, plant underlag.</li><li class="whitespace-normal break-words"><strong>Vindforhold</strong>: Ved udendørs vejning, beskyt vægten mod vind, der kan påvirke målingen.</li></ol>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-7da8adc elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="7da8adc" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5146c50" data-id="5146c50" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-eec34fc elementor-widget elementor-widget-heading" data-id="eec34fc" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Fortolkning af konditionstal for havørreder</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-dd3b089 elementor-widget elementor-widget-text-editor" data-id="dd3b089" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p class="whitespace-pre-wrap break-words">Konditionstallet giver værdifuld indsigt i havørredens sundhedstilstand. Her er en uddybet fortolkningsguide:</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Under 0,8: Kritisk lav kondition</strong></h3><p class="whitespace-pre-wrap break-words">Havørreder med et konditionstal under 0,8 viser tegn på alvorlig underernæring. Disse fisk har minimale fedtreserver, svækket immunforsvar og markant reducerede overlevelseschancer. De kan være plaget af sygdomme, parasitter eller have været udsat for langvarig fødemangel. Fiskens krop vil typisk være tynd og &#8220;kantet&#8221; med et stort hoved i forhold til kroppen.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>0,8-0,95: Lav kondition</strong></h3><p class="whitespace-pre-wrap break-words">Fisk i denne kategori er undervægtige, men ikke i kritisk tilstand. De har begrænsede energireserver og kan have svært ved at klare stressende situationer som ekstreme temperaturer eller længere vandringer. Disse fisk har ofte et &#8220;magert&#8221; udseende med lidt indsynkning bag hovedet.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>0,95-1,05: Middel kondition</strong></h3><p class="whitespace-pre-wrap break-words">Dette interval repræsenterer en normal, sund kondition for havørreder. Fiskene har tilstrækkelige energireserver til normale aktiviteter og kortere perioder med fødemangel. De udviser en velproportioneret krop med jævn kontur fra hoved til hale.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>1,05-1,2: God kondition</strong></h3><p class="whitespace-pre-wrap break-words">Havørreder i denne kategori har betydelige energireserver og er i fremragende form. De har typisk en fyldig krop med tydelige muskler og god fedtfordeling. Disse fisk har høj sandsynlighed for vellykket reproduktion og god modstandskraft over for miljøstress.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Over 1,2: Top kondition</strong></h3><p class="whitespace-pre-wrap break-words">Fisk med konditionstal over 1,2 er i exceptionel form med omfattende energireserver. De har typisk en meget fyldig krop med rund profil og veludviklede muskler. Disse fisk er i optimal stand til at klare lange vandringer, hårde vintre og succesfuld gydning.</p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-ef0c479 elementor-widget elementor-widget-image" data-id="ef0c479" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<noscript><img decoding="async" width="1024" height="187" src="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-1024x187.jpg" class="attachment-large size-large" alt="" srcset="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-1024x187.jpg 1024w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-300x55.jpg 300w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-768x140.jpg 768w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-1536x281.jpg 1536w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden.jpg 1640w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript><img decoding="async" width="1024" height="187" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20187%22%3E%3C/svg%3E' data-src="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-1024x187.jpg" class="lazyload attachment-large size-large" alt="" data-srcset="https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-1024x187.jpg 1024w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-300x55.jpg 300w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-768x140.jpg 768w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden-1536x281.jpg 1536w, https://udeogfiske.dk/wp-content/uploads/2025/01/havoerred_isefjorden.jpg 1640w" data-sizes="(max-width: 1024px) 100vw, 1024px" />														</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-e096742 elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="e096742" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d58abfd" data-id="d58abfd" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-6ac00a1 elementor-widget elementor-widget-heading" data-id="6ac00a1" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Sæsonvariation i konditionstal hos havørreder</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-3545e54 elementor-widget elementor-widget-text-editor" data-id="3545e54" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p class="whitespace-pre-wrap break-words">Havørreders konditionstal varierer naturligt gennem året i takt med deres livscyklus og tilgængeligheden af føde. Forståelse af disse sæsonmæssige mønstre er vigtig for korrekt fortolkning af konditionstallene:</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Forår (marts-maj)</strong></h3><p class="whitespace-pre-wrap break-words">Efter vinterens strabadser og potentiel gydning er havørreders konditionstal typisk på deres laveste. Værdier mellem 0,8-0,95 er almindelige i denne periode, især for fisk der netop har forladt ferskvandet efter gydning. Efterhånden som fødetilgængeligheden stiger i havet, begynder fiskene gradvist at opbygge deres kondition igen.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Sommer (juni-august)</strong></h3><p class="whitespace-pre-wrap break-words">Sommerperioden byder på optimal fødetilgængelighed, og havørrederne opbygger aktivt deres energireserver. Konditionstallene stiger typisk til 0,95-1,1 i denne periode. Fisk fanget i kystnære områder med rigelig føde kan vise endnu højere værdier.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Efterår (september-november)</strong></h3><p class="whitespace-pre-wrap break-words">Efteråret er perioden hvor havørrederne når deres peak kondition før gydning. Konditionstal mellem 1,05-1,2 er almindelige, og særligt veludviklede fisk kan nå værdier over 1,2. De høje konditionstal er kritiske for den energikrævende gydevandring og selve gydningsprocessen.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Vinter (december-februar)</strong></h3><p class="whitespace-pre-wrap break-words">Under gydesæsonen og den efterfølgende vinter falder konditionstallene markant. Havørreder kan tabe op til 30-40% af deres kropsvægt under gydning, hvilket resulterer i konditionstal mellem 0,7-0,9. Fisk der overvintrer i ferskvand uden at gyde opretholder typisk bedre kondition.</p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-148258d elementor-widget elementor-widget-image" data-id="148258d" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<noscript><img decoding="async" width="1024" height="187" src="https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1024x187.jpg" class="attachment-large size-large" alt="" srcset="https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1024x187.jpg 1024w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-300x55.jpg 300w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-768x140.jpg 768w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1536x281.jpg 1536w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1920x351.jpg 1920w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1.jpg 1980w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript><img decoding="async" width="1024" height="187" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20187%22%3E%3C/svg%3E' data-src="https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1024x187.jpg" class="lazyload attachment-large size-large" alt="" data-srcset="https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1024x187.jpg 1024w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-300x55.jpg 300w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-768x140.jpg 768w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1536x281.jpg 1536w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1-1920x351.jpg 1920w, https://udeogfiske.dk/wp-content/uploads/2025/01/intext_narrow1.jpg 1980w" data-sizes="(max-width: 1024px) 100vw, 1024px" />														</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-a2ab240 elementor-section-boxed elementor-section-height-default elementor-section-height-default wpr-particle-no wpr-jarallax-no wpr-parallax-no wpr-sticky-section-no" data-id="a2ab240" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-2bb2ab7" data-id="2bb2ab7" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-3020dd0 elementor-widget elementor-widget-heading" data-id="3020dd0" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-large">Hvorfor konditionstal er et vigtigt værktøj for moderne havørredforvaltning</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-97eb5cc elementor-widget elementor-widget-text-editor" data-id="97eb5cc" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<div class="font-claude-message  relative  leading-[1.65rem]  [&amp;&gt;div&gt;div&gt;:is(p,ul,ol)]:pr-4  md:[&amp;&gt;div&gt;div&gt;:is(p,ul,ol)]:pr-8  [&amp;_pre&gt;div]:bg-bg-300  [&amp;_.ignore-pre-bg&gt;div]:bg-transparent"><div class="grid-cols-1 grid gap-2.5 [&amp;_&gt;_*]:min-w-0"><p class="whitespace-pre-wrap break-words">Konditionstal spiller en afgørende rolle i den videnskabelige forvaltning af havørredbestande af flere årsager:</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Habitatkvalitetsvurdering</strong></h3><p class="whitespace-pre-wrap break-words">Ved at sammenligne konditionstal for havørreder fra forskellige vandløbssystemer og kystområder kan biologer identificere særligt værdifulde habitater og områder med miljøproblemer. Et gennemsnit af lave konditionstal kan være et tidligt advarselssignal om problemer med fødetilgængelighed, vandkvalitet eller andre miljøfaktorer.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Bestandsovervågning</strong></h3><p class="whitespace-pre-wrap break-words">Systematisk indsamling af konditionsdata over tid giver et uvurderligt indblik i havørredbestandenes sundhedstilstand. Pludselige fald i gennemsnitlige konditionstal kan indikere miljøforandringer, sygdomsudbrud eller overfiskeri, der kræver forvaltningsmæssig handling.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Forskningsværdi</strong></h3><p class="whitespace-pre-wrap break-words">For forskere der studerer havørredens biologi og økologi, er konditionstal et essentielt værktøj. De hjælper med at forstå sammenhænge mellem miljøfaktorer, fødetilgængelighed, vandringer og reproduktiv succes.</p><h3 class="text-lg font-bold text-text-200 mt-1 -mb-1.5"><strong>Indberetninger fra fiskere</strong></h3><p class="whitespace-pre-wrap break-words">Lystfiskere der registrerer længde, vægt og beregner konditionstal for deres fangster, bidrager til værdifuld dataindsamling gennem &#8220;citizen science&#8221;. Disse data kan supplere professionelle forskningsprogrammer og give et bredere geografisk og tidsmæssigt dækket billede af havørredernes tilstand.</p><p class="whitespace-pre-wrap break-words">Fultons Formel og beregning af konditionstal er et enkelt men kraftfuldt værktøj til vurdering af havørreders sundhedstilstand. Gennem forståelse og anvendelse af denne metode kan både lystfiskere, biologer og miljøforvaltere få værdifuld indsigt i disse fascinerende fisks liv og velvære.</p><p class="whitespace-pre-wrap break-words">Ved regelmæssigt at måle og registrere konditionstal for fangede havørreder, kan du ikke blot følge din personlige fiskesucces, men også bidrage til den bredere videnskabelige forståelse og beskyttelse af denne ikoniske fiskeart.</p><p class="whitespace-pre-wrap break-words">Næste gang du fanger en havørred, så husk at tage et øjeblik til at måle, veje og beregne dens konditionstal &#8211; det fortæller en historie om fiskens liv og det økosystem, den kommer fra.</p></div></div><div class="absolute -bottom-0 -right-1.5"><div class="border-0.5 border-border-300 flex items-center translate-y-1/2 rounded-lg shadow-sm transition scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 bg-bg-000 p-1"><div class="text-text-300 flex items-stretch justify-between gap-0.5"><div> </div><div class="flex gap-0.5"> </div><div class="flex items-center gap-0.5"> </div></div></div></div>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+						</div>
+						</div>
+					</div>
+		  </div>
+    </div>
+        </div>
+    </div>
+
+	<div  class='footer footer-content-lists footer-border-accent'>
+    <div  class='footer-content'>
+        <div class="gridContainer">
+            <div class="row">
+                <div class="col-sm-8 flexbox">
+                    <div class="row widgets-row">
+                        <div class="col-sm-4">
+                            <div id="block-15" class="widget widget_block widget_text">
+<p><strong>Mest læste sider</strong></p>
+</div><div id="block-16" class="widget widget_block">
+<ul class="wp-block-list"><li><a href="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/">Havørredfiskeri</a></li></ul>
+</div><div id="block-17" class="widget widget_block">
+<ul class="wp-block-list"><li><a href="https://udeogfiske.dk/guide-til-fisk/torskefiskeri/">Torskefiskeri</a></li></ul>
+</div><div id="block-18" class="widget widget_block">
+<ul class="wp-block-list"><li><a href="https://udeogfiske.dk/guide-til-fisk/fladfisk-fiskeri/">Fladfisk fiskeri</a></li></ul>
+</div><div id="block-19" class="widget widget_block">
+<ul class="wp-block-list"><li><a href="https://udeogfiske.dk/fiskepladser/">Fiskepladser</a></li></ul>
+</div><div id="block-20" class="widget widget_block">
+<ul class="wp-block-list"><li><a href="https://udeogfiske.dk/fiskeudstyr/endegrej/gennemlobsblink/">Gennemløbsblink</a></li></ul>
+</div><div id="block-24" class="widget widget_block">
+<ul class="wp-block-list"><li><a href="https://udeogfiske.dk/ul-fiskeri/">UL Fiskeri</a></li></ul>
+</div><div id="block-25" class="widget widget_block">
+<ul class="wp-block-list"><li><a href="https://udeogfiske.dk/om-mig/stotte-projekter/">Det vi støtter</a></li></ul>
+</div>                        </div>
+                        <div class="col-sm-4">
+                            <div id="block-22" class="widget widget_block widget_text">
+<p>CVR: 43131168</p>
+</div><div id="block-23" class="widget widget_block widget_text">
+<p></p>
+</div>                        </div>
+                        <div class="col-sm-4">
+                            <div class='rexufeedsearchbar'><div id="rexufeedsearch_widget-3" class="widget widget_rexufeedsearch_widget"><span class='rexufeedtitle'><h4 class="widgettitle">Find Produkt</h4></span><div>
+<form action="https://udeogfiske.dk/rexpfeeds" name="psearchfrm" method="get" >
+<input type="text" name="rexulsearch" id="rexulsearch" placeholder="Søg produkter" data-search-url="rexpfeeds" data-search-id="Mw==" /><!--<input type="submit" value="Søg" name="psbtn" id="psbtn"/>-->
+<input type="hidden" name="by" id="by"  value="Mw=="/>
+</form>
+
+</div>
+</div></div>                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 flexbox center-xs middle-xs content-section-spacing-medium footer-bg-accent">
+                  <div>
+                    <div class="footer-logo space-bottom-small">
+                        <h2><span data-type="group"  data-dynamic-mod="true">Ude og Fiske - Inspiration til din fisketur</span></h2>
+                    </div>
+                    <p  class="copyright">&copy;&nbsp;&nbsp;2026&nbsp;Ude og Fiske - Inspiration til din fisketur.&nbsp;Bygget ved at bruge WordPress og <a target="_blank" href="https://extendthemes.com/go/built-with-highlight/" class="mesmerize-theme-link">Highlight Theme</a></p>                        <div data-type="group"  data-dynamic-mod="true" class="footer-social-icons">
+                      <a target="_blank"  class="social-icon" href="https://www.instagram.com/udeogfiske/">
+                  <i class="fa fa-instagram"></i>
+              </a>
+                            <a target="_blank"  class="social-icon" href="https://www.youtube.com/channel/UCpEXIoG-I_h_5G8NZ3purvA">
+                  <i class="fa fa-youtube-square"></i>
+              </a>
+              
+    </div>
+
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	</div>
+<noscript><style>.lazyload{display:none;}</style></noscript><script data-noptimize="1">window.lazySizesConfig=window.lazySizesConfig||{};window.lazySizesConfig.loadMode=1;</script><script async data-noptimize="1" src='https://udeogfiske.dk/wp-content/plugins/autoptimize/classes/external/js/lazysizes.min.js'></script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVVQZ49"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js?ver=1.0" id="jqueryuijs-js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js?ver=1.0" id="select2-js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="elementor-frontend-js-before">
+/* <![CDATA[ */
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Del p\u00e5 Facebook","shareOnTwitter":"Del p\u00e5 Twitter","pinIt":"Fastg\u00f8r","download":"Download","downloadImage":"Download billede","fullscreen":"Fuldsk\u00e6rm","zoom":"Zoom","share":"Del","playVideo":"Afspil video","previous":"Forrige","next":"N\u00e6ste","close":"Luk"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobil","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Extra","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Extra","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"B\u00e6rbar computer","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.5.3","is_static":false,"experimentalFeatures":{"e_import_export":true,"e_hidden_wordpress_widgets":true,"landing-pages":true,"elements-color-picker":true,"favorite-widgets":true,"admin-top-bar":true},"urls":{"assets":"https:\/\/udeogfiske.dk\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":2671,"title":"Beregn%20Din%20Hav%C3%B8rreds%20Konditionstal%20%7C%20Fultons%20Formel%20Forklaret","excerpt":"","featuredImage":"https:\/\/udeogfiske.dk\/wp-content\/uploads\/2022\/07\/havorred_hero-1024x358.jpg"}};
+/* ]]> */
+</script>
+
+<script type="text/javascript" id="wpr-addons-js-js-extra">
+/* <![CDATA[ */
+var WprConfig = {"ajaxurl":"https:\/\/udeogfiske.dk\/wp-admin\/admin-ajax.php","resturl":"https:\/\/udeogfiske.dk\/wp-json\/wpraddons\/v1","nonce":"7cc80ac2af","addedToCartText":"was added to cart","viewCart":"View Cart","comparePageID":"","comparePageURL":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/","wishlistPageID":"","wishlistPageURL":"https:\/\/udeogfiske.dk\/guide-til-fisk\/havorredfiskeri\/konditionsfaktor-havorred\/","chooseQuantityText":"Please select the required number of items.","site_key":"","is_admin":"","input_empty":"Please fill out this field","select_empty":"Nothing selected","file_empty":"Please upload a file","recaptcha_error":"Recaptcha Error"};
+/* ]]> */
+</script>
+
+
+
+    <script>
+        /(trident|msie)/i.test(navigator.userAgent) && document.getElementById && window.addEventListener && window.addEventListener("hashchange", function() {
+            var t, e = location.hash.substring(1);
+            /^[A-z0-9_-]+$/.test(e) && (t = document.getElementById(e)) && (/^(?:a|select|input|button|textarea)$/i.test(t.tagName) || (t.tabIndex = -1), t.focus())
+        }, !1);
+    </script>
+<script type="text/javascript" defer src="https://udeogfiske.dk/wp-content/cache/autoptimize/js/autoptimize_c1db50f8b05a759affa66084bca728ce.js"></script></body>
+</html>

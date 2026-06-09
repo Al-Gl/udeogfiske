@@ -1,0 +1,244 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../components/AdsenseBanner.astro';
+---
+
+<MainLayout
+  title="Kontakt | Ude og Fiske"
+  description="Kom i kontakt med Ude og Fiske. Har du spørgsmål, kommentarer eller vil du indgå i et samarbejde? Skriv til udeogfiske@gmail.com."
+  canonical="https://udeogfiske.dk/om-mig/"
+  pageType="about"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Kontakt" },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <span>Kontakt</span>
+      </nav>
+      <h1 class="pg-title">Kontakt</h1>
+      <p class="pg-sub">Lidt om mig og siden — og hvordan du kommer i kontakt, hvis du har spørgsmål eller vil samarbejde.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+
+      <div class="pg-section">
+        <h2 class="pg-section-title">Om siden</h2>
+        <div class="pg-split">
+          <div class="pg-portrait">
+            <img src="/images/aldin_profile.png" alt="Aldin med en havørred fanget på flue" loading="lazy" />
+            <span class="pg-caption">Aldin · grundlægger af Ude og Fiske</span>
+          </div>
+          <div class="pg-text">
+            <p>For mig startede lystfiskeriet tidligt. Allerede da jeg var 5-6 år begyndte jeg at fiske efter skaller og aborre med min far i Gudenåen. Derfra udviklede det sig fiskeri efter bl.a. gedder, sandart, regnbueørreder, fladfisk, torsk og sild. Kort sagt, var der næsten ingen fisk, jeg ikke fiskede efter. Alle undtagen havørreden, men den kommer jeg tilbage til.</p>
+            <p>I starten fiskede jeg mest på Jylland og var afhængig af, at min far ville med ud og fiske, men efter jeg fik kørekort, kunne jeg tage ud og fiske lige når jeg ville og var ikke afhængig af andre. Det var også her i mine start 20'er, at havørredfiskeriet blev interessant for mig. Fiskeriet efter havørred begyndte at fylde mere og mere, og steder som Mariager Fjord, Randers Fjord og Djursland begyndte at blive faste pladser for mig efter jagten på havørreder.</p>
+          </div>
+        </div>
+        <div class="pg-text pg-text--cont">
+          <p>Det var også tidligt i mine 20'er, at fluefiskeriet for alvor blev min foretrukne fiskeform. Fluefiskeri efter havørreder blev dermed, det der fyldte mest for mig. Sidenhen er jeg flyttet til København og Mariagerfjord, og mine andre foretrukne pladser er blevet skiftet ud med Roskilde Fjord, Isefjorden, Stevns og de andre populære pladser på Sjælland.</p>
+          <p>Det var også i august 2019, at jeg besluttede mig for at lave denne hjemmeside for at tilbyde især nybegyndere inden for fiskeriets verden, guides og læsestof så de kunne komme i gang med denne fantastiske hobby. Jeg har lidt reklame på min hjemmeside og de penge jeg får ind den vej går til at købe lidt ekstra udstyr. I 2022 er jeg for alvor også begyndt at bruge tid på at optage mine fisketure og uploade dem til min Youtube kanal.</p>
+          <p>Jeg håber i kan finde det i har brug for på hjemmesiden, og knæk og bræk derude!</p>
+        </div>
+
+        <figure class="pg-figure">
+          <img src="/images/aldin_profile2.png" alt="Aldin fisker fra klipper ved den danske kyst" loading="lazy" />
+          <figcaption>Kystfiskeri langs Sjælland — et af de faste ritualer.</figcaption>
+        </figure>
+      </div>
+
+      <div class="pg-section">
+        <h2 class="pg-section-title">Kontakt</h2>
+        <div class="pg-text">
+          <p>Har du kommentar eller spørgsmål til noget på hjemmesiden, eller vil du gerne ud og fiske med mig? Så kan du komme i kontakt med mig ved at skrive til <a class="pg-mail" href="mailto:udeogfiske@gmail.com">udeogfiske@gmail.com</a>.</p>
+          <p>Vil du gerne indgå i en samarbejdsaftale eller en sponsoraftale bedes du også sende en mail til mig på <a class="pg-mail" href="mailto:udeogfiske@gmail.com?subject=SPONSOR">udeogfiske@gmail.com</a> med "SPONSOR" i mailens titel.</p>
+        </div>
+
+        <a href="mailto:udeogfiske@gmail.com" class="pg-cta">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M2.5 4.5h13v9h-13zM2.5 4.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Send en mail</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <AdsenseBanner />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    background: #0d4a5e;
+    padding: 3.5rem 0 3rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.25rem;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+  .pg-bc a:hover { color: rgba(255,255,255,0.85); }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .pg-section { margin-bottom: 3rem; }
+  .pg-section:last-child { margin-bottom: 0; }
+
+  .pg-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .pg-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .pg-text p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.8;
+  }
+
+  .pg-split {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1.75rem;
+    align-items: start;
+    margin-bottom: 0.875rem;
+  }
+
+  .pg-portrait {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: sticky;
+    top: 80px;
+  }
+
+  .pg-portrait img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  .pg-caption {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+    text-align: center;
+  }
+
+  .pg-text--cont { margin-top: 0.5rem; }
+
+  .pg-figure {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pg-figure img {
+    width: 100%;
+    border-radius: 12px;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+
+  .pg-figure figcaption {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    text-align: center;
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .pg-split {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .pg-portrait {
+      max-width: 240px;
+      margin: 0 auto;
+      position: static;
+    }
+  }
+
+  .pg-mail {
+    color: #0d4a5e;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(13,74,94,0.3);
+    transition: border-color 0.15s;
+  }
+
+  .pg-mail:hover { border-bottom-color: #0d4a5e; }
+
+  .pg-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.25rem;
+    background: #0d4a5e;
+    color: #ffffff;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .pg-cta:hover {
+    background: #0a3a4a;
+    transform: translateY(-1px);
+  }
+</style>

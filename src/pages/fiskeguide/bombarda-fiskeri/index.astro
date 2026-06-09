@@ -1,0 +1,453 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+import AffiliateTrio from '../../../components/AffiliateTrio.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import DifficultyMeter from '../../../components/DifficultyMeter.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const related = [
+  {
+    title: "Put & Take fiskeri",
+    description: "Bombarda er meget effektivt i Put & Take — kast langt med små agn efter regnbueørred.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og take sø i Danmark",
+    chip: "Sø",
+  },
+  {
+    title: "Fiskeri på kysten",
+    description: "Bombarda flådet kan kaste de ekstra meter når havørreden står langt ude.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Fluefiskeri",
+    description: "Bombarda lader dig fiske med fluer på spinnestang — læs også guiden til fluefiskeri.",
+    href: "/fiskeguide/fluefiskeri/",
+    image: "/images/fluefiskeri_card.jpg",
+    alt: "Fluefiskeri i rindende vand",
+    chip: "Teknik",
+  },
+];
+---
+
+<MainLayout
+  title="Bombardafiskeri – Guide til fiskeri med bombarda flåd | Ude og Fiske"
+  description="Komplet guide til bombarda fiskeri — kasteteknik, agn, valg af bombarda flåd og hvordan du fanger flere fisk."
+  canonical="https://udeogfiske.dk/fiskeguide/bombarda-fiskeri/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Bombardafiskeri" },
+  ]}
+  articleData={{
+    headline: "Bombardafiskeri",
+    image: "/images/bombarda_hero.png",
+    datePublished: "2025-09-30",
+  }}
+  faq={[
+    {
+      question: "Hvad er bombardafiskeri?",
+      answer: "Bombardafiskeri kombinerer et tungt aerodynamisk <strong>bombarda flåd</strong> med små agn som <strong>fluer, microblink eller gummidyr</strong>. Det tunge flåd lader dig kaste meget langt med små agn, der ellers ikke kan kastes på en spinnestang. Mest brugt til <strong>havørred</strong> og <strong>regnbueørred</strong>.",
+    },
+    {
+      question: "Hvilken stang skal du bruge til bombarda?",
+      answer: "Du kan fiske bombarda med de fleste <strong>spinnestænger</strong>, men der findes dedikerede bombardastænger, som er <strong>længere</strong>, så du nemmere kan håndtere det lange forfang. Vælg en stang, hvis kastevægt passer til vægten på dit bombarda flåd (typisk 20–30 g).",
+    },
+    {
+      question: "Hvilket bombarda flåd skal du vælge?",
+      answer: "I <strong>Put &amp; Take</strong> bruger jeg et <strong>flydende</strong> flåd på 20–25 g, så jeg kan fiske helt langsomt. På <strong>kysten</strong> bruger jeg et <strong>intermediate eller synkende</strong> flåd på 25–30 g, så det ligger lige under overfladen og kaster de ekstra meter.",
+    },
+    {
+      question: "Hvilke agn bruger man til bombarda?",
+      answer: "Samme små agn som på flue- og spinnestang: <strong>fluer, microblink, gummidyr og powerbait</strong>. Det tunge flåd gør bare, at du kan kaste de lette agn langt længere, end du ellers kunne.",
+    },
+    {
+      question: "Hvordan kaster du med bombarda uden linekludder?",
+      answer: "Hemmeligheden er at <strong>lukke bremsen manuelt lige inden flådet rammer vandet</strong>. Den bratte opbremsning tvinger flådet ned, mens forfang og agn fortsætter — så forfanget strækkes helt bagud og lander uden filtre. Får du styr på det kast, har du styr på det meste af bombardafiskeriet.",
+    },
+    {
+      question: "Hvad kan man fange med bombarda?",
+      answer: "Primært <strong>havørred</strong> og <strong>regnbueørred</strong>, men i princippet de fleste arter. Bombarda er især effektivt over for fisk, der er forsigtige og foretrækker små agn.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Bombardafiskeri</span>
+      </nav>
+      <h1 class="pg-title">Bombardafiskeri</h1>
+      <p class="pg-sub">Sådan fisker du med bombarda flåd — kast langt med små agn efter havørred og regnbueørred.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad er bombardafiskeri?</h2>
+        <p class="ac-a">Bombardafiskeri kombinerer et tungt aerodynamisk <strong>bombarda flåd</strong> med små agn som <strong>fluer, microblink eller gummidyr</strong>. Det tunge flåd lader dig kaste meget langt med små agn, der ellers ikke kan kastes på en spinnestang. Mest brugt til <strong>havørred</strong> og <strong>regnbueørred</strong>.</p>
+      </div>
+
+      <article class="article">
+        <DifficultyMeter value={45} label="Sværhedsgrad for begyndere" />
+
+        <p>Bombarda fiskeri er en fiskeform, der er begyndt at blive mere udbredt blandt de danske lystfiskere — og med god grund! Det er en meget alsidig fiskeform, der tillader dig at fiske med agn, du normalt ikke ville kunne kaste på en spinnestang.</p>
+
+        <p>Kort sagt er bombarda et flåd, der fiskes som et flåd — forskellen fra et almindeligt flåd er, at det er tungere og mere aerodynamisk, så du kan kaste en del længere. Det kan fiskes både aktivt og passivt, men når jeg fisker med bombarda, bruger jeg det udelukkende aktivt — dog med en meget langsom indspinning, især i Put &amp; Take søerne. Fiskeriet er super effektivt, særligt over for fisk, der er lidt forsigtige og foretrækker mindre agn.</p>
+
+        <DidYouKnow>
+          Med en bombarda kan du <strong>fiske med fluer uden en fluestang</strong>. Det tunge flåd giver kastevægten, så du kan præsentere små fluer og microblink langt ude — også på en helt almindelig spinnestang.
+        </DidYouKnow>
+
+        <h2>Hvilken stang skal du bruge til bombarda?</h2>
+        <p>Du kan praktisere bombardafiskeri med de fleste spinnestænger, men der er udviklet specielle stænger til netop dette fiskeri. Bombardastænger er typisk <strong>længere</strong>, så du nemmere kan håndtere det lange forfang efter flådet. Det vigtigste er, at stangens kastevægt passer til vægten på dit bombarda flåd.</p>
+
+        <Affiliate
+          productId="77057"
+          note="Min favorit til bombarda er en dedikeret stang som Westin W2 Bombarda — den er lang, så det lange forfang er nemt at styre, og har kastevægt til de tunge flåd. Vil du gå hele vejen, findes den også i den dyrere W6-serie, men W2 er rigeligt til langt de fleste."
+        />
+
+        <h2>Hvordan fisker du med bombarda?</h2>
+        <p>Når du praktiserer bombardafiskeri, adskiller det sig i princippet ikke så meget fra alt andet fiskeri. Bombardaflådets helt store fordel er, at du kan kaste langt med meget små agn som fluer, microblink og gummidyr. Den måde, du normalt fisker et microblink eller en flue på, fisker du det også med et bombardaflåd — du kan bare kaste det meget længere!</p>
+
+        <p>De normale råd til spinfiskeri — varieret indspinningshastighed, spinstop og så videre — gælder stadig og bør bruges for at øge chancen for fangst.</p>
+
+        <StatHighlight
+          value="20–30 g"
+          caption="Den typiske vægt på et bombarda flåd — tungt nok til at kaste langt, så små fluer og blink når helt derud"
+          icon="ruler"
+        />
+
+        <h2>Hvilke agn bruger du til bombarda?</h2>
+        <p>Ved bombardafiskeri bruger du samme agn som på din flue- eller spinnestang, så udvalget er stort. I Put &amp; Take bruger jeg typisk fluer og gummidyr, hvis fiskene står længere ude, end jeg kan kaste med flue- eller spinnestang — her hjælper det tungere flåd helt ud midt på søen. Ved kysten og i fjordene fisker jeg næsten udelukkende med fluer, hvor bombardaen lige kaster de ekstra meter, der kan give fisk, når fluestangen ikke rækker.</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over agn til bombardafiskeri">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Agn</th>
+                <th scope="col">Bedst til</th>
+                <th scope="col">Sådan fisker jeg det</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Agn">Flue</th>
+                <td data-label="Bedst til">Put &amp; Take og kyst</td>
+                <td data-label="Sådan fisker jeg det">Langsomt — lad fluen imitere fiskens byttedyr</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Agn">Microblink</th>
+                <td data-label="Bedst til">Put &amp; Take</td>
+                <td data-label="Sådan fisker jeg det">Langsom indspinning med små spinstop</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Agn">Gummidyr / powerbait</th>
+                <td data-label="Bedst til">Put &amp; Take</td>
+                <td data-label="Sådan fisker jeg det">Meget langsomt — lad det synke i hvert stop</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <AffiliateTrio
+          title="Mine agn til bombarda"
+          intro="Bag bombardaen fisker jeg de samme små agn som på fluestangen — bare meget længere ude. Her er mine tre go-to typer til Put & Take og kysten."
+          products={[
+            {
+              productId: "502841",
+              badge: "Microblink",
+              badgeTone: "teal",
+              highlight: true,
+              note: "10 micro-spoons i én æske — perfekt til P&T. Langsom indspinning med små spinstop, så blinket vagler.",
+            },
+            {
+              productId: "504673",
+              badge: "Fluer",
+              badgeTone: "orange",
+              note: "Et udvalg klassiske kystfluer — det er typisk dem, jeg binder på bag bombardaen efter havørred.",
+            },
+            {
+              productId: "503157",
+              badge: "Gummidyr",
+              badgeTone: "slate",
+              note: "Blødt gummi med Gulp-duftspor. Fisk det meget langsomt — uimodståeligt for forsigtige fisk.",
+            },
+          ]}
+        />
+
+        <h2>Hvilket bombarda flåd skal du vælge?</h2>
+        <p>Der findes et utal af bombarda flåd i forskellige vægtklasser og modeller, så det kan være svært at vælge. Men svaret afhænger af, hvilket fiskeri du vil praktisere — her er, hvordan jeg vælger:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over bombarda flåd">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Vægt</th>
+                <th scope="col">Bedst til</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Type">Flydende</th>
+                <td data-label="Vægt">20–25 g</td>
+                <td data-label="Bedst til">Put &amp; Take — fisk langsomt og lad agnet synke i hvert stop</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Type">Intermediate</th>
+                <td data-label="Vægt">25–30 g</td>
+                <td data-label="Bedst til">Kysten — ligger lige under overfladen, godt i bølger</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Type">Synkende</th>
+                <td data-label="Vægt">25–30 g</td>
+                <td data-label="Bedst til">Kysten — når havørreden står dybere</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>I Put &amp; Take søerne bruger jeg ikke alt for tunge flåd — typisk flydende på 20–25 g, der når stort set hele søen. Et flydende flåd lader mig fiske utroligt langsomt: spinde lidt ind, stoppe, og lade agnet synke igen. Ved kysten og fjordene bruger jeg intermediate eller synkende på op til 30 g, så flådet ligger lige under overfladen og kaster de ekstra meter. Husk altid at holde øje med din stangs kastevægt.</p>
+
+        <AffiliateTrio
+          title="Mine 3 bombarda-flåd"
+          intro="Valget af bombarda afhænger af, hvor og hvor dybt du fisker. Her er de tre færdige rigs, jeg griber efter — én til Put & Take og to til kysten."
+          products={[
+            {
+              productId: "75192",
+              badge: "Put & Take",
+              badgeTone: "teal",
+              highlight: true,
+              note: "Mit P&T-flåd. Flydende 20 g, så jeg kan fiske helt langsomt og lade agnet synke i hvert stop.",
+            },
+            {
+              productId: "74698",
+              badge: "Kyst",
+              badgeTone: "orange",
+              note: "Intermediate 30 g — mit foretrukne på kysten, især når der er bølger. Ligger lige under overfladen.",
+            },
+            {
+              productId: "75184",
+              badge: "Dybt vand",
+              badgeTone: "slate",
+              note: "Synkende 25 g til kysten — når havørreden står dybere, kommer agnet ned i den rigtige højde.",
+            },
+          ]}
+        />
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <h2>Hvordan kaster du med bombarda flåd?</h2>
+        <p>Bombardafiskeriet ser måske lidt kompliceret ud, men det er faktisk ret nemt, når du har lært teknikken. Det er især det lange forfang, der kan drille, fordi det nemt kludrer — men med det rigtige kast undgår du det helt.</p>
+
+        <TipBox label="Kasteteknikken — den vigtigste detalje">
+          <p>Når du kaster, skal du <strong>lukke bremsen manuelt lige inden flådet rammer vandet</strong>. Den bratte opbremsning tvinger flådet ned, mens forfang og agn fortsætter lidt endnu — så forfanget strækkes helt bagud og lander uden filtre. Får du styr på det kast, har du styr på 90 % af bombardafiskeriet.</p>
+        </TipBox>
+
+        <p>Selve fiskeriet varierer med agnet, men som altid er det en god idé at variere sit fiskeri. Ved du, at der er fisk i området, men de ikke bider, så varier indspinningen, skift agn og prøv med spinstop — så skal det nok hjælpe, især i Put &amp; Take søen.</p>
+
+        <p>I Put &amp; Take søen fisker jeg meget langsomt, hvilket er en af de helt store fordele ved bombardafiskeriet. Man kan bruge helt små agn som microblink eller gummidyr og fiske dem utrolig langsomt, samtidig med at flådet sørger for, at man kan kaste langt ud.</p>
+
+        <TipBox label="Mine 3 vigtigste tips">
+          <ul>
+            <li>Vælg en <strong>længere stang</strong> — den gør det nemmere at håndtere det lange forfang.</li>
+            <li>Fisk <strong>meget langsomt</strong> i Put &amp; Take søerne.</li>
+            <li>Slå <strong>bremsen til lige inden</strong> flåd og agn rammer vandet.</li>
+          </ul>
+        </TipBox>
+
+        <GuideLink
+          href="/fiskeguide/put-take-fiskeri/"
+          title="Læs guiden til Put & Take fiskeri"
+          desc="Bombarda er en killer i P&T — find søen og de bedste teknikker."
+        />
+        <GuideLink
+          href="/fiskeguide/fluefiskeri/"
+          title="Læs guiden til fluefiskeri"
+          desc="Vil du fiske fluer direkte? Kom i gang med flueliner, stænger og kast."
+        />
+        <GuideLink
+          href="/fiskeguide/fiskeri-paa-kysten/"
+          title="Læs guiden til kystfiskeri"
+          desc="Bombardaen kaster de ekstra meter efter havørred på den åbne kyst."
+        />
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/bombarda_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li { font-size: 1rem; color: #374151; line-height: 1.75; margin-bottom: 0.375rem; list-style: disc; }
+
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover { background: #f8fbfc; }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap { border-radius: 12px; }
+    .prey-table thead {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .prey-table,
+    .prey-table tbody,
+    .prey-table tr { display: block; width: 100%; }
+    .prey-table tr {
+      padding: 1rem 1.125rem 1.125rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"],
+    .prey-table td {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      align-self: start;
+      padding-top: 0.15rem;
+    }
+  }
+
+</style>

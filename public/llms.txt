@@ -1,0 +1,52 @@
+# Ude og Fiske
+
+> Ude og Fiske (udeogfiske.dk) er en dansk lystfiskerguide med praktiske, redaktionelt uafhængige guides til fiskeri i Danmark. Indholdet er skrevet af erfarne danske lystfiskere og dækker fiskearter, fisketeknikker, fiskepladser og grejvalg.
+
+Sproget er dansk. Hovedemner: saltvands- og ferskvandsfiskeri i Danmark — havørred, torsk, gedde, aborre, fladfisk, sild, makrel, hornfisk og regnbueørred — samt teknikker (kyst, mole, å, båd, fluefiskeri, Put & Take, ultralight) og grej (fiskestænger, fiskehjul, endegrej, beklædning, tilbehør). Mange artikler indeholder en interaktiv "vælger", en sæsonkalender og en FAQ. Grej-anbefalinger kan indeholde affiliate-links, og prissammenligning leveres via PriceRunner.
+
+## Guide til fisk (fiskearter)
+- [Guide til fisk – oversigt](https://udeogfiske.dk/guide-til-fisk/): Indgang til alle artsguider.
+- [Havørredfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/): Komplet guide til havørred på kysten — agn, grej, sæson og biologi. Har også 12 månedsguider (januar–december) og uddybende guider til [konditionsfaktor](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/), [natfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/natfiskeri-efter-havorred/) og [spinnefiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/).
+- [Torskefiskeri](https://udeogfiske.dk/guide-til-fisk/torskefiskeri/): Torsk fra kyst, mole og båd — jig, blink, pirk og naturagn.
+- [Geddefiskeri](https://udeogfiske.dk/guide-til-fisk/geddefiskeri/): Gedde i søer og åer — woblere, gummidyr, spinnere og fluer, med fokus på wireforfang.
+- [Aborrefiskeri](https://udeogfiske.dk/guide-til-fisk/aborrefiskeri/): Begyndervenlig art — jigs, spinnere, orm og flue.
+- [Fladfisk fiskeri](https://udeogfiske.dk/guide-til-fisk/fladfisk-fiskeri/): Skrubbe, rødspætte, pighvar og ising — fladfiskeforfang og naturagn.
+- [Sildefiskeri](https://udeogfiske.dk/guide-til-fisk/sildefiskeri/): Forårs- og høstsild fra mole og båd med sildeforfang.
+- [Makrelfiskeri](https://udeogfiske.dk/guide-til-fisk/makrelfiskeri/): Makrel om sommeren — blink, spinner og makrelforfang.
+- [Hornfisk fiskeri](https://udeogfiske.dk/guide-til-fisk/hornfisk/): Forårets hornfisk — blink, bobleflåd, silkekrog og bombarda.
+- [Regnbueørred fiskeri](https://udeogfiske.dk/guide-til-fisk/regnbueorredfiskeri/): Put & Take — Powerbait, spinner, gennemløbsblink og flue.
+
+## Fiskeguides (teknikker og lokationstyper)
+- [Fiskeguides – oversigt](https://udeogfiske.dk/fiskeguide/): Indgang til alle teknik- og lokationsguider.
+- [Fiskeri på kysten](https://udeogfiske.dk/fiskeguide/fiskeri-paa-kysten/): Kystfiskeri i Danmark — pladser, teknik, agn og sæson.
+- [Fiskeri på mole](https://udeogfiske.dk/fiskeguide/fiskeri-paa-mole/): Molefiskeri efter torsk, fladfisk, sild m.m.
+- [Fiskeri i å](https://udeogfiske.dk/fiskeguide/fiskeri-i-aa/): Åfiskeri efter havørred og andre arter.
+- [Fiskeri fra båd](https://udeogfiske.dk/fiskeguide/fiskeri-fra-baad/): Bådfiskeri — kasteside, pirkeside og sikkerhed.
+- [Fluefiskeri](https://udeogfiske.dk/fiskeguide/fluefiskeri/): Komplet guide til fluefiskeri, inkl. [fluefiskeri i Put & Take](https://udeogfiske.dk/fiskeguide/fluefiskeri/fluefiskeri-i-put-take/).
+- [Put & Take fiskeri](https://udeogfiske.dk/fiskeguide/put-take-fiskeri/): Regnbueørred i søer, inkl. [spinnefiskeri i Put & Take](https://udeogfiske.dk/fiskeguide/put-take-fiskeri/spinnefiskeri-i-put-take/).
+- [UL fiskeri](https://udeogfiske.dk/fiskeguide/ul-fiskeri/): Ultralight-fiskeri — grej og teknik.
+- [Bombarda fiskeri](https://udeogfiske.dk/fiskeguide/bombarda-fiskeri/): Bombardaflåd til fluer på spinnestang.
+- [Catch and Release](https://udeogfiske.dk/fiskeguide/catch-and-release/): Skånsom genudsætning — forskning fra DTU Aqua og bedste praksis.
+- [Fiskeri for børn](https://udeogfiske.dk/fiskeguide/fiskeri-for-born/): Begyndervenligt fiskeri med børn.
+- [Fisketegn](https://udeogfiske.dk/fiskeguide/fisketegn/): Hvornår og hvordan du skal have statens lystfisketegn.
+
+## Fiskeudstyr (grej)
+- [Fiskeudstyr – oversigt](https://udeogfiske.dk/fiskeudstyr/): Indgang til alle grejguider.
+- [Fiskestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/): Valg af stang, inkl. [spinnestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/spinnestaenger/), [fluestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/fluefiskestang/) og [havstænger/pirkestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/fiskestang-til-havet/).
+- [Fiskehjul](https://udeogfiske.dk/fiskeudstyr/fiskehjul/): Fastspolehjul og fluehjul — størrelse og match til stangen.
+- [Endegrej](https://udeogfiske.dk/fiskeudstyr/endegrej/): Blink, spinnere, jigs og fluer, inkl. [gennemløbsblink](https://udeogfiske.dk/fiskeudstyr/endegrej/gennemlobsblink/) og bedste gennemløbsblink til [forår](https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-forar/) og [sommer](https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-sommer/).
+- [Beklædning](https://udeogfiske.dk/fiskeudstyr/beklaedning/): Tøj til fiskeri, inkl. [waders og støvler](https://udeogfiske.dk/fiskeudstyr/beklaedning/waders-og-stovler/) (+ [til havørred](https://udeogfiske.dk/fiskeudstyr/beklaedning/waders-og-stovler/waders-til-havorredfiskeri/)), [vadejakke](https://udeogfiske.dk/fiskeudstyr/beklaedning/vadejakke/) og [polaroid briller](https://udeogfiske.dk/fiskeudstyr/beklaedning/polaroid-briller/).
+- [Tilbehør](https://udeogfiske.dk/fiskeudstyr/tilbehor/): Inkl. [fangstnet](https://udeogfiske.dk/fiskeudstyr/tilbehor/fangstnet/) og [fiskesæt for begyndere](https://udeogfiske.dk/fiskeudstyr/tilbehor/fiskesaet-for-begyndere/).
+- [Producenter](https://udeogfiske.dk/fiskeudstyr/producenter/): Portrætter af [Westin](https://udeogfiske.dk/fiskeudstyr/producenter/westin/), [Savage Gear](https://udeogfiske.dk/fiskeudstyr/producenter/savage-gear/) og [Geoff Anderson](https://udeogfiske.dk/fiskeudstyr/producenter/geoff-anderson/).
+
+## Fiskepladser
+- [Fiskepladser – oversigt](https://udeogfiske.dk/fiskepladser/): Gode danske fiskepladser.
+- [Isefjorden](https://udeogfiske.dk/fiskepladser/isefjorden/), [Roskilde Fjord](https://udeogfiske.dk/fiskepladser/roskilde-fjord/), [Stevns](https://udeogfiske.dk/fiskepladser/stevns/), [København](https://udeogfiske.dk/fiskepladser/koebenhavn/), [Mariager Fjord](https://udeogfiske.dk/fiskepladser/mariager-fjord/): Havørred- og kystpladser.
+- [Put & Take søer](https://udeogfiske.dk/fiskepladser/put-and-take/): Inkl. [Ørsted Ørredvand](https://udeogfiske.dk/fiskepladser/put-and-take/oersted-oerredvand/).
+
+## Fisketure og øvrigt
+- [Fisketure](https://udeogfiske.dk/fisketure/): Turrapporter fra danske fisketure.
+- [Sæsonguide](https://udeogfiske.dk/saesonguide/): Hvad kan fanges hvornår i Danmark, måned for måned.
+- [Rens af ørred](https://udeogfiske.dk/rens-af-orred/): Sådan renser du en ørred.
+- [Fiskebøger](https://udeogfiske.dk/fiskeboger/): Anbefalede bøger om lystfiskeri.
+- [Om mig / kontakt](https://udeogfiske.dk/om-mig/): Om forfatteren bag Ude og Fiske.

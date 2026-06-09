@@ -1,0 +1,545 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import DifficultyMeter from '../../../components/DifficultyMeter.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const fishCards = [
+  { title: "Fladfisk", href: "/guide-til-fisk/fladfisk-fiskeri/", image: "/images/fladfisk_card.jpeg", alt: "Fladfisk" },
+  { title: "Torsk", href: "/guide-til-fisk/torskefiskeri/", image: "/images/torsk_card.png", alt: "Torsk" },
+  { title: "Sild", href: "/guide-til-fisk/sildefiskeri/", image: "/images/sild_card.png", alt: "Sild" },
+  { title: "Makrel", href: "/guide-til-fisk/makrelfiskeri/", image: "/images/makrel_card.png", alt: "Makrel" },
+  { title: "Hornfisk", href: "/guide-til-fisk/hornfisk/", image: "/images/hornfisk_card.png", alt: "Hornfisk" },
+  { title: "Havørred", href: "/guide-til-fisk/havorredfiskeri/", image: "/images/havørred_card.jpeg", alt: "Havørred" },
+];
+
+const related = [
+  {
+    title: "Mole fiskeri",
+    description: "Fra mole kommer du tæt på, men ikke ud over dybt vand — sammenlign med bådfiskeri.",
+    href: "/fiskeguide/fiskeri-paa-mole/",
+    image: "/images/mole_fiskeri.jpg",
+    alt: "Mole der strækker sig ud i havet",
+    chip: "Hav",
+  },
+  {
+    title: "Fiskeri på kysten",
+    description: "Det samme grej fra båd kan også bruges fra kysten — alsidigt setup.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Catch and Release",
+    description: "Når du fisker fra båd og fanger mange — læs guiden til skånsom genudsætning.",
+    href: "/fiskeguide/catch-and-release/",
+    image: "/images/cnr_hero.png",
+    alt: "Catch and release — fisk genudsættes",
+    chip: "Praksis",
+  },
+];
+---
+
+<MainLayout
+  title="Fiskeri fra båd – Guide til havfiskeri fra båd og kutter | Ude og Fiske"
+  description="Alt om fiskeri fra båd i Danmark — fordele, fladfisk fra båd, valg af udstyr og tips til en god tur."
+  canonical="https://udeogfiske.dk/fiskeguide/fiskeri-fra-baad/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Fiskeri fra båd" },
+  ]}
+  articleData={{
+    headline: "Fiskeri fra båd",
+    image: "/images/baad_hero.png",
+    datePublished: "2025-12-04",
+  }}
+  faq={[
+    {
+      question: "Hvorfor fiske fra båd?",
+      answer: "Fra båd kan du flytte dig over store områder, fiske over dybere vand hvor de store fisk gemmer sig, og en god skipper kender de bedste pladser. Især effektivt til fladfisk og torsk, og du kan booke pladser på fisketure de fleste steder i Danmark.",
+    },
+    {
+      question: "Skal du eje en båd for at fiske fra båd?",
+      answer: "Nej. Næsten overalt i Danmark kan du <strong>booke en plads</strong> på et skib, der sejler ud på fisketur. Det koster ikke meget, der er næsten fangstgaranti, og du behøver hverken båd eller forhåndserfaring.",
+    },
+    {
+      question: "Hvilket grej skal du bruge til fiskeri fra båd?",
+      answer: "Til fladfisk fra båd er en <strong>havstang på ca. 6 fod</strong> med multihjul klassikeren, men en almindelig <strong>spinnestang på 6–8 fod</strong> med fastspolehjul fungerer fint. Vælg en kastevægt tæt på <strong>60 g</strong>, et <strong>fladfiskeforfang</strong> og friske <strong>børsteorm</strong> som agn.",
+    },
+    {
+      question: "Hvilke fisk kan du fange fra båd?",
+      answer: "De fleste ture går efter <strong>fladfisk</strong> og <strong>torsk</strong>, men der findes også ture efter <strong>sild, makrel og hornfisk</strong>. Et alsidigt spinnesetup kan fange dem alle — og kan bruges fra land bagefter.",
+    },
+    {
+      question: "Hvilket agn er bedst til fladfisk fra båd?",
+      answer: "Jeg foretrækker friske <strong>børsteorm</strong>. Sandorm fanger også godt, men børsteorm er min favorit. Du kan ofte bestille orm direkte på skibet — ellers hos din lokale grejbutik.",
+    },
+    {
+      question: "Er fiskeri fra båd svært for begyndere?",
+      answer: "Nej, det er et af de nemmeste steder at starte. Skipperen finder fiskene, og der er ofte næsten fangstgaranti. Det vigtigste er at holde <strong>agnet på bunden</strong> og at <strong>jigge forfanget</strong>, så det danser i vandet.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Fiskeri fra båd</span>
+      </nav>
+      <h1 class="pg-title">Fiskeri fra båd</h1>
+      <p class="pg-sub">Havfiskeri fra båd og kutter — fordele, fladfiskeri og det udstyr du har brug for.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvorfor fiske fra båd?</h2>
+        <p class="ac-a">Fra båd kan du <strong>flytte dig over store områder</strong>, fiske over <strong>dybere vand</strong> hvor de store fisk gemmer sig, og en god skipper kender de bedste pladser. Især effektivt til <strong>fladfisk</strong> og <strong>torsk</strong>, og du kan booke pladser på fisketure de fleste steder i Danmark.</p>
+      </div>
+
+      <article class="article">
+        <DifficultyMeter value={25} label="Sværhedsgrad for begyndere" />
+
+        <p>Lystfiskeri har i lang tid været en populær hobby i Danmark, og langt størstedelen foregår fra land, hvor man kaster ud i vandet. Alle kender den form for fiskeri, og den dyrkes af rigtig mange danskere.</p>
+
+        <p>Fiskeri fra skib eller båd har tidligere været forbeholdt personer, der selv ejer en båd — eller kender nogen, der gør. Men det er heldigvis ved at ændre sig: der kommer flere og flere muligheder for at fiske fra skib, så alle kan prøve dette spændende fiskeri. Det koster ikke meget, der er næsten garanti for fisk, og man får en virkelig hyggelig tur ud af det.</p>
+
+        <p>Næsten overalt i Danmark kan du nu booke pladser på et skib, der sejler ud og tilbyder fiskeri efter mange forskellige fisk. De fleste fisketure er efter fladfisk og torsk, men der findes også ture efter sild, makrel og meget mere.</p>
+
+        <h2>Hvilke fordele er der ved at fiske fra båd?</h2>
+        <p>Det er svært at tale om fordele kontra ulemper, når det kommer til fiskeri fra båd eller land — fiskene kan jo fanges begge steder. Men fisker du fra skib, opfylder du nogle kriterier, som er svære at opfylde fra land. Her er forskellen kort fortalt:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Sammenligning af fiskeri fra båd og fra land">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Kriterie</th>
+                <th scope="col">Fra båd</th>
+                <th scope="col">Fra land / mole</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Kriterie">Bevægelighed</th>
+                <td data-label="Fra båd">Flyt dig over store områder</td>
+                <td data-label="Fra land / mole">Få meter frem og tilbage</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Kriterie">Dybt vand</th>
+                <td data-label="Fra båd">Ja — ud hvor de store fisk står</td>
+                <td data-label="Fra land / mole">Begrænset</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Kriterie">Pladskendskab</th>
+                <td data-label="Fra båd">Skipperen kender de bedste pladser</td>
+                <td data-label="Fra land / mole">Du er på egen hånd</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Kriterie">Fangstchance</th>
+                <td data-label="Fra båd">Ofte næsten fangstgaranti</td>
+                <td data-label="Fra land / mole">Mere afhængig af stedet</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Bevægelighed</h3>
+        <p>Fisker man fra en mole, så er det begrænset, hvor meget man kan flytte sig, hvis fiskene ikke bider på. Man kan fiske fra den anden side af molen eller flytte sig et par meter frem eller tilbage. Er man derimod på et skib, er der rig mulighed for at flytte sig over et stort område. Det er en stor fordel hvis man, eller skipperen, kender et par pladser, med mulighed for fangst. Så kan man altid flytte sig rundt til forskellige pladser, hvis den ene plads ikke holder fisk.</p>
+
+        <h3>Fiskeri over dybere vand</h3>
+        <p>Dybt vand giver flere muligheder når det kommer til fiskeri, efter specifikke fiskearter. Dybere vand forbindes ofte med større fisk, og det er også rigtigt i mange tilfælde, især fiskeri efter fladfisk. Her gemmer de store fisk sig, især i de koldere måneder, typisk på dybere vand. Så er det en stor fordel at man kan fiske fra skib, da man kommer længere ud, hvor man typisk finder det dybe vand.</p>
+
+        <p>Fisker man fra mole, er man meget begrænset når det kommer til dybt vand. Nogle af de store havne i Danmark kan godt tilbyde fiskeri over dybt vand, men slet ikke samme dybde som man finder med båd.</p>
+
+        <h3>Gode skippere kender gode pladser</h3>
+        <p>Som nævnt tidligere, er det en stor fordel at man kan flytte sig rundt blandt forskellige pladser, når man fisker fra skib. Fisker man fra en af de mange skibe som sejler ud, og man kan booke plads på, får man højst sandsynligt en dygtig skipper som har kendskab til området man fisker i. På sådanne ture, er der stor sandsynlighed for at fange fisk, da skipperen typisk går efter de steder med flest fisk.</p>
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <h2>Hvordan fisker du efter fladfisk fra båd?</h2>
+        <p>En af de mere populære fisk, man fanger fra skibe, er <a href="/guide-til-fisk/fladfisk-fiskeri/">fladfisk</a>. Det skyldes, at der findes fladfisk, stort set i alle vande, rundt omkring Danmark. Du kan selvfølgelig fange dem fra moler og lignende, men skibe gør det muligt at fiske over dybere vand, hvor de større fisk er.</p>
+
+        <p>Kort sagt er man næsten garanteret for at fange fisk, når man sejler ud. For at fange fladfisk, kræver det heller ikke det vildeste udstyr. Man kan typisk nøjes med en almindelig stang, fastspolehjul og et fladfiskeforfang.</p>
+
+        <p>Det er derfor et nemt fiskeri at komme i gang med, og der er næsten altid fangstgaranti. At fladfisken er en vidunderlig spisefisk hjælper sikkert også på det.</p>
+
+        <p>For at fange fladfisk er det en fordel at vælge ture, hvor skipperen går specifikt efter fladfisk. Her finder han de pladser, som typisk holder fladfisk, frem for at gå efter mange forskellige fiskearter.</p>
+
+        <p>For at få en bedre forståelse for fladfiskfiskeriet, så kan du med fordel læse guiden til fladfiskfiskeri. Men kort fortalt skal du bruge en stang, det kan være en kortere stang specifikt til bådfiskeri, det er typisk havstænger i længden 6 fod.</p>
+
+        <p>Disse stænger kan med fordel kombineres med et multihjul, som gør fiskeriet lidt nemmere. Hele ideen med at fiske efter fladfisk fra skib, er at dit agn skal være på bunden hele tiden, da det er her fiskene er. Her er et multihjul perfekt, da du nemt med en finger kan sørge for at holde dit agn på bunden.</p>
+
+        <p>Selv bruger jeg typisk almindelige spinnestænger i længden 6-8 fod, sammen med et fastspolehjul. Altså et helt normalt spinne setup. Bare sørg for at stangen har en kastevægt der kommer tæt på de 60 g, da du helst skal fiske med belastning som er 60 g eller derover.</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Grej-oversigt til fladfisk fra båd">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Grej</th>
+                <th scope="col">Min anbefaling</th>
+                <th scope="col">Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Grej">Stang</th>
+                <td data-label="Min anbefaling">Havstang ~6 fod eller spinnestang 6–8 fod</td>
+                <td data-label="Note">Kastevægt tæt på 60 g</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Grej">Hjul</th>
+                <td data-label="Min anbefaling">Multihjul eller fastspolehjul</td>
+                <td data-label="Note">Multihjul gør det nemt at holde agnet på bunden</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Grej">Endegrej</th>
+                <td data-label="Min anbefaling">Fladfiskeforfang</td>
+                <td data-label="Note">Klassisk forfang med lokkende elementer</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Grej">Agn</th>
+                <td data-label="Min anbefaling">Friske børsteorm (sandorm fungerer også)</td>
+                <td data-label="Note">Børsteorm er min favorit</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <StatHighlight
+          value="60 g"
+          caption="Den belastning (eller mere) jeg fisker fladfisk med fra båd, så agnet bliver på bunden, hvor fiskene står"
+          icon="ruler"
+        />
+
+        <p>Sådanne setups er meget alsidige, og kan bruges til flere forskellige typer af fiskeri. Det kan bl.a. bruges til at fange:</p>
+
+        <div class="fish-grid">
+          {fishCards.map((f) => (
+            <a href={f.href} class="fish-card" aria-label={f.title}>
+              <img src={f.image} alt={f.alt} loading="lazy" width="400" height="300" class="fish-img" />
+              <div class="fish-overlay">
+                <span class="fish-title">{f.title}</span>
+                <span class="fish-arrow">
+                  <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                    <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <p>Ud over at fiske fra skib eller båd, kan dette setup også bruges til fiskeri fra land. Det er meget alsidigt og et godt sted at starte!</p>
+
+        <h2>Hvad er de bedste tips til fladfisk fra båd?</h2>
+        <p>Fladfisk kan være nemme at fange — hvis man altså har nogenlunde styr på, hvad man laver. Ud over en fiskestang har du brug for agn og endegrej, og et fladfiskeforfang er et godt sted at starte. De klassiske forfang fungerer godt og fanger masser af fisk!</p>
+
+        <p>Selv om man kan fiske aktivt fra moler og land, betyder det endnu mere, når du fisker fra skib eller båd. Skibet driver ofte med strømmen, så det gælder om hele tiden at holde gang i dit agn.</p>
+
+        <DidYouKnow>
+          På en drivende båd betyder det, om du fisker fra <strong>kastesiden eller pirkesiden</strong>. Det afgør, hvilken vej dit agn driver i forhold til båden — og dermed hvordan du bedst holder gang i det.
+        </DidYouKnow>
+
+        <TipBox label="Sådan fisker du forfanget">
+          <p>Jig dit fladfiskeforfang, så det <strong>danser og hopper</strong> i vandet i stedet for at ligge stille. Et forfang med en masse lokkende elementer (perler, skeer og farver) trækker fiskene til — og det er utroligt effektivt fra en drivende båd.</p>
+        </TipBox>
+
+        <p>Når det kommer til valg af agn, er jeg tilhænger af at bruge friske børsteorm. Sandorm kan også fange godt, men for mig er børsteorm den bedste madding til fladfisk. Man kan ofte bestille børsteorm på det skib du skal ud og fiske på, hvis ikke det er muligt, kan man ofte bestille det hos sin lokale fiskegrejs butik.</p>
+
+        <p>Når det kommer til antal at orm man skal bruge, afhænger det rigtig meget af to ting.</p>
+
+        <ul>
+          <li>Fiske aktivitet</li>
+          <li>Fiskerens fiskestil</li>
+        </ul>
+
+        <p>Hvis der er gang i fiskene, bliver ens orm tygget godt og grundigt igennem, og så gælder det om at skifte ud. Man vil for alt i verdenen ikke have friske orm på krogen, når fiskene er i bide humør! Er man forsigtig, kan man godt redde ormen en enkelt gang eller to, når man har haft fisk på. Men det kan være en god ide at skifte ormene, eller tilføje nye orm. Hvis jeg kan se at halvdelen af ormen er væk, så tilføjer jeg typisk lidt ekstra orm på krogen, i stedet for at fjerne den gamle orm. På den måde, fylder jeg hele tiden på, og bruger mindre orm end hvis man skifter ormen helt ud.</p>
+
+        <p>Fiskerens fiskestil er individuel, mange fiskere bruger hele orm på krogen, selvom ormene er store. Her er jeg lidt mere nærig, og kan godt finde på at halvere ormen hvis den er stor nok. Hvis man er mange som fisker fra båd eller skib, kan det godt være en ulempe, da fiskene går efter den største orm, og her man altså bagud hvis man kun har en halv orm, sammenlignet med sidemanden som har en stor saftig orm på krogen! Derfor bruger jeg typisk kun halve orme, hvis der ikke er gang i fiskeriet. Lige så snart jeg kan se at fiskene hugger, så fylder jeg på med orme.</p>
+
+        <TipBox label="Mit orm-tip">
+          <p>Spar på ormene, når fiskeriet er stille — brug gerne <strong>halve orm</strong>. Men i samme øjeblik fiskene begynder at hugge, så <strong>fyld på med frisk orm</strong>: en stor, saftig orm slår en halv hver gang, når fiskene er i bidehumør.</p>
+        </TipBox>
+
+        <GuideLink
+          href="/guide-til-fisk/fladfisk-fiskeri/"
+          title="Læs guiden til fladfiskfiskeri"
+          desc="Forfang, agn og teknik til fladfisk — uddybet fra bunden."
+        />
+        <GuideLink
+          href="/fiskeguide/fiskeri-paa-mole/"
+          title="Læs guiden til molefiskeri"
+          desc="Ingen båd? Fra molen kommer du også ud over lidt dybere vand."
+        />
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/baad_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li { font-size: 1rem; color: #374151; line-height: 1.75; margin-bottom: 0.375rem; list-style: disc; }
+
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover { background: #f8fbfc; }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: normal;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap { border-radius: 12px; }
+    .prey-table thead {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .prey-table,
+    .prey-table tbody,
+    .prey-table tr { display: block; width: 100%; }
+    .prey-table tr {
+      padding: 1rem 1.125rem 1.125rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"],
+    .prey-table td {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      align-self: start;
+      padding-top: 0.15rem;
+    }
+  }
+
+  .fish-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 0.5rem 0 1.75rem;
+  }
+
+  .fish-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0d4a5e;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .fish-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px -12px rgba(13, 74, 94, 0.45);
+  }
+
+  .fish-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .fish-card:hover .fish-img { transform: scale(1.06); }
+
+  .fish-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0) 75%);
+    pointer-events: none;
+  }
+
+  .fish-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 0.875rem 0.875rem;
+  }
+
+  .fish-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .fish-arrow {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s, color 0.2s;
+  }
+
+  .fish-card:hover .fish-arrow {
+    background: #ffffff;
+    color: #0d4a5e;
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 720px) {
+    .fish-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 420px) {
+    .fish-grid { grid-template-columns: 1fr; }
+  }
+
+</style>

@@ -1,0 +1,454 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../components/AdsenseBanner.astro';
+
+const featured = [
+  {
+    title: "Fiskeri i å",
+    chip: "Ferskvand",
+    description: "Guide til åfiskeri i Danmark. Find de bedste åer og lær effektive teknikker til ørred og gedde i rindende vand.",
+    href: "/fiskeguide/fiskeri-i-aa/",
+    image: "/images/aa_fiskeri.jpg",
+    alt: "Å med træer langs bredden",
+  },
+  {
+    title: "Put & Take fiskeri",
+    chip: "Sø",
+    description: "Alt hvad du behøver at vide om Put & Take fiskeri — fra valg af plads til det rette udstyr og teknikker der virker i søerne.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put & Take sø med fisker",
+  },
+  {
+    title: "Mole fiskeri",
+    chip: "Hav",
+    description: "Komplet guide til molefiskeri. Lær at fange fisk fra molen med det rette udstyr og de rigtige teknikker.",
+    href: "/fiskeguide/fiskeri-paa-mole/",
+    image: "/images/mole_fiskeri.jpg",
+    alt: "Mole der strækker sig ud i havet",
+  },
+  {
+    title: "Kyst- og fjordfiskeri",
+    chip: "Hav",
+    description: "Guide til kystfiskeri i Danmark. Havørreden er kongen af kysten — lær at finde den og fange den året rundt.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+  },
+  {
+    title: "Fluefiskeri",
+    chip: "Teknik",
+    description: "Guide til fluefiskeri i Danmark. Lær at vælge fluestang, kaste rigtigt og fange regnbueørred og havørred på flue.",
+    href: "/fiskeguide/fluefiskeri/",
+    image: "/images/fluefiskeri_card.jpg",
+    alt: "Fluefisker kaster i en å",
+  },
+];
+
+const secondary = [
+  {
+    title: "Ultra-light fiskeri",
+    chip: "Teknik",
+    description: "UL fiskeri giver en intens fiskeoplevelse med let udstyr. Lær teknikker og udstyr.",
+    href: "/fiskeguide/ul-fiskeri/",
+    image: "/images/ul_fiskeri_hero.png",
+    alt: "Lille spinnestang og let hjul til ultra-light fiskeri",
+  },
+  {
+    title: "Fiskeri for børn",
+    chip: "Familie",
+    description: "Gode råd til at introducere børn til fiskeriet. Udstyr og pladser for hele familien.",
+    href: "/fiskeguide/fiskeri-for-born/",
+    image: "/images/born_hero.png",
+    alt: "Barn med fiskestang ved vandkanten",
+  },
+  {
+    title: "Fisketegn",
+    chip: "Regler",
+    description: "Alt om fisketegn i Danmark — hvornår du har brug for det, hvad det koster, og hvor du køber det.",
+    href: "/fiskeguide/fisketegn/",
+    image: "/images/fisketegn_hero.png",
+    alt: "Fisketegn — det danske statslige fiskeritegn",
+  },
+  {
+    title: "Bombarda fiskeri",
+    chip: "Teknik",
+    description: "Guide til bombarda fiskeri — effektiv metode til at fiske med fluer på spinning-udstyr.",
+    href: "/fiskeguide/bombarda-fiskeri/",
+    image: "/images/bombarda_hero.png",
+    alt: "Bombarda-flåd brugt til at fiske med fluer på spinning-udstyr",
+  },
+  {
+    title: "Fiskeri fra båd",
+    chip: "Båd",
+    description: "Fiskeri fra båd åbner nye muligheder. Guide til udstyr, teknikker og de bedste pladser.",
+    href: "/fiskeguide/fiskeri-fra-baad/",
+    image: "/images/baad_hero.png",
+    alt: "Fiskebåd på roligt vand",
+  },
+  {
+    title: "Catch and Release",
+    chip: "Etik",
+    description: "Lær den korrekte Catch and Release teknik, så fisken overlever og kan fanges igen.",
+    href: "/fiskeguide/catch-and-release/",
+    image: "/images/cnr_hero.png",
+    alt: "Fisker der skånsomt genudsætter en fisk",
+  },
+];
+---
+
+<MainLayout
+  title="Fiskeguides – Bliv en bedre fisker | Ude og Fiske"
+  description="Find guides til de mest almene fiskeformer i Danmark. Put & Take, kystfiskeri, molefiskeri, åfiskeri og meget mere."
+  canonical="https://udeogfiske.dk/fiskeguide/"
+  pageType="category"
+  breadcrumbs={[{ name: "Forside", url: "/" }, { name: "Fiskeguides" }]}
+  itemList={[
+    ...featured.map(c => ({ name: c.title, url: c.href, image: c.image })),
+    ...secondary.map(s => ({ name: s.title, url: s.href, image: s.image })),
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <span>Fiskeguides</span>
+      </nav>
+      <h1 class="pg-title">Fiskeguides</h1>
+      <p class="pg-sub">Guides til de mest populære fiskeformer i Danmark — fra kyst og mole til å og put & take.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvilke fiskeformer dækker guiden?</h2>
+        <p class="ac-a">På denne side finder du guides til de fem mest populære fiskeformer i Danmark: <strong>Put &amp; Take</strong>, <strong>å-fiskeri</strong>, <strong>molefiskeri</strong>, <strong>kyst- og fjordfiskeri</strong> og <strong>fluefiskeri</strong>. Derudover er der guides til ultra-light, bådfiskeri, bombarda, catch and release, fisketegn og fiskeri for børn — så der er noget for både nybegyndere og mere erfarne fiskere.</p>
+      </div>
+
+      <div class="pg-intro">
+        <p>Herunder vil du finde guides til de mest almene fiskeformer i Danmark og vandende omkring Danmark. Dette gælder bl.a. de populære Put & Take søer som der findes utroligt mange af.</p>
+        <p>Kyst og mole fiskeri fylder naturligvis også meget da vi i Danmark er så heldige at være omringet af hav. Der er også guides til å fiskeri, da vi i Danmark også har åer hvor der findes fisk helt op til 20 kg, bl.a. gedder i Gudenåen.</p>
+        <p>Formålet med disse guides er at nybegyndere nemmere kan påbegynde fiskeriet, efter at have læst disse guides. Jeg vil komme med konkrete anbefalinger til hvilket udstyr man skal bruge, men også hvordan du skal fiske, for at fange fisk.</p>
+      </div>
+
+      <h2 class="sec-heading">Udvalgte fiskeformer</h2>
+      <div class="card-grid">
+        {featured.map((c) => (
+          <a href={c.href} class="card" aria-label={c.title}>
+            <img src={c.image} alt={c.alt} loading="lazy" width="600" height="400" class="card-img" />
+            <span class="card-chip">{c.chip}</span>
+            <div class="card-overlay">
+              <h3 class="card-title">{c.title}</h3>
+              <span class="card-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="sec-bridge">
+        <p>Ovenfor er de fem fiskeformer der dækker det meste af dansk fiskeri — og det er dér de fleste begyndere starter. Men der er emner som falder uden for de store kategorier: specialiserede teknikker, praktiske regler, og fiskeri for de mindste. Herunder har jeg samlet de guides jeg ofte bliver spurgt om.</p>
+      </div>
+
+      <h2 class="sec-heading sec-heading-sm">Flere guides</h2>
+      <div class="card-grid card-grid-sm">
+        {secondary.map((s) => (
+          <a href={s.href} class="card" aria-label={s.title}>
+            <img src={s.image} alt={s.alt} loading="lazy" width="400" height="300" class="card-img" />
+            <span class="card-chip">{s.chip}</span>
+            <div class="card-overlay">
+              <h3 class="card-title">{s.title}</h3>
+              <span class="card-arrow">
+                <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <AdsenseBanner />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 55%, rgba(0, 0, 0, 0) 100%),
+      url('/images/fiskeguide_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-title, .pg-sub {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.25rem;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+  .pg-bc a:hover { color: rgba(255,255,255,0.85); }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+
+  .ac-q {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+  }
+
+  .ac-a {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .ac-a strong {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .pg-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .pg-intro p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.8;
+  }
+
+  .sec-heading {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6b7280;
+    margin-bottom: 1.25rem;
+  }
+
+  .sec-heading-sm {
+    margin-top: 3.5rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 2;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0d4a5e;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px -14px rgba(13, 74, 94, 0.45);
+  }
+
+  .card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .card:hover .card-img { transform: scale(1.06); }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+  }
+
+  .card-chip {
+    position: absolute;
+    top: 0.875rem;
+    left: 0.875rem;
+    z-index: 2;
+    padding: 0.3125rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    background: rgba(13, 74, 94, 0.92);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  .card-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 1.25rem 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .card-arrow {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .card:hover .card-arrow {
+    background: #ffffff;
+    color: #0d4a5e;
+    transform: translateX(3px);
+  }
+
+  .sec-bridge {
+    margin-top: 3rem;
+  }
+
+  .sec-bridge p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.8;
+    max-width: 62ch;
+  }
+
+  .card-grid-sm {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .card-grid-sm .card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .card-grid-sm .card-overlay {
+    padding: 0.875rem 1rem 1rem;
+  }
+
+  .card-grid-sm .card-title {
+    font-size: 1.0625rem;
+  }
+
+  .card-grid-sm .card-chip {
+    top: 0.625rem;
+    left: 0.625rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  .card-grid-sm .card-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media (max-width: 880px) {
+    .card-grid-sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+    .card-grid-sm {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

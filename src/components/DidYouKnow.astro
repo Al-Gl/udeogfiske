@@ -1,0 +1,59 @@
+---
+interface Props {
+  /** Override the heading. Defaults to "Vidste du?" */
+  title?: string;
+}
+const { title = 'Vidste du?' } = Astro.props;
+---
+
+<aside class="dyk">
+  <span class="dyk-icon" aria-hidden="true">
+    <svg viewBox="0 0 64 32" fill="currentColor">
+      <path d="M2 16c8-12 22-14 33-10 4 1.6 8 4 11 7l14-7-6 10 6 10-14-7c-3 3-7 5.4-11 7-11 4-25 2-33-10z" />
+      <circle cx="44" cy="13" r="1.6" fill="#ffffff" />
+    </svg>
+  </span>
+  <div class="dyk-body">
+    <span class="dyk-title">{title}</span>
+    <p class="dyk-text"><slot /></p>
+  </div>
+</aside>
+
+<style>
+  .dyk {
+    display: flex;
+    align-items: center;
+    gap: 1.125rem;
+    margin: 2rem 0;
+    padding: 1.125rem 1.375rem;
+    background: #f1f5f9;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 8px;
+  }
+  .dyk-icon {
+    flex-shrink: 0;
+    width: 64px; height: 32px;
+    color: #0d4a5e;
+    display: inline-flex;
+  }
+  .dyk-icon svg { width: 100%; height: 100%; }
+  .dyk-body { line-height: 1.55; }
+  .dyk-title {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0d4a5e;
+    margin-bottom: 0.1875rem;
+  }
+  .dyk-text {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: #1f2937;
+  }
+  @media (max-width: 540px) {
+    .dyk { gap: 0.875rem; padding: 1rem 1.125rem; }
+    .dyk-icon { width: 48px; height: 24px; }
+  }
+</style>

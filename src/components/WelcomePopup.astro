@@ -1,0 +1,300 @@
+---
+// First-visit welcome popup announcing the redesign.
+// Shows ONCE per visitor, and ONLY during the 30-day launch window.
+//
+// 👉 Set CAMPAIGN_START to the real go-live date when you deploy.
+//    The popup automatically stops appearing 30 days after that date.
+const CAMPAIGN_START = "2026-06-09"; // YYYY-MM-DD — change to your launch date
+const CAMPAIGN_DAYS = 30;
+---
+
+<div id="welcome-root" hidden>
+  <div class="wp-overlay" data-wp="close"></div>
+  <div class="wp-card" role="dialog" aria-modal="true" aria-labelledby="wp-title" aria-describedby="wp-desc">
+    <button type="button" class="wp-close" data-wp="close" aria-label="Luk">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Header illustration -->
+    <div class="wp-art" aria-hidden="true">
+      <img src="/images/welcome-banner.png" alt="" width="460" height="180" loading="eager" />
+      <span class="wp-badge"><span class="wp-badge-dot"></span> Nyt look</span>
+    </div>
+
+    <div class="wp-body">
+      <h2 id="wp-title" class="wp-title">Velkommen til nye Ude og Fiske! 🎣</h2>
+      <p id="wp-desc" class="wp-desc">
+        Jeg har redesignet hele siden fra bunden og tilføjet en række nye funktioner,
+        så det bliver nemmere – og federe – at planlægge din næste fisketur.
+      </p>
+
+      <ul class="wp-list">
+        <li>
+          <span class="wp-ico">🧭</span>
+          <span>Interaktive <strong>grej- og agnvælgere</strong>, der hjælper dig med det rigtige valg</span>
+        </li>
+        <li>
+          <span class="wp-ico">📅</span>
+          <span><strong>Sæsonkalendere</strong> for hver fiskeart – se hvornår de bider</span>
+        </li>
+        <li>
+          <span class="wp-ico">💰</span>
+          <span>Live <strong>prissammenligning</strong> på udvalgt grej</span>
+        </li>
+        <li>
+          <span class="wp-ico">✨</span>
+          <span>Et helt nyt, <strong>overskueligt design</strong> der virker på mobil og computer</span>
+        </li>
+      </ul>
+
+      <p class="wp-sign">God fornøjelse på vandet,<br><strong>Aldin · Ude og Fiske</strong></p>
+
+      <button type="button" class="wp-cta" data-wp="close">Lad mig udforske</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ CAMPAIGN_START, CAMPAIGN_DAYS }}>
+  (function () {
+    var KEY = "uof-welcome-seen";
+    var root = document.getElementById("welcome-root");
+    if (!root) return;
+
+    // Testing convenience: on localhost the front page always shows the popup
+    // (ignores the once-per-visitor flag and the 30-day window). Production is unchanged.
+    var isLocal = ["localhost", "127.0.0.1", "0.0.0.0"].indexOf(location.hostname) !== -1;
+    var isFront = location.pathname === "/" || location.pathname === "/index.html";
+    var force = isLocal && isFront;
+
+    if (!force) {
+      // Campaign window: only show within CAMPAIGN_DAYS of the launch date.
+      var start = new Date(CAMPAIGN_START + "T00:00:00");
+      var end = new Date(start.getTime() + CAMPAIGN_DAYS * 24 * 60 * 60 * 1000);
+      var now = new Date();
+      if (isNaN(start.getTime()) || now < start || now > end) return;
+
+      // Show once per visitor.
+      try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+    }
+
+    var card = root.querySelector(".wp-card");
+
+    function close() {
+      root.classList.remove("is-open");
+      document.removeEventListener("keydown", onKey);
+      setTimeout(function () { root.hidden = true; }, 250);
+    }
+    function onKey(e) { if (e.key === "Escape") close(); }
+
+    root.addEventListener("click", function (e) {
+      if (e.target.closest("[data-wp='close']")) close();
+    });
+
+    function open() {
+      root.hidden = false;
+      // next frame for transition
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { root.classList.add("is-open"); });
+      });
+      document.addEventListener("keydown", onKey);
+      if (!force) { try { localStorage.setItem(KEY, new Date().toISOString()); } catch (e) {} }
+      var btn = card && card.querySelector(".wp-cta");
+      if (btn) btn.focus({ preventScroll: true });
+    }
+
+    // Small delay so the page settles before greeting the visitor.
+    if (document.readyState === "complete") setTimeout(open, 700);
+    else window.addEventListener("load", function () { setTimeout(open, 700); });
+  })();
+</script>
+
+<style>
+  #welcome-root[hidden] { display: none; }
+  #welcome-root {
+    position: fixed;
+    inset: 0;
+    z-index: 500; /* above the cookie banner/modal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .wp-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 21, 32, 0.6);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  #welcome-root.is-open .wp-overlay { opacity: 1; }
+
+  .wp-card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 30px 70px rgba(8, 46, 59, 0.4);
+    transform: translateY(20px) scale(0.96);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+  }
+  #welcome-root.is-open .wp-card { transform: translateY(0) scale(1); opacity: 1; }
+
+  .wp-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    display: flex;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 8px;
+    padding: 0.3rem;
+    color: #082e3b;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .wp-close:hover { background: #fff; }
+  .wp-close:focus-visible { outline: 2px solid #c47d0a; outline-offset: 2px; }
+
+  .wp-art {
+    position: relative;
+    height: 168px;
+    border-radius: 18px 18px 0 0;
+    overflow: hidden;
+  }
+  .wp-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    display: block;
+    transform: scale(1.04); /* hide the illustration's thin frame */
+  }
+  /* soft fade into the white body */
+  .wp-art::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
+    pointer-events: none;
+  }
+
+  .wp-badge {
+    position: absolute;
+    left: 1.3rem;
+    top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #0d4a5e;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(8, 46, 59, 0.25);
+  }
+  .wp-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #c47d0a;
+    box-shadow: 0 0 0 0 rgba(196, 125, 10, 0.55);
+    animation: wp-pulse 2s infinite;
+  }
+  @keyframes wp-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(196, 125, 10, 0.55); }
+    70% { box-shadow: 0 0 0 7px rgba(196, 125, 10, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(196, 125, 10, 0); }
+  }
+
+  .wp-body { padding: 0.5rem 1.6rem 1.75rem; margin-top: -0.5rem; position: relative; }
+  .wp-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0d4a5e;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+  .wp-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #4b5563;
+    margin-bottom: 1.25rem;
+  }
+
+  .wp-list {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .wp-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #374151;
+  }
+  .wp-list strong { color: #111827; font-weight: 600; }
+  .wp-ico {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e6f1f5;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .wp-sign {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #6b7280;
+    margin-bottom: 1.25rem;
+  }
+  .wp-sign strong { color: #0d4a5e; font-weight: 600; }
+
+  .wp-cta {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: #0d4a5e;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .wp-cta:hover { background: #082e3b; transform: translateY(-1px); }
+  .wp-cta:focus-visible { outline: 2px solid #c47d0a; outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wp-overlay, .wp-card { transition: opacity 0.2s ease; transform: none; }
+    #welcome-root.is-open .wp-card { transform: none; }
+    .wp-art img { transform: scale(1.04); }
+    .wp-badge-dot { animation: none; }
+  }
+</style>

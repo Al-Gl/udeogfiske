@@ -1,0 +1,356 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import AffiliateTrio from '../../../components/AffiliateTrio.astro';
+import ProductReview from '../../../components/ProductReview.astro';
+
+const related = [
+  {
+    title: "Fiskeri på kysten",
+    description: "Guide til kystfiskeri i Danmark — over 8.000 km kyst står åben for dig.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Fiskeri i å",
+    description: "Find de bedste åer og lær at fange gedde, sandart og ørred i rindende vand.",
+    href: "/fiskeguide/fiskeri-i-aa/",
+    image: "/images/aa_fiskeri.jpg",
+    alt: "Å med træer langs bredden",
+    chip: "Ferskvand",
+  },
+  {
+    title: "Fiskeri på mole",
+    description: "Molefiskeri er en af de nemmeste måder at komme i gang med havfiskeri.",
+    href: "/fiskeguide/fiskeri-paa-mole/",
+    image: "/images/mole_fiskeri.jpg",
+    alt: "Mole der strækker sig ud i havet",
+    chip: "Hav",
+  },
+];
+---
+
+<MainLayout
+  title="Put & Take fiskeri – Komplet guide til Put & Take i Danmark | Ude og Fiske"
+  description="Alt du skal vide for at komme godt i gang med Put & Take fiskeri: udstyr, spinnere, powerbait og valg af sø."
+  canonical="https://udeogfiske.dk/fiskeguide/put-take-fiskeri/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Put & Take fiskeri" },
+  ]}
+  articleData={{
+    headline: "Put & Take fiskeri",
+    image: "/images/put_take_hero.png",
+    datePublished: "2024-08-05",
+  }}
+  faq={[{
+    question: "Hvad er Put & Take fiskeri?",
+    answer: "Put & Take er en fiskeform hvor du <strong>betaler for adgang</strong> til en sø og kan tage fiskene med hjem. De fleste søer udsætter <strong>regnbueørreder</strong>, og du skal ikke tænke på mindstemål, fredning eller fisketegn. Det eneste du skal bruge er en fiskestang, et hjul, line og endegrej — og så kan du komme i gang med det samme.",
+  }]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Put &amp; Take fiskeri</span>
+      </nav>
+      <h1 class="pg-title">Put &amp; Take fiskeri</h1>
+      <p class="pg-sub">Komplet guide til Put &amp; Take i Danmark — fra valg af sø til det udstyr og de teknikker der rent faktisk fanger fisk.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad er Put &amp; Take fiskeri?</h2>
+        <p class="ac-a">Put &amp; Take er en fiskeform hvor du <strong>betaler for adgang</strong> til en sø og kan tage fiskene med hjem. De fleste søer udsætter <strong>regnbueørreder</strong>, og du skal ikke tænke på mindstemål, fredning eller fisketegn. Det eneste du skal bruge er en fiskestang, et hjul, line og endegrej — og så kan du komme i gang med det samme.</p>
+      </div>
+
+      <article class="article">
+        <p>Put &amp; Take fiskeri er en favorit blandt mange danskere grundet den store mulighed for at fange en fisk, samt at der er en Put &amp; Take sø lige i nærheden lige meget hvor i landet du befinder dig. Det er især den næsten sikre fisk garanti som tiltrækker de fleste danskere, da nydelsen ved at få en fisk på krogen og få en fisk med hjem er et af de primære årsager folk vælger at fiske overhovedet. Put &amp; Take betyder bogstavelig talt, put og tag i den forstand at du putter penge i søen, og tager fiskene med hjem.</p>
+
+        <p>De fleste Put &amp; Take søer i Danmark udsætter for det meste regnbue ørreder, og andre variationer af disse, bl.a. kildeørreder og guld ørreder. Enkelte søer har også andre fisk som gedder, stør, ål og andre. Ørreder er et af de bedste spisefisk, hvilket også er grunden til at Put &amp; Take søer udsætter dem, da folk er mere interesserede i at fange fisk som de har lyst til at spise.</p>
+
+        <p>Når du fisker i en Put &amp; Take skal du ikke bekymre dig om mindstemål på fisk, fredningsperioder eller at have et gyldigt fisketegn. Det eneste du skal gøre, er at betale for antal ønskede fisketimer inden du påbegynder dit fiskeri.</p>
+
+        <h2>Hvordan fisker jeg i en Put &amp; Take sø?</h2>
+        <p>Put &amp; Take søernes koncept er at gøre fiskeri nemt og attraktivt for alle, derfor behøves man ikke det helt dyre fiskeudstyr for at fiske i en Put &amp; Take sø. De fleste søer er meget rene og nemme at tilgå, og du behøver blot at finde en fiskeplads ved søen og påbegynde fiskeriet. Det udstyr som du <strong>SKAL</strong> bruge for at fiske i en Put &amp; Take sø er:</p>
+        <ul>
+          <li>Fiskestang</li>
+          <li>Fiskehjul</li>
+          <li>Line</li>
+          <li>Endegrej</li>
+        </ul>
+        <p>Endegrej i en Put &amp; Take sø kan være spinner, flåd og krog, blylod, wobler og meget mere. Længere nede vil jeg lave konkrete anbefalinger til endegrej som øger chancen for at fange noget i en Put &amp; Take sø. Der er visse ting som ørreder bedre kan li end andre, og derfor har du også større chance for at fange fiskene hvis du bruger denne form for agn. En stor del af mit fiskeri har forgået i Put &amp; Take søer overalt i hele Danmark, derfor vil jeg også komme ind på hvilke fiskeformer og agn jeg har brugt med stor succes.</p>
+
+        <ProductReview
+          productId="80873"
+          rating={4.5}
+          headline="Det sæt jeg selv anbefaler første gang man tager til Put & Take."
+          review="Jeg har brugt Tormentor2 Combo som mit faste startsæt i en hel sæson, og det er svært at slå til prisen. Stangen er en god mellemklasse i 8-9 ft, hjulet er forspolet med line, og hele sættet sidder lige til at kaste med uden noget pillearbejde. Den er ikke en specialiststang — men i en P&T sø, hvor du fisker med spinner eller flåd og powerbait, mærker jeg ingen begrænsninger."
+          pros={[
+            'Komplet startsæt — stang, hjul og line klar fra første kast',
+            'Aktion passer perfekt til spinnere i str. 2-3 og let powerbait-fiskeri',
+            'Solid Abu-kvalitet på både hjul og stang — det holder mange sæsoner',
+          ]}
+          cons={[
+            'Den medfølgende line er fin, men jeg skifter den selv til 0,22 mm efter første tur',
+          ]}
+          cta="Se sættet hos Fiskegrej"
+        />
+
+        <h2>Spinnere</h2>
+        <p>Fisker du med en almindelig fiskestang, vil jeg anbefale dig at købe spinnere i forskellige størrelser og mønstre. Meps spinnere har altid været en af mine favoritter, og har næsten altid garanteret fisk når jeg har besøgt Put &amp; Take søer. Spinfiskeri er en af mine yndlings fiskeformer, da man aktivt fisker efter fisken i stedet for at vente at den kommer til dig som ved f.eks. fiskeri med powerbait på flåd eller blylod. Fordelen er også at du kan mærke når fisken bider sig fast i spinneren, hvilket altid giver et sus i maven.</p>
+
+        <figure class="art-figure">
+          <img src="/images/put_take_spinnere.jpg" alt="Mepps Aglia spinnere lagt frem på våd skifer ved siden af en åben fluebox" loading="lazy" width="800" height="450" />
+          <figcaption>Mepps-spinnere er en fast del af min Put &amp; Take-taske — varianterne nedenfor er dem jeg griber først efter.</figcaption>
+        </figure>
+
+        <p>Spinnere i størrelsen 2-3 er at foretrække, da det muliggør spinning i den hastighed som gør fiskene hugvillige. Spinnere i størrelse 0 og 1 er helt små og kan være svære at kaste langt — til gengæld muliggør det spinning i meget langsomt tempo hvilket ørrederne også til tider er helt vilde med. Alt over 4 vil efter min mening, være for tungt og ofte vil spinneren sidde fast i bunden af søen. Farvevalg er en vigtig parameter når det kommer til valg af spinnere, og det er her fiskere har meget forskellige holdninger til hvad der virker — og det er her at du kan eksperimentere i forskellige varianter. Fisk kan være meget kræsne den ene gang, og kun bide på specifikke farver, og andre gange bider de på alt hvad der bliver præsenteret for dem.</p>
+
+        <AffiliateTrio
+          title="Mine 3 favoritspinnere til Put & Take"
+          intro="Mepps Aglia-serien har stået fast i min boks i årevis — det er dem jeg griber først når jeg ankommer til en sø. Her er den klassiker jeg altid har på, plus de to varianter jeg skifter til når lyset eller sigten ændrer sig."
+          products={[
+            {
+              productId: '35380',
+              badge: 'Klassikeren',
+              badgeTone: 'teal',
+              note: 'Min standardspinner. Fanger fisk hele året, uanset forhold — start altid her.',
+              highlight: true,
+            },
+            {
+              productId: '35378',
+              badge: 'Til grå dage',
+              badgeTone: 'orange',
+              note: 'Mit valg når sigten er ringe og lyset er fladt. De fluorescerende farver lyser op.',
+            },
+            {
+              productId: '35376',
+              badge: 'Til klart vand',
+              badgeTone: 'slate',
+              note: 'Når solen står højt og vandet er klart — refleksen får selv trætte fisk til at hugge.',
+            },
+          ]}
+          cta="Se hos Fiskegrej"
+        />
+      </article>
+
+      <article class="article">
+        <h2>Powerbait og orm</h2>
+        <p>Powerbait er en kunstig agn udviklet specifikt til at fange ørreder i Put &amp; Take søer — og det er yderst effektivt! Powerbait er en slags tyk pasta som man kan forme i hånden og montere på krogen. Den er effektiv grundet den lugt som tiltrækker ørrederne. Da Powerbait ikke er en naturlig agn, men et agn som er udviklet på et laboratorium, har det betydet at det er gennemtestet for at nå til den farve, smag og lugt kombination som tiltrækker ørrederne mest.</p>
+
+        <figure class="art-figure">
+          <img src="/images/put_take_powerbait.jpg" alt="Powerbait i grøn og gul farve formet rundt om en lille krog ved siden af en lineholder" loading="lazy" width="800" height="450" />
+          <figcaption>Powerbait formet over en lille krog — den klassiske grøn-gule kombination er stadig min go-to når jeg ankommer til søen.</figcaption>
+        </figure>
+
+        <p>Personligt har jeg mest held med Powerbait i grøn, gul og hvid farve, men andre farver kan være lige så effektive hvis du spørger andre fiskere. Den måde jeg fortrækker at fiske med Powerbait er med et flåd, ca. 2 meter line med enkelte blylodder som skal holde Powerbaiten under vandet, og til sidst selve krogen med Powerbait monteret. Jeg plejer at forme Powerbait så det ligner en tyk torpedo, som er tykkest på midten.</p>
+
+        <p>Du skal dog dække <strong>HELE</strong> krogen med powerbait.</p>
+
+        <p>Du kan derefter kaste flåden ud, lade den stå eller spinne den ind meget langsomt — begge former er effektive.</p>
+
+        <AffiliateTrio
+          title="Mine 3 favoritter til Powerbait & gummiagn"
+          intro="Powerbait-pastaen er klassikeren — den jeg altid har på fra start. Men gummiagn med indbygget duft og realistisk orm-bevægelse har vundet stor plads i min taske, særligt når fiskene er kræsne. Her er de tre jeg griber efter."
+          products={[
+            {
+              productId: '34699',
+              badge: 'Klassikeren',
+              badgeTone: 'teal',
+              note: 'Min go-to når fiskene står tæt på bunden. Den klassiske pasta som ørrederne sjældent siger nej til.',
+              highlight: true,
+            },
+            {
+              productId: '76805',
+              badge: 'Duft + bevægelse',
+              badgeTone: 'orange',
+              note: 'Når jeg vil have både Powerbait-duft og levende bevægelse — en gummi med aromaen indstøbt.',
+            },
+            {
+              productId: '501310',
+              badge: 'Til kræsne fisk',
+              badgeTone: 'slate',
+              note: 'Realistisk orm-imitation der bevæger sig naturligt — virker når fiskene har set alt det andet.',
+            },
+          ]}
+          cta="Se hos Fiskegrej"
+        />
+
+        <h2>Valg af Put &amp; Take sø</h2>
+        <p>Når du skal vælge en Put &amp; Take sø at fiske i, er der flere forhold du bør undersøge, og her er internettet et rigtig godt værktøj. Kig først på Facebook for at se om søen har en profil og om den er aktiv. Er profilen aktiv hvor du kan se at de dagligt udsætter fisk i søen — så er søen værd at overveje. Du kan desuden på billeder se om søen er ren og hvilke karakterer fiskere har givet søen. Google Maps er også et godt værktøj til at se karakter for søen. Vælg altid en sø hvor du ved at der dagligt bliver udsat fisk og hvor ejeren gør meget for at holde søen ren. Der er intet værre end at komme ud til en sø hvor det er helt overgroet og hvor det er tvivlsomt om der overhovedet er fisk i søen!</p>
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/put_take_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 580px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+
+  .ac-q {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+  }
+
+  .ac-a {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .ac-a strong {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .article + :global(section),
+  .article + :global(div) {
+    margin-top: 2.5rem;
+  }
+
+  .article p {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .article p strong { color: #111827; font-weight: 700; }
+
+  .article h2 {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .article ul {
+    margin: 0 0 1.5rem 1.25rem;
+    padding: 0;
+  }
+
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 0.375rem;
+    list-style: disc;
+  }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .art-figure figcaption {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    padding: 0.625rem 0.875rem;
+    text-align: center;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+
+</style>

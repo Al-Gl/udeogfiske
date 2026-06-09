@@ -1,0 +1,459 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import AffiliateTrio from '../../../components/AffiliateTrio.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import DifficultyMeter from '../../../components/DifficultyMeter.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const related = [
+  {
+    title: "Put & Take fiskeri",
+    description: "UL grej er perfekt i Put & Take søer — spotfiskeri efter regnbueørred med små blink.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og take sø i Danmark",
+    chip: "Sø",
+  },
+  {
+    title: "Fluefiskeri",
+    description: "UL fiskeriet startede blandt fluefiskere — læs guiden til fluefiskeri.",
+    href: "/fiskeguide/fluefiskeri/",
+    image: "/images/fluefiskeri_card.jpg",
+    alt: "Fluefiskeri i rindende vand",
+    chip: "Teknik",
+  },
+  {
+    title: "Fiskeri på kysten",
+    description: "Havørred på UL stang giver en intens fight — læs guiden til kystfiskeri.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+];
+---
+
+<MainLayout
+  title="UL fiskeri – Guide til ultra light fiskeri | Ude og Fiske"
+  description="Ultra light fiskeri: lær valg af UL stang, hjul og line, og fang ørred, aborre og gedde med let grej."
+  canonical="https://udeogfiske.dk/fiskeguide/ul-fiskeri/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Ultra-light fiskeri" },
+  ]}
+  articleData={{
+    headline: "Ultra-light fiskeri",
+    image: "/images/ul_fiskeri_hero.png",
+    datePublished: "2025-03-08",
+  }}
+  faq={[
+    {
+      question: "Hvad er UL fiskeri?",
+      answer: "UL står for <strong>Ultra Light</strong> eller Ultra Let — alt udstyret er så let som muligt: stang med kastevægt på <strong>0–7 g</strong>, hjul i størrelse <strong>500–2000</strong> og tynd line. Det giver en meget intens fight selv med små fisk og er især populært til regnbueørreder i Put &amp; Take og havørred på kysten.",
+    },
+    {
+      question: "Hvilken stang skal jeg vælge til UL fiskeri?",
+      answer: "Vælg en spinnestang med <strong>kastevægt på 0–7 g</strong> — hold dig under 10 g, så er det stadig UL. De fleste UL-stænger er omkring <strong>7 fod</strong> og vejer under 100 g. En følsom klinge, der loader på selv 2–3 g blink, er det vigtigste.",
+    },
+    {
+      question: "Hvilket hjul passer til UL grej?",
+      answer: "Et lille hjul i størrelse <strong>500–2000</strong> (op til 2500 hvis du fisker langt). Jeg foretrækker selv den mindre ende, så hjulet balancerer med den lette stang. En <strong>blød, fintindstillelig bremse</strong> er vigtig, fordi den skal beskytte den tynde line.",
+    },
+    {
+      question: "Hvilken line bruger du til UL?",
+      answer: "Jeg bruger en kombination af <strong>fletline på 0,04–0,10 mm</strong> og et <strong>fluorocarbon-forfang på 0,16–0,20 mm</strong>. Fluorocarbon er næsten usynligt i vandet, så fisken ikke ser forfanget. Ved du, at der står store fisk, så gå en størrelse op.",
+    },
+    {
+      question: "Hvilke fisk kan jeg fange på UL grej?",
+      answer: "Primært <strong>regnbueørred</strong> i Put &amp; Take og <strong>havørred</strong> på kyst, i fjord og å. Flere og flere fisker også <strong>aborre, gedde og stalling</strong> på UL. I princippet kan du fange alle fisk — det er kastevægten, der sætter grænsen.",
+    },
+    {
+      question: "Er UL fiskeri svært for begyndere?",
+      answer: "Nej. Den største forskel er, at de lette blink (2–7 g) ikke kaster så langt som et tungt blink, så du fisker tættere på. Til gengæld giver selv små fisk en intens fight, og spotfiskeri efter synlige fisk i Put &amp; Take er en perfekt og meget belønnende start.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>UL fiskeri</span>
+      </nav>
+      <h1 class="pg-title">UL fiskeri</h1>
+      <p class="pg-sub">Guide til ultra light fiskeri — fra valg af stang og hjul til hvilke fisk du kan fange med det helt lette grej.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad er UL fiskeri?</h2>
+        <p class="ac-a">UL står for <strong>Ultra Light</strong> eller Ultra Let — alt udstyret er så let som muligt: stang med kastevægt på <strong>0–7 g</strong>, hjul i størrelse <strong>500–2000</strong> og tynd line. Det giver en meget intens fight selv med små fisk og er især populært til regnbueørreder i Put &amp; Take og havørred på kysten.</p>
+      </div>
+
+      <article class="article">
+        <DifficultyMeter value={50} label="Sværhedsgrad for begyndere" />
+
+        <h2>Hvad er UL fiskeri?</h2>
+        <p>UL i UL Fiskeri står for Ultra Light eller Ultra Let afhængig om du tager den engelske eller danske betegnelse. Men hele ideen bag UL fiskeri er at bruge så let fiskegrej som muligt. Dvs. stangen, hjulet, linen og endegrej er så småt som muligt.</p>
+
+        <p>Der er ikke nogen egentlige regler for hvad der er UL fiskeri og hvad der ikke er, og derfor er det også op til den enkelte at bedømme hvad man mener er UL fiskeri. Der er nogle overordnede guidelines blandt UL fiskere omkring hvor UL fiskeriet begynder og hvor det ender, og det kan man bruge hvis man gerne vil ind i UL fiskeriet.</p>
+
+        <p>UL er blevet en populær fiskeform fordi brugen af det helt lette grej gør at kontakten og fighten med fisken bliver endnu mere intensiv. Ofte kan større stænger og hjul gøre at fighten med selv de store fisk bliver for let, og derfor foretrækker mange UL fiskere at bruge dette lette grej.</p>
+
+        <DidYouKnow>
+          Navnet "UL" blev først taget i brug af ultralette fluefiskere — de var de første, der havde brug for så let grej, at de kunne kaste små fluer præcist nok til at narre kræsne ørreder og stallinger.
+        </DidYouKnow>
+
+        <StatHighlight
+          value="0–7 g"
+          caption="Typisk kastevægt på en UL-stang — derfor de små, langsomt synkende blink"
+          icon="ruler"
+        />
+
+        <h2>Hvilket grej skal du bruge til UL fiskeri?</h2>
+        <p>UL fiskeri kan opdeles i fluefiskeri og spinnefiskeri, og det er de to fiskeformer der typisk dyrkes når der er tale om UL fiskeri. Tommelfingerreglen for UL spinnefiskeri er, at man helst ikke skal over 10 g i kastevægt på stangen — og typisk er man nede i 0–7 g. Her er de tre dele af grejet, og hvordan du vælger dem:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over UL-grej">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Grej</th>
+                <th scope="col">UL-specifikation</th>
+                <th scope="col">Min tommelfingerregel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Grej">Stang</th>
+                <td data-label="UL-specifikation">Kastevægt 0–7 g, ca. 7 fod, vejer under 100 g</td>
+                <td data-label="Min tommelfingerregel">Hold dig under 10 g i kastevægt — så er det stadig UL</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Grej">Hjul</th>
+                <td data-label="UL-specifikation">Størrelse 500–2000, op til 2500</td>
+                <td data-label="Min tommelfingerregel">Jeg vælger den mindre ende, så det balancerer med stangen</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Grej">Line</th>
+                <td data-label="UL-specifikation">Fletline 0,04–0,10 mm + fluorocarbon-forfang 0,16–0,20 mm</td>
+                <td data-label="Min tommelfingerregel">Gå en størrelse op, hvor du ved der er store fisk</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>UL stænger</h3>
+        <p>Når det gælder UL fluefiskeri er det typisk stænger i klasse 1# og 2# som bruges, da de er de mindste fluestænger man kan finde. Ved UL spinnefiskeri kigger du efter en følsom stang med lav kastevægt — en klinge der loader på selv 2–3 g, så du kan kaste de små blink.</p>
+
+        <h3>UL hjul</h3>
+        <p>Når det kommer til hjul og line er det vigtigt at der igen bruges udstyr som er så småt som muligt. Hjul skal være i størrelsen 500-2000, der kan til nøds bruges hjul i størrelsen 2500, men jeg foretrækker hjul i den mindre ende af udvalget. Sammenhængen mellem hjulstørrelse og kastelængde hører også sammen, og det skal man naturligvis have i tankerne, men fisker du i Put &amp; Take søer, så betyder kastelængde typisk ikke så meget.</p>
+
+        <h3>UL liner</h3>
+        <p>Til sidst skal linen også være så tynd som muligt. Her bruger jeg en kombination af fletline og fluorocarbon, så det er fluorocarbon fisken (ikke) ser, da den er næsten usynlig i vandet. Fletline bruger jeg op til 0,10 mm, men gerne 0,04–0,08 mm. Og selve fluorocarbon-forfanget bruger jeg 0,20 mm — eller 0,16–0,18 mm hvis jeg ved fiskene er i den mindre ende.</p>
+
+        <TipBox>
+          <p>Er linen for tynd, knækker en stor fisk den nemt — og det er næsten altid <strong>fluorocarbon-forfanget</strong> der ryger i duellen. Ved du, at du fisker et sted med store fisk, så gå <strong>en størrelse op</strong> for en sikkerheds skyld. Hellere lande fisken end at spare et par kroner på forfang.</p>
+        </TipBox>
+
+        <AffiliateTrio
+          title="Sådan sætter jeg mit UL-grej sammen"
+          intro="Et komplet UL-setup behøver ikke koste en formue. Her er de tre dele, jeg selv ville samle til en nybegynder — en følsom stang, et let hjul i lille størrelse og et lille spotblink til Put & Take."
+          products={[
+            {
+              productId: "503121",
+              badge: "Stangen",
+              badgeTone: "teal",
+              highlight: true,
+              note: "Min UL-arbejdshest. Følsom klinge med lav kastevægt, der loader på selv 2–3 g blink — og giver vild fight-følelse på små fisk.",
+            },
+            {
+              productId: "79861",
+              badge: "Hjulet",
+              badgeTone: "slate",
+              note: "Et let, velkørende hjul i lille størrelse. Den bløde bremse skåner den tynde line, når fisken sætter af.",
+            },
+            {
+              productId: "73886",
+              badge: "Agnet",
+              badgeTone: "orange",
+              note: "Et 2,8 g spotblink til Put & Take. Synker langsomt, så du kan fiske det højt — ned til regnbueørreder du kan se.",
+            },
+          ]}
+        />
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <h2>Hvilke fisk kan du fange med UL grej?</h2>
+        <p>Med UL grej kan du i teorien fiske næsten alle fisk, så længe dit agn kan komme ud til fiskene. Men når man taler om UL grej, går tankerne primært til ørreden — hvad enten det er regnbueørreden i Put &amp; Take søen, eller havørreden på den åbne kyst, i åen eller i fjordene.</p>
+
+        <p>Det er primært disse fisk der fiskes efter med UL grej, men der er flere og flere der fisker efter aborre, gedder og stalling med det helt lette grej. Aborrefiskeriet er især begyndt at blive populært, og med god grund: det helt lette grej gør at selv de mindre aborrer giver en god fight. Danmark byder desuden på noget fremragende aborrevand, uanset hvor i landet du befinder dig.</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over fisk du kan fange på UL grej">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Fisk</th>
+                <th scope="col">Hvor</th>
+                <th scope="col">Hvorfor UL passer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Fisk">Regnbueørred</th>
+                <td data-label="Hvor">Put &amp; Take søer</td>
+                <td data-label="Hvorfor UL passer">Går tæt på land og elsker små blink — perfekt til spotfiskeri</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Fisk">Havørred</th>
+                <td data-label="Hvor">Kyst, fjord og å</td>
+                <td data-label="Hvorfor UL passer">Fantastiske fightere — selv en fisk på 40 cm føles stor</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Fisk">Aborre</th>
+                <td data-label="Hvor">Søer og åer i hele landet</td>
+                <td data-label="Hvorfor UL passer">Selv de mindre aborrer giver en god fight på let grej</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Fisk">Gedde &amp; stalling</th>
+                <td data-label="Hvor">Søer og åer</td>
+                <td data-label="Hvorfor UL passer">Sjovt på UL — men gå op i line, hvis der er gedder</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Men kort sagt er det fantasien — sammen med dit grej — der sætter grænsen, for det er kastevægten der afgør om du kan fange en specifik fiskeart. Det bliver svært at fiske med fladfiskeforfang på en UL-stang med en kastevægt på 0–7 g.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/aborrefiskeri/"
+          title="Læs aborre fiskeri guiden"
+          desc="Aborre er en af de sjoveste fisk at fange på UL — find vandet og teknikken."
+        />
+
+        <h2>Kan du fange havørred på UL grej?</h2>
+        <p>Havørredfiskeri med UL grej kan være ekstremt underholdende, fordi havørreder er nogle fantastiske fightere. Med UL grej vil de mange havørreder på omkring de 40 cm give en god fight og føles som en fisk på 50–60 cm på en almindelig spinnestang.</p>
+
+        <StatHighlight
+          value="40 cm"
+          caption="En havørred på 40 cm føles som 55–60 cm på en UL-stang — fighten er hele pointen"
+          icon="ruler"
+        />
+
+        <p>Personligt vil jeg mene at det primært er fighten der gør havørredfiskeri med UL stang spændende, for man har en ulempe frem for en almindelig spinnestang: kastelængden. UL stænger med agn i størrelsen 7 g kaster simpelthen ikke så langt som et blink i 18 g.</p>
+
+        <p>Dog kan man godt slippe med at kaste kortere, især når man fisker efter <a href="/guide-til-fisk/havorredfiskeri/">havørreden</a> i åen, eller når havørreden er at finde tæt på land — eksempelvis de lidt koldere måneder med høj sol, hvor vandet tæt på land varmes hurtigere op. Her har man endda en fordel, da ens agn ikke vejer meget og man kan spinne det langsommere ind.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/havorredfiskeri/"
+          title="Læs havørredfiskeri guiden"
+          desc="Lær hvor og hvornår du fanger havørred — og hvilke agn der virker."
+        />
+
+        <h2>Hvordan fisker du regnbueørred på UL grej?</h2>
+        <p>De fleste som praktiserer UL fiskeri, fisker i Put &amp; Take søer, hvor der primært fiskes efter regnbueørreder — men også guldørreder, tigerørreder og andre ørreder, der typisk findes i Put &amp; Take søerne.</p>
+
+        <p>UL fiskeri er perfekt i Put &amp; Take søer, da fiskene ofte går tæt på land, og man kan nå de fleste fisk med UL grej. Desuden gør UL grej det nemmere at praktisere spotfiskeri — altså hvor du kaster dit blink ud til fisk, du kan se. Det er muligt med UL grej, fordi man fisker med blink der ofte vejer 2–3 g og synker langsomt.</p>
+
+        <TipBox label="Mit spotfiskeri-tip">
+          <p>Spotfiskeri er det bedste sted at starte som nybegynder. Brug et <strong>lille, langsomt synkende blink (2–3 g)</strong>, kast ud foran en fisk du kan se, og lad det dale ned i synsfeltet. Der er simpelthen ikke noget bedre end at se fisken vende, gå efter agnet og sluge det.</p>
+        </TipBox>
+
+        <p>Dette spotfiskeri er blevet utroligt populært blandt lystfiskere i Put &amp; Take søer, da fiskeriet er meget visuelt og meget belønnende, når det lykkes at fange en fisk. Det er ligesom <a href="/fiskeguide/fluefiskeri/">fluefiskeri</a> i Put &amp; Take søer. Min personlige erfaring siger desuden, at regnbueørreder elsker agn der er småt — en kæmpe fordel for UL fiskere.</p>
+
+        <GuideLink
+          href="/fiskeguide/put-take-fiskeri/"
+          title="Læs guiden til Put & Take fiskeri"
+          desc="Find de bedste søer og lær spotfiskeriet efter regnbueørred."
+        />
+        <GuideLink
+          href="/guide-til-fisk/regnbueorredfiskeri/"
+          title="Læs regnbueørred fiskeri guiden"
+          desc="Alt om regnbueørred — agn, blink og de bedste teknikker."
+        />
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/ul_fiskeri_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover {
+    background: #f8fbfc;
+  }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap {
+      border-radius: 12px;
+    }
+    .prey-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .prey-table,
+    .prey-table tbody,
+    .prey-table tr {
+      display: block;
+      width: 100%;
+    }
+    .prey-table tr {
+      padding: 1rem 1.125rem 1.125rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"],
+    .prey-table td {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      align-self: start;
+      padding-top: 0.15rem;
+    }
+  }
+
+</style>

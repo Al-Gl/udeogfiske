@@ -1,0 +1,493 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const related = [
+  {
+    title: "Fiskeri på kysten",
+    description: "Over 8.000 km dansk kystlinje — havørred, torsk, fladfisk og mere.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Put & Take fiskeri",
+    description: "Den nemmeste måde at komme i gang med fiskeri i Danmark.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og take sø i Danmark",
+    chip: "Sø",
+  },
+  {
+    title: "Fiskeri i å",
+    description: "Find de bedste åer og lær at fange gedde, sandart og ørred i rindende vand.",
+    href: "/fiskeguide/fiskeri-i-aa/",
+    image: "/images/aa_fiskeri.jpg",
+    alt: "Å med træer langs bredden",
+    chip: "Ferskvand",
+  },
+];
+---
+
+<MainLayout
+  title="Fiskeri på mole – Guide til molefiskeri i Danmark | Ude og Fiske"
+  description="Komplet guide til molefiskeri i Danmark. Udstyr, teknikker og agn til fladfisk, torsk, sej, sild og hornfisk fra mole og havn."
+  canonical="https://udeogfiske.dk/fiskeguide/fiskeri-paa-mole/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Fiskeri på mole" },
+  ]}
+  articleData={{
+    headline: "Fiskeri på mole",
+    image: "/images/mole_hero.png",
+    datePublished: "2024-11-17",
+  }}
+  faq={[{
+    question: "Hvad kan du fange fra molen?",
+    answer: "Fra en dansk mole kan du fange <strong>fladfisk, torsk, sej, sild, hornfisk og makrel</strong>. Moler giver dig adgang til dybere vand end kysten, og fiskeriet kan udøves <strong>året rundt</strong> — dog med fredningsperioder for enkelte arter. Du skal have en lidt tungere stang (9 fod+, line 5 kg+) og de rette forfang alt efter hvilken fisk du går efter.",
+  }]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Fiskeri på mole</span>
+      </nav>
+      <h1 class="pg-title">Fiskeri på mole</h1>
+      <p class="pg-sub">Molefiskeri er en af de nemmeste måder at komme i gang med havfiskeri — find udstyr, teknikker og agn til mole og havn.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad kan du fange fra molen?</h2>
+        <p class="ac-a">Fra en dansk mole kan du fange <strong>fladfisk, torsk, sej, sild, hornfisk og makrel</strong>. Moler giver dig adgang til dybere vand end kysten, og fiskeriet kan udøves <strong>året rundt</strong> — dog med fredningsperioder for enkelte arter. Du skal have en lidt tungere stang (9 fod+, line 5 kg+) og de rette forfang alt efter hvilken fisk du går efter.</p>
+      </div>
+
+      <article class="article">
+        <p>I Danmark er vi så heldige at være omgivet af hav på næsten alle sider, og enhver større by ved kysten har en eller anden form for havn eller mole. Disse moler er blevet til nogle af Danmarks bedste fiskelokationer hvis du er interesseret i at fange nogle af de saltvandsbaserede fisk som fladfisk, torsk, sild, makrel og sej. Da molerne typisk går længere ud i vandet og at man dermed nemt kan fiske på dybere vand end hvad der normalt ville være muligt fra kysten.</p>
+
+        <p>Molefiskeri kan man udøve året rundt, dog skal man være opmærksom på perioder hvor enkelte arter er fredet. Dette er typisk omkring de perioder hvor fiskene gyder, hvor man har indført fredning for at sikre at reproduktionen af fisken fortsætter og at de rognbærende fisk ikke bliver fanget.</p>
+
+        <h2>Fiskeudstyr til molefiskeri</h2>
+        <p>Fiskeri fra mole foregår typisk med lidt tungere fiskeudstyr. Dette er primært fordi man ofte fisker med tunge blylodder og fordi man ofte kan fange to fisk på samme tid, hvilket kan ødelægge stænger af dårligere kvalitet eller fiskeudstyr som ikke er beregnet til tungere fisk.</p>
+
+        <p>En fiskestang i 7-9 fods klassen vil være at foretrække som minimum samt en line der kan holde til 5+ kg. Det burde sikre at du ikke mister dine fisk eller ødelægger din fiskestang med mindre du er virkelig uheldig.</p>
+
+        <Affiliate
+          productId="503715"
+          note="Min anbefaling i 7-9 fods klassen er W3 Powercast 3rd — kastevægten rammer tungere blylodder og pirke fra molen, og blanken har rygraden til at klare to fisk på samme forfang uden at klage."
+        />
+
+        <h3>Fladfisk fra mole</h3>
+        <p>Kom godt i gang med fladfisk fiskeriet! Hvis du gerne vil fange fladfisk som skrubber, rødspætter og isinger, har jeg stor erfaring med at bruge sandorm og børsteorm. Disse monteres på et fladfiskeforfang som består af to kroge forskudt samt et tungt blylod for enden som sikrer at agnen driver mod bunden. Denne del er især vigtig da vi ved at fladfisk ofte søger mod bunden, og fortrækker især meget sandede bunde hvor den finder børsteorm og sandorm.</p>
+
+        <figure class="art-figure">
+          <img src="/images/mole_fladfisk.jpg" alt="Fladfiskeforfang med to forskudte kroge, orange perler og blylod lagt på den våde mole-kant ved siden af en bunke børsteorm" loading="lazy" width="800" height="450" />
+          <figcaption>Mit fladfiskeforfang klar på molen med en stak børsteorm ved siden af — sådan ser min standardopsætning ud, lige inden jeg agner op.</figcaption>
+        </figure>
+
+        <Affiliate
+          productId="77678"
+          note="Vil du ikke binde dit eget forfang, er Fladens Butt Lure Deluxe min go-to — to forskudte kroge, fluorescerende perler og bom er præcis det rig jeg selv kaster langs molen efter skrubber og rødspætter."
+        />
+
+        <p>Man kan fiske fladfiskeforfanget på to forskellige måder. Den ene er passiv, hvor du kaster dit forfang ud og lader det stå indtil der er bid. Denne metode er ikke så effektiv, da krabber kan komme og pille agnet af krogen, og fordi agnet ikke virker så virkelighedstro. Den anden er at du spinner forfanget langsomt ind, konstant eller med små spinstop. Denne metode har jeg haft mest held med, da agnet ser mere naturligt ud, og at man slipper for at krabber og lignende løber med agnet, hvilket især sker hvis man fisker med orme!</p>
+
+        <p>Man kan selv grave efter sandorm og børsteorm, men er man ikke til dette, er det også muligt at købe dem hos de lokale fiskegrejhandlere, eller private personer som sælger i boder langs vejene tæt på fiskepladserne. I værste tilfælde kan man bruge almindelige orm, eller købe sild og skære dem i mindre stykker. De er dog ikke lige så effektive som sandorm og børsteorm.</p>
+
+        <p><strong>Mine fortrukne agn er i denne rækkefølge:</strong></p>
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over mine foretrukne agn til molefiskeri">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Agn</th>
+                <th scope="col">Bedst til</th>
+                <th scope="col">Hvorfor jeg bruger det</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Agn">Børsteorm</th>
+                <td data-label="Bedst til">Fladfisk (skrubber, rødspætter, isinger), torsk og sej</td>
+                <td data-label="Hvorfor jeg bruger det">Min absolutte favorit — sidder godt på krogen og fanger bredt. Det er den agn jeg griber efter først.</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Agn">Sandorm</th>
+                <td data-label="Bedst til">Fladfisk og torsk</td>
+                <td data-label="Hvorfor jeg bruger det">Næsten lige så effektiv som børsteorm, og fladfisken finder den naturligt på de sandede bunde.</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Agn">Regnorm</th>
+                <td data-label="Bedst til">Fladfisk på lavt vand</td>
+                <td data-label="Hvorfor jeg bruger det">Min nødløsning når jeg ikke har havorm — fanger stadig, men holder dårligere på krogen i saltvand.</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Agn">Sild</th>
+                <td data-label="Bedst til">Torsk og store fladfisk</td>
+                <td data-label="Hvorfor jeg bruger det">Skåret i mindre stykker afgiver den en kraftig duft, som især torsken trækkes efter.</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Agn">Rejer</th>
+                <td data-label="Bedst til">Hornfisk og fladfisk</td>
+                <td data-label="Hvorfor jeg bruger det">Et blødt, naturligt agn — godt at have med som alternativ, men krabberne er hurtige til at pille det af.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Fladfisk fanges typisk hele dagen, mens der er lyst — men især ved skift mellem højvande og lavvande er aktiviteten i top. Fanger du på dette tidspunkt kan du fange mange fisk på kort tid. <a href="/guide-til-fisk/fladfisk-fiskeri/">Læs fladfisk fiskeri guiden her</a> og bliv klogere på rødspætter, skrubber og isinger.</p>
+      </article>
+
+      <article class="article">
+        <h2>Torsk og sej fra mole</h2>
+        <p>Torsk er en anden saltvandsfisk som man kan finde i vandende omkring Danmark, og som er en af favoritterne hos de danske lystfiskere. Ud over at smage godt, er torsken en god fighter fisk. Når man får en torsk på krogen — så er du ikke i tvivl om at det er en torsk! Torsken har det med at søge mod bunden eller nærliggende sten når den bliver kroget, derfor kan det være en udfordring at få fisken op hvis man er i nærheden af sten eller andet hvor fisken kan sætte sig fast.</p>
+
+        <p>Torsk fra mole er et af de mest fiskede fiskeformer i Danmark da det er nemt at gå i gang med netop dette fiskeri. Der kræves blot en mole med de rette forhold, en stang og noget agn som torsk elsker.</p>
+
+        <p>Sej minder meget om torsk og kan fanges på stort set samme metoder, dog er forskellen at sej kan fanges hele dagen, hvor torsk først kommer frem når solen er ved at gå ned.</p>
+
+        <p>Fiskeri efter torsk og sej kan deles op i to metoder, aktivt og passivt. Ved aktivt fiskeri forstås det at man aktivt kaster agn ud og kører det ind igen, hvor passiv er hvor man kaster agn ud og lader det stå i en længere periode.</p>
+
+        <p>Jeg har haft mest erfaring med aktiv fiskeri efter især torsk, og her har blink og jigs været særligt effektive. Torsken bliver især tiltrukket af stærke farver, så hvis man har blink i helt orange eller rød, vil det være at foretrække, dog er blink i sølv også effektive.</p>
+
+        <figure class="art-figure">
+          <img src="/images/mole_torsk.jpg" alt="Orange pirk holdt op mellem fingrene med fiskekuttere og molens granit i baggrunden" loading="lazy" width="800" height="450" />
+          <figcaption>Min favorit-pirk lige inden første kast — den orange farve er det første jeg griber efter på molen.</figcaption>
+        </figure>
+
+        <p>Ved passivt fiskeri kan man benytte samme forfang som når man fisker efter fladfisk, dvs. et fladfiskeforfang. Her vil jeg anbefale at man bruger enten sandorm eller børsteorm da jeg har haft mest erfaring med disse agn.</p>
+
+        <p>Selv om man kan fiske med orm efter torsk og sej vil jeg klart anbefale at man bruger blink eller jigs da de har en fordel som stillestående agn ikke har. Når man fisker med blink og jigs, udsender disse vibrationer når de bevæger sig i vandet — og da torsken er en fisk som jager om natten, er den særligt følsom for vibrationer i vandet som kan være andre fisk.</p>
+
+        <p>Torsk og sej har meget ens fødeemner, derfor kan man bruge samme agn for at fange begge fisk. En form for agn man kan bruge er jigs. Disse gummiagn er effektive over for alle rovfisk, og jeg har haft meget held med dem når jeg har fisket efter torsk og sej. Du fisker jigs bedst ved at rykke med stangen under indspinning, så jiggen hopper i vandet.</p>
+
+        <p>Fordelene ved at bruge jigs er mange. De er billige, kommer i mange farver og kan bruges til flere forskellige typer fisk. De er desuden nemme at montere og kræver ikke noget ekstra udstyr. Der kræves kun en jig samt et jighoved. <a href="/guide-til-fisk/torskefiskeri/">Læs torskefiskeri guiden her</a> og bliv bedre til at fange torsk.</p>
+
+        <h2>Fiskeri efter sild og hornfisk</h2>
+        <p>Silden ankommer hvert år, to gange til vandende omkring Danmark — forår og efterår. Det er især foråret som bringer et rigtigt godt sildefiskeri med sig. Det er også her jeg har fanget langt de fleste af mine sild. Når sildene kommer, kommer de i store stimer, derfor gælder det om at være aktiv og ude og fiske når man hører at silden bliver fanget.</p>
+
+        <p>Rammer du det perfekte tidspunkt kan du nemt hive 50-100 sild op i løbet af kort tid — derfor gælder det om at følge med i de sociale medier på diverse fiskesider, om folk er begyndt at fange sildene.</p>
+
+        <figure class="art-figure">
+          <img src="/images/mole_sild.jpg" alt="Sildeforfang holdt op mod havnen med farvede fluer i rød, grøn, blå og hvid samt blylod for enden" loading="lazy" width="800" height="450" />
+          <figcaption>Mit sildeforfang lige inden første kast — fluerne i grøn, rød og hvid er dem jeg griber først efter når silden står på molen.</figcaption>
+        </figure>
+
+        <p>Den nemmeste måde at fange sild på er at bruge et sildeforfang. Dette består typisk af 4 fluer og et blylod du bruger til at kaste ud. Disse er særligt effektive da fluerne er monteret med mellemrum som gør at du når forskellige dybder. Når du rammer en god stime fanger du typisk fisk på alle 4 fluer på samme tid.</p>
+
+        <Affiliate
+          productId="46269"
+          note="Det er det forfang jeg griber efter når silden begynder at stå på molen — solidt bundet, og fluerne holder farve gennem hele forårssæsonen."
+        />
+
+        <p>Sildeforfang er nok den mest effektive måde at fange sild på. Den er speciel udviklet til at tiltrække sild og selve forfanget er lavet i godt materiale hvilket betyder at du sagtens kan fange sild på alle kroge på forfanget. <a href="/guide-til-fisk/sildefiskeri/">Læs sildefiskeri guiden her</a> eller <a href="/guide-til-fisk/hornfisk/">hornfiske guiden her</a>, og bliv bedre til at fange dem begge.</p>
+
+        <p>Når hornfisken kommer i sit forårstræk, skifter jeg fra sildeforfang til silkesnor. Hornfiskens beneret kniv tager dårligt en almindelig krog — silkesnoren snører sig i stedet om tænderne, og det er det enkleste rig der virker for mig.</p>
+
+        <Affiliate
+          productId="35161"
+          note="Min go-to til hornfisk — uden krog, men med silkestrenge der snører sig om tænderne. Billigt, virker, og du undgår at skulle krogfjerne en spruttende hornfisk."
+        />
+
+        <h2>Hvad skal du have styr på inden du kører til molen?</h2>
+        <p>Udstyret er på plads — så er der bare et par praktiske ting jeg altid lige tjekker af, inden jeg sætter mig i bilen. Det er det der afgør, om turen ender med en spand fisk eller med tomme hænder og en bøde.</p>
+        <ul>
+          <li><strong>Fisketegn:</strong> er du mellem 18 og 65 år, skal du have et gyldigt fisketegn for at fiske i saltvand. Det tager to minutter at købe på fisketegn.dk som dagstegn, ugekort eller årligt — og bøden for at fiske uden er markant højere end et helt års tegn.</li>
+          <li><strong>Tidevand og vind:</strong> især for fladfisk er skiftet mellem høj- og lavvande hvor aktiviteten topper. En frisk pålandsvind roder bunden op og trækker fisken ind — en stille østenvind kan derimod gøre molen død.</li>
+          <li><strong>Fredningsperioder:</strong> torsk har gydningsfredning i visse områder, og enkelte arter har korte sæsonvinduer. Tjek altid de aktuelle regler hos Fiskepleje.dk inden du går målrettet efter en bestemt fisk.</li>
+          <li><strong>Pandelampe:</strong> går du efter torsk omkring solnedgang, så pak en pandelampe — gerne en med rød-lys-tilstand, så du bevarer nattesynet og ikke skræmmer fisken når du knytter et nyt forfang i mørket.</li>
+          <li><strong>Kølig fangst:</strong> sild og fladfisk forringes hurtigt i varmen. Tag is eller en lille køletaske med, hvis du planlægger at tage fangsten med hjem — særligt på en lun sommeraften kan kvaliteten ryge på en time.</li>
+        </ul>
+
+        <p>For mig er molefiskeri det jeg vender tilbage til hver eneste sæson. Det er nemt at gå i gang med, du fisker på dybt vand uden at skulle bruge båd, og du kan dække fire-fem arter med den samme stang og et par enkle forfang. Start med fladfisk eller sild hvis du er ny — de fanger sig selv, når først udstyret sidder rigtigt. Vil du dykke dybere i en enkelt art, så <a href="/guide-til-fisk/">find arten i fiskeguiden</a> eller læs <a href="/saesonguide/">sæsonkalenderen</a> for at se hvornår der er aktivitet på din lokale mole.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/mole_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 580px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+
+  .ac-q {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+  }
+
+  .ac-a {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .ac-a strong {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .article p {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .article p strong { color: #111827; font-weight: 700; }
+
+  .article p a {
+    color: #0d4a5e;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .article p a:hover { color: #c47d0a; }
+
+  .article h2 {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .article h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .article ul {
+    margin: 0 0 1.5rem 1.25rem;
+    padding: 0;
+  }
+
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 0.375rem;
+    list-style: disc;
+  }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .art-figure figcaption {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    padding: 0.625rem 0.875rem;
+    text-align: center;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover {
+    background: #f8fbfc;
+  }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap {
+      border-radius: 12px;
+    }
+    .prey-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .prey-table,
+    .prey-table tbody,
+    .prey-table tr {
+      display: block;
+      width: 100%;
+    }
+    .prey-table tr {
+      padding: 1rem 1.125rem 1.125rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"],
+    .prey-table td {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      align-self: start;
+      padding-top: 0.15rem;
+    }
+  }
+
+</style>

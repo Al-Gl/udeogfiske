@@ -1,0 +1,228 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import AuthorProfile from '../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Havørredfiskeri i Isefjorden",
+    description: "Områdeguide til Isefjorden — Hammer Bakker er en af de 5 klassiske pladser. Læs konteksten omkring denne tur.",
+    href: "/fiskepladser/isefjorden/",
+    image: "/images/isefjorden_card.png",
+    alt: "Havørredfiskeri i Isefjorden",
+    chip: "Plads",
+  },
+  {
+    title: "Fluefiskestænger",
+    description: "Stangen jeg fiskede med — guide til valg af fluestang fra klasse 2 til 9 til kysten og fjorden.",
+    href: "/fiskeudstyr/fiskestaenger/fluefiskestang/",
+    image: "/images/fluefiskeri_card.jpg",
+    alt: "Fluefiskestang",
+    chip: "Udstyr",
+  },
+  {
+    title: "Havørredfiskeri i Marts",
+    description: "Hvad du kan forvente af havørredfiskeri i marts — børsteorme-sværmning, vandtemperaturer og taktik.",
+    href: "/guide-til-fisk/havorredfiskeri/havorredfiskeri-marts/",
+    image: "/images/havørred_card.jpeg",
+    alt: "Havørredfiskeri om foråret",
+    chip: "Sæson",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvordan fandt du frem til Hammer Bakke som fiskespot?",
+    answer: "Jeg brugte <strong>Google Maps og Kraks luftfoto</strong> til at researche. På luftfotos kan man tydeligt se bundforhold: <strong>lyse områder er sand, mørke områder er tang eller græs</strong>. Den blanding er ideel for havørreder. Hammer Bakke — særligt området syd for færgelejet og rundt om pynten — viste netop den blanding på Krak.",
+  },
+  {
+    question: "Hvorfor er midt marts et godt tidspunkt til havørredfiskeri i fjordene?",
+    answer: "Midt marts er starten på <strong>børsteormesværmningen</strong>, særligt omkring fuldmånen. Børsteormene stiger op fra bunden og svømmer i overfladen, hvilket trækker havørreder ud på de lavvandede områder. Det er også på det tidspunkt vandet begynder at varme op, og fjordene er typisk tidligere på året end den åbne kyst.",
+  },
+  {
+    question: "Hvilke fluer brugte du på turen?",
+    answer: "Først en <strong>børsteormeflue</strong> (børsteormesværmningen var i fuld gang) og senere en <strong>pattegris</strong> — en rejeimitation, som jeg altid har haft held med i forårsmånederne. Begge er klassiske marts-mønstre til havørredfluefiskeri.",
+  },
+  {
+    question: "Hvad gjorde vinden for fiskeriet?",
+    answer: "Vinden kom fra <strong>vest</strong>, hvilket gjorde vestsiden af pladsen næsten ufiskelig. Jeg flyttede mig til den østlige side mod pynten, hvor træerne gav læ. Forskellen var enorm — fra svært fluefiskeri i vinden til komplet ro i læet, hvor jeg kunne nyde min kaffepause.",
+  },
+  {
+    question: "Hvad lærte du af turen selv om der ikke kom fisk?",
+    answer: "Pladsen har <strong>stort potentiale</strong> — sandbund, muslinger, blæretang og ålegræs er den perfekte cocktail til havørreder. Jeg var uheldig med vindretningen, der gjorde at jeg ikke kunne fiske en stor del af pladsen. Næste gang kommer jeg tilbage på en dag hvor vinden er i øst eller meget mindre voldsom — Hammer Bakke kommer jeg tilbage til.",
+  },
+];
+---
+
+<MainLayout
+  title="Fisketur til Hammer Bakke i Isefjorden — marts, fluefiskeri og børsteorm"
+  description="Dokumenteret fisketur til Hammer Bakke i Isefjorden i marts. Google Maps-research, vestenvindens udfordringer, og hvad børsteormesværmningen betyder for fiskeriet."
+  canonical="https://udeogfiske.dk/fisketure/fisketur-til-hammer-bakke/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fisketure", url: "/fisketure/" },
+    { name: "Hammer Bakke — marts" },
+  ]}
+  articleData={{
+    headline: "Fisketur til Hammer Bakke",
+    image: "/images/isefjorden_card.png",
+    datePublished: "2020-03-22",
+    dateModified: "2026-05-13",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fisketure/">Fisketure</a>
+        <span>›</span>
+        <span>Hammer Bakke — marts</span>
+      </nav>
+      <h1 class="pg-title">Fisketur til Hammer Bakke</h1>
+      <p class="pg-sub">En mandag i midt marts, fluestangen i hånden, og en plads jeg havde fundet via Google Maps og Krak. Børsteormesværmningen var i gang — men det var vinden der bestemte dagen.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad blev resultatet af turen?</h2>
+        <p class="ac-a">Ingen fisk landet. Et par hug på pattegris-fluen, men intet der bed sig fast. <strong>Stærk vestenvind</strong> tog vestsiden af pladsen ud af spil, og selv læsiden mod pynten gav ikke fisk på dagen. Men pladsen har stort potentiale — den kommer jeg tilbage til.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Jeg holdt mandagen fri fra arbejde, fyldte termokanden, og kørte mod Isefjorden. Hammer Bakke havde jeg fundet på Krak — alle bundsignalerne var rigtige. Men det er en del af fiskeriet at vinden bestemmer dagen. Selv en blank tur lærer dig hvor du SKAL komme tilbage, og dén lektion er den her tur værd."
+      />
+
+      <article class="article">
+        <p>Jeg havde taget en mandag fri fra arbejde med tanke på at tage ud og fiske efter havørreder med en fluestang. <strong>Midt marts plejer at være et godt tidspunkt til havørredfiskeri i fjordene</strong>, hvorfor jeg tænkte at denne dag kunne bruges til at fiske.</p>
+
+        <h2>Hvordan fandt jeg frem til pladsen?</h2>
+        <p>Mit mål var at komme ud til enten Roskilde Fjord eller Isefjorden, og efter noget research endte det med at blive <strong>Isefjorden</strong>, som er en af de bedste havørredvande i Danmark.</p>
+
+        <p>Jeg brugte <strong>Google Maps</strong> og info på Google til at finde det perfekte fiskespot, og her endte valget på <strong>Hammer Bakke</strong>. Det er især området syd for færgelejet og rundt om pynten som vakte mest interesse hos mig. Ved at bruge <strong>Kraks luftfoto</strong> kunne jeg se at bunden bestod af lyse områder (sand) og mørke områder (tang, græs) hvilket er ideelt for havørreder.</p>
+
+        <DidYouKnow>
+          På Kraks og Google's luftfotos kan du <strong>aflæse bundforhold ovenfra</strong>: lyse pletter er sand, mørke pletter er tang, ålegræs eller stenrev. Havørreden ynder kanten mellem de to — fra mørke skjul ud i lyse jagtområder. Det er et nemt skim-trick til at finde nye pladser før du overhovedet kommer ud.
+        </DidYouKnow>
+
+        <h2>Hvordan så pladsen ud ved ankomst?</h2>
+        <p>På vej ud til fiskepladsen fra København begyndte vinden at blive lidt kraftigere end jeg havde regnet med, og ved ankomsten stod det klart at jeg ville have udfordringer på vestsiden af fiskepladsen, da vinden kom mod vest. Her fortrød jeg at jeg kun var taget afsted med min fluestang, men jeg skulle få det bedste ud af det. Ved ankomsten til pladsen er der <strong>en lille parkering på et grusområde lige inden man ankommer til selve færgelejet</strong> — her er der plads til 5-6 biler uden problemer.</p>
+
+        <h2>Hvilken flue valgte jeg først?</h2>
+        <p>Jeg gjorde klar og bestemte mig for at begynde fiskeriet med en <strong>børsteormeflue</strong>, da dette er tidspunktet hvor børsteorme begynder at sværme i vandet. Det sker typisk i forbindelse med fuldmånen i marts måned. Jeg har læst på Facebook hvordan andre fiskere oplevede at store mængder børsteorm var i vandet, derfor tænkte jeg at denne type flue vil give pote.</p>
+
+        <Affiliate
+          productId="505927"
+          note="Den her J:son børsteorm i Green Glitter er præcis dén slags flue jeg åbnede æsken med på Hammer Bakke. Den grønne glitter giver lige det bid af refleks som havørreden kigger efter, når børsteormene sværmer i overfladen. Klassisk marts-mønster — og hvis sværmningen er på din side af pladsen, er det den fisken kigger efter."
+        />
+
+        <h2>Hvor på pladsen fiskede jeg?</h2>
+        <p>Naturen ved Hammer Bakke er utrolig flot og bundforholdene er ideelle til havørredfiskeri, som luftfotoet også viste. Der var <strong>sandbund, muslinger, blæretang og ålegræs</strong> — altså en helt perfekt cocktail til havørreder.</p>
+
+        <p>Jeg startede med at fiske på den vestlige side (markeret med orange og grøn), men dette viste sig at være besværligt grundet den stærke vind der kom fra vest. Jeg fiskede i 15-20 minutter uden noget aktivitet, så jeg besluttede mig for at finde en ny plads på den østlige side. Jeg gik hurtigt ned til den sydlige ende og begyndte at fiske ind mod vigen (markeret med blå), som var beskyttet af træer for den vestlige vind. Her var bunden også god ligesom på den vestlige side, så jeg påbegyndte mit fiskeri med samme flue. Jeg fiskede hele området markeret med blå før jeg holdt en kaffepause. <strong>Forskellen på den vestlige og østlige side var til at mærke</strong> — her kunne jeg nyde min kaffe i komplet ro. Nu havde jeg fisket i ca. 90 minutter uden bid. Ikke den fisketur jeg lige havde håbet på.</p>
+
+        <p>Jeg fortsatte op til området markeret med rød, men her fiskede jeg kun kort, da vandet virkede meget mudret grundet den mere sandede bund.</p>
+
+        <h2>Hvad skiftede jeg over til?</h2>
+        <p>Fluen blev skiftet til en <strong>pattegris</strong> — en rejeimitation. Denne flue har jeg altid haft held med i forårsmånederne. Jeg fiskede igen fra syd mod nord i det område som er markeret med blåt. <strong>Jeg fik enkelte bid, men intet der bed sig ordentligt fast.</strong> Andre fluer blev også prøvet af, men uden held. Efter 3 timers fiskeri og blæst tog jeg hjem uden fisk. Jeg mødte en enkelt fisker derude som heller ikke havde fanget noget som helst.</p>
+
+        <Affiliate
+          productId="67405"
+          note="Min fast plan B når børsteormesværmningen ikke er over fisken. Det her er Wigglers klassiske pattegris-sortiment med 5 farver bundet på str. 6 enkeltkroge med ægte spey-fjer — så har du hele paletten i æsken og kan skifte til den farve havørreden bider på den givne dag. Det var præcis den slags pattegris jeg skiftede til på Hammer Bakke."
+        />
+
+        <TipBox>
+          Når børsteormesværmningen er i gang i marts: <strong>start altid med en børsteormeflue</strong>, men hav en pattegris (rejeimitation) klar som plan B. Børsteormen er den primære fødeemne lige nu — men rejen er det fisken ALTID kender, og den lukker hullet hvis ormesværmningen ikke er over fisken på din side af pladsen.
+        </TipBox>
+
+        <h2>Hvad tog jeg med mig fra turen?</h2>
+        <p>På vej hjem sad jeg og tænkte over dagen der var gået. Selv om jeg ikke fik fanget nogle fisk, så har pladsen stadig stort potentiale. Jeg var uheldig med at vinden var så kraftig som den var, hvilket betød at jeg ikke kunne fiske en stor del af pladsen. Dog grundet det store potentiale agter jeg at komme igen — en dag hvor vinden er i øst eller mindre voldsom.</p>
+      </article>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <RelatedRow items={related} />
+
+    </div>
+  </section>
+
+  <AdsenseBanner />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/isefjorden_card.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 620px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-body { padding: 3.5rem 0 5rem; }
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .faq-heading {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 4rem auto 1rem; max-width: 760px;
+  }
+</style>

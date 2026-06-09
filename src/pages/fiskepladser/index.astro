@@ -1,0 +1,354 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../components/AdsenseBanner.astro';
+
+const featured = [
+  {
+    title: "Stevns",
+    href: "/fiskepladser/stevns/",
+    image: "/images/stevns_card.png",
+    alt: "Havørredfiskeri ved Stevns Klint",
+  },
+  {
+    title: "Isefjorden",
+    href: "/fiskepladser/isefjorden/",
+    image: "/images/isefjorden_card.png",
+    alt: "Havørredfiskeri i Isefjorden",
+  },
+  {
+    title: "Roskilde Fjord",
+    href: "/fiskepladser/roskilde-fjord/",
+    image: "/images/roskilde_fjord_card.png",
+    alt: "Fiskeri i Roskilde Fjord ved solnedgang",
+  },
+  {
+    title: "København",
+    href: "/fiskepladser/koebenhavn/",
+    image: "/images/koebenhavn_card.png",
+    alt: "Fisker i waders ved Københavns kyst",
+  },
+  {
+    title: "Mariager Fjord",
+    href: "/fiskepladser/mariager-fjord/",
+    image: "/images/mariager_fjord_card.png",
+    alt: "Mariager Fjord med sivkant ved solnedgang",
+  },
+  {
+    title: "Put & Take",
+    href: "/fiskepladser/put-and-take/",
+    image: "/images/put_take_fiskeri_card.png",
+    alt: "Regnbueørred fanget i dansk Put & Take sø",
+  },
+];
+
+const locations = [
+  {
+    title: "Havørredfiskeri på Stevns",
+    description: "Sjællands havørred-mekka. Varieret bund, dybt vand tæt på land, og de helt store fisk i de kolde måneder.",
+    href: "/fiskepladser/stevns/",
+    meta: "Områdeguide · 10 min",
+  },
+  {
+    title: "Havørredfiskeri i Isefjorden",
+    description: "Et af Danmarks bedste havørred-fjorde. Fem klassiske pladser — Kyndby værket, Hammer Bakker, Vellerup Vig, Nakkehage og Bramsnæs Vig.",
+    href: "/fiskepladser/isefjorden/",
+    meta: "Områdeguide · 12 min",
+  },
+  {
+    title: "Fiskeri i Roskilde Fjord",
+    description: "Havørreder, hornfisk og makrel — under en halv times kørsel fra København. Salvadsparken og jernbanebroen ved Frederikssund er klassikere.",
+    href: "/fiskepladser/roskilde-fjord/",
+    meta: "Områdeguide · 10 min",
+  },
+  {
+    title: "Fiskepladser i København",
+    description: "De bedste fiskepladser i og omkring København. Fra havnen til kysten — find din næste fiskeplads i hovedstaden.",
+    href: "/fiskepladser/koebenhavn/",
+    meta: "Guide · 12 min",
+  },
+  {
+    title: "Fiskeri ved Mariager Fjord",
+    description: "Guide til fiskeri ved Mariager Fjord. Smukke omgivelser og gode fangstmuligheder for hele familien.",
+    href: "/fiskepladser/mariager-fjord/",
+    meta: "Guide · 10 min",
+  },
+  {
+    title: "Fiskeri i Put & Take",
+    description: "Klassiske danske Put & Take søer — det nemmeste sted at komme i gang med fiskeri og min faste plan B når kysten er for kold eller blæsende. Start med Ørsted Ørredvand.",
+    href: "/fiskepladser/put-and-take/",
+    meta: "Kategori · 1 sø dokumenteret",
+  },
+];
+---
+
+<MainLayout
+  title="Fiskepladser i Danmark | Ude og Fiske"
+  description="Find de bedste fiskepladser i Danmark. Testede og dokumenterede pladser langs kyster, fjorde og åer — så du ved præcis hvor du skal fiske."
+  canonical="https://udeogfiske.dk/fiskepladser/"
+  pageType="category"
+  breadcrumbs={[{ name: "Forside", url: "/" }, { name: "Fiskepladser" }]}
+  itemList={locations.map(l => ({ name: l.title, url: l.href }))}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <span>Fiskepladser</span>
+      </nav>
+      <h1 class="pg-title">Fiskepladser</h1>
+      <p class="pg-sub">Testede og dokumenterede fiskepladser i Danmark — så du aldrig er i tvivl om hvor du skal tage hen.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <h2 class="sec-heading">Udvalgte destinationer</h2>
+      <div class="card-grid">
+        {featured.map((c) => (
+          <a href={c.href} class="card" aria-label={c.title}>
+            <img src={c.image} alt={c.alt} loading="lazy" width="600" height="400" class="card-img" />
+            <div class="card-overlay">
+              <h3 class="card-title">{c.title}</h3>
+              <span class="card-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="pg-intro">
+        <p>Alle har stået i situationen hvor de gerne vil ud og fiske, men de ved simpelthen ikke hvor de skal fiske. Alle kan jo i bund og grund tage en fiskestang, tage ud til kysten, en å eller en sø og begynde at kaste snøren ud.</p>
+        <p>Jeg har altid med glæde delt mine fiskepladser med alle — for der er nok fisk til os alle, og jo flere der kommer ud og fisker, jo bedre for fiskeriet i Danmark.</p>
+      </div>
+
+      <div class="art-list">
+        {locations.map((a) => (
+          <article class="art-item">
+            <a href={a.href} class="art-link">
+              <div class="art-body">
+                <h2 class="art-title">{a.title}</h2>
+                <p class="art-desc">{a.description}</p>
+                <span class="art-meta">{a.meta}</span>
+              </div>
+              <div class="art-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <AdsenseBanner />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    background: #0d4a5e;
+    padding: 3.5rem 0 3rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.25rem;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+  .pg-bc a:hover { color: rgba(255,255,255,0.85); }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .sec-heading {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6b7280;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 2;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0d4a5e;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px -14px rgba(13, 74, 94, 0.45);
+  }
+  .card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .card:hover .card-img { transform: scale(1.06); }
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+  }
+  .card-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 1.25rem 1.25rem;
+  }
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  .card-arrow {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .card:hover .card-arrow {
+    background: #ffffff;
+    color: #0d4a5e;
+    transform: translateX(3px);
+  }
+  @media (max-width: 720px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+
+  .pg-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding-bottom: 2.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .pg-intro p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.8;
+  }
+
+  .art-list { border-top: 1px solid #e5e7eb; }
+  .art-item { border-bottom: 1px solid #e5e7eb; }
+
+  .art-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.625rem 0.25rem;
+    transition: padding-left 0.15s;
+  }
+
+  .art-link:hover { padding-left: 0.5rem; }
+  .art-body { flex: 1; }
+
+  .art-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.375rem;
+    transition: color 0.15s;
+  }
+
+  .art-link:hover .art-title { color: #0d4a5e; }
+
+  .art-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.65;
+    margin-bottom: 0.625rem;
+  }
+
+  .art-meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #9ca3af;
+  }
+
+  .art-arrow {
+    flex-shrink: 0;
+    color: #d1d5db;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .art-link:hover .art-arrow {
+    color: #0d4a5e;
+    transform: translateX(4px);
+  }
+</style>

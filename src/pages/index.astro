@@ -1,0 +1,1015 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import AdsenseBanner from '../components/AdsenseBanner.astro';
+import PriceRunner from '../components/PriceRunner.astro';
+
+// 6-card showcase matching the live udeogfiske.dk homepage: 3 species + 3 techniques.
+// Descriptions are 1:1 verbatim from the live front page per the content workflow memory.
+const categories = [
+  {
+    title: "Havørred",
+    chip: "Fiskeart",
+    description: "Den ultimative guide til havørredfiskeri, indeholder udstyr, strategier samt hvor du kan finde havørrederne. Bliv klogere på havørredfiskeri her.",
+    href: "/guide-til-fisk/havorredfiskeri/",
+    image: "/images/havørred_card.jpeg",
+  },
+  {
+    title: "Fladfisk",
+    chip: "Fiskeart",
+    description: "Fladfisk findes i alle vande omkring Danmark, og er derfor en populær fangst for lystfiskere. Bliv klogere på fiskeri efter fladfisk her.",
+    href: "/guide-til-fisk/fladfisk-fiskeri/",
+    image: "/images/fladfisk_card.jpeg",
+  },
+  {
+    title: "Hornfisk",
+    chip: "Fiskeart",
+    description: "Hornfisk er en af de mest populære fisk man kan fange i Danmark, selv om det kun er en begrænset periode man kan fange dem i. Læs med her, og bliv klogere på hornfisk.",
+    href: "/guide-til-fisk/hornfisk/",
+    image: "/images/hornfisk_card.png",
+  },
+  {
+    title: "Fluefiskeri",
+    chip: "Teknik",
+    description: "Nysgerrig på fluefiskeri? Læs mere her, og se hvad fluefiskeri egentligt er. Du kan læse alt fra grej til teknikker og hvilke fisk man kan fange med fluestangen.",
+    href: "/fiskeguide/fluefiskeri/",
+    image: "/images/fluefiskeri_card.jpg",
+  },
+  {
+    title: "Molefiskeri",
+    chip: "Teknik",
+    description: "Fiskeri fra mole gør det muligt at fange mange slags fisk, og med det antal moler vi har i Danmark, er det en atraktiv fiskelokation. Læs mere om molefiskeri her.",
+    href: "/fiskeguide/fiskeri-paa-mole/",
+    image: "/images/mole_hero.png",
+  },
+  {
+    title: "Put & Take Fiskeri",
+    chip: "Teknik",
+    description: "Fiskeri i Put & Takes er populært grundet de mange tilgængelige søer, samt hvor nemt det kan være at fange fisk. Læs med her, og vær sikker på at fange noget næste gang du besøger en Put & Take.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_take_fiskeri_card.png",
+  },
+];
+
+const monthIndex = new Date().getMonth();
+const monthNames = ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"];
+const currentMonth = monthNames[monthIndex];
+
+// Species name → guide URL. Used both for the chip-links below and for the sæsonguide page.
+const speciesHref: Record<string, string> = {
+  "Havørred": "/guide-til-fisk/havorredfiskeri/",
+  "Makrel": "/guide-til-fisk/makrelfiskeri/",
+  "Torsk": "/guide-til-fisk/torskefiskeri/",
+  "Hornfisk": "/guide-til-fisk/hornfisk/",
+  "Fladfisk": "/guide-til-fisk/fladfisk-fiskeri/",
+  "Sild": "/guide-til-fisk/sildefiskeri/",
+  "Regnbueørred": "/guide-til-fisk/regnbueorredfiskeri/",
+  "Aborre": "/guide-til-fisk/aborrefiskeri/",
+  "Gedde": "/guide-til-fisk/geddefiskeri/",
+};
+
+const monthData = [
+  { season: "Vinter",  color: "#1e40af", bg: "#eff6ff", fish: ["Torsk","Regnbueørred","Aborre"],          tip: "Januar er en stille måned på vandet — men torsk og regnbueørred belønner den tålmodige fisker." },
+  { season: "Vinter",  color: "#1e40af", bg: "#eff6ff", fish: ["Torsk","Regnbueørred","Gedde"],            tip: "Februar byder på koldt vand og aktive torsk fra kysten. Gedde er på toppen i ferskvand." },
+  { season: "Forår",   color: "#2d6a4f", bg: "#f0faf4", fish: ["Havørred","Gedde","Regnbueørred"],         tip: "Marts markerer opvågningen — havørreden søger ind mod kysten og gedden er aggressiv i ferskvand." },
+  { season: "Forår",   color: "#2d6a4f", bg: "#f0faf4", fish: ["Havørred","Hornfisk","Sild"],              tip: "April er forårets højdepunkt. Havørreden er aktiv langs hele kysten, hornfisken er på vej ind og sildestimerne starter." },
+  { season: "Forår",   color: "#2d6a4f", bg: "#f0faf4", fish: ["Hornfisk","Havørred","Sild"],              tip: "Maj bringer hornfisken i store mængder og sildestimerne topper i de sydlige farvande." },
+  { season: "Sommer",  color: "#b45309", bg: "#fffbeb", fish: ["Makrel","Hornfisk","Fladfisk"],             tip: "Juni er makrelfiskerens måned. Hornfisken er fortsat aktiv og fladfisken er udbredt på sandede bunde." },
+  { season: "Sommer",  color: "#b45309", bg: "#fffbeb", fish: ["Makrel","Fladfisk","Havørred"],             tip: "Juli giver de varmeste vande — makrel og fladfisk er i topform, og havørreden søger dybere." },
+  { season: "Sommer",  color: "#b45309", bg: "#fffbeb", fish: ["Makrel","Fladfisk","Aborre"],               tip: "August er sensommerens fiskemåned med masser af makrel og aktiv aborre i ferskvand." },
+  { season: "Efterår", color: "#92400e", bg: "#fff7ed", fish: ["Havørred","Torsk","Sild"],                  tip: "September er efterårets første måned — havørreden er på vej op, torsken søger ind mod land og efterårets sildestimer ankommer." },
+  { season: "Efterår", color: "#92400e", bg: "#fff7ed", fish: ["Havørred","Torsk","Sild"],                  tip: "Oktober er en af årets bedste måneder. Havørred og torsk er i topform, og efterårssilden er i de danske farvande." },
+  { season: "Efterår", color: "#92400e", bg: "#fff7ed", fish: ["Havørred","Torsk","Regnbueørred"],          tip: "November byder på de klassiske efterårsfangster — havørred og torsk dominerer langs kysterne." },
+  { season: "Vinter",  color: "#1e40af", bg: "#eff6ff", fish: ["Torsk","Regnbueørred","Havørred"],          tip: "December er torskens måned. Regnbueørreden er aktiv i put & take-søerne og havørreden er fortsat aktiv." },
+];
+
+const now = monthData[monthIndex];
+---
+
+<MainLayout
+  title="Ude og Fiske – Inspiration til din fisketur"
+  description="Din guide til fiskeri i Danmark. Find fiskeguides, udstyrsanbefalinger, fiskepladser og ekspert tips til din næste fisketur."
+  canonical="https://udeogfiske.dk/"
+>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Danmarks fiskeriguide
+      </div>
+      <h1 class="hero-h1">
+        Fiskeri for begyndere<br />
+        <em>og alle andre</em>
+      </h1>
+      <p class="hero-sub">
+        Komplette guides til kystfiskeri, fluefiskeri og put &amp; take — skrevet af en fisker, ikke en marketingafdeling. Konkrete pladser, ærligt grej og teknik der virker i danske farvande.
+      </p>
+      <div class="hero-actions">
+        <a href="/fiskeguide/" class="btn-primary">Udforsk guider</a>
+        <a href="/fiskepladser/" class="btn-ghost">Find fiskepladser</a>
+      </div>
+    </div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,80 1440,40 L1440,90 L0,90 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       WELCOME — short intro just below hero
+  ═══════════════════════════════════════════ -->
+  <section class="sec sec-welcome">
+    <div class="ctn">
+      <div class="welcome">
+        <span class="welcome-mark" aria-hidden="true"></span>
+        <p class="welcome-lead">
+          Fiskeri har siden tidernes morgen været en aktivitet vi mennesker har gjort brug af — først for at skaffe mad på bordet, i dag som en af Danmarks mest udbredte fritidsaktiviteter.
+        </p>
+        <p class="welcome-body">
+          På Ude og Fiske finder du guides til alt fra havørred på kysten til regnbueørred i put &amp; take-søen — med konkrete pladser, ærlige grej-anbefalinger og teknik der virker i danske farvande. Hele siden er gratis, og du behøver ikke oprette en bruger for at læse.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CATEGORIES — BENTO GRID
+  ═══════════════════════════════════════════ -->
+  <section class="sec sec-cats">
+    <div class="ctn">
+      <div class="sec-hd">
+        <span class="eyebrow">Vores guides</span>
+        <h2 class="sec-title">Sådan kommer du i gang</h2>
+        <p class="sec-sub">Vælg en fiskeart eller en fiskeform — komplette guides til Danmarks mest populære fisk og de mest brugte teknikker.</p>
+      </div>
+
+      <div class="bento">
+        {categories.map((cat) => (
+          <a
+            href={cat.href}
+            class="bcard"
+            style={`--img: url('${cat.image}');`}
+          >
+            <div class="bcard-bg"></div>
+            <div class="bcard-content">
+              <span class="bcard-chip">{cat.chip}</span>
+              <div class="bcard-bottom">
+                <h3 class="bcard-title">{cat.title}</h3>
+                <p class="bcard-desc">{cat.description}</p>
+                <span class="bcard-arrow">
+                  Læs guide
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRICERUNNER — fiskegrej comparison widget
+  ═══════════════════════════════════════════ -->
+  <PriceRunner />
+
+  <!-- ═══════════════════════════════════════════
+       ADSENSE
+  ═══════════════════════════════════════════ -->
+  <AdsenseBanner />
+
+  <!-- ═══════════════════════════════════════════
+       SÆSONGUIDE
+  ═══════════════════════════════════════════ -->
+  <section class="sec sec-season">
+    <div class="ctn">
+      <div class="sblock" style={`--sc: ${now.color}; --sb: ${now.bg};`}>
+        <div class="sblock-left">
+          <div class="sblock-badge">
+            <span class="sblock-dot"></span>
+            Nu i {currentMonth}
+          </div>
+          <p class="sblock-season">{now.season}</p>
+          <h2 class="sblock-title">Hvad bider lige nu?</h2>
+          <p class="sblock-tip">{now.tip}</p>
+          <div class="month-strip" aria-label="Året rundt">
+            {monthNames.map((name, i) => (
+              <div class={`month-cell ${i === monthIndex ? 'is-now' : ''}`} title={name}>
+                <span class="month-bar"></span>
+                <span class="month-letter">{name.charAt(0)}</span>
+              </div>
+            ))}
+          </div>
+          <a href="/saesonguide/" class="season-cta">
+            Se den fulde sæsonguide
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="sblock-right">
+          <p class="sblock-fish-label">Bider nu</p>
+          <ul class="fish-chips">
+            {now.fish.map((f, i) => (
+              <li>
+                <a class={`fish-chip ${i === 0 ? 'is-top' : ''}`} href={speciesHref[f] ?? '#'}>
+                  <span class="fish-chip-dot" aria-hidden="true"></span>
+                  <span class="fish-chip-name">{f}</span>
+                  <span class="fish-chip-tag">{i === 0 ? 'Top' : 'I sæson'}</span>
+                  <svg class="fish-chip-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       INTRO
+  ═══════════════════════════════════════════ -->
+  <section class="sec sec-intro">
+    <div class="ctn intro-layout">
+      <div class="intro-text">
+        <span class="eyebrow">Om Ude og Fiske</span>
+        <h2 class="intro-h2">Fiskeri er for alle — også for dig</h2>
+        <p class="intro-p">
+          Hvad der engang var en nødvendighed er i dag en af Danmarks mest udbredte fritidsaktiviteter. Over 200.000 danskere køber statens lystfisketegn hvert år, og kysten, åen eller put &amp; take-søen er aldrig længere væk end en kort køretur. Det eneste der står mellem dig og din første fisk er en stang, et stykke endegrej og lidt viden om hvor og hvornår.
+        </p>
+        <p class="intro-p">
+          Ude og Fiske er bygget op om syv komplette art-guider og en voksende samling af teknik- og udstyrs-guider. Hver fisk har sit eget vindue på året — havørreden i forår og efterår, makrellen i sommerstimerne, hornfisken i den korte april-juni-måned, torsken i de kolde måneder. Det er den slags timing-viden der gør forskellen på en nul-tur og en tur med fisk i tasken.
+        </p>
+        <p class="intro-p">
+          Alle guides er skrevet med udgangspunkt i reel erfaring fra danske farvande, ikke oversatte versioner af amerikanske artikler. Når en guide nævner en specifik plads eller et specifikt blink, er det fordi jeg selv har fisket der eller brugt det. Sider er gratis, opdateres jævnligt, og du behøver ikke oprette en bruger for at læse dem.
+        </p>
+      </div>
+      <div class="intro-stats">
+        <div class="istat">
+          <span class="istat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s2-3 5-3 5 3 5 3-2 3-5 3-5-3-5-3z"/>
+              <circle cx="7" cy="12" r="0.8" fill="currentColor"/>
+              <path d="M14 9.5L20 4l-1 8 1 8-6-5.5"/>
+            </svg>
+          </span>
+          <span class="istat-n">7</span>
+          <span class="istat-l">Komplette art-guider</span>
+        </div>
+        <div class="istat">
+          <span class="istat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </span>
+          <span class="istat-n">15+</span>
+          <span class="istat-l">Teknik- og udstyrs-guider</span>
+        </div>
+        <div class="istat">
+          <span class="istat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </span>
+          <span class="istat-n">50+</span>
+          <span class="istat-l">Konkrete fiskepladser</span>
+        </div>
+        <div class="istat">
+          <span class="istat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+            </svg>
+          </span>
+          <span class="istat-n">100%</span>
+          <span class="istat-l">Gratis — ingen login</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  /* ── Shared ── */
+  .ctn {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .sec { padding: 5rem 0; }
+
+  .eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0d4a5e;
+    margin-bottom: 0.625rem;
+  }
+
+  .sec-hd { margin-bottom: 2.5rem; }
+
+  .sec-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .sec-sub {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: 400;
+    max-width: 480px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url("/images/forside_hero.jpg") center 40% / cover no-repeat;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 50%, rgba(13, 74, 94, 0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 80% 30%, rgba(4, 18, 28, 0.7) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(4, 15, 24, 0.65) 0%, rgba(4, 15, 24, 0.45) 50%, rgba(4, 15, 24, 0.85) 100%);
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 3rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.875rem;
+    border-radius: 999px;
+    margin-bottom: 1.75rem;
+    width: fit-content;
+  }
+
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.6; transform: scale(0.8); }
+  }
+
+  .hero-h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.25rem;
+    max-width: 680px;
+  }
+
+  .hero-h1 em {
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 1.75vw, 1.1875rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+    max-width: 520px;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background: #c47d0a;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.8rem 1.75rem;
+    border-radius: 8px;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 14px rgba(196, 125, 10, 0.35);
+  }
+
+  .btn-primary:hover {
+    background: #a86809;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(196, 125, 10, 0.4);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    padding: 0.8rem 1.75rem;
+    border-radius: 8px;
+    transition: border-color 0.15s, background 0.15s;
+    backdrop-filter: blur(4px);
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Wave separator — soft curve transitioning the dark hero into the white welcome section below */
+  .hero-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: 100%;
+    line-height: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-wave svg {
+    display: block;
+    width: 100%;
+    height: 90px;
+  }
+
+  @media (max-width: 640px) {
+    .hero-wave svg { height: 60px; }
+  }
+
+
+  /* ── Welcome (compact intro under hero) ── */
+  .sec-welcome {
+    background: #ffffff;
+    padding: 4rem 0 3.5rem;
+  }
+
+  .welcome {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .welcome-mark {
+    display: block;
+    width: 56px;
+    height: 3px;
+    background: linear-gradient(90deg, #c47d0a 0%, #0d4a5e 100%);
+    border-radius: 2px;
+    margin: 0 auto 1.75rem;
+  }
+
+  .welcome-lead {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 400;
+    color: #1f2937;
+    letter-spacing: -0.015em;
+    line-height: 1.55;
+    margin-bottom: 1.125rem;
+  }
+
+  .welcome-body {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.75;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* ── Card grid ── */
+  .sec-cats { background: #f8fafc; }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .bcard {
+    position: relative;
+    display: block;
+    height: 260px;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .bcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+
+  .bcard-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--img) center center / cover no-repeat;
+    background-color: #0d4a5e;
+    transition: transform 0.4s ease;
+  }
+
+  .bcard:hover .bcard-bg {
+    transform: scale(1.04);
+  }
+
+  /* Vignette overlay */
+  .bcard-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem 1.375rem 1.375rem;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.08) 0%,
+      transparent 35%,
+      rgba(0, 0, 0, 0.45) 70%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+    transition: background 0.22s ease;
+  }
+
+  .bcard:hover .bcard-content {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.12) 0%,
+      transparent 25%,
+      rgba(0, 0, 0, 0.55) 65%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+  }
+
+  .bcard-chip {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    width: fit-content;
+    backdrop-filter: blur(6px);
+  }
+
+  .bcard-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .bcard-title {
+    font-size: 1.3125rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .bcard-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.0);
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: color 0.25s ease, max-height 0.3s ease, margin-top 0.25s ease;
+  }
+
+  .bcard:hover .bcard-desc {
+    color: rgba(255, 255, 255, 0.72);
+    max-height: 60px;
+    margin-top: 0.25rem;
+  }
+
+  .bcard-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.625rem;
+    transition: color 0.2s, gap 0.2s;
+  }
+
+  .bcard:hover .bcard-arrow {
+    color: #ffffff;
+    gap: 8px;
+  }
+
+  @media (max-width: 860px) {
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .bcard { height: 240px; }
+  }
+
+  @media (max-width: 520px) {
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.625rem;
+    }
+    .bcard { height: 180px; }
+    .bcard-title { font-size: 1.0625rem; }
+    .bcard-desc { display: none; }
+    .bcard-arrow { display: none; }
+  }
+
+  /* ── Season guide ── */
+  .sec-season { background: #ffffff; }
+
+  .sblock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid var(--sc);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+  }
+
+  .sblock-left {
+    background: var(--sb);
+    padding: 2.5rem 2.75rem;
+    border-right: 1.5px solid var(--sc);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sblock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--sc);
+    margin-bottom: 0.875rem;
+  }
+
+  .sblock-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--sc);
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+  }
+
+  .sblock-season {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--sc);
+    opacity: 0.65;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.375rem;
+  }
+
+  .sblock-title {
+    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .sblock-tip {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .month-strip {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 6px;
+    margin: 0 0 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed rgba(15, 23, 42, 0.08);
+  }
+
+  .month-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .month-bar {
+    display: block;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(15, 23, 42, 0.08);
+    transition: background 0.25s ease, height 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .month-cell.is-now .month-bar {
+    height: 14px;
+    background: var(--sc);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px -3px var(--sc);
+    transform: translateY(-4px);
+  }
+
+  .month-letter {
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: color 0.25s ease;
+  }
+
+  .month-cell.is-now .month-letter {
+    color: var(--sc);
+    font-weight: 800;
+  }
+
+  .season-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--sc);
+    border-bottom: 1.5px solid var(--sc);
+    padding-bottom: 1px;
+    width: fit-content;
+    transition: opacity 0.15s, gap 0.15s;
+  }
+
+  .season-cta:hover { opacity: 0.75; gap: 9px; }
+
+  .sblock-right {
+    background: #ffffff;
+    padding: 2.5rem 2.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .sblock-fish-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+  }
+
+  .fish-chips {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fish-chips li { list-style: none; }
+
+  .fish-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1.125rem;
+    background: var(--sb);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  }
+
+  .fish-chip:hover {
+    transform: translateX(4px);
+    border-color: var(--sc);
+    background: #ffffff;
+    box-shadow: 0 12px 24px -14px rgba(15, 23, 42, 0.22);
+  }
+
+  .fish-chip-dot {
+    position: relative;
+    width: 9px;
+    height: 9px;
+    background: var(--sc);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .fish-chip-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--sc);
+    border-radius: 50%;
+    opacity: 0.22;
+  }
+
+  .fish-chip-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    flex: 1;
+    transition: color 0.18s ease;
+  }
+
+  .fish-chip:hover .fish-chip-name {
+    color: var(--sc);
+  }
+
+  .fish-chip-tag {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sc);
+    background: #ffffff;
+    padding: 0.28rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    flex-shrink: 0;
+  }
+
+  .fish-chip.is-top .fish-chip-tag {
+    color: #ffffff;
+    background: var(--sc);
+    border-color: var(--sc);
+    box-shadow: 0 4px 10px -3px rgba(15, 23, 42, 0.25);
+  }
+
+  .fish-chip-arrow {
+    color: var(--sc);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .fish-chip:hover .fish-chip-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 700px) {
+    .sblock { grid-template-columns: 1fr; }
+    .sblock-left { border-right: none; border-bottom: 1.5px solid var(--sc); padding: 2rem 1.75rem; }
+    .sblock-right { padding: 2rem 1.75rem; }
+  }
+
+  /* ── Intro ── */
+  .sec-intro {
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    padding: 5rem 0;
+  }
+
+  .intro-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .intro-h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .intro-p {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .intro-p:last-child { margin-bottom: 0; }
+
+  .intro-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+  }
+
+  .istat {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.25rem 1.25rem 1.375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: box-shadow 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+
+  .istat:hover {
+    box-shadow: 0 10px 28px -12px rgba(13, 74, 94, 0.22);
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+  }
+
+  .istat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: #ecfeff;
+    color: #0d4a5e;
+    border-radius: 10px;
+    margin-bottom: 0.125rem;
+  }
+
+  .istat-n {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0d4a5e;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .istat-l {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 700px) {
+    .intro-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .intro-stats { grid-template-columns: 1fr; }
+  }
+
+</style>

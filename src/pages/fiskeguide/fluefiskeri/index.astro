@@ -1,0 +1,561 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import DifficultyMeter from '../../../components/DifficultyMeter.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const related = [
+  {
+    title: "Put & Take fiskeri",
+    description: "Komplet guide til Put & Take i Danmark — favoritsøer for fluefiskere efter regnbueørred.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og take sø i Danmark",
+    chip: "Sø",
+  },
+  {
+    title: "Fiskeri på kysten",
+    description: "Guide til kystfiskeri i Danmark — havørreden er kongen af kysten.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Fiskeri i å",
+    description: "Find de bedste åer og lær at fange ørred og stalling i rindende vand.",
+    href: "/fiskeguide/fiskeri-i-aa/",
+    image: "/images/aa_fiskeri.jpg",
+    alt: "Å med træer langs bredden",
+    chip: "Ferskvand",
+  },
+];
+---
+
+<MainLayout
+  title="Fluefiskeri for begyndere – Komplet guide til fluefiskeri | Ude og Fiske"
+  description="Alt du skal vide for at komme i gang med fluefiskeri: flueliner, fluestænger, fluehjul, fluer og kasteteknik."
+  canonical="https://udeogfiske.dk/fiskeguide/fluefiskeri/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Fluefiskeri" },
+  ]}
+  articleData={{
+    headline: "Fluefiskeri",
+    image: "/images/fluefiskeri_card.jpg",
+    datePublished: "2025-01-23",
+  }}
+  faq={[
+    {
+      question: "Hvad er fluefiskeri?",
+      answer: "Fluefiskeri adskiller sig fra andre fiskeformer ved at man bruger <strong>linens vægt</strong> til at kaste agnet — fluen — ud i vandet. Fluerne vejer ikke meget, så i stedet for blinkets vægt bruger man en speciel tung <strong>flueline</strong> samt stangens fleksibilitet til at få fluen langt ud. I Danmark fiskes der primært efter <strong>regnbueørreder</strong> i Put & Take og <strong>havørreder</strong> ved kyst, fjord og åer.",
+    },
+    {
+      question: "Hvilken fluestang skal en begynder vælge?",
+      answer: "Som nybegynder anbefaler jeg en <strong>klasse 6-7 fluestang på 9 fod</strong>. Det er en all-round stang, der kan bruges til det meste fiskeri — fra regnbueørreder i Put &amp; Take til havørred på kysten — og som du kan bruge i flere år, hvis du passer på den.",
+    },
+    {
+      question: "Hvilken flueline skal begyndere bruge?",
+      answer: "Vælg altid en <strong>WF (Weight Forward) flueline</strong>, hvor vægten ligger i den ende du kaster med — det gør kastet markant nemmere. En <strong>floating</strong> line er nemmest at lære på og er perfekt til Put &amp; Take, mens en <strong>intermediate</strong> line er mit valg på kysten efter havørred.",
+    },
+    {
+      question: "Er fluefiskeri svært at lære?",
+      answer: "Fluefiskeri har en stejlere indlæringskurve end spinnefiskeri, fordi kastet er en helt ny teknik. Men giv det et par timer på en mark eller fodboldbane først, så kommer du hurtigt i gang. Det vigtigste er at holde øje med dit <strong>bagkast</strong>, så du ikke kroger dig selv eller andre.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Fluefiskeri</span>
+      </nav>
+      <h1 class="pg-title">Fluefiskeri for begyndere</h1>
+      <p class="pg-sub">Komplet guide til fluefiskeri — fra valg af flueline og fluestang til kasteteknik og de fisk du kan fange.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad er fluefiskeri?</h2>
+        <p class="ac-a">Fluefiskeri adskiller sig fra andre fiskeformer ved at man bruger <strong>linens vægt</strong> til at kaste agnet — fluen — ud i vandet. Fluerne vejer ikke meget, så i stedet for blinkets vægt bruger man en speciel tung <strong>flueline</strong> samt stangens fleksibilitet til at få fluen langt ud. I Danmark fiskes der primært efter <strong>regnbueørreder</strong> i Put &amp; Take og <strong>havørreder</strong> ved kyst, fjord og åer.</p>
+      </div>
+
+      <article class="article">
+        <DifficultyMeter value={70} label="Sværhedsgrad for begyndere" />
+
+        <h2>Hvad er fluefiskeri?</h2>
+        <p>Man kunne blive fristet til at tro at fluefiskeri er fiskeri hvor agnet imiterer en flue, det vil man dog have delvist ret i. For det første startede det sådan ud, at de første fluer man fiskede med lignede for det meste fluer og små insekter, men det har dog udviklet sig til at man kan finde alle former for fluer.</p>
+
+        <p>Fluefiskeriet adskiller sig fra andre fiskeformer ved at man bruger linens vægt til at kaste agnet, i dette tilfælde fluen, ud i vandet. Fluerne vejer ikke meget og man kan derfor ikke bruge deres vægt til at kaste langt, som man kan med et blink. Ved fluefiskeriet bruger man linens vægt samt stangens fleksibilitet til at få fluen langt ud. Linen man bruger er en speciel flueline som er tungere end almindelige liner, og som kun bruges til fluefiskeri og i fluestænger. Disse liner findes i forskellige typer, afhængigt af hvilket fluefiskeri du gerne vil praktisere. Når man snakker om flueliner vil jeg kun anbefale at man bruger WF(Weight Forward) flueliner. Dette er flueliner som har en tungere ende, så vægten på linen er i den ende man kaster med. Det gør det nemmere at kaste med en fluestang.</p>
+
+        <p>Jeg anbefaler altid en WF-line, og så vælger du linetype efter hvor dybt fisken står. Her er de tre typer — og hvad jeg bruger dem til:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over flueline-typer">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Linetype</th>
+                <th scope="col">Sådan ligger den i vandet</th>
+                <th scope="col">Bedst til</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Linetype">Floating</th>
+                <td data-label="Sådan ligger den i vandet">Flyder i overfladen — tynger ikke fluen ned</td>
+                <td data-label="Bedst til">Put &amp; Take og spotfiskeri, hvor fluen fiskes højt — fra overfladen og ned til ca. 30 cm</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Linetype">Intermediate</th>
+                <td data-label="Sådan ligger den i vandet">Går lige under overfladen, typisk 20-50 cm nede</td>
+                <td data-label="Bedst til">Kysten efter havørred — og Put &amp; Take når fisken står lidt dybere. Min favorit på kysten</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Linetype">Sinking</th>
+                <td data-label="Sådan ligger den i vandet">Synker — fås i mange synkehastigheder og dybder</td>
+                <td data-label="Bedst til">Dybere vand på kysten, når havørreden står langt nede</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <TipBox>
+          <p>Skal du kun købe <strong>én</strong> line til at starte med, så vælg en <strong>floating</strong> til Put &amp; Take — den er nemmest at lære at kaste med. Fisker du mest på kysten efter havørred, er en <strong>intermediate</strong> mit klare førstevalg.</p>
+        </TipBox>
+
+        <Affiliate
+          productId="504374"
+          note="Min go-to intermediate til kysten er Guideline Coastal Classic WF Slow Intermediate — den synker langsomt lige under overfladen, så fluen holder den dybde hvor havørreden jager, og WF-profilen gør den nem at kaste langt."
+        />
+
+        <h2>Hvilken fluestang skal du vælge?</h2>
+        <p>Fluestænger kommer i forskellige klasser, alt efter hvilket fluefiskeri du vil praktisere. Klassetallet fortæller hvor kraftig stangen er — jo højere tal, jo større fisk og tungere fluer kan den håndtere. Her er de tre hovedgrupper:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over fluestang-klasser">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Klasse</th>
+                <th scope="col">Type &amp; længde</th>
+                <th scope="col">Bedst til</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Klasse">1-4</th>
+                <td data-label="Type &amp; længde">Lette én-hånds stænger</td>
+                <td data-label="Bedst til">Bækørred, stalling, aborre, makrel og andre småfisk — kan også klare Put &amp; Take ørreder</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Klasse">6-7</th>
+                <td data-label="Type &amp; længde">All-round, typisk 9 fod — begynderens valg</td>
+                <td data-label="Bedst til">Det meste fiskeri: Put &amp; Take og havørred på kysten. Den jeg anbefaler til nybegyndere</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Klasse">8-10</th>
+                <td data-label="Type &amp; længde">Kraftige stænger, ofte to-hånds</td>
+                <td data-label="Bedst til">De helt store fisk — gedde og laks, fx laksefiskeri i norske elve og danske åer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Er du nybegynder, så start med en <strong>klasse 6-7 stang på 9 fod</strong>. Den er all-round, kan bruges til næsten alt fiskeri, og holder i flere år hvis du passer godt på den.</p>
+
+        <GuideLink
+          href="/fiskeudstyr/fiskestaenger/fluefiskestang/"
+          title="Læs vores guide til valg af fluestang"
+          desc="Se hvilke fluestænger jeg anbefaler — klasse for klasse."
+        />
+
+        <Affiliate
+          productId="62370"
+          note="Når du er klar til at investere i en stang, du ikke vokser fra, er Vision Meri min favorit til kysten. Den er bygget specifikt til kystfiskeri og lange kast efter havørred, med en kraftfuld progressiv aktion og saltvandssikre, hårdt forkromede slangeringe. Ikke en begynderstang — men den stang jeg griber, når jeg mener det alvorligt på kysten."
+        />
+
+        <h2>Hvor vigtigt er fluehjulet?</h2>
+        <p>Et fluehjul er vigtigt, dog er det nok det udstyr jeg kan gå mest på kompromis med når valget står på fluefiskeri udstyr. Her gælder det om at finde et hjul der passer til din fiskestang, og her tænkes der på klasse specifikationen af stangen.</p>
+
+        <figure class="art-figure">
+          <img src="/images/fluefiskeri_hjul.jpg" alt="Fluehjul monteret på korkgreb med klar grøn WF-flueline spolet på, lagt på drivtømmer ved vandet" loading="lazy" width="800" height="450" />
+          <figcaption>Mit fluehjul med en WF-line spolet op — hjulet skal matche stangens klasse, men ellers er det den del af grejet jeg går mindst op i.</figcaption>
+        </figure>
+
+        <h2>Hvordan vælger du de rigtige fluer?</h2>
+        <p>Fluer er nok den mest spændende del ved fluefiskeriet for mange, da det er her man kan bruge sin viden inden for fiskens byttedyr, til at vælge fluer man tror kan fange den fisk man er på jagt efter.</p>
+
+        <figure class="art-figure">
+          <img src="/images/fluefiskeri_flueboks.jpg" alt="Åben flueboks i hånden med rækker af kystfluer i orange, oliven og hvid — reje- og småfiskeimitationer" loading="lazy" width="800" height="450" />
+          <figcaption>Min flueboks til kysten — reje- og småfiskeimitationer i orange, oliven og hvid. Jeg vælger flue efter hvad havørreden æder på årstiden.</figcaption>
+        </figure>
+
+        <p>Nogle er endda ikke tilfredse med de fluer de kan købe, og vælger at binde dem selv fra bunden af. Dette giver en endnu større tilfredsstillelse når man endeligt fanger en fisk på en flue man selv har bundet. Jeg har selv prøvet af binde fluer, og selv om jeg er en nybegynder inden for denne verden, så er det bare en helt anden følelse når man fanger en fisk på en flue man selv har bundet.</p>
+
+        <p>Det er i hvert fald noget jeg gerne vil bruge mere tid på. Det er faktisk ikke så svært at komme i gang med fluebinding, da man nemt kan finde guides på Youtube, bøger og fiskeforeninger. Man kan købe fluebindingssæt hvor alt udstyr kommer samlet og man nemt kan komme i gang med at binde fluerne.</p>
+
+        <p>Vælger du at købe dine fluer, som jeg oftest selv gør, skal du gøre dig nogle tanker inden du går ud og køber fluerne. Du skal først vide hvilken fisk du gerne vil fange, da det er stor forskel på fluer til gedder, laks, havørreder og regnbueørreder. Når du har bestemt dig for hvad du vil fange, er det vigtigt at undersøge fiskens fødeemner, på den måde kan du vælge de fluer som fisker bedst på de forskellige årstider.</p>
+
+        <Affiliate
+          productId="504673"
+          note="Skal du i gang på kysten uden at samle fluerne én efter én, er Unique Kyst Fluesortiment et billigt og fornuftigt startpunkt — et udvalg af de klassiske kystfluer til havørred i én æske, så du har noget at prøve dig frem med."
+        />
+
+        <p>Er du i tvivl om hvilken flue du skal vælge kan du altid spørge din lokale grejhandler om deres forslag, de sidder inde med masser af viden og kan med garanti hjælpe dig på vej med valg af fluer. Under havørredfiskeri guiden og regnbueørred fiskeri guiden kommer jeg med mine bud på hvilke fluer du kan bruge til at fange de fisk.</p>
+
+        <p>Når du har udvalgt dig nogle fluer er det vigtigt at vide hvordan de fiskes da det vil øge dine chancer for at fange fisk. En rejeflue fisker bedst når den hives ind med små ryk.</p>
+
+        <p>Du kan undersøge de enkelte byttedyr for at finde ud af hvordan de bevæger sig i vandet, derefter kan du prøve at imitere dem. Ellers kan man altid spørge andre fluefiskere og få gode råd derfra. Du kan også prøve dig frem, ligesom jeg gjorde i starten. I Put &amp; Take er det nok den bedste måde, især som nybegynder. Prøv med forskellige måder at indtage fluen på og se om fisken reagerer på hvad du gør. Husk at fluerne har forskellige måder for hvad der fungerer bedst.</p>
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <h2>Hvordan kommer du i gang med fluefiskeri?</h2>
+        <p>Når man står med en fluestang for første gang, kan man godt blive overvældet, da alt det man har lært om fiskeri med spinnestang, ikke kan bruges. Du skal lære en helt ny fiskeform fra bunden og det kan være lidt udfordrende, men giv ikke op! Giv det et par timer og du kommer ikke til at fortryde det!</p>
+
+        <figure class="art-figure">
+          <img src="/images/fluefiskeri_kast.jpg" alt="Silhuet af fluefisker der kaster på en dansk kyst ved solopgang med en løkke af flueline foldet ud mod himlen" loading="lazy" width="800" height="450" />
+          <figcaption>Et roligt fluekast på kysten ved solopgang — når løkken ruller pænt ud, er det halve af fiskeriet vundet. Det tager lidt øvelse, men det kommer.</figcaption>
+        </figure>
+
+        <p>Ens første instinkt er at finde noget vand og starte med at fiske, men hvis du spørger mig, skal man kigge et helt andet sted, første gang man står med en fluestang i hånden.</p>
+
+        <p>Mit råd er at finde en stor mark, eller fodboldbane hvor man kan øve fluekastet inden man begiver sig ud til vandet. Fluekastet er vigtigt at få på plads, da man i nogle tilfælde kan komme galt af sted. Man kan ende med at kroge sidemanden eller sig selv hvis man ikke mestrer fluekastet og bare hamrer derudaf.</p>
+
+        <p>Start med kun at kaste med linen, på den måde skal du ikke bekymre dig om kroge, der sidder fast i alt muligt. Når du føler dig klar, kan du binde en flue på, for at se hvordan det er at kaste med en flue og hvordan den opfører sig i luften.</p>
+
+        <p>Den vigtigste regel ved fluefiskeri er, at man altid skal holde øje med ens bagkast. Det er når fluelinen er bag dig. Det er her, at man oftest rammer ting man ikke burde ramme.</p>
+
+        <TipBox label="Mit bedste begynderråd">
+          <p>Øv kastet på en <strong>mark eller fodboldbane</strong>, før du går ud til vandet — start helt uden flue, så slipper du for kroge der sætter sig fast i alt muligt. Og hold <strong>altid øje med dit bagkast</strong>; det er der de fleste uheld sker.</p>
+        </TipBox>
+
+        <p>Vil man være sikker på at have helt styr på sit fluekastet er det en god ide at melde sig til et fluekaste kursus. Man kan finde dem i store dele af landet, og er en rigtig god start for nybegyndere inden for fluefiskeriet.</p>
+
+        <h2>Hvad kan jeg fange når jeg fluefisker?</h2>
+        <p>Som nævnt i starten af siden så er ørreder de mest populære fisk at fange med fluestangen, men i princippet kan du fange alle fisk med din fluestang. Jeg har endda fanget fladfisk på flue!</p>
+
+        <DidYouKnow>
+          Fluestangen er langt mere alsidig end mange tror. Selv bundfisk som fladfisk kan tage en flue — så lad dig ikke begrænse til kun at tænke ørred, når du først har styr på kastet.
+        </DidYouKnow>
+
+        <p>Men når man snakker fluefiskeri i Danmark, så er det primært fiskeri efter regnbueørreder i Put &amp; Take søer, eller havørreder ved kyst, fjord og åer. Der er desuden også en del der fisker efter laks og stalling med flue, men det fiskeri kommer jeg ikke ind på, på denne side.</p>
+
+        <h3>Fluefiskeri efter regnbueørreder</h3>
+        <p>Regnbueørreder er en fisk som hovedsageligt findes i de danske Put &amp; Take søer. Da det er en fisk som findes i Put and Take søer, er det også en fisk som er en favorit blandt fluefiskere, og det skyldes forskellige aspekter af fiskeriet.</p>
+
+        <p>For fluefiskere, er spot fiskeri en yderst tilfredsstillende måde at fange fisk på, og da mange søer er relativt små og rene, og regnbueørreder har det med at gå højt, så er Put and Take søer og regnbueørreder perfekte til spot fiskeri.</p>
+
+        <GuideLink
+          href="/fiskeguide/fluefiskeri/fluefiskeri-i-put-take/"
+          title="Læs guiden til fluefiskeri i Put & Take"
+          desc="Spotfiskeri, fluevalg og teknik til regnbueørred i søen."
+        />
+        <GuideLink
+          href="/guide-til-fisk/regnbueorredfiskeri/"
+          title="Læs regnbueørred fiskeri guiden"
+          desc="Alt om regnbueørred — grej, fluer og de bedste teknikker."
+        />
+
+        <h3>Fluefiskeri efter havørred</h3>
+        <p>Selv om havørreden er i samme familie som regnbueørreden, så gælder det nogle helt andre teknikker, når man vil fange dem på fluestangen! Det er sjældent at man kan praktisere spot fiskeri når man fisker i fjorden eller kysten, men man kan til gengæld være heldig at se havørreden springe ud af vandet eller vise sig i overfladen, det er det tætteste man kommer på spot fiskeri når du fisker efter havørred.</p>
+
+        <p>Men mange af principperne er de samme, kaste fluen ud, trække den ind så den ligner fiskens byttedyr, og fange fisken.</p>
+
+        <p>Fluefiskeri efter havørred er en fiskeform, mange i Danmark praktiserer, og vi er heldige at have et stort udvalg af grej, som tåler saltvand og som egner sig til fluefiskeri efter havørreder.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/havorredfiskeri/"
+          title="Læs havørredfiskeri guiden"
+          desc="Lær hvor og hvornår du fanger havørred — og hvilke fluer der virker."
+        />
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/fluefiskeri_card.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 580px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+
+  .ac-q {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+  }
+
+  .ac-a {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .ac-a strong {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .article + :global(section),
+  .article + :global(div) {
+    margin-top: 2.5rem;
+  }
+
+  .article p {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .article p strong { color: #111827; font-weight: 700; }
+
+  .article h2 {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .article h2:first-child { margin-top: 0; }
+
+  .article h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .article ul {
+    margin: 0 0 1.5rem 1.25rem;
+    padding: 0;
+  }
+
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 0.375rem;
+    list-style: disc;
+  }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .art-figure figcaption {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    padding: 0.625rem 0.875rem;
+    text-align: center;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover {
+    background: #f8fbfc;
+  }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap {
+      border-radius: 12px;
+    }
+    .prey-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .prey-table,
+    .prey-table tbody,
+    .prey-table tr {
+      display: block;
+      width: 100%;
+    }
+    .prey-table tr {
+      padding: 1rem 1.125rem 1.125rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"],
+    .prey-table td {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      align-self: start;
+      padding-top: 0.15rem;
+    }
+  }
+
+</style>

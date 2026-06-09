@@ -1,0 +1,175 @@
+---
+type Item = {
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  alt: string;
+  chip: string;
+};
+
+interface Props {
+  items: Item[];
+  heading?: string;
+}
+
+const { items, heading = "Læs også" } = Astro.props;
+---
+
+<section class="rr-section">
+  <h2 class="rr-heading">{heading}</h2>
+  <div class="rr-grid">
+    {items.map((r) => (
+      <a href={r.href} class="rr-card" aria-label={r.title}>
+        <img src={r.image} alt={r.alt} loading="lazy" width="480" height="360" class="rr-img" />
+        <span class="rr-chip">{r.chip}</span>
+        <div class="rr-overlay">
+          <h3 class="rr-title">{r.title}</h3>
+          <p class="rr-desc">{r.description}</p>
+          <span class="rr-arrow">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+              <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .rr-section {
+    border-top: 1px solid #e5e7eb;
+    background: #f8fafc;
+    padding: 3.5rem 0 5rem;
+    margin-top: 4rem;
+  }
+
+  .rr-heading {
+    max-width: 1040px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6b7280;
+    padding: 0 1.5rem;
+  }
+
+  .rr-grid {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .rr-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0d4a5e;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .rr-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -14px rgba(13, 74, 94, 0.4);
+  }
+
+  .rr-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .rr-card:hover .rr-img { transform: scale(1.06); }
+
+  .rr-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.05) 75%);
+    pointer-events: none;
+  }
+
+  .rr-chip {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    padding: 0.25rem 0.5625rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    background: rgba(13, 74, 94, 0.92);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  .rr-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 0.875rem 1rem 1rem;
+  }
+
+  .rr-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin-bottom: 0.3125rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  }
+
+  .rr-desc {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+    padding-right: 2rem;
+  }
+
+  .rr-arrow {
+    position: absolute;
+    right: 0.875rem;
+    bottom: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s, color 0.2s;
+  }
+
+  .rr-card:hover .rr-arrow {
+    background: #ffffff;
+    color: #0d4a5e;
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 900px) {
+    .rr-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .rr-grid { grid-template-columns: 1fr; }
+  }
+</style>

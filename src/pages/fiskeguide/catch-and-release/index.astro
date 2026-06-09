@@ -1,0 +1,577 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import AffiliateTrio from '../../../components/AffiliateTrio.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import DifficultyMeter from '../../../components/DifficultyMeter.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+const related = [
+  {
+    title: "Fiskeri på kysten",
+    description: "Catch and Release er især vigtig for havørred — læs guiden til kystfiskeri.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Hav",
+  },
+  {
+    title: "Fiskeri i å",
+    description: "Gydemodne ørreder i åerne bør sættes tilbage — læs guiden til åfiskeri.",
+    href: "/fiskeguide/fiskeri-i-aa/",
+    image: "/images/aa_fiskeri.jpg",
+    alt: "Å med træer langs bredden",
+    chip: "Ferskvand",
+  },
+  {
+    title: "Fluefiskeri",
+    description: "Fluefiskeri giver færre krogsår end spinnefiskeri — perfekt til C&R.",
+    href: "/fiskeguide/fluefiskeri/",
+    image: "/images/fluefiskeri_card.jpg",
+    alt: "Fluefiskeri i rindende vand",
+    chip: "Teknik",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvad er Catch and Release?",
+    answer: "Catch and Release er en filosofi inden for ansvarligt fiskeri, hvor fisken sættes tilbage i vandet efter fangst. Praksissen er især vigtig for <strong>havørred</strong> — store gydemodne hunner skal tilbage til ynglepladserne. <strong>DTU Aqua (2023)</strong> har dokumenteret nul dødelighed når C&R udføres korrekt med små enkeltkroge og kort lufteksponering.",
+  },
+  {
+    question: "Dræber Catch and Release fisken alligevel?",
+    answer: "Ikke når det gøres korrekt. DTU Aquas undersøgelse fra 2023 registrerede <strong>nul dødelighed</strong> over 26–29 dage blandt genudsatte havørreder — selv ved blødning eller lidt længere lufttid — fordi forsøget foregik ved lave vandtemperaturer. Risikoen stiger ved varmt vand, dybe krogsår i gæller og lang lufteksponering.",
+  },
+  {
+    question: "Hvorfor er små enkeltkroge bedre end trekroge til C&R?",
+    answer: "Fisk fanget på <strong>flue og små enkeltkroge</strong> havde færre og mindre alvorlige sår end fisk fanget på trekroge eller store enkeltkroge på blink. Trekroge sætter sig oftere flere steder og giver dybere sår med mere blødning. Klem desuden modhagen flad — det er den enkleste ændring, der gør afkrogningen langt mere skånsom.",
+  },
+  {
+    question: "Hvor længe må fisken være oppe af vandet?",
+    answer: "Så kort tid som overhovedet muligt — helst <strong>under 10 sekunder</strong>. Forbered kamera og afkrogning på forhånd, hold fisken i vandet mens du løsner krogen, og løft den kun op til et hurtigt billede. Lufteksponering er langt farligere ved høje vandtemperaturer.",
+  },
+  {
+    question: "Skal jeg praktisere Catch and Release i Put and Take søer?",
+    answer: "Nej — i <strong>Put and Take søer</strong> er hjemtagning det mest naturlige. Søerne er designet til at sætte fisk ud, som skal fanges og tages med hjem, og fiskene har ikke samme reproduktive værdi som vilde fisk i naturlige habitater. Hjemtagning hjælper med at regulere bestanden og holde vandkvaliteten god.",
+  },
+  {
+    question: "Hvilket grej gør Catch and Release mest skånsomt?",
+    answer: "En <strong>fangstnet med gumminet</strong> der skåner slimlaget, en <strong>krogløser eller peang</strong> så du kan afkroge uden at røre fisken unødigt, og kroge <strong>uden modhager</strong>. Gør altid hænderne våde før du rører fisken, og undgå at klemme om gæller og øjne.",
+  },
+];
+---
+
+<MainLayout
+  title="Catch and Release – Guide til skånsom genudsætning af fisk | Ude og Fiske"
+  description="Lær korrekt Catch and Release teknik så fisken overlever genudsætning. Forskning fra DTU Aqua, skånsomheds-beregner, tjekliste og bedste praksis."
+  canonical="https://udeogfiske.dk/fiskeguide/catch-and-release/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Catch and Release" },
+  ]}
+  articleData={{
+    headline: "Catch and Release",
+    image: "/images/cnr_hero.png",
+    datePublished: "2026-02-18",
+    dateModified: "2026-06-02",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Catch and Release</span>
+      </nav>
+      <h1 class="pg-title">Catch and Release</h1>
+      <p class="pg-sub">Sådan sætter du fisken skånsomt tilbage — bedste praksis, forskningens resultater og etisk fiskeri.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad er Catch and Release?</h2>
+        <p class="ac-a">Catch and Release er en filosofi inden for ansvarligt fiskeri, hvor fisken sættes tilbage i vandet efter fangst. Praksissen er især vigtig for <strong>havørred</strong> — store gydemodne hunner skal tilbage til ynglepladserne. <strong>DTU Aqua (2023)</strong> har dokumenteret nul dødelighed når C&amp;R udføres korrekt med små enkeltkroge og kort lufteksponering.</p>
+      </div>
+
+      <article class="article">
+        <DifficultyMeter value={30} label="Sværhedsgrad — korrekt C&R er lettere end de fleste tror" />
+
+        <p>Catch and Release er en filosofi inden for moderne, ansvarligt fiskeri, som spiller en kritisk rolle i bestræbelserne på at bevare fiskebestande og beskytte vandmiljøer. Dette koncept er særligt relevant i havørredfiskeri, hvor bevaring af en stærk, genetisk divers fiskebestand ikke kun er ønskeligt, men nødvendigt for artens langsigtede overlevelse. Dette afsnit uddyber, hvorfor disse praksisser bør følges og deres betydning for et bæredygtigt fiskeri.</p>
+
+        <h2>Hvorfor praktisere Catch and Release ved havørredfiskeri</h2>
+        <p>Havørreder, en værdifuld art for både rekreative fiskere og det marine økosystem, står overfor diverse udfordringer, herunder habitat destruktion, forurening og klimaforandringer, som truer deres bestande, især i vandene omkring Danmark. Catch and Release ved havørredfiskeri sikrer, at voksne, gydemodne individer kan returnere til deres ynglepladser, hvilket er essentielt for at opretholde en sund genetisk variation og sikre artens fremtidige overlevelse. Praksissen giver fiskene en chance for at fortsætte deres livscyklus, bidrager til genopbygning af bestande og understøtter et bæredygtigt fiskeri, som kan nydes af fremtidige generationer. Det er især vigtigt at praktisere Catch and Release ved fangst af større havørreder, da hunnerne bærer mange flere æg end de mindre havørreder, og man derved potentielt frarøver havet mange flere havørreder.</p>
+
+        <DidYouKnow>
+          En stor gydemoden hunhavørred kan bære <strong>flere tusinde æg</strong> — groft regnet omkring 2.000 æg pr. kilo kropsvægt. Når du sætter én stor hun tilbage, giver du potentielt havet mange flere fremtidige havørreder end ved at hjemtage den.
+        </DidYouKnow>
+
+        <h2>Undersøgelse af effekterne af Catch and Release</h2>
+        <p>DTU Aqua har i 2023 lavet en undersøgele, af hvilke effekter Catch and Release har på havørreder. Forskning viser, at korrekt udført fangst og genudsætning kan være en bæredygtig metode, der bevarer fiskebestandene, men det afhænger af god praksis og forholdene under fangsten.</p>
+
+        <StatHighlight
+          value="0 %"
+          caption="Dødelighed blandt genudsatte havørreder i DTU Aquas forsøg (2023) over 26–29 dage — ved lave vandtemperaturer og korrekt håndtering"
+          icon="ruler"
+        />
+
+        <h3>Undersøgelsens resultater</h3>
+        <p>Undersøgelsen har undersøgt effekterne af C&amp;R på havørred i saltvand under kontrollerede forhold. Her er de vigtigste fund:</p>
+
+        <ul>
+          <li><strong>Overlevelse:</strong> Ingen dødelighed blev registreret blandt de fangede og genudsatte fisk over en periode på 26–29 dage, selv når fiskene blev udsat for blødning eller længere lufttid under afkrogning. Dette peger på, at havørred er robust over for korrekt udført C&amp;R, især ved lave vandtemperaturer.</li>
+          <li><strong>Vækst:</strong> Vækstraterne blandt fangede fisk var ikke signifikant påvirket af genudsætning. En mindre gruppe (6 %) af fisk med uhelede eller inficerede krogsår viste dog en svag tendens til reduceret vækst.</li>
+          <li><strong>Sårheling:</strong> De fleste fisk havde ingen synlige skader efter genudsætning, eller deres sår var fuldstændigt helet. Fisk fanget med flue og små enkeltkroge havde færre og mindre alvorlige sår sammenlignet med fisk fanget med trekroge eller større enkeltkroge på blink. Sår i gællerne eller dybe krogsår tog længere tid at hele og medførte ofte større blødning.</li>
+          <li><strong>Fiskemetoder og blødning:</strong> Fluefiskeri forårsagede færre krogsår og mindre blødning sammenlignet med spinnefiskeri, især med trekroge. Blødning var oftest forbundet med dybe krogsår i gæller eller bageste del af munden.</li>
+          <li><strong>Miljøforhold:</strong> Undersøgelsen blev udført ved lave temperaturer (3,4–10,6°C) og moderat salinitet (21–25 ppt), hvilket er typisk for forår og efterår. Højere vandtemperaturer eller stressede miljøforhold kan føre til anderledes resultater.</li>
+        </ul>
+      </article>
+
+      <article class="article">
+        <h3>Anbefalinger for bedste praksis</h3>
+        <p>For at minimere skader og sikre fiskens overlevelse efter genudsætning anbefales det at følge disse retningslinjer:</p>
+
+        <ul>
+          <li><strong>Kroge:</strong> Brug små enkeltkroge eller kroge uden modhager for at reducere blødning og sårskader.</li>
+          <li><strong>Afkrogning:</strong> Begræns lufteksponering ved hurtigt og skånsomt at afkroge fisken. Brug gerne krogløsertænger.</li>
+          <li><strong>Håndtering:</strong> Undgå at klemme fisken og hold den under vand, når det er muligt.</li>
+          <li><strong>Temperaturer:</strong> Praktisér C&amp;R under køligere forhold, da fisk er mindre stressede ved lave vandtemperaturer.</li>
+        </ul>
+
+        <h3>Krogtyper og hvor skånsomme de er</h3>
+        <p>Krogvalget er en af de faktorer du har fuld kontrol over — og en af dem der betyder mest for hvor pænt fisken slipper. Her er de tre typiske krogtyper sat op mod hinanden:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Sammenligning af krogtyper til Catch and Release">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Krogtype</th>
+                <th scope="col">Krogsår &amp; blødning</th>
+                <th scope="col">Egnet til C&amp;R</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Krogtype">Modhageløs enkeltkrog</th>
+                <td data-label="Krogsår &amp; blødning">Mindst skade — glider let ud uden at flænse</td>
+                <td data-label="Egnet til C&amp;R">Bedst — det mest skånsomme valg</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Krogtype">Enkeltkrog m/modhage</th>
+                <td data-label="Krogsår &amp; blødning">Lille sår, men modhagen flænser ved udtræk</td>
+                <td data-label="Egnet til C&amp;R">God — klem modhagen flad med en tang</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Krogtype">Trekrog</th>
+                <td data-label="Krogsår &amp; blødning">Sætter sig ofte flere steder, dybere sår og mere blødning</td>
+                <td data-label="Egnet til C&amp;R">Mindst egnet — overvej at skifte til enkeltkrog</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <TipBox label="Det vigtigste tip">
+          <p>Vil du kun ændre <strong>én</strong> ting i dit fiskeri for fiskens skyld, så <strong>klem modhagerne flade</strong> med en fladtang. Det koster ingenting, du mister stort set ingen fisk når du holder linen stram, og afkrogningen bliver dramatisk mere skånsom — især når krogen sidder svært.</p>
+        </TipBox>
+
+        <AffiliateTrio
+          title="Mit skånsomme C&R-grej"
+          intro="Tre ting gør den største forskel når fisken skal sættes tilbage: en net der ikke ødelægger slimlaget, et værktøj der afkroger hurtigt, og kroge der slipper nemt. Her er de tre jeg selv ville samle til skånsom genudsætning."
+          products={[
+            {
+              productId: "505982",
+              badge: "Nettet",
+              badgeTone: "teal",
+              highlight: true,
+              note: "Gummi-net skåner fiskens slimlag langt bedre end traditionelt knudenet — og krogen filtrer sig sjældnere fast. Easy Flip foldes hurtigt ud med én hånd.",
+            },
+            {
+              productId: "77757",
+              badge: "Afkrogeren",
+              badgeTone: "slate",
+              note: "En peang/forceps når ind til krogen uden at du behøver røre fisken meget. Den korte næse er perfekt til ørred og fluekroge — afkrog i vandet på få sekunder.",
+            },
+            {
+              productId: "79743",
+              badge: "3-i-1 værktøjet",
+              badgeTone: "orange",
+              note: "Forceps, saks og fladtang i ét — så du både kan afkroge, klippe forfang ved dybe krogsår og klemme modhager flade. Det praktiske alt-i-ét til C&R.",
+            },
+          ]}
+        />
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <h2>Tjekliste: skånsom genudsætning trin for trin</h2>
+        <p>Brug listen her som en hurtig huskeseddel. Tryk på hvert punkt for at krydse det af — så kan du se hvor langt du er, og hvad du mangler at have styr på, inden du sætter fisken tilbage.</p>
+      </article>
+
+      <div class="cnr-checklist" id="cnr-checklist" role="group" aria-label="Tjekliste til skånsom genudsætning">
+        <div class="cnr-checklist-head">
+          <span class="cnr-checklist-title">Min C&amp;R-tjekliste</span>
+          <span class="cnr-checklist-progress" id="cnr-checklist-progress">0 / 8</span>
+        </div>
+        <ul class="cnr-checklist-items">
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Før:</strong> Klem modhagerne flade på dine kroge</span></button></li>
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Før:</strong> Hav net, krogløser og evt. kamera klar inden fighten</span></button></li>
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Under:</strong> Afslut fighten hurtigt — undgå at udmatte fisken helt</span></button></li>
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Under:</strong> Gør hænderne våde før du rører fisken</span></button></li>
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Under:</strong> Hold fisken i vandet og afkrog den dér</span></button></li>
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Under:</strong> Rør aldrig ved gæller og øjne</span></button></li>
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Efter:</strong> Sidder krogen dybt — klip forfanget i stedet for at rive</span></button></li>
+          <li class="cnr-check"><button type="button"><span class="cnr-check-box" aria-hidden="true"></span><span class="cnr-check-text"><strong>Efter:</strong> Hold fisken i vandet til den selv svømmer væk</span></button></li>
+        </ul>
+        <p class="cnr-checklist-done" id="cnr-checklist-done">Godt arbejde — fisken har de bedste odds for at svømme videre. 🐟</p>
+      </div>
+
+      <script is:inline>
+        (function () {
+          const list = document.getElementById('cnr-checklist');
+          if (!list) return;
+          const items = Array.from(list.querySelectorAll('.cnr-check'));
+          const progress = document.getElementById('cnr-checklist-progress');
+          const done = document.getElementById('cnr-checklist-done');
+          const total = items.length;
+
+          function update() {
+            const checked = items.filter((i) => i.classList.contains('is-checked')).length;
+            progress.textContent = checked + ' / ' + total;
+            list.classList.toggle('is-complete', checked === total);
+          }
+
+          items.forEach(function (item) {
+            const btn = item.querySelector('button');
+            btn.setAttribute('aria-pressed', 'false');
+            btn.addEventListener('click', function () {
+              item.classList.toggle('is-checked');
+              btn.setAttribute('aria-pressed', item.classList.contains('is-checked') ? 'true' : 'false');
+              update();
+            });
+          });
+        })();
+      </script>
+
+      <article class="article">
+        <h2>Hjemtagning i Put and Take søer</h2>
+        <p>I modsætning hertil er hjemtagning af ørreder fra put and take søer det mest naturlige at gøre, selv om visse personer udøver Catch and Release her. Disse søer er designet til rekreativt fiskeri, hvor fisk sættes ud med det formål at blive fanget og hjemtaget. Hjemtagning fra disse vande hjælper med at regulere fiskebestanden, sikrer en god vandkvalitet og bidrager til den økonomiske levedygtighed af put and take fiskeri. Det er vigtigt at bemærke, at fisk i disse søer ofte ikke har samme reproduktive værdi som fisk i naturlige habitater, da de er opdrættet specifikt til fiskeri.</p>
+
+        <GuideLink
+          href="/fiskeguide/put-take-fiskeri/"
+          title="Læs guiden til Put & Take fiskeri"
+          desc="I Put & Take er hjemtagning normen — find søerne og lær teknikken."
+        />
+
+        <h2>Balancen mellem bevaring og fiskeri</h2>
+        <p>Fiskeri er jo i bund og grund en jagt på føde som vores forfædre gjorde. Nu kan vi jo købe mad i den lokale Føtex, hvilket også har gjort at flere og flere gør brug af Catch and Release, men det skal aldrig forstås på den måde at man absolut ikke må hjemtage fisk. Man skal heller ikke få dårlig samvittighed af dette.</p>
+
+        <p>Ved at tilpasse vores fiskeri metoder og praksis efter artens og miljøets krav, kan vi sikre en bæredygtig udnyttelse af vores fiskeressourcer. Dette kræver en bevidst indsats fra fiskerens side, inklusive en forståelse for, hvornår og hvorfor catch and release eller hjemtagning er den mest ansvarlige handling.</p>
+
+        <p>Ved at følge disse principper og praktisere ansvarligt fiskeri, kan vi alle bidrage til bevaringen af vores vandmiljøer og sikre, at fiskeri fortsat kan være en bæredygtig og nydelsesfuld aktivitet for alle. Dette fremmer en kultur af respekt for naturen og understøtter en langsigtede vision for fiskeri, der værner om både nuværende og fremtidige generationers interesser.</p>
+
+        <h2>Fordele ved Catch and Release</h2>
+        <ul>
+          <li><strong>Bevaring af fiskebestande:</strong> Ved at frigive fisk tilbage til deres habitat, sikres en bæredygtig bestand, som er kritisk for økosystemets sundhed.</li>
+          <li><strong>Fremmer bæredygtigt fiskeri:</strong> Catch and Release opfordrer til ansvarlig fiskeri, hvilket sikrer, at fremtidige generationer også kan nyde fiskeri.</li>
+          <li><strong>Støtter forskningsindsats:</strong> Praksissen kan hjælpe med at indsamle data om fiskepopulationer, som kan anvendes i forskning og forvaltning.</li>
+        </ul>
+
+        <h2>Bedste praksis for Catch and Release</h2>
+        <h3>Udstyr</h3>
+        <ul>
+          <li>Fjern modhagerne på krogene. Dette er nok det vigtigste element, hvilket gør afkrogningen meget mere skånsom for fisken.</li>
+          <li>Vælg fiskestang og -line, der passer til de fiskearter, du sigter efter, for at undgå unødig kamp og stress for fisken. En meget stresset og udmattet fisk, vil have det sværere ved at overleve en genudsætning.</li>
+        </ul>
+
+        <h3>Håndtering</h3>
+        <ul>
+          <li>Gør dine hænder våde, før du håndterer fisken, for at beskytte dens slimlag.</li>
+          <li>Undgå at røre ved fiskenes gæller og øjne.</li>
+          <li>Brug en krogløser for forsigtigt at fjerne krogen.</li>
+        </ul>
+
+        <h3>Genudsætning</h3>
+        <ul>
+          <li>Sørg for, at fisken er livlig og klar til genudsætning; hold den i vandet, indtil den svømmer væk af sig selv.</li>
+        </ul>
+
+        <TipBox>
+          <p>Virker fisken sløv ved genudsætningen, så hold den blidt med hovedet op mod strømmen, så vandet løber ind gennem munden og ud over gællerne. <strong>Træk den aldrig frem og tilbage</strong> — det skader gællerne. Tålmodighed her er forskellen på en fisk der svømmer kraftfuldt væk, og en der vender bugen i vejret.</p>
+        </TipBox>
+
+        <h3>Uddannelse og viden</h3>
+        <ul>
+          <li>Uddan dig selv og andre om vigtigheden af Catch and Release og dets bidrag til bevarelse af vandmiljøet.</li>
+          <li>Deltag i lokale bevaringsprojekter og fiskeriklubber for at fremme bæredygtigt fiskeri.</li>
+        </ul>
+
+        <p>Catch and Release er mere end bare en fiskemetode; det er en etisk tilgang til fiskeri, der respekterer naturen og dens skabninger. Ved at følge de bedste praksis og anvende det rette udstyr kan lystfiskere bidrage væsentligt til bevaring af fiskebestande og sundheden i vores vandveje. Som fiskere har vi et ansvar for at sikre, at vores hobby ikke kun giver os glæde og rekreation, men også beskytter og bevarer de naturlige ressourcer for fremtidige generationer. Lad os sammen arbejde mod en mere bæredygtig fiskepraksis, hvor Catch and Release spiller en central rolle i vores fiskeriaktiviteter.</p>
+
+        <h3>Læs videre</h3>
+        <p>Catch and Release er især relevant for de vilde bestande på kysten og i åerne — og fluefiskeri giver typisk de mindste krogsår. Dyk ned i guiderne her:</p>
+
+        <GuideLink
+          href="/fiskeguide/fiskeri-paa-kysten/"
+          title="Læs guiden til kystfiskeri"
+          desc="Havørred på kysten er den klassiske C&R-fisk — find pladsen og teknikken."
+        />
+        <GuideLink
+          href="/fiskeguide/fluefiskeri/"
+          title="Læs guiden til fluefiskeri"
+          desc="Fluefiskeri gav færrest krogsår i DTU Aquas forsøg — perfekt til skånsomt fiskeri."
+        />
+
+        <h2>FAQ</h2>
+
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary><h3 set:html={f.question} /></summary>
+              <div class="faq-answer">
+                <p set:html={f.answer} />
+              </div>
+            </details>
+          ))}
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/cnr_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li { font-size: 1rem; color: #374151; line-height: 1.75; margin-bottom: 0.375rem; list-style: disc; }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  /* ─────────────  Comparison table  ───────────── */
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover { background: #f8fbfc; }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap { border-radius: 12px; }
+    .prey-table thead {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .prey-table, .prey-table tbody, .prey-table tr { display: block; width: 100%; }
+    .prey-table tr { padding: 1rem 1.125rem 1.125rem; border-top: 1px solid #f1f5f9; }
+    .prey-table th[scope="row"], .prey-table td {
+      display: grid; grid-template-columns: 130px 1fr; gap: 0.75rem;
+      padding: 0.3rem 0; white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem; grid-template-columns: 1fr;
+      margin-bottom: 0.4rem; padding-bottom: 0.4rem; border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #6b7280; align-self: start; padding-top: 0.15rem;
+    }
+  }
+
+  /* ─────────────  Interaktiv tjekliste  ───────────── */
+  .cnr-checklist {
+    max-width: 760px; margin: 1.5rem auto 2.75rem;
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 28px -22px rgba(15, 23, 42, 0.18);
+  }
+  .cnr-checklist-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.125rem 1.5rem;
+    background: linear-gradient(135deg, #0d4a5e 0%, #1e3a5f 100%);
+    color: #ffffff;
+  }
+  .cnr-checklist-title { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+  .cnr-checklist-progress {
+    font-size: 0.8125rem; font-weight: 700; font-variant-numeric: tabular-nums;
+    background: rgba(255, 255, 255, 0.15); padding: 0.25rem 0.75rem; border-radius: 999px;
+  }
+  .cnr-checklist-items { list-style: none; margin: 0; padding: 0.5rem 0.75rem; }
+  .cnr-check { margin: 0; }
+  .cnr-check button {
+    width: 100%; display: flex; align-items: center; gap: 0.875rem;
+    padding: 0.75rem 0.75rem; background: none; border: none;
+    border-radius: 10px; cursor: pointer; text-align: left;
+    transition: background 0.15s;
+  }
+  .cnr-check button:hover { background: #f1f5f9; }
+  .cnr-check-box {
+    width: 24px; height: 24px; flex-shrink: 0;
+    border: 2px solid #cbd5e1; border-radius: 7px; background: #ffffff;
+    position: relative; transition: background 0.15s, border-color 0.15s;
+  }
+  .cnr-check-box::after {
+    content: ''; position: absolute;
+    left: 7px; top: 3px; width: 6px; height: 11px;
+    border: solid #ffffff; border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg) scale(0); transition: transform 0.18s ease;
+  }
+  .cnr-check-text { font-size: 0.9375rem; color: #374151; line-height: 1.45; transition: color 0.15s; }
+  .cnr-check-text strong { color: #0d4a5e; font-weight: 700; }
+  .cnr-check.is-checked .cnr-check-box { background: #2c9e60; border-color: #2c9e60; }
+  .cnr-check.is-checked .cnr-check-box::after { transform: rotate(45deg) scale(1); }
+  .cnr-check.is-checked .cnr-check-text { color: #94a3b8; text-decoration: line-through; }
+  .cnr-check.is-checked .cnr-check-text strong { color: #94a3b8; }
+
+  .cnr-checklist-done {
+    max-height: 0; overflow: hidden; opacity: 0; margin: 0;
+    text-align: center; font-size: 0.9375rem; font-weight: 600; color: #2c9e60;
+    background: #f0faf4; transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    padding: 0 1.5rem;
+  }
+  .cnr-checklist.is-complete .cnr-checklist-done {
+    max-height: 80px; opacity: 1; padding: 1rem 1.5rem; border-top: 1px solid #d4ede0;
+  }
+
+  /* ─────────────  FAQ accordion  ───────────── */
+  .faq-list { margin: 1rem 0 0; }
+  .faq-item {
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    margin-bottom: 0.75rem; overflow: hidden; background: #ffffff;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .faq-item[open] { border-color: #cbd5e1; box-shadow: 0 4px 14px -10px rgba(15, 23, 42, 0.25); }
+  .faq-item summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.05rem 1.25rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary h3 {
+    margin: 0; font-size: 1rem; font-weight: 600; color: #111827; line-height: 1.4;
+  }
+  .faq-item summary::after {
+    content: ''; flex-shrink: 0;
+    width: 10px; height: 10px;
+    border-right: 2px solid #0d4a5e; border-bottom: 2px solid #0d4a5e;
+    transform: rotate(45deg); transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary::after { transform: rotate(-135deg); }
+  .faq-answer { padding: 0 1.25rem 1.15rem; }
+  .faq-answer p { margin: 0; font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .faq-answer p strong { color: #111827; font-weight: 600; }
+
+</style>

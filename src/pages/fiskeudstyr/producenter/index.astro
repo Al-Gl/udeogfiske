@@ -1,0 +1,228 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import AuthorProfile from '../../../components/AuthorProfile.astro';
+
+const brands = [
+  {
+    title: "Westin",
+    description: "Skandinavisk producent med rødder i 1952 — kendt for wobblere som Jätte, stænger og hjul i kompromisløs kvalitet.",
+    href: "/fiskeudstyr/producenter/westin/",
+    image: "/images/fluehjul_card.jpg",
+    alt: "Westin fiskeudstyr og hjul",
+  },
+  {
+    title: "Savage Gear",
+    description: "Dansk pioner inden for realistiske 3D- og 4D-agn — grundlagt af Mads Grosell, populær blandt rovfisk-jægere over hele verden.",
+    href: "/fiskeudstyr/producenter/savage-gear/",
+    image: "/images/endegrej.png",
+    alt: "Realistiske kunstagn fra Savage Gear",
+  },
+  {
+    title: "Geoff Anderson",
+    description: "Dansk specialist i funktionelt fisketøj siden 1998 — Dozer-jakken og Urus-bukserne er gået fra debut til klassiker blandt skandinaviske fiskere.",
+    href: "/fiskeudstyr/producenter/geoff-anderson/",
+    image: "/images/beklaedning.png",
+    alt: "Geoff Anderson fisketøj og waders",
+  },
+];
+---
+
+<MainLayout
+  title="Producenter af fiskeudstyr | Westin, Savage Gear & Geoff Anderson"
+  description="Læs om de bedste producenter af fiskeudstyr — Westin, Savage Gear og Geoff Anderson. Historie, produkter og hvorfor jeg selv vælger deres grej."
+  canonical="https://udeogfiske.dk/fiskeudstyr/producenter/"
+  pageType="category"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeudstyr", url: "/fiskeudstyr/" },
+    { name: "Producenter" },
+  ]}
+  itemList={brands.map(b => ({ name: b.title, url: b.href, image: b.image }))}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/">Fiskeudstyr</a>
+        <span>›</span>
+        <span>Producenter</span>
+      </nav>
+      <h1 class="pg-title">Fiskeudstyr fra de bedste producenter</h1>
+      <p class="pg-sub">Westin, Savage Gear og Geoff Anderson er tre af de producenter, jeg selv har brugt i mange år. Læs om deres historie, deres designfilosofi og hvilke produkter, der har bevist deres værd på vandet.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvilke producenter af fiskeudstyr kan jeg stole på?</h2>
+        <p class="ac-a">Mine egne favoritter er <strong>Westin</strong> (skandinavisk all-round-mærke med rødder helt tilbage til 1952), <strong>Savage Gear</strong> (dansk pioner inden for realistiske kunstagn) og <strong>Geoff Anderson</strong> (dansk specialist i funktionelt fisketøj og waders). Alle tre kombinerer kvalitet, holdbarhed og bæredygtighed på en måde, der gør dem værd at investere i — uanset om du er nybegynder eller erfaren lystfisker.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Jeg bliver tit spurgt: 'Hvilket mærke skal jeg vælge?' Mit ærlige svar er at gå efter producenter, der har bevist deres værd over tid — ikke det dyreste i butikken og ikke det billigste. Westin, Savage Gear og Geoff Anderson er tre mærker, jeg selv har brugt i flere år. Det er ikke en topliste, det er bare grej, som jeg ved holder."
+      />
+
+      <article class="article">
+        <p>Her på producentsiden finder du et udvalg af fiskeudstyr fra nogle af de bedste mærker i branchen. Jeg har samlet alt, hvad du har brug for, uanset om du er nybegynder eller erfaren lystfisker. Mit mål er at give dig et overblik over de forskellige producenter og deres produkter, så du nemt kan finde det udstyr, der passer bedst til dine behov.</p>
+
+        <p>Når du klikker dig ind på de enkelte producenter, får du en introduktion til mærket og dets mest populære produkter. Jeg har gjort det nemt at sammenligne udstyr og finde præcis det, der passer til dit fiskeri. Hver brand-side indeholder:</p>
+
+        <ul class="bullets">
+          <li><strong>Historie om producenten</strong> — hvordan mærket blev grundlagt, og hvad de står for i dag.</li>
+          <li><strong>Designfilosofi og innovation</strong> — hvad gør deres grej unikt i forhold til konkurrenterne.</li>
+          <li><strong>Mit eget syn på mærket</strong> — hvilket grej fra producenten jeg selv har fisket med, og hvordan det har klaret sig.</li>
+        </ul>
+
+        <h2>Hvorfor er det vigtigt at vælge kvalitetsudstyr?</h2>
+        <p>Godt fiskeudstyr kan gøre en stor forskel for din fiskeoplevelse. Ved at vælge udstyr fra de bedste producenter sikrer du dig produkter, der er designet til at holde og præstere under forskellige forhold. Uanset om du fisker i ferskvand eller saltvand, fra kysten eller fra båd, så har de tre mærker herunder noget, der passer til dig.</p>
+        <p>Billigt grej fra supermarkedet kan godt fange en fisk eller to, men når bremsen knækker midt under en fight med en god havørred, eller waderne lækker efter to ture på Stevns, så er der ikke meget sparet. Et stykke kvalitetsgrej fra Westin, Savage Gear eller Geoff Anderson koster mere i forhold til discount-grej, men det holder også i flere år — og det er den investering, der gør, at du ender med at bruge tiden på at fiske, ikke på at købe nyt grej hver sæson.</p>
+      </article>
+
+      <h2 class="sec-heading">Producenter</h2>
+      <div class="card-grid">
+        {brands.map((b) => (
+          <a href={b.href} class="card" aria-label={b.title}>
+            <img src={b.image} alt={b.alt} loading="lazy" width="600" height="400" class="card-img" />
+            <div class="card-overlay">
+              <h3 class="card-title">{b.title}</h3>
+              <span class="card-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <p class="card-desc">{b.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <AdsenseBanner />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/fiskeudstyr_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 620px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto 3rem; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .bullets { padding-left: 1.25rem; margin: 0 0 1.5rem; color: #374151; line-height: 1.8; }
+  .bullets li { margin-bottom: 0.5rem; }
+  .bullets strong { color: #111827; }
+
+  .sec-heading {
+    font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: #6b7280; margin-bottom: 1.25rem;
+  }
+  .card-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .card {
+    position: relative;
+    display: block;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px -14px rgba(13, 74, 94, 0.35);
+    border-color: #0d4a5e;
+  }
+  .card-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+  .card-overlay {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.125rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+  }
+  .card-title {
+    font-size: 1.25rem; font-weight: 700; color: #ffffff;
+    letter-spacing: -0.015em; line-height: 1.25;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  .card-arrow {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.18); color: #ffffff;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .card:hover .card-arrow {
+    background: #ffffff; color: #0d4a5e; transform: translateX(3px);
+  }
+  .card-desc {
+    padding: 1rem 1.125rem 1.25rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>

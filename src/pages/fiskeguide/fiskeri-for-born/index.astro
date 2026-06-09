@@ -1,0 +1,435 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import AdsenseBanner from '../../../components/AdsenseBanner.astro';
+import PriceRunnerProduct from '../../../components/PriceRunnerProduct.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import DifficultyMeter from '../../../components/DifficultyMeter.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+
+// PriceRunner product link — keep the ref-site/utm credit params verbatim so udeogfiske.dk is credited for clicks.
+const ramasjangPriceRunner = "https://www.pricerunner.dk/pl/647-3200120779/Fiskegrej/Kinetic-RamaSjang-CC-Blue-Combo-Set-5-6-5-24g-Sammenlign-Priser?ref-site=adrunner_dk_udeogfiske&utm_campaign=products&utm_content=https%3A%2F%2Fudeogfiske.dk%2F&utm_medium=widget&utm_source=udeogfiske.dk";
+
+const related = [
+  {
+    title: "Put & Take fiskeri",
+    description: "Put & Take søer er ofte det perfekte sted at tage børnene med — fremkommelige og fyldte med fisk.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put og take sø i Danmark",
+    chip: "Sø",
+  },
+  {
+    title: "Fiskeri i å",
+    description: "Skaller og aborre i den lokale å er ideelle begynderfisk for de yngste.",
+    href: "/fiskeguide/fiskeri-i-aa/",
+    image: "/images/aa_fiskeri.jpg",
+    alt: "Å med træer langs bredden",
+    chip: "Ferskvand",
+  },
+  {
+    title: "Fisketegn",
+    description: "Personer under 18 år behøver ikke fisketegn — læs reglerne her.",
+    href: "/fiskeguide/fisketegn/",
+    image: "/images/fisketegn_hero.png",
+    alt: "Dansk fisketegn",
+    chip: "Regler",
+  },
+];
+---
+
+<MainLayout
+  title="Fiskeri for børn – Sådan kommer børn i gang med fiskeri | Ude og Fiske"
+  description="Lær at tage børn med på fisketur. Tips til udstyr, fiskepladser og hvordan du gør fiskeriet sjovt for de unge."
+  canonical="https://udeogfiske.dk/fiskeguide/fiskeri-for-born/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeguides", url: "/fiskeguide/" },
+    { name: "Fiskeri for børn" },
+  ]}
+  articleData={{
+    headline: "Fiskeri for børn",
+    image: "/images/born_hero.png",
+    datePublished: "2025-05-14",
+  }}
+  faq={[
+    {
+      question: "Hvor kan børn nemmest komme i gang med fiskeri?",
+      answer: "Børn mellem <strong>3–6 år</strong> får mest ud af at fiske med <strong>prop</strong> efter aborre eller skaller — det er visuelt, og udstyret behøver ikke være avanceret. Når børnene bliver lidt større, er <strong>Put &amp; Take søer</strong> perfekte: fremkommelige, ofte med børnesøer, og næsten garanti for fangst.",
+    },
+    {
+      question: "Hvor gamle skal børn være for at fiske?",
+      answer: "Børn helt nede fra <strong>2–3 års alderen</strong> kan være med på en fisketur og opleve det at fange fisk — de behøver ikke selv hive fisken ind. Fra omkring <strong>3–6 år</strong> kan de fleste selv fiske med prop og regnorm under opsyn.",
+    },
+    {
+      question: "Hvilket udstyr skal et barn bruge til fiskeri?",
+      answer: "Et <strong>let og kort fiskesæt</strong> (combo med stang, hjul og line), en <strong>prop</strong>, et par kroge og <strong>regnorm</strong> er rigeligt til at starte. Kig efter en stang, der ikke er for lang eller tung, så små hænder kan kaste med den — og gerne et sæt, der kan bruges til både Put &amp; Take og fiskeri i åen.",
+    },
+    {
+      question: "Skal børn have fisketegn i Danmark?",
+      answer: "Nej. <strong>Børn og unge under 18 år fisker helt uden fisketegn</strong> i Danmark. Det betyder, at du frit kan tage børnene med på vandet uden at købe noget på forhånd.",
+    },
+    {
+      question: "Hvilke fisk er nemmest for børn at fange?",
+      answer: "<strong>Aborre og skaller</strong> er de bedste begynderfisk — aborre tager en regnorm under proppen, og skaller bider på almindeligt <strong>hvidt brød</strong>. I Put &amp; Take er <strong>regnbueørred</strong> et oplagt mål, og fra +8 år er <strong>hornfisk</strong> på kysten utrolig sjove, fordi de bider på næsten alt, når stimen er der.",
+    },
+    {
+      question: "Hvordan gør jeg fisketuren sjov for børn?",
+      answer: "Hold turen <strong>kort</strong>, tag snacks med, og gør fangsten til en fest — ros hver eneste fisk. Vælg et sted, hvor der er gode chancer for fangst (fx en børnesø i Put &amp; Take), og brug tiden til at snakke om naturen, fiskene og dyrene. Det er oplevelsen, ikke størrelsen på fangsten, der tæller.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeguide/">Fiskeguides</a>
+        <span>›</span>
+        <span>Fiskeri for børn</span>
+      </nav>
+      <h1 class="pg-title">Fiskeri for børn</h1>
+      <p class="pg-sub">Sådan introducerer du børn til fiskeriet — udstyr, pladser og gode råd til en sjov og tryg første tur.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvor kan børn nemmest komme i gang med fiskeri?</h2>
+        <p class="ac-a">Børn mellem <strong>3–6 år</strong> får mest ud af at fiske med <strong>prop</strong> efter aborre eller skaller — det er visuelt, og udstyret behøver ikke være avanceret. Når børnene bliver lidt større, er <strong>Put &amp; Take søer</strong> perfekte: fremkommelige, ofte med børnesøer, og næsten garanti for fangst.</p>
+      </div>
+
+      <article class="article">
+        <DifficultyMeter value={20} label="Sværhedsgrad for begyndere" />
+
+        <p>Fiskeri er en aktivitet som alle kan tage aktiv del i, så længe de kan holde en fiskestang! Og børn synes især det er sjovt at stå med en stang og fange fisk. Derfor er det oplagt at tage børnene med ud til den lokale å, sø eller kyst — fange fisk og samtidig lære dem mere om naturen og fiskene.</p>
+
+        <p>Børn helt nede fra 2–3 års alderen kan være med på en fisketur og se, hvad det betyder at fange fisk, og hvad fisk egentlig er! De behøver ikke selv hive fisken ind — for dem kan det være sjovt bare at se på.</p>
+
+        <StatHighlight
+          value="0 kr"
+          caption="Så meget koster fisketegn for børn og unge under 18 år — de fisker helt gratis. Voksne over 18 skal have det lovpligtige fisketegn."
+          icon="calendar"
+        />
+
+        <GuideLink
+          href="/fiskeguide/fisketegn/"
+          title="Læs guiden til fisketegn"
+          desc="Hvem skal have fisketegn — og hvad koster det for voksne? Se reglerne."
+        />
+
+        <h2>Hvad er det nemmeste fiskeri for børn?</h2>
+        <p>Det nemmeste fiskeri afhænger naturligvis af, hvor gammelt barnet er. Børn mellem 3–6 år får efter min mening mest ud af at fiske med <strong>prop</strong> — det er visuelt, og de kan se, når en fisk bider, fordi proppen bevæger sig og går under vandet. Her er en hurtig oversigt over, hvad der passer til hvilken alder:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Oversigt over fiskeri efter barnets alder">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Alder</th>
+                <th scope="col">Fiskeri</th>
+                <th scope="col">Hvad de fanger</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Alder">2–3 år</th>
+                <td data-label="Fiskeri">Med på turen — ser og rører ved fiskene</td>
+                <td data-label="Hvad de fanger">Oplevelsen frem for fangsten</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Alder">3–6 år</th>
+                <td data-label="Fiskeri">Prop/flåd med regnorm — selv, under opsyn</td>
+                <td data-label="Hvad de fanger">Aborre og skaller i å og sø</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Alder">6–8 år</th>
+                <td data-label="Fiskeri">Put &amp; Take, gerne en børnesø</td>
+                <td data-label="Hvad de fanger">Regnbueørred — med lidt hjælp</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Alder">+8 år</th>
+                <td data-label="Fiskeri">Kyst og fjord, når hornfisken kommer</td>
+                <td data-label="Hvad de fanger">Hornfisk — bider på alt, når stimen er der</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Man kan altid fiske efter regnbueørreder i Put &amp; Take, men her skal de mindre børn have hjælp, da regnbueørrederne i søerne kan være en lidt for stor mundfuld. Bor du et sted med en å eller sø, der indeholder skaller og aborre, er det det perfekte sted at starte. Aborre og især skaller er rigtig gode begynderfisk for børn, fordi det ikke kræver vildt udstyr — og små børnestænger kan sagtens fange dem.</p>
+
+        <p>For aborre gælder det en prop/flåd med en krog, og på krogen sætter du en regnorm. Mere skal der faktisk ikke til. Man kan selvfølgelig fiske med jigs og andet efter aborre, men regnorm på prop er rigeligt til de små.</p>
+
+        <DidYouKnow>
+          Du behøver ikke fancy agn for at fange skaller — et stykke almindeligt <strong>hvidt brød</strong> på krogen er ofte det, der virker bedst. Det er i hvert fald, hvad jeg selv har haft mest held med.
+        </DidYouKnow>
+
+        <p>Her er de fire bedste begynderfisk for børn, og hvad du fanger dem på:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Begynderfisk for børn og deres agn">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Fisk</th>
+                <th scope="col">Agn</th>
+                <th scope="col">Hvor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Fisk">Aborre</th>
+                <td data-label="Agn">Regnorm under prop/flåd</td>
+                <td data-label="Hvor">Å og sø — i hele landet</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Fisk">Skaller</th>
+                <td data-label="Agn">Almindeligt hvidt brød</td>
+                <td data-label="Hvor">Å og sø</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Fisk">Regnbueørred</th>
+                <td data-label="Agn">Powerbait eller lille spinner</td>
+                <td data-label="Hvor">Put &amp; Take søer</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Fisk">Hornfisk</th>
+                <td data-label="Agn">Lille agnfisk eller blink</td>
+                <td data-label="Hvor">Kyst og fjord, forår</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Det ovennævnte fiskeri er perfekt for børn at komme i gang med, fordi de selv — uden meget hjælp — kan fiske.</p>
+
+        <p>Når børnene bliver lidt større (og det er meget en vurderingssag), kan man tage dem med i den lokale Put &amp; Take sø. Her er fordelene mange. Først og fremmest er søerne meget fremkommelige — de er vedligeholdte, og børnene kan gå helt ned til vandkanten. Mange Put &amp; Take søer har desuden børnesøer, der er fyldte med fisk (oftest mindre fisk), hvor det næsten er umuligt IKKE at fange noget.</p>
+
+        <GuideLink
+          href="/fiskeguide/put-take-fiskeri/"
+          title="Læs guiden til Put & Take fiskeri"
+          desc="Find en sø med børnesø — det nemmeste sted at sikre fangst til de små."
+        />
+
+        <p>Når børnene når alderen +8, kan det også være værd at tage dem med på kysten eller i fjorden, når <a href="/guide-til-fisk/hornfisk/">hornfiskene</a> ankommer. Hornfiskene er utrolig sjove at fange, og når stimen er der, bider de næsten på alt.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/hornfisk/"
+          title="Læs hornfisk guiden"
+          desc="Hvornår hornfisken kommer, og hvordan børnene fanger den fra molen."
+        />
+      </article>
+
+      <AdsenseBanner />
+
+      <article class="article">
+        <h2>Hvilket fiskesæt skal man vælge til børn?</h2>
+        <p>For at komme godt i gang, hvis man har børn, kan man købe et fiskesæt sammensat specielt til børn. Dem findes der utallige af, og de er en god indgang til fiskeverdenen for de helt unge lystfiskere.</p>
+
+        <p>Når man vælger et fiskesæt, skal man kigge efter <strong>stangens længde og vægt</strong> — de helt små har svært ved at kaste med store stænger. Det kan desuden anbefales at vælge en stang, der kan bruges til <strong>forskellige fiskeformer</strong>, eksempelvis Put &amp; Take samt fiskeri i åen og på kysten efter de mange fiskearter, der findes i de vande.</p>
+
+        <PriceRunnerProduct
+          title="Kinetic Ramasjang CC Blue Combo Set"
+          href={ramasjangPriceRunner}
+          image="https://fiskegrej.dk/media/catalog/product/cache/5e88aeac5217cc8b6c04355c05f08eb4/v/i/vinkel_til_st_nger_197.jpg"
+          brand="Kinetic"
+          eyebrow="Mit valg til børn"
+          note="Det her er sættet, jeg selv ville give et barn til den første rigtige fisketur. Et komplet børnesæt, hvor stang, hjul og line er med fra start, så I bare kan tage afsted. Den korte 5'6&quot;-stang er let at styre for små hænder, og hjulet har endda et indbygget LED-lys, som børnene elsker."
+          specs={[
+            "Komplet: stang + hjul + line",
+            "5'6\" stang, 5–24 g",
+            "Reel med LED-lys",
+          ]}
+        />
+
+        <TipBox label="Mit råd til valg af sæt">
+          <p>Gå efter et <strong>kort og let sæt</strong>, hvor stang, hjul og line følger med — så slipper I for at sammensætte grejet selv. En stang på omkring <strong>5–6 fod</strong> er nemmest for et barn at styre, og en farverig finish (eller et LED-lys) gør det hele lidt sjovere at gå til.</p>
+        </TipBox>
+
+        <h2>Hvordan lærer børn om naturen, mens de fisker?</h2>
+        <p>Når man tager børn med ud at fiske, har man en oplagt mulighed for at lære dem mere om den natur, der findes rundt omkring i Danmark, samt om de fisk og dyr, vi har i landet — i hvert fald hvis man selv kender lidt til det. Børn er mere nysgerrige og lærer bedre, når de selv kan se og mærke de ting, man forklarer. Vis dem derfor, hvordan en sø hænger sammen: Hvor kommer søens vand fra? Hvorfor bevæger vandet sig ikke? Der findes et utal af emner, man kan tale med sine børn om.</p>
+
+        <p>Man kan vise dem, hvordan man afliver en fisk, og hvorfor man gør det i stedet for bare at smide den på land. Hvis børnene ikke er bange, kan de være med til at rense en fisk og se, hvordan fiskens anatomi er indrettet.</p>
+
+        <TipBox>
+          <p>Lær børnene at <strong>passe på naturen</strong> fra første tur: intet affald efterlades andre steder end i skraldespanden. Og når I skifter blink, skal selv de små stykker line med hjem — det tager naturen utrolig lang tid at nedbryde.</p>
+        </TipBox>
+
+        <p>Det vigtigste råd til slut: hold turen kort, fejr hver eneste fangst, og husk, at det er <strong>oplevelsen</strong> og den fælles tid ved vandet, der får børnene til at ville med igen.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/born_hero.png') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    color: #374151;
+  }
+  .prey-table thead {
+    background: linear-gradient(to bottom, #f8fafc, #eef2f6);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .prey-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .prey-table tbody tr {
+    border-top: 1px solid #f1f5f9;
+    transition: background 0.15s ease;
+  }
+  .prey-table tbody tr:hover {
+    background: #f8fbfc;
+  }
+  .prey-table th[scope="row"],
+  .prey-table td {
+    padding: 0.95rem 1rem;
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .prey-table th[scope="row"] {
+    font-weight: 700;
+    color: #0d4a5e;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap {
+      border-radius: 12px;
+    }
+    .prey-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .prey-table,
+    .prey-table tbody,
+    .prey-table tr {
+      display: block;
+      width: 100%;
+    }
+    .prey-table tr {
+      padding: 1rem 1.125rem 1.125rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"],
+    .prey-table td {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table th[scope="row"]::before { display: none; }
+    .prey-table td::before {
+      content: attr(data-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      align-self: start;
+      padding-top: 0.15rem;
+    }
+  }
+
+</style>

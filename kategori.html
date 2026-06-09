@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Udforsk vores omfattende fiskeguides. Find guides til å-fiskeri, Put & Take, kystfiskeri, bådsfiskeri og meget mere.">
+    <meta name="keywords" content="fiskeguide, åfiskeri, put and take, kystfiskeri, bådsfiskeri, laksefiskeri, geddefiskeri">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fiskeguides - Ude og Fiske">
+    <meta property="og:description" content="Omfattende guides til forskellige fisketyper og teknikker i Danmark">
+    <meta property="og:image" content="https://udeogfiske.dk/images/fiskeguides.jpg">
+
+    <title>Fiskeguides - Ude og Fiske</title>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Forside",
+        "item": "https://udeogfiske.dk/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Fiskeguides",
+        "item": "https://udeogfiske.dk/fiskeguides"
+      }]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Fiskeguides",
+      "description": "Omfattende guides til forskellige fisketyper og teknikker i Danmark",
+      "url": "https://udeogfiske.dk/fiskeguides"
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --secondary: #0891b2;
+            --accent: #06b6d4;
+            --text-dark: #0f172a;
+            --text-medium: #334155;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --gradient: linear-gradient(135deg, #0f766e 0%, #0891b2 50%, #06b6d4 100%);
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            background: rgba(15, 118, 110, 0.05);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            cursor: pointer;
+        }
+
+        /* Page Header with Search */
+        .page-header {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2.5rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .page-description {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 320px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            font-size: 1rem;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            color: var(--text-light);
+        }
+
+        /* Filter Pills */
+        .filter-pills {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            padding: 0.625rem 1.25rem;
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-medium);
+        }
+
+        .pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .pill.active {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Masonry Grid */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2.5rem 6rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 3rem;
+        }
+
+        .articles-masonry {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            grid-auto-rows: 10px;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .article-card.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: var(--gradient);
+            border-radius: 24px;
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .article-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px -5px rgb(0 0 0 / 0.2);
+        }
+
+        .article-card:hover::before {
+            opacity: 1;
+        }
+
+        .article-image-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+        }
+
+        .article-card.featured .article-image-wrap {
+            height: 400px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .article-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .article-body {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card.featured .article-body {
+            padding: 2.5rem;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .article-card.featured .article-title {
+            font-size: 2.25rem;
+        }
+
+        .article-excerpt {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex: 1;
+            line-height: 1.7;
+        }
+
+        .article-footer {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg);
+        }
+
+        .popular-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .popular-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .popular-item:hover {
+            background: var(--bg);
+        }
+
+        .popular-rank {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .popular-item a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .popular-item:hover a {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #1e293b 100%);
+            color: white;
+            padding: 4rem 2.5rem 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.375rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(4px);
+            display: inline-block;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .article-card.featured {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .article-card.featured .article-image-wrap {
+                height: 240px;
+            }
+
+            .article-card.featured .article-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .container {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .articles-masonry {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Ude og Fiske</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Forside</a></li>
+                <li><a href="kategori.html" class="active">Fiskeguides</a></li>
+                <li><a href="/fiskeudstyr">Fiskeudstyr</a></li>
+                <li><a href="/fiskepladser">Fiskepladser</a></li>
+                <li><a href="/om">Om os</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <nav class="breadcrumb">
+            <a href="index.html">Forside</a>
+            <span>/</span>
+            <span>Fiskeguides</span>
+        </nav>
+
+        <div class="header-content">
+            <div class="header-text">
+                <h1 class="page-title">Fiskeguides</h1>
+                <p class="page-description">
+                    Udforsk vores omfattende guides til forskellige fisketyper og teknikker i Danmark
+                </p>
+            </div>
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="search" placeholder="Søg efter guides...">
+            </div>
+        </div>
+
+        <div class="filter-pills">
+            <button class="pill active">Alle</button>
+            <button class="pill">Å-fiskeri</button>
+            <button class="pill">Put & Take</button>
+            <button class="pill">Kystfiskeri</button>
+            <button class="pill">Bådsfiskeri</button>
+            <button class="pill">Laksefiskeri</button>
+            <button class="pill">Geddefiskeri</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-grid">
+            <div class="articles-masonry">
+                <a href="artikel.html" class="article-card featured">
+                    <div class="article-image-wrap">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect fill='%2394a3b8' width='800' height='400'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='28' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EÅfiskeri%3C/text%3E%3C/svg%3E" alt="Fiskeri i å" class="article-image" loading="lazy">
+                        <span class="article-badge">Featured</span>
+                    </div>
+                    <div class="article-body">
+                        <h2 class="article-title">Fiskeri i å - Komplet guide til å-fiskeri i Danmark</h2>
+                        <p class="article-excerpt">Lær alt om fiskeri i åer og vandløb. Vi guider dig gennem de bedste teknikker, udstyr og pladser til å-fiskeri i Danmark. Perfekt for både begyndere og erfarne fiskere.</p>
+                        <div class="article-footer">
+                            <span class="stat">📅 15. mar 2024</span>
+                            <span class="stat">⏱️ 8 min</span>
+                            <span class="stat">👁️ 2.4k</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/put-take-fiskeri" class="article-card">
+                    <div class="article-image-wrap">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%2357a5c4' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPut %26 Take%3C/text%3E%3C/svg%3E" alt="Put and Take" class="article-image" loading="lazy">
+                    </div>
+                    <div class="article-body">
+                        <h2 class="article-title">Put & Take fiskeri - Alt du skal vide</h2>
+                        <p class="article-excerpt">Komplet guide til Put & Take søer i Danmark.</p>
+                        <div class="article-footer">
+                            <span class="stat">📅 12. mar</span>
+                            <span class="stat">⏱️ 6 min</span>
+                            <span class="stat">👁️ 3.1k</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/kystfiskeri" class="article-card">
+                    <div class="article-image-wrap">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%232d8ba8' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EKystfiskeri%3C/text%3E%3C/svg%3E" alt="Kystfiskeri" class="article-image" loading="lazy">
+                    </div>
+                    <div class="article-body">
+                        <h2 class="article-title">Kystfiskeri - Fiskeri fra land ved kysten</h2>
+                        <p class="article-excerpt">Udforsk mulighederne for kystfiskeri langs de danske kyster.</p>
+                        <div class="article-footer">
+                            <span class="stat">📅 10. mar</span>
+                            <span class="stat">⏱️ 7 min</span>
+                            <span class="stat">👁️ 1.8k</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/baadsfiskeri" class="article-card">
+                    <div class="article-image-wrap">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%231a5f7a' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBådfiskeri%3C/text%3E%3C/svg%3E" alt="Bådsfiskeri" class="article-image" loading="lazy">
+                    </div>
+                    <div class="article-body">
+                        <h2 class="article-title">Bådsfiskeri - Fiskeri fra båd i Danmark</h2>
+                        <p class="article-excerpt">Alt om fiskeri fra båd - fra udstyr og sikkerhed til de bedste pladser.</p>
+                        <div class="article-footer">
+                            <span class="stat">📅 8. mar</span>
+                            <span class="stat">⏱️ 10 min</span>
+                            <span class="stat">👁️ 2.7k</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/laksefiskeri" class="article-card">
+                    <div class="article-image-wrap">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%2387ceeb' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ELaksefiskeri%3C/text%3E%3C/svg%3E" alt="Laksefiskeri" class="article-image" loading="lazy">
+                    </div>
+                    <div class="article-body">
+                        <h2 class="article-title">Laksefiskeri - Guide til fangst af laks</h2>
+                        <p class="article-excerpt">Drømmer du om at fange laks? Få ekspert tips til udstyr og teknikker.</p>
+                        <div class="article-footer">
+                            <span class="stat">📅 5. mar</span>
+                            <span class="stat">⏱️ 9 min</span>
+                            <span class="stat">👁️ 4.2k</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/geddefiskeri" class="article-card">
+                    <div class="article-image-wrap">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect fill='%23556b2f' width='400' height='240'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EGeddefiskeri%3C/text%3E%3C/svg%3E" alt="Geddefiskeri" class="article-image" loading="lazy">
+                    </div>
+                    <div class="article-body">
+                        <h2 class="article-title">Geddefiskeri - Alt om fangst af gedder</h2>
+                        <p class="article-excerpt">Bliv en bedre geddefisker med vores omfattende guide.</p>
+                        <div class="article-footer">
+                            <span class="stat">📅 2. mar</span>
+                            <span class="stat">⏱️ 11 min</span>
+                            <span class="stat">👁️ 3.8k</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>🔥 Mest læste</h3>
+                    <ul class="popular-list">
+                        <li class="popular-item">
+                            <div class="popular-rank">1</div>
+                            <a href="/ørredfiskeri">Ørredfiskeri - Guide til havørred og bækørred</a>
+                        </li>
+                        <li class="popular-item">
+                            <div class="popular-rank">2</div>
+                            <a href="/laksefiskeri">Laksefiskeri - Guide til fangst af laks</a>
+                        </li>
+                        <li class="popular-item">
+                            <div class="popular-rank">3</div>
+                            <a href="/geddefiskeri">Geddefiskeri - Alt om fangst af gedder</a>
+                        </li>
+                        <li class="popular-item">
+                            <div class="popular-rank">4</div>
+                            <a href="/put-take">Put & Take fiskeri - Alt du skal vide</a>
+                        </li>
+                        <li class="popular-item">
+                            <div class="popular-rank">5</div>
+                            <a href="/baadsfiskeri">Bådsfiskeri - Fiskeri fra båd i Danmark</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>📧 Nyhedsbrev</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.7;">
+                        Få de seneste fiske-tips og guides direkte i din indbakke.
+                    </p>
+                    <form>
+                        <input type="email" placeholder="Din email" required style="width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--border); border-radius: 12px; margin-bottom: 0.75rem; font-size: 0.95rem;">
+                        <button type="submit" style="width: 100%; padding: 0.875rem; background: var(--gradient); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s;">Tilmeld</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ude og Fiske</h3>
+                <p>Din ultimative kilde til fiskeinspiration og ekspertguides i Danmark.</p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@udeogfiske" aria-label="YouTube">▶</a>
+                    <a href="https://www.instagram.com/udeogfiske/" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategorier</h3>
+                <ul class="footer-links">
+                    <li><a href="/fiskeguides">Fiskeguides</a></li>
+                    <li><a href="/fiskeudstyr">Fiskeudstyr</a></li>
+                    <li><a href="/fiskepladser">Fiskepladser</a></li>
+                    <li><a href="/fisketure">Fisketure</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Information</h3>
+                <ul class="footer-links">
+                    <li><a href="/om">Om os</a></li>
+                    <li><a href="/kontakt">Kontakt</a></li>
+                    <li><a href="/privatlivspolitik">Privatlivspolitik</a></li>
+                    <li><a href="/cookiepolitik">Cookiepolitik</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ude og Fiske. Alle rettigheder forbeholdes. | CVR: 44932422</p>
+        </div>
+    </footer>
+</body>
+</html>

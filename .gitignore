@@ -31,3 +31,6 @@ nanobanana-output/
 
 # misc local files
 *.local
+
+# local error/debug logs pasted in for troubleshooting
+error*.txt

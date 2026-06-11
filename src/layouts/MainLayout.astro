@@ -204,6 +204,17 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
 
     <meta property="og:type" content={pageType === 'article' ? 'article' : 'website'} />
 
+    <!-- Google Analytics (GA4). Loads only after the visitor accepts the "Statistik"
+         cookie category — the script stays inert (type="text/plain") until CookieConsent.astro
+         activates it. Consent Mode v2 defaults (denied) are set there too. -->
+    <script is:inline type="text/plain" data-consent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-KH3MCDWBGT"></script>
+    <script is:inline type="text/plain" data-consent="statistics">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-KH3MCDWBGT');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet" />

@@ -1,0 +1,106 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const links = [
+  { name: "Forsiden", href: "/", desc: "Tilbage til start" },
+  { name: "Guide til fisk", href: "/guide-til-fisk/", desc: "Alle artsguider" },
+  { name: "Fiskeguides", href: "/fiskeguide/", desc: "Teknikker og lokationer" },
+  { name: "Fiskeudstyr", href: "/fiskeudstyr/", desc: "Grej og anbefalinger" },
+  { name: "Fiskepladser", href: "/fiskepladser/", desc: "Gode steder i Danmark" },
+  { name: "Sæsonguide", href: "/saesonguide/", desc: "Hvad bider hvornår" },
+];
+---
+
+<MainLayout
+  title="Siden blev ikke fundet (404) | Ude og Fiske"
+  description="Den side du leder efter findes ikke. Find vej tilbage til guides, fiskepladser og grej på Ude og Fiske."
+  canonical="https://udeogfiske.dk/404"
+>
+  <section class="nf">
+    <div class="nf-inner">
+      <span class="nf-code" aria-hidden="true">404</span>
+      <h1 class="nf-title">Den fisk slap væk 🎣</h1>
+      <p class="nf-sub">
+        Siden du leder efter findes ikke længere — eller har måske aldrig gjort det.
+        Men der er masser af andet at fange. Prøv en af genvejene herunder.
+      </p>
+
+      <div class="nf-grid">
+        {links.map((l) => (
+          <a href={l.href} class="nf-card">
+            <span class="nf-card-name">{l.name}</span>
+            <span class="nf-card-desc">{l.desc}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .nf {
+    background: linear-gradient(120deg, #0d4a5e 0%, #082e3b 100%);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+  }
+  .nf-inner { max-width: 720px; width: 100%; text-align: center; }
+
+  .nf-code {
+    display: block;
+    font-size: clamp(4rem, 14vw, 8rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(255, 255, 255, 0.14);
+    margin-bottom: 0.5rem;
+  }
+  .nf-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.9rem;
+  }
+  .nf-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .nf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    text-align: left;
+  }
+  .nf-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 1.1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .nf-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  .nf-card-name { font-size: 0.95rem; font-weight: 600; color: #ffffff; }
+  .nf-card-desc { font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); }
+
+  @media (max-width: 640px) {
+    .nf-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 380px) {
+    .nf-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,5 +1,31 @@
 # Review log
 
+## 2026-06-16 — Full-site SEO audit (Session: /seo-audit)
+
+Ran a live crawl of udeogfiske.dk + full source-code inspection of all 81 built pages.
+
+**Overall SEO Health Score: 73/100**
+
+**Critical findings:**
+- `/fiskeudstyr/byg-dit-fiskesaet/` returns 404 on live site — page built locally but not pushed to GitHub yet. It is listed in sitemap.xml, which means Google logs a 404 from the sitemap.
+- `WebSite.SearchAction` in MainLayout schema points to `/search?q=` which doesn't exist — invalid structured data.
+
+**High priority findings:**
+- 4 page titles still say "2025": torskefiskeri, makrelfiskeri, regnbueorredfiskeri, sildefiskeri.
+- `om-mig/index.astro` title is "Kontakt | Ude og Fiske" — should be author/about page title for E-E-A-T.
+- `/fiskeudstyr/` has zero internal links to the new set-builder page.
+- Torsk title is 83 chars, regnbueørred 89 chars — over the SERP display limit.
+
+**Positives confirmed:**
+- All security headers present (HSTS, X-Frame-Options, X-Content-Type, Referrer-Policy, Permissions-Policy).
+- og:image (forside_hero.jpg) exists and serves correctly.
+- robots.txt, sitemap.xml, llms.txt all functional.
+- E-E-A-T is strong: author bio, affiliate disclosure, DTU Aqua citation, 91-page topical depth.
+- Schema implementation comprehensive: Organization + Person + Article + BreadcrumbList + FAQPage + ItemList + SpeakableSpecification.
+- Cookie consent and GA4 consent-gating working correctly.
+
+**Output:** Updated FULL-AUDIT-REPORT.md and ACTION-PLAN.md with scored findings and prioritised fix list.
+
 ## 2026-05-25 — /fiskeguide/fluefiskeri/: full SEO + UX optimisation (Session 48)
 
 Turned a text-only beginner guide into a scannable, component-rich, internally-linked page.
@@ -4834,3 +4860,62 @@ All **9** `/guide-til-fisk/` species pages now have a SeasonCalendar, an interac
 - Rewrote copy to first person: "Vi har redesignet…" → "**Jeg** har redesignet…"; added a personal signature line ("God fornøjelse på vandet, Aldin · Ude og Fiske").
 - Replaced the inline SVG with a custom banner generated via nano-banana (`public/images/welcome-banner.png`) — flat-illustration Danish coastal sunrise with a leaping sea trout in the brand teal/gold palette.
 - Redesign polish: image header with `object-fit: cover` + soft white fade into the body, pill "Nyt look" badge with a pulsing gold dot (reduced-motion safe), tighter spacing. Build clean, 79 pages.
+
+---
+
+## Redesign: Editorial/Feltjournal — front page + shared shell (2026-06-11)
+
+**Goal:** Clean, modern look that does NOT read as a typical AI-built SaaS site. Direction chosen by user: Editorial/Feltjournal (outdoor-magazine), scope: front page + header/footer/tokens.
+
+**Design system changes (`MainLayout.astro` — affects all 80 pages):**
+- Added **Fraunces** (serif display) alongside Inter; new `--serif` token.
+- Warm editorial tokens: paper `#faf8f3` body background, ink `#211f1a` text, warm hairlines `#d8d2c4`, deeper gold accent `#b06f06`. Teal `--p` kept as brand anchor.
+- Header: removed teal strip + glassmorphism blur → 2px ink rule on top, solid paper bg, serif wordmark (logo 80→44px), uppercase letterspaced nav links (underline hover, no pill hover), "Kontakt" pill button → 1px-ink outlined button.
+- Footer: navy → warm ink `#1d1b16`, serif brand, warm-paper text tones.
+
+**Front page rewrite (`index.astro`):**
+- Removed all SaaS markers: gradient overlays, wave divider, pill badge remnants, filled gradient CTA buttons, hover-lift cards, icon value-cards.
+- New structure: kicker ("Lystfiskeri i Danmark") + giant serif H1 + lede + two underlined arrow-links → full-width photo with editorial caption ("↳ Den danske kyst…") → serif standfirst → numbered ruled sections **01 Guides** (flat 4:3 photo grid, captions below images), **02 Sæson** (serif pull-quote tip, ruler-tick month strip, ruled species rows), PriceRunner, **03 Om** (3 paragraphs + roman-numeral ruled points list).
+- Content fixes folded in: "syv art-guider" → "ni", "Sider er gratis" → "Siden er gratis".
+
+**Verification:** build clean — 80 pages; Fraunces in all pages; no leftover `hero-badge|hero-wave|btn-primary|istat` on forsiden (only cookie-banner's own `cc-btn-primary`). Dev server restarted on :4321. NOT pushed — awaiting user review on localhost.
+
+### Redesign v2: Nordisk minimal (2026-06-11)
+User rejected the Editorial/Feltjournal direction ("does not have the design for a fishing blog") — switched to the Scandinavian minimal option:
+- Reverted warm paper/serif: Fraunces removed from font link, tokens back to white bg / cool near-black ink `#111417` / cool hairlines, gold accent restored for article pages. Teal = the single front-page accent.
+- Header: no top bar, white, flat normal-case nav, "Kontakt" as underlined text link. Logo 40px.
+- Footer: cool near-black `#101314`, flat Inter brand.
+- Front page: statement hero ("Fiskeri i Danmark." + gray sub-statement), flat full-width photo w/ right-aligned caption, label-column sections (Guides / Sæson nu / Om siden) with hairline tops: strict 3×2 photo grid (title+chip rows, no descriptions), season as one big line "Juni — Makrel · Hornfisk · Fladfisk" + tip + ruler ticks (teal), about with lead + 3 paragraphs + 2-col numbered points.
+- Build clean (80 pages), Fraunces 0 refs, dev restarted. NOT pushed.
+
+### Redesign v3: restore original + fishing-modern polish (2026-06-11)
+User rejected both alternative directions ("worse than the original"). Restored the original design verbatim from git (`git checkout -- MainLayout.astro index.astro` — redesigns were never pushed), then applied a light fishing-inspired modernization on top:
+- Wave-line motif (gold) before section eyebrows; welcome divider bar → teal wave squiggle SVG.
+- Section backgrounds `#f8fafc` → sea-foam `#f2f7f8` (sec-cats + sec-intro, tinted border).
+- Hero: gradient bottom deepened toward ocean teal; H1 accent line "og alle andre" → warm gold `#e7bb66`.
+- Bento cards: radius 14→16px, hover shadow tinted teal.
+- Build clean (80 pages), dev restarted on :4321. NOT pushed.
+
+### UX/modern polish pass 2 (2026-06-11)
+On top of the restored original + fishing polish (all 80 pages where noted):
+- **Sitewide (MainLayout):** branded text-selection color (teal); visible gold `:focus-visible` outlines on links/buttons/summaries (keyboard UX); `prefers-reduced-motion` guard (kills animations + smooth-scroll for users who opt out); sticky header now gains a soft shadow once scrolled (tiny inline script, `.is-scrolled`); burger menu got `aria-expanded` + `aria-controls` sync.
+- **Front page:** primary hero CTA got an animated → arrow affordance; season block softened (1px border, 18px radius, soft teal shadow); bento card bottom gradient deepened slightly for text contrast/readability.
+- Build clean (80 pages), verified aria + scroll script in output, dev restarted on :4321. NOT pushed.
+
+---
+
+## Byg dit fiskesæt — interaktiv sæt-bygger (2026-06-11)
+
+**Goal (Aldin's spec):** New page where users pick budget + target fish and get predetermined sets of stang + hjul + line + agn.
+
+**Matrix:** 6 species × techniques (havørred: flue/spin/mede; regnbueørred: flue/spin/mede; hornfisk: spin/mede; makrel: spin/mede; fladfisk: kun mede; gedde: spin/mede) = 13 combos × 5 budgets (<750 / ≤1.000 / ≤1.500 / ≤2.000 / >2.000 kr) = **65 sets**, all with real in-stock products from the fiskegrej.dk feed (~50 unique products: Shimano/Daiwa/Westin/Penn/Savage Gear etc.).
+
+**New page:** `/fiskeudstyr/byg-dit-fiskesaet/`
+- 3-step pill chooser (målfisk → metode → budget); technique pills re-render per species; all 65 result cards server-rendered and toggled client-side (same pattern as the vælger components).
+- Each set card: 4 product rows (feed image, slot label, name, my recommended spec, live price, affiliate link w/ `rel="nofollow sponsored noopener"`), total price, editorial note, Annonce disclosure.
+- **Honest fallbacks:** fly-fishing sets under 1.500 kr are impossible at honest quality → 6 combos render an explanation pointing to the next tier instead of bad gear.
+- **Build-time validation:** every product ID resolved via getProduct (throws if missing/priceless) and every set total checked against its budget cap (throws if over) — a future feed change that breaks a set fails the build instead of shipping wrong.
+- SEO: pageType article + 4-question FAQ (FAQPage schema), breadcrumbs, method section with internal links (fangstnet, fisketegn).
+- sitemap.xml + llms.txt updated with the new route.
+
+**Verification:** build clean — **81 pages**; rendered page has exactly 65 set cards + 6 fallbacks + 236 affiliate links; sample havørred-spin totals 736/917/1.306/1.702/3.002 kr — all under caps. Dev on :4321. NOT pushed — awaiting review.

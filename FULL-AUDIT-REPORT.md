@@ -1,134 +1,258 @@
-# Full SEO Audit — udeogfiske.dk
-
-**Date:** 2026-06-11
-**Pages analyzed:** 79 (static Astro site, Cloudflare Pages)
-**Business type:** Content / affiliate publisher — Danish recreational-fishing guide (lystfiskeri). Editorial guides + gear recommendations (affiliate), no e-commerce/login.
+# SEO Audit Report — udeogfiske.dk
+**Audit date:** 2026-06-16  
+**Auditor:** Claude Fable 5 (automated + source-code inspection)  
+**Pages crawled:** 20 live pages + full source-code review (81 built pages, 91 sitemap URLs)
 
 ---
 
 ## Executive Summary
 
-### Overall SEO Health Score: **72 / 100**
+**Overall SEO Health Score: 73 / 100**
 
-A genuinely strong editorial foundation — original Danish content, excellent on-page hygiene, rich structured data — held back by a handful of **deployment-level** problems that are high-impact but cheap to fix.
+| Category | Weight | Raw Score | Weighted |
+|---|---|---|---|
+| Technical SEO | 25% | 72/100 | 18.0 |
+| Content Quality | 25% | 76/100 | 19.0 |
+| On-Page SEO | 20% | 68/100 | 13.6 |
+| Schema / Structured Data | 10% | 78/100 | 7.8 |
+| Performance | 10% | 70/100 | 7.0 |
+| Images | 5% | 75/100 | 3.75 |
+| AI Search Readiness | 5% | 82/100 | 4.1 |
+| **TOTAL** | | | **73.25** |
 
-| Category | Score | Weight |
+**Business type detected:** Danish fishing blog & affiliate content site. Solo operator (Aldin Glavas, CVR 43131168). Primary revenue model: affiliate links (fiskegrej.dk, PriceRunner). Informational content targeting recreational anglers in Denmark.
+
+### Top 5 Critical / High Issues
+1. `/fiskeudstyr/byg-dit-fiskesaet/` is **404 on live site** but listed in sitemap.xml — page not deployed
+2. `WebSite.SearchAction` in schema points to `/search?q=` which doesn't exist
+3. 4 page titles still say "2025" (torsk, makrel, regnbueørred, sild) — stale, may hurt CTR
+4. `/fiskeudstyr/` does not link to the set-builder page (zero entry points on live site)
+5. `om-mig/` title is "Kontakt | Ude og Fiske" — wrong keyword, misses E-E-A-T author-page opportunity
+
+### Top 5 Quick Wins
+1. Push pending local commits → deploy set-builder + design polish (fixes 404 + zero internal links)
+2. Update 4 "2025" titles to "2026"
+3. Fix om-mig title to "Om Aldin Glavas – Grundlægger | Ude og Fiske"
+4. Remove or fix `WebSite.SearchAction` (points to non-existent /search/)
+5. Add set-builder card to `/fiskeudstyr/` overview and front page featured section
+
+---
+
+## 1. Technical SEO
+
+### 1.1 Crawlability & Indexability
+
+| Check | Status | Notes |
 |---|---|---|
-| Technical SEO | 62 | 25% |
-| Content Quality | 85 | 25% |
-| On-Page SEO | 82 | 20% |
-| Schema / Structured Data | 90 | 10% |
-| Performance (CWV) | 45 | 10% |
-| Images | 50 | 5% |
-| AI Search Readiness | 55 | 5% |
+| robots.txt | ✅ Pass | Allows all, references sitemap + llms.txt |
+| Sitemap present | ✅ Pass | `/sitemap.xml` — 91 URLs |
+| Sitemap vs live | ❌ Fail | `/fiskeudstyr/byg-dit-fiskesaet/` is in sitemap but returns 404 |
+| Canonical tags | ✅ Pass | All pages set canonical via MainLayout |
+| noindex anywhere | ✅ Pass | No noindex detected on any page |
+| 404 page | ✅ Pass | Custom 404 with navigation shortcuts |
+| `www` → apex redirect | ⚠️ Unverified | Cloudflare rule required; not testable without access |
 
-### Top 5 critical issues
-1. **Soft 404s** — every non-existent URL returns **HTTP 200 with the homepage content** (no real 404 page exists). This is the single biggest issue: it lets Google index unlimited duplicate pages.
-2. **Massive unoptimized images** — e.g. `put_take_fiskeri_card.png` is **7.6 MB** (it's on the homepage), `aldin_profile.png` 5.4 MB, hero JPEGs 3.5–5.3 MB. Destroys LCP, especially on mobile.
-3. **AI crawlers are blocked** in the live robots.txt (Cloudflare "Managed robots"/AI Crawl Control): `GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`, `Bytespider`, `Applebot-Extended`, `meta-externalagent` all `Disallow: /`, plus `Content-Signal: ai-train=no`. This **directly contradicts the GEO/llms.txt work** — AI answer engines can't read the site.
-4. **Broken default `og:image`** — points to `/images/hero.jpg`, which does not exist (the 200 you'd see is the soft-404 serving HTML). Social/link previews break on pages that don't set their own image.
-5. **`www` does not redirect to apex** — `https://www.udeogfiske.dk/` returns 200 instead of 301→apex (duplicate-host; mitigated only by canonical tags).
+### 1.2 Security Headers
 
-### Top 5 quick wins
-1. Point the default `ogImage` in `MainLayout.astro` to a real file (1-line).
-2. Add `src/pages/404.astro` so Astro emits a real `dist/404.html`.
-3. Trim the ~10 meta descriptions over 160 characters.
-4. Remove the leftover **AdsenseBanner** placeholder from the homepage (renders an empty "Annonce" box + a script referencing undefined `adsbygoogle`).
-5. Shorten the ~20 page titles over 60 characters.
+| Header | Status | Value |
+|---|---|---|
+| Strict-Transport-Security | ✅ | `max-age=31536000; includeSubDomains` |
+| X-Frame-Options | ✅ | `SAMEORIGIN` |
+| X-Content-Type-Options | ✅ | `nosniff` |
+| Referrer-Policy | ✅ | `strict-origin-when-cross-origin` |
+| Permissions-Policy | ✅ | geolocation, microphone, camera off |
+| Content-Security-Policy | ❌ Missing | No CSP header detected |
 
----
+All major security headers present. CSP is the only gap — complex to implement without breaking inline scripts.
 
-## Technical SEO — 62/100
+### 1.3 Caching
 
-**Good**
-- HTTPS enforced; `http://` → `https://` is a **301**.
-- Brotli compression on HTML (`content-encoding: br`); `Vary: accept-encoding`.
-- `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`.
-- `robots.txt`, `sitemap.xml` (79 URLs), and `llms.txt` all present and served (200).
-- Legacy URLs redirect correctly as **301** via `public/_redirects` (verified `/vadejakke` → `/fiskeudstyr/beklaedning/vadejakke/`).
-- Self-referencing canonicals on every page, pointing to the apex.
+| Asset type | Cache-Control |
+|---|---|
+| Images (`/images/*`) | `Cache-Control: public, max-age=604800` (7 days) ✅ |
+| JS/CSS (`/_astro/*`) | Should be `immutable` per `public/_headers` |
+| HTML pages | `max-age=0, must-revalidate` (Cloudflare DYNAMIC) |
 
-**Issues**
-- 🔴 **Soft 404 (Critical):** unknown URLs return `200` + homepage HTML. No `404.astro` exists, and Cloudflare Pages is serving `index` for unmatched routes. Fix: add `src/pages/404.astro`; confirm Pages `not_found_handling` is the default (serve `404.html` with a 404 status), not SPA mode.
-- 🟠 **`www` not canonicalized (High):** add a redirect `www.udeogfiske.dk` → `udeogfiske.dk` (Cloudflare Redirect Rule or bulk redirect).
-- 🟡 **Missing security headers (Medium):** no `Strict-Transport-Security`, `X-Frame-Options`/`frame-ancestors`, or a CSP. Add a `public/_headers` file.
-- 🟡 **Sitemap lacks `<lastmod>` (Low):** add lastmod, or migrate to `@astrojs/sitemap` to auto-generate (it's currently hand-maintained and will drift).
+HTML pages are not edge-cached. Cloudflare Pages serves them dynamically which is correct for Astro static output (fresh on each deployment).
+
+### 1.4 HTTPS & Protocol
+- All resources served over HTTPS ✅
+- HSTS enforced ✅
+- HTTP/3 (alt-svc: h3) active ✅
 
 ---
 
-## Content Quality — 85/100
+## 2. Content Quality
 
-**Good**
-- Original, experience-based Danish content — not translated filler. Strong **E-E-A-T**: named author (Aldin Glavas), `Person` schema, `/om-mig/` page, first-person field experience referenced in guides.
-- **79/79 meta descriptions are unique.** No duplicate-content patterns.
-- No thin pages — smallest rendered page is ~26 KB and that's mostly real content; guides are long-form.
-- Good supporting formats: FAQ blocks, "Kort fortalt" answer capsules, season calendars, comparison tables.
+### 2.1 E-E-A-T Assessment
 
-**Issues**
-- 🟡 Mixed first-person voice: site still uses team-voice "vi/vores" in places (sweep in progress) while the author is a solo operator.
-- 🟢 Minor factual drift: homepage intro says "syv komplette art-guider" but there are 9 species guides.
+**Expertise:** Author (Aldin Glavas) has decades of fishing experience, specialized in sea trout fly fishing. Credentials clearly stated on `/om-mig/`. CVR registered business. ✅
 
----
+**Experience:** Direct first-person voice throughout ("jeg", "min"), personal fishing stories, own photographs used. ✅
 
-## On-Page SEO — 82/100
+**Authority:** 91 pages of topical depth covering 9 fish species × multiple techniques × multiple locations. Cites DTU Aqua (2023) research on C&R mortality. Monthly breakdowns for sea trout (12 pages). ✅
 
-**Good**
-- **Exactly one `<h1>` on every one of the 79 pages.** Clean heading hierarchy.
-- Titles and descriptions are unique and descriptive; keyword-aligned to Danish search intent.
-- Strong internal linking — 26–30 internal links per page; breadcrumbs sitewide.
+**Trustworthiness:** Affiliate disclosure on every product page ("Affiliate-link — køber du via linket, får jeg en lille kommission. Det koster dig ikke ekstra."). GDPR cookie consent. Business contact info. ✅
 
-**Issues**
-- 🟡 ~20 titles exceed ~60 characters (e.g. "Catch and Release – Guide til skånsom genudsætning af fisk | Ude og Fiske" = 77) and will truncate in SERPs. Consider dropping "| Ude og Fiske" on the longest, or tightening.
-- 🟡 ~10 meta descriptions exceed 160 characters (longest: a gennemløbsblink page at 218). Trim to ≤155.
+**Weakness:** `om-mig/` page title says "Kontakt" — search engines see this as a Contact page, not an Author/About page. Misses the E-E-A-T author-credibility signal for "who wrote this site."
 
----
+### 2.2 Content Depth by Section
 
-## Schema / Structured Data — 90/100
+| Section | Est. words | Assessment |
+|---|---|---|
+| Havørredfiskeri | 8,000–9,000 | ✅ Excellent flagship content |
+| Sæsonguide | 2,500–3,000 | ✅ Strong |
+| Gedde, Makrel, Torsk | 2,500–3,200 | ✅ Good |
+| Catch and Release | 2,800 | ✅ Good (cites research) |
+| Fluefiskeri | 2,200–2,500 | ✅ Good |
+| Fiskepladser (Isefjorden etc.) | 2,200 | ✅ Good |
+| Endegrej | 2,200–2,400 | ✅ Good |
+| Fiskeudstyr (index) | 450–500 | ⚠️ Thin for a hub page |
+| Fisketure (index) | ~320 | ❌ Very thin, 2022 trip reports |
+| Guide-til-fisk (index) | 450–500 | ⚠️ Thin for hub page |
+| Fiskeguide (index) | ~650 | ⚠️ Thin |
+| Homepage | ~1,200 | ⚠️ Below average for competitive head term |
 
-**Good** — among the strongest parts of the site. The JSON-LD `@graph` in `MainLayout.astro` includes: `Organization`, `Person` (author), `WebSite` + `SearchAction`, `WebPage`/`Article` with `datePublished`/`dateModified`, `BreadcrumbList`, `FAQPage`, `ItemList`, and `speakable`.
-
-**Opportunities**
-- 🟢 Gear pages recommend specific products — add `Product`/`Offer` (and `Review`/`AggregateRating` only if genuine) schema to qualify for rich results.
-- 🟢 Trip reports could use `Article` with a real `image` (see og:image fix).
-
----
-
-## Performance (Core Web Vitals) — 45/100
-
-Not measured with Lighthouse here, but the image weight makes the LCP verdict obvious.
-
-**Issues**
-- 🔴 **Unoptimized images (Critical for LCP):**
-  - `put_take_fiskeri_card.png` — **7.6 MB** (homepage bento card)
-  - `aldin_profile.png` — 5.4 MB
-  - `havørred_hero2.jpeg` — 5.3 MB · `havørred_hero1.jpeg` — 3.5 MB
-  - `logo_new.png` — 4.3 MB · `tilbehor.png` / `aafiskeri_hero.png` — 2.1 MB · plus many 1.5–2 MB files
-- 🟠 **No modern formats** — 42 PNG + 39 JPG/JPEG, **zero WebP/AVIF**. No responsive `srcset`.
-- 🟠 Static `<img>` tags aren't run through Astro's image optimizer.
-
-**Good**
-- Static site on Cloudflare CDN → fast TTFB. Minimal JS (no framework runtime). Brotli on HTML.
-
-**Targets:** card images ≤150 KB, hero ≤250 KB, logo ≤30 KB. Convert to WebP/AVIF + resize to displayed dimensions. This alone should lift the Performance score 30–40 points.
+### 2.3 Duplicate Content
+No duplicate content detected. All pages have unique focus and titles. Monthly sea trout guides (12 pages) differentiate by monthly conditions — risk of thin content but they appear to have unique advice.
 
 ---
 
-## Images — 50/100
+## 3. On-Page SEO
 
-- 🟢 **Alt text:** all 110 `<img>` tags in source carry `alt` — good accessibility/SEO.
-- 🔴 File sizes (see Performance).
-- 🟠 No `loading="lazy"` strategy review for below-fold; no `srcset`.
+### 3.1 Title Tags
+
+| Page | Title | Length | Issue |
+|---|---|---|---|
+| Homepage | "Ude og Fiske – Inspiration til din fisketur" | 44 | ✅ |
+| Havørredfiskeri | "Havørredfiskeri – Fiskeri efter havørred på kyst og fjord | Ude og Fiske" | 73 | ⚠️ Long |
+| Torskefiskeri | "Torskefiskeri \| Alt hvad du skal vide for at fange flere torsk i **2025** \| Ude og Fiske" | 83 | ❌ Too long + stale year |
+| Makrelfiskeri | "Makrelfiskeri \| Guide til at fange flere makrel i **2025** \| Ude og Fiske" | 72 | ❌ Stale year |
+| Regnbueørred | "Regnbueørred fiskeri \| Guide til at fange flere regnbueørreder i **2025** \| Ude og Fiske" | 89 | ❌ Too long + stale year |
+| Sildefiskeri | "Sildefiskeri \| Guide til at fange flere sild i **2025** \| Ude og Fiske" | 69 | ❌ Stale year |
+| Geddefiskeri | "Geddefiskeri \| Tips og teknikker til at fange din næste store gedde i Danmark \| Ude og Fiske" | 88 | ❌ Too long |
+| Aborrefiskeri | "Fiskeri efter Aborre — Tips, Teknikker og Bedste Fiskesteder \| Ude og Fiske" | 78 | ⚠️ Long, mixed case |
+| Om mig | "Kontakt \| Ude og Fiske" | 22 | ❌ Wrong title for author page |
+| Byg dit fiskesæt | (local only, not live) | — | ❌ Not deployed |
+
+**Recommended max:** 60 characters to avoid truncation in SERPs.
+
+### 3.2 Meta Descriptions
+
+All major pages have unique meta descriptions set in source code. Key quality notes:
+- Aborrefiskeri description is very long and generic ("Bliv mester i fiskeri...") — needs rewrite
+- Fladfisk description generic ("Fang flere fladfisk... se hvad du skal bruge") — thin
+- Most others are acceptable
+
+### 3.3 H1 Tags
+
+| Page | H1 | Matches title? |
+|---|---|---|
+| Homepage | "Fiskeri for begyndere og alle andre" | No (intentional) |
+| Fiskestænger | "Køb af fiskestænger" | ❌ Mismatch — title says "Guide til valg" |
+| Havørredfiskeri | "Havørredfiskeri – Fiskeri efter havørred på kyst og fjord" | ✅ Close match |
+| Sæsonguide | "Sæsonguide - Hvornår fanger du hvilke fisk?" | ✅ |
+
+The fiskestænger H1 "Køb af fiskestænger" is commercial intent ("buy"), while the title emphasizes guide content — inconsistency.
+
+### 3.4 Internal Linking
+
+**Gaps:**
+- `/fiskeudstyr/` → no link to `/fiskeudstyr/byg-dit-fiskesaet/` ❌
+- Homepage → no direct link to set-builder ❌
+- `/fisketure/` index doesn't prominently display trip report cards ⚠️
+
+**Strengths:**
+- Waders page links to havørred-specific waders guide ✅
+- Most species pages have "Læs også" cross-link sections ✅
+- Category hub pages link to all subpages ✅
 
 ---
 
-## AI Search Readiness — 55/100
+## 4. Schema / Structured Data
 
-**Good** — the structure is excellent for AI citation: `llms.txt` (curated, 7.2 KB), `FAQPage` schema, answer capsules, `speakable`, clean semantic HTML, consent-gated analytics.
+### 4.1 Implementation (from MainLayout.astro source)
 
-**Issue**
-- 🔴 **The live robots.txt blocks the major AI crawlers** (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`, `PerplexityBot` via managed list, etc.) and sets `Content-Signal: ai-train=no`. This is Cloudflare's **AI Crawl Control / Managed robots** feature, injected ahead of your own robots.txt. The brilliant llms.txt + FAQ work is wasted while these bots are disallowed. **Decision needed:** if you want AI visibility (you clearly invested in it), disable "Block AI scrapers and crawlers" / AI Crawl Control in the Cloudflare dashboard for this site. If you'd rather protect content from AI training, the current setup is correct — but then the llms.txt is moot.
+| Schema type | Present | Notes |
+|---|---|---|
+| Organization | ✅ | With logo, URL |
+| Person (Aldin Glavas) | ✅ | jobTitle, worksFor, image |
+| WebSite | ✅ | With SearchAction |
+| Article / WebPage | ✅ | Per page via pageType prop |
+| BreadcrumbList | ✅ | On pages that pass breadcrumbs prop |
+| FAQPage | ✅ | On pages that pass faq prop |
+| ItemList | ✅ | On hub pages |
+| SpeakableSpecification | ✅ | On FAQ pages |
+
+### 4.2 Schema Errors
+
+| Error | Severity | Details |
+|---|---|---|
+| SearchAction target URL | ❌ High | Points to `/search?q=` — no search page exists. Invalid potentialAction. |
+| Set-builder page schema | ❌ Not live | Page has schema in source (datePublished: 2026-06-11) but 404 on live |
+| Article schema `image` | ⚠️ Medium | Relies on `articleData.image` prop — pages without this may emit incomplete Article nodes |
+
+### 4.3 Recommendations
+- Remove or stub out `WebSite.SearchAction` until a search page exists
+- Verify BreadcrumbList and FAQPage are actually being passed to all article pages (can be checked in browser DevTools → Network tab → JSON-LD)
 
 ---
 
-## What's already excellent (don't touch)
-- Structured data graph, canonical strategy, 1-H1-per-page discipline, unique titles/descriptions, internal linking, HTTPS/redirects/compression, llms.txt + sitemap + robots infrastructure (your own layer).
+## 5. Performance
+
+### 5.1 Resource Observations (headers-only audit)
+- **Images:** Optimized (93MB → 24MB in previous pass). Served as JPEG with 7-day cache. ✅
+- **Fonts:** Google Fonts (Inter) loaded via `<link rel="preconnect">` + stylesheet. Render-blocking risk minor (display=swap). ✅
+- **Scripts:** GA4 deferred behind cookie consent (`type="text/plain"`). PriceRunner also consent-gated. ✅
+- **Build output:** Astro 6.1.8 generates hashed `/_astro/*` bundles. Should have `immutable` cache headers per `public/_headers`.
+
+### 5.2 Core Web Vitals
+Not measurable in this audit (requires Lighthouse / PageSpeed Insights with live traffic). Recommend:
+- Run PageSpeed Insights on `/guide-til-fisk/havorredfiskeri/` (most complex page)
+- Check LCP candidate (hero image) is preloaded
+- Verify `loading="lazy"` on below-fold images
+
+---
+
+## 6. Images
+
+| Check | Status | Notes |
+|---|---|---|
+| File sizes | ✅ | Optimized, 24MB total |
+| Caching | ✅ | 7-day Cache-Control |
+| Alt text — hero images | ✅ | Descriptive alt text on major pages |
+| Alt text — product images | ⚠️ | Gedde page: some product images with minimal alt text |
+| Format | ⚠️ | JPEG only — WebP/AVIF would reduce 30-50% further |
+| og:image | ✅ | `/images/forside_hero.jpg` (264KB, exists, 200 OK) |
+| Twitter image | ⚠️ | No `twitter:image` tag — falls back to og:image, acceptable |
+
+---
+
+## 7. AI Search Readiness
+
+| Signal | Status | Notes |
+|---|---|---|
+| llms.txt | ✅ | Comprehensive, all routes listed |
+| robots.txt AI note | ✅ | References llms.txt |
+| GPTBot / ClaudeBot allowed | ✅ | `Allow: /` for all bots |
+| Speakable schema | ✅ | On FAQ pages |
+| FAQPage schema | ✅ | On most content pages |
+| Citations/sources | ✅ | DTU Aqua referenced in C&R page |
+| Author credibility | ✅ | Aldin Glavas Person schema |
+| Structured data for AI | ✅ | Article + BreadcrumbList on content pages |
+| AI Crawl Control (Cloudflare) | ⚠️ | User should verify AI crawlers not blocked in CF dashboard |
+
+The site is well-positioned for AI search citation. The breadth of Danish fishing content with clear author attribution, FAQ schema, and speakable spec gives it a strong GEO (Generative Engine Optimization) foundation.
+
+---
+
+## 8. Pending Items (from local branch, not yet live)
+
+These exist in source code but are NOT on the live site:
+1. `/fiskeudstyr/byg-dit-fiskesaet/` — interactive set-builder (65 product sets)
+2. Design polish (wave motifs, gold H1, sea-foam tints, value-prop cards)
+3. Updated homepage (stats block → value-prop cards, hero adjustments)
+4. `/cookiepolitik/` — ✅ Already live (200 OK)
+5. `/404` — ✅ Already live
+
+Action required: push local commits to GitHub → Cloudflare auto-deploy.

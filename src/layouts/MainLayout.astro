@@ -81,11 +81,6 @@ const graph: any[] = [
     url: `${SITE}/`,
     description: "Guides, udstyr og pladser til din næste fisketur",
     publisher: { "@id": ORG_ID },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   },
 ];
 
@@ -251,6 +246,23 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
       img { max-width: 100%; height: auto; display: block; }
       a { color: inherit; text-decoration: none; }
 
+      ::selection { background: var(--p); color: #ffffff; }
+
+      a:focus-visible, button:focus-visible, summary:focus-visible {
+        outline: 2px solid var(--a);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
+
       /* ── Header ── */
       .skip-link {
         position: absolute;
@@ -280,6 +292,12 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--bdr);
+        transition: box-shadow 0.2s ease;
+      }
+
+      /* depth cue once the page is scrolled */
+      .sh.is-scrolled {
+        box-shadow: 0 6px 24px rgba(13, 40, 53, 0.08);
       }
 
       .sh-bar {
@@ -501,14 +519,16 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
         <button
           class="sh-toggle"
           aria-label="Åbn menu"
-          onclick="this.parentElement.querySelector('.sh-nav').classList.toggle('open')"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          onclick="var n=this.parentElement.querySelector('.sh-nav');n.classList.toggle('open');this.setAttribute('aria-expanded', n.classList.contains('open'))"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
           </svg>
         </button>
 
-        <nav class="sh-nav" aria-label="Primær navigation">
+        <nav class="sh-nav" id="primary-nav" aria-label="Primær navigation">
           <a href="/fiskeguide/" class="sh-link">Fiskeguides</a>
           <a href="/fiskeudstyr/" class="sh-link">Fiskeudstyr</a>
           <a href="/guide-til-fisk/" class="sh-link">Guides til fisk</a>
@@ -555,5 +575,16 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
 
     <CookieConsent />
     <WelcomePopup />
+
+    <script is:inline>
+      // Header depth cue on scroll.
+      (function () {
+        var h = document.querySelector(".sh");
+        if (!h) return;
+        var update = function () { h.classList.toggle("is-scrolled", window.scrollY > 8); };
+        update();
+        window.addEventListener("scroll", update, { passive: true });
+      })();
+    </script>
   </body>
 </html>

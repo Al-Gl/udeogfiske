@@ -1,0 +1,738 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { getProduct, formatPrice } from '../../../lib/feed';
+
+// ─────────────────────────────────────────────────────────────
+// Sæt-byggeren: målfisk × metode × budget → fast sæt af
+// stang + hjul + line + agn. Alle produkter er reelle, lagerførte
+// varer fra fiskegrej.dk-feedet. Build fejler hvis et ID mangler
+// eller et sæt overskrider sit budgetloft.
+// ─────────────────────────────────────────────────────────────
+
+const BUDGETS = [
+  { key: 'b1', label: 'Under 750 kr.', cap: 750 },
+  { key: 'b2', label: 'Maks. 1.000 kr.', cap: 1000 },
+  { key: 'b3', label: 'Maks. 1.500 kr.', cap: 1500 },
+  { key: 'b4', label: 'Maks. 2.000 kr.', cap: 2000 },
+  { key: 'b5', label: 'Over 2.000 kr.', cap: Infinity },
+] as const;
+
+type SlotDef = { id: string; spec: string };
+type SetDef = {
+  rod: SlotDef; reel: SlotDef; line: SlotDef; lure: SlotDef;
+  note: string;
+} | null;
+
+// Genbrugte byggeklodser (produkt-id + den spec jeg anbefaler at vælge)
+const rods = {
+  fxxt:      { id: '81723',  spec: "Vælg 8'–9' med 10–30 g kastevægt" },
+  lightning: { id: '78197',  spec: "Vælg 8'–9' med 20–60 g kastevægt" },
+  crossfire: { id: '60874',  spec: "Teleskopstang — nem at have med" },
+  devil:     { id: '503068', spec: "Vælg 8'6–9' med 10–30 g kastevægt" },
+  wrath:     { id: '503067', spec: "Vælg 8'–9' med 15–40 g kastevægt" },
+  ninjaPT:   { id: '504233', spec: 'Bygget til Put & Take-fiskeri' },
+  nexaveFC:  { id: '500372', spec: "Vælg 9' med 10–30 g kastevægt" },
+  w2spin:    { id: '503747', spec: "Vælg 8'6–9' med 10–30 g kastevægt" },
+  w3spin2:   { id: '65098',  spec: "Vælg 9' med 10–30 g kastevægt" },
+  seatroutSpecial: { id: '500378', spec: 'Dedikeret kyststang til havørred' },
+  speedmaster: { id: '504497', spec: "Vælg 9'6 med 13–35 g kastevægt" },
+  sportexSpoon: { id: '504571', spec: 'Area-stang bygget til blink i P&T' },
+  predator:  { id: '504228', spec: "Vælg 8'–8'6 med 30–70 g kastevægt" },
+  revengeHeavy: { id: '503122', spec: 'Heavy Game — til store geddeagn' },
+  w3powercast: { id: '503713', spec: "Vælg 8'3 med 20–80 g kastevægt" },
+  bftPike:   { id: '77734',  spec: "8'1, op til 110 g — turneringsklasse" },
+  deadbait:  { id: '502118', spec: "11', 3,25 lbs — bygget til agnfiskeri" },
+  ecoSuper:  { id: '71693',  spec: "11', 50–120 g — lang kastestang til mole/strand" },
+  enforcer:  { id: '75960',  spec: "11', 30–80 g — allround mole- og kyststang" },
+  maxxBeach: { id: '503511', spec: 'Surfcasting-stang til strand og mole' },
+  regiment:  { id: '80892',  spec: "10', 28–85 g — kraftig og kastevillig" },
+  powerstick: { id: '505907', spec: "8'3, 10–50 g — kompakt kraft" },
+  stoked:    { id: '60626',  spec: 'Vælg klasse #6–7 til kystbrug' },
+  superhero5: { id: '66935', spec: "9' klasse #5 — perfekt til P&T" },
+  seatroutHero: { id: '505830', spec: 'Dedikeret kystfluestang, klasse #6–7' },
+} as const;
+
+const reels = {
+  damNova:   { id: '502735', spec: 'Line følger med på spolen' },
+  sienna:    { id: '61188',  spec: 'Vælg str. 2500–3000' },
+  nexaveFI:  { id: '67811',  spec: 'Vælg str. 2500–3000' },
+  ninjaLT:   { id: '77126',  spec: 'Vælg str. 2500–3000' },
+  pursuit:   { id: '503094', spec: 'Saltvandssikret — vælg str. 4000' },
+  sedona:    { id: '78338',  spec: 'Vælg str. 2500–4000 efter stang' },
+  exceler:   { id: '82824',  spec: 'Vælg str. 2500–3000' },
+  w2fd:      { id: '503691', spec: 'Vælg str. 2000–3000' },
+  nasci:     { id: '501665', spec: 'Vælg str. 2500–4000 efter stang' },
+  ultegra:   { id: '500397', spec: 'Vælg str. 2500–3000' },
+  spinfisher: { id: '78217', spec: 'Fuldt saltvandstætnet — vælg str. 3500–4500' },
+  caldia:    { id: '500791', spec: 'Vælg str. 2500–3000' },
+  vanford:   { id: '501805', spec: 'Let og lynhurtig — vælg str. 2500' },
+  visionDeep: { id: '77603', spec: 'Vælg størrelse der matcher klasse #6–7' },
+  fisu:      { id: '76020',  spec: 'Vælg størrelse der matcher stangen' },
+  hero46:    { id: '67111',  spec: 'Klasse #4/6 — matcher en #5-stang' },
+} as const;
+
+const lines = {
+  sufixElite: { id: '47888', spec: '0,23 mm nylon, 100 m' },
+  sickMono:  { id: '71022',  spec: 'Vælg 0,26–0,33 mm, 300 m' },
+  jbraid:    { id: '43642',  spec: 'Vælg 0,10–0,16 mm fletline, 150 m' },
+  attackWF:  { id: '34114',  spec: 'Flydende WF-line — vælg klasse som stangen' },
+  multitip:  { id: '60639',  spec: 'Skydehoved med spidser — vælg vægt til stangen' },
+} as const;
+
+const lures = {
+  knaegten:  { id: '503562', spec: 'Klassisk kystblink — vælg 18–24 g' },
+  soelvpilen: { id: '55674', spec: 'Vælg 18–24 g' },
+  soemmet:   { id: '55720',  spec: 'Gennemløber — vælg 18–24 g' },
+  salty:     { id: '55931',  spec: 'Kystwobler — vælg 18 g' },
+  mepps:     { id: '34544',  spec: 'Vælg str. 2–3' },
+  dorado:    { id: '503586', spec: 'P&T-blink, 6,3 g' },
+  mushPT:    { id: '55889',  spec: 'Gennemløber til P&T' },
+  powerbait: { id: '71697',  spec: 'Flyder op fra bunden — husk blyhagl' },
+  bombardaSaet: { id: '65313', spec: 'Komplet sæt med flåd og forfang' },
+  boblerig:  { id: '65557',  spec: 'Bobleflåd med færdigt forfang' },
+  silkekrog: { id: '35161',  spec: 'Klassisk silkekrog — ingen fisk der ryger af' },
+  toby:      { id: '502873', spec: 'Vælg 18–28 g' },
+  hvenPirk:  { id: '35694',  spec: 'Vælg 16–24 g' },
+  sabiki:    { id: '501740', spec: 'Forfang med flere kroge — sæt et lod/pirk i enden' },
+  fladfiskAbu: { id: '500972', spec: 'Færdigt forfang med perler og spinnerblad' },
+  fladfiskHansen: { id: '79258', spec: 'Færdigt fladfiskeforfang' },
+  pigshad:   { id: '57625',  spec: '20 cm softbait — husk wireforfang' },
+  bullteez:  { id: '64773',  spec: '18 cm shadtail — husk wireforfang' },
+  miuras:    { id: '505236', spec: '26 cm, 115 g — storgedde-agn' },
+  wireLeader: { id: '59880', spec: 'Wireforfang — obligatorisk til gedde' },
+  kystflue:  { id: '39594',  spec: 'Klassisk kystflue på tube' },
+  montana:   { id: '65860',  spec: 'Montana-nymfe — P&T-klassiker' },
+} as const;
+
+type BudgetKey = (typeof BUDGETS)[number]['key'];
+type TechDef = { key: string; label: string; sets: Record<BudgetKey, SetDef> };
+type SpeciesDef = { key: string; label: string; techniques: TechDef[] };
+
+const matrix: SpeciesDef[] = [
+  {
+    key: 'havorred', label: 'Havørred',
+    techniques: [
+      { key: 'spin', label: 'Spinnefiskeri', sets: {
+        b1: { rod: rods.fxxt, reel: reels.sienna, line: lines.sufixElite, lure: lures.knaegten,
+              note: 'Et ærligt begyndersæt til kysten. Skift nylonen til en større spole, når budgettet tillader det.' },
+        b2: { rod: rods.devil, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.soelvpilen,
+              note: 'Solidt allround-kystsæt. 300 m nylon giver plads til omspoling, når enderne bliver slidte.' },
+        b3: { rod: rods.nexaveFC, reel: reels.ninjaLT, line: lines.jbraid, lure: lures.soemmet,
+              note: 'Her skifter vi til fletline — længere kast og bedre kontakt. Bind et stykke 0,30 fluorocarbon-forfang foran.' },
+        b4: { rod: rods.w3spin2, reel: reels.sedona, line: lines.jbraid, lure: lures.salty,
+              note: 'Westin W3 er en rigtig kyststang — let, hurtig og kastevillig. Et sæt du ikke vokser fra lige med det samme.' },
+        b5: { rod: rods.speedmaster, reel: reels.nasci, line: lines.jbraid, lure: lures.salty,
+              note: 'Dedikeret havørredstang fra Shimano med hjul der matcher. Grej i denne klasse holder i mange sæsoner.' },
+      }},
+      { key: 'flue', label: 'Fluefiskeri', sets: {
+        b1: null, b2: null, b3: null,
+        b4: { rod: rods.stoked, reel: reels.visionDeep, line: lines.multitip, lure: lures.kystflue,
+              note: 'Det billigste fluesæt til kysten jeg ærligt kan anbefale. Husk backing og et taperet forfang oveni.' },
+        b5: { rod: rods.seatroutHero, reel: reels.fisu, line: lines.attackWF, lure: lures.kystflue,
+              note: 'Visions kystserie er bygget præcis til dansk havørredfiskeri. Komplet sæt der bare skal have backing og forfang på.' },
+      }},
+      { key: 'mede', label: 'Medefiskeri', sets: {
+        b1: { rod: rods.fxxt, reel: reels.sienna, line: lines.sufixElite, lure: lures.boblerig,
+              note: 'Bobleflåd med tobis eller børsteorm er en undervurderet kystmetode — og den billigste vej til havørred.' },
+        b2: { rod: rods.ecoSuper, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.boblerig,
+              note: 'Den lange stang giver længere kast med flåddet og bedre linekontrol i bølgerne.' },
+        b3: { rod: rods.enforcer, reel: reels.ninjaLT, line: lines.sickMono, lure: lures.boblerig,
+              note: 'Allround mole- og kystsæt der også kan kaste tunge rigs. God hvis du fisker flere metoder.' },
+        b4: { rod: rods.maxxBeach, reel: reels.sedona, line: lines.sickMono, lure: lures.boblerig,
+              note: 'Surfcasting-klassen: lange kast og rygrad til store flåd og naturlig agn.' },
+        b5: { rod: rods.regiment, reel: reels.spinfisher, line: lines.sickMono, lure: lures.boblerig,
+              note: 'Penn-kombinationen er fuldt saltvandstætnet — et sæt der tåler mole, brænding og mange år.' },
+      }},
+    ],
+  },
+  {
+    key: 'regnbueorred', label: 'Regnbueørred',
+    techniques: [
+      { key: 'spin', label: 'Spinnefiskeri', sets: {
+        b1: { rod: rods.crossfire, reel: reels.sienna, line: lines.sufixElite, lure: lures.mepps,
+              note: 'Teleskopstang og en Mepps — mere skal der faktisk ikke til for at fange din første regnbueørred.' },
+        b2: { rod: rods.ninjaPT, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.dorado,
+              note: 'Daiwas P&T-stang er bygget til præcis det her fiskeri. Et sæt der holder til mange søbesøg.' },
+        b3: { rod: rods.ninjaPT, reel: reels.exceler, line: lines.sickMono, lure: lures.mushPT,
+              note: 'Samme stang, men et hjul i klassen over — mærkbart bedre bremse til de store moserøvere.' },
+        b4: { rod: rods.w2spin, reel: reels.nasci, line: lines.sickMono, lure: lures.mushPT,
+              note: 'Et lækkert let sæt der også kan tages med på kysten. Nasci-hjulet er bedst i klassen.' },
+        b5: { rod: rods.sportexSpoon, reel: reels.vanford, line: lines.jbraid, lure: lures.mushPT,
+              note: 'Area-fiskeri på japansk maner: ultralet stang, lynhurtigt hjul og tynd fletline. Sjovere bliver P&T ikke.' },
+      }},
+      { key: 'flue', label: 'Fluefiskeri', sets: {
+        b1: null, b2: null, b3: null,
+        b4: { rod: rods.stoked, reel: reels.visionDeep, line: lines.attackWF, lure: lures.montana,
+              note: 'Komplet startsæt til fluefiskeri i P&T. Husk backing og et taperet forfang oveni.' },
+        b5: { rod: rods.superhero5, reel: reels.hero46, line: lines.attackWF, lure: lures.montana,
+              note: 'En klasse #5 er perfekt til P&T — let nok til at give fight, stor nok til de tunge fisk.' },
+      }},
+      { key: 'mede', label: 'Medefiskeri', sets: {
+        b1: { rod: rods.crossfire, reel: reels.sienna, line: lines.sufixElite, lure: lures.powerbait,
+              note: 'Powerbait på bundrig er den mest fangstgivende metode i P&T — og den billigste at komme i gang med.' },
+        b2: { rod: rods.ninjaPT, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.powerbait,
+              note: 'P&T-stangens bløde top viser selv forsigtige hug. Husk blyhagl til at afbalancere powerbaiten.' },
+        b3: { rod: rods.nexaveFC, reel: reels.ninjaLT, line: lines.sickMono, lure: lures.powerbait,
+              note: 'Et sæt med rygrad nok til både bundrig og flådfiskeri — vælg selv taktik på dagen.' },
+        b4: { rod: rods.w2spin, reel: reels.nasci, line: lines.sickMono, lure: lures.bombardaSaet,
+              note: 'Bombardaflåddet åbner hele søen: fisk powerbait, orm eller flue i præcis den dybde fisken står.' },
+        b5: { rod: rods.powerstick, reel: reels.ultegra, line: lines.sickMono, lure: lures.bombardaSaet,
+              note: 'Kraftfuldt og komfortabelt sæt til lange dage ved søen — og hjulet er en investering der holder.' },
+      }},
+    ],
+  },
+  {
+    key: 'hornfisk', label: 'Hornfisk',
+    techniques: [
+      { key: 'spin', label: 'Spinnefiskeri', sets: {
+        b1: { rod: rods.fxxt, reel: reels.sienna, line: lines.sufixElite, lure: lures.toby,
+              note: 'Hornfisken er ikke kræsen — et slankt blink i fart er alt der skal til i maj.' },
+        b2: { rod: rods.devil, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.toby,
+              note: 'Allround-kystsæt der fanger hornfisk om foråret og kan bruges til havørred resten af året.' },
+        b3: { rod: rods.nexaveFC, reel: reels.ninjaLT, line: lines.jbraid, lure: lures.toby,
+              note: 'Fletline gør det nemmere at mærke de hidsige hug — og kaste blinket langt ud til stimerne.' },
+        b4: { rod: rods.w3spin2, reel: reels.sedona, line: lines.jbraid, lure: lures.toby,
+              note: 'Samme sæt jeg anbefaler til havørred — hornfisken er bonusfisken, der gør foråret sjovere.' },
+        b5: { rod: rods.speedmaster, reel: reels.nasci, line: lines.jbraid, lure: lures.toby,
+              note: 'Premium-kystsættet. Når hornfiskesæsonen slutter, fisker du videre efter havørred med præcis samme grej.' },
+      }},
+      { key: 'mede', label: 'Medefiskeri', sets: {
+        b1: { rod: rods.fxxt, reel: reels.sienna, line: lines.sufixElite, lure: lures.boblerig,
+              note: 'Bobleflåd med et stykke sild eller tobis — suppler med en silkekrog, så mister du færre fisk.' },
+        b2: { rod: rods.ecoSuper, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.silkekrog,
+              note: 'Silkekrogen er hornfiske-hacket: næbbet vikler sig ind i silken, og fisken kan ikke ryste sig fri. Fisk den under et bobleflåd.' },
+        b3: { rod: rods.enforcer, reel: reels.ninjaLT, line: lines.sickMono, lure: lures.boblerig,
+              note: 'Den lange molestang kaster flåddet helt ud til stimerne, når de ikke vil ind under land.' },
+        b4: { rod: rods.maxxBeach, reel: reels.sedona, line: lines.sickMono, lure: lures.boblerig,
+              note: 'Overkill til hornfisk alene — men et sæt der også dækker fladfisk, makrel og sild fra molen.' },
+        b5: { rod: rods.regiment, reel: reels.spinfisher, line: lines.sickMono, lure: lures.boblerig,
+              note: 'Det saltvandssikrede mole-sæt uden kompromiser. Dækker alt passivt fiskeri i saltvand.' },
+      }},
+    ],
+  },
+  {
+    key: 'makrel', label: 'Makrel',
+    techniques: [
+      { key: 'spin', label: 'Spinnefiskeri', sets: {
+        b1: { rod: rods.fxxt, reel: reels.sienna, line: lines.sufixElite, lure: lures.hvenPirk,
+              note: 'En pirk i sølv, hurtig indspinning og solskin — mere kompliceret er makrelfiskeri ikke.' },
+        b2: { rod: rods.wrath, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.hvenPirk,
+              note: 'Penn-stangen tåler saltvand og mole-livet. Et sæt til hele sommerens makreljagt.' },
+        b3: { rod: rods.enforcer, reel: reels.ninjaLT, line: lines.jbraid, lure: lures.toby,
+              note: 'Den lange stang når stimerne, der står langt ude — fletlinen gør kastene endnu længere.' },
+        b4: { rod: rods.powerstick, reel: reels.sedona, line: lines.jbraid, lure: lures.toby,
+              note: 'Kompakt kraftsæt: kaster tunge blink langt og har rygrad til selv store sommermakrel.' },
+        b5: { rod: rods.regiment, reel: reels.spinfisher, line: lines.jbraid, lure: lures.toby,
+              note: 'Fuldt saltvandstætnet sæt der holder til mange sæsoner på molen — og kan tage en bonustorsk undervejs.' },
+      }},
+      { key: 'mede', label: 'Medefiskeri', sets: {
+        b1: { rod: rods.fxxt, reel: reels.sienna, line: lines.sufixElite, lure: lures.sabiki,
+              note: 'Makrelforfanget fanger ofte flere fisk ad gangen, når stimen er inde. Sæt en pirk i enden som kastevægt.' },
+        b2: { rod: rods.ecoSuper, reel: reels.nexaveFI, line: lines.sickMono, lure: lures.sabiki,
+              note: 'Den lange molestang løfter forfanget pænt over rækværket — og kaster det langt.' },
+        b3: { rod: rods.enforcer, reel: reels.ninjaLT, line: lines.sickMono, lure: lures.sabiki,
+              note: 'Solidt molesæt til makrel og sild — samme grej dækker forårets sildestimer.' },
+        b4: { rod: rods.maxxBeach, reel: reels.sedona, line: lines.jbraid, lure: lures.sabiki,
+              note: 'Surfcasting-sættet når stimer, andre ikke kan kaste til. Fletlinen gør det nemt at mærke hugget.' },
+        b5: { rod: rods.regiment, reel: reels.spinfisher, line: lines.jbraid, lure: lures.sabiki,
+              note: 'Premium-mole-sættet — saltvandstætnet hele vejen og rygrad til fem makrel på én gang.' },
+      }},
+    ],
+  },
+  {
+    key: 'fladfisk', label: 'Fladfisk',
+    techniques: [
+      { key: 'mede', label: 'Medefiskeri', sets: {
+        b1: { rod: rods.ecoSuper, reel: reels.sienna, line: lines.sufixElite, lure: lures.fladfiskHansen,
+              note: 'Fladfiskeforfang, sandorm og tålmodighed — skrubberne klarer resten. Et meget ærligt budget-sæt.' },
+        b2: { rod: rods.ecoSuper, reel: reels.ninjaLT, line: lines.sickMono, lure: lures.fladfiskAbu,
+              note: 'Samme stang, bedre hjul og 300 m line — så en hektisk skrubbe-aften ikke slutter med tom spole.' },
+        b3: { rod: rods.enforcer, reel: reels.ninjaLT, line: lines.sickMono, lure: lures.fladfiskAbu,
+              note: 'Allround-molesættet: kaster bundrig langt og har blød nok top til at vise de små ryk i stangen.' },
+        b4: { rod: rods.maxxBeach, reel: reels.sedona, line: lines.jbraid, lure: lures.fladfiskAbu,
+              note: 'Rigtig surfcasting: fletline og lang stang lægger forfanget derud, hvor rødspætterne står.' },
+        b5: { rod: rods.regiment, reel: reels.spinfisher, line: lines.jbraid, lure: lures.fladfiskAbu,
+              note: 'Det kompromisløse strand- og molesæt. Saltvandstætnet, kastevilligt og bygget til mange år.' },
+      }},
+    ],
+  },
+  {
+    key: 'gedde', label: 'Gedde',
+    techniques: [
+      { key: 'spin', label: 'Spinnefiskeri', sets: {
+        b1: { rod: rods.lightning, reel: reels.damNova, line: lines.sufixElite, lure: lures.pigshad,
+              note: 'Et ærligt budget-geddesæt. Vigtigst af alt: brug ALTID wireforfang — gedden bider nylon over.' },
+        b2: { rod: rods.predator, reel: reels.sienna, line: lines.sufixElite, lure: lures.pigshad,
+              note: 'Daiwas predator-stang har rygraden til store agn. Husk wireforfang — det er ikke til diskussion.' },
+        b3: { rod: rods.revengeHeavy, reel: reels.ninjaLT, line: lines.jbraid, lure: lures.pigshad,
+              note: 'Heavy Game-klassen: nu kaster du 20 cm shads uden at stangen siger op. Fletline er standard til gedde.' },
+        b4: { rod: rods.w3powercast, reel: reels.sedona, line: lines.jbraid, lure: lures.bullteez,
+              note: 'Westins Powercast er en moderne geddestang — kraftig, men stadig sjov med mellemstore agn.' },
+        b5: { rod: rods.bftPike, reel: reels.nasci, line: lines.jbraid, lure: lures.miuras,
+              note: 'Storgedde-sættet: turneringsstang og 26 cm agn. Det her er grej til fisken over 10 kilo.' },
+      }},
+      { key: 'mede', label: 'Medefiskeri', sets: {
+        b1: { rod: rods.lightning, reel: reels.damNova, line: lines.sufixElite, lure: lures.wireLeader,
+              note: 'Agnfiskeri med død skalle under flåd — wirekrogen er den vigtigste del af hele sættet.' },
+        b2: { rod: rods.predator, reel: reels.sienna, line: lines.sickMono, lure: lures.wireLeader,
+              note: 'Mere rygrad til at sætte krogen på afstand, og 300 m line hvis storgedden tager en udløber.' },
+        b3: { rod: rods.revengeHeavy, reel: reels.ninjaLT, line: lines.sickMono, lure: lures.wireLeader,
+              note: 'Et solidt agnfiskesæt til søen — stærkt nok til at presse gedden væk fra grøden.' },
+        b4: { rod: rods.deadbait, reel: reels.pursuit, line: lines.sickMono, lure: lures.wireLeader,
+              note: 'Westins deadbait-stang er bygget til præcis det her: lange kast med død agnfisk og kontrolleret fight.' },
+        b5: { rod: rods.deadbait, reel: reels.nasci, line: lines.jbraid, lure: lures.wireLeader,
+              note: 'Deadbait-sættet uden kompromiser — fletline giver direkte kontakt ved hugget, selv på lang afstand.' },
+      }},
+    ],
+  },
+];
+
+// ── Byggetids-validering + opslag ──
+function resolve(slot: SlotDef) {
+  const p = getProduct(slot.id);
+  if (!p) throw new Error(`byg-dit-fiskesaet: produkt ${slot.id} findes ikke i feedet`);
+  if (!p.price || p.price <= 0) throw new Error(`byg-dit-fiskesaet: produkt ${slot.id} (${p.name}) har ingen pris`);
+  return { ...p, spec: slot.spec };
+}
+
+const SLOT_LABELS = [
+  { key: 'rod', label: 'Stang' },
+  { key: 'reel', label: 'Hjul' },
+  { key: 'line', label: 'Line' },
+  { key: 'lure', label: 'Agn' },
+] as const;
+
+type ResolvedSet = {
+  id: string;
+  speciesLabel: string;
+  techLabel: string;
+  budgetLabel: string;
+  items: { label: string; name: string; spec: string; price: number; url: string; image: string }[];
+  total: number;
+  note: string;
+} | { id: string; empty: true; message: string };
+
+const resolvedSets: ResolvedSet[] = [];
+for (const sp of matrix) {
+  for (const tech of sp.techniques) {
+    for (const b of BUDGETS) {
+      const def = tech.sets[b.key];
+      const id = `${sp.key}-${tech.key}-${b.key}`;
+      if (!def) {
+        resolvedSets.push({
+          id, empty: true,
+          message: `Et ${tech.label.toLowerCase()}-sæt til ${sp.label.toLowerCase()} kan ikke sammensættes ærligt i denne prisklasse — grejet bliver for ringe til at jeg vil anbefale det. Vælg en højere prisklasse og se mit bud der.`,
+        });
+        continue;
+      }
+      const items = SLOT_LABELS.map(({ key, label }) => {
+        const r = resolve(def[key]);
+        return { label, name: r.name, spec: r.spec, price: r.price, url: r.url, image: r.image };
+      });
+      const total = items.reduce((s, i) => s + i.price, 0);
+      if (total > b.cap) throw new Error(`byg-dit-fiskesaet: ${id} koster ${total} kr — over loftet på ${b.cap} kr`);
+      resolvedSets.push({
+        id,
+        speciesLabel: sp.label,
+        techLabel: tech.label,
+        budgetLabel: b.label,
+        items,
+        total,
+        note: def.note,
+      });
+    }
+  }
+}
+
+// Til klient-scriptet: hvilke teknikker findes pr. art
+const speciesMeta = matrix.map((sp) => ({
+  key: sp.key,
+  label: sp.label,
+  techniques: sp.techniques.map((t) => ({ key: t.key, label: t.label })),
+}));
+
+const faqs = [
+  {
+    question: "Hvad består et komplet fiskesæt af?",
+    answer: "Et komplet spinne- eller medesæt består af fire dele: en <strong>fiskestang</strong>, et <strong>fiskehjul</strong>, <strong>line</strong> og <strong>endegrej</strong> (blink, spinner, forfang eller agn). Til fluefiskeri hedder delene fluestang, fluehjul, flueline og flue — her skal du derudover bruge backing og et taperet forfang.",
+  },
+  {
+    question: "Hvor meget skal et begyndersæt koste?",
+    answer: "Du kan komme ærligt i gang for <strong>600–750 kr.</strong> til de fleste fiskearter. Under det niveau bliver grejet så ringe, at det ødelægger oplevelsen. Rammer du <strong>1.500 kr.</strong>, får du grej der holder i mange sæsoner — og omkring <strong>2.000 kr.</strong> begynder det at være udstyr, du aldrig vokser fra.",
+  },
+  {
+    question: "Hvorfor kan jeg ikke få et fluesæt under 1.500 kr.?",
+    answer: "Fordi det ikke findes i en kvalitet, jeg vil stå inde for. En brugbar fluestang starter omkring 1.000 kr., og dertil kommer fluehjul og flueline. Et komplet fluesæt af ærlig kvalitet starter realistisk ved <strong>1.700–2.000 kr.</strong>",
+  },
+  {
+    question: "Skal jeg bruge nylon eller fletline?",
+    answer: "<strong>Nylon</strong> er billigst, mest tilgivende og fint til begyndersæt og medefiskeri. <strong>Fletline</strong> kaster længere og giver direkte kontakt — det er standard til gedde og et klart opgraderingspunkt til kystfiskeri fra ca. 1.500 kr.-klassen. Husk altid et forfang af fluorocarbon eller wire (gedde) foran fletline.",
+  },
+];
+---
+
+<MainLayout
+  title="Byg dit fiskesæt | Stang, hjul, line og agn der passer sammen"
+  description="Vælg hvad du vil fange og dit budget — og få et komplet, ærligt sammensat fiskesæt med stang, hjul, line og agn. Fra under 750 kr. til premium."
+  canonical="https://udeogfiske.dk/fiskeudstyr/byg-dit-fiskesaet/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeudstyr", url: "/fiskeudstyr/" },
+    { name: "Byg dit fiskesæt" },
+  ]}
+  articleData={{
+    headline: "Byg dit fiskesæt — komplette sæt efter målfisk og budget",
+    image: "/images/endegrej.png",
+    datePublished: "2026-06-11",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/">Fiskeudstyr</a>
+        <span>›</span>
+        <span>Byg dit fiskesæt</span>
+      </nav>
+      <h1 class="pg-title">Byg dit fiskesæt</h1>
+      <p class="pg-sub">Fortæl mig hvad du vil fange og hvad det må koste — så får du et komplet sæt med stang, hjul, line og agn, der passer sammen. Alle produkter er på lager og priserne er live.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+
+      <!-- ═══ SÆT-BYGGEREN ═══ -->
+      <div class="fsb" id="fsb">
+        <div class="fsb-head">
+          <span class="fsb-eyebrow">Sæt-bygger</span>
+          <h2 class="fsb-title">Tre valg — ét komplet sæt</h2>
+        </div>
+
+        <div class="fsb-step">
+          <span class="fsb-step-label"><b>1.</b> Hvad vil du fange?</span>
+          <div class="fsb-pills" data-step="species">
+            {speciesMeta.map((sp, i) => (
+              <button type="button" class={`fsb-pill ${i === 0 ? 'is-active' : ''}`} data-value={sp.key}>{sp.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="fsb-step">
+          <span class="fsb-step-label"><b>2.</b> Hvordan vil du fiske?</span>
+          <div class="fsb-pills" data-step="tech"></div>
+        </div>
+
+        <div class="fsb-step">
+          <span class="fsb-step-label"><b>3.</b> Hvad må det koste?</span>
+          <div class="fsb-pills" data-step="budget">
+            {BUDGETS.map((b, i) => (
+              <button type="button" class={`fsb-pill ${i === 0 ? 'is-active' : ''}`} data-value={b.key}>{b.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <!-- ═══ RESULTAT-KORT ═══ -->
+        <div class="fsb-results">
+          {resolvedSets.map((set) => 'empty' in set ? (
+            <div class="fsb-set fsb-empty" id={`set-${set.id}`} hidden>
+              <p class="fsb-empty-ico" aria-hidden="true">🎣</p>
+              <p class="fsb-empty-msg">{set.message}</p>
+            </div>
+          ) : (
+            <div class="fsb-set" id={`set-${set.id}`} hidden>
+              <div class="fsb-set-head">
+                <div>
+                  <span class="fsb-set-tag">{set.speciesLabel} · {set.techLabel}</span>
+                  <span class="fsb-set-budget">{set.budgetLabel}</span>
+                </div>
+                <div class="fsb-total">
+                  <span class="fsb-total-label">Samlet pris</span>
+                  <span class="fsb-total-value">{formatPrice(set.total)}</span>
+                </div>
+              </div>
+              <ul class="fsb-items">
+                {set.items.map((item) => (
+                  <li class="fsb-item">
+                    <img class="fsb-item-img" src={item.image} alt={item.name} loading="lazy" width="64" height="64" />
+                    <div class="fsb-item-mid">
+                      <span class="fsb-item-cat">{item.label}</span>
+                      <span class="fsb-item-name">{item.name}</span>
+                      <span class="fsb-item-spec">{item.spec}</span>
+                    </div>
+                    <div class="fsb-item-end">
+                      <span class="fsb-item-price">{formatPrice(item.price)}</span>
+                      <a class="fsb-item-link" href={item.url} target="_blank" rel="nofollow sponsored noopener">
+                        Se pris
+                        <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                          <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <p class="fsb-note">{set.note}</p>
+              <p class="fsb-disclosure">Annonce · I samarbejde med Fiskegrej.dk — priserne opdateres ved hvert site-build</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ═══ SÅDAN HAR JEG SAMMENSAT SÆTTENE ═══ -->
+      <div class="fsb-method">
+        <h2>Sådan har jeg sammensat sættene</h2>
+        <p>Hvert sæt består af fire dele der <strong>passer sammen</strong>: stangens kastevægt matcher agnen, hjulets størrelse matcher stangen, og linen matcher fiskeriet. Det er den balance, færdigkøbte "alt-i-én"-sæt ofte misser.</p>
+        <p>Jeg har valgt produkter fra mærker jeg selv fisker med — Shimano, Daiwa, Westin, Penn, Savage Gear — og kun grej der er <strong>på lager lige nu</strong>. Hvor budgettet er stramt, har jeg prioriteret stangen og hjulet og sparet på linen; det giver det bedste sæt i praksis. Og hvor en prisklasse ikke kan give ærlig kvalitet (fx fluegrej under 1.500 kr.), siger jeg det direkte i stedet for at anbefale noget, du fortryder.</p>
+        <p>Husk det løse: en <a href="/fiskeudstyr/tilbehor/fangstnet/">fangstnet</a>, en tang og — hvis du fisker efter gedde — altid et wireforfang. Og tjek <a href="/fiskeguide/fisketegn/">om du skal have fisketegn</a>, før du tager afsted.</p>
+      </div>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<script is:inline define:vars={{ speciesMeta }}>
+  (function () {
+    var root = document.getElementById('fsb');
+    if (!root) return;
+
+    var state = {
+      species: speciesMeta[0].key,
+      tech: speciesMeta[0].techniques[0].key,
+      budget: 'b1',
+    };
+
+    var techWrap = root.querySelector('[data-step="tech"]');
+
+    function renderTechPills() {
+      var sp = speciesMeta.find(function (s) { return s.key === state.species; });
+      techWrap.innerHTML = '';
+      sp.techniques.forEach(function (t) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'fsb-pill' + (t.key === state.tech ? ' is-active' : '');
+        btn.setAttribute('data-value', t.key);
+        btn.textContent = t.label;
+        techWrap.appendChild(btn);
+      });
+    }
+
+    function show() {
+      root.querySelectorAll('.fsb-set').forEach(function (el) { el.hidden = true; });
+      var target = document.getElementById('set-' + state.species + '-' + state.tech + '-' + state.budget);
+      if (target) target.hidden = false;
+    }
+
+    root.addEventListener('click', function (e) {
+      var pill = e.target.closest('.fsb-pill');
+      if (!pill) return;
+      var step = pill.parentElement.getAttribute('data-step');
+      var value = pill.getAttribute('data-value');
+
+      if (step === 'species') {
+        state.species = value;
+        var sp = speciesMeta.find(function (s) { return s.key === value; });
+        if (!sp.techniques.some(function (t) { return t.key === state.tech; })) {
+          state.tech = sp.techniques[0].key;
+        }
+        renderTechPills();
+      } else if (step === 'tech') {
+        state.tech = value;
+      } else if (step === 'budget') {
+        state.budget = value;
+      }
+
+      pill.parentElement.querySelectorAll('.fsb-pill').forEach(function (p) {
+        p.classList.toggle('is-active', p === pill);
+      });
+      show();
+    });
+
+    renderTechPills();
+    show();
+  })();
+</script>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background: linear-gradient(120deg, #0d4a5e 0%, #082e3b 100%);
+    padding: 4rem 0 3.5rem;
+  }
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 640px;
+  }
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  /* ── Builder card ── */
+  .fsb {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 2rem 2rem 2.25rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    max-width: 860px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .fsb-head { margin-bottom: 1.5rem; }
+  .fsb-eyebrow {
+    display: inline-block;
+    font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.375rem;
+  }
+  .fsb-title {
+    font-size: 1.375rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em;
+  }
+
+  .fsb-step { margin-bottom: 1.25rem; }
+  .fsb-step-label {
+    display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 0.5rem;
+  }
+  .fsb-step-label b { color: #0d4a5e; }
+
+  .fsb-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .fsb-pill {
+    font-family: inherit; font-size: 0.85rem; font-weight: 500;
+    color: #4b5563; background: #f8fafc;
+    border: 1px solid #e5e7eb; border-radius: 999px;
+    padding: 0.45rem 1rem; cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .fsb-pill:hover { border-color: #0d4a5e; color: #0d4a5e; }
+  .fsb-pill.is-active {
+    background: #0d4a5e; border-color: #0d4a5e; color: #ffffff; font-weight: 600;
+  }
+
+  /* ── Result set ── */
+  .fsb-results { margin-top: 1.75rem; }
+
+  .fsb-set {
+    border: 1px solid #dbe7ea;
+    border-radius: 12px;
+    background: #f8fbfc;
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+
+  .fsb-set-head {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .fsb-set-tag {
+    display: block; font-size: 1.0625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.01em;
+  }
+  .fsb-set-budget { font-size: 0.8125rem; color: #6b7280; }
+  .fsb-total { text-align: right; }
+  .fsb-total-label {
+    display: block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280;
+  }
+  .fsb-total-value {
+    font-size: 1.5rem; font-weight: 700; color: #0d4a5e; letter-spacing: -0.02em;
+  }
+
+  .fsb-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.625rem; }
+  .fsb-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
+    padding: 0.75rem 1rem;
+  }
+  .fsb-item-img {
+    width: 64px; height: 64px; object-fit: contain; flex-shrink: 0;
+    border-radius: 6px; background: #ffffff;
+  }
+  .fsb-item-mid { flex: 1; min-width: 0; }
+  .fsb-item-cat {
+    display: block; font-size: 0.625rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em; color: #c47d0a;
+  }
+  .fsb-item-name {
+    display: block; font-size: 0.9375rem; font-weight: 600; color: #111827;
+    line-height: 1.35;
+  }
+  .fsb-item-spec { display: block; font-size: 0.78rem; color: #6b7280; margin-top: 0.1rem; }
+  .fsb-item-end { text-align: right; flex-shrink: 0; }
+  .fsb-item-price { display: block; font-size: 0.9375rem; font-weight: 700; color: #111827; margin-bottom: 0.3rem; }
+  .fsb-item-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: 0.78rem; font-weight: 600; color: #0d4a5e;
+    border: 1px solid #0d4a5e; border-radius: 6px; padding: 0.25rem 0.6rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  .fsb-item-link:hover { background: #0d4a5e; color: #ffffff; }
+
+  .fsb-note {
+    font-size: 0.875rem; color: #374151; line-height: 1.65;
+    background: #eef6f3; border-left: 3px solid #2d6a4f; border-radius: 6px;
+    padding: 0.75rem 1rem; margin-top: 1rem;
+  }
+  .fsb-disclosure {
+    font-size: 0.7rem; color: #9aa3ae; margin-top: 0.875rem;
+  }
+
+  .fsb-empty { text-align: center; padding: 2.5rem 1.5rem; }
+  .fsb-empty-ico { font-size: 2rem; margin-bottom: 0.5rem; }
+  .fsb-empty-msg { font-size: 0.9375rem; color: #4b5563; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+  @media (max-width: 600px) {
+    .fsb { padding: 1.5rem 1.25rem 1.75rem; }
+    .fsb-item { flex-wrap: wrap; }
+    .fsb-item-img { width: 52px; height: 52px; }
+    .fsb-item-mid { flex-basis: calc(100% - 70px); }
+    .fsb-item-end {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; text-align: left;
+    }
+    .fsb-item-price { margin-bottom: 0; }
+  }
+
+  /* ── Method + FAQ ── */
+  .fsb-method { max-width: 760px; margin: 0 auto; }
+  .fsb-method h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 1rem;
+  }
+  .fsb-method p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .fsb-method p strong { color: #111827; }
+  .fsb-method a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .fsb-method a:hover { color: #c47d0a; }
+
+  .faq-heading {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 3.5rem auto 1rem; max-width: 760px;
+  }
+</style>

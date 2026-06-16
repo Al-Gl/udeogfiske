@@ -32,6 +32,7 @@ Sproget er dansk. Hovedemner: saltvands- og ferskvandsfiskeri i Danmark — hav�
 
 ## Fiskeudstyr (grej)
 - [Fiskeudstyr – oversigt](https://udeogfiske.dk/fiskeudstyr/): Indgang til alle grejguider.
+- [Byg dit fiskesæt](https://udeogfiske.dk/fiskeudstyr/byg-dit-fiskesaet/): Interaktiv sæt-bygger — vælg målfisk, metode og budget og få et komplet sæt (stang, hjul, line og agn) med lagerførte produkter og samlet pris.
 - [Fiskestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/): Valg af stang, inkl. [spinnestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/spinnestaenger/), [fluestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/fluefiskestang/) og [havstænger/pirkestænger](https://udeogfiske.dk/fiskeudstyr/fiskestaenger/fiskestang-til-havet/).
 - [Fiskehjul](https://udeogfiske.dk/fiskeudstyr/fiskehjul/): Fastspolehjul og fluehjul — størrelse og match til stangen.
 - [Endegrej](https://udeogfiske.dk/fiskeudstyr/endegrej/): Blink, spinnere, jigs og fluer, inkl. [gennemløbsblink](https://udeogfiske.dk/fiskeudstyr/endegrej/gennemlobsblink/) og bedste gennemløbsblink til [forår](https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-forar/) og [sommer](https://udeogfiske.dk/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-sommer/).

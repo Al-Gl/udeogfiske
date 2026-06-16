@@ -1851,3 +1851,41 @@ ALL 9 /guide-til-fisk/ species pages now have: SeasonCalendar + a chooser + prod
 - [ ] Migrate static sitemap → @astrojs/sitemap (auto-regenerates on build) — RECOMMENDED
 - [ ] Optional: llms-full.txt (full article text dump)
 - [ ] Reminder: sitemap.xml + llms.txt are hand-maintained — update on any route change
+
+## Redesign: Editorial/Feltjournal (2026-06-11) — front page + shared shell
+- [ ] MainLayout: add Fraunces (serif display) alongside Inter; warm paper/ink/hairline tokens
+- [ ] MainLayout: header -> editorial (ink rule top, wordmark serif, uppercase nav, outlined Kontakt, no pill/blur)
+- [ ] MainLayout: footer -> ink editorial (serif brand, hairlines)
+- [ ] index.astro: rewrite — kicker + serif H1 hero (no badge/wave/gradient), full-width photo w/ caption,
+      standfirst lede, numbered sections (01 guides grid, 02 sæson, 03 om siden), value points as ruled list
+- [ ] Build (80 pages), restart dev server, review on localhost — NO push until approved
+
+## Redesign saga — resolution (2026-06-11)
+- [x] v1 Editorial/Feltjournal (Fraunces serif, paper/ink) — REJECTED by user
+- [x] v2 Nordisk minimal (white, flat, label-columns) — REJECTED ("worse than original")
+- [x] v3 Restore original from git + fishing-modern polish — current state on localhost
+  - [x] Gold wave motif before eyebrows; teal wave squiggle welcome divider
+  - [x] Sea-foam section tints (#f2f7f8), teal-tinted card hover shadow, radius 16px
+  - [x] Hero: ocean-deepened gradient, gold "og alle andre" accent
+- [ ] AWAITING user approval → then push (changes are LOCAL ONLY, not committed)
+- [ ] Idea if more wanted: "Seneste fisketure" strip on forsiden (SEO/internal links)
+
+## Fiskesæt-bygger page (2026-06-11)
+Spec from Aldin: user picks budget + species(+technique) → predetermined set of stang + hjul + line + agn.
+- Species×technique matrix: havørred (flue/spin/passiv), regnbueørred (flue/spin/passiv),
+  hornfisk (spin/passiv), makrel (spin/passiv), fladfisk (kun passiv), gedde (spin/passiv) = 13 combos
+- Budgets: <750 / ≤1.000 / ≤1.500 / ≤2.000 / >2.000 kr = 5 tiers → up to 65 sets
+- [ ] Mine feed for in-stock rods/reels/lines/lures at price points
+- [ ] Build set data structure (real product IDs; build = validation since getProduct throws)
+- [ ] New page /fiskeudstyr/byg-dit-fiskesaet/ with 3-step chooser (art → teknik → budget) + result card
+- [ ] Sets that can't be honestly filled within budget → honest fallback note pointing to next tier
+- [ ] Update sitemap.xml + llms.txt (hand-maintained), build, dev restart — NO push until approved
+
+## Fiskesæt-bygger — status (2026-06-11)
+- [x] Feed mined (~50 unique in-stock products: Shimano/Daiwa/Westin/Penn/SG)
+- [x] /fiskeudstyr/byg-dit-fiskesaet/ built: 3-step chooser, 65 sets, 6 honest flue-fallbacks
+- [x] Build-time validation (missing ID or budget-cap overrun fails build)
+- [x] FAQ schema, breadcrumbs, sitemap.xml + llms.txt updated
+- [x] Verified: 81 pages, 65 cards, 236 affiliate links, totals under caps
+- [ ] AWAITING approval → push (LOCAL ONLY; includes design polish passes from earlier today)
+- [ ] After approval: link the page from /fiskeudstyr/ overview (+ evt. header/forside)

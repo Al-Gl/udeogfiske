@@ -81,6 +81,14 @@ const featured = [
         <p>På disse sider guider jeg dig til det rette udstyr til din fiskeform og dit budget — fra grundlæggende stænger og hjul til beklædning, endegrej og det tilbehør, der gør forskellen på en god og en dårlig fisketur.</p>
       </div>
 
+      <a href="/fiskeudstyr/byg-dit-fiskesaet/" class="builder-banner">
+        <div class="builder-banner-text">
+          <span class="builder-eyebrow">Interaktivt værktøj</span>
+          <strong class="builder-title">Byg dit fiskesæt</strong>
+          <span class="builder-sub">Vælg målfisk, metode og budget — få stang, hjul, line og agn der passer sammen →</span>
+        </div>
+      </a>
+
       <h2 class="sec-heading">Kategorier</h2>
       <div class="card-grid">
         {featured.map((c) => (
@@ -104,6 +112,44 @@ const featured = [
 </MainLayout>
 
 <style>
+  .builder-banner {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #0d4a5e 0%, #082e3b 100%);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .builder-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(13, 74, 94, 0.3);
+  }
+  .builder-banner-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .builder-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #c47d0a;
+  }
+  .builder-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .builder-sub {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    margin-top: 0.1rem;
+  }
+
   .pg-hero {
     position: relative;
     background:

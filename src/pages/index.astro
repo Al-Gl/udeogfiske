@@ -171,6 +171,30 @@ const now = monthData[monthIndex];
   </section>
 
   <!-- ═══════════════════════════════════════════
+       SET-BUILDER FEATURE STRIP
+  ═══════════════════════════════════════════ -->
+  <section class="sec sec-builder">
+    <div class="ctn">
+      <a href="/fiskeudstyr/byg-dit-fiskesaet/" class="builder-strip">
+        <div class="bs-text">
+          <span class="bs-eyebrow">Nyt interaktivt værktøj</span>
+          <strong class="bs-title">Byg dit fiskesæt</strong>
+          <p class="bs-desc">Vælg hvad du vil fange og dit budget — og få et komplet, ærligt sammensat sæt med stang, hjul, line og agn. Fra under 750 kr. til premium.</p>
+          <span class="bs-cta">Prøv sæt-byggeren →</span>
+        </div>
+        <div class="bs-pills" aria-hidden="true">
+          <span class="bs-pill">Havørred</span>
+          <span class="bs-pill">Gedde</span>
+          <span class="bs-pill">Makrel</span>
+          <span class="bs-pill">Regnbueørred</span>
+          <span class="bs-pill">Hornfisk</span>
+          <span class="bs-pill">Fladfisk</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
        PRICERUNNER — fiskegrej comparison widget
   ═══════════════════════════════════════════ -->
   <PriceRunner />
@@ -682,6 +706,69 @@ const now = monthData[monthIndex];
     .bcard-title { font-size: 1.0625rem; }
     .bcard-desc { display: none; }
     .bcard-arrow { display: none; }
+  }
+
+  /* ── Set-builder strip ── */
+  .sec-builder { background: #ffffff; padding: 0; }
+  .builder-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: linear-gradient(135deg, #0d4a5e 0%, #082e3b 100%);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    text-decoration: none;
+    color: #fff;
+    margin: 0 0 2rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .builder-strip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(13, 74, 94, 0.35);
+  }
+  .bs-text { display: flex; flex-direction: column; gap: 0.35rem; max-width: 520px; }
+  .bs-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #c47d0a;
+  }
+  .bs-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .bs-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+    margin: 0.1rem 0 0.5rem;
+  }
+  .bs-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #c47d0a;
+  }
+  .bs-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    max-width: 220px;
+  }
+  .bs-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  @media (max-width: 680px) {
+    .builder-strip { flex-direction: column; align-items: flex-start; }
+    .bs-pills { max-width: 100%; justify-content: flex-start; }
   }
 
   /* ── Season guide ── */

@@ -1,5 +1,29 @@
 # Review log
 
+## 2026-06-24 — Zombie-URL redirect sweep via Google index (Session 49)
+
+User asked for a `site:udeogfiske.dk` Google search to find pages still indexed
+that now 404, since the live BFS crawler (`content/_crawl.cjs`) only follows
+links that still exist on the site and can't find orphaned URLs.
+
+**Method:** ran several `site:udeogfiske.dk` + keyword-variant searches, fetched
+the live `sitemap.xml` directly for the canonical current URL list, cross-checked
+candidates against `public/_redirects` and `src/pages/`, then confirmed each
+unmatched candidate with a direct fetch (titles in search snippets can be stale
+even after a page goes 404 — confirmed all 8 below independently).
+
+**8 confirmed 404s, added as new 301s in `public/_redirects`:**
+- `/cookies/` → `/cookiepolitik/`
+- `/fisk/hav%C3%B8rred/` → `/guide-til-fisk/havorredfiskeri/`
+- `/fisketure/put-and-take-fisketure/` → `/fiskepladser/put-and-take/`
+- `/fisketure/havorredfiskeri-i-isefjorden/orsted-orredvand/` → `/fiskepladser/put-and-take/oersted-oerredvand/`
+- `/fisketure/havorredfiskeri-i-isefjorden/orsted-orredvand-19-nov-2021/` → `/fiskepladser/put-and-take/oersted-oerredvand/` (old trip report, no local replacement exists — pointed at the nearest topical page instead)
+- `/blog/5-grunde-til-at-du-ikke-fanger-noget-i-put-take/` → `/fiskeguide/put-take-fiskeri/` (old blog post, no local replacement — pointed at the nearest topical guide)
+- `/blog/` → `/` (no blog section in the new architecture; user chose homepage over the guides hub)
+
+**Not redirected — needs a decision:**
+- `/om-mig/stotte-projekter/` ("projects I support" page) has no local replacement at all, and the original Danish text can't be recovered: no saved snapshot in `content/`, and `web.archive.org`/`archive.org` page fetches are blocked in this sandbox (only the Wayback "available" API responded, confirming a 2026-05-10 snapshot exists but not returning its content). User wants a real replacement page written, not just a redirect to `/om-mig/`, so this is parked until the source text is available.
+
 ## 2026-06-16 — Full-site SEO audit (Session: /seo-audit)
 
 Ran a live crawl of udeogfiske.dk + full source-code inspection of all 81 built pages.

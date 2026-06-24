@@ -1,3 +1,17 @@
+# Plan — Session 49 (zombie-URL redirect sweep via Google index, 2026-06-24) — DONE ✓ (see review.md)
+
+Goal: find URLs Google has indexed that now 404 on the live site (no longer linked
+from anywhere, so the BFS crawler in `content/_crawl.cjs` can't find them) and
+301 them to the closest equivalent new page.
+
+- [x] Run `site:udeogfiske.dk` + targeted keyword variants via Google search to surface indexed URLs
+- [x] Cross-check candidates against `public/_redirects`, local `src/pages`, and live `sitemap.xml`
+- [x] Verify each unmatched candidate actually 404s via direct fetch (not just a stale Google snippet)
+- [x] Map confirmed 404s to the closest live equivalent and add 301s to `public/_redirects`
+- [ ] `/om-mig/stotte-projekter/` — blocked: no saved HTML snapshot in `content/`, and `web.archive.org` is blocked in this sandbox, so the original Danish text can't be recovered verbatim. Needs user input (paste old text, or approve a freshly-written replacement) before a real page + redirect can be made.
+
+---
+
 # ▶ RESUME HERE — Next session checkpoint (paused 2026-05-25 after Session 48)
 
 ## Site state at pause

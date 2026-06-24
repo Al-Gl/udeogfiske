@@ -4,6 +4,8 @@ import RelatedRow from '../../../../components/RelatedRow.astro';
 import AuthorProfile from '../../../../components/AuthorProfile.astro';
 import DidYouKnow from '../../../../components/DidYouKnow.astro';
 import TipBox from '../../../../components/TipBox.astro';
+import ProductReview from '../../../../components/ProductReview.astro';
+import AffiliateTrio from '../../../../components/AffiliateTrio.astro';
 
 const related = [
   {
@@ -139,6 +141,21 @@ const faqs = [
 
         <p>Især ved spinstop opfører et gennemløbsblink sig helt anderledes end et almindeligt blink.</p>
 
+        <ProductReview
+          productId="60081"
+          rating={5}
+          headline="Det blink jeg altid har bundet på linen først, når jeg går efter havørred på kysten."
+          review="Westin D360 Mini er min faste makker i Lime Burst, 10 gram. Den mindre størrelse gør den oplagt til lettere stænger og til dage hvor fiskene vil have et mindre, mere diskret agn — men den frie rotation gennem huset er stadig den samme spinstop-effekt som gør hele D360-serien så dødbringende. Jeg har fanget flere havørreder på dette blink end på noget andet enkelt stykke endegrej i min boks."
+          pros={[
+            'Fri rotation gennem hele blinket — spinstop-effekten er ikke til at tage fejl af',
+            '10 gram og kompakt størrelse — oplagt til lettere stænger og kræsne fisk',
+            'Lime Burst er et af mine mest fangstsikre farvevalg i blandet sigt',
+          ]}
+          cons={[
+            'Den lette vægt giver kortere kast end de tungere D360-modeller i hård vind',
+          ]}
+        />
+
         <h2>Hvilke fisk kan jeg fange med et gennemløbsblink?</h2>
 
         <p>I teorien kan du fange alle slags fisk med et gennemløbsblink, men i Danmark bliver gennemløbsblink primært produceret og solgt med to fisk i tankerne, og det er <strong>havørreder og regnbueørreder</strong>. Dog er fordelen at du kan bruge disse blink til at fange alle fisk i danske farvande hvor blink fungerer.</p>
@@ -154,6 +171,31 @@ const faqs = [
           <li><a href="/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-forar/">5 bedste gennemløbsblink til havørred om foråret</a></li>
           <li><a href="/fiskeudstyr/endegrej/bedste-gennemlobsblink-havorred-sommer/">5 bedste gennemløbsblink til havørred om sommeren</a></li>
         </ul>
+
+        <AffiliateTrio
+          title="Mine 3 andre faste gennemløbsblink"
+          intro="Westin D360 Mini er mit standardvalg, men jeg roterer altid mellem et par andre profiler i boksen — afhængig af om vandet er klart, om fiskene er kræsne, eller om jeg skal kaste langt fra kysten."
+          products={[
+            {
+              productId: '501378',
+              badge: 'Naturlig profil',
+              badgeTone: 'teal',
+              note: 'Sandeel-imitationen jeg griber når havørrederne er kræsne og vandet er klart — slank og meget naturtro.',
+            },
+            {
+              productId: '63907',
+              badge: 'Kompakt',
+              badgeTone: 'orange',
+              note: 'Mindre og slankere profil — mit valg når fiskene ikke vil have de større blink.',
+            },
+            {
+              productId: '78821',
+              badge: 'Langkast',
+              badgeTone: 'slate',
+              note: 'Distance-modellen jeg bruger når jeg skal ud over revlerne — kaster ekstra langt fra kysten.',
+            },
+          ]}
+        />
 
         <p>Når vandet bliver lidt koldere er det vigtigere med skarpe farver, for at få de lidt dovnere og forsigtige havørreder til at bide. Derfor er skarpere farver super effektive til havørredfiskeri i det lidt koldere vejr.</p>
 

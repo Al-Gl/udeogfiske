@@ -1,5 +1,19 @@
 # Review log
 
+## 2026-06-26 — First /blog/ post: Put & Take fiskeri i varmt vejr (Session 51)
+
+User asked for the first real post in the new `/blog/` category — about Put & Take fishing in summer heat, in the site's voice, with nano-banana images and a single product review.
+
+**Content angle:** why warm/low-oxygen water makes Put & Take fish lethargic, best times of day (dawn/dusk), where to find fish (shade, depth, inflow/aeration), bait and technique adjustments, and an honest closing note on fish welfare when releasing in warm water (links to the existing `/fiskeguide/catch-and-release/` guide via `<GuideLink>`). Structured as Q&A H2s with one `<DidYouKnow>` (dissolved-oxygen science) and one `<TipBox>` (aeration-pump tip), matching the established flagship-page anatomy.
+
+**Product:** `<ProductReview productId="63717">` — Berkley Powerbait Glitter Synkende (sinking variant, Chartreuse, 39 kr). Picked deliberately over the 4 Powerbait/gummi products already used on `/fiskeguide/put-take-fiskeri/` — the honest angle here is that floating dough sits in the warm top layer while the sinking version reaches the cooler depth fish actually hold in during heat.
+
+**Images (3, all fish-free):** generated via `/nano-banana` — `put_take_sommer_hero.jpg` (hazy midday lake, dry grass, propped rod), `put_take_sommer_morgen.jpg` (misty golden-hour dawn, rod at the water's edge), `put_take_sommer_grej.jpg` (float rig + tackle box close-up on sun-bleached dock boards). All converted PNG → JPG, ~1376×768.
+
+**Blog index updated:** `src/pages/blog/index.astro` — replaced the Session 50 "no posts yet" empty-state with a real post-card grid (new `.post-grid`/`.post-card` styles) linking to the new article, plus an `itemList` schema prop and a lighter "flere indlæg kommer løbende" note underneath.
+
+**Verified:** `npm run build` → 83 pages, clean. Started the dev server and curl-checked both routes (200, no errors in the dev log), confirmed all 4 images return 200, and confirmed `<ProductReview>` resolved the real Fiskegrej.dk product image + `partnerid=29395` affiliate link for productId 63717. No visual screenshot — neither `chromium-cli` nor Playwright are installed in this sandbox, and installing browser binaries for a static content page felt disproportionate; flagged this explicitly instead of claiming a visual check that didn't happen.
+
 ## 2026-06-26 — Remove welcome popup + new /blog/ category shell (Session 50)
 
 User asked to (1) remove the first-visit welcome popup from the front page and (2) create a new `/blog/` category for content that doesn't fit any other section, with a nano-banana image.

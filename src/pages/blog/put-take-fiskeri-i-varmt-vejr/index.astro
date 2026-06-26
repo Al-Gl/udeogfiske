@@ -1,0 +1,281 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import ProductReview from '../../../components/ProductReview.astro';
+import TipBox from '../../../components/TipBox.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+
+const related = [
+  {
+    title: "Put & Take fiskeri",
+    description: "Den komplette guide til Put & Take i Danmark — udstyr, spinnere, powerbait og valg af sø.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_and_take_fiskeri.jpg",
+    alt: "Put & Take sø med fisker",
+    chip: "Guide",
+  },
+  {
+    title: "Catch and Release",
+    description: "Lær den korrekte teknik til at genudsætte fisk, så de overlever og kan fanges igen.",
+    href: "/fiskeguide/catch-and-release/",
+    image: "/images/cnr_hero.png",
+    alt: "Fisker der skånsomt genudsætter en fisk",
+    chip: "Etik",
+  },
+  {
+    title: "Guide til regnbueørred",
+    description: "Alt om regnbueørreden — den fisk du oftest møder i de danske Put & Take søer.",
+    href: "/guide-til-fisk/regnbueorredfiskeri/",
+    image: "/images/regnbueørred_card.jpg",
+    alt: "Regnbueørred",
+    chip: "Fiskeart",
+  },
+];
+---
+
+<MainLayout
+  title="Put & Take fiskeri i varmt vejr – Sådan fanger du fisk om sommeren | Ude og Fiske"
+  description="Mine bedste råd til Put & Take fiskeri når det er hedt om sommeren — hvorfor fiskene bliver sløve, hvornår du skal fiske, og hvilken agn der virker når vandet er varmt."
+  canonical="https://udeogfiske.dk/blog/put-take-fiskeri-i-varmt-vejr/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: "Put & Take fiskeri i varmt vejr" },
+  ]}
+  articleData={{
+    headline: "Put & Take fiskeri i varmt vejr",
+    image: "/images/put_take_sommer_hero.jpg",
+    datePublished: "2026-06-26",
+  }}
+  faq={[{
+    question: "Kan man stadig fange fisk i Put & Take når det er meget varmt?",
+    answer: "Ja, men det kræver lidt mere af dig. Fiskene bliver <strong>sløve i det varme vand</strong> fordi der er mindre ilt, så du fanger typisk flest fisk i de kølige morgen- og aftentimer, hvor du leder efter skygge og dybde i stedet for at fiske som om det var en kold dag.",
+  }]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>Put &amp; Take fiskeri i varmt vejr</span>
+      </nav>
+      <h1 class="pg-title">Put &amp; Take fiskeri i varmt vejr</h1>
+      <p class="pg-sub">Når solen bager og søen ligger som et spejl — sådan fanger jeg stadig fisk i Put &amp; Take om sommeren.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Kan man stadig fange fisk i Put &amp; Take når det er meget varmt?</h2>
+        <p class="ac-a">Ja, men det kræver lidt mere af dig. Fiskene bliver <strong>sløve i det varme vand</strong> fordi der er mindre ilt, så du fanger typisk flest fisk i de kølige morgen- og aftentimer, hvor du leder efter skygge og dybde i stedet for at fiske som om det var en kold dag.</p>
+      </div>
+
+      <article class="article">
+        <p>Jeg har stået ved en del Put &amp; Take søer midt på sommeren, hvor vandet er lige så varmt som en lunken badebalje — og det er en helt anden form for fiskeri end om foråret og efteråret. Fiskene er der stadig, men de gider ikke jage rundt efter alt hvad du kaster ud. Her er det jeg selv gør, når kviksølvet kryber op over 25 grader.</p>
+
+        <h2>Hvorfor er det sværere at fange fisk i Put &amp; Take om sommeren?</h2>
+        <p>Når vandet bliver varmt, falder mængden af opløst ilt i søen — og det går ud over fiskenes stofskifte. Regnbueørreden, som er den mest almindelige fisk i danske Put &amp; Take søer, er en koldtvandsfisk, og den bliver simpelthen sløv og uoplagt når temperaturen stiger. Det betyder ikke at den stopper med at æde, men den vil hellere have et langsomt, nemt måltid end at jage en spinner gennem hele søen.</p>
+
+        <DidYouKnow>
+          Vand kan opløse markant mindre ilt ved 25 grader end ved 10 grader. Det er en af hovedgrundene til, at fiskene i en Put &amp; Take sø virker mere "døde" om sommeren — de søger aktivt mod de dele af søen hvor iltindholdet stadig er højt.
+        </DidYouKnow>
+
+        <h2>Hvornår på dagen skal du fiske i sommervarmen?</h2>
+        <p>Min klare anbefaling er at fiske tidligt om morgenen eller sent om aftenen. Vandet har haft hele natten til at køle af, og iltniveauet er højere efter en nat uden direkte sol. Jeg planlægger næsten altid mine sommerture, så jeg er ved søen lige når det bliver lyst — det er her jeg fanger langt de fleste fisk på en varm dag. Midt på dagen, når solen står højt, holder jeg ofte pause eller fisker meget langsomt og uden store forventninger.</p>
+
+        <figure class="art-figure">
+          <img src="/images/put_take_sommer_morgen.jpg" alt="Mistet daggry over en stille Put og Take sø med en fiskestang der hviler ved vandkanten" loading="lazy" width="800" height="450" />
+          <figcaption>Lige når det bliver lyst er mit favoritvindue om sommeren — vandet er koldere, og fiskene er mere aktive.</figcaption>
+        </figure>
+
+        <h2>Hvor i søen skal du lede efter fiskene?</h2>
+        <p>Når det er varmt, leder jeg altid efter de steder i søen hvor der er mest skygge og mest dybde. Træer der hænger ud over vandet, den dybeste del af søen, eller området omkring et indløb eller en luftningspumpe er guldminer om sommeren — det er her vandet er koldest og mest iltrigt, og det er der fiskene samler sig. Jeg undgår de lave, solbeskinnede områder helt, uanset hvor godt de plejer at fiske på andre tider af året.</p>
+
+        <TipBox>
+          Kig efter en luftningspumpe eller et indløb, hvis søen har et — det er ofte den bedste plads på hele søen i sommervarmen, fordi vandet konstant bliver iltet.
+        </TipBox>
+
+        <h2>Hvilken agn virker bedst når vandet er varmt?</h2>
+        <p>Jeg fisker stadig med Powerbait om sommeren, men jeg er begyndt at tænke mere over, hvor i vandet agnet faktisk ligger. Den klassiske flydende Powerbait-pasta lægger sig lige under flåden, i det øverste og varmeste lag af søen — præcis dér hvor fiskene <strong>ikke</strong> gider stå når det er hedt. Derfor griber jeg ofte efter en synkende variant i stedet, så agnet kommer ned i det kølige vand hvor fiskene rent faktisk holder til.</p>
+
+        <ProductReview
+          productId="63717"
+          rating={4}
+          headline="Mit valg når den flydende Powerbait ikke fanger noget i sommervarmen."
+          review="Jeg skifter til Berkley Powerbait Glitter Synkende, så snart vandet bliver for varmt til den almindelige pasta. Forskellen er enkel — den synker ned til de dybere, kølige lag hvor fiskene rent faktisk står, i stedet for at ligge og dingle i det lune overfladevand. Duften og glitter-effekten er den samme som den klassiske Powerbait, så det er kun synkeegenskaben der ændrer sig."
+          pros={[
+            'Synker ned til det kølige vand hvor fiskene står om sommeren',
+            'Samme stærke duft og glitter-effekt som den klassiske Powerbait',
+            'Billig at have liggende — oplagt at supplere den flydende pasta med',
+          ]}
+          cons={[
+            'Du skal justere flåd og blylod lidt, da den ikke flyder af sig selv',
+          ]}
+          cta="Se prisen hos Fiskegrej.dk"
+        />
+
+        <h2>Skal du ændre noget i din fisketeknik i varmen?</h2>
+        <p>Ja — jeg sænker tempoet markant. Hvor jeg ellers gerne spinner ind med god fart, fisker jeg om sommeren meget langsommere og laver længere pauser mellem hver bevægelse. En sløv fisk i 25-graders vand gider ikke spurte efter noget der farer forbi. Jeg giver agnet tid til at ligge stille, og lader fisken komme til mig i stedet for omvendt.</p>
+
+        <figure class="art-figure">
+          <img src="/images/put_take_sommer_grej.jpg" alt="Flåd-forfang med blylod og krog lagt frem på solbleget træ ved siden af en åben grejboks og en line-spole" loading="lazy" width="800" height="450" />
+          <figcaption>Et simpelt flåd-rig — om sommeren er det præsentationen og tempoet, ikke selve agnet, der gør forskellen.</figcaption>
+        </figure>
+
+        <h2>Er det okay at genudsætte fisk når vandet er varmt?</h2>
+        <p>Her vil jeg være ærlig: det er hårdere for en fisk at blive genudsat i varmt, iltfattigt vand end i koldt vand. Hvis du fisker i en Put &amp; Take, hvor du alligevel har tænkt dig at tage fisken med hjem, er det ikke noget problem. Men vil du genudsætte fisken, så gør det hurtigt, hold den så lidt i hånden som muligt, og brug gerne en fugtig net i stedet for at lægge den på det varme græs. Vil du vide mere om den rigtige teknik, har jeg samlet det i en separat guide.</p>
+
+        <GuideLink
+          href="/fiskeguide/catch-and-release/"
+          title="Læs Catch and Release guiden"
+          desc="Den korrekte teknik til at genudsætte fisk, så den overlever"
+        />
+
+      </article>
+    </div>
+  </section>
+
+  <RelatedRow items={related} />
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/put_take_sommer_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 580px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+
+  .ac-q {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+  }
+
+  .ac-a {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .article p {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .article p strong { color: #111827; font-weight: 700; }
+
+  .article h2 {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .art-figure figcaption {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    padding: 0.625rem 0.875rem;
+    text-align: center;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+</style>

@@ -1,3 +1,29 @@
+# Plan — Session 51 (First /blog/ post — Put & Take fiskeri i varmt vejr, 2026-06-26) — DONE ✓ (see review.md)
+
+Goal: write the first real post for the new `/blog/` category, in the site's
+established first-person Danish voice, with nano-banana images and one
+`<ProductReview>`.
+
+## A. Content decisions (flagging before I write ~500 lines + generate images)
+- **Slug:** `/blog/put-take-fiskeri-i-varmt-vejr/`
+- **Angle:** practical advice for fishing Put & Take lakes during summer heat — why warm/low-oxygen water makes fish lethargic, best times of day (dawn/dusk), where to find fish (shade, depth, inflow), bait/technique adjustments, and a closing note on fish welfare when releasing in warm water (links to the existing Catch & Release guide).
+- **Product:** `<ProductReview>` for **Berkley Powerbait Glitter Synkende** (productId `63717`, Chartreuse, 39 kr, in stock) — a *sinking* Powerbait variant. Honest angle: floating dough sits in the warm top layer; the sinking version gets down to the cooler depth where fish actually hold in heat. Different product from the 4 Powerbait/gummi items already used on `/fiskeguide/put-take-fiskeri/`, so no overlap.
+- **Images (3, all fish-free per established house rule):**
+  1. Hero — sun-baked Put & Take lake at midday, heat-shimmer over the water, rod propped on the bank, dry summer grass.
+  2. Inline figure — misty golden-hour dawn over a calm lake, single rod resting at the water's edge (illustrates the "fish at dawn" advice).
+  3. Inline figure — close-up of a flåd/sinker rig + tackle laid out on sun-bleached dock boards in bright midday light (illustrates technique/gear adjustments).
+
+## B. Build steps
+- [x] 1. Generate the 3 images via `/nano-banana`, convert PNG → JPG, save to `public/images/`.
+- [x] 2. Write `src/pages/blog/put-take-fiskeri-i-varmt-vejr/index.astro` — hero, breadcrumb (Forside › Blog › title), answer-capsule, ~5 Q&A-style H2s, 1 `<DidYouKnow>`, 1 `<TipBox>`, 2 inline `<figure>`s, 1 `<ProductReview productId="63717">`, 1 `<GuideLink>` to `/fiskeguide/catch-and-release/`, closing `<RelatedRow>` (put-take-fiskeri, catch-and-release, regnbueørred guide). `pageType="article"`, `articleData` with today's `datePublished`.
+- [x] 3. Update `src/pages/blog/index.astro` — replaced the "no posts yet" empty-state with a single post card (new `.post-grid`/`.post-card` pattern) linking to the new post; kept a short "flere indlæg kommer løbende" note underneath. Added `itemList` schema prop.
+- [x] 4. `npm run build` — clean, 83 pages. Also dev-server + curl verification (no Playwright/chromium-cli available in this sandbox) — both routes 200, all 4 images 200, ProductReview resolved real Fiskegrej.dk image + `partnerid=29395` affiliate link, no errors in dev log.
+
+## C. Wrap-up
+- [x] 5. Append Session 51 review entry to `review.md`.
+
+---
+
 # Plan — Session 50 (Remove welcome popup + new /blog/ category shell, 2026-06-26) — DONE ✓ (see review.md)
 
 ## A. Remove welcome popup

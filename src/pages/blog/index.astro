@@ -1,0 +1,194 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="Blog | Personlige tanker og oplevelser fra Ude og Fiske"
+  description="Her samler jeg de indlæg, der ikke hører hjemme i de andre guider — tanker, oplevelser og småting fra livet som lystfisker."
+  canonical="https://udeogfiske.dk/blog/"
+  pageType="category"
+  breadcrumbs={[{ name: "Forside", url: "/" }, { name: "Blog" }]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <span>Blog</span>
+      </nav>
+      <h1 class="pg-title">Blog</h1>
+      <p class="pg-sub">Tanker, oplevelser og småting fra livet som lystfisker — det der ikke passer ind i de andre guider.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad finder jeg på bloggen?</h2>
+        <p class="ac-a">Bloggen er stedet til alt det, der ikke hører hjemme under <a href="/fiskeguide/">Fiskeguides</a>, <a href="/guide-til-fisk/">Guides til fisk</a> eller de andre kategorier — personlige refleksioner, småoplevelser og tanker om fiskeriet, som ikke nødvendigvis er en hel guide i sig selv.</p>
+      </div>
+
+      <div class="pg-intro">
+        <p>Det meste af det jeg skriver, er strukturerede guider — men jeg får tit lyst til at dele andet end det. Det kan være en tanke jeg har fået på en fisketur, en lille oplevelse der ikke fylder en hel guide, eller bare noget der har fyldt mine tanker i forhold til fiskeriet.</p>
+        <p>Den slags indlæg samler jeg her på bloggen, så de ikke drukner i de mere strukturerede guider.</p>
+      </div>
+
+      <div class="empty-state">
+        <span class="empty-ico" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M5 4.5h10.5L19 8v11.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-14a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M15.5 4.5V8H19" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M8 12.5h8M8 15.5h8M8 9.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h3 class="empty-title">Første indlæg er på vej</h3>
+        <p class="empty-text">Jeg er ved at skrive de første blogindlæg. Kig forbi igen snart — eller udforsk <a href="/fiskeguide/">guiderne</a> i mellemtiden.</p>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 55%, rgba(0, 0, 0, 0) 100%),
+      url('/images/blog_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 520px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+
+  .ac-q {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+  }
+
+  .ac-a {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .ac-a strong { color: #111827; font-weight: 600; }
+  .ac-a a, .pg-intro a { color: #0d4a5e; text-decoration: underline; text-decoration-color: #c7d8dd; }
+  .ac-a a:hover, .pg-intro a:hover { text-decoration-color: #0d4a5e; }
+
+  .pg-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .pg-intro p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.8;
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.625rem;
+    padding: 3rem 1.5rem;
+    border: 1.5px dashed #d1d5db;
+    border-radius: 14px;
+    background: #f8fafc;
+  }
+
+  .empty-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #e6f1f5;
+    color: #0d4a5e;
+    margin-bottom: 0.25rem;
+  }
+
+  .empty-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .empty-text {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    line-height: 1.65;
+    max-width: 36ch;
+  }
+
+  .empty-text a { color: #0d4a5e; text-decoration: underline; text-decoration-color: #c7d8dd; }
+  .empty-text a:hover { text-decoration-color: #0d4a5e; }
+</style>

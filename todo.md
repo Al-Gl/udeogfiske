@@ -1,3 +1,23 @@
+# Plan — Session 50 (Remove welcome popup + new /blog/ category shell, 2026-06-26) — DONE ✓ (see review.md)
+
+## A. Remove welcome popup
+- [x] 1. Remove `<WelcomePopup />` + its import from `src/layouts/MainLayout.astro`.
+- [x] 2. Delete `src/components/WelcomePopup.astro` (no longer referenced anywhere).
+
+## B. Reverse the Session 49 "no blog" redirect
+- [x] 3. Remove the 2 `/blog/...` lines from `public/_redirects` (added Session 49 when the user had decided against a blog section) — they'd otherwise shadow the new page.
+
+## C. New `/blog/` category — empty shell (no posts yet, per user decision)
+- [x] 4. Generate 1 fish-free hero image via `/nano-banana` → `blog_hero.jpg` (personal-journal feel: notebook/pen near fishing gear, NOT another species/technique photo) — matches the `<slug>_hero.*` convention used by every other category (`fiskeguide_hero.jpg`, `fisketure_hero.jpg`, etc).
+- [x] 5. Build `src/pages/blog/index.astro` from the established category-index template (`src/pages/fiskeguide/index.astro` pattern): `.pg-hero` + breadcrumb + answer-capsule + first-person Danish intro explaining this is where misc content that doesn't fit other categories lives + a clean dashed-border empty-state card ("Første indlæg er på vej") instead of a card-grid. `pageType="category"`, breadcrumbs prop, no `itemList` (nothing to list yet).
+- [x] 6. Add `/blog/` link to header nav (`sh-nav`) and footer "Indhold" column (`sf-links`) in `MainLayout.astro`.
+- [x] 7. `npm run build` — verify clean, new page renders, no broken refs to the removed redirects.
+
+## D. Wrap-up
+- [x] 8. Append Session 50 review entry to `review.md`.
+
+---
+
 # Plan — Session 49 (zombie-URL redirect sweep via Google index, 2026-06-24) — DONE ✓ (see review.md)
 
 Goal: find URLs Google has indexed that now 404 on the live site (no longer linked

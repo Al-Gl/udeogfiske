@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import CookieConsent from "../components/CookieConsent.astro";
-import WelcomePopup from "../components/WelcomePopup.astro";
 
 type PageType = 'website' | 'article' | 'category' | 'about';
 type SchemaEntity = { name: string; sameAs?: string | string[] };
@@ -534,6 +533,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
           <a href="/guide-til-fisk/" class="sh-link">Guides til fisk</a>
           <a href="/fisketure/" class="sh-link">Fisketure</a>
           <a href="/fiskepladser/" class="sh-link">Fiskepladser</a>
+          <a href="/blog/" class="sh-link">Blog</a>
           <a href="/om-mig/" class="sh-cta">Kontakt</a>
         </nav>
       </div>
@@ -556,6 +556,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
             <a href="/fiskeguide/" class="sf-link">Fiskeguides</a>
             <a href="/fiskeudstyr/" class="sf-link">Fiskeudstyr</a>
             <a href="/fisketure/" class="sf-link">Fisketure</a>
+            <a href="/blog/" class="sf-link">Blog</a>
           </div>
         </div>
         <div>
@@ -574,7 +575,6 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
     </footer>
 
     <CookieConsent />
-    <WelcomePopup />
 
     <script is:inline>
       // Header depth cue on scroll.

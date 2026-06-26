@@ -1,5 +1,20 @@
 # Review log
 
+## 2026-06-26 — Remove welcome popup + new /blog/ category shell (Session 50)
+
+User asked to (1) remove the first-visit welcome popup from the front page and (2) create a new `/blog/` category for content that doesn't fit any other section, with a nano-banana image.
+
+**Welcome popup removed:** deleted `src/components/WelcomePopup.astro` and its import/usage in `src/layouts/MainLayout.astro`. No more "Velkommen til nye Ude og Fiske!" modal on first visit.
+
+**Flagged a conflict before building:** `public/_redirects` had `/blog/ → /` and `/blog/5-grunde-.../ → /fiskeguide/put-take-fiskeri/` (301s), added in Session 49 specifically because the user had decided *against* a blog section at that time. Confirmed with the user that this was an intentional reversal, then removed both redirect lines so the new page isn't shadowed.
+
+**New `/blog/` category — empty shell, by user's choice (no posts yet):**
+- Generated `blog_hero.jpg` via `/nano-banana` — fish-free, personal-journal theme (open notebook + pen on a wooden pier railing at golden hour, fishing rod/tackle bag blurred in the background) instead of another species/technique photo, matching every other category's `<slug>_hero.*` convention.
+- Built `src/pages/blog/index.astro` from the `/fisketure/` category-index template: hero, breadcrumb, answer-capsule, first-person Danish intro explaining the category's purpose, plus a new dashed-border "empty-state" card ("Første indlæg er på vej") since there are no posts yet.
+- Added `/blog/` to the header nav and the footer "Indhold" column in `MainLayout.astro`.
+
+**Verified:** `npm run build` → 82 pages, clean. Confirmed no `welcome-root`/`wp-card`/`WelcomePopup` references remain anywhere in `src/` or `dist/`, `/blog/` renders with the new hero image wired in, and both nav links point to it.
+
 ## 2026-06-24 — Zombie-URL redirect sweep via Google index (Session 49)
 
 User asked for a `site:udeogfiske.dk` Google search to find pages still indexed

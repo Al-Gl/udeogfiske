@@ -1,5 +1,22 @@
 # Review log
 
+## 2026-07-11 — Blog post: varmere hav og lystfiskeriet (Session 53)
+
+Created `/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/` — a reflective personal blog post about how warmer Danish seas are changing coastal fishing. First-person voice throughout.
+
+**New files:**
+- `src/pages/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/index.astro` — 5 Q&A H2s, `<StatHighlight>` (2°C rise), `<DidYouKnow>` (DMI data), `<TipBox>` (dawn fishing tip), `<Affiliate productId="502982">` (Savage Gear Polarizez Revo Solbrille, 399 kr), `<GuideLink>` to makrelfiskeri, `<RelatedRow>` (havørredfiskeri, makrelfiskeri, kystfiskeri)
+- `public/images/varmere_hav_hero.jpg` — empty golden-hour Danish coastline, flat calm sea, haze on horizon (1376×768)
+- `public/images/varmere_hav_grej.jpg` — fishing rod and tackle bag on sun-bleached dock, summer coastal water behind (1376×768)
+- `public/images/varmere_hav_vand.jpg` — warm afternoon sun refracting through shallow coastal water over pebbles (1376×768)
+
+**Updated:**
+- `src/pages/blog/index.astro` — new post card added at top of grid (now 2 posts total)
+
+Build: 84 pages, clean.
+
+---
+
 ## 2026-07-11 — SEO improvements to /guide-til-fisk/havorredfiskeri/ (Session 52)
 
 Analysed 4 competitor pages ranking above the havørredfiskeri page for "havørredfiskeri". Added 3 content additions — no existing verbatim content changed.

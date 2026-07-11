@@ -1,0 +1,295 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Havørredfiskeri",
+    description: "Den fulde guide til havørred på kyst og fjord — biologi, grej og de bedste spots.",
+    href: "/guide-til-fisk/havorredfiskeri/",
+    image: "/images/havørred_card.jpeg",
+    alt: "Havørred i vandkanten",
+    chip: "Fiskeart",
+  },
+  {
+    title: "Makrelfiskeri",
+    description: "Makrelen er en af de store vindere i et varmere hav — læs guiden til sommer-action fra kysten.",
+    href: "/guide-til-fisk/makrelfiskeri/",
+    image: "/images/makrel_card.jpg",
+    alt: "Makrel fanget fra kysten",
+    chip: "Fiskeart",
+  },
+  {
+    title: "Fiskeri på kysten",
+    description: "Over 8.000 km dansk kystlinje — lær at læse den og finde fiskene uanset årstid.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kyst_fiskeri.jpg",
+    alt: "Dansk kystlinje",
+    chip: "Guide",
+  },
+];
+---
+
+<MainLayout
+  title="Havet er blevet to grader varmere — mærker du det i dit fiskeri? | Ude og Fiske"
+  description="De danske have er steget næsten 2°C på 40 år. Torsk og sild trækker nordpå, havbars og multe dukker op. Her er mine egne observationer fra vandkanten — og hvad jeg tror det betyder fremover."
+  canonical="https://udeogfiske.dk/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: "Havet er blevet to grader varmere" },
+  ]}
+  articleData={{
+    headline: "Havet er blevet to grader varmere — mærker du det i dit fiskeri?",
+    image: "/images/varmere_hav_hero.jpg",
+    datePublished: "2026-07-11",
+  }}
+  faq={[
+    {
+      question: "Hvad betyder det varmere hav for havørredfiskeriet i Danmark?",
+      answer: "Varmere somre presser havørreden dybere og kortere perioder ind på lavt vand. Sommerfiskeriet er flyttet endnu mere til nat og tidlig morgen. Til gengæld er forårs- og efterårsfiskeriet stadig stærkt — og grænsen for den ideelle vandtemperatur (8–13°C) rammer bare på lidt andre tidspunkter end tidligere.",
+    },
+    {
+      question: "Hvilke nye fiskearter er kommet til de danske kyster på grund af klimaforandringer?",
+      answer: "Havbars (European sea bass) er den mest markante nyankommer — den er fast inventar langs vestkysten og begynder at dukke op i Kattegat. Multe er set langs hele kysten i sommerhalvåret. Begge arter trives bedst over 18°C, som nu er en realistisk sommertemperatur i de indre farvande.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>Havet er blevet to grader varmere</span>
+      </nav>
+      <p class="pg-chip">Tanker fra vandkanten</p>
+      <h1 class="pg-title">Havet er blevet to grader varmere — mærker du det i dit fiskeri?</h1>
+      <p class="pg-sub">Torsk og sild trækker nordpå. Havbars og multe dukker op. Her er mine egne observationer fra kysten — og hvad jeg tror det betyder for os lystfiskere fremover.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvad betyder to grader varmere hav for lystfiskeriet?</h2>
+        <p class="ac-a"><strong>De kolde vandarters sæson skrumper, og nye sydeuropæiske arter begynder at gøre sig gældende langs de danske kyster.</strong> Torsk og sild trives bedst i koldt, iltmættet vand — og begge trækker gradvist nordpå. Til gengæld er havbars og multe begyndt at dukke op i et hav, der nu om sommeren kan nå temperaturer, hvor disse arter trives rigtig godt. Det er ikke en fremtidsscenarie. Det sker allerede.</p>
+      </div>
+
+      <article class="article">
+
+        <h2>Hvornår begyndte jeg selv at mærke forandringen?</h2>
+        <p>Jeg kan ikke sætte en præcis dato på det. Det er mere et billede, der er taget form over mange sæsoner ved vandkanten. Men der er to ting, jeg har tænkt meget over de seneste år.</p>
+
+        <p>Den første er, at somrene ved kysten er blevet anderledes stille på den måde, der gør en fisker urolig. Ikke stille som i "ingen fisk" — men stille som i "fiskene er der, men de er ikke, hvor de plejer at være". Havørreden, som jeg har fisket efter i årevis, trækker dybere og tættere på nattefiskeriet i juli og august. Det er ikke nyt i sig selv, men det er som om vinduet er snævret yderligere ind.</p>
+
+        <p>Den anden ting er en makrel, jeg fangede ved Stevns allerede i maj for et par år siden. Det er ikke usædvanligt i sig selv — men det var tidligt. Og den var stor. Den slags ting giver stof til eftertanke, når man begynder at sætte dem i sammenhæng med hinanden.</p>
+
+        <StatHighlight
+          icon="thermometer"
+          value="~2 °C"
+          caption="Sådan meget er de danske havoverfladetemperaturer steget siden DMI begyndte at måle med satellitdata for ca. 40 år siden."
+        />
+
+        <figure class="art-figure">
+          <img src="/images/varmere_hav_hero.jpg" alt="Tom dansk kystlinje ved solnedgang — stille hav og varm dis på horisonten" width="1376" height="768" loading="lazy" />
+          <figcaption>En sommeraften ved kysten ser stadig smukt ud — men det er et andet hav end for 20 år siden.</figcaption>
+        </figure>
+
+        <h2>Hvad sker der med de fisk vi kender?</h2>
+        <p>Billedet er ikke sort-hvidt. Det er mere nuanceret end "alle de gode fisk forsvinder".</p>
+
+        <p><strong>Torsken</strong> er den art, som fylder mest i debatten — og med god grund. Torsken trives bedst i vand under ca. 16–17 grader. Når sommertemperaturerne i de indre farvande begynder at nærme sig det, søger torsken dybere eller nordpå. I Østersøen er situationen allerede kritisk, og det afspejler sig i strenge fangstbegrænsninger. Torskefiskeri fra kysten i Danmark er ikke hvad det var for en generation siden.</p>
+
+        <p><strong>Sild og brisling</strong> følger et lignende mønster. De trives i koldt, iltmættet vand og er gradvist begyndt at trækkes mod nord og dybere farvande om sommeren. Det påvirker ikke bare dem der fisker efter sild — det påvirker hele fødekæden, herunder havørreden og torsken, der begge jager disse arter.</p>
+
+        <p><strong>Havørreden</strong> er mere tilpasningsdygtig end torsken, og det er en af grundene til at vi stadig har godt havørredfiskeri i Danmark. Men jeg mærker alligevel, at sommerfiskeriet har ændret sig. De dage, hvor man tidligt om morgenen i juli kan fange havørreder på lavt vand i klart vejr, bliver sjældnere. Fiskene er der — men de holder mere af nattens timer og de køligste morgner.</p>
+
+        <DidYouKnow>
+          Ifølge DMI er de danske havoverfladetemperaturer steget med <strong>1,5 til 2 grader</strong> siden den systematiske satellitmåling begyndte for ca. 40 år siden. Det lyder måske ikke af meget — men for vekselvarme dyr som fisk er selv en halv grad en enorm forskel i adfærd og udbredelse.
+        </DidYouKnow>
+
+        <h2>Hvilke nye arter er begyndt at dukke op langs kysten?</h2>
+        <p>Her er faktisk noget at glæde sig over — i hvert fald som fisker med et åbent sind.</p>
+
+        <p><strong>Havbars</strong> (eller "sea bass" som den kendes fra britisk og sydeuropæisk fiskeri) er den mest spændende nyankommer. Den har i en årrække været fast inventar langs Jyllands vestkyst, og meldinger tyder på, at den gradvist trænger ind i Kattegat og de indre farvande. Havbarsen er en kraftig, krævende fisk, der kæmper voldsomt og er yderst lækker på tallerkenen. Den trives bedst ved vandtemperaturer over 18 grader — og det er en temperatur, der nu er realistisk i de danske farvande om sommeren.</p>
+
+        <p><strong>Multe</strong> er en anden art, der er begyndt at ses hyppigere langs de danske kyster. Den er ikke ny i Danmark, men forekomsterne er vokset markant. Meget er dog endnu et catch-and-release-eventyr, da de kan være svære at fremprovokere til at bide på kunstige agn — men de giver flotte oplevelser for øjet fra vandkanten.</p>
+
+        <p>Jeg har selv endnu til gode at lande en havbars fra dansk kystvand. Men jeg ved, at det ikke er en umulig drøm længere — og det synes jeg faktisk er ret fedt.</p>
+
+        <figure class="art-figure">
+          <img src="/images/varmere_hav_grej.jpg" alt="Fiskestang og grejpose på sol-blegt trædæk ved kysten en varm sommerdag" width="1376" height="768" loading="lazy" />
+          <figcaption>Sommerfiskeri fra broen kræver mere tålmodighed i dag end for 10 år siden — men belønningen kan være nye arter.</figcaption>
+        </figure>
+
+        <h2>Hvad betyder det varmere vand for havørredfiskeriet?</h2>
+        <p>Det er det spørgsmål, jeg vender oftest tilbage til — fordi havørreden er den art, jeg fisker mest efter.</p>
+
+        <p>Det korte svar er: sommervinduet er blevet snævrere, men forår og efterår er stadig stærke. Havørreden er mest aktiv ved vandtemperaturer mellem 8 og 13 grader. Det nås stadig — det er bare på andre tidspunkter end tidligere i sæsonen, og om sommeren er vinduet med rigtigt koldt vand om natten kortere.</p>
+
+        <p>Det lange svar er mere nuanceret. Havørreden er tilpasningsdygtig. Den søger bare andre steder hen, når vandet er for varmt — dybere vand, nordvendte kyster, vendepunkter hvor koldt bundvand blander sig. Dem der finder de pladser, og er parate til at fiske dem på de rigtige tidspunkter, fanger stadig fine fisk.</p>
+
+        <TipBox>
+          <p>I de varmeste sommermåneder er de to-tre timer <strong>lige efter solopgang</strong> guld værd. Nattefiskeriet er åbenlyst stærkt, men de tidlige morgentimer — inden vandet varmer op fra sommersolens stråler — er mit personlige vindue til de bedste sommeroplevelser med havørreden. Vær klar ved vandet senest kl. 5.</p>
+        </TipBox>
+
+        <h2>Hvad gør jeg anderledes nu end for 10 år siden?</h2>
+        <p>Jeg er blevet mere fleksibel og mere vejrbevidst. Det lyder banalt, men det er det ikke.</p>
+
+        <p>Jeg tjekker vandtemperaturen via FCOO.dk, inden jeg planlægger en sommertur. Hvis overfladetemperaturen er over 18 grader, skifter jeg enten plads til en koldere nordvendt kyst, eller jeg sætter alarmen to timer tidligere og planlægger at være hjemme igen, inden solen for alvor bider. Jeg vil ikke spilde en tur på at stå og vente på fisk, der simpelthen er gået dybere end mit kast rækker.</p>
+
+        <p>Jeg er også begyndt at kigge mere efter makreller og hornfisk i perioder, hvor havørrederne er svære at finde på lavt vand. Begge er et gyldigt alternativ — og makrelfiskeriet fra kysten i juli er faktisk noget af det sjoveste fiskeri, man kan lave. Mange hug, god kamp og god mad bagefter.</p>
+
+        <p>Og så holder jeg øje med nyhederne om havbars. Ikke fordi jeg forventer at fange en fra kysten i morgen — men fordi det er rart at vide, hvad man kigger efter, når den dag kommer.</p>
+
+        <Affiliate
+          productId="502982"
+          note="Polaroidbriller er et af de vigtigste redskaber til at læse et ændret hav. Jeg bruger dem til at spotte temperaturlag i vandet, se bunden ændre sig og aflæse, om der er liv ved overfladen. I et varmere hav, hvor fiskene skifter plads hyppigere, kan et godt par briller spare dig for timevis af blindt fiskeri."
+        />
+
+        <figure class="art-figure">
+          <img src="/images/varmere_hav_vand.jpg" alt="Varm eftermiddagssol der bryder i klart lavt kystvand over sand og sten" width="1376" height="768" loading="lazy" />
+          <figcaption>Vandet er varmere og klarere end det var. Det ændrer, hvor fiskene holder sig — og hvornår de er aktive.</figcaption>
+        </figure>
+
+        <GuideLink
+          href="/guide-til-fisk/makrelfiskeri/"
+          title="Læs makrelfiskeri-guiden"
+          desc="Makrelen er en af de store vindere i et varmere hav — og sommer er dens højtid. Læs guiden til kystfiskeri efter makrel."
+        />
+
+      </article>
+
+      <RelatedRow items={related} />
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/varmere_hav_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 720px;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .art-figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .art-figure figcaption {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    background: #f8fafc;
+  }
+</style>

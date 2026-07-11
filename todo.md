@@ -1,3 +1,28 @@
+# Plan — Session 53 (Blog post: varmere hav og lystfiskeriet, 2026-07-11)
+
+Goal: Create `/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/` — a personal, reflective blog post about how warmer Danish seas are changing coastal fishing. First-person voice throughout. Fish-free nano-banana images.
+
+## A. Content decisions
+- **Slug:** `/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/`
+- **Angle:** Not a climate science article — a fisherman's personal observations from the waterside. Havet er steget 1,5–2°C, torsk forsvinder nordpå, nye arter som havbars og multe dukker op, havørredfiskeriet ændrer karakter. Hvad mærker jeg som kystfisker, og hvad tror jeg det betyder fremover?
+- **H2 structure (Q&A):** (1) Hvornår begyndte jeg selv at mærke forandringen? (2) Hvad sker der med de fisk vi kender? (3) Hvilke nye arter er begyndt at dukke op langs kysten? (4) Hvad betyder det varmere vand for havørredfiskeriet? (5) Hvad gør jeg anderledes nu end for 10 år siden?
+- **Components:** `<DidYouKnow>` (2° temp fact), `<StatHighlight>` (temp rise), `<TipBox>` (practical take), `<GuideLink>` to /guide-til-fisk/makrelfiskeri/, `<RelatedRow>` (havørredfiskeri, kystfiskeri, makrelfiskeri)
+- **Product:** `<Affiliate>` for a light breathable fishing jacket or summer coastal grej — to be confirmed after feed search
+- **Images (3, fish-free):**
+  1. Hero — moody golden-hour empty coastline, calm flat sea, haze on horizon suggesting heat/change
+  2. Inline 1 — sun-bleached fishing gear (rod, tackle bag) leaning against a weathered pier/dock post in bright summer heat, heat shimmer
+  3. Inline 2 — close-up of calm warm coastal water surface with afternoon light, ripples, suggesting temperature/stillness
+
+## B. Build steps
+- [ ] 1. Search feed for a fitting affiliate product (light jacket, summer coastal gear)
+- [ ] 2. Generate 3 fish-free images via `/nano-banana`, convert PNG→JPG, save to `public/images/`
+- [ ] 3. Write `src/pages/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/index.astro`
+- [ ] 4. Update `src/pages/blog/index.astro` — add new post card to the grid
+- [ ] 5. `npm run build` — verify clean build
+- [ ] 6. Append Session 53 entry to `review.md`
+
+---
+
 # Plan — Session 52 (SEO improvements to /guide-til-fisk/havorredfiskeri/, 2026-07-11)
 
 Goal: Add 3 content additions to the havørredfiskeri page that close identified gaps vs. competitors ranking higher for "havørredfiskeri". No verbatim content is changed — additions are new sections only.

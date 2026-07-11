@@ -1,3 +1,17 @@
+# Plan — Session 52 (SEO improvements to /guide-til-fisk/havorredfiskeri/, 2026-07-11)
+
+Goal: Add 3 content additions to the havørredfiskeri page that close identified gaps vs. competitors ranking higher for "havørredfiskeri". No verbatim content is changed — additions are new sections only.
+
+## Changes
+
+- [ ] 1. **"Fish shallow first" TipBox** — add a second `<TipBox>` in the "Hvor finder man havørreden?" section (after the figure-pair of leopardbund + revler images, before the "overgangen" paragraph). Content: wade quietly, fish closest water thoroughly before going deeper — trout hold closer to shore than most anglers expect.
+- [ ] 2. **Pakkeliste H2** — add new H2 "Hvad skal du have med til havørredfiskeri på kysten?" after the fluestang `<Affiliate>` (productId 62370) and before "Hvad bør du vide om havørredens biologi?". Categorised checklist: stang/hjul, agn, beklædning (waders, vandtæt jakke, basislager), tilbehør (net med gummimask, sax, målebånd, præst, polaroidbriller, swivels, forfangsline).
+- [ ] 3. **Regional regulations H2** — add new H2 "Hvad er reglerne for havørredfiskeri i Danmark?" immediately before `<h2>FAQ</h2>`. Contents: general 40 cm + fredning, then table/list with: Odense Fjord 45 cm, Bornholm Sept 16–Feb 28 (max 3/dag), Randers Fjord fredning to March 1 + nedgående fisk altid fredet. Plus the 3 zone colour codes (rød=helårsfredning, blå=halvårsfredning, gul=særlig fredning) with link to Fiskeristyrelsen.
+- [ ] 4. `npm run build` — verify clean build, check page still renders correctly.
+- [ ] 5. Append Session 52 entry to `review.md`.
+
+---
+
 # Plan — Session 51 (First /blog/ post — Put & Take fiskeri i varmt vejr, 2026-06-26) — DONE ✓ (see review.md)
 
 Goal: write the first real post for the new `/blog/` category, in the site's

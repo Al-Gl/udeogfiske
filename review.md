@@ -1,5 +1,21 @@
 # Review log
 
+## 2026-07-11 — SEO improvements to /guide-til-fisk/havorredfiskeri/ (Session 52)
+
+Analysed 4 competitor pages ranking above the havørredfiskeri page for "havørredfiskeri". Added 3 content additions — no existing verbatim content changed.
+
+**Changes made to `src/pages/guide-til-fisk/havorredfiskeri/index.astro`:**
+
+1. **"Fish shallow first" TipBox** — New `<TipBox>` added after the leopardbund/revler figure-pair in the "Hvor finder man havørreden?" section. Addresses the counterintuitive insight that sea trout hold closer to shore than most anglers expect; written in first-person voice.
+
+2. **Pakkeliste H2** — New H2 "Hvad skal du have med til havørredfiskeri på kysten?" inserted after the fluestang Affiliate and before the biology section. Three-category checklist (stang/hjul/agn, beklædning, tilbehør) with personal intro anecdote.
+
+3. **Regional regulations H2** — New H2 "Hvad er reglerne for havørredfiskeri i Danmark?" added immediately before the FAQ. Covers general rules (40 cm, fredning 16/11–15/1), three regional exceptions (Odense Fjord 45 cm, Bornholm Sept 16–Feb 28/max 3/dag, Randers Fjord to March 1), and the three zone colour codes (rød/blå/gul) with links to Fiskeristyrelsen.
+
+Build: 83 pages, clean.
+
+---
+
 ## 2026-06-26 — First /blog/ post: Put & Take fiskeri i varmt vejr (Session 51)
 
 User asked for the first real post in the new `/blog/` category — about Put & Take fishing in summer heat, in the site's voice, with nano-banana images and a single product review.

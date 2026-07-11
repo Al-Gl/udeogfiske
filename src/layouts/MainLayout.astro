@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import CookieConsent from "../components/CookieConsent.astro";
+import GoogleAdSidebar from "../components/GoogleAdSidebar.astro";
 
 type PageType = 'website' | 'article' | 'category' | 'about';
 type SchemaEntity = { name: string; sameAs?: string | string[] };
@@ -180,6 +181,8 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2311604251179357" crossorigin="anonymous"></script>
 
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
     <link rel="apple-touch-icon" href="/images/logo.png" />
@@ -575,6 +578,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
     </footer>
 
     <CookieConsent />
+    <GoogleAdSidebar />
 
     <script is:inline>
       // Header depth cue on scroll.

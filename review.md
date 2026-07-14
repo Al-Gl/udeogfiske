@@ -1,5 +1,18 @@
 # Review log
 
+## 2026-07-14 — AdSense fill-fix + placeholder auto-hide (Session 56, del 3)
+
+User reported ad spots showing only the "Annonce" placeholder. Two code fixes, both pushed live (`f6ba1b1`):
+
+1. **Zero-width request bug:** every unit pushed `adsbygoogle.push({})` even when hidden at its breakpoint, and pushes consume `<ins>` elements in DOM order — so requests could land on hidden units and error ("availableWidth=0"). Now sizes sit on the `<ins>` itself (sidebars 160×600, mobile banner 320×50) with breakpoint `display:none` on the ins, per Google's hide-responsive-ad-unit pattern — hidden units skip the request cleanly.
+2. **Placeholder never yielded:** added `:has(ins[data-ad-status="filled"])` CSS so the dashed border/background/label disappear the moment Google renders a real ad.
+
+External caveats documented to user: ads never serve on localhost; blank units are expected until AdSense site review approves udeogfiske.dk; all 3 placements share slot 5322383516 — separate slots recommended for fill + reporting.
+
+Earlier in session: sidebar duplicated to both sides (left+right), and front-page overlap fixed — observer matched only `.pg-hero`, front page uses `.hero`, so ads showed immediately over the forside hero. Selector now `.pg-hero, .hero`.
+
+---
+
 ## 2026-07-14 — Ny pladside: Randers Fjord (Session 56, del 2)
 
 **New page `/fiskepladser/randers-fjord/`** — same action-driven spot-page template as Ærø. Unique angle: brakvand (Gudenåens udløb) = havørred + gedde/aborre + multe/sild/hornfisk in the same water.

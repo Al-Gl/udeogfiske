@@ -1,4 +1,18 @@
-<div class="gad-sidebar" aria-hidden="true">
+<div class="gad-sidebar gad-sidebar--left gad-unit" aria-hidden="true">
+  <span class="gad-placeholder">Annonce</span>
+  <ins class="adsbygoogle"
+       style="display:block;width:160px;"
+       data-ad-client="ca-pub-2311604251179357"
+       data-ad-slot="5322383516"
+       data-ad-format="auto"
+       data-full-width-responsive="false"></ins>
+  <script is:inline>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<div class="gad-sidebar gad-sidebar--right gad-unit" aria-hidden="true">
+  <span class="gad-placeholder">Annonce</span>
   <ins class="adsbygoogle"
        style="display:block;width:160px;"
        data-ad-client="ca-pub-2311604251179357"
@@ -13,17 +27,45 @@
 <style>
   .gad-sidebar {
     display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .gad-sidebar.gad-visible {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   @media (min-width: 1580px) {
     .gad-sidebar {
       display: block;
       position: fixed;
-      right: 20px;
       top: 50%;
       transform: translateY(-50%);
       width: 160px;
+      min-height: 300px;
       z-index: 50;
+      background: #f0f4f6;
+      border: 1px dashed #9ca3af;
+      border-radius: 8px;
     }
+
+    .gad-sidebar--left { left: 20px; }
+    .gad-sidebar--right { right: 20px; }
+  }
+
+  .gad-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    pointer-events: none;
   }
 </style>

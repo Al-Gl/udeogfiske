@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 
-const featured = [
+const sjaelland = [
   {
     title: "Stevns",
     href: "/fiskepladser/stevns/",
@@ -26,12 +26,33 @@ const featured = [
     image: "/images/koebenhavn_card.png",
     alt: "Fisker i waders ved Københavns kyst",
   },
+];
+
+const jylland = [
   {
     title: "Mariager Fjord",
     href: "/fiskepladser/mariager-fjord/",
     image: "/images/mariager_fjord_card.png",
     alt: "Mariager Fjord med sivkant ved solnedgang",
   },
+  {
+    title: "Randers Fjord",
+    href: "/fiskepladser/randers-fjord/",
+    image: "/images/randers_fjord_card.jpg",
+    alt: "Randers Fjord med sivkanter og bro i aftenlys",
+  },
+];
+
+const fyn = [
+  {
+    title: "Ærø",
+    href: "/fiskepladser/aeroe/",
+    image: "/images/aeroe_card.jpg",
+    alt: "Stenstrand med blæretang og lave klinter på Ærø",
+  },
+];
+
+const putTake = [
   {
     title: "Put & Take",
     href: "/fiskepladser/put-and-take/",
@@ -40,44 +61,7 @@ const featured = [
   },
 ];
 
-const locations = [
-  {
-    title: "Havørredfiskeri på Stevns",
-    description: "Sjællands havørred-mekka. Varieret bund, dybt vand tæt på land, og de helt store fisk i de kolde måneder.",
-    href: "/fiskepladser/stevns/",
-    meta: "Områdeguide · 10 min",
-  },
-  {
-    title: "Havørredfiskeri i Isefjorden",
-    description: "Et af Danmarks bedste havørred-fjorde. Fem klassiske pladser — Kyndby værket, Hammer Bakker, Vellerup Vig, Nakkehage og Bramsnæs Vig.",
-    href: "/fiskepladser/isefjorden/",
-    meta: "Områdeguide · 12 min",
-  },
-  {
-    title: "Fiskeri i Roskilde Fjord",
-    description: "Havørreder, hornfisk og makrel — under en halv times kørsel fra København. Salvadsparken og jernbanebroen ved Frederikssund er klassikere.",
-    href: "/fiskepladser/roskilde-fjord/",
-    meta: "Områdeguide · 10 min",
-  },
-  {
-    title: "Fiskepladser i København",
-    description: "De bedste fiskepladser i og omkring København. Fra havnen til kysten — find din næste fiskeplads i hovedstaden.",
-    href: "/fiskepladser/koebenhavn/",
-    meta: "Guide · 12 min",
-  },
-  {
-    title: "Fiskeri ved Mariager Fjord",
-    description: "Guide til fiskeri ved Mariager Fjord. Smukke omgivelser og gode fangstmuligheder for hele familien.",
-    href: "/fiskepladser/mariager-fjord/",
-    meta: "Guide · 10 min",
-  },
-  {
-    title: "Fiskeri i Put & Take",
-    description: "Klassiske danske Put & Take søer — det nemmeste sted at komme i gang med fiskeri og min faste plan B når kysten er for kold eller blæsende. Start med Ørsted Ørredvand.",
-    href: "/fiskepladser/put-and-take/",
-    meta: "Kategori · 1 sø dokumenteret",
-  },
-];
+const allLocations = [...sjaelland, ...jylland, ...fyn, ...putTake];
 ---
 
 <MainLayout
@@ -86,7 +70,7 @@ const locations = [
   canonical="https://udeogfiske.dk/fiskepladser/"
   pageType="category"
   breadcrumbs={[{ name: "Forside", url: "/" }, { name: "Fiskepladser" }]}
-  itemList={locations.map(l => ({ name: l.title, url: l.href }))}
+  itemList={allLocations.map(l => ({ name: l.title, url: l.href }))}
 >
 
   <section class="pg-hero">
@@ -103,9 +87,14 @@ const locations = [
 
   <section class="pg-body">
     <div class="pg-ctn">
-      <h2 class="sec-heading">Udvalgte destinationer</h2>
+      <div class="pg-intro">
+        <p>Alle har stået i situationen hvor de gerne vil ud og fiske, men de ved simpelthen ikke hvor de skal fiske. Alle kan jo i bund og grund tage en fiskestang, tage ud til kysten, en å eller en sø og begynde at kaste snøren ud.</p>
+        <p>Jeg har altid med glæde delt mine fiskepladser med alle — for der er nok fisk til os alle, og jo flere der kommer ud og fisker, jo bedre for fiskeriet i Danmark.</p>
+      </div>
+
+      <h2 class="region-title">Fiskepladser i Sjælland</h2>
       <div class="card-grid">
-        {featured.map((c) => (
+        {sjaelland.map((c) => (
           <a href={c.href} class="card" aria-label={c.title}>
             <img src={c.image} alt={c.alt} loading="lazy" width="600" height="400" class="card-img" />
             <div class="card-overlay">
@@ -120,27 +109,54 @@ const locations = [
         ))}
       </div>
 
-      <div class="pg-intro">
-        <p>Alle har stået i situationen hvor de gerne vil ud og fiske, men de ved simpelthen ikke hvor de skal fiske. Alle kan jo i bund og grund tage en fiskestang, tage ud til kysten, en å eller en sø og begynde at kaste snøren ud.</p>
-        <p>Jeg har altid med glæde delt mine fiskepladser med alle — for der er nok fisk til os alle, og jo flere der kommer ud og fisker, jo bedre for fiskeriet i Danmark.</p>
+      <h2 class="region-title">Fiskepladser i Jylland</h2>
+      <div class="card-grid">
+        {jylland.map((c) => (
+          <a href={c.href} class="card" aria-label={c.title}>
+            <img src={c.image} alt={c.alt} loading="lazy" width="600" height="400" class="card-img" />
+            <div class="card-overlay">
+              <h3 class="card-title">{c.title}</h3>
+              <span class="card-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
       </div>
 
-      <div class="art-list">
-        {locations.map((a) => (
-          <article class="art-item">
-            <a href={a.href} class="art-link">
-              <div class="art-body">
-                <h2 class="art-title">{a.title}</h2>
-                <p class="art-desc">{a.description}</p>
-                <span class="art-meta">{a.meta}</span>
-              </div>
-              <div class="art-arrow">
+      <h2 class="region-title">Fiskepladser i Fyn</h2>
+      <div class="card-grid">
+        {fyn.map((c) => (
+          <a href={c.href} class="card" aria-label={c.title}>
+            <img src={c.image} alt={c.alt} loading="lazy" width="600" height="400" class="card-img" />
+            <div class="card-overlay">
+              <h3 class="card-title">{c.title}</h3>
+              <span class="card-arrow">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </div>
-            </a>
-          </article>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <h2 class="region-title">Put &amp; Take søer</h2>
+      <div class="card-grid">
+        {putTake.map((c) => (
+          <a href={c.href} class="card" aria-label={c.title}>
+            <img src={c.image} alt={c.alt} loading="lazy" width="600" height="400" class="card-img" />
+            <div class="card-overlay">
+              <h3 class="card-title">{c.title}</h3>
+              <span class="card-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M5 9h8M9.5 5.5l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
@@ -192,14 +208,33 @@ const locations = [
 
   .pg-body { padding: 3.5rem 0 5rem; }
 
-  .sec-heading {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #6b7280;
-    margin-bottom: 1.25rem;
+  .region-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+    padding-top: 0.5rem;
   }
+
+  .region-empty {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    padding: 1.125rem 1.25rem;
+    background: #f8fafc;
+    border: 1px dashed #d1d5db;
+    border-radius: 10px;
+  }
+
+  .region-empty a {
+    color: #0d4a5e;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .region-empty a:hover { color: #c47d0a; }
 
   .card-grid {
     display: grid;
@@ -288,7 +323,7 @@ const locations = [
     flex-direction: column;
     gap: 0.875rem;
     padding-bottom: 2.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
     border-bottom: 1px solid #e5e7eb;
   }
 
@@ -296,57 +331,5 @@ const locations = [
     font-size: 0.9375rem;
     color: #4b5563;
     line-height: 1.8;
-  }
-
-  .art-list { border-top: 1px solid #e5e7eb; }
-  .art-item { border-bottom: 1px solid #e5e7eb; }
-
-  .art-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 1.625rem 0.25rem;
-    transition: padding-left 0.15s;
-  }
-
-  .art-link:hover { padding-left: 0.5rem; }
-  .art-body { flex: 1; }
-
-  .art-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.375rem;
-    transition: color 0.15s;
-  }
-
-  .art-link:hover .art-title { color: #0d4a5e; }
-
-  .art-desc {
-    font-size: 0.875rem;
-    color: #6b7280;
-    line-height: 1.65;
-    margin-bottom: 0.625rem;
-  }
-
-  .art-meta {
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: #9ca3af;
-  }
-
-  .art-arrow {
-    flex-shrink: 0;
-    color: #d1d5db;
-    transition: color 0.15s, transform 0.15s;
-  }
-
-  .art-link:hover .art-arrow {
-    color: #0d4a5e;
-    transform: translateX(4px);
   }
 </style>

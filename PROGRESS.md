@@ -1,7 +1,7 @@
 # Ude og Fiske — Build Progress
 
-**Last updated:** 2026-06-26 (Session 51 — First /blog/ post published)
-**Status:** 83 pages built. New `/blog/` category shipped this round (was missing entirely) with its first post. Welcome-redesign popup removed from the front page.
+**Last updated:** 2026-07-11 (Session 54 — Google AdSense ads live)
+**Status:** 84 pages built. Two ad units deployed: right-side fixed sidebar (desktop ≥1580px) and sticky bottom banner (mobile/tablet <1580px). Both hidden behind the hero section and fade in once the user scrolls past it. `public/ads.txt` added. Blog has 2 posts.
 
 > **Note on this log:** Sessions 12-49 happened between this entry and Session 11 below but were never written up here — `todo.md` (plan-per-session, newest first) and `review.md` (what shipped, newest first) are the up-to-date, complete session history. This file gets a fresh top entry when there's a good checkpoint; treat the session numbers below as gaps, not missing data.
 

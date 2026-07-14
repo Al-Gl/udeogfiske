@@ -1,0 +1,249 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import AuthorProfile from '../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+
+const related = [
+  {
+    title: "Havørredfiskeri",
+    description: "Den komplette guide til havørredfiskeri i Danmark — sæson, grej, teknik og pladsvalg langs kysten.",
+    href: "/guide-til-fisk/havorredfiskeri/",
+    image: "/images/havørred_card.jpeg",
+    alt: "Havørredfiskeri på kysten",
+    chip: "Art",
+  },
+  {
+    title: "Fiskeri fra kysten",
+    description: "Lær at læse vandet, finde strukturerne og vælge det rette grej — komplet guide til kystfiskeri.",
+    href: "/fiskeguide/fiskeri-paa-kysten/",
+    image: "/images/kystfiskeri_hero.png",
+    alt: "Kystfiskeri",
+    chip: "Teknik",
+  },
+  {
+    title: "Stevns",
+    description: "Sjællands havørred-mekka — varieret bund, dybt vand tæt på land og de helt store fisk i de kolde måneder.",
+    href: "/fiskepladser/stevns/",
+    image: "/images/stevns_card.png",
+    alt: "Havørredfiskeri ved Stevns Klint",
+    chip: "Plads",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvorfor er Ærø så god til havørredfiskeri?",
+    answer: "Ærø kaldes ofte <strong>Danmarks bedste havørred-ø</strong> — og med god grund. Øen er kun 30 km lang men har over <strong>80 km kystlinje</strong> med varieret bund, stenrev, badekar og ålegræs hele vejen rundt. Fisketrykket er lavt sammenlignet med de kendte pladser på Fyn og Sjælland, så du fisker ofte helt urørt vand.",
+  },
+  {
+    question: "Hvornår er det bedste tidspunkt at fiske på Ærø?",
+    answer: "Fiskeriet topper i <strong>marts og april</strong>, hvor havørrederne trækker ind på det lave vand efter vinteren. Men Ærø leverer hele året: efteråret giver trækkende fisk langs kysten, vinteren giver grønlændere på de mørke, solopvarmede pladser som Dæmningen, og om sommeren fisker pladser som Vejsnæs og Skjoldnæs godt — især tidlig morgen og nat.",
+  },
+  {
+    question: "Hvordan kommer man til Ærø?",
+    answer: "Der sejler færger til Ærø fra tre havne: <strong>Svendborg til Ærøskøbing</strong>, <strong>Faaborg til Søby</strong> og <strong>Fynshav (Als) til Søby</strong>. Overfarten tager omkring en time. Tag bilen med — pladserne ligger spredt over hele øen, og den store fordel ved Ærø er netop at du kan flytte dig efter vinden på få minutter.",
+  },
+  {
+    question: "Hvilke pladser på Ærø er de bedste?",
+    answer: "Mine favoritter er <strong>Skjoldnæs</strong> (revet mod nordøst), <strong>Urehoved</strong> (ekstremt varieret bund, kan fiskes hele vejen rundt), <strong>Drejet</strong> (rev 30–50 meter fra land, fisk hele året) og <strong>Olde Mark</strong> (historisk plads der har leveret havørreder over 7 kg). Vælg plads efter vindretningen — der er altid en fiskbar kyst på Ærø.",
+  },
+  {
+    question: "Hvilket grej skal jeg bruge på Ærø?",
+    answer: "Klassisk kystgrej: en spinnestang på 9–10 fod med kastevægt 10–30 g, fastspolehjul str. 3000–4000 og fletline. Gennemløbsblink og kystwoblere dækker spinnefiskeriet, og fluestangen er oplagt på de rolige pladser som Blakstensodde og Dæmningen. Husk waders — mange af pladserne kræver at du vader ud til revkanterne.",
+  },
+];
+---
+
+<MainLayout
+  title="Havørredfiskeri på Ærø | Guide til de bedste fiskepladser på øen"
+  description="Ærø er Danmarks bedste havørred-ø — 80 km kystlinje og lavt fisketryk. Guide til pladserne: Skjoldnæs, Urehoved, Drejet, Olde Mark og flere."
+  canonical="https://udeogfiske.dk/fiskepladser/aeroe/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskepladser", url: "/fiskepladser/" },
+    { name: "Ærø" },
+  ]}
+  articleData={{
+    headline: "Havørredfiskeri på Ærø",
+    image: "/images/aeroe_card.jpg",
+    datePublished: "2026-07-14",
+    dateModified: "2026-07-14",
+  }}
+  about={[{ name: "Ærø", sameAs: "https://da.wikipedia.org/wiki/%C3%86r%C3%B8" }]}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskepladser/">Fiskepladser</a>
+        <span>›</span>
+        <span>Ærø</span>
+      </nav>
+      <h1 class="pg-title">Havørredfiskeri på Ærø</h1>
+      <p class="pg-sub">80 km kystlinje, lavt fisketryk og havørred hele vejen rundt — Ærø er det sydfynske øhavs bedste havørred-ø.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvorfor skal du fiske havørred på Ærø?</h2>
+        <p class="ac-a">Ærø er kun 30 km lang, men byder på over <strong>80 km kystlinje</strong> med stenrev, badekar og ålegræs hele vejen rundt. Fisketrykket er <strong>lavt</strong>, og uanset vindretning er der altid en fiskbar kyst. Fiskeriet topper i <strong>marts–april</strong>, men øen leverer havørred året rundt.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Ærø er stedet jeg anbefaler, når nogen spørger mig hvor de skal tage hen for at opleve rigtigt godt havørredfiskeri uden at stå skulder ved skulder med andre fiskere. Øen har alt det en kystfisker drømmer om: varieret bund, rev tæt på land og så mange pladser at du altid kan finde en kyst med den rigtige vind. Tag færgen derover en langweekend i det tidlige forår, kør efter vinden, og fisk pladser som mange andre steder i landet ville være berømte — her har du dem ofte helt for dig selv."
+      />
+
+      <article class="article">
+        <p>Ærø ligger midt i det sydfynske øhav og kaldes ofte Danmarks bedste havørred-ø. Øen er omkring 30 km lang, men kystlinjen snor sig over mere end 80 km — og stort set hele vejen rundt kan du fange havørred. Varieret bund med stenrev, sandhuller, ålegræs og blæretang skaber et spisekammer, som havørrederne bruger året rundt.</p>
+
+        <p>Den største forskel fra de kendte pladser på Sjælland og Fyn er fisketrykket. På Ærø fisker du ofte pladser, hvor der ikke har stået en fisker i dagevis — og det kan mærkes på fiskene. Kombinér det med at øen er lille nok til at du kan skifte kyst på et kvarter, og du har en destination hvor du reelt aldrig bliver "blæst inde".</p>
+
+        <p>Adgangen er en del af oplevelsen: færgen sejler fra <strong>Svendborg til Ærøskøbing</strong>, fra <strong>Faaborg til Søby</strong> og fra <strong>Fynshav på Als til Søby</strong>. Overfarten tager omkring en time — og tag bilen med, for pladserne ligger spredt over hele øen.</p>
+
+        <DidYouKnow>
+          Fisketrykket på Ærø er så lavt, at du ofte fisker <strong>helt urørt vand</strong> — pladser der på Sjælland ville have en parkeringsplads og et navn, ligger her bare hen som en anonym strækning med stenrev og ålegræs. Det er den største enkeltgrund til at øen leverer så stabilt.
+        </DidYouKnow>
+
+        <h2>Hvilke pladser skal du fiske på Ærø?</h2>
+
+        <p>Her er de pladser jeg ville prioritere på en tur til Ærø — med bundforhold, sæson og hvornår pladsen fisker bedst. Brug listen som en vind-menu: tjek vejrudsigten om morgenen, og vælg den plads der matcher dagens vindretning.</p>
+
+        <h3>Skjoldnæs — revet i nordvest</h3>
+        <p>Ved fyret på øens nordvestligste spids finder du en af Ærøs mest kendte pladser med usædvanligt god bund: store sten, tangbælter og et markant rev mod nordøst. Fisk revkanterne, hvor strømmen ofte står — havørrederne jager helt inde ved tangen og stenene. Bedst sommer og efterår, og pladsen tåler hård pålandsvind godt.</p>
+
+        <h3>Urehoved — halvøen der kan fiskes hele vejen rundt</h3>
+        <p>Ærøs ikoniske plads: en halvø med klinter i baggrunden, store sten og ekstremt varieret bund. Du kan fiske hele vejen rundt om Urehoved, så der er altid en side med den rigtige vind. Forår og efterår er højsæson, og om vinteren er det en oplagt storfisk-plads. Ved højvande trækker fiskene helt tæt på land — så start tæt før du kaster langt.</p>
+
+        <h3>Drejet — rev 30–50 meter fra land</h3>
+        <p>På sydøstkysten ligger Drejet med en helt særlig, varieret bund og rev 30–50 meter fra land — perfekt kasteafstand. Pladsen giver fisk hele året og har ry for at levere de store. Hård vind gør fiskeriet bedre, men står pålandsvinden på for længe, bliver vandet grumset — så er det videre til en anden kyst.</p>
+
+        <h3>Olde Mark — storfisk-pladsen</h3>
+        <p>Den hårde ydre kyst på sydsiden med sten i alle størrelser og masser af blæretang. Olde Mark har historisk leveret havørreder over <strong>7 kg</strong>, og fiskene jager tæt på land — selv når vadningen er besværlig. Pladsen fisker bedst ved vandtemperaturer mellem 5 og 15 grader og tåler længerevarende direkte pålandsvind.</p>
+
+        <h3>Vejsnæs — sydspidsen til sommer og natfiskeri</h3>
+        <p>Øens sydligste punkt: barsk bund med store sten og dybt vand tæt på land. Kan fiskes til begge sider, så syd- eller sydvestenvind er ideel. Om sommeren er Vejsnæs en klassisk natplads — fisk de lune nætter med mørke blink eller flue, når havørrederne går helt ind på det lave.</p>
+
+        <h3>Dæmningen og Haven — vinterens pladser</h3>
+        <p>Når vandet er koldt, søger jeg mod de mørke, beskyttede pladser. Dæmningen har mørk fjordbund der opsuger solvarmen og fungerer nærmest som magnet på havørrederne i vinter og tidligt forår — oplagt til flue og bombarda. Haven på nordvestkysten ser beskeden ud, men gemmer på flere små stenrev og dybt vand tæt på land.</p>
+
+        <TipBox>
+          <p>Min vigtigste Ærø-taktik: <strong>lad vinden vælge pladsen</strong>. Øen er lille nok til at du kan stå på en ny kyst 15 minutter efter du har droppet den første. Let pålandsvind eller sidevind er guld — bølgerne rører bunden og får havørrederne til at jage tættere på land. Og dæk masser af vand: kast, tag tre skridt, kast igen.</p>
+        </TipBox>
+
+        <h2>Hvordan griber du en fisketur til Ærø an?</h2>
+
+        <p>Skal turen lykkes, handler det om planlægning. Sådan ville jeg gøre det:</p>
+
+        <ul>
+          <li><strong>Book færgen i god tid</strong> — særligt i højsæsonen marts–april og i skoleferierne. Svendborg–Ærøskøbing er den mest fleksible afgang.</li>
+          <li><strong>Tag bilen med</strong> — pladserne ligger spredt, og hele pointen med Ærø er at kunne flytte sig efter vinden.</li>
+          <li><strong>Tjek vindretningen hver morgen</strong> — og vælg dagens kyst derefter. Let pålandsvind på en revplads slår næsten altid fladt vand på en læ-kyst.</li>
+          <li><strong>Planlæg efter vandtemperaturen</strong> — under 10 grader: fisk de mørke, beskyttede pladser som Dæmningen midt på dagen. Over 15 grader: fisk Vejsnæs og Skjoldnæs tidlig morgen, sen aften eller nat.</li>
+          <li><strong>Husk fisketegnet</strong> — det statslige lystfisketegn er lovpligtigt, og havørredens mindstemål er 40 cm med fredning af farvede fisk fra 16. november til 15. januar.</li>
+          <li><strong>Giv turen mindst to dage</strong> — én dag på Ærø er for lidt. En langweekend giver dig tid til at ramme både morgen- og aftenfiskeriet på flere kyster.</li>
+        </ul>
+
+        <p>Er du ny i kystfiskeriet, så læs min guide til <a href="/fiskeguide/fiskeri-paa-kysten/">fiskeri på kysten</a> først — den dækker grej, teknik og hvordan du læser vandet. Og vil du dykke ned i selve havørreden, finder du alt om sæson, agn og adfærd i min <a href="/guide-til-fisk/havorredfiskeri/">store havørredguide</a>.</p>
+      </article>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <RelatedRow items={related} />
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/aeroe_card.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li {
+    font-size: 1rem; color: #374151; line-height: 1.75;
+    margin-bottom: 0.5rem; list-style: disc;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .faq-heading {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 4rem auto 1rem; max-width: 760px;
+  }
+</style>

@@ -8,6 +8,7 @@ Sproget er dansk. Hovedemner: saltvands- og ferskvandsfiskeri i Danmark — hav�
 - [Guide til fisk – oversigt](https://udeogfiske.dk/guide-til-fisk/): Indgang til alle artsguider.
 - [Havørredfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/): Komplet guide til havørred på kysten — agn, grej, sæson og biologi. Har også 12 månedsguider (januar–december) og uddybende guider til [konditionsfaktor](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/), [natfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/natfiskeri-efter-havorred/) og [spinnefiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/).
 - [Torskefiskeri](https://udeogfiske.dk/guide-til-fisk/torskefiskeri/): Torsk fra kyst, mole og båd — jig, blink, pirk og naturagn.
+- [Havbarsfiskeri](https://udeogfiske.dk/guide-til-fisk/havbarsfiskeri/): Europæisk havbars fra kyst og havn — popper, sandeel-imitator, jig og swim shad. Peak-sæson juli–september, ofte ind i oktober.
 - [Geddefiskeri](https://udeogfiske.dk/guide-til-fisk/geddefiskeri/): Gedde i søer og åer — woblere, gummidyr, spinnere og fluer, med fokus på wireforfang.
 - [Aborrefiskeri](https://udeogfiske.dk/guide-til-fisk/aborrefiskeri/): Begyndervenlig art — jigs, spinnere, orm og flue.
 - [Fladfisk fiskeri](https://udeogfiske.dk/guide-til-fisk/fladfisk-fiskeri/): Skrubbe, rødspætte, pighvar og ising — fladfiskeforfang og naturagn.
@@ -42,7 +43,7 @@ Sproget er dansk. Hovedemner: saltvands- og ferskvandsfiskeri i Danmark — hav�
 
 ## Fiskepladser
 - [Fiskepladser – oversigt](https://udeogfiske.dk/fiskepladser/): Gode danske fiskepladser.
-- [Isefjorden](https://udeogfiske.dk/fiskepladser/isefjorden/), [Roskilde Fjord](https://udeogfiske.dk/fiskepladser/roskilde-fjord/), [Stevns](https://udeogfiske.dk/fiskepladser/stevns/), [København](https://udeogfiske.dk/fiskepladser/koebenhavn/), [Mariager Fjord](https://udeogfiske.dk/fiskepladser/mariager-fjord/): Havørred- og kystpladser.
+- [Isefjorden](https://udeogfiske.dk/fiskepladser/isefjorden/), [Roskilde Fjord](https://udeogfiske.dk/fiskepladser/roskilde-fjord/), [Stevns](https://udeogfiske.dk/fiskepladser/stevns/), [København](https://udeogfiske.dk/fiskepladser/koebenhavn/), [Mariager Fjord](https://udeogfiske.dk/fiskepladser/mariager-fjord/), [Randers Fjord](https://udeogfiske.dk/fiskepladser/randers-fjord/), [Ærø](https://udeogfiske.dk/fiskepladser/aeroe/): Havørred- og kystpladser.
 - [Put & Take søer](https://udeogfiske.dk/fiskepladser/put-and-take/): Inkl. [Ørsted Ørredvand](https://udeogfiske.dk/fiskepladser/put-and-take/oersted-oerredvand/).
 
 ## Blog

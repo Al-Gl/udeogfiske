@@ -1,5 +1,87 @@
 # Review log
 
+## 2026-07-14 — Ny pladside: Randers Fjord (Session 56, del 2)
+
+**New page `/fiskepladser/randers-fjord/`** — same action-driven spot-page template as Ærø. Unique angle: brakvand (Gudenåens udløb) = havørred + gedde/aborre + multe/sild/hornfisk in the same water.
+
+Content: 4 spot H3s (Stenrevet — yderfjordens mest berømte plads, Udbyhøj Nord/Gammeldyb, Udbyhøj Syd + Sækken, Campingstrækningen + Pumpehuset), "fisk kanten af sejlrenden" TipBox, DidYouKnow om sublimt vinter-geddefiskeri, action checklist (sæson-pr-art, yderfjord først, strøm/blød bund-advarsel, udvidet havørredfredning til 1. marts + fredningsbælter ved Gudenåens udløb, fisketegn 185 kr, flydering/båd-anbefaling). Facts fra lystfiskeridanmark.dk, lystfiskeri.dk, randers.dk. April = statistisk topmåned. Fredning til 1. marts matcher den eksisterende claim på havørredfiskeri-sidens regelafsnit.
+
+**New image:** `public/images/randers_fjord_card.jpg` (1376×768, nano-banana, fish-free) — smal fjord med sivkanter, eng og gammel træbro i aftenlys. Hero + card.
+
+**Updated:** `/fiskepladser/` Jylland section (2 cards now), sitemap.xml, llms.txt.
+
+Build: 87 pages, clean.
+
+---
+
+## 2026-07-14 — Fiskepladser regionalisering + ny pladside: Ærø (Session 56)
+
+**`/fiskepladser/` restructured:** removed the duplicate text-link list below the cards; cards now grouped in region sections with H2s — Sjælland (Stevns, Isefjorden, Roskilde Fjord, København), Jylland (Mariager Fjord), Fyn (Ærø), Put & Take. Unused `.art-*` CSS removed.
+
+**New page `/fiskepladser/aeroe/`** — action-driven guide to sea trout fishing on Ærø, researched via sportsfiskeren.dk's pladsguide (10 hotte kystpladser på Ærø), fiskogfri.dk and visitaeroe.dk. Follows the Stevns spot-page template (answer capsule, AuthorProfile, DidYouKnow, TipBox, FAQ via faqs.map, RelatedRow).
+
+Content: 6 named spot H3s with bottom/season/wind per spot (Skjoldnæs, Urehoved, Drejet, Olde Mark 7kg+ storfisk, Vejsnæs nat/sommer, Dæmningen+Haven vinter), "lad vinden vælge pladsen" TipBox, action checklist H2 (færge booking Svendborg/Faaborg/Fynshav→Søby/Ærøskøbing, bil med, vind-planlægning, vandtemperatur-strategi, fisketegn + 40 cm/fredning, min. 2 dage). Facts verified: 80 km kystlinje / 30 km lang, lavt fisketryk, peak marts–april.
+
+**New image:** `public/images/aeroe_card.jpg` (1376×768, nano-banana, fish-free) — pebble beach with bladder wrack, low cliffs, ferry on horizon. Used as hero + card.
+
+**Updated:** `/fiskepladser/` Fyn section (placeholder note → Ærø card), sitemap.xml, llms.txt (Ærø added to fiskepladser line).
+
+Build: 86 pages, clean.
+
+---
+
+## 2026-07-13 — New species guide: Havbarsfiskeri (Session 55)
+
+New page `/guide-til-fisk/havbarsfiskeri/` — full species guide for European sea bass in Denmark, matching the structure and voice of the existing makrel/hornfisk guides.
+
+**New files:**
+- `src/pages/guide-til-fisk/havbarsfiskeri/index.astro` — full species guide with AuthorProfile, SeasonCalendar (May–Oct, peak Jun–Sep), DifficultyMeter (70), two full-bleed inline images, method-finder widget (4 tabs), regulations section, 6-item FAQ, RelatedRow
+- `public/images/havbars_hero.jpg` — rocky Danish coast at golden hour, mist on calm sea (1376×768)
+- `public/images/havbars_kyst.jpg` — spinning rod + reel on coastal rock ledge, dawn atmosphere (1376×768)
+- `public/images/havbars_agn.jpg` — surface poppers and stickbaits on weathered dock planks (1376×768)
+
+**Method-finder products (4 tabs):**
+- Popper: Savage Gear Micro Popper 5,5cm (503553) — 49 kr
+- Sandeel: Savage Gear Line Thru Sandeel (501378) — 79,95 kr
+- Jig: Westin Sandy Fixed SBass (503950) — 79,95 kr
+- Swim & jerk: Savage Gear 4Play CL Swim N Jerk (502638) — 119 kr
+
+**Updated:**
+- `src/pages/guide-til-fisk/index.astro` — Havbars card added to saltwater species list
+- `public/sitemap.xml` — `/guide-til-fisk/havbarsfiskeri/` added
+- `public/llms.txt` — Havbarsfiskeri entry added under Guide til fisk
+
+Build: 85 pages, clean.
+
+**Fact-check corrections (2026-07-14):** User flagged suspect facts; verified against Fiskeristyrelsen (lfst.dk), sportsfiskeren.dk, havbars.dk, fishntips.dk and lystfiskerguiden.dk. Fixed:
+- Mindstemål 36 cm → **42 cm** (Nordsøen incl. Limfjorden/Ringkøbing Fjord + Skagerrak/Kattegat), added regional rules breakdown: fredning feb–mar + daglig bag limit i Nordsøen syd for Hanstholm; ingen bag limit i Kattegat/Skagerrak; ingen særregler i Østersøen/bælterne/Øresund
+- Distribution Fyn/Djursland/Bornholm → **jysk vestkyst (Skagen–Søndervig)** med moler/høfder/stenrev, plus indre farvande (Aabenraa Fjord, Kalundborg Fjord)
+- Peak-sæson juni–sep → **juli–sep, ofte ind i oktober** (SeasonCalendar array adjusted: maj poor, juni good)
+- "Krog-afholdende benset mund" (fabricated) → havbarsen har **ingen tænder**, suger byttet ind som aborren
+- Typical size 40–65 cm → 40–60 cm; removed unsourced 14–16 °C arrival-temperature claim
+- llms.txt season text updated to match
+
+---
+
+## 2026-07-11 — Google AdSense ads: sidebar + mobile sticky bottom banner (Session 54)
+
+Added two ad units to the site — both hidden while the hero section is visible, fading in once the user scrolls past it.
+
+**New files:**
+- `src/components/GoogleAdBottomBanner.astro` — sticky bottom bar, fixed to `bottom: 0`, shown only at `max-width: 1579px` (mobile + tablet). Includes a visible gray placeholder with dashed border and rotated "ANNONCE" label so placement is clear before Google serves an ad. Close (×) button to dismiss. Real `<ins>` AdSense unit (same slot `5322383516`, client `ca-pub-2311604251179357`).
+- `public/ads.txt` — Google AdSense publisher declaration (`google.com, pub-2311604251179357, DIRECT, f08c47fec0942fa0`).
+
+**Updated:**
+- `src/components/GoogleAdSidebar.astro` — added visible gray placeholder with "Annonce" label (min-height 300px, dashed border), added `.gad-unit` class, starts at `opacity: 0` and transitions to visible via `.gad-visible`.
+- `src/layouts/MainLayout.astro` — imported `GoogleAdBottomBanner`, placed `<GoogleAdBottomBanner />` before `</body>`, added shared IntersectionObserver script: watches `.pg-hero` on every page; when hero leaves the viewport (scrolled past), both `.gad-unit` elements gain `.gad-visible` and fade in. Pages without a hero show ads immediately. AdSense loader `<script>` already in `<head>` from previous session.
+
+**Ad layout summary:**
+- Desktop (`≥ 1580px`): right-side fixed sidebar (160px wide, vertically centered)
+- Mobile/tablet (`< 1580px`): fixed bottom bar (70px tall, full width)
+- Both: hidden behind the hero, appear smoothly after the user scrolls down
+
+---
+
 ## 2026-07-11 — Blog post: varmere hav og lystfiskeriet (Session 53)
 
 Created `/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/` — a reflective personal blog post about how warmer Danish seas are changing coastal fishing. First-person voice throughout.

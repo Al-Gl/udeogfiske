@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import CookieConsent from "../components/CookieConsent.astro";
 import GoogleAdSidebar from "../components/GoogleAdSidebar.astro";
+import GoogleAdBottomBanner from "../components/GoogleAdBottomBanner.astro";
 
 type PageType = 'website' | 'article' | 'category' | 'about';
 type SchemaEntity = { name: string; sameAs?: string | string[] };
@@ -579,6 +580,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
 
     <CookieConsent />
     <GoogleAdSidebar />
+    <GoogleAdBottomBanner />
 
     <script is:inline>
       // Header depth cue on scroll.
@@ -588,6 +590,21 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
         var update = function () { h.classList.toggle("is-scrolled", window.scrollY > 8); };
         update();
         window.addEventListener("scroll", update, { passive: true });
+      })();
+
+      // Show ad units only after the hero banner has scrolled out of view.
+      (function () {
+        var units = document.querySelectorAll(".gad-unit");
+        if (!units.length) return;
+        function setVisible(v) {
+          units.forEach(function (u) { u.classList.toggle("gad-visible", v); });
+        }
+        var hero = document.querySelector(".pg-hero, .hero");
+        if (!hero) { setVisible(true); return; }
+        var obs = new IntersectionObserver(function (entries) {
+          setVisible(!entries[0].isIntersecting);
+        }, { threshold: 0 });
+        obs.observe(hero);
       })();
     </script>
   </body>

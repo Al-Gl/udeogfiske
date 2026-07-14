@@ -1,0 +1,86 @@
+<div class="gad-bottom gad-unit" aria-hidden="true">
+  <span class="gad-label">Annonce</span>
+  <ins class="adsbygoogle"
+       style="display:block;"
+       data-ad-client="ca-pub-2311604251179357"
+       data-ad-slot="5322383516"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script is:inline>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  <button class="gad-close" onclick="this.closest('.gad-bottom').remove()" aria-label="Luk annonce">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .gad-bottom {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .gad-bottom.gad-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 1579px) {
+    .gad-bottom {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: #f0f4f6;
+      border-top: 1px dashed #9ca3af;
+      min-height: 70px;
+      padding: 0.5rem 3rem 0.5rem 0.75rem;
+    }
+  }
+
+  .gad-label {
+    flex-shrink: 0;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #9ca3af;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    line-height: 1;
+  }
+
+  .gad-bottom ins {
+    flex: 1;
+    min-height: 50px;
+  }
+
+  .gad-close {
+    position: absolute;
+    top: 0.375rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.375rem;
+    color: #9ca3af;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .gad-close:hover {
+    color: #374151;
+    background: #e5e7eb;
+  }
+</style>

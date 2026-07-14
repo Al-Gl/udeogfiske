@@ -1,11 +1,8 @@
 <div class="gad-sidebar gad-sidebar--left gad-unit" aria-hidden="true">
   <span class="gad-placeholder">Annonce</span>
-  <ins class="adsbygoogle"
-       style="display:block;width:160px;"
+  <ins class="adsbygoogle gad-ins-side"
        data-ad-client="ca-pub-2311604251179357"
-       data-ad-slot="5322383516"
-       data-ad-format="auto"
-       data-full-width-responsive="false"></ins>
+       data-ad-slot="5322383516"></ins>
   <script is:inline>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
@@ -13,18 +10,28 @@
 
 <div class="gad-sidebar gad-sidebar--right gad-unit" aria-hidden="true">
   <span class="gad-placeholder">Annonce</span>
-  <ins class="adsbygoogle"
-       style="display:block;width:160px;"
+  <ins class="adsbygoogle gad-ins-side"
        data-ad-client="ca-pub-2311604251179357"
-       data-ad-slot="5322383516"
-       data-ad-format="auto"
-       data-full-width-responsive="false"></ins>
+       data-ad-slot="5322383516"></ins>
   <script is:inline>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </div>
 
 <style>
+  /* Size lives on the <ins> itself, per Google's "hide responsive ad unit"
+     pattern: when the ins is display:none at request time, AdSense skips the
+     ad request instead of erroring on a zero-width slot. */
+  .gad-ins-side { display: none; }
+
+  @media (min-width: 1580px) {
+    .gad-ins-side {
+      display: inline-block;
+      width: 160px;
+      height: 600px;
+    }
+  }
+
   .gad-sidebar {
     display: none;
     opacity: 0;
@@ -67,5 +74,15 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     pointer-events: none;
+  }
+
+  /* Once Google has actually rendered an ad, drop the placeholder chrome so
+     only the ad itself shows. AdSense stamps data-ad-status on the <ins>. */
+  .gad-sidebar:has(ins[data-ad-status="filled"]) {
+    background: transparent;
+    border-color: transparent;
+  }
+  .gad-sidebar:has(ins[data-ad-status="filled"]) .gad-placeholder {
+    display: none;
   }
 </style>

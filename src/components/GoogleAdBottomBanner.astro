@@ -1,11 +1,8 @@
 <div class="gad-bottom gad-unit" aria-hidden="true">
   <span class="gad-label">Annonce</span>
-  <ins class="adsbygoogle"
-       style="display:block;"
+  <ins class="adsbygoogle gad-ins-bottom"
        data-ad-client="ca-pub-2311604251179357"
-       data-ad-slot="5322383516"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
+       data-ad-slot="5322383516"></ins>
   <script is:inline>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
@@ -17,6 +14,18 @@
 </div>
 
 <style>
+  /* Size on the <ins> itself (Google's hide-responsive-ad-unit pattern):
+     a display:none ins makes AdSense skip the request instead of erroring. */
+  .gad-ins-bottom {
+    display: inline-block;
+    width: 320px;
+    height: 50px;
+  }
+
+  @media (min-width: 1580px) {
+    .gad-ins-bottom { display: none; }
+  }
+
   .gad-bottom {
     display: none;
     opacity: 0;
@@ -33,6 +42,7 @@
     .gad-bottom {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       position: fixed;
       bottom: 0;
@@ -41,7 +51,7 @@
       z-index: 100;
       background: #f0f4f6;
       border-top: 1px dashed #9ca3af;
-      min-height: 70px;
+      min-height: 66px;
       padding: 0.5rem 3rem 0.5rem 0.75rem;
     }
   }
@@ -56,11 +66,6 @@
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     line-height: 1;
-  }
-
-  .gad-bottom ins {
-    flex: 1;
-    min-height: 50px;
   }
 
   .gad-close {
@@ -82,5 +87,12 @@
   .gad-close:hover {
     color: #374151;
     background: #e5e7eb;
+  }
+
+  /* Drop the placeholder chrome once a real ad renders. */
+  .gad-bottom:has(ins[data-ad-status="filled"]) {
+    background: #ffffff;
+    border-top-style: solid;
+    border-top-color: #e5e7eb;
   }
 </style>

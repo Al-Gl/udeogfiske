@@ -5116,3 +5116,24 @@ Full-site SEO audit (score 85/100, reports in `seo-audit/`) followed by the 5 qu
 **Verification:** build clean — 87 pages; dist output greps confirm old hrefs gone, new hrefs + fiskeboger link present, all 9 descriptions ≤152 chars, dist `_redirects` carries all 70 rules. NOT pushed.
 
 **After deploy, re-verify redirects live:** `/fluefiskeri/`, `/fiskeudstyr/waders-og-stovler/`, `/fisketure/havorredfiskeri-pa-stevns/` should all 301.
+
+---
+
+## Multefiskeri blog post (2026-07-17)
+
+**New page:** `/blog/multefiskeri-i-danmark/` — third blog post, from the trend research Aldin picked (warm-water newcomer species, low competition, peak season now). Longer + more actionable than the previous blog posts per request: ~1.800 words body, 11 Q&A H2s, concrete rig specs, 7-point pre-trip checklist.
+
+**Fact-check (all claims sourced before writing):**
+- Biology from Naturporten/Fiskeatlas-KU: algae/plankton diet + dense gill rakers, small schools on shallow water, tolerates brackish, rarely/never spawns in DK, up to ~90 cm/5 kg.
+- Technique from Fisk & Fri ("Multer i mørket"): bread float fishing easiest, 0,16-0,20 mm fluoro (thinner better), ~1,5 m forfang, 1-2 cm bread with only hook point visible, overcast/wind/dusk best, no lateral line + oversized eyes, 50 cm fish = 10-15 yr old, "bomstærk".
+- Forfodring method from FishNTips.
+- Rules verified against LFST's official saltwater mindstemål/fredningstider list: multe is NOT on it (hobby sites claiming 20/30 cm mindstemål are wrong/unofficial) — article states no official rules + fisketegn 18-65 + C&R recommendation due to slow growth.
+- Season stated as summer guest (maj-jun til sep-okt, peak jul-sep) per source consensus; FishNTips' "marts-august" claim rejected as outlier.
+
+**Assets:** 3 nano-banana images (fish-free per policy): multe_hero.jpg, multe_grej.jpg, multe_vand.jpg — cropped 1376×774 JPG q80 via sharp (156-268 KB).
+
+**Affiliates (build-validated):** 501385 Zebco Trophy Match 13' (match rod), 504903 Lineaeffe fluorocarbon (leader), 504729 DAM Floating Landing Net XL — each anchored to descriptive text. Fluoro diameter NOT claimed for the specific product (feed lacks size data); note tells reader to pick 0,16-0,20 mm variant.
+
+**Wiring:** blog index card (chip "Ny art"), sitemap.xml (+ blog lastmod bump), llms.txt entry. Internal links: varmere-hav post, isefjorden + roskilde-fjord spot pages, fisketegn, catch-and-release, fluefiskeri, havbars GuideLink closer.
+
+**Verification:** build clean — 88 pages; rendered checks: title 62 chars, desc 148, FAQPage + Article schema, 9/9 imgs with dims, all 7 internal links present, 9 affiliate links. Committed + pushed (published).

@@ -1,0 +1,345 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Havbarsfiskeri",
+    description: "Den anden store nyankommer i et varmere hav — læs guiden til havbars fra den danske kyst.",
+    href: "/guide-til-fisk/havbarsfiskeri/",
+    image: "/images/havbars_card.jpg",
+    alt: "Kystfiskeri efter havbars",
+    chip: "Fiskeart",
+  },
+  {
+    title: "Havet er blevet to grader varmere",
+    description: "Mine observationer fra vandkanten om hvad klimaforandringerne betyder for os lystfiskere.",
+    href: "/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/",
+    image: "/images/varmere_hav_hero.jpg",
+    alt: "Tom dansk kystlinje ved solnedgang",
+    chip: "Blog",
+  },
+  {
+    title: "Fiskeri i Isefjorden",
+    description: "Isefjordens lavvandede bugter er oplagt multe-terræn om sommeren — læs områdeguiden.",
+    href: "/fiskepladser/isefjorden/",
+    image: "/images/isefjorden_card.png",
+    alt: "Isefjordens kystlinje",
+    chip: "Fiskeplads",
+  },
+];
+---
+
+<MainLayout
+  title="Multefiskeri i Danmark | Sådan fanger du kystens mest sky fisk"
+  description="Multen er bomstærk, sky og næsten umulig at narre — men kun næsten. Min guide til multefiskeri med brød og flue i danske havne og lavvandede fjorde."
+  canonical="https://udeogfiske.dk/blog/multefiskeri-i-danmark/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: "Multefiskeri i Danmark" },
+  ]}
+  articleData={{
+    headline: "Multefiskeri i Danmark: Sådan fanger du kystens mest sky fisk",
+    image: "/images/multe_hero.jpg",
+    datePublished: "2026-07-17",
+  }}
+  faq={[
+    {
+      question: "Kan man fange multer i Danmark?",
+      answer: "Ja — tyklæbet multe er efterhånden blevet almindelig langs de danske kyster om sommeren, især i havne, ved moler og i lavvandede fjorde med tang og sten. Den er notorisk svær at narre, men med brød som agn, et tyndt fluorocarbonforfang og en god portion tålmodighed kan det lade sig gøre.",
+    },
+    {
+      question: "Hvad er den bedste agn til multe?",
+      answer: "Brød er den klassiske multeagn — små stykker på 1-2 centimeter fisket under et flåd, hvor kun krogspidsen er synlig. Forfodring med brød er nøglen: den flytter multernes fokus fra algerne på bunden til det, du kaster ud. Forfanget skal være tynd fluorocarbon på 0,16-0,20 mm.",
+    },
+    {
+      question: "Er der mindstemål eller fredningstid for multe i Danmark?",
+      answer: "Nej — multen er ikke omfattet af Fiskeristyrelsens officielle mindstemål eller fredningstider i saltvand. Du skal dog stadig have gyldigt fisketegn, hvis du er mellem 18 og 65 år. Multen vokser ekstremt langsomt — en fisk på 50 cm kan være 10-15 år gammel — så overvej at genudsætte de store.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>Multefiskeri i Danmark</span>
+      </nav>
+      <p class="pg-chip">Guide fra vandkanten</p>
+      <h1 class="pg-title">Multefiskeri: Sådan fanger du kystens mest sky fisk</h1>
+      <p class="pg-sub">Den svømmer i stimer lige foran fødderne på dig — og nægter alligevel at bide. Her er min guide til at narre multen med brød, tyndt forfang og en god portion tålmodighed.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Kan man overhovedet fange multer i Danmark?</h2>
+        <p class="ac-a"><strong>Ja — men det er noget af det sværeste kystfiskeri, Danmark byder på.</strong> Tyklæbet multe er blevet et almindeligt sommersyn i danske havne og lavvandede fjorde, og den fanges bedst på brød under et flåd med et ultratyndt fluorocarbonforfang. Multen æder primært alger og plankton, så den ignorerer stort set alt det grej, der virker på havørred og makrel. Til gengæld er den bomstærk, når den endelig hugger — og netop dét gør den til en af de mest undervurderede sportsfisk herhjemme.</p>
+      </div>
+
+      <article class="article">
+
+        <h2>Hvorfor er multen Danmarks sværeste kystfisk?</h2>
+        <p>Første gang man ser en stime multer glide rundt i overfladen inde i en havn, tænker man: det dér bliver nemt. Store fisk, lavt vand, ingen andre fiskere. Så kaster man alt hvad grejboksen indeholder efter dem — og de flytter sig ikke engang. De æder bare videre, som om man ikke eksisterer.</p>
+
+        <p>Forklaringen ligger i biologien. Multen lever primært af <strong>alger, plankton, bundplanter og smådyr</strong>, som den filtrerer fra med et tæt gællegitter. Den jager ikke byttefisk, og derfor reagerer den heller ikke på blink, spinnere og woblere som rovfiskene gør. Alt det, vi normalt forbinder med kystfiskeri, er stort set ubrugeligt her.</p>
+
+        <p>Oveni kommer synet. Multens øjne er proportionalt langt større end for eksempel havørredens, og den ser ekstremt skarpt. Et forfang, der er for tykt, en krog der er for synlig, eller en fisker der bevæger sig for meget på molen — så er stimen væk. I klart vand og solskin kan multer afvise den samme agn igen og igen, selvom de æder rundt om den.</p>
+
+        <DidYouKnow>
+          Multen mangler det <strong>sidelinjeorgan</strong>, som de fleste andre fisk bruger til at registrere tryk og bevægelser i vandet. Den kompenserer med sit exceptionelt skarpe syn — og det er præcis derfor, den er så svær at narre i klart, roligt vand. Overskyet og blæsende vejr er multefiskerens bedste ven.
+        </DidYouKnow>
+
+        <h2>Hvornår og hvor finder du multerne?</h2>
+        <p>Multen er en <strong>sommergæst</strong>. Den vandrer op til de danske farvande sydfra, når vandet varmer op, og forsvinder igen, når efteråret køler det ned. Højsæsonen er de varme måneder — juli, august og september — og det er samtidig den periode, hvor det øvrige kystfiskeri ofte ligger stille. Multen udfylder med andre ord præcis det hul i sæsonen, hvor havørreden er sværest at finde. Den er også en af de arter, der har vundet på et varmere hav — det skrev jeg mere om i <a href="/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/">indlægget om de stigende havtemperaturer</a>.</p>
+
+        <p>Du skal lede på <strong>helt lavt vand</strong>. Multerne går i småstimer i havnebassiner, langs moler, ved bropæle og i lavvandede bugter og fjorde med blæretang og sten — steder hvor algerne gror, og hvor de kan græsse i fred. De tåler fint brakvand, så fjordene er oplagte. Roskilde Fjord og Isefjorden er kendte multevande, og har du læst mine områdeguider til <a href="/fiskepladser/roskilde-fjord/">Roskilde Fjord</a> og <a href="/fiskepladser/isefjorden/">Isefjorden</a>, ved du allerede, hvor de lavvandede bugter ligger.</p>
+
+        <p>Mit vigtigste råd til at finde dem: <strong>brug øjnene før stangen</strong>. Multer afslører sig selv i overfladen — rygfinner, hvirvler og små slurpelyde, når de græsser. Stil dig lidt hævet over vandet (en mole er perfekt), tag polaroidbrillerne på, og brug ti minutter på bare at kigge. Spot fiskene i dagslys, læg mærke til deres faste ruter — og kom så igen, når lyset og vejret arbejder for dig.</p>
+
+        <figure class="art-figure">
+          <img src="/images/multe_vand.jpg" alt="Klart lavt vand med blæretang på sten og solmønstre på sandbunden — typisk multeterræn" width="1376" height="774" loading="lazy" />
+          <figcaption>Lavt, klart vand med blæretang og sten — her græsser multerne. Mit råd: find den slags bund i en havn eller fjordbugt, og du har fundet dit multespot.</figcaption>
+        </figure>
+
+        <h2>Hvordan fanger du multe på brød?</h2>
+        <p>Brød er den klassiske multeagn, og flådfiskeri med brød er uden sammenligning den letteste vej til din første multe. Men det kræver, at du gør det rigtigt — for multen tilgiver ingen sjusk. Sådan gør jeg:</p>
+
+        <p><strong>1. Forfodr — og vent.</strong> Riv en håndfuld hvidt brød i småstykker og kast dem ud, hvor du har set fisk. Formålet er at flytte multernes fokus fra algerne på bunden til det, der flyder i overfladen. Giv det 15-20 minutter. Når du kan se fisk tage brødstykkerne i overfladen med ro i maven, er de klar.</p>
+
+        <p><strong>2. Rig enkelt og tyndt.</strong> Et lille glidende flåd, et forfang på omkring halvanden meter i <strong>0,16-0,20 mm fluorocarbon</strong> — og jo tyndere, du tør, desto bedre. På krogen sætter du et stykke brød på 1-2 centimeter, lige stort nok til én mundfuld. Den vigtigste detalje: <strong>kun krogspidsen må være synlig</strong>. Multen ser alt.</p>
+
+        <p><strong>3. Server brødet blandt forfodringen.</strong> Kast dit flåd ud, så din agn flyder side om side med de løse brødstykker, og lad den drive naturligt. Og så venter du. Ikke på det første nip — multer prøver ofte agnen af flere gange — men på det sikre, tunge træk, hvor flåddet går ned og bliver nede.</p>
+
+        <TipBox>
+          <p>Vælg dine vejrvinduer med omhu. Multer er nemmest at narre i <strong>overskyet og blæsende vejr eller i skumringen</strong>, hvor deres skarpe syn arbejder imod dem. Står solen højt på en blikstille dag, så brug turen på at spotte og forfodre i stedet — og kom igen sidst på dagen, når fiskene bliver mindre sky.</p>
+        </TipBox>
+
+        <figure class="art-figure">
+          <img src="/images/multe_grej.jpg" alt="Flådstang, små flåd, hvidt brød, tynd fluorocarbonline og småkroge klar på molekanten" width="1376" height="774" loading="lazy" />
+          <figcaption>Mit multegrej er bevidst simpelt: lang blød stang, små flåd, tynd fluorocarbon, småkroge — og en pose hvidt brød. Det er brødet, der gør arbejdet.</figcaption>
+        </figure>
+
+        <h2>Hvilket grej skal du bruge til multefiskeri?</h2>
+        <p>Det gode ved multefiskeri er, at grejlisten er kort. Det dårlige er, at hver enkelt del skal være rigtig, for kombinationen af tyndt forfang og en bomstærk fisk efterlader ingen fejlmargin.</p>
+
+        <p><strong>Stangen</strong> skal være lang og blød. En klassisk matchstang på 12-13 fod er ideel: længden giver kontrol over flåddet og fisken på afstand, og den bløde aktion beskytter det tynde forfang under udmattelsen. En lang, blødt reagerende spinnestang kan også bruges, hvis det er den, du har.</p>
+
+        <Affiliate
+          productId="501385"
+          note="En matchstang på 13 fod med kastevægt 5-25 gram er præcis den type stang, jeg mener når jeg siger 'lang og blød' — bygget til netop flådfiskeri med tynde liner. Længden gør det muligt at styre flåddet præcist blandt forfodringen, og den eftergivende klinge redder forfanget, når multen tager sit første udløb."
+        />
+
+        <p><strong>Forfanget</strong> er den enkeltdel, der oftest afgør om du fanger noget. Fluorocarbon er nærmest usynligt i vandet, og til multe skal du ned på 0,16-0,20 mm — tykkere forfang koster simpelthen hug i klart vand. Køb en spole i den rigtige tykkelse, og skift forfang uden at tøve, hvis det får knæk eller krøller.</p>
+
+        <Affiliate
+          productId="504903"
+          note="En 50-meters spole fluorocarbon som denne er en billig forsikring — den fås i flere tykkelser, og til multefiskeri skal du vælge en af de tynde omkring 0,16-0,20 mm. Jeg binder et nyt forfang efter hver eneste god fisk; det koster få øre og har reddet mig for mistede fisk mange gange."
+        />
+
+        <p><strong>Krogene</strong> skal være små og skarpe — brødet skal kunne skjule alt andet end spidsen. Og så skal du bruge et <strong>fangstnet</strong>. Det er ikke valgfrit til multe: fisken har en blød mund, som krogen let river ud af, og med et 0,18 mm forfang kan du ikke løfte en fisk på flere kilo fri af vandet. Uden net mister du den ved molekanten. Så enkelt er det.</p>
+
+        <Affiliate
+          productId="504729"
+          note="Et flydende fangstnet med gumminet er min anbefaling til molen og havnekanten — det skåner fiskens slimlag ved genudsætning, og flyder det, mister du det ikke, hvis du taber det i kampens hede. Til multe er nettet lige så vigtigt som stangen: blød mund plus tyndt forfang betyder, at fisken skal i net, ikke løftes."
+        />
+
+        <h2>Kan du fange multe på flue eller spin?</h2>
+        <p>Ja — men jeg vil være ærlig: det er sværere end brødfiskeriet, og jeg betragter det som overbygningen, ikke begyndelsen.</p>
+
+        <p><strong>Fluefiskeri</strong> efter multe er en nichedisciplin med et dedikeret lille publikum, og det bedste vindue er skumringen og de mørke timer, hvor fiskene mister deres visuelle overtag og bliver mindre sky. Små, sparsomt bundne fluer fisket ultralangsomt blandt græssende fisk — det er krævende, men når det lykkes, er det kystfluefiskeri i verdensklasse på grej, der ellers samler støv i juli. Kan du i forvejen kaste en flue, har du et forspring — ellers er <a href="/fiskeguide/fluefiskeri/">fluefiskeguiden</a> stedet at starte.</p>
+
+        <p><strong>Spinnefiskeri</strong> med småspinnere monteret med enkeltkrog og orm bruges en del i udlandet, især hvor multerne står i brakvand og å-mundinger. Herhjemme er det efter min vurdering et sekundært valg — men har du en ultralight-stang i forvejen, er det et forsøg værd på de dage, hvor brødet ikke bliver taget.</p>
+
+        <h2>Hvad gør du, når multen endelig hugger?</h2>
+        <p>Det første udløb kommer som et chok, hvis du er vant til havørreder i samme størrelse. Multen er <strong>bomstærk</strong> — en fisk på et par kilo trækker line af hjulet i lange, seje udløb, og det er her, de fleste multer mistes.</p>
+
+        <p>To ting afgør, om fisken kommer i nettet. <strong>Bremsen:</strong> den skal være indstillet løst, inden du overhovedet kaster ud. Med et forfang på 0,16-0,20 mm er en stram bremse lig med et sprængt forfang på det første udløb. <strong>Munden:</strong> multens mund er blød, og krogen river let ud, hvis du forcerer fisken. Så lad være. Lad stangens bløde aktion og den løse bremse trætte fisken i roligt tempo, og styr den først mod nettet, når den vender siden til.</p>
+
+        <TipBox>
+          <p>Tjek din bremse <strong>før første kast</strong> — træk line af hjulet med hånden, og mærk efter at den glider blødt og uden ryk. Jeg har set flere multer tabt på en bremse, der var indstillet til havørredfiskeri ugen før, end på noget andet. Ti sekunders tjek, som fordobler dine chancer.</p>
+        </TipBox>
+
+        <h2>Må du tage multen med hjem?</h2>
+        <p>Multen er ikke omfattet af Fiskeristyrelsens officielle mindstemål eller fredningstider i saltvand, så reglerne er formelt set enkle: du skal blot have gyldigt <a href="/fiskeguide/fisketegn/">fisketegn</a>, hvis du er mellem 18 og 65 år.</p>
+
+        <p>Men jeg vil alligevel opfordre til at tænke sig om. Multen vokser ekstremt langsomt i vores kølige farvande, og den yngler sjældent eller aldrig ved de danske kyster — bestanden herhjemme er med andre ord gæster, der ikke erstattes lokalt. Jeg genudsætter selv de store fisk og betragter multefiskeriet som catch and release med spiselige undtagelser. Vil du tage en enkelt mellemstor fisk med hjem, er den fin på tallerkenen — men brug <a href="/fiskeguide/catch-and-release/">skånsom genudsætning</a> som udgangspunkt.</p>
+
+        <StatHighlight
+          icon="calendar"
+          value="10-15 år"
+          caption="Så gammel kan en multe på 50 cm være. Den langsomme vækst er min vigtigste grund til at genudsætte de store fisk — en stor multe erstattes ikke lige foreløbig."
+        />
+
+        <h2>Min tjekliste til din første multetur</h2>
+        <p>Vil du gøre det helt konkret, så er det her, hvad jeg selv ville pakke og planlægge efter:</p>
+
+        <ul>
+          <li><strong>Spot først, fisk senere:</strong> find fiskene i dagslys i en havn eller lavvandet fjordbugt med tang — og læg mærke til deres ruter.</li>
+          <li><strong>Vejrvindue:</strong> vælg en overskyet eller blæsende dag, eller læg turen sidst på dagen ind i skumringen.</li>
+          <li><strong>Grej:</strong> lang blød stang (gerne match), lille glidende flåd, 1,5 m forfang i 0,16-0,20 mm fluorocarbon, småkroge — og fangstnet. Altid fangstnet.</li>
+          <li><strong>Agn:</strong> et helt franskbrød. Halvdelen til forfodring, resten til krogen i stykker på 1-2 cm.</li>
+          <li><strong>Rutinen:</strong> forfodr, vent 15-20 minutter, servér krogagnen blandt de løse brødstykker — og vent på det sikre træk.</li>
+          <li><strong>Bremsen:</strong> løs, blød og testet før første kast.</li>
+          <li><strong>Tålmodighed:</strong> regn med flere ture, før den første multe er i nettet. Det er en del af spillet — og præcis derfor smager den første så godt.</li>
+        </ul>
+
+        <p>Multen kommer næppe til at erstatte havørreden som danskernes kystfisk nummer ét. Men den er her, den bliver mere almindelig for hvert varmt år, og den tilbyder noget, som juli ellers sjældent gør: en stor, stærk og hæderligt svær fisk på helt lavt vand. Jeg synes, den fortjener flere forsøg, end den får.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/havbarsfiskeri/"
+          title="Læs havbarsfiskeri-guiden"
+          desc="Havbarsen er den anden store nyankommer i et varmere dansk hav — og i modsætning til multen jager den gerne dine blink."
+        />
+
+      </article>
+
+      <RelatedRow items={related} />
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/multe_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 720px;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+
+  .article ul {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.7;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .art-figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .art-figure figcaption {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    background: #f8fafc;
+  }
+</style>

@@ -5137,3 +5137,13 @@ Full-site SEO audit (score 85/100, reports in `seo-audit/`) followed by the 5 qu
 **Wiring:** blog index card (chip "Ny art"), sitemap.xml (+ blog lastmod bump), llms.txt entry. Internal links: varmere-hav post, isefjorden + roskilde-fjord spot pages, fisketegn, catch-and-release, fluefiskeri, havbars GuideLink closer.
 
 **Verification:** build clean — 88 pages; rendered checks: title 62 chars, desc 148, FAQPage + Article schema, 9/9 imgs with dims, all 7 internal links present, 9 affiliate links. Committed + pushed (published).
+
+---
+
+## Blog card redesign (2026-07-17)
+
+Aldin: cards on /blog/ too text-heavy. Redesigned: chip moved onto image as overlay (teal pill, matches fiskeguide card language), descriptions cut to one short line in the data + 2-line clamp, titles 2-line clamp, killed inherited link underline on all card text (biggest noise source), subtle image zoom on hover, tighter body padding.
+
+**Bug found while verifying with headless screenshots:** `width:100%` + `aspect-ratio:16/9` on imgs WITHOUT `height:auto` = the height="" attribute locks the rendered height, aspect-ratio never applies. Fixed on /blog/ cards + multe article figures. **Same pattern exists on ~8 more pages** (`grep -rl "aspect-ratio: 16 / 9" src/pages/`) — art figures render ~square instead of 16:9. Parked for a separate sweep pending Aldin's go.
+
+Verified via local-server screenshots (desktop 1280 + mobile 390): 16:9 images, clamped text, no underlines. Build clean 88 pages.

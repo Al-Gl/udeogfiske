@@ -5100,3 +5100,19 @@ On top of the restored original + fishing polish (all 80 pages where noted):
 - sitemap.xml + llms.txt updated with the new route.
 
 **Verification:** build clean — **81 pages**; rendered page has exactly 65 set cards + 6 fallbacks + 236 affiliate links; sample havørred-spin totals 736/917/1.306/1.702/3.002 kr — all under caps. Dev on :4321. NOT pushed — awaiting review.
+
+---
+
+## SEO audit quick wins (2026-07-16)
+
+Full-site SEO audit (score 85/100, reports in `seo-audit/`) followed by the 5 quick wins on Aldin's go:
+
+- **`public/_redirects` — trailing-slash repair (CRITICAL):** Cloudflare Pages exact-matches source paths, so every rule written without a trailing slash never fired for the trailing-slash form — the form WordPress URLs were indexed in. Verified live before the fix (`/bombardafiskeri` 301 ✓ / `/bombardafiskeri/` 404 ✗). Every redirect now exists in BOTH forms: 35 redirects × 2 = 70 rules. File header documents the rule for future sessions.
+- **Broken internal links fixed:** `spinnefiskeri-havorred/index.astro` linked two dead WordPress-era URLs; now point straight at `/fiskeudstyr/fiskestaenger/spinnestaenger/` and `/fiskeudstyr/fiskehjul/`.
+- **`/fiskeboger/` de-orphaned:** was live + in sitemap with zero inbound internal links. Added a bridge paragraph + GuideLink card at the bottom of `/fiskeguide/` ("Se mine anbefalede fiskebøger").
+- **9 meta descriptions trimmed** from 172–213 chars to 141–152 (geddefiskeri, mariager-fjord, varmere-hav blog, havørred feb + nov, konditionsfaktor, gennemløbsblink-sommer, geoff-anderson, ørsted-ørredvand). Keywords kept up front, voice preserved.
+- **www → apex 301 (NOT done in code — needs Cloudflare dashboard):** Rules → Redirect Rules → `www.udeogfiske.dk/*` → `https://udeogfiske.dk/${1}`, 301. `www` currently serves 200 with only the canonical tag protecting us.
+
+**Verification:** build clean — 87 pages; dist output greps confirm old hrefs gone, new hrefs + fiskeboger link present, all 9 descriptions ≤152 chars, dist `_redirects` carries all 70 rules. NOT pushed.
+
+**After deploy, re-verify redirects live:** `/fluefiskeri/`, `/fiskeudstyr/waders-og-stovler/`, `/fisketure/havorredfiskeri-pa-stevns/` should all 301.

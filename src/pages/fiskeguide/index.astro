@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import GuideLink from '../../components/GuideLink.astro';
 
 const featured = [
   {
@@ -173,6 +174,15 @@ const secondary = [
           </a>
         ))}
       </div>
+
+      <div class="sec-bridge">
+        <p>Vil du dykke dybere ned i fiskeriet end en guide kan nå? Så er en god fiskebog det bedste supplement til timerne ved vandet.</p>
+      </div>
+      <GuideLink
+        href="/fiskeboger/"
+        title="Se mine anbefalede fiskebøger"
+        desc="Bøgerne om havørred, fluefiskeri og dansk fiskeri der har gjort mig til en bedre fisker."
+      />
     </div>
   </section>
 

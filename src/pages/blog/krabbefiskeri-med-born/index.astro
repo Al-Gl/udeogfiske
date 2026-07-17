@@ -1,0 +1,348 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Fiskeri for børn",
+    description: "Krabber er første skridt — her er hele guiden til at få børn godt i gang med fiskeriet.",
+    href: "/fiskeguide/fiskeri-for-born/",
+    image: "/images/born_hero.png",
+    alt: "Barn med fiskestang ved vandkanten",
+    chip: "Guide",
+  },
+  {
+    title: "Fisketegn",
+    description: "Hvornår kræver det fisketegn — og hvornår gør det ikke? Se reglerne, også for krabber.",
+    href: "/fiskeguide/fisketegn/",
+    image: "/images/fisketegn_hero.png",
+    alt: "Det danske statslige fisketegn",
+    chip: "Regler",
+  },
+  {
+    title: "Put & Take fiskeri",
+    description: "Klar til næste skridt efter krabberne? Put & Take er det oplagte første rigtige fiskeri.",
+    href: "/fiskeguide/put-take-fiskeri/",
+    image: "/images/put_take_fiskeri_card.png",
+    alt: "Put & Take sø med fisker",
+    chip: "Fiskeform",
+  },
+];
+---
+
+<MainLayout
+  title="Krabbefiskeri med børn | Komplet guide til en dag på havnen"
+  description="Krabbefiskeri er sommerens sjoveste børneaktivitet ved vandet. Min guide til grej, madding, teknik, sikker håndtering — og de regler de fleste overser."
+  canonical="https://udeogfiske.dk/blog/krabbefiskeri-med-born/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: "Krabbefiskeri med børn" },
+  ]}
+  articleData={{
+    headline: "Krabbefiskeri med børn: Den komplette guide til en dag på havnen",
+    image: "/images/krabbe_hero.jpg",
+    datePublished: "2026-07-17",
+  }}
+  faq={[
+    {
+      question: "Kræver krabbefiskeri fisketegn i Danmark?",
+      answer: "Ja, teknisk set — men de fleste, der fanger krabber, er fritaget. En krabbesnøre regnes juridisk som et 'let håndredskab', og derfor skal voksne mellem 18 år og folkepensionsalderen have et gyldigt lystfiskertegn. Børn under 18 og folkepensionister er fritaget. I praksis betyder det, at børnene frit kan fange krabber, mens en voksen, der selv fisker med, skal have fisketegn.",
+    },
+    {
+      question: "Hvad er den bedste madding til krabber?",
+      answer: "Blåmuslinger er den klassiske og mest effektive krabbemadding — knus skallen med en sten og klem kødet fast i klemmen på snøren. Fiskestykker, rejer eller et stykke pølse virker også fint. Krabber finder maddingen på lugten, så jo mere den dufter, desto bedre.",
+    },
+    {
+      question: "Må man spise de krabber man fanger?",
+      answer: "Strandkrabber er spiselige, men fang aldrig krabber til spisning inde i en lystbåde- eller industrihavn — bunden dér er ofte forurenet. Vil du fange krabber til en krabbebisque, så gør det fra en ren kyst væk fra havnen. Krabber fra selve havnebassinet bør altid genudsættes.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>Krabbefiskeri med børn</span>
+      </nav>
+      <p class="pg-chip">Sommer ved vandet</p>
+      <h1 class="pg-title">Krabbefiskeri med børn: Den komplette guide til en dag på havnen</h1>
+      <p class="pg-sub">Ingen aktivitet fanger børn så hurtigt som krabbefiskeri. Her er alt du skal vide — grej, madding, teknik, sikker håndtering og de regler, de fleste forældre overser.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvordan fanger man krabber med børn?</h2>
+        <p class="ac-a"><strong>Bind en blåmusling fast i klemmen på en krabbesnøre, sænk den ned til bunden ved sten eller en mole, og vent til en krabbe bider fast.</strong> Så trækker du langsomt snøren op med et fangstnet nedenunder. Krabber slipper ikke maddingen — de holder fast med kløerne, og det er derfor selv de mindste børn kan fange dem. Det kræver næsten intet grej, det koster næsten ingenting, og en god havnedag kan give snesevis af krabber. Det eneste, mange overser: en voksen, der selv fisker med, skal faktisk have fisketegn.</p>
+      </div>
+
+      <article class="article">
+
+        <h2>Hvorfor er krabbefiskeri det perfekte første fiskeri?</h2>
+        <p>Jeg har taget mange børn med ud at fiske gennem årene, og der er ét fiskeri, der aldrig skuffer: krabber. Hvor rigtigt fiskeri kræver tålmodighed, som små børn sjældent har, giver krabbefiskeriet næsten øjeblikkelig belønning. Krabberne er der altid, de er nemme at narre, og der er action inden for de første minutter.</p>
+
+        <p>Det er også fiskeriet med den laveste tærskel overhovedet. Du skal ikke bruge dyrt grej, du skal ikke kunne kaste, og du skal ikke køre langt — enhver havn med en badebro eller mole dur. For rigtig mange danske børn er en spand krabber på havnen det første møde med livet under overfladen. Og ærligt talt: det er mindst lige så sjovt for de voksne.</p>
+
+        <StatHighlight
+          icon="calendar"
+          value="Juli–august"
+          caption="Højsæsonen for krabbefiskeri falder sammen med skolernes sommerferie — det varme vand gør krabberne aktive og sultne helt inde ved kanten."
+        />
+
+        <figure class="art-figure">
+          <img src="/images/krabbe_hero.jpg" alt="To børn står barfodet på en badebro i en dansk havn og fisker krabber med snøre og en blå spand ved siden af" width="1376" height="774" loading="lazy" />
+          <figcaption>Alt hvad der skal til: en badebro, et par snører med madding og en spand. Krabbefiskeri er sommerferie destilleret ned til sin enkleste form.</figcaption>
+        </figure>
+
+        <h2>Hvilket grej skal du bruge til krabbefiskeri?</h2>
+        <p>Det korte svar: næsten ingenting. Det er hele pointen. Men her er præcis, hvad jeg pakker, så dagen bliver en succes fra første minut.</p>
+
+        <p><strong>En krabbesnøre.</strong> Kernen i det hele. Det er en 2-3 meter lang snøre med en klemme (eller et klips) og et lille lod for enden — maddingen sidder i klemmen lige over loddet. Du kan sagtens binde din egen af en pind, noget snor, et tøjklemme og en sten fra stranden. Men en færdig krabbestang med hjul og klemme koster under en halvtredser og gør det nemmere for de mindste at hive op og lade ned.</p>
+
+        <Affiliate
+          productId="57322"
+          note="En simpel krabbestang med klemme til under 50 kroner er det bedste barnevenlige valg — hjulet gør det nemt for små hænder at sænke maddingen ned og hive krabben op igen, uden filtret snøre. Køb gerne to, så søskende slipper for at skændes om turen. Fås også i pink."
+        />
+
+        <p><strong>Et fangstnet.</strong> Dette er det, folk oftest glemmer — og det, der redder dagen. Krabber slipper ofte maddingen, lige når de når overfladen. Holder du et net under krabben, mens du løfter, ender den i nettet i stedet for at plumpe tilbage i vandet til et kor af skuffede børn.</p>
+
+        <Affiliate
+          productId="504729"
+          note="Et flydende fangstnet er praktisk på havnekanten — det flyder, hvis det bliver tabt i vandet, og det store net gør det nemt at samle krabben op, når den slipper snøren ved overfladen. Det samme net kan bruges til rigtigt kystfiskeri senere, så det er ikke penge ud af vinduet."
+        />
+
+        <p><strong>En spand.</strong> Til at opbevare fangsten i, mens I fisker. Fyld lidt vand i bunden — ikke mere end at krabberne kan sidde halvt neddykket — og stil den i skyggen. En spand fuld af krabber er dagens trofæ, og børnene tæller dem med stolthed, inden alt sættes ud igen.</p>
+
+        <p><strong>Madding.</strong> Mere om det lige nedenfor — men kort sagt: blåmuslinger.</p>
+
+        <figure class="art-figure">
+          <img src="/images/krabbe_grej.jpg" alt="Krabbesnøre med tøjklemme, et bundt snor, blåmuslinger til madding og en lille spand på en havnebro" width="1376" height="774" loading="lazy" />
+          <figcaption>Hele grejlisten på ét bræt: snøre, klemme, et par blåmuslinger og en spand. Samlet pris: nærmest ingenting.</figcaption>
+        </figure>
+
+        <h2>Hvad er den bedste madding til krabber?</h2>
+        <p><strong>Blåmuslinger er den klassiske og mest effektive krabbemadding.</strong> Knus skallen med en sten, og klem det bløde kød fast i klemmen på snøren. Krabber finder maddingen på lugten, og en åben, duftende musling er nærmest uimodståelig for dem.</p>
+
+        <p>Har du ikke muslinger, så virker et stykke fisk, rejer eller endda et stykke pølse fint — alt hvad der dufter kraftigt. Mit tip: bind maddingen godt fast, eller pak den i et lille stykke nylonstrømpe. Så kan krabberne ikke bare rive et stykke af og forsvinde, og din madding holder til mange flere krabber.</p>
+
+        <TipBox>
+          <p>Saml maddingen på stedet, hvis du kan. Ved mange moler og sten sidder der <strong>blåmuslinger, du bare kan plukke</strong> — så er maddingen gratis, frisk og lokal, og det bliver en lille naturoplevelse i sig selv at finde den sammen med børnene. Tag en enkelt pose muslinger med hjemmefra som backup.</p>
+        </TipBox>
+
+        <h2>Sådan fanger I krabberne — trin for trin</h2>
+        <p>Selve teknikken er så enkel, at et treårigt barn kan lære den på et minut. Men her er rækkefølgen, der giver flest krabber:</p>
+
+        <ol>
+          <li><strong>Sæt maddingen fast.</strong> Knus en blåmusling og klem kødet godt fast i klemmen, så det ikke falder af, når snøren rammer vandet.</li>
+          <li><strong>Sænk snøren ned til bunden.</strong> Fisk tæt på sten, pæle, mole eller under en badebro — alle de steder, hvor krabberne gemmer sig. Lad loddet nå bunden.</li>
+          <li><strong>Vent — og mærk efter.</strong> Efter et øjeblik kan du mærke et lille ryk eller en vægt, der ikke var der før. Det er en krabbe, der har grebet fat.</li>
+          <li><strong>Træk langsomt og jævnt op.</strong> Her er nøglen: <strong>ingen ryk</strong>. Krabben holder fast i maddingen med kløerne, ikke med en krog, så løfter du roligt, følger den med op. Rykker du, slipper den.</li>
+          <li><strong>Net under ved overfladen.</strong> Lige inden krabben bryder overfladen, fører du fangstnettet ind under den. Så ender den i nettet, selv når den slipper.</li>
+          <li><strong>Ned i spanden — og tæl.</strong> Læg krabben i spanden med lidt vand, og send snøren ned igen. Konkurrencen om flest krabber er halvdelen af sjoven.</li>
+        </ol>
+
+        <p>Det bedste ved det: krabberne bider hele dagen. Der er ingen "morgenfiskeri" eller snævre vinduer som ved havørred — I kan tage afsted, når det passer familien, og stadig fange rigeligt.</p>
+
+        <h2>Hvordan holder man en krabbe uden at blive nevet?</h2>
+        <p>Det er dét spørgsmål, ethvert barn stiller — og med god grund, for en strandkrabbe kan nive rimelig hårdt med kløerne. Men der er ét sikkert greb, som er værd at lære fra dig med det samme.</p>
+
+        <p><strong>Grib krabben bagfra om siderne af skjoldet</strong> — med tommel- og pegefinger på hver sin side af det brede, bageste hjørne af skjoldet. Holder du dér, kan kløerne fysisk ikke nå tilbage til dine fingre, uanset hvor meget krabben vrider sig. Vis børnene grebet på en rolig krabbe først, og lad dem prøve under opsyn. Når de først har mærket, at det virker, forsvinder frygten — og så vil de holde alle krabberne.</p>
+
+        <DidYouKnow>
+          En strandkrabbe kan <strong>gendanne en klo eller et ben</strong>, den mister. Sker det, vokser en ny frem lidt efter lidt ved de næste skalskifter. Det er også derfor, du af og til fanger en krabbe med én stor og én lille klo — den lille er en ny, der stadig er ved at vokse ud.
+        </DidYouKnow>
+
+        <h2>Må man tage krabberne med hjem og spise dem?</h2>
+        <p>Her bliver det interessant — for svaret er både ja og et vigtigt nej.</p>
+
+        <p><strong>Ja, strandkrabber er spiselige</strong>, og at fange dem er faktisk godt for havet. De danske farvande har alt for mange strandkrabber, netop fordi der er blevet langt færre rovfisk som torsk og ål til at holde bestanden nede. De mange krabber går hårdt ud over ålegræs, snegle og fiskeyngel. Så en tur, hvor I fanger krabber til en <strong>krabbebisque</strong>, hjælper faktisk balancen en lille smule. Kødet er besværligt at pille, så de fleste koger en suppe på hele, halverede krabber i stedet.</p>
+
+        <p><strong>Men — og det er vigtigt — spis aldrig krabber fanget inde i en lystbåde- eller industrihavn.</strong> Bunden i havnebassiner er ofte forurenet med kemikalier, og det ender i krabberne. Vil I fange krabber til at spise, så gør det fra en ren, åben kyst væk fra havnen. Krabberne, I fanger fra selve havnebroen, hører til i havnen — dem sætter I pænt ud igen efter tælling.</p>
+
+        <TipBox>
+          <p>Uanset om krabberne skal spises eller sættes ud, så <strong>tøm spanden tilbage i vandet, inden I går hjem</strong>, hvis I fiskede i havnen. Krabber, der efterlades i en spand i solen, dør en unødvendig død. At sætte fangsten fri sammen er en god lille afslutning på dagen — og en tidlig lektion i respekt for det, vi fisker efter.</p>
+        </TipBox>
+
+        <h2>Skal I have fisketegn for at fange krabber?</h2>
+        <p>Det her overrasker de fleste, så lad mig være helt præcis, for reglen er mere nuanceret end "krabber er gratis".</p>
+
+        <p>En krabbesnøre regnes juridisk som et <strong>let håndredskab</strong> — på niveau med en stang og snøre. Det betyder, at <strong>voksne mellem 18 år og folkepensionsalderen skal have et gyldigt lystfiskertegn</strong> for at fiske med den. <strong>Børn under 18 år og folkepensionister er fritaget.</strong></p>
+
+        <p>I praksis: børnene kan frit fange krabber hele dagen. Men står du som forælder selv med en snøre i hånden, skal du teknisk set have fisketegn. Hjælper du bare børnene — sætter madding på og holder nettet — er du på den sikre side. Vil du selv fiske med, koster et fisketegn så lidt, at det er tåbeligt at lade være, og pengene går til fiskepleje. Se de aktuelle priser og reglerne i min <a href="/fiskeguide/fisketegn/">guide til fisketegn</a>.</p>
+
+        <p>Der er ingen mindstemål eller fredningstid for strandkrabber, så du behøver ikke bekymre dig om størrelser — men gør det til en vane at sætte fangsten ud, så havnen er lige så fuld af krabber til de næste børn i morgen.</p>
+
+        <h2>Min tjekliste til den perfekte krabbedag</h2>
+        <p>Vil I gøre det helt konkret, er det her, hvad jeg pakker og planlægger efter:</p>
+
+        <ul>
+          <li><strong>Grej:</strong> en krabbesnøre eller -stang per barn, et fangstnet og en spand. Det er det.</li>
+          <li><strong>Madding:</strong> en pose blåmuslinger hjemmefra — eller pluk dem friske på molen.</li>
+          <li><strong>Sted:</strong> en havn med badebro eller mole, gerne med sten og roligt vand. Fisk tæt på pæle og sten.</li>
+          <li><strong>Tidspunkt:</strong> når som helst på dagen — krabberne bider hele tiden. Vælg efter familiens humør, ikke efter tidevandet.</li>
+          <li><strong>Sikkerhed:</strong> lær grebet om skjoldet fra bagenden, så ingen bliver nevet. Solcreme og drikkedunk.</li>
+          <li><strong>Fisketegn:</strong> husk det, hvis en voksen selv vil fiske med (18 år til folkepension).</li>
+          <li><strong>Afslutning:</strong> tæl fangsten, og sæt krabberne ud igen sammen. Fang kun til spisning fra en ren kyst, aldrig fra havnen.</li>
+        </ul>
+
+        <p>Krabbefiskeri er ikke bare et tidsfordriv, mens man venter på "rigtigt" fiskeri. Det er indgangen. Det er dér, mange af os fik den første fornemmelse af, at der er en hel verden lige under overfladen — og det er svært at finde en billigere, nemmere eller sjovere måde at give den følelse videre til et barn. Grib en snøre, en spand og en pose muslinger, og tag afsted.</p>
+
+        <GuideLink
+          href="/fiskeguide/fiskeri-for-born/"
+          title="Læs guiden til fiskeri for børn"
+          desc="Når krabberne har vakt lysten, er næste skridt en rigtig fiskestang. Her er hele guiden til at få børn godt i gang."
+        />
+
+      </article>
+
+      <RelatedRow items={related} />
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/krabbe_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 720px;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+
+  .article ul, .article ol {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .article ul li, .article ol li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.7;
+  }
+  .article ul li strong, .article ol li strong { color: #111827; font-weight: 700; }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .art-figure figcaption {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    background: #f8fafc;
+  }
+</style>

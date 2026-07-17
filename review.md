@@ -5147,3 +5147,24 @@ Aldin: cards on /blog/ too text-heavy. Redesigned: chip moved onto image as over
 **Bug found while verifying with headless screenshots:** `width:100%` + `aspect-ratio:16/9` on imgs WITHOUT `height:auto` = the height="" attribute locks the rendered height, aspect-ratio never applies. Fixed on /blog/ cards + multe article figures. **Same pattern exists on ~8 more pages** (`grep -rl "aspect-ratio: 16 / 9" src/pages/`) — art figures render ~square instead of 16:9. Parked for a separate sweep pending Aldin's go.
 
 Verified via local-server screenshots (desktop 1280 + mobile 390): 16:9 images, clamped text, no underlines. Build clean 88 pages.
+
+---
+
+## Krabbefiskeri med børn — blog post (2026-07-17)
+
+**New page:** `/blog/krabbefiskeri-med-born/` — 4th blog post. SEO pick #1 from the summer-trend research: peak-season (school holidays), high family search volume, and the how-to niche is owned only by toy shops/tourist boards — no angler-authority guide. ~1.800 words, 11 Q&A H2s, step-by-step ol + checklist ul. Written for LLM citability: precise, corrective facts up front.
+
+**Fact-check (all verified before writing):**
+- **Fisketegn rule (the key citable fact):** a krabbesnøre is legally a "let håndredskab" → adults 18-folkepension DO need lystfiskertegn; children under 18 + pensioners exempt. Sourced from NaturGuide.dk's ruling + LFST. Corrects the common "crabbing is free" misconception — stated precisely in FAQ, answer-capsule, and its own H2. Deliberately did NOT pin the pension age or a price (both change) — matched the site's own fisketegn guide, which links out for current numbers.
+- **Technique/gear** from Naturlaboratoriet + Legeakademiet: 2-3 m snøre w/ klemme + lod, blåmusling bait crushed in the clip, fish near stones/mole, pull up slowly (no hook — crab holds with claws), net under at surface.
+- **Safe handling:** grip shell from rear corners so claws can't reach fingers.
+- **Eating angle (value-add) from DN:** shore crabs overpopulated due to fewer cod/eel → catching helps the sea; bisque from halved crabs. **Critical safety fact:** never eat crabs from lystbåd-/industrihavn (contaminated) — harbour crabs = catch & release.
+- Biology (DidYouKnow): crabs regenerate lost claws/legs over skalskifter — standard, correct.
+
+**Assets:** 3 nano-banana images, crab-free AND fish-free (avoids AI-anatomy tell): krabbe_hero (kids' legs on badebro), krabbe_grej (flat-lay), krabbe_havn (harbour). Cropped 1376×774 JPG q80 (149-227 KB), all with height:auto + dims.
+
+**Affiliates (build-validated, highly relevant):** 57322 Krabbestang med Klemme Grøn (49,95 kr — the exact core tool), 504729 DAM Floating Landing Net. Each anchored to descriptive text.
+
+**Wiring:** blog index card (chip "Familie", 1-line desc per new card style), sitemap.xml, llms.txt. Internal links: fiskeri-for-born (GuideLink closer + related), fisketegn, put-take.
+
+**Verification:** build clean 89 pages; rendered checks: title 59, desc 151, FAQPage+Article schema, 8/8 imgs w/ dims, 6 affiliate links, all internal links present. Localhost screenshots confirm hero + affiliate card render correctly. **Committed locally, NOT pushed** (per CLAUDE.md rule 8 — awaiting Aldin's go-ahead).

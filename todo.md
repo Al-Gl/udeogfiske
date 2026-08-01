@@ -1,3 +1,43 @@
+# Session 55 (Makrelfiskeri SEO optimization, 2026-08-01) — DONE
+
+Resumed the parked Session 54c investigation. DataForSEO account verification is still
+pending (see [[project_uof_dataforseo_verification_pending]]) — user decided to proceed
+using Search Console data alone rather than wait.
+
+Pulled a fresh Search Console report for `/guide-til-fisk/makrelfiskeri/` (90-day totals,
+28-day totals, 6-month trend, top 30 queries, device split). Found the page's rod-finder
+widget only statically rendered the first tab's (blink) spec/note text — the other three
+methods' text existed only inside a JS-swapped `<script>` blob, invisible to crawlers.
+That lined up with why "fange makrel fra båd/kysten" queries ranked pos 28-86 despite the
+page nominally covering those methods.
+
+Also initially misread "fange makrel på flåd" (77 impr, pos 33.3) as a floating dock —
+caught it before pushing by re-reading this file, which showed the earlier Session 54c
+had already correctly traced it to the site's own "Flåd/Bombarda" feed category (a
+float-rig casting technique). Corrected before build.
+
+## Todo
+- [x] Fix rod-finder widget: render all 4 methods' spec/note text statically (not just
+      the active tab) — direct fix for the "fra båd/kysten" ranking gap
+- [x] Add H2 "Er makrellen kommet i 2026?" targeting the high-CTR "kommet 2026" query
+      cluster, evergreen content (no fabricated real-time status)
+- [x] Retitle to front-load the proven high-CTR phrase: "Er Makrellen Kommet? Makrelfiskeri
+      & Sæson 2026 | Ude og Fiske"
+- [x] Add standalone H2 on flåd/bombarda technique, using a real feed product
+      (SFG Bombarda Flydende Rød #504920) via `<Affiliate>`
+- [x] Add matching FAQ entry (accordion + schema) for the flåd/bombarda question
+- [x] Bump `dateModified` to 2026-08-01
+- [x] `npm run build` — verified all static text present in output HTML, Affiliate
+      product validated at build time
+- [ ] Re-run a page-level Search Console pull in a few weeks to see if clicks/position
+      moved on this page
+
+Session 54b (Search Console/YouTube metrics pipeline) and the original Session 54c
+planning notes below remain uncommitted at the owner's request — deferred, not part of
+this session's push.
+
+---
+
 # Plan — Session 53 (Blog post: varmere hav og lystfiskeriet, 2026-07-11)
 
 Goal: Create `/blog/varmere-hav-hvad-betyder-det-for-lystfiskeriet/` — a personal, reflective blog post about how warmer Danish seas are changing coastal fishing. First-person voice throughout. Fish-free nano-banana images.

@@ -8,6 +8,7 @@ import DidYouKnow from '../../../components/DidYouKnow.astro';
 import TipBox from '../../../components/TipBox.astro';
 import StatHighlight from '../../../components/StatHighlight.astro';
 import PriceRunnerProductWidget from '../../../components/PriceRunnerProductWidget.astro';
+import Affiliate from '../../../components/Affiliate.astro';
 import { getProduct, formatPrice } from '../../../lib/feed';
 
 // Makrel-vælger — anbefalet grej pr. metode. Cards are pre-rendered server-side
@@ -111,6 +112,10 @@ const faqs = [
     question: "Hvornår er makrellen i danske farvande?",
     answer: "Makrellen findes kun i sommerperioden i danske farvande — typisk juni, juli og august med peak-aktivitet. Den kommer ind for at jage småfisk og forsvinder igen mod åbent hav når vandet køler ned i efteråret. Resten af året opholder den sig i det åbne Atlanterhav.",
   },
+  {
+    question: "Kan man fange makrel med flåd?",
+    answer: "Ja — et bombardaflåd er et tungt kasteflåd, du sætter på linen foran dit forfang. Det gør, at du kan kaste et let blink eller makrelforfang langt ud, uden at agnet synker som med et almindeligt lod. Det er en effektiv teknik, når makrellen jager et stykke ude, uden for normal kasteafstand.",
+  },
 ];
 
 const about = [
@@ -122,7 +127,7 @@ const about = [
 ---
 
 <MainLayout
-  title="Makrelfiskeri | Guide til at fange makrel i 2026 | Ude og Fiske"
+  title="Er Makrellen Kommet? Makrelfiskeri & Sæson 2026 | Ude og Fiske"
   description="Guide til makrelfiskeri i Danmark — teknikker, grej og de bedste sommerpladser. Fang makrel med blink, spinner og makrelforfang."
   canonical="https://udeogfiske.dk/guide-til-fisk/makrelfiskeri/"
   pageType="article"
@@ -135,7 +140,7 @@ const about = [
     headline: "Fang en Makrel – Guide til makrelfiskeri",
     image: "/images/makrel_card.png",
     datePublished: "2021-02-05",
-    dateModified: "2026-05-04",
+    dateModified: "2026-08-01",
   }}
   faq={faqs}
   about={about}
@@ -176,6 +181,12 @@ const about = [
       />
 
       <DifficultyMeter value={45} />
+
+      <article class="article">
+        <h2>Er makrellen kommet i 2026?</h2>
+        <p>Det spørgsmål popper op hvert år, når foråret går på hæld — er makrellen kommet endnu? Der findes ikke én fast dato, fordi det afhænger af, hvor hurtigt vandet varmer op det pågældende år. Som tommelfingerregel begynder de første makreller at vise sig langs den danske kyst i slutningen af maj eller starten af juni, når overfladetemperaturen nærmer sig 10-12 grader. Selve højsæsonen ligger i juni, juli og august, hvor stimerne står tættest på kysten og fiskeriet er mest stabilt.</p>
+        <p>Vil du selv holde øje med, om den er kommet i dit område, er det bedste tegn et hav, der "koger" — små stimer af makrel, der jager sildeyngel og tobis helt oppe ved overfladen. Ser du det, er den kommet, uanset hvad kalenderen siger.</p>
+      </article>
 
       <article class="article">
         <h2>Hvorfor er makrelfiskeri så populært?</h2>
@@ -262,6 +273,18 @@ const about = [
         />
       </article>
 
+      <article class="article">
+        <h2>Hvad er fiskeri med flåd/bombarda til makrel?</h2>
+        <p>Et bombardaflåd er et tungt, gennemsigtigt kasteflåd, du sætter på linen foran dit forfang. Fordelen er, at flådets egen vægt gør, at du kan kaste et let blink, en flue eller et makrelforfang langt ud — meget længere end du kan uden vægt, og uden at agnet synker som en sten med et almindeligt lod. Det gør flåd/bombarda til en oplagt teknik, når makrellen står og jager et stykke ude, uden for kasteafstand med et almindeligt blink.</p>
+        <p>Der findes to typer: et flydende flåd, der ligger oven på vandet og lader agnet fiske lige under overfladen — perfekt til makrel, der jager helt i overfladen — og et synkende flåd, hvis du skal ned til stimer, der står lidt dybere. Til makrel er det flydende bombardaflåd langt det mest brugte, fordi fisken typisk jager tæt på overfladen, når vandet "koger".</p>
+        <p>Teknikken er enkel: kast langt ud, lad flådet ligge et par sekunder, og hjem det ind med et jævnt, roligt tempo — flådet gør arbejdet med at holde afstanden til agnet, så du kan koncentrere dig om at ramme stimen. Sæt evt. et kort forfang med 1-2 fluer mellem flåd og blink, så du kombinerer rækkevidden fra flådet med chancen for flere fisk på én gang.</p>
+
+        <Affiliate
+          productId="504920"
+          note="Et flydende bombardaflåd er den letteste måde at komme i gang med teknikken — sæt det på linen, og du kan pludselig nå stimer, der ellers er uden for kasteafstand med et almindeligt blink."
+        />
+      </article>
+
       <figure class="full-bleed">
         <img src="/images/baad_hero.png" alt="Fiskeri fra båd — den foretrukne metode til makrelstimer i åbent farvand" loading="lazy" />
         <figcaption>Fra båd kan du følge stimerne ud i åbent farvand og finde de dybere zoner hvor makrellen jager — særligt midt på dagen når den trækker fra kysten.</figcaption>
@@ -288,14 +311,17 @@ const about = [
           ))}
         </div>
 
-        <div class="rf-specs" id="rf-specs">
-          <div class="rf-spec"><span class="rf-spec-label">Agn</span><span class="rf-spec-value" id="rf-bait">{metodeItems[0].bait}</span></div>
-          <div class="rf-spec"><span class="rf-spec-label">Vægt</span><span class="rf-spec-value" id="rf-weight">{metodeItems[0].weight}</span></div>
-          <div class="rf-spec"><span class="rf-spec-label">Hvor</span><span class="rf-spec-value" id="rf-where">{metodeItems[0].where}</span></div>
-          <div class="rf-spec"><span class="rf-spec-label">Teknik</span><span class="rf-spec-value" id="rf-technique">{metodeItems[0].technique}</span></div>
-        </div>
-
-        <p class="rf-note" id="rf-note">{metodeItems[0].note}</p>
+        {metodeItems.map((f, i) => (
+          <div class={`rf-panel ${i === 0 ? 'is-active' : ''}`} data-key={f.key}>
+            <div class="rf-specs">
+              <div class="rf-spec"><span class="rf-spec-label">Agn</span><span class="rf-spec-value">{f.bait}</span></div>
+              <div class="rf-spec"><span class="rf-spec-label">Vægt</span><span class="rf-spec-value">{f.weight}</span></div>
+              <div class="rf-spec"><span class="rf-spec-label">Hvor</span><span class="rf-spec-value">{f.where}</span></div>
+              <div class="rf-spec"><span class="rf-spec-label">Teknik</span><span class="rf-spec-value">{f.technique}</span></div>
+            </div>
+            <p class="rf-note">{f.note}</p>
+          </div>
+        ))}
 
         <div class="rf-products">
           {metodeItems.map((f, i) => (
@@ -320,46 +346,34 @@ const about = [
         </div>
       </div>
 
-      <script define:vars={{ metodeData: metodeFinder }}>
+      <script>
         (function () {
           const root = document.getElementById('rod-finder');
           if (!root) return;
 
-          const byKey = {};
-          metodeData.forEach((f) => { byKey[f.key] = f; });
-
-          const els = {
-            bait: document.getElementById('rf-bait'),
-            weight: document.getElementById('rf-weight'),
-            where: document.getElementById('rf-where'),
-            technique: document.getElementById('rf-technique'),
-            note: document.getElementById('rf-note'),
-          };
-          const specs = document.getElementById('rf-specs');
           const tabs = root.querySelectorAll('.rf-tab');
+          const panels = root.querySelectorAll('.rf-panel');
           const products = root.querySelectorAll('.rf-product');
 
           tabs.forEach(function (btn) {
             btn.addEventListener('click', function () {
               const key = btn.getAttribute('data-key');
-              const d = byKey[key];
-              if (!d) return;
 
               tabs.forEach((b) => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
               btn.classList.add('is-active');
               btn.setAttribute('aria-selected', 'true');
 
-              els.bait.textContent = d.bait;
-              els.weight.textContent = d.weight;
-              els.where.textContent = d.where;
-              els.technique.textContent = d.technique;
-              els.note.textContent = d.note;
+              panels.forEach((p) => {
+                const active = p.getAttribute('data-key') === key;
+                p.classList.toggle('is-active', active);
+                if (active) {
+                  p.classList.remove('rf-flash');
+                  void p.offsetWidth;
+                  p.classList.add('rf-flash');
+                }
+              });
 
               products.forEach((p) => p.classList.toggle('is-active', p.getAttribute('data-key') === key));
-
-              specs.classList.remove('rf-flash');
-              void specs.offsetWidth;
-              specs.classList.add('rf-flash');
             });
           });
         })();
@@ -426,6 +440,13 @@ const about = [
             <summary><h3>Hvornår er makrellen i danske farvande?</h3></summary>
             <div class="faq-answer">
               <p>Makrellen findes kun i sommerperioden i danske farvande — typisk juni, juli og august med peak-aktivitet. Den kommer ind for at jage småfisk og forsvinder igen mod åbent hav når vandet køler ned i efteråret. Resten af året opholder den sig i det åbne Atlanterhav.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary><h3>Kan man fange makrel med flåd?</h3></summary>
+            <div class="faq-answer">
+              <p>Ja — et bombardaflåd er et tungt kasteflåd, du sætter på linen foran dit forfang. Det gør, at du kan kaste et let blink eller makrelforfang langt ud, uden at agnet synker som med et almindeligt lod. Det er en effektiv teknik, når makrellen jager et stykke ude, uden for normal kasteafstand.</p>
             </div>
           </details>
         </div>
@@ -528,6 +549,8 @@ const about = [
   }
   .rf-tab:hover { border-color: #0d4a5e; color: #0d4a5e; }
   .rf-tab.is-active { background: #0d4a5e; border-color: #0d4a5e; color: #ffffff; box-shadow: 0 6px 14px -10px rgba(13, 74, 94, 0.55); }
+  .rf-panel { display: none; }
+  .rf-panel.is-active { display: block; }
   .rf-specs {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
     border: 1px solid #eef2f6; border-radius: 12px; overflow: hidden; margin-bottom: 1rem;

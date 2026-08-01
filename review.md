@@ -1,3 +1,42 @@
+## 2026-08-01 — Makrelfiskeri SEO optimization (Session 55)
+
+Resumed the makrelfiskeri optimization parked in Session 54c. DataForSEO verification
+is still pending, so proceeded with Search Console data alone per the owner's direction.
+
+Pulled a fresh Search Console report for the page: 90-day totals (70 clicks / 3,808
+impressions / 1.84% CTR / pos 16.9), a 6-month trend showing the page rides seasonal
+demand (position jumped from ~25 to ~12 in June as mackerel season started), and a
+30-query breakdown split into three buckets — queries already converting well ("er
+makrellen kommet 2026", "makrel sæson 2026"), one high-volume/low-CTR query ("makrel
+sæson", 130 impr, 0.77% CTR), and a cluster of method+location queries ranking very
+poorly (pos 28-86) for "fra båd/kysten/mole" phrasing.
+
+Traced the poor-ranking cluster to a technical issue: the page's rod-finder widget only
+statically rendered the first tab's (blink) spec/note text in the initial HTML — the
+other three methods' descriptive text existed only inside a JS-swapped `<script>` JSON
+blob, so it likely wasn't reliably read as page content. Refactored the widget so all
+four methods render their full text statically, with CSS/JS only toggling which one is
+visually active (mirroring the pattern the product cards already used correctly).
+
+Also nearly shipped the wrong fix for `"fange makrel på flåd"` (77 impr, pos 33.3) —
+assumed it meant a floating dock ("fiskeflåde") before rebuilding, but `todo.md` still
+had an earlier, blocked Session 54c investigation that had already correctly traced it
+to the site's own "Flåd/Bombarda" affiliate-feed category (a float-rig casting technique
+for reaching distant surface-feeding stimer). Caught the mismatch, swapped in a proper
+Bombarda/flåd technique section with a real feed product (`SFG Bombarda Flydende Rød`,
+#504920) via the `<Affiliate>` component, and matched the FAQ accordion + schema to it.
+
+Additional changes: added an H2 "Er makrellen kommet i 2026?" near the top targeting the
+already-strong "kommet 2026" query cluster, and retitled the page to lead with that same
+phrase (`"Er Makrellen Kommet? Makrelfiskeri & Sæson 2026 | Ude og Fiske"`). Bumped
+`dateModified` to 2026-08-01. `npm run build` passed (89 pages); confirmed in the built
+HTML that all four rod-finder panels, both new sections, and the new title are present.
+
+The Session 54b (Search Console/YouTube metrics pipeline) and Session 54c planning notes
+remain uncommitted in `todo.md`/`review.md` at the owner's request — not part of this push.
+
+---
+
 # Review log
 
 ## 2026-07-14 — AdSense fill-fix + placeholder auto-hide (Session 56, del 3)

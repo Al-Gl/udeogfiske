@@ -3,6 +3,7 @@ import MainLayout from '../../../layouts/MainLayout.astro';
 import Affiliate from '../../../components/Affiliate.astro';
 import GuideLink from '../../../components/GuideLink.astro';
 import RelatedRow from '../../../components/RelatedRow.astro';
+import WhatsBitingNow from '../../../components/WhatsBitingNow.astro';
 
 const related = [
   {
@@ -85,8 +86,8 @@ const species = [
 ---
 
 <MainLayout
-  title="Fiskeri på kysten – Guide til kystfiskeri i Danmark | Ude og Fiske"
-  description="Komplet guide til kystfiskeri i Danmark. Over 8.000 km kyst, udstyr, og teknikker til havørred, fladfisk, torsk, sild og hornfisk."
+  title="Fiskeri på kysten – Hvad kan du fange lige nu? | Ude og Fiske"
+  description="Hvad bider fra den danske kyst lige nu? Komplet guide til kystfiskeri med udstyr og teknik for havørred, fladfisk, torsk, sild og hornfisk."
   canonical="https://udeogfiske.dk/fiskeguide/fiskeri-paa-kysten/"
   pageType="article"
   breadcrumbs={[
@@ -125,6 +126,13 @@ const species = [
         <span class="ac-label">Kort fortalt</span>
         <h2 class="ac-q">Hvad kan du fange fra den danske kyst?</h2>
         <p class="ac-a">Kystfiskeri giver dig adgang til det samme hav — og de samme fisk — som molefiskeri, men med en smukkere og mere varieret fiskeoplevelse. Du kan typisk fange <strong>fladfisk, torsk, sej, hornfisk, makrel, sild, havørred og laks</strong>. Sæsonen veksler fra art til art: havørred er bedst i <strong>april, maj og oktober</strong>, fladfisk i <strong>maj og september</strong>, og torsk i de sene efterårsmåneder.</p>
+      </div>
+
+      <div class="season-embed">
+        <WhatsBitingNow
+          heading="Hvad kan du fange fra kysten lige nu?"
+          excludeSpecies={["Regnbueørred", "Aborre", "Gedde"]}
+        />
       </div>
 
       <article class="article">
@@ -338,6 +346,11 @@ const species = [
   .article {
     max-width: 760px;
     margin: 0 auto;
+  }
+
+  .season-embed {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
   }
 
   .article p {

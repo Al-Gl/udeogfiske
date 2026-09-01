@@ -1,0 +1,344 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Makrelfiskeri",
+    description: "Grej, metoder og sæson til makrelfiskeri fra mole, kyst og båd — start her, hvis du mangler selve fangsten.",
+    href: "/guide-til-fisk/makrelfiskeri/",
+    image: "/images/makrel_card.png",
+    alt: "Makrelfiskeri fra mole",
+    chip: "Fiskeart",
+  },
+  {
+    title: "Sildefiskeri",
+    description: "En anden fed fisk, der kræver samme hurtige hånd med kniv og køl — læs guiden til sildefiskeri.",
+    href: "/guide-til-fisk/sildefiskeri/",
+    image: "/images/sild_card.png",
+    alt: "Sildefiskeri fra mole",
+    chip: "Fiskeart",
+  },
+  {
+    title: "Hornfisk fiskeri",
+    description: "Hornfisken ankommer uger før makrellen og deler samme sæson — og samme behov for hurtig køling.",
+    href: "/guide-til-fisk/hornfisk/",
+    image: "/images/hornfisk_card.png",
+    alt: "Hornfisk fanget på kysten",
+    chip: "Fiskeart",
+  },
+];
+---
+
+<MainLayout
+  title="Rense og opbevare makrel | Sådan holder fangsten sig frisk"
+  description="Makrel er en fed fisk, der går hurtigt dårlig. Min guide til at rense makrel korrekt, køle den ned med det samme og opbevare den, så du får mest muligt ud af fangsten."
+  canonical="https://udeogfiske.dk/blog/rense-og-opbevare-makrel/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: "Rense og opbevare makrel" },
+  ]}
+  articleData={{
+    headline: "Rense og opbevare makrel: Sådan holder fangsten sig frisk",
+    image: "/images/makrel_opbevar_hero.jpg",
+    datePublished: "2026-09-01",
+  }}
+  faq={[
+    {
+      question: "Hvordan renser man makrel?",
+      answer: "Læg makrellen på et skærebræt og skær et snit fra gatåbningen og op til gællerne. Træk indvoldene ud med fingrene, skrab bloddepotet langs rygsøjlen væk med tommelfingeren eller en ske, og skyl fisken grundigt i koldt (gerne salt) vand. Tør den af, og få den på is eller i køl hurtigst muligt — det er timingen, ikke selve snittet, der afgør, hvor god fisken smager.",
+    },
+    {
+      question: "Hvor længe holder makrel sig i køleskabet?",
+      answer: "Renset og kølet makrel holder typisk kun omkring 1 dag i køleskabet, fordi det høje fedtindhold harskner hurtigere end i magre fisk som torsk eller fladfisk. Skal den ikke bruges samme dag eller dagen efter, er det bedste råd at fryse den ned frisk fremfor at gemme den i køleskabet og håbe på det bedste.",
+    },
+    {
+      question: "Kan man fryse makrel?",
+      answer: "Ja — makrel kan fryses ned, men bør spises inden for 2-3 måneder, hvor magrere fisk sagtens kan holde 6 måneder eller mere i fryseren. Rens og skyl fisken først, tør den grundigt af, og pak den lufttæt (vakuum er ideelt) for at undgå fryseforbrænding og harsk smag fra fedtet.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>Rense og opbevare makrel</span>
+      </nav>
+      <p class="pg-chip">Fra fangst til køkken</p>
+      <h1 class="pg-title">Rense og opbevare makrel: Sådan holder fangsten sig frisk</h1>
+      <p class="pg-sub">Makrel er blandt de fedeste fisk i danske farvande — og blandt de hurtigste til at gå dårlig. Her er min rutine for rensning og køling, så fangsten stadig smager godt, når den rammer panden.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvordan holder du makrel frisk efter fangsten?</h2>
+        <p class="ac-a"><strong>Afliv, rens og køl fisken ned så hurtigt som muligt — ideelt inden for 30 minutter.</strong> Makrellens høje fedtindhold gør, at den nedbrydes langt hurtigere end magre fisk som torsk. Skær maven op, fjern indvolde og bloddepot, skyl grundigt, og læg fisken direkte på is eller i en køletaske. Renset og kølet holder den cirka et døgn i køleskabet — skal den gemmes længere, skal den fryses frisk, ikke efter et par dage i køl.</p>
+      </div>
+
+      <article class="article">
+
+        <h2>Hvorfor bliver makrel så hurtigt dårlig?</h2>
+        <p>Der er en grund til, at makrel sjældent sælges "et par dage gammel" i fiskehandleren — den tåler det simpelthen ikke. Makrel er en <strong>fed fisk</strong> med et fedtindhold, der kan ligge på 10-15%, mod under 1% i en torsk. Det fedt sidder spredt i selve kødet, ikke kun i leveren, og det er netop dét, der gør den så hurtig til at harskne og lugte kraftigt, når den ikke behandles rigtigt med det samme.</p>
+
+        <p>Oveni fedtet kommer et højt indhold af blod og enzymer i kødet, som fortsætter med at nedbryde fisken, længe efter den er død. Kombinationen af fedt, blod og enzymaktivitet betyder, at makrel simpelthen har et kortere tidsvindue end de fleste andre fisk, vi fanger langs den danske kyst. Det er ikke farligt at spise en fisk, der har ligget for længe — men smagen bliver harsk og "fiskeagtig" på den dårlige måde, længe før den er sundhedsskadelig.</p>
+
+        <DidYouKnow>
+          Makrellens mørke, fede muskelkød sidder som en tynd stribe langs siderne og giver den energi til lange, hurtige svømmeture i stimer. Det er samme mørke kød, der gør den så nærende og smagfuld frisk — og så sårbar over for varme og tid, når den først er fanget.
+        </DidYouKnow>
+
+        <h2>Hvor hurtigt skal du rense og køle makrellen ned?</h2>
+        <p>Det vigtigste råd i denne guide er det simpleste: <strong>klokken begynder at tikke, i det øjeblik fisken er fanget</strong>. Jo længere den ligger i solen på molen eller i bunden af båden, jo mere af smagen mister du.</p>
+
+        <p><strong>1. Afliv fisken hurtigt og humant.</strong> Et par faste slag mod hovedet stopper stress-hormonerne, der ellers presses ud i kødet og forringer smagen.</p>
+
+        <p><strong>2. Skyl den med det samme.</strong> Brug havvand, hvis du fisker fra mole eller båd — det fjerner slim og bakterier fra overfladen uden at "skolde" fisken sådan som ferskvand kan.</p>
+
+        <p><strong>3. På is eller i køl — ikke i en pose i solen.</strong> Direkte sollys og varm luft er makrellens største fjende. Har du en køletaske eller en kasse med is klar, inden du overhovedet tager på tur, sparer du dig selv for skuffelsen ved at komme hjem med en fisk, der lugter kraftigt af tran.</p>
+
+        <figure class="art-figure">
+          <img src="/images/makrel_koleboks.jpg" alt="Åben køletaske fyldt med knust is på en træbro, med en fiskestang lænet op ad rækværket" width="1600" height="893" loading="lazy" />
+          <figcaption>Min faste regel: køletasken ligger klar med is, før fluen eller blinket rammer vandet — ikke først, når fisken allerede er i spanden.</figcaption>
+        </figure>
+
+        <TipBox>
+          <p>Pak altid en <strong>køletaske eller termospand med is</strong> med i grejkassen, hvis du tager på makreltur — også selvom du "bare lige tjekker" molen en times tid. Makrellen tilgiver ikke en halv time i solen på en varm sommerdag, og en klar til brug køletaske koster dig ingenting at have med.</p>
+        </TipBox>
+
+        <h2>Hvordan renser man makrel?</h2>
+        <p>Selve rensningen er hurtigt overstået, når du har prøvet det et par gange. Sådan gør jeg det på molen eller ved køkkenbordet:</p>
+
+        <p><strong>1. Læg fisken på et fast underlag</strong> — et skærebræt eller en ren flade er nok. Hold godt fast om halen.</p>
+
+        <p><strong>2. Skær et snit fra gatåbningen og frem til gællerne.</strong> Brug en skarp, tynd filetkniv, og skær kun så dybt, at du åbner bughulen — du skal ikke igennem rygsøjlen.</p>
+
+        <p><strong>3. Træk indvoldene ud</strong> med fingrene eller bagsiden af kniven. De kommer let ud i én bevægelse hos en frisk fisk.</p>
+
+        <p><strong>4. Skrab bloddepotet væk.</strong> Langs rygsøjlen inde i bughulen sidder en mørk stribe blod — skrab den forsigtigt væk med tommelfingeren, en ske eller kniv-æggen. Det er her en stor del af den "fiskede" smag ellers ville komme fra.</p>
+
+        <p><strong>5. Skyl grundigt</strong> i koldt vand — havvand er fint, hvis du står ved kysten — til bughulen er helt ren, og læg straks fisken på is.</p>
+
+        <Affiliate
+          productId="4500027"
+          note="En saltvandsbestandig filetkniv som denne er den eneste specialudstyr, du reelt behøver til at rense makrel. Den tynde, fleksible klinge følger fiskens form og gør både opskæring og filetering markant nemmere end en almindelig køkkenkniv."
+        />
+
+        <p>Vil du gå skridtet videre og filetere fisken med det samme, er teknikken den samme som til de fleste rundfisk — men til daglig makrelfiskeri er det ofte nok blot at rense og køle den hel, og så filetere den hjemme i køkkenet, når du har bedre tid og lys.</p>
+
+        <figure class="art-figure">
+          <img src="/images/makrel_rens_kniv.jpg" alt="Hænder der bruger en filetkniv til at rense en makrel på et skærebræt ved kysten" width="1600" height="893" loading="lazy" />
+          <figcaption>En skarp, tynd filetkniv gør rensningen til en sag om få minutter — jo skarpere kniv, jo mindre mishandler du kødet undervejs.</figcaption>
+        </figure>
+
+        <h2>Hvor længe holder frisk makrel sig i køleskabet?</h2>
+        <p>Kort svar: <strong>omkring et døgn</strong>. Renset, skyllet og lagt i køl (gerne direkte på is eller is-pack i en lukket beholder) holder makrel sig spiselig og velsmagende i cirka 24 timer. Det er markant kortere end for eksempel torsk eller fladfisk, som typisk kan klare 2-3 dage i køleskabet uden problemer.</p>
+
+        <StatHighlight
+          icon="thermometer"
+          value="~1 dag"
+          caption="Så længe holder renset, kølet makrel sig typisk i køleskabet — mod flere dage for magre fisk som torsk. Skal du gemme den længere, er fryseren vejen frem."
+        />
+
+        <p>Planlægger du ikke at spise fangsten samme dag eller dagen efter, er mit råd enkelt: <strong>frys den ned frisk</strong>, fremfor at lade den ligge i køleskabet og håbe, den holder. Kvaliteten ved indfrysning af en frisk fisk er langt bedre end kvaliteten af en fisk, der lige akkurat nåede at blive spist, før den blev dårlig.</p>
+
+        <h2>Kan man fryse makrel — og hvordan?</h2>
+        <p>Ja, makrel fryser fint — men igen med et kortere tidsvindue end de fleste andre fisk. Regn med, at frossen makrel bedst spises inden for <strong>2-3 måneder</strong>, hvor magrere fisk som torsk og fladfisk sagtens kan ligge 6 måneder eller mere, uden at smagen tager skade. Det høje fedtindhold, der gør makrellen så lækker frisk, er også det, der harskner hurtigst i fryseren.</p>
+
+        <p>Sådan fryser jeg selv makrel ned:</p>
+
+        <ul>
+          <li><strong>Rens og skyl</strong> fisken grundigt, som beskrevet ovenfor, inden den kommer i fryseren.</li>
+          <li><strong>Tør den godt af</strong> med køkkenrulle — fugt på overfladen giver iskrystaller og fryseforbrænding.</li>
+          <li><strong>Pak lufttæt.</strong> Vakuumpakning er det bedste, du kan gøre for at forlænge holdbarheden — men tætsluttende fryseposer med luften presset ud virker også fint.</li>
+          <li><strong>Mærk posen med dato.</strong> Det er let at glemme, hvornår en fisk kom i fryseren, og med makrellens korte holdbarhed er datomærkning ikke bare pedanteri.</li>
+        </ul>
+
+        <Affiliate
+          productId="83156"
+          note="En fisketaske med separate boxe som denne er praktisk til lige netop den her opgave: du kan holde rensede fisk adskilt fra grej og is, så intet lækker eller lugter, mens du transporterer fangsten hjem til fryseren eller panden."
+        />
+
+        <h2>Hvordan kan du se om makrellen er gået dårlig?</h2>
+        <p>Selvom du gør alting rigtigt, er det værd at vide, hvad du skal kigge efter, hvis en fisk har ligget lidt for længe — eller hvis du er i tvivl om en fangst, du ikke selv har håndteret fra start:</p>
+
+        <ul>
+          <li><strong>Lugten</strong> er den klareste indikator. Frisk makrel lugter mildt af hav og salt. Skarp, sur eller decideret "gammel fisk"-lugt betyder, at den skal kasseres.</li>
+          <li><strong>Øjnene</strong> skal være klare og let hvælvede. Grumsede, indsunkne øjne er et dårligt tegn.</li>
+          <li><strong>Gællerne</strong> skal være klart røde eller rosa. Bliver de brune eller gråbrune, er fisken godt på vej til at være for gammel.</li>
+          <li><strong>Konsistensen</strong> skal være fast og spændstig. Trykker du et fingeraftryk ind i kødet, og det bliver siddende i stedet for at rette sig ud, er fisken forbi sit bedste.</li>
+        </ul>
+
+        <p>Er du i tvivl efter at have tjekket alle fire punkter — så følg tommelfingerreglen: <strong>er du i tvivl, så lad være</strong>. Det er sjældent værd at satse på en fisk, der allerede virker suspekt.</p>
+
+        <h2>Min tjekliste til makrelturen</h2>
+        <p>Skal du en tur efter makrel, er det her, hvad jeg selv sørger for at have styr på, inden jeg forlader molen eller bådebroen:</p>
+
+        <ul>
+          <li><strong>Køletaske eller is:</strong> pakket og klar, før du kaster første gang — ikke først når fisken ligger i spanden.</li>
+          <li><strong>Filetkniv:</strong> skarp og med i grejkassen, så du kan rense fangsten med det samme.</li>
+          <li><strong>Afliv og skyl:</strong> gør det hurtigt, og brug havvand til den første skylning på stedet.</li>
+          <li><strong>Rens hurtigst muligt:</strong> indvolde og bloddepot ud, grundig skylning, direkte på is bagefter.</li>
+          <li><strong>Planlæg køkkenet:</strong> spis inden for et døgn, eller frys den ned frisk — undgå at gemme den "til i morgen" i køleskabet flere dage i træk.</li>
+        </ul>
+
+        <p>Makrel er en af de mest tilgængelige og sjoveste fisk at fange fra den danske kyst — men den belønner kun den, der behandler fangsten rigtigt bagefter. Får du kold, rensede makrel med hjem i stedet for en pose, der har ligget varm hele eftermiddagen, mærker du forskellen allerede ved første bid.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/makrelfiskeri/"
+          title="Læs makrelfiskeri-guiden"
+          desc="Grej, metoder og sæson til at fange makrellen, før du skal til at rense og opbevare den."
+        />
+
+      </article>
+
+      <RelatedRow items={related} />
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/makrel_opbevar_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 720px;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+
+  .article ul {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.7;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .art-figure figcaption {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    background: #f8fafc;
+  }
+</style>

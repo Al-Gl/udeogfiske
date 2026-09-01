@@ -1,3 +1,67 @@
+# Session 56 (New blog post: rense/opbevare makrel, 2026-09-01) — DONE
+
+New blog article on cleaning/gutting and storing mackerel so it doesn't spoil (fatty fish,
+goes bad fast). Not a live-site migration — original editorial content like the other
+`/blog/` posts (multefiskeri, krabbefiskeri, etc.), so no `_extract.cjs` source needed.
+
+**DataForSEO keyword research (Denmark, da):** verification block from
+[[project_uof_dataforseo_verification_pending]] is resolved — calls now succeed. This is a
+genuinely low-volume niche in DK (most cleaning/storage terms score 0 in Google Ads data),
+so targets are chosen for topical/intent coverage and AI-Overview citability, not raw
+volume:
+- Primary: "rense makrel" (vol 10/mo, LOW comp, seasonal spike Aug/Sep)
+- Secondary: "filetere makrel" (vol 20), "rense fisk" (vol 20, broader)
+- Supporting (zero/low measurable volume but covered on-page for intent match):
+  "fisk holdbarhed", "opbevaring af fisk", "fryse fisk", "fersk fisk holdbarhed",
+  "makrel holdbarhed", "makrel i køleskab"
+- H2 question form for the primary target: "Hvordan renser man makrel?"
+
+## Todo
+- [x] Create `src/pages/blog/rense-og-opbevare-makrel/index.astro` following the
+      multefiskeri-i-danmark template (MainLayout + answer-capsule + Q&A H2 article body)
+- [x] Title/description targeting "rense makrel" / "opbevare makrel" / "makrel holdbarhed";
+      3 FAQ entries matching the primary + supporting keywords
+- [x] Article sections (Q&A H2s):
+      1. Hvorfor bliver makrel så hurtigt dårlig? (fedtfisk-biologi: højt fedt-/blodindhold,
+         hurtig enzym-/bakterienedbrydning vs. magre fisk)
+      2. Hvor hurtigt skal du rense og køle makrellen ned efter fangst? (kernen i artiklen —
+         afliv/blødt fisk, skyl, is/køletaske med det samme)
+      3. Hvordan renser man makrel? (trin-for-trin udtagning af indvolde)
+      4. Hvor længe holder frisk makrel sig i køleskabet? (1 dag)
+      5. Kan man fryse makrel — og hvordan? (kortere holdbarhed end magre fisk pga. fedtet)
+      6. Hvordan kan du se om makrellen er gået dårlig? (lugt, øjne, gæller, konsistens)
+      7. Min tjekliste til makrelturen
+- [x] TipBox (afliv fisken hurtigt/køletaske klar før turen), DidYouKnow (fedtfisk-
+      biologi fact), StatHighlight ("~1 dag" køleskabsholdbarhed stat)
+- [x] 2x `<Affiliate>`: Rapala Saltwater Filetkniv (#4500027) for cleaning step,
+      Lawson Fisketaske m/3 boxe (#83156) for keeping the catch cold/organized on the trip
+- [x] `<GuideLink>` to `/guide-til-fisk/makrelfiskeri/` (existing mackerel fishing guide)
+- [x] RelatedRow: makrelfiskeri + sildefiskeri + hornfisk (all fatty/co-seasonal species
+      already cross-linked from the makrelfiskeri page itself)
+- [x] Generated hero + 2 inline images via nano-banana skill — per
+      [[feedback_uof_nano_banana_no_fish]]: hero is a wide/elevated shot of whole mackerel
+      on ice in a crate (not a close-up), one inline is fish-free (cooler bag + ice on a
+      pier), one shows hands + fillet knife from an over-the-shoulder angle. No anatomy
+      close-ups. Saved as `makrel_opbevar_hero.jpg`, `makrel_koleboks.jpg`,
+      `makrel_rens_kniv.jpg`.
+- [x] Added post card to `src/pages/blog/index.astro` posts array (now the first/newest post)
+- [x] `npm run build` (90 pages, clean) + verified in a real browser via a temporary local
+      Playwright install (`npm install --no-save playwright`, removed again afterward —
+      package.json/package-lock.json confirmed byte-identical before/after). Screenshots
+      confirmed: hero, body copy, both inline images, both affiliate boxes, GuideLink,
+      RelatedRow cards, and the new blog index card all render correctly.
+- [x] **Caught and fixed a mistake**: `node scripts/optimize-images.mjs` recompresses every
+      image in `public/images/` (not just new ones), and re-running it against
+      already-optimized files still shaved a few bytes off ~90 unrelated pre-existing
+      images via lossy re-encoding — a large, unintended diff. Reverted with
+      `git checkout -- public/images/` (only the 3 new untracked mackerel images remain
+      changed) and rebuilt clean.
+- [x] Updated `review.md` with a review section for this session
+- [ ] Do NOT `git push` — commit locally only, wait for explicit go-ahead per
+      [[feedback_uof_no_push_without_prompt]] (not committed yet either — awaiting go-ahead)
+
+---
+
 # Session 55 (Makrelfiskeri SEO optimization, 2026-08-01) — DONE
 
 Resumed the parked Session 54c investigation. DataForSEO account verification is still
@@ -35,6 +99,91 @@ float-rig casting technique). Corrected before build.
 Session 54b (Search Console/YouTube metrics pipeline) and the original Session 54c
 planning notes below remain uncommitted at the owner's request — deferred, not part of
 this session's push.
+
+---
+
+# Session 54c (CEO check-in → makrelfiskeri optimization, 2026-07-31) — PARKED
+
+Ran `/ceo` skill. Diagnosed the June ranking dip as the WordPress→Astro migration
+(user confirmed, last month) rather than AI Overviews alone — expect natural recovery.
+Pulled Search Console page-level data (`scripts/metrics/page-opportunities.mjs`, one-off,
+since deleted) → 40 pages at position 7-20 with decent impressions. User picked
+`makrelfiskeri/` (peak season now) over `torskefiskeri/` (user flagged: cod fishing
+ban in large parts of DK right now, bad timing for that pick — good catch, noted for
+future content timing decisions).
+
+Pulled full 65-query breakdown for `/guide-til-fisk/makrelfiskeri/` (28-day window).
+Read the live page source (`src/pages/guide-til-fisk/makrelfiskeri/index.astro`) —
+already has a rod-finder tool (blink/forfang/spinner/båd tabs) + PriceRunner Sabiki
+widget, so the "forfang" query cluster is already decently covered. **Real gap found:
+"flåd" (float rig) technique has zero coverage anywhere on the page**, despite real
+search volume (e.g. "fange makrel på flåd" 23 impr, pos 25.9). Found 200+ candidate
+Flåd/Bombarda-category products in the feed (e.g. SFG Bombarda Flydende Rød #504920,
+29.95 kr; Inno-Mini Bombarda #501627, 69.95 kr) — not yet picked/confirmed.
+
+**Blocked on:** wanted DataForSEO search-volume data to prioritize which long-tail
+queries to target before writing new content — see
+[[project_uof_dataforseo_verification_pending]] (`dfs-mcp` MCP wired correctly, blocked
+on DataForSEO account verification at app.dataforseo.com, user parking this for later).
+
+## Resume checklist when picking this back up
+- [ ] Confirm DataForSEO verification is done, retest `mcp__dfs-mcp__kw_data_google_ads_search_volume`
+- [ ] Decide: add a "Flåd/Bombarda" 5th tab to the existing rod-finder tool (reuses
+      existing UI/pattern) vs. a short standalone paragraph — pick a feed product
+- [ ] Write the addition to `makrelfiskeri/index.astro`, `npm run build`, review.md entry
+- [ ] Re-run `scripts/metrics/fetch-metrics.mjs` in a few weeks to see if clicks/position
+      moved on this page
+
+---
+
+# Plan — Session 54b (Search Console + YouTube metrics pipeline, 2026-07-31)
+
+## Goal
+Give the `ceo` skill real Search Console + YouTube numbers instead of relying on the
+owner pasting them in chat. User chose "automated via API" over manual export or
+manual paste.
+
+## Tasks
+- [x] 1. `scripts/metrics/` — package.json (`googleapis` dep only), `config.json`
+      (site URL + YouTube handle placeholders), `auth.mjs` (one-time OAuth loopback
+      flow for Search Console), `fetch-metrics.mjs` (pulls Search Console clicks/
+      impressions for last 3 full months + YouTube channel stats via API key, writes
+      `data/metrics.json`), `README.md` (full Google Cloud Console setup steps)
+- [x] 2. `.gitignore` — added `scripts/metrics/credentials.json`, `token.json`,
+      `data/metrics.json` (`.env` already covered by existing pattern)
+- [x] 3. `npm install` inside `scripts/metrics/` — done, 46 packages, no errors
+- [x] 4. Updated `.claude/skills/ceo/SKILL.md` — reads `data/metrics.json` if present,
+      flags staleness (>30 days), and explicitly does NOT conflate Search Console
+      "clicks" with the GA "sessions" figure the 2026 target is measured in
+- [x] 5. User completed the one-time setup (Cloud project, OAuth consent screen +
+      test-user fix for the 403 access_denied, credentials.json, API key, `npm run
+      auth`). Verified live 2026-07-31: `npm run fetch` pulled real Search Console
+      (Apr 561 / May 384 / Jun 214 clicks, position sliding 12.7→20.4) and YouTube
+      (828 subs, 135,208 views, 41 videos) data into `data/metrics.json`. One bug found
+      + fixed: `config.json`'s `youtubeHandle` had been set to the full channel URL
+      instead of just `@udeogfiske` — API needs the bare handle. Affiliate revenue
+      still has no automated source — stays manual.
+
+---
+
+# Plan — Session 54 (Company Goals, Roadmap & CEO Skill, 2026-07-31)
+
+## Context
+Building strategic docs for udeogfiske.dk (side project, SEO-driven, solo-run) plus a
+reusable "CEO" skill that uses those docs to drive the project forward.
+
+Baseline (as of 2026-07-31):
+- Traffic: ~500 monthly sessions (down from 1000-1300, AI Overviews impact)
+- Affiliate revenue: 190 DKK (recent period)
+- 2026 goals: double traffic (~1000-1300 sessions/mo) + reach 500 DKK affiliate revenue
+- Revenue tracks: affiliate, ads, sponsorships (balanced priority)
+- Solo operator, SEO background, side project (limited hours/week)
+
+## Tasks
+- [x] 1. Create `GOALS.md` — mission, revenue model, current baseline, 2026 targets, guiding principles
+- [x] 2. Create `ROADMAP.md` — quarterly milestones for rest of 2026 (Q3/Q4), yearly themes for 2027-2028
+- [x] 3. Design `.claude/skills/ceo/SKILL.md` — a CEO-persona skill that reads GOALS.md + ROADMAP.md, reviews progress, and gives prioritized next steps; usable both on-demand and via /loop or /schedule for periodic check-ins
+- [x] 4. Add entry to `review.md` summarizing what was created
 
 ---
 
@@ -2028,3 +2177,27 @@ Spec from Aldin: user picks budget + species(+technique) → predetermined set o
 - [x] Verified: 81 pages, 65 cards, 236 affiliate links, totals under caps
 - [ ] AWAITING approval → push (LOCAL ONLY; includes design polish passes from earlier today)
 - [ ] After approval: link the page from /fiskeudstyr/ overview (+ evt. header/forside)
+
+# Session 56 (Fiskeri-på-kysten striking-distance fix, 2026-08-03) — DONE
+
+Pulled Search Console pages at position 4-12 with ≥15 impressions (28-day window) per
+Aldin's request. Biggest 0%-CTR anomaly: `/fiskeguide/fiskeri-paa-kysten/` ranking
+pos ~8 for "hvad kan man fange af fisk nu" (137 impr) and "hvilke fisk kan man fange
+nu" (121 impr), both 0 clicks. WebSearch confirmed every top-ranking competitor for
+this cluster is literally a "Fiskekalender" page — a title/format mismatch, not just
+a ranking problem.
+
+- [x] Extracted the homepage's inline "Hvad bider lige nu?" block into a reusable
+      `WhatsBitingNow.astro` component + shared `src/data/season-data.ts` (pure
+      extraction, zero visual change to homepage — verified in built HTML)
+- [x] Embedded it on the kysten page as a new H2 "Hvad kan du fange fra kysten lige
+      nu?", with `excludeSpecies=["Regnbueørred","Aborre","Gedde"]` to filter out
+      freshwater-only species — no new season data invented, just filtered display
+- [x] Rewrote title/description to include "lige nu" phrasing for the CTR fix
+- [x] Deliberately did NOT expand the fladfisk section — Aldin has a dedicated
+      `/guide-til-fisk/fladfisk-fiskeri/` page with more depth and didn't want this
+      page cannibalizing it
+- [x] Build verified clean (89 pages); confirmed rendered title/description/H2/fish
+      chips in dist output before cleaning up dist/
+- [ ] Re-check Search Console in ~3-4 weeks for position/CTR movement on the two
+      biggest queries

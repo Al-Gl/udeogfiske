@@ -1,3 +1,42 @@
+## 2026-09-01 — New blog post: rense/opbevare makrel (Session 56)
+
+Built a new `/blog/rense-og-opbevare-makrel/` article covering how to clean and store
+mackerel so it doesn't spoil — original editorial content, not a live-site migration.
+
+**Keyword research:** DataForSEO's verification block (pending since 2026-07-31) is now
+resolved. This is a genuinely low-volume niche in Denmark — most cleaning/storage phrases
+score at or near 0 in Google Ads data — so the page targets "rense makrel" (vol 10/mo,
+low competition, seasonal spike Aug/Sep) as primary, with "filetere makrel" and "rense
+fisk" as secondary, and covers several zero-volume-but-intent-clear phrases
+(holdbarhed, opbevaring, fryse fisk) on-page for AI Overview/answer-engine citability
+rather than raw search volume.
+
+**Content:** followed the existing `multefiskeri-i-danmark` blog template exactly —
+MainLayout with FAQ schema (3 questions, no visible accordion, matching how every other
+blog post handles FAQ), an answer-capsule, and 7 Q&A-phrased H2 sections walking from
+"why does mackerel spoil so fast" (fat/blood content vs. lean fish) through cooling
+speed after landing, step-by-step gutting, fridge/freezer shelf life, spoilage signs,
+and a trip checklist. Added a DidYouKnow, TipBox, StatHighlight, two `<Affiliate>` boxes
+(a saltwater fillet knife and a fish bag with ice boxes), a GuideLink back to the
+existing makrelfiskeri fishing guide, and a RelatedRow to three co-seasonal species pages.
+
+**Images:** generated a hero + 2 inline photos via nano-banana — deliberately avoided
+close-up fish-anatomy shots (a known AI-rendering tell): the hero is a wide/elevated shot
+of whole mackerel on ice in a crate, one inline image is fish-free (a cooler bag on a
+pier), and the other shows hands with a fillet knife from an over-the-shoulder angle.
+
+**Mistake caught and fixed:** verified the page in an actual browser (not just a clean
+build) by temporarily installing Playwright locally (`npm install --no-save`, removed
+afterward, package.json/lock confirmed unchanged) and screenshotting the rendered page.
+In the process, running the repo's `scripts/optimize-images.mjs` re-compressed every
+image in `public/images/`, not just the 3 new ones — a lossy re-encode that touched
+roughly 90 unrelated, already-optimized images with no net benefit. Caught this via
+`git status` before considering the work done, and reverted with
+`git checkout -- public/images/`, leaving only the 3 new mackerel images as changes.
+Rebuilt clean afterward (90 pages).
+
+Nothing pushed or committed — left for the owner's explicit go-ahead.
+
 ## 2026-08-01 — Makrelfiskeri SEO optimization (Session 55)
 
 Resumed the makrelfiskeri optimization parked in Session 54c. DataForSEO verification
@@ -38,6 +77,68 @@ remain uncommitted in `todo.md`/`review.md` at the owner's request — not part 
 ---
 
 # Review log
+
+## 2026-07-31 — Search Console + YouTube metrics pipeline (Session 54b)
+
+User wants the `ceo` skill working from real numbers, not manual paste, for Search
+Console + YouTube (explicitly not AdSense — that's not being connected). Chose the
+"automated via API" option over manual export or chat-paste.
+
+Built `scripts/metrics/` — a small standalone Node tool (only dependency:
+`googleapis`), separate from the Astro site's own `package.json` so it doesn't affect
+the build:
+
+- **`auth.mjs`** — one-time OAuth loopback flow (Search Console needs authorization
+  since it's private property data; YouTube channel stats are public and only need an
+  API key, no OAuth).
+- **`fetch-metrics.mjs`** — pulls the last 3 full calendar months of Search Console
+  clicks/impressions plus current YouTube subscriber/view/video counts, writes
+  `data/metrics.json`.
+- **`README.md`** — full one-time setup walkthrough (Google Cloud project, enabling
+  the Search Console API + YouTube Data API v3, OAuth consent screen, Desktop OAuth
+  client, API key, filling in `config.json`).
+- `.gitignore` updated so `credentials.json`, `token.json`, and `data/metrics.json`
+  never get committed.
+- `ceo` skill updated to read `data/metrics.json` when present, flag it as stale past
+  ~30 days, and explicitly *not* treat Search Console "clicks" as the same metric as
+  the Google Analytics "sessions" number the 2026 target was set from — noted as a
+  proxy, not a like-for-like substitute.
+
+Could not run the OAuth authorization step myself (needs the owner's real browser +
+Google login) — that one-time setup is still on the owner, documented step by step in
+the README. Affiliate revenue still has no API source and stays manual.
+
+---
+
+## 2026-07-31 — Company goals, roadmap & CEO skill (Session 54)
+
+Created the strategic layer for the project, at the owner's request, ahead of any more
+content/code work:
+
+- **`GOALS.md`** — mission, revenue model (affiliate active / ads blocked on AdSense
+  review / sponsorships not yet realistic), current baseline (500 sessions/mo, down from
+  1,000-1,300, largely attributed to AI Overviews; 190 DKK affiliate revenue), 2026
+  target (double traffic, 500 DKK/mo affiliate revenue), and 5 guiding principles. Names
+  the AI Overview traffic hit as the core strategic problem to solve, not just a bad
+  quarter — the fix is leaning into content Google's AI can't easily summarize
+  (first-person trip reports, named-spot knowledge, product reviews) rather than more
+  generic informational pages.
+- **`ROADMAP.md`** — Q3 2026 (diagnose the AI Overview hit, unblock AdSense, affiliate
+  performance audit, shift new content toward experience/commercial angles, clear
+  redirect debt) and Q4 2026 (double down on what Q3 proves works, seasonal content,
+  YouTube/Instagram → site funnels, mid-point progress check) as concrete milestones;
+  2027/2028 as directional themes only, to be sharpened once 2026 data comes in.
+- **`.claude/skills/ceo/SKILL.md`** — new `ceo` skill. Persona is an experienced
+  affiliate-site/growth operator, not a generic assistant: reads `GOALS.md` +
+  `ROADMAP.md` (+ recent `todo.md` activity) before responding, gives ROI-ranked next
+  actions, updates the baseline/roadmap when the owner reports new numbers, and pushes
+  back on ideas that don't serve the 2026 target. Works both on-demand and as a periodic
+  check-in via `/loop` or `/schedule`, per the owner's preference.
+
+No site code touched this session — purely the strategic docs + skill the owner asked
+to have in place before the next round of content/SEO work.
+
+---
 
 ## 2026-07-14 — AdSense fill-fix + placeholder auto-hide (Session 56, del 3)
 
@@ -5207,3 +5308,39 @@ Verified via local-server screenshots (desktop 1280 + mobile 390): 16:9 images, 
 **Wiring:** blog index card (chip "Familie", 1-line desc per new card style), sitemap.xml, llms.txt. Internal links: fiskeri-for-born (GuideLink closer + related), fisketegn, put-take.
 
 **Verification:** build clean 89 pages; rendered checks: title 59, desc 151, FAQPage+Article schema, 8/8 imgs w/ dims, 6 affiliate links, all internal links present. Localhost screenshots confirm hero + affiliate card render correctly. **Committed locally, NOT pushed** (per CLAUDE.md rule 8 — awaiting Aldin's go-ahead).
+
+## Fiskeri-på-kysten striking-distance fix (2026-08-03)
+
+**Problem found:** Search Console pages at position 4-12 (Aldin's request), sorted by
+impressions. `/fiskeguide/fiskeri-paa-kysten/` stood out: ~350 impr/month across
+"hvad kan man fange af fisk nu" / "hvilke fisk kan man fange nu" / "hvad fisker man
+efter nu" queries, position 7-9, but **0.00% CTR** — abnormal even for that position.
+A WebSearch check showed every top-ranking competitor for this cluster is a
+"Fiskekalender" branded page, confirming a title/format mismatch rather than a pure
+ranking problem.
+
+**Fix (simple, two parts, both approved by Aldin before implementing):**
+1. Extracted the homepage's existing "Hvad bider lige nu?" block (inline markup +
+   data in `index.astro`) into `src/components/WhatsBitingNow.astro` +
+   `src/data/season-data.ts`, so it's a real reusable component instead of
+   copy-pasted markup. Homepage output is unchanged — confirmed byte-for-byte
+   equivalent rendering in `dist/index.html` before/after.
+2. Embedded that component on the kysten page as a new Q&A H2 ("Hvad kan du fange
+   fra kysten lige nu?"), passing `excludeSpecies={["Regnbueørred","Aborre","Gedde"]}`
+   so the freshwater-only species don't show on a coastal page. No new season data
+   was fabricated — same tips/months already live on the homepage, just filtered.
+3. Rewrote title → "Fiskeri på kysten – Hvad kan du fange lige nu? | Ude og Fiske"
+   and description → "Hvad bider fra den danske kyst lige nu? ..." to close the CTR
+   gap even before any ranking movement.
+
+**Explicitly out of scope:** did not touch/expand the fladfisk section — Aldin
+already has a dedicated `/guide-til-fisk/fladfisk-fiskeri/` page with more depth and
+didn't want this page competing with it for the same queries.
+
+**Verification:** `npm run build` clean, 89 pages. Grepped rendered `dist/` output to
+confirm: new title/description present, new H2 text present, fish-chip list shows
+exactly `Makrel` + `Fladfisk` for the current month (August) with no freshwater
+species leaking through the filter. Deleted `dist/` afterward (verification-only,
+not committed).
+
+**Pushed live** — see commit for file list.

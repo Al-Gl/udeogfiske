@@ -1,3 +1,137 @@
+# Plan — Session 57 (2 new pages + havørredfiskeri hub SEO push, 2026-09-11)
+
+## Context
+
+User asked for a Search Console + volume-based content gap analysis for udeogfiske.dk
+(real GSC data via `scripts/metrics/`, re-authorized this session — token had expired,
+"Testing" OAuth consent screens expire refresh tokens after ~7 days idle). Picked 2 of
+the 5 gap pages surfaced, plus a dedicated optimization pass on the havørred hub page
+since the owner says it's "still dropping in the rankings" and wants top 5.
+
+**Data behind this plan** (90-day Search Console query+page pulls, live SERP check via
+DataForSEO, Lighthouse audit — see conversation for full detail, not re-copied here):
+- `/guide-til-fisk/havorredfiskeri/` avg position: Mar 8.3 → Apr 14.8 → May 24.3 →
+  **Jun 33.4 (low point)** → Jul 24.7 → Aug 21.4 → Sep 25.6 (partial month, only 11 days
+  of data — not a fresh crash, same post-migration dip previously diagnosed in Session
+  54c). Head term "havørred" (441 impr/90d) sits at position 17, 0% CTR — page isn't in
+  Google's top 10 for it at all right now (live SERP check confirms: fishingindenmark.info,
+  Wikipedia, lfst.dk, havorredlimfjorden.dk, lystfisk.dk, naturporten.dk, seatrout.dk,
+  havørred.dk, fiskogfri.dk occupy the 9 organic slots, alongside a Knowledge Graph panel,
+  a 4-question People-Also-Ask/AI-Overview block, and a video carousel).
+- Lighthouse (both mobile + desktop): Performance 91-98, SEO 100, Best Practices 100,
+  good LCP/CLS. **Not a technical problem** — desktop avg position (35.9) being worse
+  than mobile (19.6) in GSC is a SERP-layout artifact (rich features eat more desktop
+  real estate), not a page bug.
+- Live PAA box for "havørred" asks exactly 3 questions the page doesn't yet answer
+  directly: "Hvad er forskellen på havørred og laks?" (matches unaddressed queries
+  "havørred laks" + "havørred vs laks", 164 impr/90d, pos 54-58), "Hvor mange havørred
+  må man hjemtage?" (bag limit — page has season/size regs but no explicit daily-quota
+  answer), "Er det svært at fange havørred?" (already covered — DifficultyMeter exists).
+- Other confirmed on-page gaps from query data: no Jutland spots (Vejle Fjord 97 impr
+  pos 33.8, Vestkysten 97 impr pos 38.9 — "5 bedste spots" section is 100% Sjælland),
+  no natural-bait/orm coverage ("fange havørred med orm" 102 impr, pos 46.5), no jig
+  mention ("havørred jig" 97 impr, pos 24.8), weak internal link to the existing
+  `natfiskeri-efter-havorred` subpage ("kan man fange havørret om natten" 79 impr,
+  pos 70.1 despite a dedicated page existing).
+- Site-wide gap queries (not page-specific): "havørred vinter" + "havørred vinter agn"
+  (884 impr/90d combined, best pos 19.6-30.1, served only by the general hub — all 12
+  individual month pages already exist, but nothing answers the broader "winter
+  technique" intent) and "fisker uddannelse" (332 impr/90d, pos 44-54, caught by the
+  homepage — zero dedicated page; verified via WebSearch this has real recreational
+  intent: FOF lystfiskerkursus, Dansk Lystfiskeri's fiskeguide-uddannelse, Danmarks
+  Sportsfiskerforbund's "Før du fisker" platform all exist and are on-brand).
+
+## A. New page — Havørredfiskeri om vinteren — DONE
+
+**Slug:** `src/pages/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/index.astro`
+(inside the havørred category, alongside the 12 monthly pages, per user instruction).
+
+- [x] 1. Write the page reusing already-vetted facts from the hub's own `agnFinder`
+      'vinter' entry (blink m. aggressiv gang, pink/orange provokation, midt på dagen,
+      langsomt & dybt, productId `503581`) and `seasons` 'vinter' entry (fjorde/dybere
+      vand, fredning, nedfaldsfisk) — no new facts invented, just expanded into a full
+      standalone guide. Used the officially-verified fredning date (16. nov–15. jan,
+      confirmed via lfst.dk) rather than the hub's `seasons` array text, which has a
+      pre-existing "15. november" typo — flagged below, not fixed (out of scope).
+      Q&A H2s as planned.
+- [x] 2. Components: `DifficultyMeter` (78), `TipBox`, `DidYouKnow`, `StatHighlight`
+      ("Under 6 °C"), `Affiliate productId="503581"` (Hansen SD Stripper, Pink Pig,
+      reused from hub, validated at build).
+- [x] 3. 3 fish-free nano-banana images generated (winter fjord hero w/ distant angler
+      silhouette, frosty-dock provocation-blink close-up, sheltered fjord inlet at
+      golden hour) — visually confirmed fish-free before use.
+- [x] 4. Added 2 `GuideLink`s FROM the hub TO this page (see C.7) — one placed after
+      the agn-finder tool (contextually next to the existing vinter tab), reinforcing
+      each other.
+- [x] 5. `RelatedRow`: december + januar monthly pages + catch-and-release.
+- [x] 6. `npm run build` — clean, 92 pages.
+
+## B. New page — Bliv lystfisker (fishing courses/education) — DONE
+
+**Slug:** `src/pages/fiskeguide/bliv-lystfisker/index.astro`.
+
+- [x] 1. Verified the 3 external resources via WebFetch (FOF lystfiskerkursus —
+      1.350 kr for one specific session, phrased as an example not a fixed price;
+      Dansk Lystfiskeri fiskeguide-uddannelse — no public price, so the page says
+      "kontakt for optag og pris" rather than inventing one; Danmarks
+      Sportsfiskerforbund "Før du fisker" — confirmed free, foerdufisker.sportsfiskeren.dk).
+- [x] 2. Q&A H2s as planned.
+- [x] 3. Components: `DifficultyMeter` (15), `TipBox`, `DidYouKnow`, 2 `GuideLink`s
+      (put-take-fiskeri, fiskesaet-for-begyndere) + 1 more to fisketegn. FAQ block (4).
+- [x] 4. 3 fish-free images generated (beginner casting lesson on a pier, starter-kit
+      flat-lay, calm approachable shoreline).
+- [x] 5. Added to the `/fiskeguide/` category index card grid (`secondary` array, 7th
+      card, chip "Kom i gang").
+- [x] 6. `npm run build` — clean, 92 pages.
+
+## C. Optimization pass — `/guide-til-fisk/havorredfiskeri/` — DONE (additions only,
+      no verbatim content changed, per established house pattern from Session 52)
+
+- [x] 1. New H2 "Hvad er forskellen på havørred og laks?" — 4-point comparison
+      (pletmønster under sidelinjen, halens facon, kropsform, sjælden vild laks i DK
+      / Skjern Å). Fact-checked against 3 independent Danish angling sources after
+      writing — all claims confirmed accurate.
+- [x] 2. New FAQ "Hvor mange havørred må man hjemtage om dagen?" — verified via
+      WebSearch (TV2 Bornholm, LFST regional page, bornholm.info): no general national
+      daily quota, Bornholm/Christiansø capped at 3/angler/day (max 3/boat).
+- [x] 3. Added a short paragraph after the 5 Sjælland spots: Vejle Fjord (Rosenvold,
+      Trelde Næs) + Vestkysten (Rubjerg Knude) — both verified via WebSearch against
+      independent regional fishing-spot sources, not invented.
+- [x] 4. New FAQ "Kan man fange havørred med orm?" — honest answer (yes, but the site
+      voice prefers artificial lures) rather than a mid-article paragraph, to avoid
+      clashing tonally with the all-artificial-lure gear section.
+- [x] 5. One-sentence jig addition in the "Pro-Tip: Spinstoppet" paragraph.
+- [x] 6. Added a `GuideLink` to `natfiskeri-efter-havorred` higher up the page (near
+      the seasonal carousel, contextually next to the sommer/night content) — note:
+      a link to this subpage already existed lower down in the "sub-guides" section,
+      so this adds a second, more prominent, better-anchor-texted one rather than
+      being the first link ever.
+- [x] 7. `GuideLink` to the new vinter page, placed after the agn-finder tool.
+- [x] 8. Bumped `dateModified` to 2026-09-11.
+- [x] 9. `npm run build` — clean. Verified visually via a temporary local Playwright
+      install (removed again after — package.json/package-lock.json confirmed
+      byte-identical before/after): both new pages screenshot cleanly end-to-end, and
+      targeted element screenshots of the hub's 2 new GuideLinks + new H2 section +
+      Jutland paragraph all render correctly with no layout breaks.
+- [ ] 10. Note for later (not this session): re-pull Search Console position for this
+       page in 3-4 weeks once September has a full month of data, to separate real
+       movement from partial-month noise.
+
+**Flagged but not fixed (out of scope this session):** the hub's `seasons` array
+(vinter entry, used by the seasonal carousel) says fredning "15. november til 15.
+januar" — the officially correct date (confirmed via lfst.dk) is 16. november. The
+rest of the page states 16. november correctly in 3 other places; this is a one-off
+pre-existing typo isolated to that one carousel lead paragraph. Small, easy fix for a
+future session.
+
+## D. Wrap-up (both sections)
+
+- [x] 1. Appended Session 57 review entry to `review.md`.
+- [ ] 2. Do NOT `git push` — commit locally only, wait for explicit go-ahead per
+      [[feedback_uof_no_push_without_prompt]].
+
+---
+
 # Session 56 (New blog post: rense/opbevare makrel, 2026-09-01) — DONE
 
 New blog article on cleaning/gutting and storing mackerel so it doesn't spoil (fatty fish,

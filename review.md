@@ -1,3 +1,65 @@
+## 2026-09-11 — 2 new pages + havørredfiskeri hub SEO push (Session 57)
+
+Re-authorized the Search Console OAuth token (expired — "Testing" consent screens
+revoke refresh tokens after ~7 days idle) and pulled real 90-day query+page data,
+a live SERP check, and a Lighthouse audit for `/guide-til-fisk/havorredfiskeri/`,
+which the owner flagged as "still dropping in the rankings" and wants competing for
+top 5. Confirmed the drop is content/competition, not technical: Lighthouse scored
+91-98 performance, 100 SEO, good Core Web Vitals on both devices. Position history:
+Mar 8.3 → Jun 33.4 (low) → Aug 21.4 → Sep 25.6 (partial month, only 11 days of data).
+
+**New page — Havørredfiskeri om vinteren**
+(`/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/`, alongside the 12 existing
+monthly pages, per owner's placement instruction). Targets "havørred vinter" +
+"havørred vinter agn" (884 impr/90d combined, previously served only by the general
+hub at position 19-30 — all 12 individual months already exist, but nothing answered
+the broader winter-technique intent). Built entirely from facts already vetted
+elsewhere in the codebase — the hub's own `agnFinder`/`seasons` "vinter" entries
+(provocation-not-food framing, pink/orange blink, Hansen SD Stripper productId
+`503581`, midday timing, fjord/deep-sea choice) — rather than inventing anything new.
+Used the officially-correct fredning date (16. nov–15. jan, verified via lfst.dk)
+instead of a "15. november" typo that exists in the hub's own carousel text (flagged,
+not fixed — out of scope). 3 fish-free nano-banana images (moody winter fjord with a
+distant angler silhouette, frosty-dock blink close-up, sheltered inlet at golden
+hour).
+
+**New page — Bliv lystfisker** (`/fiskeguide/bliv-lystfisker/`, per owner's placement
+instruction). Targets "fisker uddannelse" (332 impr/90d, caught by the homepage at
+position 44-54 — zero dedicated page existed). Verified real recreational intent via
+WebSearch before committing to the angle (the phrase could have meant vocational
+fishing training instead): FOF's beginner lystfiskerkursus, Dansk Lystfiskeri's
+national fiskeguide-uddannelse, and Danmarks Sportsfiskerforbund's free "Før du
+fisker" test all confirmed via WebFetch. Kept pricing honest — FOF's 1.350 kr is
+framed as one example session's price, not a universal figure, and the guide
+certification's price is left as "contact for pricing" since none is published.
+3 fish-free images (beginner casting lesson on a pier, starter-kit flat-lay, calm
+approachable shoreline). Added as a 7th card to the `/fiskeguide/` index grid.
+
+**Optimization pass — `/guide-til-fisk/havorredfiskeri/`** (additions only, no
+verbatim content touched, matching the established Session 52 pattern): a new H2
+"Hvad er forskellen på havørred og laks?" answering a live AI-Overview/PAA question
+Google shows for the head term "havørred" (fact-checked against 3 independent Danish
+angling sources after writing); a new FAQ on the daily bag limit (no general national
+quota; Bornholm/Christiansø caps at 3/angler/day — verified via TV2 Bornholm + the
+LFST regional page); a short paragraph adding Vejle Fjord and the Jutland west coast
+next to the existing 5-spot, Sjælland-only list (both spots verified via WebSearch
+against independent regional sources); a new FAQ on natural bait ("kan man fange
+havørred med orm?"); a one-sentence jig mention in the gear section; a second, more
+prominently-placed `GuideLink` to the existing `natfiskeri-efter-havorred` subpage
+(one already existed further down the page in the sub-guides grid); a `GuideLink` to
+the new vinter page; and a `dateModified` bump.
+
+**Verification:** `npm run build` clean at 92 pages. Re-verified in a real browser via
+a temporary local Playwright install (`npm install --no-save`, removed afterward —
+package.json/package-lock.json confirmed byte-identical before/after): full-page
+screenshots of both new pages, plus targeted element screenshots of the hub's 2 new
+GuideLinks, the new H2 comparison section, and the Jutland paragraph — all rendered
+cleanly with no layout breaks. Also deleted the one-off Search Console analysis
+scripts written during research (kept the permanent `scripts/metrics/` pipeline
+untouched).
+
+Nothing pushed — committed locally only, per [[feedback_uof_no_push_without_prompt]].
+
 ## 2026-09-01 — New blog post: rense/opbevare makrel (Session 56)
 
 Built a new `/blog/rense-og-opbevare-makrel/` article covering how to clean and store

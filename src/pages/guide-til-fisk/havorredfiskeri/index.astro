@@ -8,6 +8,7 @@ import Affiliate from '../../../components/Affiliate.astro';
 import DidYouKnow from '../../../components/DidYouKnow.astro';
 import TipBox from '../../../components/TipBox.astro';
 import StatHighlight from '../../../components/StatHighlight.astro';
+import GuideLink from '../../../components/GuideLink.astro';
 import { getProduct, formatPrice } from '../../../lib/feed';
 
 // Sæson-vælger — anbefalet agn pr. årstid. Cards are pre-rendered server-side
@@ -195,6 +196,14 @@ const faqs = [
     question: "Må jeg tage havørred med hjem?",
     answer: "Ja, hvis fisken er minimum 40 cm, blank med løse skæl, ikke i gydedragt (16. november – 15. januar), ikke fra fredningsbælte, og du har gyldigt fisketegn. Mange erfarne fiskere praktiserer catch & release for at bevare bestanden — især store rogn-fisk over 50 cm bør genudsættes.",
   },
+  {
+    question: "Hvor mange havørred må man hjemtage om dagen?",
+    answer: "I det meste af Danmark er der ingen generel grænse for, hvor mange havørreder du må tage med hjem om dagen — kun mindstemål og fredningstider gælder. Den store undtagelse er farvandet omkring Bornholm og Christiansø, hvor der er en fast kvote på maksimalt 3 havørreder pr. fisker om dagen (og maksimalt 3 pr. båd).",
+  },
+  {
+    question: "Kan man fange havørred med orm?",
+    answer: "Ja, orm virker fint på havørred — især børsteorm ved kysten i marts under sværmningen, og regnorm i åmundinger. Jeg fisker dog selv næsten altid med kunstig agn (blink, gennemløber eller flue), fordi det giver mig mere kontrol over dybde og præsentation. Bruger du naturlig agn, skal du stadig holde dig til mindstemål og fredningsregler som ved al andet havørredfiskeri.",
+  },
 ];
 
 const about = [
@@ -219,7 +228,7 @@ const about = [
     headline: "Havørredfiskeri – Fiskeri efter havørred på kyst og fjord",
     image: "/images/havørred_card.jpeg",
     datePublished: "2024-07-14",
-    dateModified: "2026-05-03",
+    dateModified: "2026-09-11",
   }}
   faq={faqs}
   about={about}
@@ -393,6 +402,8 @@ const about = [
           <li><strong>Bøgeskoven (Stevns):</strong> Fiskeri ved Stevns er en naturoplevelse i særklasse med klinten i baggrunden. Ved Bøgeskoven finder du store sten, blæretang og dybere vand tæt på kysten. Det er en plads, der lugter langt væk af storørred, og hvor du ofte kan fange fisk, der trækker langs kysten på jagt efter tobis.</li>
           <li><strong>Køge Sønakke:</strong> Lidt syd for Køge finder du dette spændende stræk. Her er bunden utrolig varieret med små rev og sten, der bryder vandet. Det er et område, der holder fisk året rundt, og som især kan være gavmildt, når vinden har rørt lidt op i vandet og gjort ørrederne mindre sky.</li>
         </ul>
+
+        <p>Sjælland er langt fra det hele billede. På <strong>Vejle Fjord</strong> ligger fiskepladserne som perler på en snor langs begge sider — <strong>Rosenvold</strong> på nordsiden er et solidt helårssted, mens <strong>Trelde Næs</strong> på sydsiden fisker bedst i sydvestlig vind. På <strong>vestkysten</strong> af Jylland er <strong>Rubjerg Knude</strong> en helårsplads med bedst fiskeri om sommeren i østenvind. Bor du i Jylland, er det lige så oplagte steder at starte som Sjællands klassikere.</p>
       </article>
 
       <article class="article">
@@ -447,7 +458,7 @@ const about = [
 
         <h3>Pro-Tip: Spinstoppet er din bedste ven</h3>
         <p>Uanset om du vælger blink eller gennemløber, så husk: En havørred hugger sjældent, mens du bare spinner ind. Den hugger, når agnen mister fart og daler/roterer. Det imiterer en syg fisk eller reje.</p>
-        <p><strong>Tommelfingerregel:</strong> Lav et spinstop (pause i indspinningen) hver 3–5 meter. De fleste hug falder præcis i det sekund, du stopper hjulet.</p>
+        <p><strong>Tommelfingerregel:</strong> Lav et spinstop (pause i indspinningen) hver 3–5 meter. De fleste hug falder præcis i det sekund, du stopper hjulet. Er der meget skidt i vandet, eller vil du prøve noget andet, kan et <strong>jig</strong> (blyhoved med gummifisk) fiskes med samme princip — lad det synke til bunden mellem hvert ryk, så det efterligner en skadet fisk.</p>
         <p>Personligt har jeg 20 blink med, når jeg skal ud og fiske havørred med spinnestangen. Ca. 15 er gennemløbs blink, hvoraf de fleste er Sandeels. Det er bare det, som fungerer for mig.</p>
         <p>Prøv dig frem, vælg de blink DU tror på, så skal der nok komme fisk i nettet.</p>
 
@@ -704,6 +715,12 @@ const about = [
           })();
         </script>
 
+        <GuideLink
+          href="/guide-til-fisk/havorredfiskeri/natfiskeri-efter-havorred/"
+          title="Kan man fange havørred om natten? Læs den fulde natfiskeri-guide"
+          desc="Sommerens største fisk tages ofte efter mørkets frembrud — sådan gør du."
+        />
+
         <section class="year-bands" aria-labelledby="yb-heading">
           <header class="yb-header">
             <span class="yb-eyebrow">Måned for måned</span>
@@ -921,6 +938,12 @@ const about = [
           })();
         </script>
 
+        <GuideLink
+          href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/"
+          title="Læs den fulde guide til havørredfiskeri om vinteren"
+          desc="Provokation frem for føde — sådan fanger du havørred, når vandet er koldt."
+        />
+
         <h2>Hvilke typer havørred findes der ved kysten?</h2>
         <p>Havørreden ved kysten findes i flere varianter, som hver især har deres egne kendetegn og navne, alt efter deres størrelse, kondition og hvor de er i deres livscyklus. Det er vigtigt at kende forskel på disse typer, da det har stor betydning for fiskeriet og fiskens tilstand. Her er en gennemgang af de forskellige typer havørred, man kan støde på ved de danske kyster:</p>
 
@@ -947,6 +970,16 @@ const about = [
         </ul>
 
         <p>Disse forskellige typer havørreder viser den store variation, man kan opleve ved kystfiskeri, og kendskab til dem kan hjælpe fiskere med at forstå fiskens adfærd og vælge de rette strategier.</p>
+
+        <h2>Hvad er forskellen på havørred og laks?</h2>
+        <p>Havørred og laks forveksles ofte, fordi begge er sølvblanke, sultne rovfisk, der vandrer mellem hav og ferskvand. Men de er to forskellige arter, og der er nogle klare kendetegn, du kan bruge til at skille dem fra hinanden ved vandkanten.</p>
+        <ul>
+          <li><strong>Prikker:</strong> Havørred har mørke pletter spredt over hele kroppen, også under sidelinjen. Laks har typisk kun pletter over sidelinjen og på gællelåget, og de sidder mere sparsomt.</li>
+          <li><strong>Halens facon:</strong> Havørredens halefinne er stort set lige afskåret eller let indbuet. Laksens hale er mere tydeligt indbuet ("v-formet").</li>
+          <li><strong>Krop og hoved:</strong> Havørreden har typisk en dybere, mere robust krop, mens laksen er slankere og mere strømlinet, med et spidsere hoved.</li>
+          <li><strong>Størrelse i danske vande:</strong> Vild laks er sjælden i Danmark og fanges primært i enkelte vestjyske åer (fx Skjern Å) — møder du en stor, blank fisk ved den almindelige kyst, er det langt oftest en havørred.</li>
+        </ul>
+        <p>I tvivlstilfælde er pletmønstret under sidelinjen det mest pålidelige kendetegn: har fisken pletter hele vejen ned, er det en havørred.</p>
 
         <h2>Hvad er reglerne for havørredfiskeri i Danmark?</h2>
         <p>Det lyder kedeligt, men det er vigtigt — og det er ikke svært at lære. Her er de regler jeg altid har i baghovedet, inden jeg tager til en ny plads.</p>
@@ -1106,6 +1139,20 @@ const about = [
                 <li>Du har gyldigt fisketegn</li>
               </ul>
               <p><strong>Ansvarligt fiskeri:</strong> Mange erfarne fiskere praktiserer catch &amp; release for at bevare bestanden. Især store rogn-fisk (50+ cm) bør genudsættes da de sikrer fremtidige generationer. Tag kun hvad du skal bruge til et måltid — bevare fiskeriet for fremtiden!</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary><h3>Hvor mange havørred må man hjemtage om dagen?</h3></summary>
+            <div class="faq-answer">
+              <p><strong>I det meste af Danmark er der ingen generel grænse</strong> for, hvor mange havørreder du må tage med hjem om dagen — kun mindstemål (40 cm) og fredningstider gælder. Den store undtagelse er farvandet omkring <strong>Bornholm og Christiansø</strong>, hvor der er en fast kvote på maksimalt <strong>3 havørreder pr. fisker om dagen</strong> (og maksimalt 3 pr. båd) — fanger du flere, skal de straks genudsættes.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary><h3>Kan man fange havørred med orm?</h3></summary>
+            <div class="faq-answer">
+              <p><strong>Ja</strong> — orm virker fint på havørred, især børsteorm ved kysten under sværmningen i marts, og regnorm i åmundinger. Jeg fisker dog selv næsten altid med kunstig agn (blink, gennemløber eller flue), fordi det giver mig mere kontrol over dybde og præsentation. Bruger du naturlig agn, gælder de samme mindstemål og fredningsregler som ved alt andet havørredfiskeri.</p>
             </div>
           </details>
         </div>

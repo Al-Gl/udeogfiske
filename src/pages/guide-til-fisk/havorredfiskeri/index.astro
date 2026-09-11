@@ -1168,8 +1168,14 @@ const about = [
       <section class="sub-guides">
         <div class="sub-eyebrow">Detaljerede havørred-guides</div>
         <h2 class="sub-title">Dyk dybere ned i havørredfiskeriet</h2>
-        <p class="sub-lead">Tre dedikerede guides til specifikke teknikker og emner inden for havørredfiskeri — fra spinnefiskerens grundkursus til de magiske sommernætter og biologien bag fiskens kondition.</p>
+        <p class="sub-lead">Fire dedikerede guides til specifikke teknikker og emner inden for havørredfiskeri — fra spinnefiskerens grundkursus til vinterens provokationsfiskeri, de magiske sommernætter og biologien bag fiskens kondition.</p>
         <div class="sub-grid">
+          <a class="sub-card" href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/">
+            <div class="sub-chip">Sæson</div>
+            <h3>Havørredfiskeri om vinteren</h3>
+            <p>Provokation frem for føde. Sådan finder du fisken, vælger agnet og timer dagen, når vandet er koldt.</p>
+            <span class="sub-cta">Læs guiden →</span>
+          </a>
           <a class="sub-card" href="/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/">
             <div class="sub-chip">Teknik</div>
             <h3>Spinnefiskeri efter havørreder</h3>
@@ -2001,7 +2007,7 @@ const about = [
   }
   .sub-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
   }
   .sub-card {
@@ -2055,6 +2061,9 @@ const about = [
     margin-top: 0.5rem;
   }
   .sub-card:hover .sub-cta { color: #0d4a5e; }
+  @media (max-width: 920px) {
+    .sub-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 760px) {
     .sub-grid { grid-template-columns: 1fr; }
     .sub-guides { padding: 2rem 1.25rem; }

@@ -734,6 +734,13 @@ const about = [
               <span class="yb-months">Dec – Feb</span>
             </div>
             <ul class="yb-grid" role="list">
+              <li class="yb-tile yb-tile--guide">
+                <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/">
+                  <span class="yb-num">✦</span>
+                  <span class="yb-name">Vinterguide</span>
+                  <span class="yb-hook">Strategien for hele sæsonen</span>
+                </a>
+              </li>
               <li class="yb-tile">
                 <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-december/">
                   <span class="yb-num">12</span>
@@ -2182,7 +2189,13 @@ const about = [
     line-height: 1.45;
   }
 
+  .yb-vinter .yb-grid { grid-template-columns: repeat(4, 1fr); }
+  .yb-tile--guide a { background: #f6f9fa; }
+  .yb-tile--guide a:hover { background: #eef2f6; }
+  .yb-tile--guide .yb-num { color: #c47d0a; font-size: 0.9375rem; }
+
   @media (max-width: 720px) {
+    .yb-vinter .yb-grid { grid-template-columns: 1fr; }
     .year-bands { gap: 1rem; margin: 3rem auto 2.5rem; }
     .yb-head { padding: 0.75rem 1rem; }
     .yb-grid { grid-template-columns: 1fr; }

@@ -6,7 +6,7 @@ Sproget er dansk. Hovedemner: saltvands- og ferskvandsfiskeri i Danmark — hav�
 
 ## Guide til fisk (fiskearter)
 - [Guide til fisk – oversigt](https://udeogfiske.dk/guide-til-fisk/): Indgang til alle artsguider.
-- [Havørredfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/): Komplet guide til havørred på kysten — agn, grej, sæson og biologi. Har også 12 månedsguider (januar–december) og uddybende guider til [konditionsfaktor](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/), [natfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/natfiskeri-efter-havorred/) og [spinnefiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/).
+- [Havørredfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/): Komplet guide til havørred på kysten — agn, grej, sæson og biologi. Har også 12 månedsguider (januar–december), en [vinterguide](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/) om provokationsfiskeri i koldt vand, og uddybende guider til [konditionsfaktor](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/konditionsfaktor-havorred/), [natfiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/natfiskeri-efter-havorred/) og [spinnefiskeri](https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/).
 - [Torskefiskeri](https://udeogfiske.dk/guide-til-fisk/torskefiskeri/): Torsk fra kyst, mole og båd — jig, blink, pirk og naturagn.
 - [Havbarsfiskeri](https://udeogfiske.dk/guide-til-fisk/havbarsfiskeri/): Europæisk havbars fra kyst og havn — popper, sandeel-imitator, jig og swim shad. Peak-sæson juli–september, ofte ind i oktober.
 - [Geddefiskeri](https://udeogfiske.dk/guide-til-fisk/geddefiskeri/): Gedde i søer og åer — woblere, gummidyr, spinnere og fluer, med fokus på wireforfang.
@@ -30,6 +30,7 @@ Sproget er dansk. Hovedemner: saltvands- og ferskvandsfiskeri i Danmark — hav�
 - [Catch and Release](https://udeogfiske.dk/fiskeguide/catch-and-release/): Skånsom genudsætning — forskning fra DTU Aqua og bedste praksis.
 - [Fiskeri for børn](https://udeogfiske.dk/fiskeguide/fiskeri-for-born/): Begyndervenligt fiskeri med børn.
 - [Fisketegn](https://udeogfiske.dk/fiskeguide/fisketegn/): Hvornår og hvordan du skal have statens lystfisketegn.
+- [Bliv lystfisker](https://udeogfiske.dk/fiskeguide/bliv-lystfisker/): Kurser, fiskeguide-uddannelsen og den nemmeste vej til din første fangst som ny lystfisker.
 
 ## Fiskeudstyr (grej)
 - [Fiskeudstyr – oversigt](https://udeogfiske.dk/fiskeudstyr/): Indgang til alle grejguider.

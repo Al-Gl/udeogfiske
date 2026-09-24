@@ -1,3 +1,34 @@
+## 2026-09-24 — Åndbare waders + PVC waders type pages (Session 61)
+
+Completes the waders trio (neopren / åndbare / PVC) from the Session 60 backlog, using the
+same template. **Not pushed**: owner explicitly said don't push.
+
+DataForSEO: "åndbare waders" 390/mo (steady all year); "pvc waders" 90, "billige waders"
+110; **"waders til børn" 480/mo (590 Oct/Nov)**, bigger than the whole PVC cluster, so it got
+a dedicated H2 + FAQ on the PVC page.
+
+**What changed**
+- New `/fiskeudstyr/beklaedning/waders-og-stovler/aandbare-waders/`. It's the *type* guide (not
+  coastal-specific, to avoid cannibalising waders-til-havorredfiskeri): how the membrane works,
+  condensation vs leak, who should choose them, price tiers, 4 anchored picks (Kinetic X5 81950,
+  Vision Rio Vanda + Atom set 82290, Guideline Kaitum XT 70246, Patagonia Swiftcurrent
+  Expedition 505908, the owner's own), stockingfoot boot sizing + Simms Freestone gummisål
+  79632, year-round layering, care (wash, DWR, storage), pinhole finding with sprit + Aquasure
+  67132, checklist.
+- New `/fiskeudstyr/beklaedning/waders-og-stovler/pvc-waders/`. An honest "when PVC makes sense"
+  angle, consistent with the hub's "I don't recommend PVC for serious coastal fishing". Covers
+  what PVC is, when yes/no, 2 adult picks (Elka PVC 81324, Fladen Nylon 74421), **waders til
+  børn** (sizing, safety: knee-depth max, adult within reach, life jacket on harbours; Elka
+  Junior 80409, Ocean Junior 500367; fisketegn not needed under 18), fit, repair like a bike tyre,
+  frost-free storage, when to upgrade, checklist.
+- 6 nano-banana images (`aandbare_hero/kyst/sko`, `pvc_hero/havn/born`). No fish, no close-up
+  people. The pvc_havn image shows separate boots, so its alt text describes exactly that.
+- Swapped the budget pick Fladen Maxximus (50340) for the Kinetic X5 (81950), because the
+  Maxximus feed image is a shop-logo placeholder. The capsule price range was updated to 1.500-2.300 kr.
+- Cross-links: hub PVC + åndbare H3s got GuideLinks (neopren already had one), neopren page →
+  both new pages, krabbefiskeri-med-børn checklist → PVC/kids guide. sitemap.xml + llms.txt.
+- Fact-checker: no incorrect claims on either page.
+
 ## 2026-09-24 — Buyer's guide: neopren waders til vinterfiskeri (Session 60)
 
 DataForSEO: "neopren waders" 480/mo avg, 880 Nov, 720 Oct/Dec. The site ranked #50 via the

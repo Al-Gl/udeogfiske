@@ -1,0 +1,407 @@
+---
+import MainLayout from '../../../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../../../components/RelatedRow.astro';
+import DidYouKnow from '../../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../../components/TipBox.astro';
+import GuideLink from '../../../../../components/GuideLink.astro';
+import Affiliate from '../../../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Neopren waders",
+    description: "Står du mere stille end du går i iskoldt vand? Så er neopren det varmeste valg — her er guiden.",
+    href: "/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/",
+    image: "/images/neopren_hero.jpg",
+    alt: "Neopren waders hænger til tørre på en trævæg",
+    chip: "Udstyr",
+  },
+  {
+    title: "PVC waders",
+    description: "De billigste waders — hvornår de giver mening, og hvornår du hellere skal spare op.",
+    href: "/fiskeudstyr/beklaedning/waders-og-stovler/pvc-waders/",
+    image: "/images/pvc_havn.jpg",
+    alt: "Waders og en rød spand på en træbro i en fiskerihavn",
+    chip: "Udstyr",
+  },
+  {
+    title: "Waders til havørredfiskeri",
+    description: "Kystfiskeri er jagt — derfor er mobilitet det vigtigste krav til dine waders.",
+    href: "/fiskeudstyr/beklaedning/waders-og-stovler/waders-til-havorredfiskeri/",
+    image: "/images/aandbare_kyst.jpg",
+    alt: "Lang dansk stenkyst med en lille fisker langt ude",
+    chip: "Udstyr",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvad er åndbare waders?",
+    answer: "Åndbare waders er lavet af et flerlaget stof med en membran, der holder vandet ude, men lader vanddamp fra din krop slippe ud. Derfor bliver du ikke våd af din egen sved, selvom du går langt. De er lette, fleksible og de mest alsidige waders, fordi du kan bruge dem hele året ved at variere, hvad du har på indenunder.",
+  },
+  {
+    question: "Kan man bruge åndbare waders om vinteren?",
+    answer: "Ja. Åndbare waders isolerer ikke i sig selv, så om vinteren skal varmen komme fra laget indenunder: funktionsundertøj eller merinould inderst og fleecebukser eller en fleece-overall som mellemlag. Står du helt stille i iskoldt vand i timevis, er neopren dog varmere.",
+  },
+  {
+    question: "Hvilken størrelse vadesko skal jeg have til stockingfoot waders?",
+    answer: "Vadeskoen skal kunne rumme neoprensokken fra waderen og en tyk sok. Mange producenter har allerede indregnet det i deres størrelser, mens andre anbefaler en størrelse større end dine normale sko. Tjek altid producentens størrelsesguide, og gå en størrelse op, hvis du er i tvivl eller fisker med tykke uldsokker.",
+  },
+  {
+    question: "Hvordan finder jeg et hul i mine åndbare waders?",
+    answer: "Vend waderen med vrangen ud, og spray det område, hvor du mistænker utætheden, med husholdningssprit. Vend den tilbage igen: hvor der er et hul, kommer der en mørk plet på ydersiden. Marker stedet, lad waderen tørre, og lap hullet indefra med en wader-reparationslim som Aquasure.",
+  },
+];
+---
+
+<MainLayout
+  title="Åndbare waders | Guide til valg, pris, vadesko og pleje"
+  description="Åndbare waders er de mest alsidige waders, du kan få. Min guide: sådan virker de, hvad du skal give, vadesko og pasform, brug året rundt og pleje."
+  canonical="https://udeogfiske.dk/fiskeudstyr/beklaedning/waders-og-stovler/aandbare-waders/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeudstyr", url: "/fiskeudstyr/" },
+    { name: "Beklædning", url: "/fiskeudstyr/beklaedning/" },
+    { name: "Waders og Støvler", url: "/fiskeudstyr/beklaedning/waders-og-stovler/" },
+    { name: "Åndbare waders" },
+  ]}
+  articleData={{
+    headline: "Åndbare waders: Guide til valg, pris, vadesko og pleje",
+    image: "/images/aandbare_hero.jpg",
+    datePublished: "2026-09-24",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/">Fiskeudstyr</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/beklaedning/">Beklædning</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/beklaedning/waders-og-stovler/">Waders og Støvler</a>
+        <span>›</span>
+        <span>Åndbare waders</span>
+      </nav>
+      <p class="pg-chip">Købsguide</p>
+      <h1 class="pg-title">Åndbare waders: Guide til valg og pleje</h1>
+      <p class="pg-sub">Hvis du kun skal have ét par waders, så er det et par åndbare. Her er, hvordan de virker, hvad du skal give for dem, hvilke vadesko du skal bruge, og hvordan du får dem til at holde i mange sæsoner.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Er åndbare waders det rigtige valg for mig?</h2>
+        <p class="ac-a"><strong>For de fleste lystfiskere: ja.</strong> Åndbare waders holder vandet ude og lader sveden slippe ud, så du kan gå langt uden at blive våd indefra. De er lette, smidige og kan bruges hele året, hvis du justerer laget indenunder. De købes typisk som <strong>stockingfoot</strong> med en neoprensok, så du skal bruge et par separate vadesko. Et godt par til almindeligt fiskeri koster fra omkring 1.500 til 2.300 kr, og mere, hvis du fisker ofte og hårdt. Står du til gengæld stille i iskoldt vand i timevis, er <a href="/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/">neopren</a> varmere.</p>
+      </div>
+
+      <article class="article">
+
+        <h2>Hvordan virker åndbare waders?</h2>
+        <p>Det lyder næsten for godt til at være sandt: et stof, der holder vandet ude, men lader vanddamp slippe ud. Men det er præcis, hvad en åndbar wader gør, og forklaringen ligger i <strong>membranen</strong>.</p>
+
+        <p>Stoffet i en åndbar wader er bygget op af flere lag, typisk tre til fem. Et slidstærkt yderstof, en tynd membran i midten og et foer inderst. Membranen er fyldt med porer, der er alt for små til, at vanddråber kan komme igennem, men store nok til, at vanddamp kan slippe ud. Når du går og bliver varm, bliver sveden til damp, og dampen søger ud mod det koldere vand og den koldere luft udenfor.</p>
+
+        <p>Resultatet er, at du holder dig tør indefra, selv på en lang tur. Det er hele forskellen på en åndbar wader og en wader i neopren eller PVC, hvor sveden bliver inde, og du til sidst er lige så våd, som hvis du havde vadet uden.</p>
+
+        <DidYouKnow>
+          En åndbar wader kan godt <strong>føles våd indeni uden at være utæt</strong>. Hvis du sveder mere, end membranen kan nå at lede ud, eller hvis det er meget koldt, kan dampen fortætte på indersiden. Det er kondens, ikke et hul. Er det kun fugtigt over det hele, og ikke vådt ét bestemt sted, er det sandsynligvis sved.
+        </DidYouKnow>
+
+        <figure class="art-figure">
+          <img src="/images/aandbare_kyst.jpg" alt="Lang dansk stenkyst en klar efterårsdag med en lille fisker langt ude i vandkanten" width="1376" height="774" loading="lazy" />
+          <figcaption>Går du kilometervis langs kysten, er åndbare waders det eneste, der giver mening. Sveden skal ud, ellers fryser du, når du står stille.</figcaption>
+        </figure>
+
+        <h2>Hvem skal vælge åndbare waders?</h2>
+        <p>Min tommelfingerregel er den samme, som jeg bruger i <a href="/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/">guiden til neopren waders</a>: <strong>skal du gå mere, end du skal stå, så vælg åndbare.</strong> Og for de fleste af os er det sådan, vi fisker.</p>
+
+        <p><strong>Åndbare waders er det rigtige valg, når du:</strong></p>
+        <ul>
+          <li>fisker på kysten og bevæger dig langs stranden for at finde fisken</li>
+          <li>fisker fra forår til efterår, hvor neopren bliver alt for varmt</li>
+          <li>kun vil have ét par waders, der kan bruges hele året</li>
+          <li>kører eller cykler til fiskepladsen og skal gå et stykke med waderen på</li>
+          <li>fluefisker og har brug for at kunne bevæge dig frit</li>
+        </ul>
+
+        <p><strong>Vælg noget andet, når du:</strong></p>
+        <ul>
+          <li>står stille i iskoldt vand i timevis. Her er neopren varmere</li>
+          <li>kun skal i vandet et par gange om året, fx til krabbefiskeri med børnene. Her kan et par billige <a href="/fiskeudstyr/beklaedning/waders-og-stovler/pvc-waders/">PVC waders</a> være nok</li>
+        </ul>
+
+        <h2>Hvad skal du give for et par åndbare waders?</h2>
+        <p>Prisen på åndbare waders spænder fra under 1.000 kr til over 7.000 kr, og det er fair at spørge, hvad man egentlig får for pengene. Kort sagt: <strong>holdbarhed</strong>. Et dyrt par er ikke meget mere vandtæt end et billigt par, når de er nye. Forskellen viser sig efter to eller tre sæsoner, hvor de billige ofte begynder at lække ved sømme og knæ, mens de dyre stadig holder.</p>
+
+        <ul>
+          <li><strong>Under 1.000 kr:</strong> Fin til den, der fisker en gang imellem. Forvent, at de holder et par sæsoner med fornuftig brug.</li>
+          <li><strong>1.500 til 2.500 kr:</strong> Det sted, hvor jeg vil anbefale de fleste at ligge. Bedre stof, flere forstærkninger og bedre sømme. Holder til at fiske hver uge.</li>
+          <li><strong>Over 4.000 kr:</strong> Til dig, der fisker meget og hårdt, kravler over sten og slider på grejet. Her får du de bedste materialer og ofte en bedre garanti og reparationsservice.</li>
+        </ul>
+
+        <TipBox>
+          <p>Mit tip: hvis du fisker mere end en gang om måneden, så køb hellere et godt par, der holder i mange år, end tre billige par, der lækker efter en sæson. Tjek også, om producenten tilbyder reparation. Et par gode waders, der kan lappes, er billigere i længden.</p>
+        </TipBox>
+
+        <h2>Hvilke åndbare waders anbefaler jeg?</h2>
+        <p>Her er fire bud i forskellige prisklasser. Alle er åndbare og stockingfoot, så du skal bruge vadesko til. Det ene sæt har vadesko med.</p>
+
+        <p><strong>Det bedste bud for pengene:</strong> Kinetics X5 er en åndbar wader i fem lag med fuldt tapede sømme, gravel guards, der holder sand og småsten ude af skoen, og en fleeceforet håndvarmerlomme. Der følger endda et vadebælte med.</p>
+
+        <Affiliate
+          productId="81950"
+          note="Fem lag åndbart stof, fuldt tapede sømme, gravel guards, to brystlommer, en fleeceforet håndvarmerlomme og et vadebælte med i købet. Det er meget wader for pengene, og det bud, jeg vil pege på, hvis du vil have et par, der kan klare fast fiskeri uden at koste en formue."
+        />
+
+        <p><strong>Hvis du ikke har vadesko i forvejen:</strong> Visions Rio Vanda-sæt er et smart køb, fordi du får både waders og vadesko i én pakke. Waderen er i tre lag, og skoen har filtsål, der står godt på glatte sten.</p>
+
+        <Affiliate
+          productId="82290"
+          note="Waders og vadesko i ét sæt. Waderen er et tre-lags åndbart stof med gravel guard, og Atom-skoen har filtsål og forstærket tå og hæl. Det er det nemmeste sted at starte, hvis du ikke har noget af det i forvejen, og samlet billigere end at købe delene hver for sig."
+        />
+
+        <p><strong>Til dig, der fisker hver uge:</strong> Guidelines Kaitum XT er det, jeg ville kalde en rigtig arbejdshest. Tre lag, forstærkninger på forsiden af benene og bagdelen, hvor waders typisk slides, og en håndvarmerlomme til de kolde dage.</p>
+
+        <Affiliate
+          productId="70246"
+          note="Tre lag åndbart stof med forstærkninger på forsiden af benene og bagdelen, gravel guards, elastisk vadebælte og en håndvarmerlomme. Det er præcis den prisklasse, jeg anbefaler de fleste at ligge i, hvis de fisker fast gennem hele året."
+        />
+
+        <p><strong>Hvis du fisker meget og hårdt:</strong> Patagonias Swiftcurrent Expedition er de waders, der hænger på min egen knage. Jeg har skrevet mere om, hvorfor jeg valgte dem, i <a href="/fiskeudstyr/beklaedning/waders-og-stovler/waders-til-havorredfiskeri/">guiden til waders til havørredfiskeri</a>.</p>
+
+        <Affiliate
+          productId="505908"
+          note="Mine egne waders. De er dyre, men de er bygget til at blive slidt på, og det er dem, jeg går 5-8 kilometer langs kysten i på en god dag. Hvis du fisker så meget, at dine waders er et forbrugsprodukt, er det her en investering, der holder."
+        />
+
+        <h2>Hvilke vadesko skal du bruge til stockingfoot waders?</h2>
+        <p>Næsten alle åndbare waders er <strong>stockingfoot</strong>: de har en neoprensok i stedet for en støvle, og du tager et par vadesko udenpå. Det kan lyde besværligt, men vadeskoen er faktisk en af de største fordele. Den støtter anklen som en vandrestøvle, og det mærker du, når du har gået et par kilometer over rullesten.</p>
+
+        <p><strong>Størrelsen</strong> er det, folk oftest rammer forkert. Vadeskoen skal kunne rumme både neoprensokken og en ordentlig sok. Nogle producenter har allerede indregnet det i deres størrelser, andre anbefaler en størrelse større end dine normale sko. Tjek producentens størrelsesguide, og gå en størrelse op, hvis du er i tvivl eller fisker med tykke uldsokker om vinteren.</p>
+
+        <p><strong>Sålen</strong> vælger du efter, hvor du fisker. Filtsål står bedst på glatte, algebelagte sten på kysten. Gummisål er bedre på græs, i mudder og i sne, og den er nemmere at holde ren. Jeg har skrevet mere om valget i <a href="/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/">neopren-guiden</a>, og det gælder præcis det samme her.</p>
+
+        <figure class="art-figure">
+          <img src="/images/aandbare_sko.jpg" alt="Et par slidte vadesko og en sammenfoldet åndbar wader på en stenstrand" width="1376" height="774" loading="lazy" />
+          <figcaption>Vadeskoen er motoren i kystfiskeriet. Den skal støtte anklen og have plads til neoprensokken og en tyk sok.</figcaption>
+        </figure>
+
+        <Affiliate
+          productId="79632"
+          note="En solid vadesko med gummisål, der står godt på græs, mudder og i sne på vej ned til vandet. Den passer til alle stockingfoot waders, og hvis du fisker meget fra land og ikke kun på algesten, er gummisålen det mest alsidige valg."
+        />
+
+        <h2>Kan du bruge åndbare waders hele året?</h2>
+        <p>Ja, og det er en af de største fordele. En åndbar wader isolerer ikke i sig selv. Den holder bare vandet ude og lader sveden slippe ud. Varmen styrer du med det, du har indenunder:</p>
+
+        <ul>
+          <li><strong>Sommer:</strong> Tynde, åndbare bukser eller bare shorts. Undgå bomuld, der klæber, når du sveder.</li>
+          <li><strong>Forår og efterår:</strong> Tyndt funktions- eller merinoundertøj og et par tykke sokker.</li>
+          <li><strong>Vinter:</strong> Merinoundertøj inderst og fleecebukser eller en fleece-overall som mellemlag, plus tykke uldsokker. Så kan du fiske det meste af vinteren på kysten i åndbare waders.</li>
+        </ul>
+
+        <p>Det eneste, jeg vil fraråde, er at stå helt stille i iskoldt vand i timevis i åndbare waders. Der er <a href="/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/">neopren</a> simpelthen varmere.</p>
+
+        <h2>Hvordan får dine åndbare waders et langt liv?</h2>
+        <p>Åndbare waders er det mest skrøbelige af de tre typer, men med lidt omsorg holder selv et billigt par i flere sæsoner. Det her er det, jeg selv gør:</p>
+
+        <ul>
+          <li><strong>Skyl dem i ferskvand</strong> efter hver tur i saltvand. Salt og sand slider på stoffet og stopper membranens porer.</li>
+          <li><strong>Vask dem en gang imellem</strong> med et vaskemiddel til tekniske stoffer. Snavs og salt nedsætter åndbarheden. Brug aldrig skyllemiddel, der lukker porerne.</li>
+          <li><strong>Frisk yderstoffet op</strong> med en imprægneringsspray en eller to gange om sæsonen, når vandet ikke længere perler af. Så bliver stoffet ikke tungt og vådt udvendigt, og åndbarheden holdes oppe.</li>
+          <li><strong>Tør dem i skyggen</strong> og vend dem, så indersiden også tørrer. Undgå radiator og direkte sol.</li>
+          <li><strong>Opbevar dem hængende</strong>, ikke foldet i en kasse. Skarpe folder slider på membranen over tid.</li>
+          <li><strong>Pas på pigtråd og brombær</strong> på vej ned til vandet. De fleste huller i åndbare waders kommer ikke fra vandet, men fra vejen derned.</li>
+        </ul>
+
+        <figure class="art-figure">
+          <img src="/images/aandbare_hero.jpg" alt="Et par åndbare waders hænger til tørre under et halvtag ved siden af et par vadesko" width="1376" height="774" loading="lazy" />
+          <figcaption>Hængende og i skyggen, gerne med vrangen ud. Så tørrer waderen helt, og membranen holder længere.</figcaption>
+        </figure>
+
+        <h2>Hvordan finder og lapper du et hul?</h2>
+        <p>Før eller siden får alle åndbare waders et lille hul. Det er ikke en katastrofe, hvis du lapper det med det samme. Sådan gør du:</p>
+
+        <ul>
+          <li><strong>Find hullet med sprit.</strong> Vend waderen med vrangen ud, og spray det område, hvor du er våd, med husholdningssprit. Vend den tilbage: hullet viser sig som en mørk plet på ydersiden. Sprit trænger igennem små huller, som vand ikke kan.</li>
+          <li><strong>Marker stedet</strong> med en tusch, og lad waderen tørre helt.</li>
+          <li><strong>Lap indefra</strong> med en wader-reparationslim. En lille klat over hullet, og lad den hærde natten over, før du bruger waderen igen.</li>
+        </ul>
+
+        <Affiliate
+          productId="67132"
+          note="Den klassiske reparationslim til waders. En lille tube, der kan ligge i fisketasken, og som lapper små huller og utætte sømme på både åndbare, neopren og PVC waders. Den har reddet mine waders flere gange, end jeg kan tælle."
+        />
+
+        <h2>Min tjekliste før du køber åndbare waders</h2>
+        <ul>
+          <li><strong>Går eller står du?</strong> Går du mest, så vælg åndbare. Står du stille i iskoldt vand, så vælg neopren.</li>
+          <li><strong>Budget:</strong> under 1.000 kr til lejlighedsvis fiskeri, 1.500-2.500 kr hvis du fisker fast, over 4.000 kr hvis du fisker meget og hårdt.</li>
+          <li><strong>Vadesko:</strong> husk dem i budgettet. Plads til neoprensok og tyk sok, og tjek producentens størrelsesguide.</li>
+          <li><strong>Sål:</strong> filt på algebelagte kyststen, gummi på græs, mudder og sne.</li>
+          <li><strong>Pasform:</strong> kan du gå helt ned i hug med dit vinterundertøj på?</li>
+          <li><strong>Detaljer:</strong> forstærkede knæ, gravel guards og en brystlomme, der kan lukkes.</li>
+          <li><strong>Pleje:</strong> skyl efter saltvand, vask med teknisk vaskemiddel, og hav en tube reparationslim i tasken.</li>
+        </ul>
+
+        <p>Et godt par åndbare waders er det stykke grej, der betyder mest for, hvor meget du får ud af kystfiskeriet. Køb efter, hvor meget du fisker, pas på dem, og så holder de til rigtig mange fisketure.</p>
+
+        <GuideLink
+          href="/fiskeudstyr/beklaedning/waders-og-stovler/"
+          title="Se den store waders-guide"
+          desc="Sammenlign PVC, neopren og åndbare waders side om side, og find resten af wader-grejet."
+        />
+
+        <GuideLink
+          href="/fiskeudstyr/beklaedning/waders-og-stovler/waders-til-havorredfiskeri/"
+          title="Læs guiden til waders til havørredfiskeri"
+          desc="Hvorfor mobilitet er alt på kysten, og hvilke krav det stiller til dine waders og vadesko."
+        />
+
+      </article>
+
+      <RelatedRow items={related} />
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/aandbare_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 720px;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+  .ac-a a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+
+  .article ul {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.7;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .art-figure figcaption {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    background: #f8fafc;
+  }
+</style>

@@ -1,3 +1,57 @@
+# Plan — Session 61 (Åndbare waders + PVC waders type pages, 2026-09-24) — DONE (committed locally, NOT pushed per owner)
+
+## Context
+
+Owner asked for the two backlog pages from Session 60, "following the same template" as
+neopren-waders. **Do not push** (owner said so explicitly).
+
+DataForSEO (Denmark/da):
+- "åndbare waders" 390/mo (steady 260-480 all year) + "åndbar waders" 50. The site ranks #50 via the hub.
+- "pvc waders" 90, "billige waders" 110 (peaks 210 May) and **"waders til børn" 480 (590 Oct/Nov,
+  720 May)**. The kids term is bigger than the whole PVC cluster, and the feed has 2 PVC junior
+  waders, so it gets a strong dedicated H2 on the PVC page.
+
+**Consistency constraints:**
+- The hub says "I recommend NOT buying PVC waders" (poor quality/insulation). The PVC page is an honest
+  "when PVC actually makes sense" guide: kids, occasional use, krabbefiskeri/put & take, spare pair.
+  It sends everyone else to åndbare/neopren. No contradicting the hub.
+- The åndbare page must not cannibalise waders-til-havorredfiskeri (use case: coastal mobility,
+  Patagonia personal pick). The åndbare page = the *type* guide: how membranes work, price tiers,
+  stockingfoot + wading boots, layering for year-round use, pinholes/leaks, washing/re-proofing,
+  lifespan. Coastal specifics → link to the havørred page.
+
+## Todo
+
+- [x] 1. **Fact research**: breathable membranes (microporous, water vapour out / water not in,
+      layer counts), DWR and washing to restore breathability, finding pinhole leaks, repair (Aquasure),
+      stockingfoot boot sizing. PVC: welded seams, stiffens in cold, condensation, repair like a
+      bike tyre. Kids: sizing/growth, safety (belt, supervision, shallow water only), fisketegn not
+      needed under 18.
+- [x] 2. **Write `/fiskeudstyr/beklaedning/waders-og-stovler/aandbare-waders/`** (neopren template,
+      question-style H2s, first-person voice). Planned H2s: how do breathable waders work · who they suit
+      (and when neoprene/PVC is better) · how much should you spend (tiers) · stockingfoot + wading
+      boots (fit, sole) · year-round use with layers · recommendations: Fladen Maxximus 899 (50340),
+      Vision Rio Vanda + Atom set 1699 (82290), Guideline Kaitum XT 2299 (70246), Patagonia
+      Swiftcurrent Expedition 6349 (505908) + a Simms Freestone gummisål boot (79632) · leaks, washing,
+      repair (Aquasure 67132) · checklist · GuideLinks. FAQ schema 3-4.
+- [x] 3. **Write `/fiskeudstyr/beklaedning/waders-og-stovler/pvc-waders/`**. Planned H2s: what PVC
+      waders are (vs nylon/rubber) · when they make sense, and when they don't · **waders til børn**
+      (sizing, safety, krabbefiskeri link) · fit/sizing · repair and care · when to upgrade (routes
+      to åndbare/neopren) · checklist. Picks: Elka PVC 499 (81324), Fladen Nylon gummisål 399 (74421),
+      Elka PVC Junior (80409), Ocean PVC Junior (500367), Aquasure (67132). FAQ schema 3-4.
+- [x] 4. **Images**: 3-4 per page (6-8 total), nano-banana, no fish, no close-up people.
+      Åndbare: waders drying/hanging, coastal walk landscape with a tiny silhouette, wading boots
+      on stones, membrane/layers flat-lay. PVC: cheap waders + crab bucket on a harbour quay, a
+      kids-size pair next to an adult pair, a shallow harbour/beach scene with at most tiny silhouettes.
+- [x] 5. **Cross-link the waders trio**: each type page links to the other two. Update the hub's PVC
+      and åndbare H3s with GuideLinks (same as neopren), neopren-waders → links to both new pages,
+      the krabbefiskeri-med-børn post → link to the PVC/kids section. `sitemap.xml` + `llms.txt`.
+- [x] 6. **Fact-check pass** (master-fact-checker) on both pages.
+- [x] 7. Build, localhost check (desktop + 600px), commit locally. **NO push.**
+- [x] 8. review.md entry.
+
+---
+
 # Plan — Session 60 (Buyer's guide: neopren waders til vinterfiskeri, 2026-09-24) — DONE (committed locally, not pushed)
 
 ## Context

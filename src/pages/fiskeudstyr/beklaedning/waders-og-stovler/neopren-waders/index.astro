@@ -1,0 +1,439 @@
+---
+import MainLayout from '../../../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../../../components/RelatedRow.astro';
+import DidYouKnow from '../../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../../components/TipBox.astro';
+import StatHighlight from '../../../../../components/StatHighlight.astro';
+import GuideLink from '../../../../../components/GuideLink.astro';
+import Affiliate from '../../../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Waders og støvler",
+    description: "Den overordnede waders-guide — PVC, neopren og åndbare side om side, plus wadesko og resten af grejet.",
+    href: "/fiskeudstyr/beklaedning/waders-og-stovler/",
+    image: "/images/neopren_aa.jpg",
+    alt: "Frostklar å med snedækkede brinker",
+    chip: "Udstyr",
+  },
+  {
+    title: "Waders til havørredfiskeri",
+    description: "Går du langt på kysten? Så er åndbare waders og stockingfoot det rigtige valg — her er hvorfor.",
+    href: "/fiskeudstyr/beklaedning/waders-og-stovler/waders-til-havorredfiskeri/",
+    image: "/images/neopren_kyst.jpg",
+    alt: "Frostklar fjord med en lille fisker langt ude",
+    chip: "Udstyr",
+  },
+  {
+    title: "Havørredfiskeri om vinteren",
+    description: "Hvor står fiskene, når vandet er koldest — og hvordan fisker du dem?",
+    href: "/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/",
+    image: "/images/fredning_hero.jpg",
+    alt: "Tåget å en frostklar vintermorgen",
+    chip: "Fiskeart",
+  },
+];
+
+const faqs = [
+  {
+    question: "Er neopren waders gode til vinterfiskeri?",
+    answer: "Ja, hvis du fisker stationært. Neopren isolerer langt bedre end åndbare waders i koldt vand, og med 4-5 mm neopren og varmt undertøj kan du stå i vandet i timevis om vinteren. Skal du til gengæld gå langt langs kysten, bliver du svedig og tung i neopren, og så er åndbare waders med et ekstra lag fleece under det bedre valg.",
+  },
+  {
+    question: "Hvor tykke skal neopren waders være?",
+    answer: "Neopren waders fås typisk i 3-5 mm. 3 mm er et kompromis, der kan bruges fra tidligt forår til sent efterår, hvis du varierer undertøjet. 4 mm er det mest almindelige og dækker det meste af vinterhalvåret. 5 mm er til de koldeste dage og det mest stationære fiskeri. Tykkere end 5 mm bliver stift og tungt at bevæge sig i.",
+  },
+  {
+    question: "Skal jeg vælge filtsål eller gummisål til vinterfiskeri?",
+    answer: "Filtsål står bedst på glatte, algebelagte sten på kysten. Gummisål er bedre i mudder, på græs og især i sne, fordi sneen ikke klumper sig fast under sålen, som den gør på våd filt. Fisker du fra brinker og søbredder om vinteren, er gummisål det sikreste valg.",
+  },
+  {
+    question: "Hvordan skal neopren waders sidde?",
+    answer: "Tæt, men ikke stramt. En god test er, at du i fuld påklædning, med det undertøj du fisker i, kan gå helt ned i hug uden at mærke, at waderen strammer i skridtet eller over knæene. Er de for små, belaster du sømmene, og så kommer utæthederne hurtigt.",
+  },
+];
+---
+
+<MainLayout
+  title="Neopren waders | Guide til vinterfiskeri og det rigtige valg"
+  description="Neopren waders holder dig varm i iskoldt vand, men de passer ikke til alt fiskeri. Min guide: hvem de er til, tykkelse, sål, pasform, sikkerhed og pleje."
+  canonical="https://udeogfiske.dk/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Fiskeudstyr", url: "/fiskeudstyr/" },
+    { name: "Beklædning", url: "/fiskeudstyr/beklaedning/" },
+    { name: "Waders og Støvler", url: "/fiskeudstyr/beklaedning/waders-og-stovler/" },
+    { name: "Neopren waders" },
+  ]}
+  articleData={{
+    headline: "Neopren waders: Guide til vinterfiskeri og det rigtige valg",
+    image: "/images/neopren_hero.jpg",
+    datePublished: "2026-09-24",
+  }}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/">Fiskeudstyr</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/beklaedning/">Beklædning</a>
+        <span>›</span>
+        <a href="/fiskeudstyr/beklaedning/waders-og-stovler/">Waders og Støvler</a>
+        <span>›</span>
+        <span>Neopren waders</span>
+      </nav>
+      <p class="pg-chip">Købsguide</p>
+      <h1 class="pg-title">Neopren waders: Guide til vinterfiskeri</h1>
+      <p class="pg-sub">Neopren er det varmeste, du kan have på benene i iskoldt vand. Men det er ikke det rigtige valg for alle. Her er, hvornår de giver mening, hvad du skal kigge efter, og hvordan du fisker sikkert i dem om vinteren.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Skal jeg købe neopren waders til vinterfiskeri?</h2>
+        <p class="ac-a"><strong>Ja, hvis du mest står stille i koldt vand.</strong> Neopren isolerer langt bedre end åndbare waders, og et par i 4 mm med fastmonteret støvle holder dig varm gennem vinteren. Til å-fiskeri, fiskeri fra båd eller lange stationære ture på kysten er de svære at slå. <strong>Går du derimod meget</strong>, bliver du svedig og tung i neopren, og så er åndbare waders med fleece under det bedre valg. Uanset hvad: vælg gummisål, hvis der er sne på vejen ned til vandet, og brug altid vadebælte.</p>
+      </div>
+
+      <article class="article">
+
+        <h2>Hvorfor holder neopren waders dig varm?</h2>
+        <p>Neopren er det samme materiale, som dykkerdragter er lavet af. Det er et gummiskum fyldt med små, lukkede luftbobler, og det er luften i boblerne, der isolerer. Kulden fra vandet har svært ved at trænge igennem, og kroppens varme bliver holdt inde. Det er derfor, du kan stå i vand på et par grader i en neoprenwader og stadig have det fint efter en time.</p>
+
+        <p>Waders i neopren fås typisk i <strong>3 til 5 mm</strong>. Tykkelsen afgør både, hvor varm waderen er, og hvor let den er at bevæge sig i:</p>
+
+        <ul>
+          <li><strong>3 mm:</strong> Det fleksible kompromis. Kan bruges fra tidligt forår til sent efterår, hvis du varierer, hvor meget du har på indenunder.</li>
+          <li><strong>4 mm:</strong> Standardvalget til vinterhalvåret, og det de fleste modeller i den gode prisklasse er lavet af. Varm nok til det meste af vinteren med et ordentligt lag undertøj.</li>
+          <li><strong>5 mm:</strong> Til de koldeste dage og det mest stillestående fiskeri. Med tykke sokker og varmt undertøj kan du holde flere timer i vand omkring frysepunktet.</li>
+        </ul>
+
+        <p>Tykkere end 5 mm giver ikke meget mening. Så bliver waderen stiv og tung at gå i, og du mister mere i bevægelighed, end du vinder i varme.</p>
+
+        <figure class="art-figure">
+          <img src="/images/neopren_aa.jpg" alt="En lille dansk å en frostklar vintermorgen med rimfrost og sne på brinkerne" width="1376" height="774" loading="lazy" />
+          <figcaption>Stationært fiskeri i en kold å er præcis det, neopren er lavet til. Her står du stille længe i iskoldt vand.</figcaption>
+        </figure>
+
+        <h2>Hvem skal vælge neopren, og hvem skal lade være?</h2>
+        <p>Det her er det vigtigste spørgsmål på hele siden, og jeg vil være ærlig: neopren er et specialværktøj. Det er fremragende til nogle typer fiskeri og direkte irriterende til andre. Min tommelfingerregel er enkel: <strong>skal du stå mere i vandet, end du skal gå, så vælg neopren.</strong></p>
+
+        <p><strong>Neopren er det rigtige valg, når du:</strong></p>
+        <ul>
+          <li>fisker i åer og står længe samme sted i koldt vand, fx når havørredfiskeriet i åerne åbner igen i marts efter <a href="/blog/fredning-af-havorred/">fredningen</a></li>
+          <li>fisker fra båd, bro eller mole i kulden, hvor du alligevel ikke bevæger dig meget</li>
+          <li>fisker put and take om vinteren og står ved bredden eller i vandkanten i timevis</li>
+          <li>fisker på kysten, men mest står og venter på trækfisk på én god plads</li>
+          <li>vil have ét billigt par waders, der kun skal bruges i vinterhalvåret</li>
+        </ul>
+
+        <p><strong>Neopren er det forkerte valg, når du:</strong></p>
+        <ul>
+          <li>går flere kilometer langs kysten på en tur. Neopren ånder ikke, og sveden bliver inde. Så bliver du våd indefra og fryser, så snart du står stille</li>
+          <li>fisker i foråret og sommeren. Selv en kølig majdag bliver hurtigt en saunatur</li>
+          <li>skal kravle meget over sten og skrænter. Neopren er tungere og mindre smidigt end åndbare waders</li>
+        </ul>
+
+        <p>Hører du til den sidste gruppe, så er løsningen ikke neopren, men <strong>åndbare waders med et ekstra varmt lag indenunder</strong>. Det kommer jeg tilbage til længere nede. Jeg har skrevet mere om det i <a href="/fiskeudstyr/beklaedning/waders-og-stovler/waders-til-havorredfiskeri/">guiden til waders til havørredfiskeri</a>.</p>
+
+        <DidYouKnow>
+          Mange danske lystfiskere ender med <strong>to par waders</strong>: et par neopren til vinterhalvåret og et par åndbare til resten af året. Det lyder som en luksus, men da neoprenwaders i den gode budgetklasse koster omkring 600-800 kr, er det ofte billigere end at købe ét dyrt par, der skal kunne det hele.
+        </DidYouKnow>
+
+        <h2>Fastmonteret støvle eller separat vadesko?</h2>
+        <p>Neopren waders fås både med <strong>fastmonteret støvle</strong> (bootfoot) og med en neoprensok, hvor du bruger en separat vadesko (stockingfoot). Til vinterfiskeri anbefaler jeg næsten altid den fastmonterede støvle, og det er der tre gode grunde til:</p>
+
+        <ul>
+          <li><strong>Den er varmere.</strong> En fastmonteret støvle er ofte foret, og der er ingen snører, der klemmer blodomløbet i fødderne. Kolde fødder er det, der sender de fleste hjem fra vinterfiskeriet.</li>
+          <li><strong>Den er nemmere.</strong> Du står ikke og fumler med frosne snørebånd med kolde fingre. Waderen er på på et halvt minut.</li>
+          <li><strong>Den er billigere.</strong> Du skal ikke købe et par vadesko oveni.</li>
+        </ul>
+
+        <p>Ulempen er, at en fastmonteret støvle ikke støtter anklen lige så godt som en god vadesko. Går du langt i ujævnt terræn, mærker du det. Men det er netop ikke det, neopren er til.</p>
+
+        <h2>Filtsål eller gummisål om vinteren?</h2>
+        <p>Det her er det spørgsmål, jeg oftest får om vinterwaders, og svaret afhænger af, hvor du fisker, og hvordan vejen ned til vandet ser ud.</p>
+
+        <p><strong>Filtsål</strong> står suverænt fast på glatte, algebelagte sten, som du finder på det meste af den danske kyst. Men filt har en stor ulempe om vinteren: <strong>våd filt samler sne</strong>. Går du over en snedækket strand eller eng, klumper sneen sig fast under sålerne, og efter hundrede meter går du på to glatte snebolde. Det er både besværligt og farligt.</p>
+
+        <p><strong>Gummisål</strong> står bedre i mudder, på græs og på snedækket terræn, fordi sneen ikke sætter sig fast. Til gengæld glider den lettere på glatte sten under vandet. Skal du både gå i sne og vade på sten, er en gummisål med pigge den bedste all-round løsning.</p>
+
+        <figure class="art-figure">
+          <img src="/images/neopren_saal.jpg" alt="To wadersstøvler vendt med sålen opad på våde sten — den ene med filtsål, den anden med profileret gummisål" width="1376" height="774" loading="lazy" />
+          <figcaption>Filt til venstre, gummi til højre. Filt står bedst på algesten, gummi bedst i sne og mudder.</figcaption>
+        </figure>
+
+        <TipBox>
+          <p>Mit tip: tænk over <strong>vejen til vandet</strong>, ikke kun selve vandet. Fisker du fra en å-brink, en søbred eller en eng, er det dér, du oftest glider, og dér gummisålen vinder. Filtsålen giver kun mening, hvis du skal vade langt ud på algebelagte sten på kysten.</p>
+        </TipBox>
+
+        <h2>Hvordan skal neopren waders sidde?</h2>
+        <p>Neopren er elastisk, og det narrer mange til at købe deres waders for små. En neoprenwader, der sidder pænt og tæt, når du står foran spejlet, er ofte for lille, når du skal bevæge dig i den. Og for små waders betyder belastede sømme, og belastede sømme betyder utætheder.</p>
+
+        <p>Den bedste test, jeg kender: <strong>tag det undertøj på, du vil fiske i, og gå helt ned i hug.</strong> Kan du det uden at mærke, at waderen strammer i skridtet eller over knæene, er størrelsen rigtig. Prøv også at løfte knæet højt, som når du skal op over en sten.</p>
+
+        <p>Husk også fødderne. Vælg en støvlestørrelse, der giver plads til en tyk uldsok, uden at tæerne rammer forenden. Stramme støvler giver kolde fødder, uanset hvor tyk neoprenen er.</p>
+
+        <h2>Hvilke neopren waders anbefaler jeg?</h2>
+        <p>Den gode nyhed ved neopren er, at du ikke behøver bruge en formue. Budgetmodellerne i 4 mm neopren gør præcis det, de skal: holder dig varm og tør. Her er de tre, jeg vil pege på, afhængigt af hvor du fisker.</p>
+
+        <p><strong>Til å-fiskeri, søer og fiskeri fra land med sne på vejen:</strong> vælg en gummisål. Shakespeares Sigma er en enkel 4 mm neoprenwader med fastmonteret støvle og gummisål, og det er den type, jeg selv ville tage til en vintertur på en å eller en put and take-sø.</p>
+
+        <Affiliate
+          productId="503277"
+          note="En enkel neoprenwader i 4 mm med fastmonteret støvle og gummisål. Gummisålen er grunden til, at jeg nævner den først: den samler ikke sne og står godt på græs og mudrede brinker, hvor vinterfiskeriet ofte foregår. Et fornuftigt førstevalg, hvis du vil holde prisen nede."
+        />
+
+        <p><strong>Til stationært kystfiskeri på algebelagte sten:</strong> her er filtsålen stadig kongen. Abus sorte neoprenwader er lavet i 4 mm neopren med tapede sømme på indersiden og filtsål, der står fast på glatte sten.</p>
+
+        <Affiliate
+          productId="74490"
+          note="4 mm neopren, tapede sømme og filtsål. Den er bygget til kysten i de kolde måneder, hvor du vader ud på algebelagte sten og står der et stykke tid. Husk bare, at filten samler sne, hvis der ligger sne på vejen ned til vandet."
+        />
+
+        <p><strong>Til dig, der fisker lidt af det hele:</strong> Fladens neoprenwader med Rockgrip-sål koster lidt mere, men giver dig en profileret EVA-sål, der er lavet til at give greb på mange forskellige underlag, plus forstærkede knæ og en neoprensok inde i støvlen for ekstra varme.</p>
+
+        <Affiliate
+          productId="500029"
+          note="Et trin op: 4 mm neopren, tapede sømme, forstærkede knæ og en profileret Rockgrip-sål i stedet for filt. Det er et godt kompromis, hvis du skifter mellem å, sø og kyst i løbet af vinteren og ikke vil have to par."
+        />
+
+        <h2>Hvad skal du have på under og omkring waderen?</h2>
+        <p>Waderen alene gør det ikke. Om vinteren er det lige så meget det, du har indenunder, der afgør, om du holder i fire timer eller giver op efter én.</p>
+
+        <p><strong>Inderst: uld eller syntetisk, aldrig bomuld.</strong> Bomuld suger fugt og holder på den, og så bliver du kold. Et sæt tyndt merino- eller funktionsundertøj inderst og et par tykke uldsokker er grundlaget. Fødderne er det første, der fryser, så spar ikke på sokkerne.</p>
+
+        <Affiliate
+          productId="64398"
+          note="Tykke, lange merinosokker, der går op over læggen. Det er den enkeltdel, der gør den største forskel for, hvor længe jeg kan stå i vinterkoldt vand. Uld varmer, selv når den bliver lidt fugtig, og det gør bomuld ikke."
+        />
+
+        <p><strong>Mellemlag: fleece.</strong> Et par fleecebukser eller en fleece-overall under waderen er det, der gør vinterfiskeriet behageligt. Det er også dét, der gør åndbare waders brugbare om vinteren, hvis du hellere vil gå end stå. Med et ordentligt fleecelag under et par åndbare waders kan du fiske det meste af vinteren på kysten uden at svede.</p>
+
+        <Affiliate
+          productId="60605"
+          note="En fleece-overall, der er lavet til at have under waders. Den går højt op på kroppen, så der ikke opstår et koldt hul mellem bukser og trøje, når du læner dig frem for at kaste. Den virker både under neopren og under åndbare waders, og er det, jeg vil anbefale, hvis du går meget om vinteren."
+        />
+
+        <h2>Hvordan fisker du sikkert i waders om vinteren?</h2>
+        <p>Jeg har ikke tænkt mig at skræmme nogen fra vinterfiskeriet, men koldt vand fortjener respekt. Der er en sejlivet myte om, at waders fyldt med vand trækker dig ned. Det gør de ikke: vandet inde i waderen vejer ikke mere end vandet udenfor. Det, der gør det farligt, er noget andet.</p>
+
+        <p>Falder du i koldt vand, reagerer kroppen med <strong>kuldechok</strong>: et ufrivilligt gisp efter luft og så et par minutter med ukontrollabel, hurtig vejrtrækning. Vejrtrækningen løber løbsk, og du har svært ved at holde vejret. Får du vand i munden i det øjeblik, er det dér, det går galt. Samtidig fyldes waders uden bælte med vand på få sekunder, og det gør dig tung og langsom, præcis når du skal kæmpe dig ind.</p>
+
+        <StatHighlight
+          icon="thermometer"
+          value="1 minut"
+          caption="Så længe varer det værste kuldechok typisk. Falder du i, så brug det første minut på at få styr på vejrtrækningen, før du prøver at komme ind. Det er kuldechokket, ikke waderen, der er faren."
+        />
+
+        <p>Sådan gør jeg vinterfiskeriet sikrere:</p>
+        <ul>
+          <li><strong>Brug altid vadebælte.</strong> Spændt stramt om livet bremser det vandet i at løbe ind i waderen, hvis du falder. Det giver dig tid og bevægelighed til at komme ind.</li>
+          <li><strong>Brug en vadestav på ukendt bund.</strong> Om vinteren er vandet ofte grumset, og du kan ikke se, hvor bunden falder af. Staven finder hullet, før din fod gør.</li>
+          <li><strong>Vad kortere ud end om sommeren.</strong> Der er ingen fisk, der er værd at stå i vand til brystet i januar.</li>
+          <li><strong>Pas på is og rimfrost.</strong> Frosne sten og is langs brinken er glattere, end de ser ud. Sæt fødderne bevidst, og brug gummisål eller pigge på frossent terræn.</li>
+          <li><strong>Fortæl nogen, hvor du tager hen,</strong> og hav telefonen i en vandtæt pose i brystlommen.</li>
+        </ul>
+
+        <Affiliate
+          productId="80322"
+          note="Et vadebælte i neopren, der kan strammes godt til om livet uden at klemme. Det er det billigste stykke sikkerhedsudstyr, du kan købe til vinterfiskeriet, og det bør sidde på hver gang, du har waders på."
+        />
+
+        <Affiliate
+          productId="76541"
+          note="En foldbar vadestav i rustfrit stål med gennemgående elastik, så den samler sig selv, når du folder den ud. Den hænger i bæltet, til du skal bruge den, og er uvurderlig på grumset vinterbund, hvor du ikke kan se, hvor du sætter fødderne."
+        />
+
+        <figure class="art-figure">
+          <img src="/images/neopren_kyst.jpg" alt="Frostklar fjordbred i vintersol med en lille fisker langt ude i vandet" width="1376" height="774" loading="lazy" />
+          <figcaption>Om vinteren vader jeg kortere ud end om sommeren. Der er fisk tæt på land, og ingen fisk er værd at stå i vand til brystet i januar.</figcaption>
+        </figure>
+
+        <h2>Hvordan får dine neopren waders et langt liv?</h2>
+        <p>Neopren er robust, men et par simple vaner gør, at dine waders holder mange sæsoner i stedet for én:</p>
+
+        <ul>
+          <li><strong>Skyl dem i ferskvand</strong> efter hver tur i saltvand. Salt og sand slider på sømme og materiale.</li>
+          <li><strong>Tør dem med vrangen ud.</strong> Neopren ånder ikke, så sved og kondens bliver inde i waderen. Vend dem, og lad indersiden tørre helt, før du hænger dem væk.</li>
+          <li><strong>Tør dem i skyggen, aldrig på radiatoren.</strong> Direkte varme og sollys nedbryder neopren og limen i sømmene.</li>
+          <li><strong>Opbevar dem hængende</strong> i støvlerne eller på en bøjle, ikke foldet sammen i en kasse. Skarpe folder svækker materialet over tid.</li>
+          <li><strong>Lap små huller med det samme.</strong> Et lille hul i neopren lappes let med neoprenlim eller en wader-reparationslim. Et ignoreret hul bliver et stort hul.</li>
+        </ul>
+
+        <figure class="art-figure">
+          <img src="/images/neopren_hero.jpg" alt="Et par neopren waders hænger til tørre på en trævæg i et udhus en frostklar vintermorgen" width="1376" height="774" loading="lazy" />
+          <figcaption>Hængende og i skyggen. Sådan tørrer og opbevarer du neoprenwaders, så de holder i mange sæsoner.</figcaption>
+        </figure>
+
+        <h2>Min tjekliste før du køber neopren waders</h2>
+        <ul>
+          <li><strong>Står eller går du?</strong> Står du mest stille i koldt vand, så vælg neopren. Går du langt, så vælg åndbare med fleece under.</li>
+          <li><strong>Tykkelse:</strong> 4 mm til det meste af vinterhalvåret, 5 mm hvis du står helt stille i det koldeste vand.</li>
+          <li><strong>Støvle:</strong> fastmonteret støvle til vinter. Varmere, nemmere og billigere.</li>
+          <li><strong>Sål:</strong> gummi hvis der er sne, mudder eller græs på vejen til vandet. Filt hvis du vader på algebelagte kyststen.</li>
+          <li><strong>Pasform:</strong> kan du gå ned i hug med dit vinterundertøj på? Og er der plads til en tyk uldsok i støvlen?</li>
+          <li><strong>Under waderen:</strong> uld eller funktionsundertøj inderst, fleece som mellemlag, tykke uldsokker. Aldrig bomuld.</li>
+          <li><strong>Sikkerhed:</strong> vadebælte hver gang, vadestav på ukendt bund, og fortæl nogen hvor du fisker.</li>
+        </ul>
+
+        <p>Et par neoprenwaders til 600-800 kr er en af de bedste investeringer, du kan gøre for vinterfiskeriet, hvis du fisker på den rigtige måde. De forvandler en kold, kort tur til en lang, behagelig en. Bare vær ærlig overfor dig selv om, hvordan du fisker, før du køber.</p>
+
+        <GuideLink
+          href="/fiskeudstyr/beklaedning/waders-og-stovler/"
+          title="Se den store waders-guide"
+          desc="Sammenlign PVC, neopren og åndbare waders side om side, og find wadesko og resten af grejet."
+        />
+
+        <GuideLink
+          href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-vinter/"
+          title="Læs guiden til havørredfiskeri om vinteren"
+          desc="Hvor står fiskene i det kolde vand, og hvordan fisker du dem? Husk også fredningen fra 16. november."
+        />
+
+      </article>
+
+      <RelatedRow items={related} />
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/neopren_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 720px;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+
+  .article ul {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.7;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .art-figure figcaption {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    background: #f8fafc;
+  }
+</style>

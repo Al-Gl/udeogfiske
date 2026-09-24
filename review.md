@@ -1,3 +1,31 @@
+## 2026-09-24 — Buyer's guide: neopren waders til vinterfiskeri (Session 60)
+
+DataForSEO: "neopren waders" 480/mo avg, 880 Nov, 720 Oct/Dec. The site ranked #50 via the
+waders hub. First of three planned waders-type pages (åndbare + PVC are in the todo backlog).
+
+**What changed**
+- New `/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/`, a sibling of
+  waders-til-havorredfiskeri. An honest "who should/shouldn't buy neoprene" angle, consistent
+  with the site's stance (breathable for walking, neoprene for stationary cold fishing).
+  Covers how neoprene insulates (3/4/5 mm), bootfoot vs stockingfoot, felt vs rubber in snow,
+  the fit test (squat in your winter underwear), 3 anchored waders recommendations (Shakespeare
+  Sigma gummisål 503277, Abu filtsål 74490, Fladen Rockgrip 500029), layering (merino sok
+  64398, Guideline fleece bib 60605), cold-water safety (cold shock, the "waders drag you down"
+  myth, belt 80322 + wading staff 76541), care, checklist, 2 GuideLinks. 4 FAQ schema items.
+  No affiliates at the end (buyer's-guide anatomy).
+- 4 nano-banana images (`neopren_hero/aa/saal/kyst.jpg`): waders drying on a shed wall,
+  a frosty å, felt vs rubber sole on stones, a frosty fjord with a tiny distant silhouette.
+  No fish, no close-up people.
+- Consistency fix while writing: the "fish sea trout in rivers in winter" example conflicted
+  with the freshwater fredning (16/11–28/29 Feb) → now "when the rivers reopen in March",
+  linking to the fredning post.
+- Wired in: GuideLink in the waders hub neopren section, an inline link in
+  waders-til-havorredfiskeri ("Hvornår skal jeg vælge neopren?"), sitemap.xml + llms.txt.
+- Fact-checker: all claims and product specs verified except a "4 x iltforbrug" cold-shock
+  stat, which was replaced with the well-established "1 minut" (1-10-1) framing.
+
+**Not done:** not pushed (CLAUDE.md rule 8). The åndbare + PVC pages are in the backlog.
+
 ## 2026-09-24 — New blog post: fredning af havørred (Session 59)
 
 DataForSEO (Denmark/da): "fredning havørred" peaks at 1,300/mo in November (720 Oct), and the
@@ -23,7 +51,7 @@ Fact-checker agent: 9/10 claims verified. Fixed fisketegn "18-65" → "folkepens
 "Op til 25 % gyder flere gange" is sourced to komivandet.nu (DSF), not found on
 fiskepleje/DTU. It's kept, but flagged to the owner.
 
-**Not done:** not pushed (CLAUDE.md rule 8). Other pages still say "18 og 65" for fisketegn
+**Live:** pushed 2026-09-24 on owner go-ahead (c142891). **Not done:** Other pages still say "18 og 65" for fisketegn
 and haven't been swept.
 
 ## 2026-09-11 — 2 new pages + havørredfiskeri hub SEO push (Session 57)

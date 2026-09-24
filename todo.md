@@ -1,4 +1,72 @@
-# Plan — Session 59 (Blog: fredning af havørred, 2026-09-24) — DONE (committed locally, not pushed)
+# Plan — Session 60 (Buyer's guide: neopren waders til vinterfiskeri, 2026-09-24) — DONE (committed locally, not pushed)
+
+## Context
+
+DataForSEO (Denmark/da): "neopren waders" 480/mo avg, **880 Nov**, 720 Oct + Dec. The long-tail
+variants (test/bedste/billige/størrelse) are 10-70, so it's one head term and one strong page.
+The site currently ranks #50 via the generic waders hub.
+
+**Must stay consistent with the site's stance:** the waders hub + waders-til-havorredfiskeri
+say breathable waders are right for active coastal fishing, and neoprene is a specialist
+tool for cold, *stationary* fishing (below ~4 °C water). So this page is an honest "who
+should buy neoprene, and who shouldn't" guide, not a hard sell.
+
+**Feed reality:** 5 neoprene waders, all budget (599-799 kr): Abu Seatrout 71858
+(already used on the hub), Abu sort 74490, Fladen EVA filtsål 82416, Fladen Rockgrip
+500029, Shakespeare Sigma gummisål 503277. Plus winter accessories: Simms neopren
+vadebælte 80322, vadestave (Greys 76541 / SFG 500651), Guideline Thermo Fleece Bib 60605,
+Simms Merino Thermal sok 64398.
+
+## Todo
+
+- [x] 1. **Fact research**: how neoprene insulates (closed-cell foam, 3/4/5 mm, loses some
+      insulation under water pressure), bootfoot vs stockingfoot, felt vs rubber soles (felt
+      slips on snow/ice/mud), sizing/fit, cold-water + wading safety (the myth that waders
+      "pull you down" vs. what the belt actually does), care/repair/storage. Sources only.
+- [x] 2. **Write `/fiskeudstyr/beklaedning/waders-og-stovler/neopren-waders/`**, a sibling of
+      waders-til-havorredfiskeri (buyer's guides live under /fiskeudstyr/, not /blog/). Same
+      template/components, first-person voice, question-style H2s. Planned H2s:
+      - Hvad er neopren waders, og hvorfor holder de dig varm? (how it works, mm thickness)
+      - Hvem skal vælge neopren, og hvem skal lade være? (stationary winter å/put & take,
+        bådfiskeri, belly boat vs. the walking coastal angler; alternative = breathable +
+        fleece layer)
+      - Bootfoot eller stockingfoot? Filtsål eller gummisål? (winter-specific choice)
+      - Hvordan skal neopren waders sidde? (sizing, fit, feet/boot size)
+      - Mine anbefalinger (3 neoprene waders, each anchored to text on who it suits)
+      - Hvad skal du have under og omkring? (belt, wading staff, merino/fleece, each anchored)
+      - Hvordan fisker du sikkert i waders om vinteren? (belt, staff, ice, cold water)
+      - Hvordan holder du dem i live? (drying, storage, repairing holes)
+      - Checklist + internal routing (waders hub, havørred-waders, vadejakke, winter
+        havørred pages). No affiliate cards at the end (buyer's-guide anatomy).
+      - FAQ schema 3-4 Q's
+- [x] 3. **3-4 nano-banana images**, no fish and no close-up people: neoprene waders
+      hanging to dry in a winter shed/porch, frosty riverbank at a winter stream, close-up
+      of a felt vs. rubber sole on wet stones, winter coast/lake with at most a tiny
+      silhouette. Check each for AI tells.
+- [x] 4. **Wire it in**: GuideLink from the waders hub (neopren section) and from
+      waders-til-havorredfiskeri ("Hvornår skal jeg vælge neopren?"), a card on the
+      /fiskeudstyr/beklaedning/ index if it lists sub-pages, `sitemap.xml` + `llms.txt`.
+- [x] 5. **Fact-check pass** (master-fact-checker agent).
+- [x] 6. `npm run build`, check it on localhost (desktop + 600px), commit locally. **No push**
+      until you say "publish".
+- [x] 7. review.md entry.
+
+## Backlog (owner-approved, later sessions — NOT this session)
+
+The neopren page is the first of three waders-type pages. Build it so the other two can slot
+in beside it: same URL level, same template, cross-linked.
+- [ ] **Åndbare waders** page: `/fiskeudstyr/beklaedning/waders-og-stovler/aandbare-waders/`
+      (proposed). Pull DataForSEO volume ("åndbare waders" 390/mo) when it's picked up.
+- [ ] **PVC waders** page: `/fiskeudstyr/beklaedning/waders-og-stovler/pvc-waders/` (proposed).
+      Pull DataForSEO volume when it's picked up.
+- Note: this replaces Session 58's item 2 ("waders buying guide by type"). Covering it as
+  3 dedicated type pages instead of one comparison page.
+- Until those exist, the neopren page links to the waders hub for the other types (no dead
+  links).
+
+---
+
+# Plan — Session 59 (Blog: fredning af havørred, 2026-09-24) — DONE (pushed live 2026-09-24)
 
 ## Context
 

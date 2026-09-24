@@ -1,0 +1,352 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../components/RelatedRow.astro';
+import DidYouKnow from '../../../components/DidYouKnow.astro';
+import TipBox from '../../../components/TipBox.astro';
+import StatHighlight from '../../../components/StatHighlight.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+import Affiliate from '../../../components/Affiliate.astro';
+
+const related = [
+  {
+    title: "Havørredfiskeri i november",
+    description: "Sidste halvdel af efteråret på kysten — hvor de blanke fisk står, og hvordan du fisker op til fredningen.",
+    href: "/guide-til-fisk/havorredfiskeri/havorredfiskeri-november/",
+    image: "/images/fredning_kyst.jpg",
+    alt: "Grå novemberkyst med sten og tang",
+    chip: "Månedsguide",
+  },
+  {
+    title: "Havørredfiskeri i december",
+    description: "Midt i fredningen — sådan fisker du efter de blanke fisk, der stadig må tages med hjem.",
+    href: "/guide-til-fisk/havorredfiskeri/havorredfiskeri-december/",
+    image: "/images/fredning_hero.jpg",
+    alt: "Tåget å med rimfrost en vintermorgen",
+    chip: "Månedsguide",
+  },
+  {
+    title: "Catch and release",
+    description: "Hvorfor og hvordan du genudsætter fisk skånsomt — og hvad forskningen siger om overlevelsen.",
+    href: "/fiskeguide/catch-and-release/",
+    image: "/images/fredning_aaudlob.jpg",
+    alt: "Åudløb der møder havet",
+    chip: "Fiskeguide",
+  },
+];
+---
+
+<MainLayout
+  title="Fredning af havørred | Hvorfor, hvornår og hvad du gør"
+  description="Havørreden er fredet 16. november – 15. januar. Jeg forklarer hvorfor, hvordan du kender en farvet fisk, og hvad du gør, hvis du fanger en i fredningen."
+  canonical="https://udeogfiske.dk/blog/fredning-af-havorred/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: "Fredning af havørred" },
+  ]}
+  articleData={{
+    headline: "Fredning af havørred: Hvorfor, hvornår og hvad du gør, når du fanger en farvet fisk",
+    image: "/images/fredning_hero.jpg",
+    datePublished: "2026-09-24",
+  }}
+  faq={[
+    {
+      question: "Hvornår er havørreden fredet?",
+      answer: "I saltvand er havørred i gydedragt (farvede fisk) fredet fra 16. november til 15. januar, begge dage inklusive. Blanke fisk med løse skæl må stadig tages med hjem, hvis de er over mindstemålet på 40 cm. I ferskvand er havørreden fredet fra 16. november til 28./29. februar, og lokalt kan fredningen være længere. Omkring Bornholm er farvede fisk fredet fra 15. september til 28./29. februar, i Vadehavet er alle havørreder fredet i samme periode, og i Ringkøbing, Nissum og Stadil Fjorde samt Von Å er havørreden fredet hele året.",
+    },
+    {
+      question: "Hvorfor er havørreden fredet om vinteren?",
+      answer: "Fordi det er gydetid. Om efteråret samles de kønsmodne havørreder ved kysten og i fjordene, inden de vandrer op i åerne for at gyde i gruset. Hver hunfisk bærer tusindvis af æg, og en stor del af hunnerne gyder mere end én gang i deres liv. Fredningen beskytter fiskene i den periode, hvor de er mest sårbare, og hvor hver enkelt fisk betyder mest for næste generation.",
+    },
+    {
+      question: "Hvad gør jeg, hvis jeg fanger en farvet havørred i fredningstiden?",
+      answer: "Du skal straks og så nænsomt som muligt genudsætte den. Hold fisken i vandet, brug våde hænder, klem ikke på bugen, og løsn krogen med en krogløser eller tang. Hold fisken med hovedet mod strømmen eller bølgerne, til den selv svømmer væk. Er du i tvivl om, hvorvidt fisken er blank eller farvet, så genudsæt den.",
+    },
+    {
+      question: "Hvordan kender man forskel på en blank og en farvet havørred?",
+      answer: "En blank havørred er sølvskinnende med kridhvid bug, næsten gennemsigtige bryst- og bugfinner og løse skæl, der let sætter sig på hænderne. En farvet havørred er brunlig til gyldent kobberfarvet, ofte med mørk bug, og hannerne udvikler en kæbekrog. Har en blank havørred løse skæl, er den ikke kønsmoden og må hjemtages, hvis den er over 40 cm.",
+    },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>Fredning af havørred</span>
+      </nav>
+      <p class="pg-chip">Viden fra vandkanten</p>
+      <h1 class="pg-title">Fredning af havørred: Hvorfor, hvornår og hvad du gør</h1>
+      <p class="pg-sub">Hvert år den 16. november ændrer reglerne sig på kysten. Her er ikke bare datoerne, men forklaringen på, hvorfor vi freder havørreden, hvordan du kender en farvet fisk, og hvad du gør, når du står med én i hånden.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvornår er havørreden fredet?</h2>
+        <p class="ac-a"><strong>I saltvand er farvede havørreder i gydedragt fredet fra 16. november til 15. januar, begge dage inklusive.</strong> Blanke fisk med løse skæl må du stadig tage med hjem, så længe de er over mindstemålet på 40 cm. I åer og søer er havørreden fredet fra 16. november til 28./29. februar, og flere steder gælder der længere lokale fredninger: omkring Bornholm, i Vadehavet, i de vestjyske fjorde og i Randers Fjord. Oveni kommer fredningsbælterne på 500 meter omkring å- og bækudløb.</p>
+      </div>
+
+      <article class="article">
+
+        <h2>Hvorfor er havørreden fredet om vinteren?</h2>
+        <p>Jeg kan godt forstå, hvis fredningen føles som en irriterende streg i kalenderen. Oktober og begyndelsen af november er noget af det bedste fiskeri, vi har på kysten, og så lige pludselig skal man til at kigge efter farver og skæl, før man må beholde en fisk. Men når man forstår, hvad der foregår under overfladen på det tidspunkt, giver datoerne rigtig god mening.</p>
+
+        <p>Havørreden er født i en å. Den lever sine første et til tre år i vandløbet, vandrer så ud i havet som en lille sølvblank smolt og æder sig stor langs kysterne. Når den bliver kønsmoden, vender den tilbage til det vandløb, den kom fra, for at gyde. Den vandring sker om efteråret og vinteren. Fiskene samler sig ved kysten og inde i fjordene, venter på regn og højere vandstand i åerne og trækker så op mod gydepladserne.</p>
+
+        <p>Selve gydningen foregår i <strong>grus med strømmende, iltrigt vand</strong>. Hunnen graver med halen en fordybning i gruset, lægger sine æg, hannen befrugter dem, og hunnen dækker dem til med grus igen. Der ligger æggene så hele vinteren, mens de langsomt udvikler sig i det kolde vand. Først hen på foråret kravler de små yngel op af gruset.</p>
+
+        <figure class="art-figure">
+          <img src="/images/fredning_gydebanke.jpg" alt="Klart, lavt vandløb med strømmende vand over en grusbanke omgivet af efterårsløv" width="1376" height="774" loading="lazy" />
+          <figcaption>Sådan ser en gydebanke ud: lavt, strømmende vand over rent grus. Her ligger næste års havørreder begravet hele vinteren.</figcaption>
+        </figure>
+
+        <p>Fredningen dækker altså præcis den periode, hvor fiskene er allermest sårbare og allermest værdifulde. En farvet hunfisk på vej op i åen bærer tusindvis af æg. Tager man hende med hjem den 20. november, tager man ikke bare én fisk. Man tager hele hendes bidrag til næste generation i det vandløb.</p>
+
+        <StatHighlight
+          icon="fish"
+          value="Op til 25 %"
+          caption="Så stor en andel af havørredhunnerne gyder mere end én gang. En fisk, der overlever gydningen, kommer ofte igen året efter, større og med endnu flere æg."
+        />
+
+        <DidYouKnow>
+          Havørreden finder hjem til <strong>sit eget vandløb</strong> ved hjælp af lugtesansen. Hver å har sin egen kemiske "signatur", som fisken husker fra sin tid som yngel. Derfor har hvert vandløb sin egen bestand, og derfor betyder det så meget, at netop de fisk, der står ud for åens munding i november, får lov at komme op.
+        </DidYouKnow>
+
+        <h2>Hvorfor er der fredningsbælter ved åudløbene?</h2>
+        <p>Hvis du har fisket kysten et stykke tid, har du sikkert set de små skilte eller hørt om "fredningsbæltet" ved en å. Det er et område på <strong>500 meter omkring udløbet</strong> af åer, bække og indsnævringer, hvor der ikke må fiskes. Grunden er ret enkel: det er her, fiskene samler sig og venter, inden de trækker op i åen. De står tæt, ofte i lavt vand, og de er utroligt nemme at fange. Uden fredningsbæltet ville en håndfuld fiskere kunne tømme en lille å for gydefisk på et par uger.</p>
+
+        <p>Som hovedregel er fredningsbæltet ved udløb, der er <strong>2 meter brede eller mere, fredet hele året</strong>. Ved smallere udløb gælder fredningen typisk fra <strong>16. september til 15. marts</strong>. Men der findes mange lokale undtagelser og særlige zoner, så tjek altid Fiskeristyrelsens kort over fredningsbælter, før du fisker en ny plads. Det tager to minutter på telefonen.</p>
+
+        <figure class="art-figure">
+          <img src="/images/fredning_aaudlob.jpg" alt="Et lille vandløb løber ud over en stenstrand og ind i havet en grå efterårsdag" width="1376" height="774" loading="lazy" />
+          <figcaption>Et åudløb som dette er et klassisk fredningsbælte. Her samler fiskene sig i efteråret, og her skal de have ro.</figcaption>
+        </figure>
+
+        <h2>Hvad er forskellen på en blank og en farvet havørred?</h2>
+        <p>Det er det, hele fredningen i saltvand handler om, for reglerne gælder de <em>farvede</em> fisk. Om efteråret går der to slags havørreder langs kysten: de kønsmodne fisk, der skal op og gyde, og de blanke fisk, der springer gydningen over i år og bare fortsætter med at æde. Den sidste slags må du gerne tage med hjem, også midt i fredningen.</p>
+
+        <p><strong>Den blanke fisk</strong> er sølvskinnende og ser ud, som den gør om foråret. Bugen er kridhvid, bryst- og bugfinnerne er klare eller næsten gennemsigtige, og gattet er lille og diskret. Det vigtigste kendetegn er <strong>løse skæl</strong>: når du rører ved fisken, sætter skællene sig på dine hænder eller i nettet. En blank havørred med løse skæl er ikke kønsmoden, og det er den, loven sigter efter, når den siger, at du kun må tage "helt blanke fisk med løse skæl" med hjem i fredningsperioden.</p>
+
+        <p><strong>Den farvede fisk</strong> har skiftet dragt. Den er brunlig, gylden eller kobberfarvet, og bugen kan være mørk, næsten sort. Finnerne er ikke længere gennemsigtige, gattet er udspilet, og hannerne udvikler en tydelig <strong>kæbekrog</strong> på underkæben. Skællene sidder fast. Den fisk er på vej til gydepladsen og skal tilbage i vandet.</p>
+
+        <p>Så er der en tredje type, som mange ikke kender: <strong>nedfaldsfisken</strong>, også kaldet nedgængeren. Det er en fisk, der har gydt og er på vej tilbage til havet. Den er mager, hovedet ser alt for stort ud i forhold til kroppen, og halefinnen er ofte slidt. Den kan godt være blevet sølvfarvet igen, men den er i dårlig kondition og skal genudsættes. Den kommer sig forbløffende hurtigt, når den først er tilbage i havet og begynder at æde igen.</p>
+
+        <TipBox>
+          <p>Mit tip: <strong>er du i tvivl, så genudsæt fisken.</strong> Der er ingen grund til at stå og vende en halvfarvet fisk i hænderne i flere minutter. Hvis du ikke med det samme kan se, at den er helt blank, og skællene ikke løsner sig, så ryger den tilbage. Det er aldrig forkert at genudsætte, men det kan godt være forkert at tage den med hjem.</p>
+        </TipBox>
+
+        <h2>Hvad gør du, hvis du fanger en farvet havørred?</h2>
+        <p>Loven siger, at farvede fisk i fredningsperioden skal genudsættes <strong>"straks og så nænsomt som muligt"</strong>. Og det er faktisk lige så vigtigt, hvordan du gør det, som at du gør det. En farvet fisk er allerede presset. Den har brugt meget af sin energi på at udvikle æg og mælke, den æder ikke meget, og den har gydevandringen foran sig. Sådan gør jeg:</p>
+
+        <ul>
+          <li><strong>Hold fisken i vandet.</strong> Træk den ind på lavt vand i stedet for at løfte den op på stenene. Hvert sekund i luften koster.</li>
+          <li><strong>Brug våde hænder, aldrig tørre.</strong> Tørre hænder, handsker og klude tager fiskens slimlag med sig, og slimlaget er dens beskyttelse mod svamp og infektioner.</li>
+          <li><strong>Klem ikke på bugen.</strong> Især ikke på en farvet hunfisk, der er fuld af rogn. Støt fisken løst under bugen og omkring halespolen.</li>
+          <li><strong>Få krogen ud hurtigt.</strong> Brug en krogløser eller en lang tang. Sidder krogen dybt, så klip forfanget over tæt ved krogen i stedet for at vride den ud.</li>
+          <li><strong>Lad den komme til hægterne.</strong> Hold fisken med hovedet mod bølgerne eller strømmen, så vandet løber gennem gællerne. Slip først, når den selv sparker sig fri.</li>
+          <li><strong>Drop fotosessionen.</strong> Vil du have et billede, så tag det mens fisken ligger i vandet. En farvet fisk i fredningen skal ikke holdes op til et trofæbillede.</li>
+        </ul>
+
+        <p>Et <strong>fangstnet med gummimasker</strong> gør en stor forskel her. Det skåner slimlaget og finnerne langt bedre end et klassisk knudenet, og fisken kan blive liggende i nettet i vandet, mens du får krogen ud.</p>
+
+        <Affiliate
+          productId="504729"
+          note="Et flydende fangstnet med gumminet er det stykke grej, jeg vil anbefale mest til fiskeriet i fredningstiden. Du kan lade fisken ligge i nettet i vandkanten, mens du løsner krogen, og gummimaskerne tager ikke slimlaget med sig, som et knudenet gør."
+        />
+
+        <TipBox>
+          <p>Klem modhagerne flade på dine kroge fra midten af november. Det koster næsten ingen fisk, når du holder linen stram under fighten, og det gør genudsætningen hurtigere og langt mere skånsom. Det er den enkleste ting, du kan gøre for de farvede fisk.</p>
+        </TipBox>
+
+        <h2>Hvilke lokale fredninger skal du kende?</h2>
+        <p>Den generelle regel på 16. november til 15. januar gælder de fleste steder langs kysten. Men der er en række områder, hvor reglerne er strammere, og dem skal du kende, hvis du fisker der:</p>
+
+        <ul>
+          <li><strong>Ferskvand (åer og søer):</strong> Havørreden er fredet fra 16. november til 28./29. februar. Mange vandløb har desuden egne, længere lukkeperioder fastsat af foreninger og lodsejere.</li>
+          <li><strong>Farvandet omkring Bornholm:</strong> Farvede havørreder er fredet fra 15. september til 28./29. februar.</li>
+          <li><strong>Vadehavet:</strong> <em>Alle</em> havørreder, både blanke og farvede, er fredet fra 15. september til 28./29. februar.</li>
+          <li><strong>Ringkøbing, Nissum og Stadil Fjorde samt Von Å:</strong> Havørreden er fredet hele året.</li>
+          <li><strong>Randers Fjord:</strong> Havørreden er fredet fra 16. november til 1. marts, og nedfaldsfisk er fredet hele året.</li>
+          <li><strong>Odense Fjord:</strong> Mindstemålet for havørred er 45 cm i stedet for 40 cm, og der gælder særlige regler i inderfjorden.</li>
+        </ul>
+
+        <p>Reglerne kan ændre sig, og der findes lokale fredningsbælter, som ikke står på nogen liste. Brug derfor altid <a href="https://fiskeristyrelsen.dk/" target="_blank" rel="noopener">Fiskeristyrelsen</a> og <a href="https://www.fiskepleje.dk/" target="_blank" rel="noopener">Fiskepleje.dk</a> som den endelige kilde, før du tager afsted til et nyt sted.</p>
+
+        <figure class="art-figure">
+          <img src="/images/fredning_kyst.jpg" alt="Grå vinterkyst med sten og tang og en lille fisker langt ude i vandkanten" width="1376" height="774" loading="lazy" />
+          <figcaption>Fiskeriet stopper ikke den 16. november. Der er stadig blanke fisk på kysten, og de må du gerne fange og beholde.</figcaption>
+        </figure>
+
+        <h2>Kan man overhovedet fiske havørred i fredningstiden?</h2>
+        <p>Ja, og det er en af de ting, jeg synes, mange overser. Fredningen i saltvand gælder de farvede fisk, ikke fiskeriet. Der står stadig blanke fødesøgende fisk langs kysten hele vinteren, især i fjordene og på lune pladser med lidt brakvand. Så længe du kender forskel, genudsætter de farvede skånsomt og holder dig ude af fredningsbælterne, kan du sagtens fiske videre gennem december og januar. Jeg har skrevet mere om, hvor fiskene står, i guiderne til <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-december/">havørredfiskeri i december</a> og <a href="/guide-til-fisk/havorredfiskeri/havorredfiskeri-januar/">januar</a>.</p>
+
+        <p>Det, der ændrer sig, er måden, du fisker på. Du kommer til at genudsætte flere fisk end i resten af året, og så giver det god mening at fiske med et grej og en rutine, der gør genudsætningen let. Tænk også over, hvor du vader. Undgå at gå rundt på gruset i åmundinger og små vandløb om vinteren. Det er præcis der, æggene ligger.</p>
+
+        <h2>Min tjekliste til fiskeriet efter 16. november</h2>
+        <p>Her er det, jeg selv tjekker, før jeg tager på kysten i fredningsperioden:</p>
+
+        <ul>
+          <li><strong>Kend dine datoer:</strong> 16. november til 15. januar i saltvand, 16. november til 28./29. februar i ferskvand, og tjek om du fisker i et område med længere lokal fredning.</li>
+          <li><strong>Tjek fredningsbælterne:</strong> slå pladsen op på Fiskeristyrelsens kort, og hold 500 meter afstand til å- og bækudløb.</li>
+          <li><strong>Grej til genudsætning:</strong> fangstnet med gummimasker, krogløser eller lang tang, og klemte modhager.</li>
+          <li><strong>Kend fiskene:</strong> blank med løse skæl og kridhvid bug må hjemtages over 40 cm. Farvet, mager eller i tvivl, så ryger den tilbage.</li>
+          <li><strong>Genudsæt i vandet:</strong> våde hænder, ingen klem på bugen, hovedet mod strømmen, og slip først når fisken selv svømmer.</li>
+          <li><strong>Pas på gydebankerne:</strong> vad ikke rundt i gruset i åer og åmundinger om vinteren.</li>
+          <li><strong>Husk dit fisketegn:</strong> det gælder hele året, hvis du er fyldt 18 og endnu ikke har nået folkepensionsalderen. Læs mere i <a href="/fiskeguide/fisketegn/">guiden til fisketegn</a>.</li>
+        </ul>
+
+        <p>Fredningen er ikke en pause i havørredfiskeriet. Den er grunden til, at vi overhovedet har et havørredfiskeri i Danmark. Hver farvet fisk, vi lader svømme den 20. november, er med til at lægge næste årgang af havørreder i gruset. Så lad dem komme op og gyde.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/havorredfiskeri/"
+          title="Læs den store havørredguide"
+          desc="Alt om havørredfiskeri på kyst og fjord, med grej, agn, sæsoner og de bedste pladser året rundt."
+        />
+
+      </article>
+
+      <RelatedRow items={related} />
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0.05) 100%),
+      url('/images/fredning_hero.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+
+  .pg-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 720px;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    max-width: 560px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .answer-capsule {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0d4a5e;
+    margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 2.5rem 0 1rem;
+  }
+  .article h2:first-child { margin-top: 0; }
+
+  .article ul {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .article ul li {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.7;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .art-figure {
+    margin: 2.25rem 0 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .art-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .art-figure figcaption {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    background: #f8fafc;
+  }
+</style>

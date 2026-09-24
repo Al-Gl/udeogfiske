@@ -1,3 +1,106 @@
+# Plan — Session 59 (Blog: fredning af havørred, 2026-09-24) — DONE (committed locally, not pushed)
+
+## Context
+
+DataForSEO (Denmark/da, 2026-09-24): "fredning havørred" cluster = 390/mo avg but
+**1,300 in Nov**, 720 Oct, 590 Jan. Plus "fredningstid havørred" 260 (Nov), "fredningstider
+fisk" 260 (Oct), "farvet havørred" 110 (Oct/Nov). The site currently ranks #32-38 via the
+generic havørred hub — no dedicated page. Must be live before the Nov peak.
+
+User brief: add real value — explain **WHY** the fredning periods exist (biology) and
+**WHAT TO DO** when you catch a fish during them. Images: nature only, no fish, no
+people (or only tiny zoomed-out silhouettes).
+
+## Todo
+
+- [x] 1. **Fact research first** (WebSearch/WebFetch on fiskeristyrelsen.dk, fiskepleje.dk,
+      DTU Aqua, retsinformation). Verify the current rules for 2026: fredningsperiode dates
+      (16/11–15/1?), saltwater vs. freshwater difference, farvede vs. blanke fisk,
+      nedfaldsfisk/nedgængere, mindstemål 40 cm, fredningsbælter (500 m, periods),
+      regional exceptions (Bornholm, Odense Fjord, Randers Fjord, others?). Nothing goes in the
+      post unless it's backed by a source.
+- [x] 2. **Write `/blog/fredning-af-havorred/`** using the multefiskeri post as the template
+      (same components/CSS, first-person voice, Q&A H2s). Planned H2s:
+      - Hvornår er havørreden fredet? (the rules at a glance + answer capsule)
+      - Hvorfor er havørreden fredet om vinteren? (gydevandring, gydebanker i gruset, rogn
+        som skal ligge i fred, én gydning = den næste generation, sårbar fisk under
+        opgang)
+      - Hvad er forskellen på en blank og en farvet havørred? (how to tell them apart,
+        nedfaldsfisk)
+      - Hvad er et fredningsbælte, og hvorfor ligger de ved åudløbene?
+      - Hvad gør du, hvis du fanger en farvet havørred? (step-by-step skånsom
+        genudsætning: in the water, wet hands, don't squeeze, barbless, revival, no photo
+        session)
+      - Hvilke lokale undtagelser skal du kende?
+      - Min tjekliste til efterårs- og vinterfiskeriet + GuideLinks to the havørred
+        november/december pages and catch-and-release
+      - FAQ schema (3-4 Q's), AIOSEO-style title/description in MainLayout props
+- [x] 3. **3-4 nano-banana images** (no fish, no people): foggy Danish å in November with
+      fall colours (hero), clear gravel gydebanke in a stream, åudløb meeting the sea
+      (fredningsbælte), grey winter coast with at most a tiny distant silhouette. Check each
+      one for AI tells before using it.
+- [x] 4. **Wire it in**: card at the top of `/blog/`, entries in `public/sitemap.xml` +
+      `public/llms.txt`, a contextual link from the havørred hub fredning section + the
+      november page.
+- [x] 5. **Fix the 15 vs 16 november inconsistency** on `/guide-til-fisk/havorredfiskeri/`
+      (2 spots say 15., 4 say 16.) so it matches whatever step 1 confirms.
+- [x] 6. **Fact-check pass** (master-fact-checker agent) on the finished post.
+- [x] 7. `npm run build`, check it on localhost, commit locally. **No push** until you say
+      "publish".
+- [x] 8. review.md entry.
+
+---
+
+# Plan — Session 58 (5 more content-gap pages, 2026-09-12) — AWAITING GO-AHEAD
+
+## Context
+
+Follow-up to Session 57's Search Console gap analysis. Re-pulled fresh 90-day
+query+page data and confirmed 3 of the original 5 gap pages are still unbuilt, plus
+found 2 new ones. Also backfilled `havorredfiskeri-vinter` + `bliv-lystfisker` into
+`sitemap.xml`/`llms.txt` (were live but missing from both — committed separately).
+
+**Data behind each pick** (90-day Search Console, live site):
+
+1. **Hornfisk sæson-guide (monthly pages)** — same proven template as the 12 havørred
+   month-pages, applied to garfish. "hornfisk" + "hornfisk sæson" + variants ≈ 680
+   impr/90d combined, stuck at position 30-60 on one thin generic page
+   (`/guide-til-fisk/hornfisk/`). Season data for hornfisk is already verified in the
+   SeasonCalendar component data — no fabrication needed.
+2. **Waders buying guide by type** (PVC vs. åndbar/breathable vs. neopren) — "pvc
+   waders," "åndbar waders," "neopren waders fiskeri," "bedste waders" etc. ≈ 1,050
+   impr/90d combined, all on one generic page
+   (`/fiskeudstyr/beklaedning/waders-og-stovler/`) at position 27-52. Only a use-case
+   sub-page exists (til-havorredfiskeri); nothing compares waders *types*.
+3. **Fisketegn i Norge** — "fisketegn norge" (109 impr/90d, pos 20) lands on the
+   Denmark-only `/fiskeguide/fisketegn/` page. Real gap for anglers fishing across the
+   border in Norway/Sweden.
+4. **Typer af fladfisk (flatfish species ID guide)** — "fladfisk navne" (105 impr,
+   pos 19) + "typer af fladfisk" (80 impr, pos 23). Species identification (skrubbe/
+   rødspætte/ising/pighvar), NOT a season calendar — doesn't hit the no-fabricated-data
+   constraint that ruled out a flatfish season page in Session 57.
+5. **Bedste fiskehjul til kystfiskeri** (reel buying guide for coastal fishing) —
+   mirrors the exact pattern the existing `waders-til-havorredfiskeri` sub-page already
+   uses successfully. The fiskehjul cluster ("bedste fiskehjul," "fiskehjul størrelse,"
+   "fiske hjul," + the head term) ≈ 640 impr/90d combined, stuck position 18-37 on one
+   thin generic page (`/fiskeudstyr/fiskehjul/`).
+
+## Todo (draft — not started, awaiting go-ahead per CLAUDE.md item 3)
+
+- [ ] 1. Confirm with owner which of the 5 to build this round (all 5, or a subset —
+      per the Session 57 precedent of picking 2 at a time).
+- [ ] 2. For each page picked: verify placement (which existing section/URL depth),
+      write content (Q&A H2s, verified facts only, first-person voice), pick/validate
+      Affiliate productId(s) where relevant, generate fish-free nano-banana images.
+- [ ] 3. Add each new page to `sitemap.xml` AND `llms.txt` as part of that same page's
+      work — not as an afterthought (this is what slipped last session).
+- [ ] 4. `npm run build`, verify clean, spot-check rendering in a real browser.
+- [ ] 5. Append a Session 58 review entry to `review.md`.
+- [ ] 6. Do NOT `git push` — commit locally only, wait for explicit go-ahead per
+      [[feedback_uof_no_push_without_prompt]].
+
+---
+
 # Plan — Session 57 (2 new pages + havørredfiskeri hub SEO push, 2026-09-11)
 
 ## Context

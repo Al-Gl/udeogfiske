@@ -1,3 +1,31 @@
+## 2026-09-24 — New blog post: fredning af havørred (Session 59)
+
+DataForSEO (Denmark/da): "fredning havørred" peaks at 1,300/mo in November (720 Oct), and the
+site ranked only #32-38 via the generic hub. New dedicated post built ahead of the peak.
+
+**What changed**
+- New `/blog/fredning-af-havorred/` (multefiskeri template). It focuses on *why*: the spawning
+  run, gravel gydebanker, eggs overwintering, homing. It also covers fredningsbælter, how to
+  tell blank/farvet/nedfaldsfisk apart, a step-by-step gentle release, local exceptions, fishing
+  during fredning, and a checklist. 4 FAQ schema items, 1 Affiliate (fangstnet 504729).
+- 4 nano-banana nature images, no fish and no close-up people: `fredning_hero/gydebanke/aaudlob/kyst.jpg`
+  (the kyst shot has only a tiny distant silhouette). Swapped a related card away from
+  `mole_fiskeri.jpg` because it shows a person in detail.
+- Wired in: top card on `/blog/`, `sitemap.xml` + `llms.txt`, contextual links from the
+  havørred hub (fredning list) and the november page (fredningszone tip).
+- **Fixed existing errors:** 4× "15. november" → 16. on the havørred hub and 3× on
+  spinnefiskeri-havorred. 3× on the hub claimed "blank med løse skæl = nedgænger der allerede har
+  gydet". That's wrong: loose scales mean a non-mature fish, and kelts must be released.
+
+**Sources:** fiskepleje.dk saltwater table (valid from 01.01.2023), freshwater decree of 1 July 2021
+(16/11–28/29 Feb), sportsfiskeren.dk ID guide, lystfiskerirandersfjord.dk, komivandet.nu.
+Fact-checker agent: 9/10 claims verified. Fixed fisketegn "18-65" → "folkepensionsalderen".
+"Op til 25 % gyder flere gange" is sourced to komivandet.nu (DSF), not found on
+fiskepleje/DTU. It's kept, but flagged to the owner.
+
+**Not done:** not pushed (CLAUDE.md rule 8). Other pages still say "18 og 65" for fisketegn
+and haven't been swept.
+
 ## 2026-09-11 — 2 new pages + havørredfiskeri hub SEO push (Session 57)
 
 Re-authorized the Search Console OAuth token (expired — "Testing" consent screens

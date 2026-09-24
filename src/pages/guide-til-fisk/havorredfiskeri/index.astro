@@ -90,12 +90,12 @@ const seasons = [
     name: 'Efterår',
     months: 'September–November',
     accent: 'autumn',
-    lead: 'Efteråret kan give rigtig godt havørredfiskeri — i starten af efteråret langs kysten, senere i fjordene. Der findes to typer fisk nu: blanke havørreder på 40–50 cm, som springer gydningen over, og farvede (oftest større) gydetræk-fisk. Bemærk fredning fra 15. november. Efterårsørreder kan være kræsne, da de ikke spiser meget op til gydningen. I tidligt efterår er morgen/aften bedst, mens du senere kan fange fisk midt på dagen, når vejret bliver koldere. Fiskene er desuden mere spredt end i forår og sommer.',
+    lead: 'Efteråret kan give rigtig godt havørredfiskeri — i starten af efteråret langs kysten, senere i fjordene. Der findes to typer fisk nu: blanke havørreder på 40–50 cm, som springer gydningen over, og farvede (oftest større) gydetræk-fisk. Bemærk fredning fra 16. november. Efterårsørreder kan være kræsne, da de ikke spiser meget op til gydningen. I tidligt efterår er morgen/aften bedst, mens du senere kan fange fisk midt på dagen, når vejret bliver koldere. Fiskene er desuden mere spredt end i forår og sommer.',
     facts: [
       { label: 'Bedste tidspunkter', value: 'Morgen/aften i tidligt efterår, midt på dagen i koldt vejr' },
       { label: 'Favorit-agn', value: 'Blink, fluer i mindre størrelser' },
       { label: 'Placering', value: 'Kyst og fjord (fiskene trækker op mod åer/bække)' },
-      { label: 'Fredning', value: 'Starter 15. november for gydende fisk' },
+      { label: 'Fredning', value: 'Starter 16. november for gydende fisk' },
     ],
   },
   {
@@ -103,11 +103,11 @@ const seasons = [
     name: 'Vinter',
     months: 'December–Februar',
     accent: 'winter',
-    lead: 'Om vinteren trækker mange havørreder op i varmere fjorde og åer for at gyde. Saltindholdet er lavere, og vandet ofte lidt lunere end ved kysten. Andre havørreder søger på dybere havvand. Når du finder en stime, kan du opleve fremragende vinterfiskeri — især med skarpe farver på blink, gennemløbere eller flue. Bemærk fredningen 15. november til 15. januar, og genudsæt tynde "nedfaldsfisk" i dårlig kondition.',
+    lead: 'Om vinteren trækker mange havørreder op i varmere fjorde og åer for at gyde. Saltindholdet er lavere, og vandet ofte lidt lunere end ved kysten. Andre havørreder søger på dybere havvand. Når du finder en stime, kan du opleve fremragende vinterfiskeri — især med skarpe farver på blink, gennemløbere eller flue. Bemærk fredningen 16. november til 15. januar, og genudsæt tynde "nedfaldsfisk" i dårlig kondition.',
     facts: [
       { label: 'Bedste tidspunkter', value: 'Midt på dagen' },
       { label: 'Favorit-agn', value: 'Skarpe farver i koldt vand (blink, gennemløber, flue)' },
-      { label: 'Fredning', value: '15. november til 15. januar for gydetræk-fisk' },
+      { label: 'Fredning', value: '16. november til 15. januar for gydetræk-fisk' },
       { label: 'Nedfaldsfisk', value: 'Tynde, udtjente fisk — genudsæt dem for bedre bestande' },
     ],
   },
@@ -166,7 +166,7 @@ const faqs = [
   },
   {
     question: "Hvad er mindstemålet for havørred i Danmark?",
-    answer: "Mindstemålet for havørred er 40 cm i danske farvande. Havørreden er fredet fra 16. november til 15. januar, hvor farvede fisk i gydedragt skal genudsættes. Du må kun hjemtage blanke fisk med løse skæl i fredningsperioden — disse nedgængere har allerede gydet.",
+    answer: "Mindstemålet for havørred er 40 cm i danske farvande. Havørreden er fredet fra 16. november til 15. januar, hvor farvede fisk i gydedragt skal genudsættes. Du må kun hjemtage helt blanke fisk med løse skæl i fredningsperioden — løse skæl viser, at fisken ikke er kønsmoden og springer gydningen over.",
   },
   {
     question: "Hvor er de bedste steder at fiske havørred i Danmark?",
@@ -190,7 +190,7 @@ const faqs = [
   },
   {
     question: "Hvad er forskellen på blanke og farvede havørreder?",
-    answer: "Blanke havørreder er sølvskinnende med løse skæl, fed krop, og har enten ikke gydt eller er nedgængere — de må hjemtages. Farvede havørreder i gydedragt er gylden til brunlig/kobberfarvet, hannerne udvikler kæbekrog. Farvede fisk er FREDET 16. november – 15. januar og skal altid genudsættes.",
+    answer: "Blanke havørreder er sølvskinnende med løse skæl, fed krop, og er ikke kønsmodne — de må hjemtages. Magre nedgængere (nedfaldsfisk), der har gydt, skal genudsættes. Farvede havørreder i gydedragt er gylden til brunlig/kobberfarvet, hannerne udvikler kæbekrog. Farvede fisk er FREDET 16. november – 15. januar og skal altid genudsættes.",
   },
   {
     question: "Må jeg tage havørred med hjem?",
@@ -994,7 +994,7 @@ const about = [
         <h3>Generelle regler (gælder hele Danmark)</h3>
         <ul>
           <li><strong>Mindstemål:</strong> 40 cm — alt under genudsættes skånsomt</li>
-          <li><strong>Fredningsperiode:</strong> 16. november – 15. januar for gydende (farvede) fisk</li>
+          <li><strong>Fredningsperiode:</strong> 16. november – 15. januar for gydende (farvede) fisk — <a href="/blog/fredning-af-havorred/">læs hvorfor, og hvad du gør, hvis du fanger en farvet fisk</a></li>
           <li><strong>Farvede fisk skal altid genudsættes</strong> — uanset årstid og uanset størrelse</li>
           <li><strong>Fisketegn:</strong> Kræves for alle mellem 18 og 65 år (købes på fisketegn.dk)</li>
           <li><strong>Fredningsbælter:</strong> 500 m-zoner ved mange åudløb — tjek altid inden du fisker et nyt sted</li>
@@ -1029,7 +1029,7 @@ const about = [
           <details class="faq-item">
             <summary><h3>Hvad er mindstemålet for havørred i Danmark?</h3></summary>
             <div class="faq-answer">
-              <p><strong>Mindstemålet for havørred er 40 cm i danske farvande.</strong> Havørreden er fredet fra 16. november til 15. januar, hvor farvede havørreder i gydedragt skal genudsættes. Du må kun hjemtage blanke fisk med løse skæl i fredningsperioden — disse nedgængere har allerede gydet. Husk altid at måle din fangst og behandle fisken skånsomt.</p>
+              <p><strong>Mindstemålet for havørred er 40 cm i danske farvande.</strong> Havørreden er fredet fra 16. november til 15. januar, hvor farvede havørreder i gydedragt skal genudsættes. Du må kun hjemtage helt blanke fisk med løse skæl i fredningsperioden — løse skæl viser, at fisken ikke er kønsmoden og springer gydningen over. Husk altid at måle din fangst og behandle fisken skånsomt.</p>
             </div>
           </details>
 

@@ -1,7 +1,7 @@
 ## 2026-09-24 — Åndbare waders + PVC waders type pages (Session 61)
 
 Completes the waders trio (neopren / åndbare / PVC) from the Session 60 backlog, using the
-same template. **Not pushed**: owner explicitly said don't push.
+same template. Pushed live 2026-09-24 (a86e80a) on owner go-ahead.
 
 DataForSEO: "åndbare waders" 390/mo (steady all year); "pvc waders" 90, "billige waders"
 110; **"waders til børn" 480/mo (590 Oct/Nov)**, bigger than the whole PVC cluster, so it got
@@ -55,7 +55,7 @@ waders hub. First of three planned waders-type pages (åndbare + PVC are in the 
 - Fact-checker: all claims and product specs verified except a "4 x iltforbrug" cold-shock
   stat, which was replaced with the well-established "1 minut" (1-10-1) framing.
 
-**Not done:** not pushed (CLAUDE.md rule 8). The åndbare + PVC pages are in the backlog.
+**Live:** pushed 2026-09-24 together with Session 61 (fb343ee + a86e80a).
 
 ## 2026-09-24 — New blog post: fredning af havørred (Session 59)
 

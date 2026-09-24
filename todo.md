@@ -1,4 +1,4 @@
-# Plan — Session 61 (Åndbare waders + PVC waders type pages, 2026-09-24) — DONE (committed locally, NOT pushed per owner)
+# Plan — Session 61 (Åndbare waders + PVC waders type pages, 2026-09-24) — DONE (pushed live 2026-09-24)
 
 ## Context
 
@@ -52,7 +52,7 @@ DataForSEO (Denmark/da):
 
 ---
 
-# Plan — Session 60 (Buyer's guide: neopren waders til vinterfiskeri, 2026-09-24) — DONE (committed locally, not pushed)
+# Plan — Session 60 (Buyer's guide: neopren waders til vinterfiskeri, 2026-09-24) — DONE (pushed live 2026-09-24)
 
 ## Context
 

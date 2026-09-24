@@ -1,6 +1,29 @@
 # Ude og Fiske — Build Progress
 
-**Last updated:** 2026-07-14 (Session 56 — Havbars guide, Ærø + Randers Fjord spot pages, AdSense fixes)
+**Last updated:** 2026-09-24 (Sessions 59-61 — fall SEO push: fredning blog post + waders trio)
+**Status:** 96 pages built, all pushed live (`c142891`, `fb343ee`, `a86e80a`). Picked with DataForSEO
+(the `dfs-mcp` MCP works now; Denmark/da). Four new pages this round:
+- `/blog/fredning-af-havorred/`: why havørred is protected (spawning biology), blank vs farvet vs
+  nedfaldsfisk, step-by-step gentle release, fredningsbælter, local exceptions. Targets "fredning
+  havørred" (1,300/mo in Nov). Also fixed 15.→16. november (7 spots) and the wrong "løse skæl =
+  already spawned" claim on the havørred hub + spinnefiskeri page.
+- Waders trio under `/fiskeudstyr/beklaedning/waders-og-stovler/`: `neopren-waders/` (880/mo in
+  Nov), `aandbare-waders/` (390/mo, the type guide; coastal specifics stay on
+  waders-til-havorredfiskeri), `pvc-waders/` (honest "when PVC makes sense" + a **waders til
+  børn** section, 480/mo). All three are cross-linked, and the hub has a GuideLink per type.
+All pages were fact-checked (master-fact-checker agent), and all images are nature/gear only (no fish, no close-up people).
+
+**Next session focus:** Request indexing in Search Console for the 4 new URLs (neopren first, since
+Nov is its peak). Other fall candidates from the Session 59 DataForSEO pull: røget ørred/havørred
+opskrift (880 in Dec, harder SERP), and a fall section on the gedde page ("geddefiskeri" 390 in Oct).
+Known leftover: other pages still say fisketegn "18 og 65 år". It should be "18 til
+folkepensionsalderen", but they haven't been swept. The Session 58 plan (hornfisk monthly pages,
+fisketegn Norge, fladfisk ID, fiskehjul til kyst) is still awaiting go-ahead. Its waders item is
+now done via the trio.
+
+---
+
+**Previous checkpoint — 2026-07-14 (Session 56 — Havbars guide, Ærø + Randers Fjord spot pages, AdSense fixes)**
 **Status:** 87 pages built, all pushed live (commits `9e6a605` + `f6ba1b1`). New this round: `/guide-til-fisk/havbarsfiskeri/` species guide (fact-checked after user flagged errors — mindstemål 42 cm, jysk vestkyst distribution, peak jul–sep), two new action-driven spot pages `/fiskepladser/aeroe/` and `/fiskepladser/randers-fjord/`, `/fiskepladser/` restructured into region sections (Sjælland/Jylland/Fyn/Put & Take, duplicate text-link list removed), and AdSense running on both sides (160×600) + mobile bottom banner (320×50) with Google's hide-responsive-ad-unit pattern and `:has(ins[data-ad-status="filled"])` placeholder auto-hide. Blog has 2 posts.
 
 **Session 55-56 (2026-07-13/14):** (1) Havbars species guide with 4-tab method-finder (Micro Popper 503553, Line Thru Sandeel 501378, Westin Sandy SBass 503950, 4Play Swim N Jerk 502638), 3 fish-free nano-banana images + 1 realistic havbars card (`havbars_card.jpg` — user explicitly requested a fish image; anatomy-specific prompting worked). Fact-check pass corrected 5 errors — see review.md. (2) User approved the action-driven spot-page anatomy (memory: `feedback_uof_spot_page_anatomy.md`): named-spot H3s from real pladsguide research + tactic TipBox + action checklist. Ærø (6 spots, sportsfiskeren.dk research) and Randers Fjord (brakvand angle, 4 spots). (3) AdSense iterations: dual sidebars, front-page `.hero` observer fix (was `.pg-hero` only → ads overlapped forside hero), then the fill fix — sizes on the `<ins>` itself so hidden units skip requests instead of erroring on zero width. Note: all 3 spots share slot 5322383516; separate slots per placement recommended. Ads only serve on the live domain once AdSense site review is approved.

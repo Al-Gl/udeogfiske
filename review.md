@@ -5493,3 +5493,42 @@ species leaking through the filter. Deleted `dist/` afterward (verification-only
 not committed).
 
 **Pushed live** — see commit for file list.
+
+# Session 57 review (2026-10-12) — fladfisk, regnbueørred and put & take ranking push
+
+**How the pages were chosen.** GSC (12 months) pointed at hornfisk, makrel and torsk. Aldin overruled: torsk can't be kept in
+most of Denmark (visitors don't buy), and makrel/hornfisk are out of season until spring. Chosen instead: fladfisk, regnbueørred
+and the put & take guide. Species-specific flatfish pages were rejected for now — "rødspætte" has 5,400 searches/month but
+"rødspætte fiskeri" only 90, so the bare names are not angler searches. Pighvar is the exception and is planned for Feb/March 2027.
+
+**Fladfisk page** (`src/pages/guide-til-fisk/fladfisk-fiskeri/index.astro`)
+- Title/description/H1 now lead with "Fladfisk: arter, sæson, agn og forfang"; answer capsule answers a real question.
+- New sections: species table (names, how to tell apart, eye side), season table, where to fish from the coast, which forfang to
+  choose (3 feed products: 500974, 79258, 79007), how to tie your own, step-by-step technique, mindstemål table, which tastes best.
+- Fixed a factual error: the season note said flatfish are closed in spring. lfst.dk lists no fredningstid for rødspætte, skrubbe or pighvar.
+- Mindstemål verified on lfst.dk 2026-10-12: rødspætte 27 cm (Nordsøen/Skagerrak/Kattegat) and 25 cm (Bælterne/Østersøen);
+  skrubbe 18–23 cm by sub-area in Bælterne/Østersøen; pighvar 30 cm in Bælterne/Østersøen. Skrubbe outside the Baltic is NOT stated
+  on the page because lfst.dk did not list it (a competitor says 25.5 cm — unverified).
+- 3 new FAQ entries (10 in schema). `mole_fiskeri.jpg` (shows a person) replaced in the figure and the related card.
+
+**Regnbueørred page** (`src/pages/guide-til-fisk/regnbueorredfiskeri/index.astro`)
+- Title/description/H1 rewritten for click-through; answer capsule now answers "how do I catch one in put & take".
+- New sections: where the fish stand in the lake, depth by season (table), best blink (3 feed products: 503971, 77388, 69160),
+  step-by-step Powerbait rig, mistakes that cost fish. Three old H3/H2s converted to question H2s. 3 new FAQ entries (9 in schema).
+
+**Put & take guide** (`src/pages/fiskeguide/put-take-fiskeri/index.astro`)
+- Title/description target "put and take" + grej/fiskestang queries.
+- New sections: cost and rules, rod/reel/line specs, packing list (3 feed products: 83145, 44584, 504237), first trip step by step,
+  best time, visible FAQ (schema went from 1 to 6 questions), two GuideLink cards. H2s converted to questions.
+- No prices are stated — they vary per lake and I had no source.
+
+**Images** — three AI scenery photos in `public/images/`: `fladfisk_sandbund.jpg`, `regnbue_soe_morgen.jpg`, `put_take_efteraar.jpg`.
+No people, gear or fish. `regnbue_soe_morgen.jpg` has a few small dark specks in the sky, top right. Awaiting Aldin's rating.
+
+**Voice.** New copy is general technique in the site's voice. First-person lines were kept to recommendations ("Jeg anbefaler") and to
+things the existing text already says Aldin does (Fidusen/Præsten). No invented trips or anecdotes.
+
+**Not done / notes**
+- Nothing committed or pushed. Not viewed in a browser — verified from the built HTML only.
+- The duplicate put-and-take fly URL already had a 301 in `public/_redirects`; no change needed.
+- `scripts/metrics/token.json` expires about weekly (OAuth app in testing mode) — expect to re-run `npm run auth` before each GSC pull.

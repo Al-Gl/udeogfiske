@@ -2560,3 +2560,111 @@ a ranking problem.
       chips in dist output before cleaning up dist/
 - [ ] Re-check Search Console in ~3-4 weeks for position/CTR movement on the two
       biggest queries
+
+# Session 57 — first draft (DataForSEO-based, SUPERSEDED by the GSC-based plan below)
+
+**Data caveat:** Search Console login has expired (`invalid_grant`), so page selection below is
+based on DataForSEO rankings + Danish search volume, NOT GSC impressions. Aldin must run
+`npm run auth` in `scripts/metrics/` — then step 0 confirms or changes the top 3.
+
+Candidates by total volume of keywords each page already ranks for (havørred excluded = reference page):
+1. `/guide-til-fisk/hornfisk/` — 14,110 (hornfisk 5,400 @ pos 54; forfang-cluster 170 @ pos 49-65; "hornfisk sæson 2026" @ 12)
+2. `/guide-til-fisk/aborrefiskeri/` — 4,270 (aborre 3,600 @ pos 26; aborre fisk 260 @ 18; aborre fiskeri 140 @ 21)
+3. `/guide-til-fisk/havbarsfiskeri/` — 3,530 (havbars 2,400 @ pos 32; havbars fiskeri 140 @ 20; havbars sæson 90 @ 9)
+
+**What page 1 does that we don't** (SERPs for hornfisk / aborre / havbars checked):
+- Head terms are mixed intent: species facts + eating/recipes + fishing. Our pages only answer "how to fish".
+  PAA: "Er hornfisk en god spisefisk?", "Hvor store bliver hornfisk?", "Er aborre en god spisefisk?",
+  "Hvad er en stor aborre?"; related: aborre mindstemål / pigge / giftig / engelsk, havbars engelsk / sæson.
+- Titles/H1 lead with the bare species name ("Hornfisk", "Aborre", "Havbars"); ours lead with "X fiskeri".
+- Named spots (forstogjagthuset lists 19 hornfisk spots), exact rules (lystfiskerguiden/lfst for havbars),
+  rig step-by-step, packing list, "avoid these mistakes" — all sections the havørred page has and these lack.
+- Competitor fishing guides are short (170-1,500 words; one at ~4,500). Length is not our gap; coverage + intent is.
+
+## Todo
+- [ ] 0. Re-run GSC pull once auth is renewed (script ready in scratchpad); confirm top 3 + real main queries
+- [ ] 1. DataForSEO volume check for the new section keywords (spise/opskrift-adjacent, forfang, mindstemål, størrelse, pladser)
+- [ ] 2. Hornfisk: title + H1 lead with "Hornfisk"; new Q&A H2s: Kan man spise hornfisk (grønne ben, grill/røg),
+      Hvilket forfang til hornfisk (step-by-step), Hvor er de bedste hornfiskepladser (named), Hvilke fejl koster fisk;
+      expand FAQ with PAA questions; GuideLink cards
+- [ ] 3. Aborre: title + H1 lead with "Aborre"; new Q&A H2s: Hvor finder man aborren, Hvilket grej (stang/hjul/line),
+      rigs (dropshot/texas), Er aborre en god spisefisk (+pigge), Er der mindstemål/fredning, Hvor stor bliver en aborre; FAQ
+- [ ] 4. Havbars: title + H1 lead with "Havbars"; new Q&A H2s: Hvor er de bedste havbarspladser (named),
+      vind/forhold, Kan man spise havbars; tighten rules section with exact current numbers; FAQ ("havbars på engelsk")
+- [ ] 5. All rules/size facts verified against lfst.dk / fiskepleje.dk before writing; first-person voice; no invented season data
+- [ ] 6. Build, check on localhost, add review.md section — NO push until Aldin says so
+
+# Session 57 — second draft (hornfisk/makrel/torsk) — OVERRULED by Aldin 2026-10-12, see final plan below
+
+GSC auth renewed; data pulled for 2025-10-12..2026-10-12 (12 months, so seasonal species are compared fairly).
+
+| Page | Impr. | Clicks | Avg pos |
+|---|---|---|---|
+| havorredfiskeri (reference page, excluded) | 17,598 | 110 | 19.3 |
+| hornfisk | 16,040 | 155 | 15.8 |
+| sildefiskeri | 12,371 | 202 | 8.4 |
+| makrelfiskeri | 11,189 | 155 | 18.0 |
+| torskefiskeri | 10,991 | 62 | 14.8 |
+| geddefiskeri 8,058 / fladfisk 7,992 / regnbueørred 7,552 / aborre 6,494 / havbars 2,235 | | | |
+
+**Proposed three: hornfisk, makrelfiskeri, torskefiskeri.** Sild has more impressions than makrel/torsk but
+already sits at pos 1.9 for "sildefiskeri" and has the best CTR — least upside. Swap in if Aldin prefers raw impressions.
+
+## Main GSC queries and what the competitors do
+
+**Hornfisk** — "hornfisk sæson 2026" 2,196 impr @ 7.7 · "hornfisk 2026" 1,616 @ 5.7 · "er hornfisken kommet (2026)" 2,275 @ 7-10 ·
+"hornfisk" 954 @ 35 · "blink til hornfisk" 90 @ 45. CTR only 1-2%.
+- Page 1 (nordicanglers, fiskeoplevelser, altomfiskeri, fiskeinfo) all have "Hornfisk sæson 2026" in title/URL; ours says
+  "Hornfisk fiskeri | Guide til at fange flere hornfisk i 2026" — no "sæson", no "er hornfisken kommet".
+- They state a concrete arrival status (nordicanglers: first fish 28 April, Djursland), start/peak/end dates, a second
+  autumn run, and named spots. Our own makrel page proves the pattern: its "Er makrellen kommet i 2026?" H2 + title ranks 2.1.
+- Related searches we don't cover: bedste sted, fangstrapport, forfang, silkesnor, blink.
+
+**Makrel** — "makrel sæson" 524 @ 18 · "fange makrel fra kysten" 378 @ 29 · "fra båd" 278 @ 40 · "fang makrel med blink" 240 @ 11 ·
+"på flåd" 212 @ 43 · "fange makrel" 206 @ 21. ("makrel sæson 2026" already @ 2.1.)
+- #1 (topgrej) has season month by month, mindstemål per farvand, named hotspots, best time of day. We have none of these as sections.
+- No dedicated sections for fra kysten/mole, fra båd, på flåd, med blink — the exact queries we sit on page 2-4 for.
+
+**Torsk** — "blink til torsk" 1,203 @ 7.0 · "torske blink" 891 @ 12.3 (3 clicks from 2,094 impr) · "torske fiskeri" 358 @ 11.7 ·
+"fange torsk i øresund" 92 @ 82.
+- We are organic #2 for "blink til torsk" but title/description never mention blink, so nobody clicks. The AI Overview quotes a
+  competitor blog for the specifics (named blink, 15-22 g kyst / 40-100 g hav, colours) and us only for jigs.
+- No "where" section at all (spots/Øresund); H2s not in Q&A form ("Torskefiskeri med blink").
+
+## Todo
+- [ ] 1. Hornfisk: title/description/H1 → "Hornfisk sæson 2026 / Er hornfisken kommet?"; new H2 "Er hornfisken kommet i 2026?"
+      (arrival, peak, end, autumn run — Aldin to supply/confirm the real 2026 first-catch date, not invented);
+      new H2s: bedste hornfiskepladser (named), blink til hornfisk (+ feed products), forfang/silkekrog step-by-step; FAQ from PAA
+- [ ] 2. Makrel: H1 aligned with title; new H2s: makrel sæson måned for måned, bedste tidspunkt på dagen, fra kysten/molen,
+      fra båd, på flåd, med blink, mindstemål/regler, named hotspots; FAQ from PAA
+- [ ] 3. Torsk: title/description lead with blink ("Blink til torsk" + torskefiskeri); rewrite blink section as
+      "Hvilke blink er bedst til torsk?" with named blink, weights, colours + feed products; new H2 "Hvor fanger man torsk?"
+      (kyst/mole/Øresund); convert remaining H2s to Q&A; FAQ
+- [ ] 4. DataForSEO volume check on the new section keywords before writing (drop any with no demand)
+- [ ] 5. Rules/mindstemål verified against lfst.dk (torsk rules especially) before writing; first-person voice; Q&A H2s; no invented season data
+- [ ] 6. Build, verify on localhost, add review.md section — NO push until Aldin says so
+
+# Session 57 — FINAL plan (approved by Aldin 2026-10-12): fladfisk, regnbueørred, put & take
+
+Why these: torsk can't be kept in most of DK (no buyers); makrel/hornfisk are out of season until spring.
+Guiding rule from Aldin: every page must give the reader something to act on beyond the products.
+Image rules: scenery (lake, woods, coast); no people/faces; no gear; fish only as partial close-ups for Aldin to rate.
+
+GSC (12 mo): fladfisk topic 5,280 impr / 9 clicks — "fladfisk" 787 @ 32, "fladfisk navne" 466 @ 14, "typer af fladfisk" 330 @ 23,
+"fladfisk sæson" 268 @ 56, agn/madding ~430 @ 26-32, forfang cluster ~300 @ 45-80. Regnbueørred: "regnbueørred" 1,255 @ 10.4 (2 clicks),
+"hvordan fanger man ørred i put and take" 136 @ 12.6, "bedste blink til regnbueørred" 133 @ 5.2 (0 clicks). Put & take guide:
+"put and take" 610 @ 76, "fiskegrej/fiskestang til put and take" ~430 @ 31, "hvad er put and take" 285 @ 22.
+Competitors (fishingindenmark, lystfisk, fiskpaakrogen): species ID, season per species, mindstemål table, rig types, named technique — sections we lack.
+
+- [x] 1. Fladfisk page: title/desc/H1 around "Fladfisk – arter, sæson, agn og forfang"; real answer capsule; new Q&A H2s:
+      fladfisk-navne/typer overview table, sæson (hvornår + vandtemperatur), hvor (bund/dybde/tidevand), forfang-typer + valg (3 feed products),
+      sådan fisker du (indspinning/modhug), mindstemål-tabel (lfst.dk-verified), tilberedning; fix wrong "fredet om foråret" note; more FAQ
+- [x] 2. Regnbueørred page: title/desc for CTR; expand with take-away value: hvor står fiskene i søen, dybde efter vandtemperatur,
+      bedste blink (3 feed products), trin-for-trin powerbait-rig, fejl der koster fisk, aflivning/håndtering, FAQ; Q&A H2s
+- [x] 3. Put & take guide: title/desc; new H2s: hvad koster det, regler ved søen, fiskestang/hjul/line (specs), hvad skal med (tjekliste + 3 products),
+      første tur trin for trin, hvornår er det bedst, fuld FAQ (was 1 question); Q&A H2s
+- [ ] 4. Pighvar: separate page — planned for Feb/March 2027 (searches peak in May: "pighvar fiskeri" 390, "pighvar mindstemål" 390). Not built now.
+- [x] 5. Images: 3-4 scenery shots via nano-banana per the rules above; replace mole_fiskeri.jpg (shows a person) on the fladfisk page
+- [x] 6. Build passes (96 pages), rendered HTML checked, review.md section added — NOT committed, NOT pushed
+- [ ] 7. Aldin: look at the three pages on localhost + rate the 3 images; then commit/push on his go-ahead
+- [ ] 8. Re-check GSC in 3-4 weeks for position/CTR movement on the main queries

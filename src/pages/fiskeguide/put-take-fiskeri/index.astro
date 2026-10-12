@@ -3,6 +3,30 @@ import MainLayout from '../../../layouts/MainLayout.astro';
 import RelatedRow from '../../../components/RelatedRow.astro';
 import AffiliateTrio from '../../../components/AffiliateTrio.astro';
 import ProductReview from '../../../components/ProductReview.astro';
+import GuideLink from '../../../components/GuideLink.astro';
+
+const faqs = [
+  {
+    question: "Skal man have fisketegn til Put & Take?",
+    answer: "Nej. I en Put & Take sø betaler du søens ejer for et fiskekort, og du skal ikke have det statslige fisketegn. Fisketegnet gælder for fiskeri i naturlige vande som kysten, fjorde, åer og naturlige søer.",
+  },
+  {
+    question: "Hvilken fiskestang skal jeg bruge til Put & Take?",
+    answer: "En spinnestang på 8–9 fod med en kastevægt omkring 5–25 gram dækker stort set alt fiskeri i en Put & Take sø. Sæt et fastspolehjul i størrelse 2000–3000 på, og fyld det med nylonline på 0,20–0,25 mm. Et færdigt sæt med stang, hjul og line er den nemmeste start.",
+  },
+  {
+    question: "Hvad er det bedste agn til Put & Take?",
+    answer: "Powerbait fisket under et flåd eller over bunden er det nemmeste for begyndere. Spinnere i størrelse 2–3 og små blink er bedst, når fiskene er aktive. Tag begge dele med, så du kan skifte mellem at lade agnen stå og at fiske aktivt.",
+  },
+  {
+    question: "Hvornår er det bedst at fiske i Put & Take?",
+    answer: "Forår og efterår er de bedste årstider, fordi vandet er køligt og fiskene aktive. Om sommeren er den første og den sidste time med lys klart bedst. Om vinteren står fiskene dybt, og du skal fiske langsomt tæt på bunden.",
+  },
+  {
+    question: "Må man sætte fiskene ud igen i en Put & Take sø?",
+    answer: "Det afhænger af søen. Mange Put & Take søer tillader ikke genudsætning, fordi fiskene tager skade af det. Læs reglerne på tavlen ved søen, eller spørg ejeren, før du begynder at fiske.",
+  },
+];
 
 const related = [
   {
@@ -25,7 +49,7 @@ const related = [
     title: "Fiskeri på mole",
     description: "Molefiskeri er en af de nemmeste måder at komme i gang med havfiskeri.",
     href: "/fiskeguide/fiskeri-paa-mole/",
-    image: "/images/mole_fiskeri.jpg",
+    image: "/images/mole_hero.png",
     alt: "Mole der strækker sig ud i havet",
     chip: "Hav",
   },
@@ -33,8 +57,8 @@ const related = [
 ---
 
 <MainLayout
-  title="Put & Take fiskeri – Komplet guide til Put & Take i Danmark | Ude og Fiske"
-  description="Alt du skal vide for at komme godt i gang med Put & Take fiskeri: udstyr, spinnere, powerbait og valg af sø."
+  title="Put and Take fiskeri: guide til grej, agn og din første tur | Ude og Fiske"
+  description="Guide til Put and Take: hvad det koster, hvilket fiskegrej og hvilken fiskestang du skal bruge, spinnere og Powerbait, og hvordan din første tur foregår."
   canonical="https://udeogfiske.dk/fiskeguide/put-take-fiskeri/"
   pageType="article"
   breadcrumbs={[
@@ -46,11 +70,15 @@ const related = [
     headline: "Put & Take fiskeri",
     image: "/images/put_take_hero.png",
     datePublished: "2024-08-05",
+    dateModified: "2026-10-12",
   }}
-  faq={[{
-    question: "Hvad er Put & Take fiskeri?",
-    answer: "Put & Take er en fiskeform hvor du <strong>betaler for adgang</strong> til en sø og kan tage fiskene med hjem. De fleste søer udsætter <strong>regnbueørreder</strong>, og du skal ikke tænke på mindstemål, fredning eller fisketegn. Det eneste du skal bruge er en fiskestang, et hjul, line og endegrej — og så kan du komme i gang med det samme.",
-  }]}
+  faq={[
+    {
+      question: "Hvad er Put & Take fiskeri?",
+      answer: "Put & Take er en fiskeform hvor du <strong>betaler for adgang</strong> til en sø og kan tage fiskene med hjem. De fleste søer udsætter <strong>regnbueørreder</strong>, og du skal ikke tænke på mindstemål, fredning eller fisketegn. Det eneste du skal bruge er en fiskestang, et hjul, line og endegrej — og så kan du komme i gang med det samme.",
+    },
+    ...faqs,
+  ]}
 >
 
   <section class="pg-hero">
@@ -62,7 +90,7 @@ const related = [
         <span>›</span>
         <span>Put &amp; Take fiskeri</span>
       </nav>
-      <h1 class="pg-title">Put &amp; Take fiskeri</h1>
+      <h1 class="pg-title">Put &amp; Take fiskeri – grej, agn og din første tur</h1>
       <p class="pg-sub">Komplet guide til Put &amp; Take i Danmark — fra valg af sø til det udstyr og de teknikker der rent faktisk fanger fisk.</p>
     </div>
   </section>
@@ -81,6 +109,18 @@ const related = [
         <p>De fleste Put &amp; Take søer i Danmark udsætter for det meste regnbue ørreder, og andre variationer af disse, bl.a. kildeørreder og guld ørreder. Enkelte søer har også andre fisk som gedder, stør, ål og andre. Ørreder er et af de bedste spisefisk, hvilket også er grunden til at Put &amp; Take søer udsætter dem, da folk er mere interesserede i at fange fisk som de har lyst til at spise.</p>
 
         <p>Når du fisker i en Put &amp; Take skal du ikke bekymre dig om mindstemål på fisk, fredningsperioder eller at have et gyldigt fisketegn. Det eneste du skal gøre, er at betale for antal ønskede fisketimer inden du påbegynder dit fiskeri.</p>
+
+        <h2>Hvad koster Put &amp; Take, og hvilke regler gælder?</h2>
+        <p>Du betaler for den tid, du fisker. De fleste søer sælger fiskekort for et antal timer eller en hel dag, og prisen stiger med antallet af timer. Betalingen foregår typisk med MobilePay eller i en automat ved søen, og du skal kunne vise kvitteringen, hvis ejeren kommer forbi. Priserne varierer fra sø til sø, så tjek søens hjemmeside, før du kører.</p>
+        <p>Reglerne står på en tavle ved indgangen, og de er ikke ens fra sø til sø. Det er disse punkter, du skal lede efter:</p>
+        <ul>
+          <li><strong>Antal stænger.</strong> Et fiskekort gælder normalt for én stang. Vil du fiske med to, skal du købe to kort.</li>
+          <li><strong>Fangstbegrænsning.</strong> Nogle søer har et loft over, hvor mange fisk du må tage med for et kort.</li>
+          <li><strong>Genudsætning.</strong> Mange søer kræver, at fangede fisk bliver aflivet og taget med hjem.</li>
+          <li><strong>Agn og kroge.</strong> Enkelte søer forbyder bestemte agn, trekroge eller modhager.</li>
+          <li><strong>Børn.</strong> Mange steder må børn fiske med på en voksens kort, men kun på samme stang.</li>
+          <li><strong>Rensning.</strong> Rens fisken på søens renseplads, ikke i søen.</li>
+        </ul>
 
         <h2>Hvordan fisker jeg i en Put &amp; Take sø?</h2>
         <p>Put &amp; Take søernes koncept er at gøre fiskeri nemt og attraktivt for alle, derfor behøves man ikke det helt dyre fiskeudstyr for at fiske i en Put &amp; Take sø. De fleste søer er meget rene og nemme at tilgå, og du behøver blot at finde en fiskeplads ved søen og påbegynde fiskeriet. Det udstyr som du <strong>SKAL</strong> bruge for at fiske i en Put &amp; Take sø er:</p>
@@ -108,7 +148,58 @@ const related = [
           cta="Se sættet hos Fiskegrej"
         />
 
-        <h2>Spinnere</h2>
+        <h2>Hvilken fiskestang, hjul og line skal jeg bruge til Put &amp; Take?</h2>
+        <p>Du kaster sjældent mere end 20–30 meter i en Put &amp; Take sø, og fiskene vejer sjældent mere end et par kilo. Du har derfor brug for let grej, der kan kaste små agn, ikke en kraftig stang til kysten. Køber du delene hver for sig, er det disse mål, du skal gå efter:</p>
+        <ul>
+          <li><strong>Fiskestang.</strong> En spinnestang på 8–9 fod med en kastevægt omkring 5–25 gram. Den kan kaste en spinner i størrelse 2 og er samtidig blød nok til, at fisken ikke river sig løs.</li>
+          <li><strong>Hjul.</strong> Et fastspolehjul i størrelse 2000–3000. Større hjul gør bare sættet tungt i hånden.</li>
+          <li><strong>Line.</strong> Nylonline på 0,20–0,25 mm. Den er billig, tilgiver fejl og strækker sig lidt, hvilket hjælper, når fisken ryster med hovedet.</li>
+          <li><strong>Forfang.</strong> En halv til en hel meter fluorocarbon på 0,16–0,23 mm mellem hovedline og agn. Den er næsten usynlig i vandet.</li>
+          <li><strong>Bremse.</strong> Stil bremsen, så du kan trække line af spolen med hånden med et fast træk. For hård bremse er den hyppigste grund til, at linen springer.</li>
+        </ul>
+        <p>Har du allerede en almindelig spinnestang derhjemme, så brug den de første ture. Det er agnen og dybden, der fanger fiskene. Stangen gør det bare sjovere.</p>
+
+        <h2>Hvad skal jeg have med på en Put &amp; Take tur?</h2>
+        <p>Ud over stang og agn er der en håndfuld småting, der afgør, om turen bliver god eller besværlig. Mange mister dagens eneste fisk i vandkanten, fordi de ikke har et net med.</p>
+        <ul>
+          <li>Fangstnet med langt skaft</li>
+          <li>Priest til at aflive fisken og en krogløser eller tang</li>
+          <li>Flåd, små blyhagl, svirvler og ekstra kroge</li>
+          <li>To–tre spinnere og et par små blink i forskellige farver</li>
+          <li>Et glas Powerbait eller en bøtte regnorm</li>
+          <li>Kniv og en pose eller køletaske til fisken</li>
+          <li>Polaroidbriller, så du kan se fiskene i vandet</li>
+          <li>Mobil eller kontanter til fiskekortet</li>
+        </ul>
+
+        <AffiliateTrio
+          title="Tre ting, begyndere oftest glemmer"
+          intro="Grej, der ikke fanger fisk, men som sørger for, at du får fisken sikkert på land og kan behandle den ordentligt bagefter."
+          products={[
+            {
+              productId: '83145',
+              badge: 'Fangstnet',
+              badgeTone: 'teal',
+              note: 'Teleskopskaft, så du når fisken fra en høj bred. Gumminettet er skånsomt, og krogene filtrer sig ikke ind i det.',
+              highlight: true,
+            },
+            {
+              productId: '44584',
+              badge: 'Priest + krogløser',
+              badgeTone: 'slate',
+              note: 'To værktøjer i ét. Krogløseren føres ned langs linen, og priesten i den anden ende afliver fisken hurtigt.',
+            },
+            {
+              productId: '504237',
+              badge: 'Flåd',
+              badgeTone: 'orange',
+              note: 'Bobleflåd i en to-pak. Kan fyldes delvist med vand, så du får kastevægt nok til let agn som Powerbait.',
+            },
+          ]}
+          cta="Se hos Fiskegrej"
+        />
+
+        <h2>Hvilke spinnere er bedst til Put &amp; Take?</h2>
         <p>Fisker du med en almindelig fiskestang, vil jeg anbefale dig at købe spinnere i forskellige størrelser og mønstre. Meps spinnere har altid været en af mine favoritter, og har næsten altid garanteret fisk når jeg har besøgt Put &amp; Take søer. Spinfiskeri er en af mine yndlings fiskeformer, da man aktivt fisker efter fisken i stedet for at vente at den kommer til dig som ved f.eks. fiskeri med powerbait på flåd eller blylod. Fordelen er også at du kan mærke når fisken bider sig fast i spinneren, hvilket altid giver et sus i maven.</p>
 
         <figure class="art-figure">
@@ -147,7 +238,7 @@ const related = [
       </article>
 
       <article class="article">
-        <h2>Powerbait og orm</h2>
+        <h2>Hvordan fisker man med Powerbait i Put &amp; Take?</h2>
         <p>Powerbait er en kunstig agn udviklet specifikt til at fange ørreder i Put &amp; Take søer — og det er yderst effektivt! Powerbait er en slags tyk pasta som man kan forme i hånden og montere på krogen. Den er effektiv grundet den lugt som tiltrækker ørrederne. Da Powerbait ikke er en naturlig agn, men et agn som er udviklet på et laboratorium, har det betydet at det er gennemtestet for at nå til den farve, smag og lugt kombination som tiltrækker ørrederne mest.</p>
 
         <figure class="art-figure">
@@ -188,8 +279,48 @@ const related = [
           cta="Se hos Fiskegrej"
         />
 
-        <h2>Valg af Put &amp; Take sø</h2>
+        <h2>Hvordan vælger jeg en god Put &amp; Take sø?</h2>
         <p>Når du skal vælge en Put &amp; Take sø at fiske i, er der flere forhold du bør undersøge, og her er internettet et rigtig godt værktøj. Kig først på Facebook for at se om søen har en profil og om den er aktiv. Er profilen aktiv hvor du kan se at de dagligt udsætter fisk i søen — så er søen værd at overveje. Du kan desuden på billeder se om søen er ren og hvilke karakterer fiskere har givet søen. Google Maps er også et godt værktøj til at se karakter for søen. Vælg altid en sø hvor du ved at der dagligt bliver udsat fisk og hvor ejeren gør meget for at holde søen ren. Der er intet værre end at komme ud til en sø hvor det er helt overgroet og hvor det er tvivlsomt om der overhovedet er fisk i søen!</p>
+
+        <GuideLink
+          href="/fiskepladser/put-and-take/"
+          title="Se mine Put & Take fiskepladser"
+          desc="Søer jeg selv har fisket i, med erfaringer og tips til den enkelte sø."
+        />
+
+        <figure class="art-figure">
+          <img src="/images/put_take_efteraar.jpg" alt="Lille skovsø om efteråret med vindkrusninger på vandet og gule blade på bredden" loading="lazy" width="1376" height="768" />
+          <figcaption>Efterår ved søen. Vinden skubber overfladevandet ind mod den ene bred — start dér.</figcaption>
+        </figure>
+
+        <h2>Hvordan foregår den første tur — trin for trin?</h2>
+        <ol>
+          <li><strong>Køb fiskekort, før du kaster.</strong> Læs tavlen med regler, mens du alligevel står der.</li>
+          <li><strong>Gå en runde om søen.</strong> Kig efter ringe i overfladen, indløbet med frisk vand og den bred, vinden blæser ind mod. Det er dér, fiskene oftest står.</li>
+          <li><strong>Start med en spinner.</strong> Kast i en vifte fra venstre mod højre, og spin langsomt ind. Ti kast uden hug, og du går 20 meter videre.</li>
+          <li><strong>Skift dybde.</strong> Tæl til tre, fem og otte, før du begynder at spinne ind, så du fisker i forskellige dybder.</li>
+          <li><strong>Skift til Powerbait,</strong> hvis fiskene ikke vil jage. Sæt flåddet, så agnen står en meter under overfladen, og gå dybere, hvis der ikke sker noget.</li>
+          <li><strong>Brug nettet.</strong> Træk fisken ind over nettet, og løft. Løft aldrig fisken op i linen.</li>
+          <li><strong>Afliv og rens med det samme.</strong> Et fast slag med priesten oven på hovedet, og så et snit i gællerne. Se, hvordan du gør i min guide til <a href="/rens-af-orred/">rens af ørred</a>.</li>
+        </ol>
+
+        <h2>Hvornår er det bedst at fiske i Put &amp; Take?</h2>
+        <p>Regnbueørreder trives i køligt vand, og det styrer hele året ved søen. Forår og efterår er de nemmeste årstider, fordi fiskene er aktive hele dagen. Om sommeren bliver vandet for varmt midt på dagen, og fiskene holder op med at æde. Kom ved solopgang eller den sidste time før mørke, eller vælg en gråvejrsdag efter regn. Om vinteren står fiskene dybt og bevæger sig lidt, så her skal agnen helt ned til bunden og fiskes langsomt.</p>
+        <p>Vejret på dagen betyder også noget. Overskyet og let vind er bedre end blank sol og stille vand. Jeg har skrevet mere om de varme dage i <a href="/blog/put-take-fiskeri-i-varmt-vejr/">Put &amp; Take fiskeri i varmt vejr</a>.</p>
+
+        <GuideLink
+          href="/guide-til-fisk/regnbueorredfiskeri/"
+          title="Læs guiden til regnbueørred"
+          desc="Hvor fiskene står i søen, hvor dybt du skal fiske, og hvilke blink og fluer der virker."
+        />
+
+        <h2>Ofte stillede spørgsmål om Put &amp; Take</h2>
+        {faqs.map((f) => (
+          <Fragment>
+            <h3>{f.question}</h3>
+            <p>{f.answer}</p>
+          </Fragment>
+        ))}
       </article>
 
     </div>
@@ -328,6 +459,10 @@ const related = [
     margin-bottom: 0.375rem;
     list-style: disc;
   }
+
+  .article ol { margin: 0 0 1.5rem 1.5rem; padding: 0; }
+  .article ol li { font-size: 1rem; color: #374151; line-height: 1.75; margin-bottom: 0.5rem; list-style: decimal; }
+  .article ul li strong, .article ol li strong { color: #111827; font-weight: 700; }
 
   .art-figure {
     margin: 2.25rem 0 1.75rem;

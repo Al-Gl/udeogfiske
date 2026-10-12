@@ -7,6 +7,7 @@ import DidYouKnow from '../../../components/DidYouKnow.astro';
 import TipBox from '../../../components/TipBox.astro';
 import StatHighlight from '../../../components/StatHighlight.astro';
 import SeasonCalendar from '../../../components/SeasonCalendar.astro';
+import AffiliateTrio from '../../../components/AffiliateTrio.astro';
 import { getProduct, formatPrice } from '../../../lib/feed';
 
 // Regnbue-vælger — anbefalet agn pr. metode. Cards are pre-rendered server-side
@@ -78,6 +79,18 @@ const related = [
 
 const faqs = [
   {
+    question: "Hvor dybt skal man fiske efter regnbueørred?",
+    answer: "Jo koldere vandet er, jo dybere står fiskene. Om vinteren fisker du lige over bunden. Om foråret og efteråret står fiskene i mellemvand og højere. Om sommeren går de højt morgen og aften, men søger dybt og i skygge midt på dagen. Er du i tvivl, så start dybt og fisk dig 30 cm opad ad gangen, til du får bid.",
+  },
+  {
+    question: "Hvor står regnbueørrederne i en Put & Take sø?",
+    answer: "Regnbueørreder samler sig, hvor der er mest ilt og den rette temperatur: ved indløbet, på den bred vinden blæser ind mod, i de dybe huller og i skyggen under træer og langs siv. Gå en runde om søen og kig efter ringe i overfladen, før du begynder at fiske.",
+  },
+  {
+    question: "Hvilke blink er bedst til regnbueørred?",
+    answer: "Små, lette blink på 2–5 gram, som kan fiskes helt langsomt. Vælg kraftige farver som orange, pink og gul i grumset vand og gråvejr, og sølv, kobber eller oliven i klart vand. Lette gennemløbsblink på et forfang af fluorocarbon er særligt effektive, når de fiskes med små spinstop.",
+  },
+  {
     question: "Hvor finder man regnbueørreder i Danmark?",
     answer: "Langt størstedelen af regnbueørrederne i Danmark findes i Put & Take søer, da det er den fisk de fleste Put & Take ejere fokuserer på. Det er dog også muligt at finde regnbueørreder i det vilde — undslupne fra dambrug — i åer, kyster og fjorde. Disse undslupne fisk truer den lokale fiskebestand, så det opfordres til at fange så mange som muligt.",
   },
@@ -112,8 +125,8 @@ const about = [
 ---
 
 <MainLayout
-  title="Regnbueørred fiskeri | Guide til Put & Take 2026 | Ude og Fiske"
-  description="Guide til regnbueørredfiskeri i Put & Take søer. Lær de bedste teknikker og det rette udstyr til at fange regnbueørreder."
+  title="Regnbueørred: sådan fanger du den i Put & Take | Ude og Fiske"
+  description="Sådan fanger du regnbueørred i Put & Take: hvor fiskene står i søen, hvor dybt du skal fiske efter årstiden, og de bedste blink, spinnere og Powerbait."
   canonical="https://udeogfiske.dk/guide-til-fisk/regnbueorredfiskeri/"
   pageType="article"
   breadcrumbs={[
@@ -122,10 +135,10 @@ const about = [
     { name: "Regnbueørred" },
   ]}
   articleData={{
-    headline: "Guide til regnbueørred fiskeri",
+    headline: "Regnbueørred: sådan fanger du den i Put & Take",
     image: "/images/regnbueørred_card.jpg",
     datePublished: "2021-06-22",
-    dateModified: "2026-05-06",
+    dateModified: "2026-10-12",
   }}
   faq={faqs}
   about={about}
@@ -140,8 +153,8 @@ const about = [
         <span>›</span>
         <span>Regnbueørred</span>
       </nav>
-      <h1 class="pg-title">Guide til regnbueørred fiskeri</h1>
-      <p class="pg-sub">Den populære Put & Take fisk — passivt fiskeri, spinner, blink og fluefiskeri.</p>
+      <h1 class="pg-title">Regnbueørred – sådan fanger du den i Put &amp; Take</h1>
+      <p class="pg-sub">Hvor fiskene står, hvor dybt du skal fiske, og hvilket agn der virker — året rundt.</p>
     </div>
   </section>
 
@@ -149,8 +162,8 @@ const about = [
     <div class="pg-ctn">
       <div class="answer-capsule">
         <span class="ac-label">Kort fortalt</span>
-        <h2 class="ac-q">Hvad er en regnbueørred?</h2>
-        <p class="ac-a">Regnbueørreden er en del af ørred-familien med naturligt hjemvand i Nordamerika. I Danmark findes den primært i <strong>Put & Take søer</strong> — den hårdføre fisk er en god fighter og en fantastisk spise. Undslupne dambrugsfisk findes også i åer, kyster og fjorde, hvor de regnes som en trussel mod den lokale bestand.</p>
+        <h2 class="ac-q">Hvordan fanger man regnbueørred i Put &amp; Take?</h2>
+        <p class="ac-a">Find først fiskene: ved indløbet, på den bred vinden blæser ind mod, eller hvor du ser ringe i overfladen. Fisk så i den rigtige dybde — <strong>dybt i koldt vand, højere i mildt vejr</strong>. Brug Powerbait under flåd, når fiskene er sløve, og en spinner i størrelse 2–3 eller et let blink på 2–5 gram, når de er aktive. Spin langsomt ind, og husk modhugget.</p>
       </div>
 
       <AuthorProfile
@@ -176,6 +189,58 @@ const about = [
         <DidYouKnow>
           Regnbueørreden kom til Danmark i <strong>1800-tallet</strong> og blev opdrættet i dambrug. Danmark har i dag et af verdens største ørreddambrug — undslupne fisk når jævnligt åer, kyster og fjorde, hvor de regnes som en trussel mod den lokale bestand. Derfor opfordres lystfiskere til at hjemtage så mange af disse undslupne fisk som muligt.
         </DidYouKnow>
+
+        <h2>Hvor står regnbueørrederne i en Put &amp; Take sø?</h2>
+        <p>De fleste, der går fiskeløse hjem, har fisket det forkerte sted eller i den forkerte dybde, ikke med det forkerte agn. Regnbueørreder fordeler sig ikke jævnt i søen. De samler sig, hvor vandet har mest ilt og den temperatur, de bedst kan lide, og det ændrer sig hen over dagen og året. Brug de første ti minutter på at gå en runde og kigge, før du kaster.</p>
+        <ul>
+          <li><strong>Ved indløbet.</strong> Hvor der løber frisk vand ind i søen, er vandet køligere og mere iltet. Det er det første sted at prøve på en varm dag.</li>
+          <li><strong>På den bred, vinden blæser ind mod.</strong> Vinden skubber overfladevandet og alt det, der flyder i det, over mod den ene side. Det er ubehageligt at stå med vinden i ansigtet, men det er ofte dér, fiskene er.</li>
+          <li><strong>I de dybe huller.</strong> I meget koldt og meget varmt vejr søger fiskene ned, hvor temperaturen er mest stabil. Spørg ved søen, hvor den er dybest.</li>
+          <li><strong>I skyggen.</strong> Under træer og langs sivkanter står fiskene i dækning, når solen står højt.</li>
+          <li><strong>Hvor du ser ringe.</strong> Fisk, der vender i overfladen, er aktive fisk. Kast forbi ringen og træk agnen ind gennem området.</li>
+        </ul>
+
+        <figure class="art-figure">
+          <img src="/images/regnbue_soe_morgen.jpg" alt="Lille dansk fiskesø i morgendis med siv, træer og et indløb med rindende vand" width="1376" height="768" loading="lazy" />
+          <figcaption>Indløb, sivkant og skygge under træerne — tre af de steder, hvor regnbueørrederne samler sig.</figcaption>
+        </figure>
+
+        <h3>Hvor dybt skal man fiske efter regnbueørred?</h3>
+        <p>Dybden betyder mere end farven på agnen. Tommelfingerreglen er enkel: Jo koldere vandet er, jo dybere står fiskene. Er du i tvivl, så start dybt og fisk dig opad, 30 cm ad gangen, indtil du får bid.</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Fiskedybde efter årstid">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Årstid</th>
+                <th scope="col">Hvor står fiskene</th>
+                <th scope="col">Start med</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Årstid">Vinter</th>
+                <td data-label="Hvor står fiskene">Dybt og tæt på bunden</td>
+                <td data-label="Start med">Powerbait lige over bunden, større og kraftigt farvet agn</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Årstid">Forår</th>
+                <td data-label="Hvor står fiskene">På vej op i vandet, aktive hele dagen</td>
+                <td data-label="Start med">Spinner eller gennemløbsblink i mellemvand, flue højt</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Årstid">Sommer</th>
+                <td data-label="Hvor står fiskene">Højt om morgenen og aftenen, dybt og i skygge midt på dagen</td>
+                <td data-label="Start med">Fisk tidligt eller sent. Flue eller let blink højt i vandet</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Årstid">Efterår</th>
+                <td data-label="Hvor står fiskene">Som om foråret, højere jo mildere vejret er</td>
+                <td data-label="Start med">Gennemløbsblink og spinner. Gå dybere, når kulden sætter ind</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2>Hvordan fanger man regnbueørreder?</h2>
         <p>I dette afsnit vil der blive taget udgangspunkt i regnbueørreder som findes i Put & Take søer, da langt størstedelen af regnbueørrederne findes her. Der er to måder at fange regnbueørreden på, ligesom de fleste fisk. Det er ved aktivt fiskeri og passivt fiskeri.</p>
@@ -253,6 +318,41 @@ const about = [
         <p>Jeg fisker primært med lette gennemløbsblink som fidusen og præsten, som har en utrolig lokkende gang i vandet. Disse gennemløbsblink er utroligt effektive til at fange regnbueørreder og flere og flere fiskere er begyndt at bruge dem til at fange regnbueørreder. Efter fluefiskeri, er fiskeri med gennemløbsblink min foretrukne metode til at fange regnbueørreder.</p>
 
         <p>Herunder fremhæver jeg udvalgte gennemløbsblink som er afprøvede og som har stor sandsynlighed for at fange regnbueørreder.</p>
+
+        <h2>Hvilke blink er bedst til regnbueørred?</h2>
+        <p>Til regnbueørred i Put &amp; Take skal blinket være lille og let, typisk 2–5 gram. Et tungt kystblink synker for hurtigt og skal spinnes så hurtigt ind, at fiskene ikke gider følge efter. Et let blink kan du derimod trække helt langsomt gennem den dybde, fiskene står i.</p>
+        <ul>
+          <li><strong>Vægt.</strong> 2–3 gram til stille dage og fisk højt i vandet. 4–5 gram, når det blæser, eller når du skal længere ud og dybere ned.</li>
+          <li><strong>Farve.</strong> Kraftige farver som orange, pink og gul i grumset vand og gråvejr. Afdæmpede farver som sølv, kobber og oliven i klart vand og solskin.</li>
+          <li><strong>Tempo.</strong> Så langsomt, at du lige akkurat kan mærke blinket arbejde. Læg et spinstop ind hvert tredje eller fjerde sving med håndtaget. Mange hug kommer, lige når blinket begynder at dale.</li>
+          <li><strong>Skift.</strong> Har du ikke fået hug efter 15–20 kast, så skift farve eller dybde, før du skifter plads.</li>
+        </ul>
+
+        <AffiliateTrio
+          title="Tre små blink til regnbueørred"
+          intro="Jeg anbefaler at have både et gennemløbsblink og et par mikroblink i forskellige farver med. Så kan du dække både de aktive fisk i mellemvandet og de kræsne fisk helt oppe i overfladen."
+          products={[
+            {
+              productId: "503971",
+              badge: "Min favorit",
+              badgeTone: "teal",
+              highlight: true,
+              note: "Fidusen er et mikroblink på 2,8 gram med en bred, lokkende gang. Fisk det langsomt med små spinstop.",
+            },
+            {
+              productId: "77388",
+              badge: "Gennemløb",
+              badgeTone: "slate",
+              note: "Præsten er det andet gennemløbsblink, jeg selv fisker med. Montér det på et forfang af fluorocarbon.",
+            },
+            {
+              productId: "69160",
+              badge: "Fem farver",
+              badgeTone: "orange",
+              note: "Fem mikroblink på 2,5–4,4 gram, klar til brug. En nem måde at få flere farver og vægte i boksen på én gang.",
+            },
+          ]}
+        />
       </article>
 
       <figure class="full-bleed">
@@ -350,7 +450,7 @@ const about = [
       </script>
 
       <article class="article">
-        <h2>Fluefiskeri efter regnbueørreder</h2>
+        <h2>Hvordan fanger man regnbueørred på flue?</h2>
         <p>Fluefiskeri efter regnbueørreder er min favorit måde at fange regnbueørreder på, især i de lidt varmere måneder hvor fiskene har en tendens til at gå højere i vandet. Dette betyder at fiskene er synlige med det blotte øje, især hvis du bruger polaroid briller. Når du kan se fiskene kan du praktisere spotfiskeri, hvilket kort sagt er at du kaster fluen ud til fisk som du kan se.</p>
 
         <p>Dette gør fiskeriet meget spændende og effektivt, da du kan se fisken og fluen, og du kan dermed følge fisken og se den når den tager din flue.</p>
@@ -386,7 +486,7 @@ const about = [
       </figure>
 
       <article class="article">
-        <h3>Regnbueørreder og vejrforhold</h3>
+        <h2>Hvordan påvirker vejr og årstid regnbueørreden?</h2>
         <p>Vejret spiller en stor rolle i hvorvidt du fanger en regnbueørreder eller ej, derfor er det vigtigt at holde øje med vejrudsigten inden du planlægger den helt store tur, for det kan være forskellen på en nul tur og en tur med masser af fisk.</p>
 
         <p><strong>Regnbueørreder om vinteren</strong></p>
@@ -411,7 +511,28 @@ const about = [
           <p>Husk <strong>modhugget!</strong> Det er det vigtigste enkelttrick når en regnbueørred bider — uden et fast modhug kan fisken nemt ryge af i fight'en. Sæt krogen med et fast ryk i stangen så snart du mærker hugget, og hold linen stram hele kampen igennem. Det er forskellen mellem en fanget fisk og en frustrerende afhopper.</p>
         </TipBox>
 
-        <h3>Tips til at fange regnbueørreder</h3>
+        <h2>Hvordan rigger man til Powerbait — trin for trin?</h2>
+        <ol>
+          <li><strong>Sæt flåddet på hovedlinen</strong>, og bind en lille svirvel under det, så flåddet ikke kan glide ned til krogen.</li>
+          <li><strong>Bind et forfang</strong> på 30–100 cm tyndere line i svirvlen. Kort forfang, når fiskene står højt. Langt, når de står dybere.</li>
+          <li><strong>Klem et par små blyhagl</strong> på forfanget cirka 20 cm over krogen. Powerbait flyder, så uden bly ender agnen i overfladen.</li>
+          <li><strong>Form en kugle Powerbait</strong> på størrelse med en ært til en hasselnød, og tryk den rundt om krogen, så hele krogen er dækket.</li>
+          <li><strong>Kast ud, og lad det stå</strong> i et par minutter. Sker der ikke noget, så træk flåddet en meter ind og vent igen.</li>
+          <li><strong>Giv modhug,</strong> når flåddet går under eller vandrer sidelæns. Vent ikke, til fisken har slugt krogen dybt.</li>
+        </ol>
+        <p>Vil du fiske helt nede ved bunden, så drop flåddet og brug et glidende lod på hovedlinen over svirvlen. Så bestemmer længden på forfanget, hvor højt over bunden Powerbaiten svæver.</p>
+
+        <h2>Hvilke fejl koster flest regnbueørreder?</h2>
+        <ul>
+          <li><strong>At blive stående.</strong> Har du ikke haft føling med fisk i en halv time, så flyt dig. Fiskene står samlet, og et skifte på 30 meter kan ændre hele dagen.</li>
+          <li><strong>At spinne for hurtigt.</strong> Regnbueørreder følger ofte agnen længe uden at hugge. Sæt tempoet ned, og læg pauser ind.</li>
+          <li><strong>At fiske i samme dybde hele dagen.</strong> Skift dybde, før du skifter agn.</li>
+          <li><strong>For tyk line.</strong> I klart vand ser fiskene linen. Et tyndt forfang af fluorocarbon giver mærkbart flere hug.</li>
+          <li><strong>At komme midt på dagen om sommeren.</strong> Den første og den sidste time med lys er de bedste, når vandet er varmt.</li>
+          <li><strong>At kaste lige oven i fiskene.</strong> Kast forbi dem, og træk agnen ind til dem. Et plask lige over hovedet skræmmer dem væk.</li>
+        </ul>
+
+        <h2>Hvilke tips øger fangsten af regnbueørred?</h2>
         <ul>
           <li>Hold dig fra de helt varme sommerdage, fiskene er utroligt dovne og svære at få til at bide</li>
           <li>Fisker du med spinner, blink eller gennemløbsblink, så fisk så langsomt som muligt.</li>
@@ -423,6 +544,15 @@ const about = [
         <h2>FAQ</h2>
 
         <div class="faq-list">
+          {faqs.slice(0, 3).map((f) => (
+            <details class="faq-item">
+              <summary><h3>{f.question}</h3></summary>
+              <div class="faq-answer">
+                <p>{f.answer}</p>
+              </div>
+            </details>
+          ))}
+
           <details class="faq-item">
             <summary><h3>Hvor finder man regnbueørreder i Danmark?</h3></summary>
             <div class="faq-answer">
@@ -541,6 +671,12 @@ const about = [
     margin-bottom: 0.5rem; list-style: disc;
   }
   .article ul li strong { color: #111827; font-weight: 700; }
+  .article ol { margin: 0 0 1.5rem 1.5rem; padding: 0; }
+  .article ol li { font-size: 1rem; color: #374151; line-height: 1.75; margin-bottom: 0.5rem; list-style: decimal; }
+  .article ol li strong { color: #111827; font-weight: 700; }
+  .art-figure { margin: 2.25rem 0 1.75rem; border-radius: 12px; overflow: hidden; background: #f1f5f9; }
+  .art-figure img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .art-figure figcaption { font-size: 0.8125rem; color: #6b7280; padding: 0.625rem 0.875rem; text-align: center; line-height: 1.5; background: #ffffff; }
 
   /* ─────────────  Regnbue-vælger (finder)  ───────────── */
   .rod-finder {

@@ -2713,5 +2713,24 @@ Site sign-up built but switched off (empty FORM_ACTION). Nothing committed or pu
 - [x] 4. Aldin: look at `/nyhedsbrev/tak/` on localhost
 - [x] 5. Committed + pushed 2026-10-13 (live verified). Still open for Aldin: set `https://udeogfiske.dk/nyhedsbrev/tak/` as the after-confirmation address in the Brevo form
 - [x] 6. Welcome mail template `newsletter/brevo-velkommen.html` (sent via the form's "Final confirmation email" option)
-- [ ] 6b. Push the three thumbnail images (`public/images/nyhedsbrev/link-*.jpg`) on Aldin's go-ahead
-- [ ] 7. Aldin: paste it into a Brevo template, tick "Final confirmation email" in the form, test (incl. the unsubscribe link)
+- [x] 6b. Pushed 2026-10-13 (all four mail images verified live): the three thumbnail images (`public/images/nyhedsbrev/link-*.jpg`) on Aldin's go-ahead
+- [x] 7. Aldin: pasted it into Brevo, "Final confirmation email" ticked, full chain tested with a test address 2026-10-13
+
+## Newsletter - six-mail roadmap (2026-10-13)
+
+- [x] 1. `newsletter/roadmap.md`: plan for Nov 2026 - Apr 2027 (send dates, theme, spot, gear pick, site links, work needed per mail)
+- [ ] 2. Aldin: read the roadmap, confirm or change spots and send day
+- [ ] 3. By ~22 Oct: agree the November angle; rework the unsent October draft into the November mail (send Thu 5 Nov)
+- [ ] 4. Still open before the first send: affiliate links in email allowed? Skraafoto credit wording? Test in Gmail + Outlook
+
+## Newsletter - resume here (saved 2026-10-13, end of day)
+
+Status: sign-up flow is live and tested end to end (pop-up -> Danish confirmation mail -> /nyhedsbrev/tak/ -> welcome mail).
+Plan for the next six mails is in `newsletter/roadmap.md` (first send Thu 5 Nov 2026). No named spots in it: Aldin supplies the spot for each mail.
+
+- [ ] A. Aldin: read `newsletter/roadmap.md`; confirm or change the type of water per month and the send day (first Thursday)
+- [ ] B. Aldin, by ~22 Oct: name the November spot (keep Kyndbyvaerket from the unsent October draft, or another) and say what he knows about it
+- [ ] C. Rework `newsletter/2026-10/oktober-havorred.html` into the November mail (closed season from 16 Nov as the hook); add a short block on Daiwa Open / Westin Cup
+- [ ] D. Before the first send: affiliate links in email allowed by Partner-ads/Fiskegrej? Skraafoto credit wording? Test in Gmail + Outlook
+- [ ] E. Re-check competition dates before each mail that mentions them (Seatrout Open 2-4 Apr 2027, Fjord til Fjord 23-25 Apr 2027)
+- [ ] F. Check that mail sent to hej@udeogfiske.dk is read (the welcome mail asks people to reply)

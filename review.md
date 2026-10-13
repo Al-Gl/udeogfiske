@@ -5627,3 +5627,24 @@ No other page uses it. Also `newsletter/brevo-bekraeft-tilmelding.html` (Danish 
 - Welcome mail layout changed after Aldin's feedback (photo before any text looked wrong): a small "UDE OG FISKE" brand line on top,
   then heading and intro, and the trout photo moved below the intro with a one-line caption. Rendered with headless Chrome at 640px
   using local copies of the images: `newsletter/brevo-velkommen-preview.png`. The three link thumbnails are still not pushed.
+
+## Review - Newsletter live + six-mail roadmap (2026-10-13)
+
+- Pushed commit e2d9103 (welcome mail template, preview, three link thumbnails); all four mail images verified live.
+- Aldin pasted the welcome mail into Brevo and ticked "Final confirmation email". Full chain tested by him and works:
+  sign-up -> Danish confirmation mail -> `/nyhedsbrev/tak/` -> welcome mail.
+- New `newsletter/roadmap.md`: six mails, first Thursday of each month from 5 Nov 2026 to 1 Apr 2027. Themes chosen by season and by
+  what the site already covers; every spot is one named on an existing fiskepladser page. No cod (mostly prohibited), no mackerel or
+  garfish before April (out of season). The unsent October draft is planned to be reworked into the November mail.
+- Facts in the roadmap come from the site's own pages (closed season 16 Nov - 15 Jan, spring herring late March to mid-May). Nothing was
+  checked against outside sources. The spots are suggestions; Aldin must confirm he has fished each one.
+- `newsletter/roadmap.md`: new section "Competitions to mention" after a web search on 2026-10-13. Four usable ones: Daiwa Open 2026 and
+  Westin Cup 2026 (Fisk & Fri, monthly winner, any species), Seatrout Open spring 2-4 April 2027 (Go-Fishing), Fjord til Fjord
+  23-25 April 2027 (lystfisk.dk, East Jutland). Nothing dated found for Zealand sea trout, flatfish or put & take in Nov-Apr.
+  Dates come from the organisers' pages as read that day; re-check before each mail.
+- Roadmap rebalanced after Aldin's note that readers are from all of Denmark: spots are now Kyndbyværket (Nov), Mariager Fjord (Dec),
+  Ørsted Ørredvand (Jan), Ærø (Feb), Stevns (Mar), Randers Fjord (Apr). Roskilde Fjord, the Isefjorden bays and København dropped as
+  main spots (København kept as a one-line pointer in April). Competitions in Jylland/Fyn now get a full block, not a side note.
+- Roadmap changed again at Aldin's request: no named spots. Each mail now lists a type of water (fjord, inner fjord, put & take lake,
+  open coast, harbour) and "Spot: from Aldin". He names the spot about two weeks before each send. Place-specific site links and the
+  Ørsted trip details were removed from the mail outlines. The types of water are my suggestions for him to confirm.

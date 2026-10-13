@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kladde: nyhedsbrev-pop-up, Ude og Fiske</title>
+<!--
+  KLADDE - pop-up til nyhedsbrevet. Kun til forhåndsvisning, ikke koblet på siden.
+  Alt mellem "POP-UP START" og "POP-UP SLUT" (markup, CSS og script) kan flyttes
+  til en komponent i src/components/, når mailværktøjet er valgt.
+  Mangler: formularens rigtige modtager (FORM_ACTION) og PREVIEW = false.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Attrap af siden bag pop-uppen (kun til forhåndsvisning) ── */
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; color: #111827; background: #ffffff; }
+  .mock-head { display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 1.5rem; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #0d4a5e; }
+  .mock-head img { width: 80px; height: 80px; object-fit: contain; }
+  .mock-hero { padding: 5rem 1.5rem 4.5rem; color: #fff; background: linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.4) 55%, rgba(0,0,0,.15)), url('../public/images/havoerred_isefjorden.jpg') center/cover; }
+  .mock-hero h1 { max-width: 1040px; margin: 0 auto; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; line-height: 1.1; }
+  .mock-body { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .mock-body p { font-size: 1rem; line-height: 1.8; color: #374151; margin: 0 0 1.25rem; }
+
+  /* ── POP-UP START ── */
+  .nl-overlay {
+    position: fixed; inset: 0; z-index: 900;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    background: rgba(8, 46, 59, 0.55);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .nl-overlay.is-open { opacity: 1; visibility: visible; }
+
+  .nl-dialog {
+    position: relative;
+    display: grid; grid-template-columns: 5fr 6fr;
+    width: 100%; max-width: 760px;
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px -16px rgba(8, 46, 59, 0.55);
+    transform: translateY(12px);
+    transition: transform 0.25s ease;
+  }
+  .nl-overlay.is-open .nl-dialog { transform: none; }
+
+  .nl-photo { position: relative; min-height: 100%; background: #0d4a5e; }
+  .nl-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 68% 50%; display: block; }
+
+  .nl-content { padding: 2.25rem 2rem 1.75rem; border-top: 3px solid #c47d0a; }
+  .nl-eyebrow { margin: 0 0 0.625rem; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #c47d0a; }
+  .nl-title { margin: 0 0 0.75rem; font-size: 1.625rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: #111827; }
+  .nl-text { margin: 0 0 1rem; font-size: 0.9375rem; line-height: 1.65; color: #4b5563; }
+
+  .nl-list { list-style: none; margin: 0 0 1.25rem; padding: 0; }
+  .nl-list li { position: relative; padding-left: 1.625rem; margin: 0.4rem 0; font-size: 0.9375rem; line-height: 1.5; color: #1f2937; }
+  .nl-list li::before {
+    content: ""; position: absolute; left: 0.15rem; top: 0.3rem;
+    width: 0.6rem; height: 0.35rem;
+    border-left: 2px solid #0d4a5e; border-bottom: 2px solid #0d4a5e;
+    transform: rotate(-45deg);
+  }
+
+  .nl-form { display: flex; flex-direction: column; gap: 0.625rem; }
+  .nl-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .nl-input {
+    width: 100%; padding: 0.85rem 1rem;
+    font: inherit; font-size: 1rem; color: #111827;
+    background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px;
+  }
+  .nl-input:focus { outline: 2px solid #0d4a5e; outline-offset: 1px; border-color: #0d4a5e; }
+  .nl-submit {
+    padding: 0.9rem 1.4rem;
+    font: inherit; font-size: 0.9375rem; font-weight: 600; color: #ffffff;
+    background: #0d4a5e; border: 0; border-radius: 10px; cursor: pointer;
+    box-shadow: 0 4px 14px -4px rgba(13, 74, 94, 0.45);
+    transition: background 0.25s ease;
+  }
+  .nl-submit:hover { background: #c47d0a; }
+
+  .nl-consent { margin: 0.875rem 0 0; font-size: 0.75rem; line-height: 1.55; color: #6b7280; }
+  .nl-consent a { color: #0d4a5e; }
+  .nl-decline {
+    display: block; margin: 0.75rem auto 0; padding: 0.25rem 0.5rem;
+    font: inherit; font-size: 0.8125rem; color: #6b7280;
+    background: none; border: 0; text-decoration: underline; cursor: pointer;
+  }
+
+  .nl-close {
+    position: absolute; top: 0.75rem; right: 0.75rem; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    width: 2.25rem; height: 2.25rem;
+    color: #475569; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 999px; cursor: pointer;
+  }
+  .nl-close:hover { color: #0d4a5e; border-color: #0d4a5e; }
+
+  .nl-done { display: none; }
+  .nl-dialog.is-done .nl-form, .nl-dialog.is-done .nl-list, .nl-dialog.is-done .nl-text,
+  .nl-dialog.is-done .nl-consent, .nl-dialog.is-done .nl-decline { display: none; }
+  .nl-dialog.is-done .nl-done { display: block; margin: 0; font-size: 0.9375rem; line-height: 1.65; color: #4b5563; }
+
+  @media (max-width: 640px) {
+    .nl-overlay { align-items: flex-end; padding: 0; }
+    .nl-dialog { grid-template-columns: 1fr; max-width: none; border-radius: 18px 18px 0 0; }
+    .nl-photo { min-height: 0; height: 132px; }
+    .nl-content { padding: 1.375rem 1.25rem 1.25rem; }
+    .nl-title { font-size: 1.375rem; }
+    .nl-list { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nl-overlay, .nl-dialog { transition: none; }
+  }
+  /* ── POP-UP SLUT (CSS) ── */
+</style>
+</head>
+<body>
+
+<!-- Attrap af siden -->
+<div class="mock-head"><img src="../public/images/logo.png" alt=""> Ude og Fiske</div>
+<div class="mock-hero"><h1>Havørredfiskeri i Oktober</h1></div>
+<div class="mock-body">
+  <p>Oktober er højsæson for havørredfiskeri, hvor efterårsfiskeriet virkelig topper. Det er nu, at mange af de store, farvede havørreder begynder deres gydevandring op i åerne, mens de blanke havørreder stadig jagter føde langs kysterne.</p>
+  <p>Temperaturen falder, og med det kommer køligere vand, som aktiverer havørrederne. I denne artikel vil vi gennemgå de bedste strategier, fiskepladser, agn og teknikker til at få succes med havørredfiskeriet i oktober.</p>
+  <p>Oktober er præget af en stor aktivitet blandt havørrederne, både de blanke og farvede fisk. De blanke havørreder kan stadig findes langs kysten, mens de farvede, gydemodne fisk trækker mod fjordene og åerne.</p>
+  <p><button type="button" onclick="document.getElementById('nl-overlay').classList.add('is-open')">Vis pop-up igen</button></p>
+</div>
+
+<!-- ── POP-UP START (markup) ── -->
+<div class="nl-overlay" id="nl-overlay">
+  <div class="nl-dialog" role="dialog" aria-modal="true" aria-labelledby="nl-title">
+    <button type="button" class="nl-close" data-nl-close aria-label="Luk">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="nl-photo">
+      <img src="../public/images/hav%C3%B8rred_hero1.jpeg" alt="Nærbillede af en havørred med et grønt gennemløbsblink i munden">
+    </div>
+
+    <div class="nl-content">
+      <p class="nl-eyebrow">Nyhedsbrev</p>
+      <h2 class="nl-title" id="nl-title">Få månedens fiskeri i indbakken</h2>
+      <p class="nl-text">Én mail om måneden, skrevet af mig. Kort, konkret og til at bruge på næste tur.</p>
+      <ul class="nl-list">
+        <li>Månedens plads med luftfoto og noter</li>
+        <li>Hvad der bider lige nu, og hvordan jeg fisker det</li>
+        <li>Ét stykke grej, jeg anbefaler</li>
+      </ul>
+
+      <form class="nl-form" id="nl-form" method="post" action="#">
+        <label class="nl-label" for="nl-email">Din e-mail</label>
+        <input class="nl-input" id="nl-email" name="email" type="email" autocomplete="email" placeholder="Din e-mail" required>
+        <button class="nl-submit" type="submit">Tilmeld mig</button>
+      </form>
+
+      <p class="nl-done">Tak! Tjek din indbakke og bekræft din tilmelding, så er du med fra næste mail.</p>
+
+      <p class="nl-consent">Ved at tilmelde dig siger du ja til at modtage nyhedsbrevet fra Ude og Fiske på e-mail. Du kan altid afmelde dig igen med ét klik.</p>
+      <button type="button" class="nl-decline" data-nl-close>Nej tak</button>
+    </div>
+  </div>
+</div>
+<!-- ── POP-UP SLUT (markup) ── -->
+
+<script>
+  /* ── POP-UP START (script) ── */
+  (function () {
+    var PREVIEW = true;          // true: vis med det samme hver gang. Sæt til false på siden.
+    var DELAY_MS = 25000;        // vis efter 25 sekunder ...
+    var SCROLL_SHARE = 0.5;      // ... eller når halvdelen af siden er læst
+    var SNOOZE_DAYS = 30;        // vis ikke igen de næste 30 dage efter "Nej tak"
+    var KEY = 'uof-nl';
+
+    var overlay = document.getElementById('nl-overlay');
+    var dialog = overlay.querySelector('.nl-dialog');
+    var form = document.getElementById('nl-form');
+    var shown = false;
+
+    function snoozed() {
+      try {
+        var v = JSON.parse(localStorage.getItem(KEY) || 'null');
+        return !!v && (v.done || Date.now() < v.until);
+      } catch (e) { return false; }
+    }
+    function remember(done) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ done: done, until: Date.now() + SNOOZE_DAYS * 864e5 }));
+      } catch (e) {}
+    }
+    function cookieBannerOpen() {
+      var cc = document.getElementById('cc-root');
+      return !!cc && !cc.hidden;
+    }
+    function open() {
+      if (shown || (!PREVIEW && (snoozed() || cookieBannerOpen()))) return;
+      shown = true;
+      overlay.classList.add('is-open');
+    }
+    function close() {
+      overlay.classList.remove('is-open');
+      if (!PREVIEW && !dialog.classList.contains('is-done')) remember(false);
+    }
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay || e.target.closest('[data-nl-close]')) close();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+    form.addEventListener('submit', function (e) {
+      // Kladde: sender ikke noget endnu. Her kobles mailværktøjets formular på.
+      e.preventDefault();
+      dialog.classList.add('is-done');
+      if (!PREVIEW) remember(true);
+    });
+
+    if (PREVIEW) { setTimeout(open, 400); return; }
+    setTimeout(open, DELAY_MS);
+    window.addEventListener('scroll', function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max >= SCROLL_SHARE) open();
+    }, { passive: true });
+    document.addEventListener('mouseout', function (e) {
+      if (!e.relatedTarget && e.clientY <= 0) open();   // musen forlader siden opad (kun computer)
+    });
+  })();
+  /* ── POP-UP SLUT (script) ── */
+</script>
+</body>
+</html>

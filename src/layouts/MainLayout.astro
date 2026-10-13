@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import CookieConsent from "../components/CookieConsent.astro";
+import NewsletterPopup from "../components/NewsletterPopup.astro";
 import GoogleAdSidebar from "../components/GoogleAdSidebar.astro";
 import GoogleAdBottomBanner from "../components/GoogleAdBottomBanner.astro";
 
@@ -24,6 +25,7 @@ interface Props {
   about?: SchemaEntity[];
   mentions?: SchemaEntity[];
   itemList?: { name: string; url: string; image?: string }[];
+  noindex?: boolean;
 }
 
 const {
@@ -38,6 +40,7 @@ const {
   about,
   mentions,
   itemList,
+  noindex = false,
 } = Astro.props;
 
 const buildEntity = (e: SchemaEntity) => ({
@@ -182,6 +185,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2311604251179357" crossorigin="anonymous"></script>
 
@@ -547,12 +551,14 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
       <slot />
     </main>
 
+    <NewsletterPopup />
+
     <footer class="sf">
       <div class="sf-grid">
         <div>
           <div class="sf-brand">Ude og Fiske</div>
           <p class="sf-tagline">Inspiration og praktisk viden til din næste fisketur i Danmark — uanset om du er begynder eller erfaren lystfisker.</p>
-          <p class="sf-copy">©2026 Ude og Fiske · CVR: 43131168</p>
+          <p class="sf-copy">©2026 Ude og Fiske</p>
         </div>
         <div>
           <div class="sf-col-title">Indhold</div>
@@ -575,6 +581,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
         Alle anbefalinger er redaktionelt uafhængige. Nogle links er affiliate-links.
         · <a href="/cookiepolitik/" class="sf-link" style="display:inline">Cookiepolitik</a>
         · <button type="button" class="sf-cookie-btn" onclick="window.uofCookies&&window.uofCookies.open()">Cookieindstillinger</button>
+        <span data-nl-link hidden>· <button type="button" class="sf-cookie-btn" data-nl-open>Nyhedsbrev</button></span>
       </div>
     </footer>
 

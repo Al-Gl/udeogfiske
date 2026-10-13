@@ -5532,3 +5532,82 @@ things the existing text already says Aldin does (Fidusen/Præsten). No invented
 - Nothing committed or pushed. Not viewed in a browser — verified from the built HTML only.
 - The duplicate put-and-take fly URL already had a 301 in `public/_redirects`; no change needed.
 - `scripts/metrics/token.json` expires about weekly (OAuth app in testing mode) — expect to re-run `npm run auth` before each GSC pull.
+
+## Review - Newsletter draft, October 2026 (2026-10-13)
+
+**New files only, no site code touched.** `newsletter/2026-10/oktober-havorred.html` + `kyndby-skraafoto.jpg`.
+
+- Email: hero, "Kort fortalt" capsule, spot of the month (Kyndbyvaerket) with an annotated aerial photo and a 4-point "how I read it"
+  legend, 4 October technique points, one gear pick (Westin D360 V2, Partner-ads link with partnerid=29395), "Fred de farvede" box,
+  3 links back to the site (UTM-tagged `utm_campaign=2026-10`), footer with unsubscribe + address placeholders.
+- Design follows the site: #0d4a5e / #c47d0a, answer-capsule, TipBox and Affiliate card styling, Inter with system fallback. Inline styles + tables for mail clients.
+- Copy sources: the October monthly page, the Isefjorden page, and `SeaTrout/sea-trout-database.md`. No invented trips or anecdotes.
+  The four photo notes describe bottom type visible in the photo (sand vs weed/stone), not depth.
+
+**Open before sending**
+- Image `src` is relative (local preview only) - upload it in the mail tool or host it.
+- `{{unsubscribe_url}}` and `{{afsender_adresse}}` are placeholders.
+- Affiliate link in email: not checked against the Partner-ads/Fiskegrej terms.
+- Photo credit reads "Skraafoto, Klimadatastyrelsen" - wording not verified against the data licence.
+- Tested in Chromium only, not in Gmail/Outlook.
+
+**Follow-up, same day (2026-10-13)**
+- Email: logo now 66x44 (the file is 1920x1281, it had been forced to 40x40). New header photo `newsletter/2026-10/havorred-closeup.jpg`,
+  cropped from `public/images/havørred_hero1.jpeg` (Aldin's own photo, in the repo since the initial commit; the 1024x1024 `havorred_closeup.png` is AI and was not used).
+- `newsletter/popup-preview.html`: pop-up draft over a mock page. Two columns on desktop, bottom sheet on phones. Same photo, three benefit lines,
+  e-mail field, consent line, "Nej tak". Script has the real trigger logic (25 s or 50 % scroll or exit intent, 30-day snooze, waits for the cookie banner)
+  behind `PREVIEW = true`; the form does not send anything yet. No site files changed.
+- Open: the site has a cookie policy but no privacy text covering e-mail addresses.
+
+## Review - Newsletter sign-up on the site (2026-10-13)
+
+**New:** `src/components/NewsletterPopup.astro` - sign-up band above the footer + the pop-up it opens (markup, styles, inline script in one file).
+**Changed:** `src/layouts/MainLayout.astro` (import + `<NewsletterPopup />` before the footer, "Nyhedsbrev" link in the footer bottom row,
+CVR number removed from the footer at Aldin's request), `src/pages/cookiepolitik/index.astro` (new "Nyhedsbrev" section with `id="nyhedsbrev"`, date updated).
+Also `public/images/nyhedsbrev/` with the two e-mail images, and the CVR number removed from the e-mail footer.
+
+- Pop-up triggers: 25 s, 50 % scroll, or exit intent on desktop. Never on top of the cookie banner. "Nej tak"/close = 30-day snooze in
+  localStorage (`uof-nl`); a completed sign-up is remembered permanently. The band and the footer link always open it.
+- **Safety switch:** `FORM_ACTION` in the component is empty. While it is empty, the band, pop-up and footer link are not rendered in a
+  production build (verified in `dist/`), so a push now would not put a dead form live. In `astro dev` they render as a demo and submit shows the thank-you state.
+- The submit code assumes Brevo's standard form fields (`EMAIL`, `email_address_check`, `locale`) and its `?isAjax=1` JSON response.
+  Not tested against Brevo yet - needs the real form address.
+- Tested with a headless browser on localhost: open from the band, focus lands in the e-mail field, submit, thank-you state, Escape closes, state stored.
+  Fixed along the way: e-mail field overflowed its column (site has no global border-box), footer link was un-hidden before the footer existed.
+- Nothing committed or pushed.
+
+## Review - Newsletter form connected to Brevo (2026-10-13)
+
+**Changed:** `src/components/NewsletterPopup.astro`, two lines.
+
+- `FORM_ACTION` now holds the Brevo form address from Aldin's embed code. This also flips the safety switch: the band, pop-up and footer
+  link are now rendered in a production build, so the next push puts the sign-up live.
+- Hidden `locale` field changed from `da` to `en` to match the Brevo form. Field names (`EMAIL`, `email_address_check`) already matched.
+- Only the form address was taken from the embed code. Brevo's own styles, fonts and `main.js` are not loaded; the site keeps its own pop-up.
+- Checked: an empty test request from origin `https://udeogfiske.dk` returns `{"success":true}` as JSON with the right cross-origin header,
+  so the pop-up's submit code can read the answer. Build passes.
+- Brevo answers `success` even for an empty address, so the pop-up cannot tell a rejected address from an accepted one. The browser's own
+  e-mail check on the field is the only validation.
+- Not tested: a real sign-up (needs an inbox). The thank-you text says "bekræft din tilmelding" - correct: Aldin confirmed the Brevo form
+  is set to "Double confirmation email".
+
+**Follow-up, same day (2026-10-13)**
+- Real sign-up tested by Aldin on localhost: confirmation mail arrived and the contact is in Brevo. The mail landed in Gmail's spam folder.
+- DNS checked: Brevo DKIM (`brevo1`/`brevo2._domainkey`) and DMARC (`p=none`) are in place, so the spam placement is sender reputation / default template, not setup.
+- Pop-up thank-you line now ends with "Kan du ikke finde mailen, så kig i spam-mappen." (one line in `NewsletterPopup.astro`).
+
+## Review - Newsletter thank-you page (2026-10-13)
+
+**New:** `src/pages/nyhedsbrev/tak/index.astro` - the page people land on after clicking the confirmation link in the Brevo mail
+(replaces Brevo's English default page once its address is set in the Brevo form settings).
+**Changed:** `src/layouts/MainLayout.astro` - new optional `noindex` prop (three lines); when set it adds `<meta name="robots" content="noindex, follow">`.
+No other page uses it. Also `newsletter/brevo-bekraeft-tilmelding.html` (Danish version of Brevo's confirmation mail, pasted into Brevo by Aldin).
+
+- Page: dark hero "Tak, du er tilmeldt" + six link cards. Not added to `public/sitemap.xml`.
+- The six links are the most-clicked pages in Search Console for the last 90 days (pulled 2026-10-13), skipping the monthly sea-trout pages
+  because they go out of date: konditionsfaktor, fiskepladser/koebenhavn, makrelfiskeri, saesonguide, rens-af-orred, sildefiskeri.
+  The list is hard-coded in the page, so it does not update itself.
+- The page stores "signed up" in the browser (same `uof-nl` key as the pop-up), so the pop-up does not open by itself for someone who
+  confirmed on another device than the one they signed up on. The band above the footer still shows on this page.
+- Checked on localhost: page loads, noindex tag present, home page has none, all six links answer 200. Build passes (97 pages). Not looked at in a browser by Claude.
+- Open: push, then put `https://udeogfiske.dk/nyhedsbrev/tak/` in the Brevo form's double-confirmation settings.

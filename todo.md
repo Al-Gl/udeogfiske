@@ -2668,3 +2668,47 @@ Competitors (fishingindenmark, lystfisk, fiskpaakrogen): species ID, season per 
 - [x] 6. Build passes (96 pages), rendered HTML checked, review.md section added — NOT committed, NOT pushed
 - [ ] 7. Aldin: look at the three pages on localhost + rate the 3 images; then commit/push on his go-ahead
 - [ ] 8. Re-check GSC in 3-4 weeks for position/CTR movement on the main queries
+
+## Newsletter - October 2026 draft (2026-10-13)
+
+- [x] 1. Draft the October email (sea trout, spot = Kyndbyvaerket) as `newsletter/2026-10/oktober-havorred.html`, site design, table layout
+- [x] 2. Spot image: Skraafoto crop from `SeaTrout/skraafoto-test/` with 4 numbered markers -> `newsletter/2026-10/kyndby-skraafoto.jpg`
+- [x] 3. Rendered at desktop (700px) and phone (390px) width and checked
+- [ ] 4. Aldin: read the copy, confirm the affiliate terms allow links in email, confirm the photo credit wording
+- [ ] 5. Not built yet: sign-up pop-up/form, lead magnet, mail tool account
+- [x] 6. Email: logo fixed (was forced square, file is 3:2); Aldin's own trout close-up (`havørred_hero1.jpeg`, cropped) added above the title
+- [x] 7. Pop-up draft as standalone preview `newsletter/popup-preview.html` (not wired into the site); rendered at 1280px and 390px
+- [ ] 8. Aldin: choose mail tool + sender address; then move the pop-up into a component and connect the form
+
+## Newsletter sign-up on the site (plan 2026-10-13, approved by Aldin; built, waiting for the Brevo form address)
+
+- [x] 1. `src/components/NewsletterPopup.astro`: move the pop-up from `newsletter/popup-preview.html` into a component; form posts to the Brevo form address
+- [x] 2. Include it once in `MainLayout.astro` (all pages); timed trigger: 25 s / 50 % scroll / exit intent, 30-day snooze, waits for cookie banner
+- [x] 3. Sign-up band above the footer on all pages (one line + button that opens the same pop-up)
+- [x] 4. Small "Nyhedsbrev" link in the footer bottom row, next to Cookieindstillinger (opens the same pop-up)
+- [x] 5. Short "Nyhedsbrev" section on `/cookiepolitik/` (what is stored, Brevo as processor, how to unsubscribe); link it from the consent line
+- [x] 6. Build passes (96 pages); checked on localhost at desktop and phone width with a demo submit
+- [x] 6b. Paste the Brevo form address into FORM_ACTION in NewsletterPopup.astro (real sign-up test: see B2 below)
+- [ ] 7. review.md section; commit locally; push only on Aldin's go-ahead
+
+## Newsletter - resume here (saved 2026-10-13)
+
+Status: Brevo account ready (domain authenticated, transactional active, sender hej@udeogfiske.dk). October email drafted.
+Site sign-up built but switched off (empty FORM_ACTION). Nothing committed or pushed. Brevo was logging Aldin out, so the form is unfinished.
+
+- [x] A. Aldin: finish the embedded subscription form in Brevo (list, double confirmation, default template) and paste the HTML embed code
+- [x] B. Put the form address in `FORM_ACTION` (NewsletterPopup.astro), check field names (match; `locale` set to `en` like the Brevo form)
+- [x] B2. Aldin: one real sign-up on localhost with his own address; confirm the confirmation mail arrives and the contact lands in the list
+- [ ] C. Aldin: look at the pop-up, band and footer link on localhost; adjust the design if needed
+- [ ] D. Translate Brevo's double opt-in confirmation email to Danish (keep the confirmation link untouched)
+- [ ] E. Commit + push on Aldin's go-ahead (also makes the two email photos live), then paste the October email into the Brevo campaign and send a test
+- [ ] F. Check before the first real send: affiliate links in email allowed by Partner-ads/Fiskegrej? Skraafoto credit wording? Test in Gmail + Outlook
+- [ ] G. Ideas for the next six emails (Nov 2026 - Apr 2027): brainstorm with Aldin, save the list in `newsletter/`, then work through them
+
+## Newsletter - Danish confirmation flow (2026-10-13)
+
+- [x] 1. Pop-up thank-you line mentions the spam folder
+- [x] 2. Danish confirmation mail template `newsletter/brevo-bekraeft-tilmelding.html` (Aldin pasted it into Brevo)
+- [x] 3. Thank-you page `/nyhedsbrev/tak/` (noindex, six most-clicked pages as links); `noindex` prop added to MainLayout
+- [ ] 4. Aldin: look at `/nyhedsbrev/tak/` on localhost
+- [ ] 5. Commit + push on Aldin's go-ahead, then Aldin sets `https://udeogfiske.dk/nyhedsbrev/tak/` as the after-confirmation address in the Brevo form

@@ -5648,3 +5648,16 @@ No other page uses it. Also `newsletter/brevo-bekraeft-tilmelding.html` (Danish 
 - Roadmap changed again at Aldin's request: no named spots. Each mail now lists a type of water (fjord, inner fjord, put & take lake,
   open coast, harbour) and "Spot: from Aldin". He names the spot about two weeks before each send. Place-specific site links and the
   Ørsted trip details were removed from the mail outlines. The types of water are my suggestions for him to confirm.
+
+## Review - Flatfish guide: rig photo replaced (2026-10-13)
+
+**Changed:** `src/pages/guide-til-fisk/fladfisk-fiskeri/index.astro`, one `<img>` line (src + alt) in the "Hvad er et fladfiskeforfang?" figure.
+**New:** `public/images/fladfiskeforfang_mole.jpg`.
+
+- Source is Aldin's real photo `images-inspiration/fladfiskeforfang.jpg` (rig on a white background). Nano Banana `/edit` kept the rig
+  (line coil, yellow/white/red beads, two long-shank hooks, swivels, snap) and replaced the background with weathered pier planks.
+  Compared by eye against the original: same parts in the same order; the viewing angle is slightly lower than the original top-down shot.
+- The old AI image `public/images/fladfisk_forfang.png` (598 KB) is no longer referenced anywhere but was left in place.
+- The figcaption still says "to kroge, et blylod og lidt perler/spinnere"; the photo shows no lead weight or spinner blades. Not changed.
+- Tooling note: the gemini CLI hung silently (no output, no file) on a long, detailed `/edit` prompt, three times, also with `-p`.
+  A one-line prompt with `-p` finished in under two minutes. Not committed, not pushed.

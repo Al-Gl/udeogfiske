@@ -2734,3 +2734,10 @@ Plan for the next six mails is in `newsletter/roadmap.md` (first send Thu 5 Nov 
 - [ ] D. Before the first send: affiliate links in email allowed by Partner-ads/Fiskegrej? Skraafoto credit wording? Test in Gmail + Outlook
 - [ ] E. Re-check competition dates before each mail that mentions them (Seatrout Open 2-4 Apr 2027, Fjord til Fjord 23-25 Apr 2027)
 - [ ] F. Check that mail sent to hej@udeogfiske.dk is read (the welcome mail asks people to reply)
+
+## Flatfish guide - real rig photo (2026-10-13)
+
+- [x] 1. Nano Banana edit of Aldin's real photo `images-inspiration/fladfiskeforfang.jpg`: same rig, placed on weathered pier planks
+- [x] 2. Cropped to 16:9, saved as `public/images/fladfiskeforfang_mole.jpg` (1280x720, 204 KB)
+- [x] 3. Swapped into the "Hvad er et fladfiskeforfang?" figure on `/guide-til-fisk/fladfisk-fiskeri/`; alt text updated; build passes
+- [ ] 4. Aldin: look at it; decide on the caption (mentions a lead weight and spinners, which the photo does not show); push on his go-ahead

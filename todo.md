@@ -2710,5 +2710,8 @@ Site sign-up built but switched off (empty FORM_ACTION). Nothing committed or pu
 - [x] 1. Pop-up thank-you line mentions the spam folder
 - [x] 2. Danish confirmation mail template `newsletter/brevo-bekraeft-tilmelding.html` (Aldin pasted it into Brevo)
 - [x] 3. Thank-you page `/nyhedsbrev/tak/` (noindex, six most-clicked pages as links); `noindex` prop added to MainLayout
-- [ ] 4. Aldin: look at `/nyhedsbrev/tak/` on localhost
-- [ ] 5. Commit + push on Aldin's go-ahead, then Aldin sets `https://udeogfiske.dk/nyhedsbrev/tak/` as the after-confirmation address in the Brevo form
+- [x] 4. Aldin: look at `/nyhedsbrev/tak/` on localhost
+- [x] 5. Committed + pushed 2026-10-13 (live verified). Still open for Aldin: set `https://udeogfiske.dk/nyhedsbrev/tak/` as the after-confirmation address in the Brevo form
+- [x] 6. Welcome mail template `newsletter/brevo-velkommen.html` (sent via the form's "Final confirmation email" option)
+- [ ] 6b. Push the three thumbnail images (`public/images/nyhedsbrev/link-*.jpg`) on Aldin's go-ahead
+- [ ] 7. Aldin: paste it into a Brevo template, tick "Final confirmation email" in the form, test (incl. the unsubscribe link)

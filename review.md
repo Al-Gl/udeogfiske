@@ -5611,3 +5611,19 @@ No other page uses it. Also `newsletter/brevo-bekraeft-tilmelding.html` (Danish 
   confirmed on another device than the one they signed up on. The band above the footer still shows on this page.
 - Checked on localhost: page loads, noindex tag present, home page has none, all six links answer 200. Build passes (97 pages). Not looked at in a browser by Claude.
 - Open: push, then put `https://udeogfiske.dk/nyhedsbrev/tak/` in the Brevo form's double-confirmation settings.
+
+**Follow-up, same day (2026-10-13)**
+- Pushed (commit 3d2f31e); `/nyhedsbrev/tak/` verified live. Aldin set it as the confirmation page in the Brevo form
+  (field: "Confirmation page after clicking on the validation link in the email") and tested it: works.
+- New `newsletter/brevo-velkommen.html`: welcome mail in the same style as the confirmation mail. Welcome, what they get, a spam-folder
+  tip, three links (saesonguide, fiskepladser, guide-til-fisk) and a reply question. Frequency worded as "cirka en gang om måneden" plus
+  an occasional extra, at Aldin's request; the pop-up, confirmation mail and thank-you page still say "Én mail om måneden".
+- Not rendered in a mail client. The unsubscribe link uses Brevo's `{{ unsubscribe }}` placeholder and is untested.
+- Welcome mail now has images: the trout close-up on top (already live) and a thumbnail next to each of the three links.
+  The thumbnails are new 280x188 JPEG copies (6-12 KB) of site images in `public/images/nyhedsbrev/`: `link-saesonguide.jpg` (from
+  `sild_card.png`), `link-fiskepladser.jpg` (from `stevns_card.png`), `link-guide-til-fisk.jpg` (from `makrel_card.png`). The originals
+  are 0.3-1.7 MB PNGs, too heavy to load in a mail. **Not pushed yet**, so the three thumbnails do not load until the next push.
+  Render check failed (no headless browser found), so the layout is unverified.
+- Welcome mail layout changed after Aldin's feedback (photo before any text looked wrong): a small "UDE OG FISKE" brand line on top,
+  then heading and intro, and the trout photo moved below the intro with a one-line caption. Rendered with headless Chrome at 640px
+  using local copies of the images: `newsletter/brevo-velkommen-preview.png`. The three link thumbnails are still not pushed.

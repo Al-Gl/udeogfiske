@@ -8,6 +8,7 @@ import TipBox from '../../../components/TipBox.astro';
 import StatHighlight from '../../../components/StatHighlight.astro';
 import SeasonCalendar from '../../../components/SeasonCalendar.astro';
 import AffiliateTrio from '../../../components/AffiliateTrio.astro';
+import GuideLink from '../../../components/GuideLink.astro';
 import { getProduct, formatPrice } from '../../../lib/feed';
 
 // Gedde-vælger — anbefalet kunstigt agn pr. type. Cards are pre-rendered server-side
@@ -332,6 +333,12 @@ const about = [
       </figure>
 
       <article class="article">
+        <GuideLink
+          href="/guide-til-fisk/geddefiskeri/geddegrej/"
+          title="Læs guiden til geddegrej og geddeagn"
+          desc="Hvilket agn virker i hvilken årstid, farver efter vandet — og hvordan du monterer wireforfanget."
+        />
+
         <h2>Tips til geddefiskeri</h2>
         <ul>
           <li>Gedden er en glubsk fisk med mange tænder, pas på den ikke bider din line over!</li>

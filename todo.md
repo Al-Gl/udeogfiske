@@ -2741,3 +2741,15 @@ Plan for the next six mails is in `newsletter/roadmap.md` (first send Thu 5 Nov 
 - [x] 2. Cropped to 16:9, saved as `public/images/fladfiskeforfang_mole.jpg` (1280x720, 204 KB)
 - [x] 3. Swapped into the "Hvad er et fladfiskeforfang?" figure on `/guide-til-fisk/fladfisk-fiskeri/`; alt text updated; build passes
 - [ ] 4. Aldin: look at it; decide on the caption (mentions a lead weight and spinners, which the photo does not show); push on his go-ahead
+
+## 3 new pages from DataForSEO gaps (2026-10-29)
+
+Aldin approved the three pages in chat. Main rule: the visitor must leave with knowledge they can use on their next trip.
+Search Console token expired (`invalid_grant`), so the picks are from DataForSEO data; Aldin needs to run `npm run auth` in `scripts/metrics`.
+
+- [x] 1. `/fiskeudstyr/endegrej/kystblink/`: kystblink buyer's guide (kystblink ~1000/mo, havørred blink 720, fiskeblink 260). Weight/shape/colour by conditions, how to fish a blink, my picks with Affiliate cards anchored to the text. Becomes the hub for single-lure pages
+- [x] 2. `/guide-til-fisk/geddefiskeri/geddegrej/`: gedde grej + agn guide (gedde grej 390, geddeagn 210, gedde blink 90). Bait size by water temp, colour by water clarity, rod/line/wire leader specs, rigging; no repeat of the agn picker on the main page
+- [x] 3. `/fiskepladser/fyn/`: havørredfiskeri på Fyn (havørred fyn 260, 590 in Sept). Named real spots (researched), tactic TipBox, action checklist, fredning near river mouths
+- [x] 4. Link the new pages in: Endegrej index, geddefiskeri page, /fiskepladser/ Fyn section, havørred page where it fits
+- [x] 5. Build passes; check the three pages on localhost (desktop + phone width)
+- [~] 6. review.md section done; commit + push wait for Aldin

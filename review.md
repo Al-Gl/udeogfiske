@@ -5661,3 +5661,21 @@ No other page uses it. Also `newsletter/brevo-bekraeft-tilmelding.html` (Danish 
 - The figcaption still says "to kroge, et blylod og lidt perler/spinnere"; the photo shows no lead weight or spinner blades. Not changed.
 - Tooling note: the gemini CLI hung silently (no output, no file) on a long, detailed `/edit` prompt, three times, also with `-p`.
   A one-line prompt with `-p` finished in under two minutes. Not committed, not pushed.
+
+## Review: 3 new pages from DataForSEO gaps (2026-10-29)
+
+**Why these three:** DataForSEO ranked-keyword data showed clusters where the site ranks low with a page that does not match the search. Search Console could not be used (token expired, `invalid_grant`; run `npm run auth` in `scripts/metrics`).
+
+**New pages**
+- `/fiskeudstyr/endegrej/kystblink/`: targets "kystblink" (~1000/mo, the results page is all shops, no editorial guide), "havørred blink" / "blink til havørred" (720), "fiskeblink" (260). Usable knowledge: blink shapes and how they move, weight by conditions table ("lightest blink that reaches the edge"), colour by light/water table, a five-step retrieve method (count-down, tempo by water temperature), and "change weight and tempo before colour". Four affiliate cards, each after the text about that lure: Hansen SD Stripper 56756, Abu Toby 70081, Savage Gear Seeker ISP 59628, Gladsax Snaps 59584. This is the hub for future single-lure pages.
+- `/guide-til-fisk/geddefiskeri/geddegrej/`: targets "gedde grej" (390), "geddeagn" / "agn til gedder" (210), "gedde blink" (90). Usable knowledge: rod/reel/line setups table, how to rig the wire leader (length, strength, wire vs titanium, check for kinks), bait by season and water temperature table, colour by water clarity table, where to fish. Saltwater rules checked: closed 1 April-15 May, minimum 60 cm. Affiliate cards: Mustad 7 Strand wire 59880, Savage Gear 3D Hybrid Pike 503048, 4Play V2 Swim & Jerk 52415, Abu Atom 40863. Does not repeat the agn picker on the main gedde page.
+- `/fiskepladser/fyn/`: targets "havørred fyn" (260, 590 in Sept). Spot-page layout as agreed: named real spots from VisitFyn's spot guide (Enebærodde, Gabet, Østfyn/Knudshoved, Gals Klint + Strib Fyr, Føns Vig/Gamborg Fjord/Båring Vig, Helnæs/Torø, Sydøstfyn/Stenodden), a "which spot which season" table, a tactic TipBox and a pre-trip checklist (river-mouth closed zones, fisketegn, 40 cm, coloured fish closed 16 Nov-15 Jan).
+
+**Linked in from:** the "Blink" section on the Endegrej index, a GuideLink card on the geddefiskeri page (before "Tips til geddefiskeri"), and a Fyn card on /fiskepladser/.
+
+**Open points for Aldin**
+- Images are placeholders: kystblink + Fyn use `kyst_fiskeri.jpg` (dune coast, looks more like West Jutland than Fyn), gedde uses `aa_fiskeri.jpg`. Nano Banana failed with HTTP 402 (billing).
+- Affiliate notes say "jeg anbefaler" but make no claims about specific catches; add your own experience/catches where you have them.
+- Lure-page template saved to memory: `/fiskeudstyr/endegrej/{hub}/{lure}/` + 7-part Q&A structure.
+- Build passes; not committed or pushed.
+- Mobile table fix: stacked tables cut off the right column at phone width; fixed on the three new pages (box-sizing + minmax column). The same table CSS on /fiskeudstyr/endegrej/ probably has the same bug; not changed.

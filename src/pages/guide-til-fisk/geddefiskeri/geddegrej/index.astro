@@ -1,0 +1,431 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import RelatedRow from '../../../../components/RelatedRow.astro';
+import AuthorProfile from '../../../../components/AuthorProfile.astro';
+import DidYouKnow from '../../../../components/DidYouKnow.astro';
+import TipBox from '../../../../components/TipBox.astro';
+import Affiliate from '../../../../components/Affiliate.astro';
+import GuideLink from '../../../../components/GuideLink.astro';
+
+const related = [
+  {
+    title: "Geddefiskeri",
+    description: "Den store guide til gedden — hvor den lever, hvornår den bider, og hvordan du fanger den.",
+    href: "/guide-til-fisk/geddefiskeri/",
+    image: "/images/aafiskeri_hero.png",
+    alt: "Geddefiskeri i dansk ferskvand",
+    chip: "Art",
+  },
+  {
+    title: "Spinnestænger",
+    description: "Sådan vælger du længde, kastevægt og aktion på din spinnestang — til kyst, sø og å.",
+    href: "/fiskeudstyr/fiskestaenger/spinnestaenger/",
+    image: "/images/fiskestanger.png",
+    alt: "Spinnestænger",
+    chip: "Udstyr",
+  },
+  {
+    title: "Aborrefiskeri",
+    description: "Samme vand, mindre agn — aborren er den perfekte følgesvend på geddeturen.",
+    href: "/guide-til-fisk/aborrefiskeri/",
+    image: "/images/fisk_card.jpg",
+    alt: "Aborrefiskeri",
+    chip: "Art",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hvad er det bedste agn til gedde?",
+    answer: "Det afhænger af vandtemperaturen. I <strong>koldt vand</strong> (under 8 grader) er en stor gummifisk fisket langsomt nær bunden svær at slå. I <strong>forår og efterår</strong> virker woblere, swimbaits og jerkbaits på 10–20 cm, og i <strong>varmt sommervand</strong> er tidlig morgen med overfladeagn eller en hurtig spinner langs vegetationen ofte bedst. Har du kun ét agn, så vælg en gummifisk på 12–17 cm i en naturlig farve.",
+  },
+  {
+    question: "Hvor langt skal et wireforfang til gedde være?",
+    answer: "Mindst <strong>30 cm</strong>, og gerne 40–50 cm når du fisker med store agn. Gedden sluger ofte agnet dybt, og hugget kan ramme linen et godt stykke over selve agnet. Vælg et forfang med en brudstyrke der er mindst lige så høj som din hovedline.",
+  },
+  {
+    question: "Hvilken stang skal jeg bruge til geddefiskeri?",
+    answer: "Til allround-fiskeri fra land: en spinnestang på <strong>2,4–2,7 meter</strong> med en kastevægt på ca. <strong>20–60 gram</strong>, et fastspolehjul i str. 3000–4000 og en fletline på 0,15–0,20 mm. Fisker du med store jerkbaits og gummidyr over 50 gram, er en kort jerkstang med multihjul det rette valg.",
+  },
+  {
+    question: "Hvornår er gedden fredet?",
+    answer: "I <strong>salt- og brakvand</strong> er gedden fredet fra <strong>1. april til 15. maj</strong>, og mindstemålet er <strong>60 cm</strong>. I ferskvand fastsætter ejeren eller foreningen reglerne — mange søer har forårsfredning i gydetiden, så tjek altid fiskekortets regler, før du fisker.",
+  },
+  {
+    question: "Hvilken farve agn skal jeg bruge til gedde?",
+    answer: "I <strong>klart vand og sol</strong>: naturlige farver som aborre, skalle og sølv. I <strong>grumset eller brunt vand</strong>: kraftige farver som chartreuse, orange og firetiger. Når det er <strong>mørkt eller overskyet</strong>, giver sort eller meget mørke farver den tydeligste silhuet.",
+  },
+];
+---
+
+<MainLayout
+  title="Geddegrej og geddeagn | Sådan vælger du agn, stang og forfang"
+  description="Guide til geddegrej: hvilket agn virker i hvilken årstid, farver efter vandets klarhed, stang, hjul og line, og hvordan du monterer wireforfanget rigtigt."
+  canonical="https://udeogfiske.dk/guide-til-fisk/geddefiskeri/geddegrej/"
+  pageType="article"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Guide til fisk", url: "/guide-til-fisk/" },
+    { name: "Gedde", url: "/guide-til-fisk/geddefiskeri/" },
+    { name: "Geddegrej" },
+  ]}
+  articleData={{
+    headline: "Geddegrej og geddeagn: sådan vælger du det rigtige grej til gedde",
+    image: "/images/aa_fiskeri.jpg",
+    datePublished: "2026-10-29",
+    dateModified: "2026-10-29",
+  }}
+  about={[{ name: "Gedde (Esox lucius)", sameAs: "https://da.wikipedia.org/wiki/Gedde" }]}
+  faq={faqs}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/">Guide til fisk</a>
+        <span>›</span>
+        <a href="/guide-til-fisk/geddefiskeri/">Gedde</a>
+        <span>›</span>
+        <span>Geddegrej</span>
+      </nav>
+      <h1 class="pg-title">Geddegrej og geddeagn</h1>
+      <p class="pg-sub">Det rigtige agn til vandtemperaturen, den rigtige farve til vandet — og et forfang gedden ikke kan bide over. Sådan sætter du dit geddegrej sammen.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="answer-capsule">
+        <span class="ac-label">Kort fortalt</span>
+        <h2 class="ac-q">Hvilket grej skal jeg bruge til gedde?</h2>
+        <p class="ac-a">En spinnestang på <strong>2,4–2,7 m med 20–60 g kastevægt</strong>, et hjul i str. 3000–4000 og <strong>fletline på 0,15–0,20 mm</strong>. Mellem line og agn sidder altid et <strong>wireforfang på 30–50 cm</strong>. Agnet vælger du efter vandtemperaturen: <strong>langsom gummifisk i koldt vand</strong>, wobler og swimbait i forår og efterår, hurtigere agn langs vegetationen om sommeren. Og husk en lang afkrogertang.</p>
+      </div>
+
+      <AuthorProfile
+        quote="Gedden er ikke en kræsen fisk — men den er en doven fisk. Den bruger ikke energi på at jagte noget, der ikke er værd at jagte. Det er derfor tempoet og størrelsen på agnet betyder mere end farven og mærket. Når vandet er koldt, skal agnet hænge foran næsen på den. Når vandet er varmt, kan du fiske hurtigere og dække mere vand. Det er den vigtigste regel jeg kan give dig."
+      />
+
+      <article class="article">
+        <p>Gedden er Danmarks største ferskvandsrovfisk, og den findes i søer, åer, fjorde og brakvandsområder i hele landet. Den er heldigvis ikke svær at komme i gang med — men grejet skal passe til fisken. Geddens tænder skærer en almindelig line over på et sekund, og en stor gedde i vegetation kræver en stang og en line med reserver.</p>
+
+        <p>Denne guide går i dybden med selve grejet. Vil du vide mere om gedden, hvor den lever og hvornår den bider, så start med min <a href="/guide-til-fisk/geddefiskeri/">store guide til geddefiskeri</a>.</p>
+
+        <h2>Hvilken stang, hjul og line skal jeg bruge til gedde?</h2>
+
+        <p>Det afgørende er <strong>kastevægten</strong>: stangen skal kunne kaste de agn, du vil fiske med. De fleste geddeagn vejer mellem 15 og 60 gram, og det er det spænd en allround-geddestang skal dække.</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Stang, hjul og line til gedde">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Opsætning</th>
+                <th scope="col">Stang</th>
+                <th scope="col">Hjul og line</th>
+                <th scope="col">Bedst til</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Opsætning">Let</th>
+                <td data-label="Stang">2,1–2,4 m, 10–40 g</td>
+                <td data-label="Hjul og line">Str. 2500–3000, fletline 0,12–0,15 mm</td>
+                <td data-label="Bedst til">Små søer og åer, spinnere og agn op til 10–12 cm — fanger også aborre</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Opsætning">Allround</th>
+                <td data-label="Stang">2,4–2,7 m, 20–60 g</td>
+                <td data-label="Hjul og line">Str. 3000–4000, fletline 0,15–0,20 mm</td>
+                <td data-label="Bedst til">Fra land i søer og fjorde, woblere og gummifisk 10–17 cm</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Opsætning">Tung</th>
+                <td data-label="Stang">1,8–2,1 m jerkstang, 40–150 g</td>
+                <td data-label="Hjul og line">Multihjul, fletline 0,25–0,30 mm</td>
+                <td data-label="Bedst til">Store jerkbaits og gummidyr fra båd, efter de helt store gedder</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Står du helt uden, så køb allround-opsætningen. Den dækker langt de fleste ture og kan også bruges til <a href="/guide-til-fisk/havorredfiskeri/">havørred</a> på kysten, hvis du skifter forfanget ud. Læs mere om at vælge stang i min guide til <a href="/fiskeudstyr/fiskestaenger/spinnestaenger/">spinnestænger</a>.</p>
+
+        <DidYouKnow>
+          Gedden har <strong>hundredvis af tænder</strong> — ikke kun i kæberne, men også på ganen og tungen, og de peger bagud, så byttet ikke kan slippe ud igen. Det er derfor en almindelig line bliver skåret over, selv når gedden ikke bider direkte på den.
+        </DidYouKnow>
+
+        <h2>Hvordan monterer jeg et wireforfang til gedde?</h2>
+
+        <p>Wireforfanget er det vigtigste stykke geddegrej, du ejer. Uden det mister du fisk — og en gedde der svømmer rundt med et agn i munden, har det dårligt. Sådan sætter du det op:</p>
+
+        <ul>
+          <li><strong>Længde: 30–50 cm.</strong> Gedden sluger ofte agnet dybt, og hugget kan ramme linen et stykke over agnet. Jo større agn, jo længere forfang.</li>
+          <li><strong>Brudstyrke: mindst som hovedlinen.</strong> Et forfang på 10–15 kg passer til allround-fiskeri; går du efter store gedder med tunge agn, så gå op.</li>
+          <li><strong>Materiale:</strong> 7-strenget stålwire er billigt og stærkt. Titanium er dyrere, men retter sig selv ud igen efter en fight og får ikke knæk.</li>
+          <li><strong>Forbindelsen:</strong> fletlinen bindes til forfangets svirvel, og agnet sættes i forfangets karabinhage. Vælg en karabin med afrundet bund, så woblere og jerkbaits kan bevæge sig frit.</li>
+          <li><strong>Tjek det efter hver fisk.</strong> Får wiren et knæk, så skift forfanget. Det er der, den knækker, når den næste store fisk hugger.</li>
+        </ul>
+
+        <Affiliate
+          productId="59880"
+          note="Et 7-strenget wireforfang er det billigste stykke forsikring du kan købe til geddefiskeri. Jeg anbefaler at have et par stykker i reserve — de får knæk, og så skal de skiftes med det samme."
+        />
+
+        <h2>Hvilket agn virker til gedde i hvilken årstid?</h2>
+
+        <p>Vandtemperaturen styrer geddens stofskifte — og dermed hvor hurtigt den vil jage. Det er den vigtigste enkeltfaktor, når du vælger agn og tempo:</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Agn til gedde efter årstid og vandtemperatur">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Periode</th>
+                <th scope="col">Hvor er gedden</th>
+                <th scope="col">Agn og tempo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Periode">Forår (efter gydning)</th>
+                <td data-label="Hvor er gedden">Lavt, lunt vand ved sivkanter og i vige, hvor solen varmer først</td>
+                <td data-label="Agn og tempo">Woblere, spinnere og mindre gummifisk (8–12 cm), roligt tempo</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Periode">Sommer (over 18 °C)</th>
+                <td data-label="Hvor er gedden">I vegetationen og ved åkander morgen og aften; dybere kanter midt på dagen</td>
+                <td data-label="Agn og tempo">Overfladeagn og spinnere tidligt og sent, hurtigere indspinning</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Periode">Efterår (14 → 6 °C)</th>
+                <td data-label="Hvor er gedden">Følger byttefiskene ud mod dybere kanter og sivkanter</td>
+                <td data-label="Agn og tempo">Store agn (15–25 cm): swimbaits, jerkbaits og gummifisk — årets bedste chance for en stor gedde</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Periode">Vinter (under 6 °C)</th>
+                <td data-label="Hvor er gedden">Dybere og roligere vand, ofte tæt på bunden</td>
+                <td data-label="Agn og tempo">Gummifisk fisket langsomt langs bunden, lange pauser, suspenderende jerkbaits</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <TipBox>
+          Den største fejl jeg ser på vintergedden er at fiske for hurtigt. Når vandet er koldt, så <strong>tæl til fem i hver pause</strong> — mange hug kommer, mens agnet står helt stille eller synker langsomt. Koldt vand betyder langsomt tempo, ikke nødvendigvis mindre agn.
+        </TipBox>
+
+        <h2>Hvilken farve skal mit geddeagn have?</h2>
+
+        <p>Farven vælger du efter <strong>vandets klarhed og lyset</strong>. Gedden jager med synet, og agnet skal være let at se — men i klart vand skal det også se ægte ud.</p>
+
+        <div class="prey-table-wrap" role="region" aria-label="Farver på geddeagn efter vand og lys">
+          <table class="prey-table">
+            <thead>
+              <tr>
+                <th scope="col">Forhold</th>
+                <th scope="col">Farver</th>
+                <th scope="col">Hvorfor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Forhold">Klart vand og sol</th>
+                <td data-label="Farver">Aborre, skalle, sølv, naturlige mønstre</td>
+                <td data-label="Hvorfor">Gedden ser agnet tydeligt — det skal ligne ægte bytte</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Forhold">Grumset eller brunt vand</th>
+                <td data-label="Farver">Chartreuse, orange, firetiger, hvid</td>
+                <td data-label="Hvorfor">Kraftige farver ses på længere afstand i uklart vand</td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Forhold">Mørke, gråvejr og skumring</th>
+                <td data-label="Farver">Sort, mørk brun, mørk grøn</td>
+                <td data-label="Hvorfor">Giver den tydeligste silhuet mod det svage lys fra overfladen</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Hvilke geddeagn anbefaler jeg?</h2>
+
+        <p>Har du de tre typer herunder, kan du fiske gedde hele året. Køb dem i en naturlig farve og en kraftig farve, så har du også dækket både klart og grumset vand.</p>
+
+        <h3>Gummifisken — til koldt vand og sløve fisk</h3>
+        <p>En stor gummifisk er det mest alsidige geddeagn der findes. Den kan fiskes langsomt langs bunden om vinteren, i jævnt tempo som en swimbait om efteråret, og den har en blød gang som gedden sjældent slipper igen. Er der én type geddeagn, du skal eje, så er det denne.</p>
+
+        <Affiliate
+          productId="503048"
+          note="Jeg anbefaler en gummifisk på omkring 17 cm som første geddeagn. Den dækker efterår og vinter, og den naturlige geddefarve virker i klart vand, hvor gedderne er kræsne."
+        />
+
+        <h3>Swimbait og jerkbait — til efterårets store gedder</h3>
+        <p>En hård, leddelt swimbait efterligner en sårbar byttefisk og kan fiskes både med jævn indspinning og med korte ryk. Det gør den perfekt til efteråret, hvor de store gedder jagter de største byttefisk og du vil prøve forskellige tempi på samme agn.</p>
+
+        <Affiliate
+          productId="52415"
+          note="Swim & Jerk-typen er mit valg når jeg vil prøve både jævnt tempo og ryk uden at skifte agn. Lad den synke lidt efter hvert ryk — det er tit der hugget kommer."
+        />
+
+        <h3>Blinket — til at finde fiskene</h3>
+        <p>Et klassisk geddeblink kaster langt, fisker hurtigt og dækker meget vand. Det er det agn, jeg ville bruge til at finde ud af hvor gedderne står på en ny sø, før jeg skifter til et langsommere agn på de pladser, hvor jeg har fået følgere eller hug.</p>
+
+        <Affiliate
+          productId="40863"
+          note="Atom-blinket er en svensk geddeklassiker med en bred, slingrende gang. Billigt, næsten uopslideligt og perfekt til at afsøge en ny sø hurtigt."
+        />
+
+        <h2>Hvor skal jeg fiske efter gedde?</h2>
+
+        <p>Gedden er en bagholdsjæger. Den står ved noget og venter på at byttet kommer forbi — så fisk <strong>kanterne</strong>:</p>
+
+        <ul>
+          <li><strong>Sivkanter og åkander</strong> — især i forår og sommer. Kast langs kanten, ikke ind i den.</li>
+          <li><strong>Overgangen fra lavt til dybt vand</strong> — de store gedder står ofte her om efteråret og vinteren.</li>
+          <li><strong>Udløb og indløb</strong> i søer og ved åmundinger, hvor byttefiskene samler sig (husk fredningsbælterne i saltvand).</li>
+          <li><strong>Brakvand i fjorde og nor</strong> — mange danske fjorde har gode bestande af brakvandsgedder, der kan fiskes med samme grej.</li>
+        </ul>
+
+        <h2>Hvad skal du have styr på, inden du tager på geddetur?</h2>
+
+        <ul>
+          <li><strong>Fisketegn og fiskekort</strong> — det statslige <a href="/fiskeguide/fisketegn/">fisketegn</a> er lovpligtigt, og i de fleste søer skal du også have et dagkort fra ejeren eller foreningen.</li>
+          <li><strong>Fredning og mindstemål</strong> — i salt- og brakvand er gedden fredet fra 1. april til 15. maj, og mindstemålet er 60 cm. I ferskvand gælder søens egne regler, så læs dem på fiskekortet.</li>
+          <li><strong>Afkrogertang og net</strong> — en lang afkrogertang holder fingrene fri af tænderne, og et stort net lander fisken skånsomt.</li>
+          <li><strong>Håndtér gedden rigtigt</strong> — løft den vandret og støt under maven, hold den aldrig i øjnene, og hold den så vidt muligt i vandet, hvis den skal genudsættes.</li>
+          <li><strong>Wireforfang på hver eneste tur</strong> — også når du fisker efter aborre i et geddevand. Gedden spørger ikke, hvad du fisker efter.</li>
+        </ul>
+
+        <GuideLink
+          href="/guide-til-fisk/geddefiskeri/"
+          title="Læs hele guiden til geddefiskeri"
+          desc="Hvor gedden lever, hvornår den bider bedst — og en agn-vælger der viser dig den rette tilgang."
+        />
+      </article>
+
+      <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary><h3>{f.question}</h3></summary>
+            <div class="faq-answer">
+              <p set:html={f.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <RelatedRow items={related} />
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('/images/aa_fiskeri.jpg') center/cover no-repeat;
+    padding: 5rem 0 4.5rem;
+  }
+  .pg-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .pg-bc {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .pg-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .pg-bc a:hover { color: #ffffff; }
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff;
+    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 580px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+  .pg-body { padding: 3.5rem 0 5rem; }
+  .answer-capsule {
+    background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e;
+    border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem;
+    margin: 0 auto 2.5rem; max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .ac-label {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #0d4a5e; margin-bottom: 0.5rem;
+  }
+  .ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+  .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+  .ac-a strong { color: #111827; font-weight: 600; }
+
+  .article { max-width: 760px; margin: 0 auto; }
+  .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
+  .article p strong { color: #111827; font-weight: 700; }
+  .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .article a:hover { color: #c47d0a; }
+  .article h2 {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem;
+  }
+  .article h3 {
+    font-size: 1.25rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.015em; line-height: 1.3; margin: 2rem 0 0.75rem;
+  }
+  .article ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+  .article ul li {
+    font-size: 1rem; color: #374151; line-height: 1.75;
+    margin-bottom: 0.5rem; list-style: disc;
+  }
+  .article ul li strong { color: #111827; font-weight: 700; }
+
+  .faq-heading {
+    font-size: 1.625rem; font-weight: 700; color: #111827;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 4rem auto 1rem; max-width: 760px;
+  }
+
+  /* ─────────────  Comparison table  ───────────── */
+  .prey-table-wrap {
+    margin: 1.5rem 0;
+    background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px -16px rgba(15, 23, 42, 0.14);
+  }
+  .prey-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; color: #374151; }
+  .prey-table thead { background: linear-gradient(to bottom, #f8fafc, #eef2f6); border-bottom: 1px solid #e5e7eb; }
+  .prey-table thead th {
+    padding: 0.85rem 1rem; text-align: left; font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; color: #475569; white-space: nowrap;
+  }
+  .prey-table tbody tr { border-top: 1px solid #f1f5f9; transition: background 0.15s ease; }
+  .prey-table tbody tr:hover { background: #f8fbfc; }
+  .prey-table th[scope="row"], .prey-table td {
+    padding: 0.95rem 1rem; vertical-align: top; text-align: left; line-height: 1.5; font-weight: 400;
+  }
+  .prey-table th[scope="row"] { font-weight: 700; color: #0d4a5e; white-space: nowrap; }
+
+  @media (max-width: 720px) {
+    .prey-table-wrap { border-radius: 12px; }
+    .prey-table thead {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .prey-table, .prey-table tbody, .prey-table tr { display: block; width: 100%; box-sizing: border-box; }
+    .prey-table tr { padding: 1rem 1.125rem 1.125rem; border-top: 1px solid #f1f5f9; }
+    .prey-table th[scope="row"], .prey-table td {
+      display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 0.75rem; padding: 0.3rem 0; white-space: normal;
+    }
+    .prey-table th[scope="row"] {
+      font-size: 1.0625rem; grid-template-columns: 1fr;
+      margin-bottom: 0.4rem; padding-bottom: 0.4rem; border-bottom: 1px solid #f1f5f9;
+    }
+    .prey-table td::before {
+      content: attr(data-label); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #6b7280; align-self: start; padding-top: 0.15rem;
+    }
+  }
+</style>

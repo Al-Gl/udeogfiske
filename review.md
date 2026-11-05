@@ -5766,3 +5766,12 @@ Aldin: make the facts box clearer and more user-friendly.
 - Data fixes in the sheet: Harlev address "Højbyvej 9, 8462 Harlev J" (Maps said Aarhus) and facilities reworded so a comma doesn't split one item into two tags.
 - Lake frontmatter: "&amp;" -> "&" so FAQ schema text is clean; removed a double full stop in the generated price FAQ.
 - Build passes; checked Simons, Harlev and Ørsted output text.
+
+## Review: facts box, second redesign "Praktisk information" (2026-11-05)
+
+Aldin: cleaner design that does not look AI-made.
+- `LakeFacts` rewritten as a guidebook-style "Praktisk information" section: 3px top rule + thin row dividers, no icons, pills, tags, tiles, shadows or coloured backgrounds.
+- Spec-sheet rows (label | value): Adresse (+ "Rutevejledning ↗" text link), Åbent (+ small note for source/extra info), Telefon, Hjemmeside, Fisk, Udsætning, Søerne, Faciliteter. On phones the label sits above the value.
+- Prices as a menu list with dotted leaders and tabular numbers; hour tickets and other prices in two columns (one column on phones).
+- Rules as a numbered list (amber numerals). Sources + correction email as a small grey line. "Tjekket …" in small italics.
+- Build passes; checked the output text for Simons and Ørsted.

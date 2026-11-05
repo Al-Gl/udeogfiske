@@ -2753,3 +2753,33 @@ Search Console token expired (`invalid_grant`), so the picks are from DataForSEO
 - [x] 4. Link the new pages in: Endegrej index, geddefiskeri page, /fiskepladser/ Fyn section, havørred page where it fits
 - [x] 5. Build passes; check the three pages on localhost (desktop + phone width)
 - [~] 6. review.md section done; commit + push wait for Aldin
+
+## Marketing folder: SEO/GEO roadmap to top 3 (2026-11-05)
+
+Goal: a `marketing/` folder with everything needed to push udeogfiske.dk into the top 3 on the most important Danish fishing keywords, and to get cited by AI answers (Google AI Overviews, ChatGPT).
+Research done first (DataForSEO, Denmark/da, 2026-11-05). Search Console token expired again (`invalid_grant`); Aldin renewed it the same day and the 90-day GSC data is in the plan.
+
+What the data says:
+- Authority is the bottleneck: backlink rank 5/100 vs. competitors 24-57 (fiskogfri 56, sportsfiskeren 57, lystfisk 54, lystfiskerguiden 45). Keyword difficulty is 0-10 on almost every head term, so content + links decide it.
+- 198 keywords ranked, but only 21 in the top 10. Most of the big ones sit on page 2-5: put and take 12,100/mo (#27 and #49), fisketegn 6,600 (#17), hornfisk 5,400 (#54), aborre 3,600 (#26), havørred 2,900 (#15), havbars 2,400 (#32), fladfisk 1,900 (#48), regnbueørred 1,600 (#17), silde 40,500 (#24).
+- Biggest single opportunity: put & take lakes. Named-lake searches ("simons put and take" 1,600, "harlev", "klittens", "hedensted" 1,000 each, ...) add up to 30,000+/mo on top of the head term. The SERP is a directory SERP (fiskesoerdanmark.dk, fishntake.com "200+ søer").
+- The "havørred" SERP is mostly video (YouTube) + Fisk & Fri, so the YouTube channel is an SEO asset there.
+- The fisketegn AI Overview cites pages with fresh 2026 prices (legaldesk, findfisken, topgrej). Up-to-date facts + clear Q&A get cited.
+- Already cited in Google AI answers 30 times (more than lystfisk.dk with 11). GEO is working, and can be pushed.
+
+Plan (files only, no site code changes in this step):
+- [x] 1. `marketing/README.md`: what is in the folder, the order to read it, the weekly routine (about 5-8 hours a week)
+- [x] 2. `marketing/ROADMAP-SEO-GEO.md`: 12-month roadmap Nov 2026 - Oct 2027, in 4 phases with targets per quarter, ordered by impact. Ties into GOALS.md / ROADMAP.md (I add a one-line pointer in ROADMAP.md)
+- [x] 3. `marketing/keyword-targets.md`: the 30-40 keywords that matter most: volume, peak month, our rank today, target page, what is missing, top-3 target date
+- [x] 4. `marketing/put-and-take-directory.md`: spec for the put & take lake directory (biggest lever): page template, data fields per lake, the 40 lakes with the most searches, region hubs, rules against thin pages, where the facts come from (no made-up prices or opening hours)
+- [x] 5. `marketing/page-upgrade-briefs.md`: one brief per page close to the top 10 (fisketegn, havørred, hornfisk, aborre, sild, havbars, fladfisk, regnbueørred, fiskepladser, put & take guide): search intent, what the top 3 have that we lack, H2 questions, title/meta, internal links
+- [x] 6. `marketing/content-calendar.md`: 12 months of publish and refresh dates timed 6-8 weeks before each search peak (fisketegn peaks May, put & take July, havørred Oct + Apr, hornfisk Apr-May, makrel July)
+- [x] 7. `marketing/geo-ai-visibility.md`: GEO playbook: answer-first blocks, data tables, "Opdateret {dato}", schema, llms.txt, Bing Webmaster Tools (ChatGPT uses Bing), brand/entity signals, a monthly AI-citation check
+- [x] 8. `marketing/authority-links.md`: link plan to get from rank 5 to 30+: builds on linkbuilding.md (kept as the tracker), plus link-worthy assets (put & take map, "hvad bider nu" calendar, Danish fishing data study), clubs, tourism sites, shops, press, YouTube
+- [x] 9. `marketing/technical-and-tracking.md`: the open technical items (www to apex redirect, CLS on inline images, long titles, GSC token, Bing, IndexNow) and a monthly KPI table (clicks, top-3 count, top-10 count, referring domains, AI citations, affiliate DKK)
+- [x] 10. `marketing/research/`: save the raw data from today (ranked keywords, put & take keyword list, competitor table) so later sessions can compare
+- [x] 11. review.md section; commit locally, no push
+
+Not in this step: building the lake directory or editing pages. Each of those becomes its own small task once you have read the roadmap.
+
+Added on Aldin's go-ahead (same day): link building gets the most weight. `marketing/link-prospects.csv` holds ~100 real prospects from a competitor link-gap (DataForSEO referring domains of fiskogfri, lystfisk, fishingindenmark, lystfiskerguiden, fiskefoto), plus free Danish link portals that are live (LinkCentralen has a Fiskeri category, Linkbiblioteket, gratis-link.dk). `marketing/README.md` has the 4-week to-do list ([A] = Aldin, [C] = Claude).

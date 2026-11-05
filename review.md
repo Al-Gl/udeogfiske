@@ -5679,3 +5679,24 @@ No other page uses it. Also `newsletter/brevo-bekraeft-tilmelding.html` (Danish 
 - Lure-page template saved to memory: `/fiskeudstyr/endegrej/{hub}/{lure}/` + 7-part Q&A structure.
 - Build passes; not committed or pushed.
 - Mobile table fix: stacked tables cut off the right column at phone width; fixed on the three new pages (box-sizing + minmax column). The same table CSS on /fiskeudstyr/endegrej/ probably has the same bug; not changed.
+
+## Review: marketing folder, SEO/GEO roadmap + link-building plan (2026-11-05)
+
+What changed (files only, no site pages touched):
+- New folder `marketing/` with: `README.md` (reading order + 4-week to-do list), `ROADMAP-SEO-GEO.md` (12-month plan Nov 2026 - Oct 2027, targets, 4 phases), `keyword-targets.md` (Tier A/B/C keywords with volume, peak month, current rank, target page; cannibalisation list), `put-and-take-directory.md` (spec for a lake directory: URLs, data fields, anti-thin rules, top 40 lakes by searches), `page-upgrade-briefs.md` (17 page briefs with title/meta proposals), `content-calendar.md` (month by month, timed before search peaks), `geo-ai-visibility.md` (AI-citation playbook + monthly check), `authority-links.md` (link strategy, Danish email templates), `link-prospects.csv` (tracker, ~100 prospects), `technical-and-tracking.md` (open fixes + monthly scoreboard), `research/` (raw data from today).
+- One-line pointers added to `ROADMAP.md` and `linkbuilding.md`.
+- `.gitignore`: Search Console exports in `marketing/research/` are kept out of git (same as `data/metrics.json`).
+- `data/metrics.json`: the expired GSC token made the fetch script write `searchConsole: null`; restored the Aug data, then re-fetched after Aldin renewed the login (now Aug-Oct).
+
+Key findings behind the plan:
+- Authority is the bottleneck: DataForSEO rank 5 vs. 43-57 for the main competitors, while keyword difficulty is 0-10 on almost all targets. Only ~8 of our 63 referring domains are real; the rest is spam we didn't build (ignore, no disavow).
+- Put & take: 12,100/mo head term + 36,600/mo for named lakes/regions; we have no directory.
+- 10 pages rank 7-12 with CTR under 1.5% (fisketegn: 3,505 impressions, 4 clicks). Titles with the year win (makrel sæson 2026 = pos 2).
+- New pages with proven demand: sandart 2,400, børsteorm 1,300 + sandorm 1,000, fiskestang til børn 1,000, hornfisk opskrift 880 (8,100 in May), fiskeknuder 590.
+- Already the most-cited Danish fishing site in Google AI answers (30 mentions). Gap found: no `sameAs` on Organization/Person schema.
+- Live checks: www still returns 200 (no redirect to apex), 38 titles > 65 chars, 52 inline images without width/height, AI crawlers get 200.
+
+Not verified / for Aldin:
+- Lake regions and facts are deliberately not filled in; each lake page must be sourced when built.
+- Fisketegn prices quoted from the AI Overview (46/150/214 kr, fritidsfisker 347 kr) must be checked on fisketegn.dk before use.
+- Contact details only where found on the sites; most rows say "find on site".

@@ -32,5 +32,13 @@ nanobanana-output/
 # misc local files
 *.local
 
+# Google API credentials & local metrics cache (see scripts/metrics/README.md)
+scripts/metrics/credentials.json
+scripts/metrics/token.json
+data/metrics.json
+
 # local error/debug logs pasted in for troubleshooting
 error*.txt
+
+# Search Console exports used for marketing research (private property data)
+marketing/research/*gsc*

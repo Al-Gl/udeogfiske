@@ -1,0 +1,11 @@
+{
+  "name": "uof-lakes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node sheet-to-json.mjs"
+  },
+  "dependencies": {
+    "read-excel-file": "^5.8.0"
+  }
+}

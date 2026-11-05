@@ -5723,3 +5723,11 @@ What changed:
 
 Checks: sheet read back; 172 rows on Søer; slugs unique; fixed a bug where "Fyelmose/Ellemose Put & Take" were typed as natural water (name contains "mose").
 Open: Sjælland (11) and Fyn (7) look under-counted on Maps. Ørsted trip report doesn't name a town, so the match with Ørsted Fisk & Golf (Viby) needs Aldin's confirmation. Skellerup (480/mo) not on Maps.
+
+## Review: put & take launch 1, steps 2-3 (2026-11-05)
+
+- `scripts/lakes/` (own package, `read-excel-file`) + `npm run lakes`: reads the Søer tab, writes `src/data/lakes.json`. Exports listing/page/visited rows; Besøgt = Ja + page => visited. Stops with a list of problems if a page/visited lake lacks prices, species, hours, source URL, check date or `src/content/lakes/{slug}.md`. Tested on a copy: it blocked Simons as intended.
+- Facts for 12 lakes written into the sheet's grey columns from the lakes' own websites (Google Maps only for opening hours where the site has none). 9 lakes complete. Only prices with an unambiguous hour count were recorded (Oxriver, Harlev and Pinds Mølle tables lost labels in extraction; Hove's 25 kr. line was ambiguous and left out).
+- Ørsted slug set to `oersted-oerredvand` so the existing trip report URL stays. Town names from Maps translated to Danish (Ringkobing -> Ringkøbing etc.).
+- Backups of the sheet before each scripted change are in the session scratchpad.
+- Converter now reports only the missing lake texts for the 9 lakes, which is the next step.

@@ -5731,3 +5731,4 @@ Open: Sjælland (11) and Fyn (7) look under-counted on Maps. Ørsted trip report
 - Ørsted slug set to `oersted-oerredvand` so the existing trip report URL stays. Town names from Maps translated to Danish (Ringkobing -> Ringkøbing etc.).
 - Backups of the sheet before each scripted change are in the session scratchpad.
 - Converter now reports only the missing lake texts for the 9 lakes, which is the next step.
+- Drive in (from Aldin's note in the sheet): prices, species (regnbue-, guld-, bæk-, tigerørred), catch limits and rules from https://nv-fiskepark.dk/fiskeri/, which is explicitly about Drive In Fiskepark Lynge. No clock times on the site, so hours say "alle ugens dage" and point to Facebook. Niveau = page (visited). Now 10 lakes pass the fact check.

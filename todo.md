@@ -2807,8 +2807,8 @@ Order proposed by Aldin: hub → regions → top 10 lakes. Agreed, with three tw
 
 - [ ] 1. Aldin: 2-4 lines per visited lake in the first 10 (Simons, Drive in, Harlev, Hove; Ørsted uses the existing trip report): when, what you fished with/caught, honest verdict. Confirm Ørsted Fisk & Golf = Ørsted Ørredvand
 - [x] 2. `npm run lakes` (scripts/lakes/): sheet → `src/data/lakes.json`; stops if a page/visited lake lacks prices, species, hours, source, check date or its text file. Tested: blocks an incomplete lake
-- [x] 3. Facts researched from the lakes' own sites into the sheet (`tools/fill-batch-1.py`), dated 2026-11-05. Ready as page: Simons, Harlev, Ørsted (slug oersted-oerredvand), Hove, Oxriver, Klittens, Hedensted, Pinds Mølle, Poppelsøen. Not ready: Moesholm (no species named), Børges (no species), Drive in (no prices/hours online), Søndervig (no own website)
-- [ ] 3b. Aldin: visit notes for Simons, Harlev, Hove, Pinds Mølle, Poppelsøen (Ørsted uses the trip report); fish species at Moesholm; glance at the grey columns for the 9 lakes
+- [x] 3. Facts researched from the lakes' own sites into the sheet (`tools/fill-batch-1.py`), dated 2026-11-05. Ready as page: Simons, Harlev, Ørsted (slug oersted-oerredvand), Hove, Oxriver, Klittens, Hedensted, Pinds Mølle, Poppelsøen. Not ready: Moesholm (no species named), Børges (no species), Søndervig (no own website). Drive in added the same day: Aldin pointed to nv-fiskepark.dk/fiskeri/ (same owner) -> prices, species, rules; now page (visited)
+- [ ] 3b. Aldin: visit notes for Simons, Drive in, Harlev, Hove, Pinds Mølle, Poppelsøen (Ørsted uses the trip report); fish species at Moesholm; glance at the grey columns for the 9 lakes
 - [ ] 4. Extra discovery Sjælland + Fyn (fishingindenmark.info, Facebook group, Maps searches by town) → new rows in the sheet
 - [ ] 5. Lake page template (`[slug].astro`) + texts for the 10 lakes; Ørsted keeps its URL and gets the facts block
 - [ ] 6. Hub rewrite `/fiskepladser/put-and-take/` (answer-first, price range from our data, PAA questions, region cards, lake table)

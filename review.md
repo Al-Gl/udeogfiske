@@ -5747,3 +5747,13 @@ What changed:
 Checks: `npm run lakes` OK (7 visited, 3 page, 134 listing); build passes; all new pages return 200 in dev; schema types present (TouristAttraction, FAQPage, ItemList, BreadcrumbList); hub table has 144 rows, Sjælland 13 (incl. Bornholm).
 Not checked: visual layout at desktop/phone width (headless Edge is missing msedge.exe here, and the built-in browser can't open localhost). Aldin to look before pushing.
 Notes: the hub HTML is ~135 KB because the full 144-row table is in the page; fine for now, can be split later. Pre-existing vite warning about /images/regnbueoerred_card.png is unrelated.
+
+## Review: put & take design pass (2026-11-05)
+
+Aldin: pages fine, design lacking; use image cards on the hub; placeholder images until he finds lake photos.
+- New `LakeCard` (image card: photo, "Jeg har fisket her" badge, price pill, town/region/distance, tags for Børnesø / Stør / Flue-C&R) used on the hub, region pages and "nearby lakes".
+- New `PtHero` (photo header with breadcrumb, badge and key-number chips) on hub, region and lake pages. Placeholders show an "Illustrationsfoto" caption.
+- `LakeFacts` redesigned: contact row, small fact chips, fact tiles, price cards, rules in a highlighted box, check-date pill.
+- Hub/region: section headers with eyebrow, gradient region tiles with big counts, lake table framed in a panel on a soft band. Region pages also show up to 3–6 popular lakes without a page (card links to the lake's own site).
+- Images: `lakeImage()` uses `public/images/put-and-take/{slug}.jpg` (+ `-wide.jpg`) if it exists, else one of 6 placeholders made with sharp from existing site photos (800×450 ~20–80 KB, 1600×600 ~35–170 KB). Convention written into the roadmap.
+- Build passes; card counts checked per page. Visual check is Aldin's (no browser available to me here).

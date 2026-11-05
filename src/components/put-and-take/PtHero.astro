@@ -1,0 +1,61 @@
+---
+// Photo header for the put & take pages: breadcrumb, H1, intro line, optional key numbers.
+interface Props {
+  crumbs: { name: string; url?: string }[];
+  title: string;
+  sub: string;
+  image: { src: string; placeholder: boolean };
+  badge?: string;
+  stats?: { value: string; label: string }[];
+}
+const { crumbs, title, sub, image, badge, stats = [] } = Astro.props;
+---
+
+<section class="ph" style={`--ph-img: url('${image.src}')`}>
+  <div class="ph-ctn">
+    <nav class="ph-bc" aria-label="Brødkrumme">
+      {crumbs.map((c, i) => (
+        <>
+          {i > 0 && <span aria-hidden="true">›</span>}
+          {c.url ? <a href={c.url}>{c.name}</a> : <span>{c.name}</span>}
+        </>
+      ))}
+    </nav>
+    {badge && <span class="ph-badge">{badge}</span>}
+    <h1 class="ph-title">{title}</h1>
+    <p class="ph-sub">{sub}</p>
+    {stats.length > 0 && (
+      <dl class="ph-stats">
+        {stats.map((s) => <div><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
+      </dl>
+    )}
+  </div>
+  {image.placeholder && <span class="ph-credit">Illustrationsfoto</span>}
+</section>
+
+<style>
+  .ph {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(4, 30, 40, 0.88) 0%, rgba(4, 30, 40, 0.62) 55%, rgba(4, 30, 40, 0.35) 100%),
+      var(--ph-img) center / cover no-repeat, #0d4a5e;
+    padding: 4.5rem 0 3.75rem;
+  }
+  .ph-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+  .ph-bc { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: rgba(255,255,255,0.65); margin-bottom: 1.25rem; }
+  .ph-bc a { color: rgba(255,255,255,0.65); transition: color 0.15s; }
+  .ph-bc a:hover { color: #ffffff; }
+  .ph-badge { display: inline-block; margin-bottom: 0.875rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ffffff; background: #c47d0a; border-radius: 999px; padding: 0.3rem 0.75rem; }
+  .ph-title { font-size: clamp(2rem, 5vw, 3.125rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 0.875rem; max-width: 780px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .ph-sub { font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.85); line-height: 1.65; max-width: 640px; }
+  .ph-stats { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .ph-stats div { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(6px); border-radius: 12px; padding: 0.65rem 1rem; min-width: 120px; }
+  .ph-stats dt { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  .ph-stats dd { font-size: 1.125rem; font-weight: 700; color: #ffffff; }
+  .ph-credit { position: absolute; right: 1rem; bottom: 0.6rem; font-size: 0.6875rem; color: rgba(255,255,255,0.55); }
+  @media (max-width: 480px) {
+    .ph { padding: 3.25rem 0 2.75rem; }
+    .ph-ctn { padding: 0 1rem; }
+    .ph-stats div { min-width: 0; flex: 1 1 40%; }
+  }
+</style>

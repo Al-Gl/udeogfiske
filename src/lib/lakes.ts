@@ -1,5 +1,7 @@
 // Put & take lakes: data from src/data/lakes.json (built from the master sheet with
 // `npm run lakes`) plus our own text per lake in src/content/lakes/{slug}.md.
+import fs from 'node:fs';
+import path from 'node:path';
 import lakesData from '../data/lakes.json';
 
 export type Price = { label: string; kr: number | null; note: string };
@@ -83,6 +85,21 @@ export const nearest = (l: Lake, n = 3) =>
     .map((o) => ({ lake: o, km: distanceKm(l, o) }))
     .sort((a, b) => a.km - b.km)
     .slice(0, n);
+
+// Images: drop a real photo in public/images/put-and-take/{slug}.jpg (and optionally
+// {slug}-wide.jpg for the page header) and it is used automatically. Until then each lake
+// gets one of six placeholder photos (picked from the slug, so it never changes), shown
+// with an "illustrationsfoto" caption so it isn't presented as the lake itself.
+const IMG_DIR = path.join(process.cwd(), 'public/images/put-and-take');
+const hasFile = (f: string) => fs.existsSync(path.join(IMG_DIR, f));
+const placeholderNo = (slug: string) => ([...slug].reduce((s, c) => s + c.charCodeAt(0), 0) % 6) + 1;
+export function lakeImage(l: { slug: string }, wide = false) {
+  if (hasFile(`${l.slug}.jpg`)) {
+    const file = wide && hasFile(`${l.slug}-wide.jpg`) ? `${l.slug}-wide.jpg` : `${l.slug}.jpg`;
+    return { src: `/images/put-and-take/${file}`, placeholder: false };
+  }
+  return { src: `/images/put-and-take/placeholder-${placeholderNo(l.slug)}${wide ? '-wide' : ''}.jpg`, placeholder: true };
+}
 
 export const formatDate = (iso: string) =>
   iso ? new Date(iso).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' }) : '';

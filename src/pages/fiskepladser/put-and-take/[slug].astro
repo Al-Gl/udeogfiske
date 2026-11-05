@@ -1,15 +1,18 @@
 ---
 // One page per put & take lake with level page/visited in the master sheet.
 // Facts: src/data/lakes.json (npm run lakes). Text: src/content/lakes/{slug}.md.
+// Photo: public/images/put-and-take/{slug}.jpg (placeholder until Aldin adds one).
 // Ørsted has its own hand-written page (oersted-oerredvand/) and is skipped here.
 import MainLayout from '../../../layouts/MainLayout.astro';
 import TipBox from '../../../components/TipBox.astro';
 import GuideLink from '../../../components/GuideLink.astro';
 import LakeFacts from '../../../components/put-and-take/LakeFacts.astro';
+import LakeCard from '../../../components/put-and-take/LakeCard.astro';
+import PtHero from '../../../components/put-and-take/PtHero.astro';
 import '../../../styles/put-and-take.css';
 import {
-  type Lake, pageLakes, lakeText, lakeUrl, regionName, regionUrl, nearest, hasPage,
-  ownWebsite, websiteLabel, formatDate, cheapestTicket, lakeName,
+  type Lake, pageLakes, lakeText, lakeUrl, lakeImage, regionName, regionUrl, nearest,
+  ownWebsite, formatDate, cheapestTicket,
 } from '../../../lib/lakes';
 
 export function getStaticPaths() {
@@ -26,6 +29,7 @@ const name: string = fm.name ?? lake.name;
 const url = `https://udeogfiske.dk${lakeUrl(lake)}`;
 const checked = formatDate(lake.lastChecked);
 const from = cheapestTicket(lake);
+const hero = lakeImage(lake, true);
 
 const title = fm.title ?? `${name} – priser, åbningstider og fisk`;
 const description = fm.description ??
@@ -44,9 +48,10 @@ const schema = [{
   '@type': 'TouristAttraction',
   '@id': `${url}#lake`,
   name,
-  description: fm.summary,
+  description: fm.summary?.replace(/<[^>]+>/g, ''),
   url: ownWebsite(lake) || undefined,
   telephone: lake.phone || undefined,
+  ...(hero.placeholder ? {} : { image: `https://udeogfiske.dk${hero.src}` }),
   address: { '@type': 'PostalAddress', streetAddress: street, postalCode: lake.zip, addressLocality: lake.town, addressCountry: 'DK' },
   ...(lake.lat != null ? { geo: { '@type': 'GeoCoordinates', latitude: lake.lat, longitude: lake.lng } } : {}),
   isAccessibleForFree: false,
@@ -54,13 +59,20 @@ const schema = [{
   subjectOf: { '@id': `${url}#webpage` },
 }];
 
-const near = nearest(lake, 3);
+const near = nearest(lake, 12).filter(({ lake: o }) => o.level !== 'listing' || ownWebsite(o)).slice(0, 3);
+const stats = [
+  ...(from ? [{ value: from.replace(' / ', ' for ').replace(' t.', ' t.'), label: 'Fiskekort fra' }] : []),
+  ...(lake.species.length ? [{ value: lake.species.length === 1 ? lake.species[0] : `${lake.species.length} arter`, label: 'Fiskearter' }] : []),
+  ...(lake.lakesCount ? [{ value: String(lake.lakesCount), label: lake.lakesCount === 1 ? 'Sø' : 'Søer' }] : []),
+  ...(lake.kidsLake ? [{ value: 'Ja', label: 'Børnesø' }] : []),
+];
 ---
 
 <MainLayout
   title={title}
   description={description}
   canonical={url}
+  ogImage={`https://udeogfiske.dk${hero.src}`}
   pageType="article"
   breadcrumbs={[
     { name: 'Forside', url: '/' },
@@ -69,24 +81,24 @@ const near = nearest(lake, 3);
     { name: regionName(lake.region), url: regionUrl(lake.region) },
     { name },
   ]}
-  articleData={{ headline: `${name}`, image: '/images/put_take_hero.png', datePublished: lake.lastChecked, dateModified: lake.lastChecked }}
+  articleData={{ headline: `${name}`, image: hero.src, datePublished: lake.lastChecked, dateModified: lake.lastChecked }}
   faq={faq}
   extraSchema={schema}
 >
-  <section class="pt-hero">
-    <div class="pt-ctn">
-      <nav class="pt-bc" aria-label="Brødkrumme">
-        <a href="/">Forside</a><span>›</span>
-        <a href="/fiskepladser/">Fiskepladser</a><span>›</span>
-        <a href="/fiskepladser/put-and-take/">Put &amp; Take</a><span>›</span>
-        <a href={regionUrl(lake.region)}>{regionName(lake.region)}</a><span>›</span>
-        <span>{name}</span>
-      </nav>
-      <h1 class="pt-title">{name}</h1>
-      <p class="pt-sub">Put and take ved {lake.town} – priser, fiskearter, åbningstider og regler samlet ét sted. Tjekket {checked}.</p>
-      {lake.visited && <span class="pt-badge">Jeg har fisket her</span>}
-    </div>
-  </section>
+  <PtHero
+    crumbs={[
+      { name: 'Forside', url: '/' },
+      { name: 'Fiskepladser', url: '/fiskepladser/' },
+      { name: 'Put & Take', url: '/fiskepladser/put-and-take/' },
+      { name: regionName(lake.region), url: regionUrl(lake.region) },
+      { name },
+    ]}
+    title={name}
+    sub={`Put and take ved ${lake.town} – priser, fiskearter, åbningstider og regler samlet ét sted. Tjekket ${checked}.`}
+    image={hero}
+    badge={lake.visited ? 'Jeg har fisket her' : undefined}
+    stats={stats}
+  />
 
   <section class="pt-body">
     <div class="pt-ctn pt-narrow">
@@ -106,21 +118,22 @@ const near = nearest(lake, 3);
 
       <GuideLink href="/fiskeguide/put-take-fiskeri/" title="Læs min guide til put and take fiskeri" desc="Grej, agn, Powerbait og spinnere – og hvordan din første tur foregår." />
       <GuideLink href="/guide-til-fisk/regnbueorredfiskeri/" title="Læs guiden til regnbueørred" desc="Den fisk du oftest fanger i put and take – og hvordan du finder den i søen." />
+    </div>
 
-      <h2 class="pt-h2">Put and take søer i nærheden af {name}</h2>
-      <div class="pt-cards">
-        {near.map(({ lake: o, km }) => {
-          const site = ownWebsite(o);
-          const inner = (<><strong>{lakeName(o)}</strong><span>{o.town} · {Math.round(km)} km{cheapestTicket(o) ? ` · fra ${cheapestTicket(o)}` : ''}</span></>);
-          return hasPage(o)
-            ? <a class="pt-card" href={lakeUrl(o)}>{inner}</a>
-            : site
-              ? <a class="pt-card" href={site} rel="noopener nofollow" target="_blank">{inner}<span>{websiteLabel(site).split('/')[0]}</span></a>
-              : <div class="pt-card">{inner}</div>;
-        })}
+    <div class="pt-band">
+      <div class="pt-ctn">
+        <header class="pt-sec">
+          <span class="pt-eyebrow">I nærheden</span>
+          <h2>Put and take søer i nærheden af {name}</h2>
+          <p><a href={regionUrl(lake.region)}>Se alle put and take søer i {regionName(lake.region)}</a> eller <a href="/fiskepladser/put-and-take/">hele oversigten over Danmark</a>.</p>
+        </header>
+        <div class="pt-grid">
+          {near.map(({ lake: o, km }) => <LakeCard lake={o} km={km} />)}
+        </div>
       </div>
-      <p class="article"><a href={regionUrl(lake.region)}>Se alle put and take søer i {regionName(lake.region)}</a> eller <a href="/fiskepladser/put-and-take/">hele oversigten over Danmark</a>.</p>
+    </div>
 
+    <div class="pt-ctn pt-narrow">
       <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål om {name}</h2>
       <div class="faq-list">
         {faq.map((f) => (
@@ -133,3 +146,7 @@ const near = nearest(lake, 3);
     </div>
   </section>
 </MainLayout>
+
+<style>
+  .pt-sec p a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+</style>

@@ -1,0 +1,49 @@
+---
+// Image card linking to a lake page (or the lake's own site for lakes without a page).
+import { type Lake, hasPage, lakeUrl, lakeName, lakeImage, regionName, cheapestTicket, ownWebsite } from '../../lib/lakes';
+
+interface Props { lake: Lake; km?: number; showRegion?: boolean }
+const { lake, km, showRegion = false } = Astro.props;
+const img = lakeImage(lake);
+const name = lakeName(lake);
+const price = cheapestTicket(lake);
+const href = hasPage(lake) ? lakeUrl(lake) : ownWebsite(lake);
+const external = !hasPage(lake);
+const tags = [
+  lake.kidsLake && 'Børnesø',
+  lake.species.some((s) => /stør/i.test(s)) && 'Stør',
+  lake.flyLake && !lake.species.some((s) => /stør/i.test(s)) && 'Flue / C&R',
+].filter(Boolean) as string[];
+---
+
+<a class="lc" href={href || undefined} {...(external ? { rel: 'noopener nofollow', target: '_blank' } : {})}>
+  <div class="lc-img">
+    <img src={img.src} alt={img.placeholder ? '' : name} loading="lazy" width="800" height="450" />
+    {lake.visited && <span class="lc-badge">Jeg har fisket her</span>}
+    {price && <span class="lc-price">fra {price}</span>}
+  </div>
+  <div class="lc-body">
+    <strong class="lc-title">{name}</strong>
+    <span class="lc-meta">
+      {lake.town}{showRegion && ` · ${regionName(lake.region)}`}{km !== undefined && isFinite(km) && ` · ${Math.round(km)} km`}
+    </span>
+    {tags.length > 0 && <span class="lc-tags">{tags.map((t) => <span>{t}</span>)}</span>}
+    <span class="lc-more">{external ? 'Søens hjemmeside ↗' : 'Priser, regler og fakta →'}</span>
+  </div>
+</a>
+
+<style>
+  .lc { display: flex; flex-direction: column; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 14px; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s; }
+  .lc:hover { transform: translateY(-3px); border-color: #cbd5e1; box-shadow: 0 14px 32px -16px rgba(13, 74, 94, 0.45); }
+  .lc-img { position: relative; aspect-ratio: 16 / 9; background: #0d4a5e; overflow: hidden; }
+  .lc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .lc:hover .lc-img img { transform: scale(1.05); }
+  .lc-badge { position: absolute; top: 0.75rem; left: 0.75rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #ffffff; background: #c47d0a; border-radius: 999px; padding: 0.3rem 0.65rem; }
+  .lc-price { position: absolute; bottom: 0.75rem; right: 0.75rem; font-size: 0.8125rem; font-weight: 700; color: #0d4a5e; background: rgba(255,255,255,0.95); border-radius: 999px; padding: 0.3rem 0.7rem; }
+  .lc-body { display: flex; flex-direction: column; gap: 0.35rem; padding: 1rem 1.125rem 1.125rem; flex: 1; }
+  .lc-title { font-size: 1.0625rem; font-weight: 700; color: #111827; letter-spacing: -0.01em; line-height: 1.3; }
+  .lc-meta { font-size: 0.8125rem; color: #6b7280; }
+  .lc-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.15rem; }
+  .lc-tags span { font-size: 0.6875rem; font-weight: 600; color: #0d4a5e; background: #e6f1f5; border-radius: 6px; padding: 0.15rem 0.5rem; }
+  .lc-more { margin-top: auto; padding-top: 0.5rem; font-size: 0.8125rem; font-weight: 600; color: #0d4a5e; }
+</style>

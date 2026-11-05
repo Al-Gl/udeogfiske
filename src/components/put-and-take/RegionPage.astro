@@ -4,8 +4,10 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import GuideLink from '../GuideLink.astro';
 import LakeTable from './LakeTable.astro';
+import LakeCard from './LakeCard.astro';
+import PtHero from './PtHero.astro';
 import '../../styles/put-and-take.css';
-import { type RegionSlug, lakesInRegion, hasPage, lakeUrl, lakeName, priceStats, cheapestTicket, BASE } from '../../lib/lakes';
+import { type RegionSlug, lakesInRegion, hasPage, lakeUrl, lakeName, lakeImage, ownWebsite, priceStats, BASE } from '../../lib/lakes';
 
 interface Props {
   region: RegionSlug;
@@ -16,9 +18,12 @@ interface Props {
 }
 const { region, name, inName, intro, spots = [] } = Astro.props;
 const all = lakesInRegion(region);
-const pages = all.filter(hasPage).sort((a, b) => b.searchVolume - a.searchVolume);
+const pages = all.filter(hasPage).sort((a, b) => Number(b.visited) - Number(a.visited) || b.searchVolume - a.searchVolume);
+// Lakes without a page yet, most searched / most reviewed first (shown as cards to their own site)
+const more = all.filter((l) => !hasPage(l) && ownWebsite(l)).sort((a, b) => b.searchVolume + b.reviews * 2 - (a.searchVolume + a.reviews * 2)).slice(0, pages.length ? 3 : 6);
 const stats = priceStats(3, pages) ?? priceStats(2, pages);
 const url = `https://udeogfiske.dk${BASE}/${region}/`;
+const hero = lakeImage({ slug: pages[0]?.slug ?? region }, true);
 
 const faq = [
   { question: `Hvor mange put and take søer er der ${inName}?`, answer: `I vores oversigt er der ${all.length} åbne put and take søer ${inName}. ${pages.length ? `${pages.length} af dem har en side med priser, regler og fakta, og vi tilføjer løbende flere.` : 'Vi tilføjer løbende sider med priser og regler for de enkelte søer.'}` },
@@ -32,6 +37,7 @@ const description = `Oversigt over ${all.length} put and take søer ${inName} �
   title={title}
   description={description}
   canonical={url}
+  ogImage={`https://udeogfiske.dk${hero.src}`}
   pageType="category"
   breadcrumbs={[
     { name: 'Forside', url: '/' },
@@ -42,18 +48,17 @@ const description = `Oversigt over ${all.length} put and take søer ${inName} �
   itemList={pages.map((l) => ({ name: lakeName(l), url: lakeUrl(l) }))}
   faq={faq}
 >
-  <section class="pt-hero">
-    <div class="pt-ctn">
-      <nav class="pt-bc" aria-label="Brødkrumme">
-        <a href="/">Forside</a><span>›</span>
-        <a href="/fiskepladser/">Fiskepladser</a><span>›</span>
-        <a href={`${BASE}/`}>Put &amp; Take</a><span>›</span>
-        <span>{name}</span>
-      </nav>
-      <h1 class="pt-title">Put and take {inName}</h1>
-      <p class="pt-sub">{all.length} put and take søer {inName} – med priser, fiskearter og regler for de søer, vi har tjekket.</p>
-    </div>
-  </section>
+  <PtHero
+    crumbs={[{ name: 'Forside', url: '/' }, { name: 'Fiskepladser', url: '/fiskepladser/' }, { name: 'Put & Take', url: `${BASE}/` }, { name }]}
+    title={`Put and take ${inName}`}
+    sub={`Alle put and take søer ${inName} – med priser, fiskearter og regler for de søer, vi har tjekket.`}
+    image={hero}
+    stats={[
+      { value: String(all.length), label: 'Søer' },
+      { value: String(pages.length), label: 'Med priser og regler' },
+      ...(stats && stats.n >= 2 ? [{ value: `${stats.min}–${stats.max} kr.`, label: `${stats.hours} timers fiskekort` }] : []),
+    ]}
+  />
 
   <section class="pt-body">
     <div class="pt-ctn">
@@ -64,7 +69,7 @@ const description = `Oversigt over ${all.length} put and take søer ${inName} �
           <p class="ac-a">
             Der er <strong>{all.length} åbne put and take søer</strong> {inName} i vores oversigt.
             {stats && stats.n >= 2 && <> Et fiskekort til {stats.hours} timer koster <strong>{stats.min}–{stats.max} kr.</strong> i de søer, vi har tjekket.</>}
-            {' '}Brug knappen <em>Vis nærmeste søer</em> nedenfor for at finde den sø, der ligger tættest på dig.
+            {' '}Brug knappen <em>Vis nærmeste søer</em> længere nede for at finde den sø, der ligger tættest på dig.
           </p>
         </div>
         <div class="article">
@@ -74,27 +79,51 @@ const description = `Oversigt over ${all.length} put and take søer ${inName} �
 
       {pages.length > 0 && (
         <>
-          <h2 class="pt-h2">Søer med priser og regler {inName}</h2>
-          <div class="pt-cards">
-            {pages.map((l) => (
-              <a class="pt-card" href={lakeUrl(l)}>
-                {l.visited && <em>Jeg har fisket her</em>}
-                <strong>{lakeName(l)}</strong>
-                <span>{l.town}{cheapestTicket(l) ? ` · fra ${cheapestTicket(l)}` : ''}</span>
-              </a>
-            ))}
+          <header class="pt-sec">
+            <span class="pt-eyebrow">Søer med priser og regler</span>
+            <h2>Put and take søer {inName}, vi har tjekket</h2>
+          </header>
+          <div class="pt-grid">
+            {pages.map((l) => <LakeCard lake={l} />)}
           </div>
         </>
       )}
 
-      <h2 class="pt-h2">Alle put and take søer {inName}</h2>
-      <LakeTable lakes={all} />
+      {more.length > 0 && (
+        <>
+          <header class="pt-sec">
+            <span class="pt-eyebrow">Flere søer</span>
+            <h2>{pages.length ? 'Andre populære søer' : 'Populære søer'} {inName}</h2>
+            <p>Dem har vi ikke lavet en side om endnu – kortet fører til søens egen hjemmeside.</p>
+          </header>
+          <div class="pt-grid">
+            {more.map((l) => <LakeCard lake={l} />)}
+          </div>
+        </>
+      )}
+    </div>
 
+    <div class="pt-band">
+      <div class="pt-ctn">
+        <header class="pt-sec">
+          <span class="pt-eyebrow">Hele listen</span>
+          <h2>Alle put and take søer {inName}</h2>
+        </header>
+        <div class="pt-panel">
+          <LakeTable lakes={all} />
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-ctn">
       <div class="pt-narrow">
-        {spots.length > 0 && <h2 class="pt-h2">Mere fiskeri {inName}</h2>}
+        <header class="pt-sec">
+          <span class="pt-eyebrow">Mere fiskeri</span>
+          <h2>Guides {inName}</h2>
+        </header>
         {spots.map((s) => <GuideLink href={s.href} title={s.title} desc={s.desc} />)}
         <GuideLink href="/fiskeguide/put-take-fiskeri/" title="Læs min guide til put and take fiskeri" desc="Grej, agn og hvordan din første tur foregår." />
-        <p class="article"><a href={`${BASE}/`}>Tilbage til oversigten over put and take i hele Danmark</a></p>
+        <GuideLink href={`${BASE}/`} title="Put and take i hele Danmark" desc="Oversigten over alle søer, region for region." />
 
         <h2 id="faq" class="faq-heading">Ofte stillede spørgsmål</h2>
         <div class="faq-list">

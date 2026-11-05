@@ -4,14 +4,16 @@
 import MainLayout from '../../../layouts/MainLayout.astro';
 import GuideLink from '../../../components/GuideLink.astro';
 import LakeTable from '../../../components/put-and-take/LakeTable.astro';
+import LakeCard from '../../../components/put-and-take/LakeCard.astro';
+import PtHero from '../../../components/put-and-take/PtHero.astro';
 import '../../../styles/put-and-take.css';
-import { lakes, REGIONS, pageLakes, lakesInRegion, lakeUrl, lakeName, priceStats, cheapestTicket, BASE } from '../../../lib/lakes';
+import { lakes, REGIONS, pageLakes, lakesInRegion, lakeUrl, lakeName, priceStats, BASE } from '../../../lib/lakes';
 
-const pages = pageLakes().sort((a, b) => b.searchVolume - a.searchVolume);
+const pages = pageLakes().sort((a, b) => Number(b.visited) - Number(a.visited) || b.searchVolume - a.searchVolume);
 const p2 = priceStats(2);
 const p3 = priceStats(3);
 const regionCards = REGIONS.filter((r) => r.slug === r.page)
-  .map((r) => ({ ...r, count: lakesInRegion(r.slug).length }))
+  .map((r) => ({ ...r, count: lakesInRegion(r.slug).length, pages: lakesInRegion(r.slug).filter((l) => l.level !== 'listing').length }))
   .sort((a, b) => b.count - a.count);
 const most = regionCards[0];
 
@@ -35,6 +37,7 @@ const faqs = [
   title="Put and take søer i Danmark: priser og de bedste søer"
   description={`Oversigt over ${lakes.length} put and take søer i Danmark – priser, fiskearter, børnesøer og regler, region for region. Find den sø, der ligger nærmest dig.`}
   canonical="https://udeogfiske.dk/fiskepladser/put-and-take/"
+  ogImage="https://udeogfiske.dk/images/put-and-take/placeholder-1-wide.jpg"
   pageType="category"
   breadcrumbs={[
     { name: 'Forside', url: '/' },
@@ -44,17 +47,18 @@ const faqs = [
   itemList={pages.map((l) => ({ name: lakeName(l), url: lakeUrl(l) }))}
   faq={faqs}
 >
-  <section class="pt-hero">
-    <div class="pt-ctn">
-      <nav class="pt-bc" aria-label="Brødkrumme">
-        <a href="/">Forside</a><span>›</span>
-        <a href="/fiskepladser/">Fiskepladser</a><span>›</span>
-        <span>Put &amp; Take</span>
-      </nav>
-      <h1 class="pt-title">Put and take søer i Danmark</h1>
-      <p class="pt-sub">{lakes.length} put and take søer fra Thy til Bornholm – med priser, fiskearter og regler for de søer, vi har tjekket. Find en sø i din region eller tæt på dig.</p>
-    </div>
-  </section>
+  <PtHero
+    crumbs={[{ name: 'Forside', url: '/' }, { name: 'Fiskepladser', url: '/fiskepladser/' }, { name: 'Put & Take' }]}
+    title="Put and take søer i Danmark"
+    sub="Find en put and take sø i din region eller tæt på dig – med priser, fiskearter og regler for de søer, vi har tjekket på deres egne hjemmesider."
+    image={{ src: '/images/put-and-take/placeholder-1-wide.jpg', placeholder: true }}
+    stats={[
+      { value: String(lakes.length), label: 'Søer i oversigten' },
+      { value: String(pages.length), label: 'Søer med fakta' },
+      ...(p2 ? [{ value: `${p2.min}–${p2.max} kr.`, label: '2 timers fiskekort' }] : []),
+      { value: 'Nej', label: 'Fisketegn nødvendigt' },
+    ]}
+  />
 
   <section class="pt-body">
     <div class="pt-ctn">
@@ -70,31 +74,49 @@ const faqs = [
         </div>
       </div>
 
-      <h2 class="pt-h2">Put and take søer region for region</h2>
+      <header class="pt-sec">
+        <span class="pt-eyebrow">Søer med priser og regler</span>
+        <h2>Put and take søer, vi har tjekket</h2>
+        <p>Hver side har priser, fiskearter, åbningstider og regler fra søens egen hjemmeside – med dato for, hvornår vi sidst har tjekket.</p>
+      </header>
+      <div class="pt-grid">
+        {pages.map((l) => <LakeCard lake={l} />)}
+      </div>
+
+      <header class="pt-sec">
+        <span class="pt-eyebrow">Region for region</span>
+        <h2>Find put and take i din del af landet</h2>
+      </header>
       <div class="pt-regions">
         {regionCards.map((r) => (
           <a class="pt-region" href={`${BASE}/${r.slug}/`}>
+            <b>{r.count}</b>
             <strong>Put and take {r.name}</strong>
-            <span>{r.count} søer{r.slug === 'sjaelland' ? ' (inkl. Bornholm)' : ''}</span>
+            <span>{r.count} søer{r.slug === 'sjaelland' ? ' inkl. Bornholm' : ''}{r.pages ? ` · ${r.pages} med fakta` : ''}</span>
           </a>
         ))}
       </div>
+    </div>
 
-      <h2 class="pt-h2">Søer med priser, regler og fakta</h2>
-      <div class="pt-cards">
-        {pages.map((l) => (
-          <a class="pt-card" href={lakeUrl(l)}>
-            {l.visited && <em>Jeg har fisket her</em>}
-            <strong>{lakeName(l)}</strong>
-            <span>{l.town}{cheapestTicket(l) ? ` · fra ${cheapestTicket(l)}` : ''}</span>
-          </a>
-        ))}
+    <div class="pt-band">
+      <div class="pt-ctn">
+        <header class="pt-sec">
+          <span class="pt-eyebrow">Hele oversigten</span>
+          <h2 id="alle-soeer">Alle put and take søer i Danmark</h2>
+          <p>Filtrér efter børnesø eller flue- og catch &amp; release-søer – eller tryk på knappen og se de søer, der ligger nærmest dig.</p>
+        </header>
+        <div class="pt-panel">
+          <LakeTable lakes={lakes} showRegion={true} />
+        </div>
       </div>
+    </div>
 
-      <h2 class="pt-h2" id="alle-soeer">Alle put and take søer i Danmark</h2>
-      <LakeTable lakes={lakes} showRegion={true} />
-
+    <div class="pt-ctn">
       <div class="pt-narrow">
+        <header class="pt-sec">
+          <span class="pt-eyebrow">Kom godt i gang</span>
+          <h2>Guides til put and take</h2>
+        </header>
         <GuideLink href="/fiskeguide/put-take-fiskeri/" title="Sådan fisker du put and take" desc="Min guide til grej, agn, Powerbait og spinnere – og hvordan din første tur foregår." />
         <GuideLink href="/fiskepladser/put-and-take/oersted-oerredvand/" title="Fisketur: Ørsted en kold marts dag" desc="Hvorfor fluestangen ikke virkede, og hvordan Meps Aglia str. 2 gav en ørred på 2,5 kg." />
         <GuideLink href="/blog/put-take-fiskeri-i-varmt-vejr/" title="Put and take i varmt vejr" desc="Hvornår og hvad der bider bedst, når vandet er varmt." />

@@ -1,5 +1,5 @@
 ---
-summary: "Klittens Put&amp;Take ligger 3 km syd for Hvide Sande og er en af de få <strong>saltvandssøer</strong> i Danmark, med vand fra Ringkøbing Fjord. Søen er ca. 11.000 m², der fiskes efter regnbueørreder på op til 8 kg, og der er åbent <strong>hele året fra solopgang til solnedgang</strong>. Et fiskekort koster <strong>120 kr. for 2 timer</strong>."
+summary: "Klittens Put&Take ligger 3 km syd for Hvide Sande og er en af de få <strong>saltvandssøer</strong> i Danmark, med vand fra Ringkøbing Fjord. Søen er ca. 11.000 m², der fiskes efter regnbueørreder på op til 8 kg, og der er åbent <strong>hele året fra solopgang til solnedgang</strong>. Et fiskekort koster <strong>120 kr. for 2 timer</strong>."
 tip: "Klittens udsætter typisk mandag, onsdag og fredag. Planlæg turen til en af de dage, hvis du vil have flest fisk i søen."
 faq:
   - question: "Hvorfor er Klittens en saltvandssø?"

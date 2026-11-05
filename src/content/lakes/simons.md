@@ -1,5 +1,5 @@
 ---
-summary: "Simons Put and Take ved Veksø nordvest for København har tre søer: en stor ørredsø, en børnesø og en størsø. Et fiskekort koster <strong>220 kr. for 3 timer</strong>, og du må tage <strong>op til 8 ørreder</strong> med hjem pr. kort. Ørrederne må ikke genudsættes, og størsøen er ren catch &amp; release."
+summary: "Simons Put and Take ved Veksø nordvest for København har tre søer: en stor ørredsø, en børnesø og en størsø. Et fiskekort koster <strong>220 kr. for 3 timer</strong>, og du må tage <strong>op til 8 ørreder</strong> med hjem pr. kort. Ørrederne må ikke genudsættes, og størsøen er ren catch & release."
 tip: "Husk at Simons kun tager kontanter (lige penge) eller MobilePay ved ankomst – og at du skal betale, <strong>før</strong> du bærer grejet ned til søen. Med MobilePay får du automatisk 15 minutter til at gå fra bil til fiskeplads."
 faq:
   - question: "Må man genudsætte ørreder i Simons Put and Take?"
@@ -7,7 +7,7 @@ faq:
   - question: "Kan børn fiske i Simons Put and Take?"
     answer: "Ja. Børnesøen er for børn under 14 år og deres forældre. Der må kun bruges Powerbait eller orm, og hvert barn må tage 2 ørreder med hjem. Der findes også familiekort til 2 voksne og 2 børn."
   - question: "Hvad kræver det at fiske efter stør hos Simons?"
-    answer: "Størfiskeri er catch &amp; release med modhageløs enkeltkrog og glidetackle. Linen skal have en brudstyrke på mindst 20 kg, og søen anbefaler karpestænger på mindst 3 pund eller kraftige spinnestænger og hjul i mindst størrelse 6000."
+    answer: "Størfiskeri er catch & release med modhageløs enkeltkrog og glidetackle. Linen skal have en brudstyrke på mindst 20 kg, og søen anbefaler karpestænger på mindst 3 pund eller kraftige spinnestænger og hjul i mindst størrelse 6000."
 ---
 
 ## Hvordan er fiskeriet i Simons Put and Take?

@@ -1,93 +1,195 @@
 ---
 // Facts box for one put & take lake. Every value comes from the master sheet
 // (via src/data/lakes.json); empty values are left out, never guessed.
-import { type Lake, ownWebsite, websiteLabel, yesNo, formatDate } from '../../lib/lakes';
+// Layout: key facts → action buttons → prices → fish/stocking → facilities → rules → sources.
+import { type Lake, ownWebsite, websiteLabel, formatDate, cheapestTicket } from '../../lib/lakes';
 
 interface Props { lake: Lake }
 const { lake } = Astro.props;
 const site = ownWebsite(lake);
 const phone = lake.phone.replace(/^\+45/, '').replace(/(\d{2})(?=\d)/g, '$1 ').trim();
-const tiles = [
-  ['Åbningstider', lake.hours],
-  ['Fiskearter', lake.species.join(', ')],
-  ['Udsætning', lake.stocking],
-  ['Faciliteter', lake.facilities.join(', ')],
-].filter(([, v]) => v);
-const small = [
-  ['Antal søer', lake.lakesCount ? String(lake.lakesCount) : ''],
-  ['Børnesø', yesNo(lake.kidsLake)],
-  ['Flue- / C&R-sø', yesNo(lake.flyLake)],
-].filter(([, v]) => v && v !== '–');
-const prices = lake.prices.filter((p) => p.label);
+const directions = lake.lat != null
+  ? `https://www.google.com/maps/dir/?api=1&destination=${lake.lat},${lake.lng}`
+  : lake.mapsUrl;
+
+// Split text into sentences, but not after abbreviations like "Maks." or "Kl.".
+const sentences = (t: string) =>
+  t.split(/(?<!\b(?:[Mm]aks|[Kk]l|[Ii]nkl|ca|[Nn]r|[Mm]in|u|[Ff]x|osv|bl\.a|[Bb]ørn u)\.)(?<=\.)\s+(?=[A-ZÆØÅÉ0-9])/)
+    .map((s) => s.trim()).filter(Boolean);
+
+// Hours: first sentence is the short version (without "(Google Maps)" etc.); the rest goes below.
+const hoursParts = sentences(lake.hours);
+const hoursFirst = hoursParts[0] ?? '';
+const hoursSource = hoursFirst.match(/\(([^)]+)\)/)?.[1];
+const hoursShort = hoursFirst.replace(/\s*\([^)]*\)/, '');
+const hoursNote = !hoursSource ? []
+  : /^se /i.test(hoursSource) ? [`${hoursSource[0].toUpperCase()}${hoursSource.slice(1)} for de aktuelle tider.`]
+  : [`Åbningstiden er fra ${hoursSource}.`];
+const hoursRest = [...hoursParts.slice(1), ...hoursNote];
+const from = cheapestTicket(lake);
+
+const key = [
+  from && { icon: 'price', label: 'Fiskekort fra', value: from.replace(' / ', ' · ') },
+  hoursShort && { icon: 'clock', label: 'Åbent', value: hoursShort.replace(/\.$/, '') },
+  lake.kidsLake !== null && { icon: 'kid', label: 'Børnesø', value: lake.kidsLake ? 'Ja' : 'Nej' },
+  lake.lakesCount && { icon: 'lake', label: 'Antal søer', value: String(lake.lakesCount) },
+].filter(Boolean) as { icon: string; label: string; value: string }[];
+
+// Prices: adult hourly tickets first, everything else (children, family, sturgeon, rental …) after.
+const isHourly = (l: string) => /^\d+\s*timer$/i.test(l.trim());
+const hourly = lake.prices.filter((p) => isHourly(p.label));
+const other = lake.prices.filter((p) => !isHourly(p.label));
+
+const rules = sentences(lake.rules);
+const facilities = [
+  ...lake.facilities,
+  ...(lake.flyLake ? ['Flue- eller catch & release-sø'] : []),
+];
+
+const ICONS: Record<string, string> = {
+  price: 'M3 7h18v10H3zM7 12h.01M17 12h.01M12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
+  clock: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
+  kid: 'M12 7a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM8 22l1-8-3-3 3-2h6l3 2-3 3 1 8',
+  lake: 'M2 15c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M2 19c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M7 11l5-6 5 6',
+  pin: 'M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
+  phone: 'M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z',
+  web: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18',
+};
 ---
 
 <section class="lf" aria-labelledby="lf-title">
-  <div class="lf-head">
-    <h2 id="lf-title" class="lf-title">Fakta om søen</h2>
+  <header class="lf-head">
+    <h2 id="lf-title">Fakta om søen</h2>
     <span class="lf-checked">Tjekket {formatDate(lake.lastChecked)}</span>
-  </div>
+  </header>
 
-  <div class="lf-contact">
-    {lake.address && <span><b>Adresse</b>{lake.address}</span>}
-    {site && <span><b>Hjemmeside</b><a href={site} rel="noopener" target="_blank">{websiteLabel(site).split('/')[0]}</a></span>}
-    {phone && <span><b>Telefon</b><a href={`tel:${lake.phone}`}>{phone}</a></span>}
-    {lake.mapsUrl && <span><b>Kort</b><a href={lake.mapsUrl} rel="noopener" target="_blank">Se på Google Maps</a></span>}
-  </div>
+  {key.length > 0 && (
+    <ul class="lf-key">
+      {key.map((k) => (
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICONS[k.icon]} /></svg>
+          <span class="lf-key-label">{k.label}</span>
+          <strong>{k.value}</strong>
+        </li>
+      ))}
+    </ul>
+  )}
+  {hoursRest.length > 0 && <p class="lf-note">{hoursRest.join(' ')}</p>}
 
-  {small.length > 0 && (
-    <div class="lf-small">
-      {small.map(([k, v]) => <span><b>{k}</b>{v}</span>)}
+  <div class="lf-actions">
+    {directions && <a class="lf-btn lf-btn-main" href={directions} rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICONS.pin} /></svg>Find vej</a>}
+    {phone && <a class="lf-btn" href={`tel:${lake.phone}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICONS.phone} /></svg>Ring {phone}</a>}
+    {site && <a class="lf-btn" href={site} rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICONS.web} /></svg>{websiteLabel(site).split('/')[0]}</a>}
+  </div>
+  {lake.address && <p class="lf-address">{lake.address}</p>}
+
+  {lake.prices.length > 0 && (
+    <div class="lf-block">
+      <h3>Priser</h3>
+      <div class="lf-price-cols">
+        {hourly.length > 0 && (
+          <div>
+            <h4>Fiskekort, voksen</h4>
+            <table class="lf-ptable">
+              <tbody>
+                {hourly.map((p) => <tr><th scope="row">{p.label}</th><td>{p.kr?.toLocaleString('da-DK')} kr.</td></tr>)}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {other.length > 0 && (
+          <div>
+            <h4>{hourly.length ? 'Andre priser' : 'Fiskekort'}</h4>
+            <table class="lf-ptable">
+              <tbody>
+                {other.map((p) => <tr><th scope="row">{p.label}</th><td>{p.kr ? `${p.kr.toLocaleString('da-DK')} kr.` : ''}</td></tr>)}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   )}
 
-  <dl class="lf-tiles">
-    {tiles.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}
-  </dl>
-
-  {prices.length > 0 && (
-    <>
-      <h3 class="lf-sub">Priser</h3>
-      <ul class="lf-prices">
-        {prices.map((p) => (
-          <li><span>{p.label}</span><strong>{p.kr ? `${p.kr.toLocaleString('da-DK')} kr.` : ''}</strong></li>
-        ))}
-      </ul>
-    </>
+  {(lake.species.length > 0 || lake.stocking) && (
+    <div class="lf-block">
+      <h3>Fisk i søen</h3>
+      {lake.species.length > 0 && <ul class="lf-tags">{lake.species.map((s) => <li>{s}</li>)}</ul>}
+      {lake.stocking && <p class="lf-text"><strong>Udsætning:</strong> {lake.stocking}</p>}
+    </div>
   )}
 
-  {lake.rules && (<div class="lf-rules"><h3 class="lf-sub">Regler</h3><p>{lake.rules}</p></div>)}
+  {facilities.length > 0 && (
+    <div class="lf-block">
+      <h3>Faciliteter</h3>
+      <ul class="lf-checks">{facilities.map((f) => <li>{f}</li>)}</ul>
+    </div>
+  )}
 
-  <p class="lf-meta">
+  {rules.length > 0 && (
+    <div class="lf-block lf-rules">
+      <h3>Regler du skal kende</h3>
+      <ul>{rules.map((r) => <li>{r}</li>)}</ul>
+    </div>
+  )}
+
+  <footer class="lf-foot">
     Kilder:
     {lake.sources.map((s, i) => (<>{i > 0 && ', '}<a href={s} rel="noopener nofollow" target="_blank">{websiteLabel(s).split('/')[0]}</a></>))}.
-    Priser og regler kan ændre sig, så tjek søens egen side før turen. Ser du en fejl? Skriv til <a href="mailto:hej@udeogfiske.dk">hej@udeogfiske.dk</a>.
-  </p>
+    Priser og regler kan ændre sig – tjek søens egen side før turen. Ser du en fejl? Skriv til <a href="mailto:hej@udeogfiske.dk">hej@udeogfiske.dk</a>.
+  </footer>
 </section>
 
 <style>
-  .lf { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 1.5rem; margin: 0 0 2.75rem; box-shadow: 0 8px 24px -18px rgba(13, 74, 94, 0.35); }
-  .lf-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem; margin-bottom: 1rem; }
-  .lf-title { font-size: 1.25rem; font-weight: 700; color: #111827; letter-spacing: -0.015em; }
-  .lf-checked { font-size: 0.75rem; font-weight: 600; color: #0d4a5e; background: #e6f1f5; border-radius: 999px; padding: 0.25rem 0.65rem; }
-  .lf-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; padding-bottom: 1.125rem; margin-bottom: 1.125rem; border-bottom: 1px solid #eef2f7; font-size: 0.9375rem; color: #111827; }
-  .lf-contact b, .lf-small b { display: block; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; }
-  .lf-contact a, .lf-meta a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; }
-  .lf-small { display: flex; flex-wrap: wrap; gap: 0.625rem; margin-bottom: 1rem; }
-  .lf-small span { background: #f8fafc; border: 1px solid #eef2f7; border-radius: 10px; padding: 0.5rem 0.875rem; font-size: 0.9375rem; font-weight: 600; color: #111827; }
-  .lf-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .lf-tiles div { background: #f8fafc; border: 1px solid #eef2f7; border-radius: 12px; padding: 0.875rem 1rem; }
-  .lf-tiles dt { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #0d4a5e; margin-bottom: 0.25rem; }
-  .lf-tiles dd { font-size: 0.9375rem; color: #374151; line-height: 1.55; }
-  .lf-sub { font-size: 1rem; font-weight: 700; color: #111827; margin: 1.5rem 0 0.75rem; }
-  .lf-prices { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem; }
-  .lf-prices li { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.55rem 0.8rem; font-size: 0.875rem; color: #374151; }
-  .lf-prices strong { color: #0d4a5e; font-size: 0.9375rem; white-space: nowrap; }
-  .lf-rules { background: #fff8eb; border-left: 4px solid #c47d0a; border-radius: 10px; padding: 0.25rem 1rem 0.875rem; margin-top: 1.25rem; }
-  .lf-rules .lf-sub { margin-top: 0.75rem; margin-bottom: 0.35rem; }
-  .lf-rules p { font-size: 0.9375rem; color: #374151; line-height: 1.7; }
-  .lf-meta { font-size: 0.8125rem; color: #6b7280; line-height: 1.6; margin-top: 1.25rem; }
+  .lf { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 18px; padding: 1.75rem; margin: 0 0 2.75rem; box-shadow: 0 10px 30px -22px rgba(13, 74, 94, 0.45); }
+  .lf-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .lf-head h2 { font-size: 1.375rem; font-weight: 700; color: #111827; letter-spacing: -0.02em; }
+  .lf-checked { font-size: 0.75rem; font-weight: 600; color: #0d4a5e; background: #e6f1f5; border-radius: 999px; padding: 0.3rem 0.75rem; }
+
+  /* Key facts */
+  .lf-key { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+  .lf-key li { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 0.75rem; align-items: center; background: #f4f8fa; border-radius: 14px; padding: 0.875rem 1rem; }
+  .lf-key svg { grid-row: span 2; width: 34px; height: 34px; padding: 7px; border-radius: 10px; background: #0d4a5e; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .lf-key-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; }
+  .lf-key strong { font-size: 1rem; font-weight: 700; color: #111827; line-height: 1.3; }
+  .lf-note { font-size: 0.8125rem; color: #6b7280; margin-top: 0.625rem; }
+
+  /* Actions */
+  .lf-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+  .lf-btn { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.875rem; font-weight: 600; color: #0d4a5e; background: #ffffff; border: 1.5px solid #cfe0e7; border-radius: 10px; padding: 0.55rem 0.9rem; transition: border-color 0.15s, background 0.15s; }
+  .lf-btn:hover { border-color: #0d4a5e; background: #f4f8fa; }
+  .lf-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .lf-btn-main { color: #ffffff; background: #0d4a5e; border-color: #0d4a5e; }
+  .lf-btn-main:hover { background: #082e3b; border-color: #082e3b; }
+  .lf-address { font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem; }
+
+  /* Blocks */
+  .lf-block { border-top: 1px solid #eef2f7; margin-top: 1.5rem; padding-top: 1.375rem; }
+  .lf-block h3 { font-size: 1.0625rem; font-weight: 700; color: #111827; margin-bottom: 0.75rem; }
+  .lf-block h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; margin-bottom: 0.35rem; }
+  .lf-price-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .lf-ptable { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  .lf-ptable th, .lf-ptable td { padding: 0.5rem 0; border-bottom: 1px dashed #e5e7eb; vertical-align: top; }
+  .lf-ptable tr:last-child th, .lf-ptable tr:last-child td { border-bottom: 0; }
+  .lf-ptable th { text-align: left; font-weight: 400; color: #374151; padding-right: 1rem; }
+  .lf-ptable td { text-align: right; font-weight: 700; color: #0d4a5e; white-space: nowrap; }
+  .lf-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .lf-tags li { font-size: 0.875rem; font-weight: 600; color: #0d4a5e; background: #e6f1f5; border-radius: 999px; padding: 0.3rem 0.8rem; }
+  .lf-text { font-size: 0.9375rem; color: #374151; line-height: 1.65; margin-top: 0.75rem; }
+  .lf-text strong { color: #111827; }
+  .lf-checks { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.25rem; }
+  .lf-checks li { position: relative; padding-left: 1.5rem; font-size: 0.9375rem; color: #374151; line-height: 1.5; }
+  .lf-checks li::before { content: ""; position: absolute; left: 0; top: 0.3rem; width: 0.9rem; height: 0.5rem; border-left: 2.5px solid #2f855a; border-bottom: 2.5px solid #2f855a; transform: rotate(-45deg); }
+  .lf-checks li::first-letter, .lf-tags li::first-letter { text-transform: uppercase; }
+  .lf-rules { background: #fff8eb; border: 0; border-left: 4px solid #c47d0a; border-radius: 12px; padding: 1rem 1.125rem 1.125rem; }
+  .lf-rules ul { margin-left: 1.1rem; display: grid; gap: 0.35rem; }
+  .lf-rules li { font-size: 0.9375rem; color: #374151; line-height: 1.55; }
+  .lf-foot { font-size: 0.8125rem; color: #9ca3af; line-height: 1.6; border-top: 1px solid #eef2f7; margin-top: 1.5rem; padding-top: 1rem; }
+  .lf-foot a { color: #6b7280; text-decoration: underline; text-underline-offset: 2px; }
+
   @media (max-width: 600px) {
-    .lf { padding: 1.25rem 1rem; }
-    .lf-contact, .lf-tiles { grid-template-columns: 1fr; }
+    .lf { padding: 1.25rem 1rem; border-radius: 14px; }
+    .lf-price-cols, .lf-checks { grid-template-columns: 1fr; }
+    .lf-btn { flex: 1 1 auto; justify-content: center; }
   }
 </style>

@@ -1,12 +1,12 @@
 ---
-summary: "Harlev Put &amp; Take ligger i Aarhus Ådal vest for Aarhus og har to søer på 5.000 og 7.000 m². Du betaler pr. time, og fangstgrænsen er <strong>én fisk pr. time</strong> – fra <strong>140 kr. for 2 timer</strong> og maks. 8 fisk pr. døgn. Der er åbent fra solopgang til solnedgang."
+summary: "Harlev Put & Take ligger i Aarhus Ådal vest for Aarhus og har to søer på 5.000 og 7.000 m². Du betaler pr. time, og fangstgrænsen er <strong>én fisk pr. time</strong> – fra <strong>140 kr. for 2 timer</strong> og maks. 8 fisk pr. døgn. Der er åbent fra solopgang til solnedgang."
 tip: "Søerne er omkranset af Aarhus Å. Har du lyst til at prøve noget andet end søfiskeri, kan du ifølge søen også fiske i åen – tjek reglerne på stedet først."
 faq:
-  - question: "Hvor mange fisk må man fange i Harlev Put &amp; Take?"
+  - question: "Hvor mange fisk må man fange i Harlev Put & Take?"
     answer: "Fangstbegrænsningen er én fisk pr. betalt time og maks. 8 fisk pr. person pr. døgn. Et 2-timers kort giver altså 2 fisk, et 8-timers kort 8 fisk."
   - question: "Må man rense fisk ved søerne i Harlev?"
     answer: "Nej, men du kan rense fangsten i renserummet i servicebygningen."
-  - question: "Kan man leje en sø i Harlev Put &amp; Take?"
+  - question: "Kan man leje en sø i Harlev Put & Take?"
     answer: "Ja, du kan leje en af de to søer til private arrangementer og firmaarrangementer. Kontakt søen for pris."
 ---
 

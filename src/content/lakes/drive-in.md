@@ -7,7 +7,7 @@ faq:
   - question: "Er Drive In Fiskepark og Drive in Put and Take det samme sted?"
     answer: "Ja. Søen i Lynge hedder Drive In Fiskepark og drives af de samme folk som Nordvestsjællands Fiskepark. Priser og regler står på nv-fiskepark.dk."
   - question: "Må man genudsætte ørreder i Drive In Fiskepark?"
-    answer: "Nej, der er ingen catch &amp; release af ørreder. Fejlkrogede fisk skal afkroges i vandet og genudsættes nænsomt."
+    answer: "Nej, der er ingen catch & release af ørreder. Fejlkrogede fisk skal afkroges i vandet og genudsættes nænsomt."
   - question: "Hvordan betaler man i Drive In Fiskepark?"
     answer: "Fiskekort købes i servicebygningen, hvor du kan betale kontant eller med MobilePay."
 ---

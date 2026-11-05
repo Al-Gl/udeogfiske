@@ -1431,7 +1431,7 @@
   "region": "midtjylland",
   "town": "Harlev J",
   "zip": "8462",
-  "address": "Højbyvej 9, 8462 Aarhus",
+  "address": "Højbyvej 9, 8462 Harlev J",
   "lat": 56.136,
   "lng": 10.021,
   "website": "http://www.harlev-pt.dk/",
@@ -1499,8 +1499,7 @@
   "facilities": [
    "hytte",
    "renserum",
-   "automat med drikkevarer",
-   "Powerbait og kroge",
+   "automat med drikkevarer og Powerbait",
    "grill til lån",
    "mulighed for at fiske i Aarhus Å"
   ],

@@ -5757,3 +5757,12 @@ Aldin: pages fine, design lacking; use image cards on the hub; placeholder image
 - Hub/region: section headers with eyebrow, gradient region tiles with big counts, lake table framed in a panel on a soft band. Region pages also show up to 3–6 popular lakes without a page (card links to the lake's own site).
 - Images: `lakeImage()` uses `public/images/put-and-take/{slug}.jpg` (+ `-wide.jpg`) if it exists, else one of 6 placeholders made with sharp from existing site photos (800×450 ~20–80 KB, 1600×600 ~35–170 KB). Convention written into the roadmap.
 - Build passes; card counts checked per page. Visual check is Aldin's (no browser available to me here).
+
+## Review: "Fakta om søen" box, clearer UX (2026-11-05)
+
+Aldin: make the facts box clearer and more user-friendly.
+- Rebuilt `LakeFacts`: key-facts row with icons (fiskekort fra, åbent, børnesø, antal søer); action buttons "Find vej" (Google Maps directions to the lake's coordinates), "Ring …" and the lake's website; prices split into "Fiskekort, voksen" (hour tickets) and "Andre priser" (children, family, stør, leje); fish species as tags + stocking line; facilities as a check list; rules as bullets in a highlighted box; sources and correction email in a quiet footer.
+- Text handling: sentences are split without breaking on abbreviations (Maks., Kl., inkl. …); "(Google Maps)" / "(se …)" moved out of the big hours value into a small note.
+- Data fixes in the sheet: Harlev address "Højbyvej 9, 8462 Harlev J" (Maps said Aarhus) and facilities reworded so a comma doesn't split one item into two tags.
+- Lake frontmatter: "&amp;" -> "&" so FAQ schema text is clean; removed a double full stop in the generated price FAQ.
+- Build passes; checked Simons, Harlev and Ørsted output text.

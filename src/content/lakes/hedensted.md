@@ -1,12 +1,12 @@
 ---
-summary: "Hedensted Put &amp; Take ved E45 i Østjylland har flere søer og en børnesø, og der udsættes ørreder dagligt i sæsonen. Et fiskekort koster <strong>140 kr. for 2 timer</strong>, børn under 13 år fra 100 kr., og der fiskes <strong>fra solopgang til solnedgang</strong>. Søen har en af de bredeste blandinger af fiskearter, vi har set."
+summary: "Hedensted Put & Take ved E45 i Østjylland har flere søer og en børnesø, og der udsættes ørreder dagligt i sæsonen. Et fiskekort koster <strong>140 kr. for 2 timer</strong>, børn under 13 år fra 100 kr., og der fiskes <strong>fra solopgang til solnedgang</strong>. Søen har en af de bredeste blandinger af fiskearter, vi har set."
 tip: "Er du pensionist eller førtidspensionist, så kom på en hverdag mellem kl. 8 og 14: så får du 50 % ekstra fisketid for samme pris (husk legitimation)."
 faq:
-  - question: "Hvilke fisk skal genudsættes i Hedensted Put &amp; Take?"
+  - question: "Hvilke fisk skal genudsættes i Hedensted Put & Take?"
     answer: "Karper, stør, maller og sandart må ikke tages med hjem – de skal genudsættes forsigtigt. Ørreder må du tage med inden for fangstgrænsen på dit fiskekort."
   - question: "Hvad koster det at leje grej i Hedensted?"
     answer: "Du kan leje grej inkl. grejæske til bobleflåd og Powerbait, en lille afkrogningstang og et glas Powerbait for 160 kr. Leje og betaling foregår i renserummet."
-  - question: "Er der en børnesø i Hedensted Put &amp; Take?"
+  - question: "Er der en børnesø i Hedensted Put & Take?"
     answer: "Ja, børnesøen er for børn op til 12 år, og der må fanges maks. 3 fisk pr. fiskekort i børnesøen."
 ---
 

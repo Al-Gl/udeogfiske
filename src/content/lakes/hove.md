@@ -7,7 +7,7 @@ faq:
   - question: "Hvilke ørreder er der i Hove Fiskepark?"
     answer: "Søen udsætter regnbueørred, kildeørred, guldørred, bækørred og tigerørred – fem forskellige ørreder i samme sø."
   - question: "Hvordan booker man størfiskeri i Hove?"
-    answer: "Stør- og karpefiskeri bookes i Fisker-appen, hvor du vælger plads, dato og tid. Begge dele er catch &amp; release, og der må kun fiskes med modhageløs enkeltkrog."
+    answer: "Stør- og karpefiskeri bookes i Fisker-appen, hvor du vælger plads, dato og tid. Begge dele er catch & release, og der må kun fiskes med modhageløs enkeltkrog."
   - question: "Hvordan betaler man i Hove Fiskepark?"
     answer: "Fiskekort købes i butikken i åbningstiden, med MobilePay 75456 eller med lige penge i boksen."
 ---

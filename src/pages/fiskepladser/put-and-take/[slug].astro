@@ -38,7 +38,7 @@ const description = fm.description ??
 // FAQ: two answers built from the facts + the lake's own questions.
 const priceList = lake.prices.filter((p) => p.kr).slice(0, 4).map((p) => `${p.label}: ${p.kr} kr.`).join(', ');
 const faq = [
-  ...(priceList ? [{ question: `Hvad koster det at fiske i ${name}?`, answer: `${priceList}. Priserne er tjekket ${checked} på søens egen hjemmeside – se den fulde prisliste ovenfor.` }] : []),
+  ...(priceList ? [{ question: `Hvad koster det at fiske i ${name}?`, answer: `${priceList} Priserne er tjekket ${checked} på søens egen hjemmeside – se den fulde prisliste ovenfor.` }] : []),
   ...(lake.species.length ? [{ question: `Hvilke fisk kan man fange i ${name}?`, answer: `Søen oplyser: ${lake.species.join(', ')}.${lake.stocking ? ' ' + lake.stocking : ''}` }] : []),
   ...(fm.faq ?? []),
 ];

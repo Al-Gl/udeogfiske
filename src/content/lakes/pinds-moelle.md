@@ -1,5 +1,5 @@
 ---
-summary: "Pinds Mølle Put &amp; Take ligger i Aarhus Ådal og har en stor sø og en familiesø. Der udsættes regnbueørreder flere gange om ugen – <strong>25.760 kg i 2025</strong> – på ca. 0,7–5 kg. Fangstgrænsen følger dit kort (<strong>1 fisk pr. time</strong>), og et kort koster <strong>140 kr. for 2 timer</strong>."
+summary: "Pinds Mølle Put & Take ligger i Aarhus Ådal og har en stor sø og en familiesø. Der udsættes regnbueørreder flere gange om ugen – <strong>25.760 kg i 2025</strong> – på ca. 0,7–5 kg. Fangstgrænsen følger dit kort (<strong>1 fisk pr. time</strong>), og et kort koster <strong>140 kr. for 2 timer</strong>."
 tip: "Genudsætning er tilladt i Pinds Mølle, men en genudsat fisk tæller stadig med i din fangstgrænse. Beslut dig derfor, før du lander fisken, om den skal med hjem."
 faq:
   - question: "Hvor mange fisk må man fange i Pinds Mølle?"

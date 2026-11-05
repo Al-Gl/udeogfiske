@@ -2783,3 +2783,17 @@ Plan (files only, no site code changes in this step):
 Not in this step: building the lake directory or editing pages. Each of those becomes its own small task once you have read the roadmap.
 
 Added on Aldin's go-ahead (same day): link building gets the most weight. `marketing/link-prospects.csv` holds ~100 real prospects from a competitor link-gap (DataForSEO referring domains of fiskogfri, lystfisk, fishingindenmark, lystfiskerguiden, fiskefoto), plus free Danish link portals that are live (LinkCentralen has a Fiskeri category, Linkbiblioteket, gratis-link.dk). `marketing/README.md` has the 4-week to-do list ([A] = Aldin, [C] = Claude).
+
+## Put & take: roadmap for every lake (2026-11-05)
+
+- [x] 1. `marketing/put-and-take-roadmap.md`: structure (hub, 6 regions, demand-gated area pages, flat lake URLs), 3 lake levels (Listing / Page / Page + besøg), one Markdown file per lake with a schema that blocks half-done lakes, sources, pipeline, waves, risks
+- [x] 2. Pointer in `put-and-take-directory.md` and `marketing/README.md`
+- [ ] 3. Aldin: answer the 5 decisions in §15 of the roadmap (levels, regions, which lakes fished, contact timing, photos)
+
+Wave 0 (starts after Aldin's answers; each step small):
+- [ ] 4. Inventory: pull all Danish "fishing pond" listings (135) + name searches in other categories + keyword list → `marketing/research/put-and-take-inventory.csv`, deduped
+- [ ] 5. Content collection `lakes` + zod schema (required facts for level page/visited)
+- [ ] 6. Lake page route `[slug].astro` using the template; check Ørsted naming (Ørredvand vs. Fisk & Golf)
+- [ ] 7. Hub rewrite + 6 region pages with lake tables + "nær mig" sort
+- [ ] 8. Sitemap entries for lakes generated from the collection
+- [ ] 9. Build passes, check on localhost; commit; push only on Aldin's go-ahead

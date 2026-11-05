@@ -5700,3 +5700,14 @@ Not verified / for Aldin:
 - Lake regions and facts are deliberately not filled in; each lake page must be sourced when built.
 - Fisketegn prices quoted from the AI Overview (46/150/214 kr, fritidsfisker 347 kr) must be checked on fisketegn.dk before use.
 - Contact details only where found on the sites; most rows say "find on site".
+
+## Review: put & take roadmap for every lake (2026-11-05)
+
+What changed (planning files only):
+- New `marketing/put-and-take-roadmap.md`. Size check: Google Maps lists 135 Danish lakes in the "Fishing pond" category (DataForSEO business listings); with lakes filed as camping/golf/park the total is likely 150-250. Most-reviewed: Oxriver (825), Ørsted Fisk & Golf (591), Bjerrely (476), Pinds Mølle (406).
+- Structure: hub → 6 regions (by how people search) → area pages only when searched ≥ 100/mo and ≥ 3 lakes → flat lake URLs `/fiskepladser/put-and-take/{slug}/`.
+- Data: one Markdown file per lake (Astro content collection); the schema makes the build fail if a published lake lacks prices, hours, species, sources or a check date.
+- Three lake levels so we never publish near-empty template pages. Waves: 25 pages by 31 Jan, 60 + all lakes listed by 31 Mar, 120+ by 30 Jun.
+- `put-and-take-directory.md` §2 marked superseded (it said one JSON file and 5 regions); README links the roadmap.
+
+Open: Aldin's 5 decisions (§15). Nothing built yet.

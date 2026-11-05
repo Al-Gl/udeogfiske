@@ -2810,9 +2810,9 @@ Order proposed by Aldin: hub → regions → top 10 lakes. Agreed, with three tw
 - [x] 3. Facts researched from the lakes' own sites into the sheet (`tools/fill-batch-1.py`), dated 2026-11-05. Ready as page: Simons, Harlev, Ørsted (slug oersted-oerredvand), Hove, Oxriver, Klittens, Hedensted, Pinds Mølle, Poppelsøen. Not ready: Moesholm (no species named), Børges (no species), Søndervig (no own website). Drive in added the same day: Aldin pointed to nv-fiskepark.dk/fiskeri/ (same owner) -> prices, species, rules; now page (visited)
 - [ ] 3b. Aldin: visit notes for Simons, Drive in, Harlev, Hove, Pinds Mølle, Poppelsøen (Ørsted uses the trip report); fish species at Moesholm; glance at the grey columns for the 9 lakes
 - [ ] 4. Extra discovery Sjælland + Fyn (fishingindenmark.info, Facebook group, Maps searches by town) → new rows in the sheet
-- [ ] 5. Lake page template (`[slug].astro`) + texts for the 10 lakes; Ørsted keeps its URL and gets the facts block
-- [ ] 6. Hub rewrite `/fiskepladser/put-and-take/` (answer-first, price range from our data, PAA questions, region cards, lake table)
-- [ ] 7. Region pages: nordjylland, vestjylland, midtjylland, sydjylland, fyn, sjaelland (Bornholm as a section on Sjælland until it has 3+ lakes); tables list every lake, linking the ones with pages
-- [ ] 8. Cannibalisation fix: guide `/fiskeguide/put-take-fiskeri/` vs hub (titles + one link each way)
-- [ ] 9. Sitemap + llms.txt entries; build passes; check on localhost (desktop + phone)
+- [x] 5. Lake page template `[slug].astro` + `LakeFacts` component + texts in `src/content/lakes/` for 10 lakes (9 template pages + Ørsted keeps its own page with the facts box added). No visit stories invented; "Mit besøg" sections wait for Aldin's notes
+- [x] 6. Hub rewritten: answer box, region cards, lake cards, table of all 144 lakes with filters + "nær mig", FAQ with prices computed from the checked lakes (2 timer 120–190 kr., 7 søer). Old unsourced price FAQ removed
+- [x] 7. 6 region pages via `RegionPage` component (Bornholm's 2 lakes shown on Sjælland)
+- [x] 8. Hub title is now "Put and take søer i Danmark"; guide got a link to the hub right under its answer box, and the old deep link was reworded
+- [x] 9. Sitemap (+15 URLs, dates bumped) and llms.txt updated; build passes; all pages 200 on localhost. [ ] Visual check desktop + phone: Aldin (no headless browser available here)
 - [ ] 10. review.md; commit; push only on Aldin's go-ahead (one launch)

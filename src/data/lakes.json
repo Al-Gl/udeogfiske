@@ -466,18 +466,56 @@
   "mapsUrl": "https://www.google.com/maps?cid=14027543039618262556",
   "reviews": 263,
   "searchVolume": 880,
-  "prices": [],
+  "prices": [
+   {
+    "label": "1-3 timer",
+    "kr": 110,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 130,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 180,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 220,
+    "note": ""
+   },
+   {
+    "label": "Dagskort",
+    "kr": 350,
+    "note": ""
+   },
+   {
+    "label": "Ekstra time",
+    "kr": 40,
+    "note": ""
+   }
+  ],
   "species": [],
   "stocking": "",
-  "hours": "",
+  "hours": "Mandag–søndag kl. 6–22 (se Facebook for helligdage).",
   "season": "",
   "lakesCount": null,
-  "kidsLake": null,
+  "kidsLake": true,
   "flyLake": null,
-  "facilities": [],
+  "facilities": [
+   "børnefiskesø",
+   "telt-",
+   "autocamper- og campingvognspladser"
+  ],
   "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "sources": [
+   "https://www.xn--brgesputandtake-5tb.dk/priser-abningstider",
+   "https://www.xn--brgesputandtake-5tb.dk/en"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 35,
@@ -580,7 +618,7 @@
   "slug": "drive-in",
   "name": "Drive in Put and Take",
   "mapsName": "Drive in Put and Take",
-  "level": "listing",
+  "level": "visited",
   "visited": true,
   "type": "put & take",
   "region": "sjaelland",
@@ -594,18 +632,57 @@
   "mapsUrl": "https://www.google.com/maps?cid=5303122039721446177",
   "reviews": 119,
   "searchVolume": 1300,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "3 timer",
+    "kr": 175,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 225,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 275,
+    "note": ""
+   },
+   {
+    "label": "Dagskort",
+    "kr": 375,
+    "note": ""
+   },
+   {
+    "label": "Barn under 12 år (følger den voksnes kort, 3 timer)",
+    "kr": 125,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred",
+   "guldørred",
+   "bækørred",
+   "tigerørred"
+  ],
+  "stocking": "Ugentlige udsætninger i højsæsonen; ørreder op til 12 kg.",
+  "hours": "Alle ugens dage (fiskekort gælder mandag–søndag). Klokkeslæt står ikke på siden – se søens Facebook.",
   "season": "",
-  "lakesCount": null,
-  "kidsLake": null,
+  "lakesCount": 2,
+  "kidsLake": true,
   "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "facilities": [
+   "børnesø",
+   "servicebygning med salg af fiskekort og rensning af fisk",
+   "grill og bålfade",
+   "kontrollører der giver råd"
+  ],
+  "rules": "Maks. 3 fisk på 3 timer, 5 på 6 timer, 7 på 8 timer og 11 på dagskort; børn 2 fisk. Én stang og én krog pr. fiskekort. Ingen catch & release af ørreder; fejlkrogede fisk genudsættes i vandet. Fisk renses ved servicebygningen. Hunde i snor. Ingen badning. Pensionister 67+ har særpris tirsdag og onsdag. Betaling kontant eller MobilePay i servicebygningen. Bøde 500 kr. ved brud på reglerne.",
+  "sources": [
+   "https://nv-fiskepark.dk/fiskeri/",
+   "https://nv-fiskepark.dk/drive-in-fiskepark/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 114,
@@ -1000,7 +1077,7 @@
   "visited": false,
   "type": "put & take",
   "region": "midtjylland",
-  "town": "Ostbirk",
+  "town": "Østbirk",
   "zip": "8752",
   "address": "Birknæsvej 7, 8752 Østbirk",
   "lat": 55.982,
@@ -1348,11 +1425,11 @@
   "slug": "harlev",
   "name": "Harlev Put and Take",
   "mapsName": "Harlev Put And Take",
-  "level": "listing",
+  "level": "visited",
   "visited": true,
   "type": "put & take",
   "region": "midtjylland",
-  "town": "Aarhus Municipality",
+  "town": "Harlev J",
   "zip": "8462",
   "address": "Højbyvej 9, 8462 Aarhus",
   "lat": 56.136,
@@ -1362,18 +1439,78 @@
   "mapsUrl": "https://www.google.com/maps?cid=7405758201734972891",
   "reviews": 136,
   "searchVolume": 1000,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 140,
+    "note": ""
+   },
+   {
+    "label": "3 timer",
+    "kr": 160,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 180,
+    "note": ""
+   },
+   {
+    "label": "5 timer",
+    "kr": 200,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 220,
+    "note": ""
+   },
+   {
+    "label": "7 timer",
+    "kr": 240,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 260,
+    "note": ""
+   },
+   {
+    "label": "Ekstra time",
+    "kr": 50,
+    "note": ""
+   },
+   {
+    "label": "Børn u. 12, 2 timer",
+    "kr": 100,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred",
+   "bækørred"
+  ],
+  "stocking": "Regnbueørred flere gange om ugen i højsæsonen, afhængigt af antallet af besøgende.",
+  "hours": "Fra solopgang til solnedgang. Holder ferielukket en periode i juli (se siden).",
   "season": "",
-  "lakesCount": null,
+  "lakesCount": 2,
   "kidsLake": null,
   "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "facilities": [
+   "hytte",
+   "renserum",
+   "automat med drikkevarer",
+   "Powerbait og kroge",
+   "grill til lån",
+   "mulighed for at fiske i Aarhus Å"
+  ],
+  "rules": "Maks. 1 fisk pr. betalt time og maks. 8 fisk pr. person pr. døgn. Én krog pr. stang. Fisk renses i renserummet, ikke ved søerne. Betaling kontant eller MobilePay inden du kører ind.",
+  "sources": [
+   "https://harlev-pt.dk/priser-og-betaling/",
+   "https://harlev-pt.dk/info/",
+   "https://harlev-pt.dk/fisk/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 131,
@@ -1412,7 +1549,7 @@
   "slug": "hedensted",
   "name": "Hedensted Put & Take",
   "mapsName": "Hedensted Put & Take",
-  "level": "listing",
+  "level": "page",
   "visited": false,
   "type": "put & take",
   "region": "midtjylland",
@@ -1426,18 +1563,92 @@
   "mapsUrl": "https://www.google.com/maps?cid=7139356021609466313",
   "reviews": 219,
   "searchVolume": 1000,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 140,
+    "note": ""
+   },
+   {
+    "label": "3 timer",
+    "kr": 170,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 200,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 260,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 300,
+    "note": ""
+   },
+   {
+    "label": "Børn u. 13, 2 timer",
+    "kr": 100,
+    "note": ""
+   },
+   {
+    "label": "Børn u. 13, 3 timer",
+    "kr": 120,
+    "note": ""
+   },
+   {
+    "label": "Børn u. 13, 4 timer",
+    "kr": 150,
+    "note": ""
+   },
+   {
+    "label": "Grejleje inkl. Powerbait",
+    "kr": 160,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred",
+   "guldørred",
+   "bækørred",
+   "tigerørred",
+   "kildeørred",
+   "rødding",
+   "gedde",
+   "aborre",
+   "ål",
+   "stør",
+   "karper",
+   "sandart"
+  ],
+  "stocking": "Dagligt i sæsonen, tilpasset antallet af fiskere.",
+  "hours": "Fra solopgang til solnedgang.",
   "season": "",
   "lakesCount": null,
-  "kidsLake": null,
+  "kidsLake": true,
   "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "facilities": [
+   "renserum med vægt",
+   "toiletter",
+   "handicaptoilet",
+   "4 pavilloner",
+   "grill",
+   "legeplads",
+   "hytter",
+   "grejudlån"
+  ],
+  "rules": "Karper, stør, maller og sandart skal genudsættes. Én krog pr. stang (ikke woblere). Kun regnorm som levende agn. Børnesøen: børn op til 12 år, maks. 3 fisk. Pensionisttilbud hverdage kl. 8–14 med 50 % ekstra fisketid. Kontrolafgift 1.000 kr.",
+  "sources": [
+   "https://hedenstedputandtake.dk/shop/",
+   "https://hedenstedputandtake.dk/priser/",
+   "https://hedenstedputandtake.dk/fisk-at-fange/",
+   "https://hedenstedputandtake.dk/faciliteter/",
+   "https://hedenstedputandtake.dk/ordensregler/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 80,
@@ -1636,7 +1847,7 @@
   "slug": "hove",
   "name": "Hove Put and Take",
   "mapsName": "Hove Put And Take ApS",
-  "level": "listing",
+  "level": "visited",
   "visited": true,
   "type": "put & take",
   "region": "sjaelland",
@@ -1650,18 +1861,60 @@
   "mapsUrl": "https://www.google.com/maps?cid=17435192605062866144",
   "reviews": 194,
   "searchVolume": 480,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "3 timer",
+    "kr": 175,
+    "note": ""
+   },
+   {
+    "label": "5 timer",
+    "kr": 200,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 250,
+    "note": ""
+   },
+   {
+    "label": "Heldagskort",
+    "kr": 300,
+    "note": ""
+   },
+   {
+    "label": "24 timer",
+    "kr": 350,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred",
+   "kildeørred",
+   "guldørred",
+   "bækørred",
+   "tigerørred",
+   "stør",
+   "karpe"
+  ],
+  "stocking": "Ørreder udsættes torsdag eller fredag.",
+  "hours": "Kl. 6–22 alle dage (Google Maps). Butikken: hverdage kl. 16–20, weekend kl. 8–20.",
   "season": "",
-  "lakesCount": null,
+  "lakesCount": 3,
   "kidsLake": null,
-  "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "flyLake": true,
+  "facilities": [
+   "grejbutik med mad og drikke",
+   "camping og shelter",
+   "landgangsbroer ved ørredsøen"
+  ],
+  "rules": "Alle ørreder skal hjemtages. Én stang og én krog pr. fiskekort. Ingen levende agn (orm er tilladt). Ingen forfodring. Stør og karper er catch & release og bookes i Fisker-appen. Betaling i butikken, MobilePay 75456 eller lige penge i boksen.",
+  "sources": [
+   "https://hovefiskepark.dk/priser-fiskekort/",
+   "https://hovefiskepark.dk/regler/",
+   "https://hovefiskepark.dk/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 40,
@@ -1736,7 +1989,7 @@
   "visited": false,
   "type": "put & take",
   "region": "nordjylland",
-  "town": "Norresundby",
+  "town": "Nørresundby",
   "zip": "9400",
   "address": "Hvorupgårdvej 17, 9400 Nørresundby",
   "lat": 57.112,
@@ -1960,7 +2213,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Ringkobing",
+  "town": "Ringkøbing",
   "zip": "6950",
   "address": "Holmsland Klitvej 100, 6950 Ringkøbing, Denmark",
   "lat": 56.083,
@@ -1988,7 +2241,7 @@
   "slug": "klittens",
   "name": "Klittens Put and Take",
   "mapsName": "Klittens Put and Take",
-  "level": "listing",
+  "level": "page",
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
@@ -2002,18 +2255,82 @@
   "mapsUrl": "https://www.google.com/maps?cid=10687147801345835583",
   "reviews": 315,
   "searchVolume": 1000,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
-  "season": "",
-  "lakesCount": null,
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 120,
+    "note": ""
+   },
+   {
+    "label": "3 timer",
+    "kr": 150,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 180,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 240,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 300,
+    "note": ""
+   },
+   {
+    "label": "10 timer",
+    "kr": 350,
+    "note": ""
+   },
+   {
+    "label": "12 timer",
+    "kr": 400,
+    "note": ""
+   },
+   {
+    "label": "Ekstra time",
+    "kr": 60,
+    "note": ""
+   },
+   {
+    "label": "2 stænger, 2 timer",
+    "kr": 200,
+    "note": ""
+   },
+   {
+    "label": "Børn under 12 år: halv pris",
+    "kr": null,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred"
+  ],
+  "stocking": "Typisk mandag, onsdag og fredag; fisk op til 8 kg.",
+  "hours": "Hele året fra solopgang til solnedgang.",
+  "season": "hele året",
+  "lakesCount": 1,
   "kidsLake": null,
   "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "facilities": [
+   "saltvandssø på ca. 11.000 m² med vand fra Ringkøbing Fjord",
+   "rensebord med rindende vand",
+   "toiletter",
+   "handicapvenlige faciliteter",
+   "gratis kaffe",
+   "WiFi"
+  ],
+  "rules": "Priserne gælder pr. person; du kan fiske med 1 eller 2 stænger.",
+  "sources": [
+   "https://klittens-putandtake.dk/",
+   "https://klittens-putandtake.dk/faciliteter-og-services/",
+   "https://klittens-putandtake.dk/om-fiskesoeen/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 47,
@@ -2024,7 +2341,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Norre Nebel",
+  "town": "Nørre Nebel",
   "zip": "6830",
   "address": "Kollevej 50, 6830 Nørre Nebel",
   "lat": 55.764,
@@ -2184,7 +2501,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Norre Nebel",
+  "town": "Nørre Nebel",
   "zip": "6830",
   "address": "6830 Norre Nebel",
   "lat": 55.808,
@@ -2248,7 +2565,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Ringkobing",
+  "town": "Ringkøbing",
   "zip": "6950",
   "address": "Klevevej 8, 6950 Ringkøbing",
   "lat": 56.143,
@@ -2376,7 +2693,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Norre Nebel",
+  "town": "Nørre Nebel",
   "zip": "6830",
   "address": "Lydumvej, 6830 Nørre Nebel",
   "lat": 55.811,
@@ -2610,18 +2927,71 @@
   "mapsUrl": "https://www.google.com/maps?cid=522007311048230061",
   "reviews": 265,
   "searchVolume": 140,
-  "prices": [],
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 120,
+    "note": ""
+   },
+   {
+    "label": "3 timer",
+    "kr": 150,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 180,
+    "note": ""
+   },
+   {
+    "label": "5 timer",
+    "kr": 200,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 220,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 250,
+    "note": ""
+   },
+   {
+    "label": "10 timer",
+    "kr": 275,
+    "note": ""
+   },
+   {
+    "label": "Ekstra time",
+    "kr": 60,
+    "note": ""
+   },
+   {
+    "label": "Børn under 10 år: halv pris",
+    "kr": null,
+    "note": ""
+   }
+  ],
   "species": [],
   "stocking": "",
-  "hours": "",
-  "season": "",
+  "hours": "Hver dag hele året fra solopgang til solnedgang.",
+  "season": "hele året",
   "lakesCount": null,
   "kidsLake": null,
   "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "facilities": [
+   "overdækket rensested",
+   "toiletter",
+   "grill tilladt"
+  ],
+  "rules": "Ingen forfodring. Fejlkrogede fisk skal genudsættes. Børn under 12 år skal være ifølge med voksne. Grupper over 10 personer får 10 % rabat.",
+  "sources": [
+   "https://moesholm.dk/priser-og-regler/",
+   "https://moesholm.dk/faciliteter/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 86,
@@ -2632,7 +3002,7 @@
   "visited": false,
   "type": "put & take",
   "region": "nordjylland",
-  "town": "Nykobing Mors",
+  "town": "Nykøbing Mors",
   "zip": "7900",
   "address": "Frueled 78, 7900 Nykøbing Mors",
   "lat": 56.781,
@@ -2856,7 +3226,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Norre Nebel",
+  "town": "Nørre Nebel",
   "zip": "6830",
   "address": "Tarmvej 20, 6830 Nørre Nebel",
   "lat": 55.791,
@@ -2948,11 +3318,11 @@
   "slug": "oxriver",
   "name": "Oxriver Put and Take",
   "mapsName": "Oxriver Put and Take",
-  "level": "listing",
+  "level": "page",
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Ringkobing",
+  "town": "No (Ringkøbing)",
   "zip": "6950",
   "address": "Stampevej 3, 6950 Ringkøbing, Denmark",
   "lat": 56.115,
@@ -2962,25 +3332,63 @@
   "mapsUrl": "https://www.google.com/maps?cid=9280459508092949177",
   "reviews": 825,
   "searchVolume": 480,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 140,
+    "note": ""
+   },
+   {
+    "label": "10 timer",
+    "kr": 360,
+    "note": ""
+   },
+   {
+    "label": "Ekstra time",
+    "kr": 60,
+    "note": ""
+   },
+   {
+    "label": "2 stænger, 8 timer",
+    "kr": 580,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred",
+   "kildeørred",
+   "bækørred",
+   "guldørred",
+   "brødding",
+   "rødding"
+  ],
+  "stocking": "Over 70 tons ørreder om året i søer og åløb.",
+  "hours": "Fra solopgang til solnedgang.",
   "season": "",
-  "lakesCount": null,
+  "lakesCount": 6,
   "kidsLake": null,
-  "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "flyLake": true,
+  "facilities": [
+   "6 søer og over 2.000 m kunstigt åløb",
+   "toiletter",
+   "rensning ved søerne",
+   "fryseplads og grill til leje",
+   "feriehuse",
+   "salg af friske ørreder på hverdage kl. 9–15"
+  ],
+  "rules": "Ingen fangstbegrænsning. Åløbet egner sig til fluefiskeri og let spin; søerne til medefiskeri med Powerbait eller orm. Betaling med MobilePay eller kontant.",
+  "sources": [
+   "https://oxriver.dk/Priser-og-%C3%A5bningstider.aspx",
+   "https://oxriver.dk/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 15,
   "slug": "pinds-moelle",
   "name": "Pinds Mølle Put & Take",
   "mapsName": "Pinds Mølle Put & Take",
-  "level": "listing",
+  "level": "visited",
   "visited": true,
   "type": "put & take",
   "region": "midtjylland",
@@ -2994,25 +3402,74 @@
   "mapsUrl": "https://www.google.com/maps?cid=7075101092454372130",
   "reviews": 406,
   "searchVolume": 320,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 140,
+    "note": ""
+   },
+   {
+    "label": "3 timer",
+    "kr": 170,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 200,
+    "note": ""
+   },
+   {
+    "label": "5 timer",
+    "kr": 220,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 240,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 280,
+    "note": ""
+   },
+   {
+    "label": "10 timer",
+    "kr": 320,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred"
+  ],
+  "stocking": "Flere gange om ugen, i højsæsonen ofte dagligt. Fisk på ca. 0,7–5 kg (0,5–1,5 kg i familiesøen). 25.760 kg i 2025.",
+  "hours": "Kl. 5–22 alle dage (Google Maps); åbent alle ugens dage.",
   "season": "",
   "lakesCount": null,
-  "kidsLake": null,
+  "kidsLake": true,
   "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "facilities": [
+   "stier langs søerne",
+   "over 40 bord-bænkesæt",
+   "fiskehytte",
+   "bålpladser",
+   "overnatning"
+  ],
+  "rules": "Maks. fisk = antal timer (et fiskekort = én krog i vandet), dog maks. 2 fisk fra familiesøen. Genudsætning er tilladt, men tæller med. Levende agn kun regnorm, melorm og voksmøllelarver. Ingen hunde ved søerne. Kontrolgebyr 1.000 kr.",
+  "sources": [
+   "https://pindsmoelle.dk/priser/",
+   "https://pindsmoelle.dk/regler-ved-pinds-moelle/",
+   "https://pindsmoelle.dk/udsaetning/",
+   "https://pindsmoelle.dk/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 21,
   "slug": "poppelsoeen",
   "name": "Poppelsøen Put & Take og stør-fiskeri",
   "mapsName": "Poppelsøen put & take og stør-fiskeri",
-  "level": "listing",
+  "level": "visited",
   "visited": true,
   "type": "put & take",
   "region": "sjaelland",
@@ -3026,18 +3483,73 @@
   "mapsUrl": "https://www.google.com/maps?cid=3584785873689088704",
   "reviews": 371,
   "searchVolume": 210,
-  "prices": [],
-  "species": [],
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 190,
+    "note": ""
+   },
+   {
+    "label": "3 timer",
+    "kr": 210,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 230,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 270,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 300,
+    "note": ""
+   },
+   {
+    "label": "Dagskort",
+    "kr": 370,
+    "note": ""
+   },
+   {
+    "label": "Børnesøen",
+    "kr": 170,
+    "note": ""
+   },
+   {
+    "label": "Stangleje ørred",
+    "kr": 80,
+    "note": ""
+   }
+  ],
+  "species": [
+   "ørred",
+   "stør",
+   "maller",
+   "karper"
+  ],
   "stocking": "",
-  "hours": "",
+  "hours": "Kl. 6–20 alle dage (Google Maps). Åbent stort set hele året; tiderne varierer med sæsonen. Børnesøen åbner kl. 10.",
   "season": "",
   "lakesCount": null,
-  "kidsLake": null,
-  "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "kidsLake": true,
+  "flyLake": true,
+  "facilities": [
+   "kiosk og grejbutik",
+   "stangleje",
+   "rensebord",
+   "gratis kop kaffe med fiskekortet"
+  ],
+  "rules": "1 stang og 1 krog. Spinner eller blink op til 12 g. Orm er tilladt, ingen anden levende agn. Alle ørreder må hjemtages; stør, karper, maller m.fl. skal genudsættes. Ingen hunde uden aftale, ingen grill. Maks. 1 ikke-fiskende gæst pr. fiskekort.",
+  "sources": [
+   "https://poppel.dk/priser",
+   "https://poppel.dk/regler",
+   "https://poppel.dk/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 125,
@@ -3048,7 +3560,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Ringkobing",
+  "town": "Ringkøbing",
   "zip": "6950",
   "address": "Stampevej 8, 6950 Ringkøbing, Denmark",
   "lat": 56.12,
@@ -3272,7 +3784,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Ringkobing",
+  "town": "Ringkøbing",
   "zip": "6950",
   "address": "Toftvej 2, 6950 Ringkøbing",
   "lat": 56.103,
@@ -3460,7 +3972,7 @@
   "slug": "simons",
   "name": "Simons Put and Take",
   "mapsName": "Simons Put And Take",
-  "level": "listing",
+  "level": "visited",
   "visited": true,
   "type": "put & take",
   "region": "sjaelland",
@@ -3474,18 +3986,76 @@
   "mapsUrl": "https://www.google.com/maps?cid=7845892634896794397",
   "reviews": 117,
   "searchVolume": 1600,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "3 timer",
+    "kr": 220,
+    "note": ""
+   },
+   {
+    "label": "5 timer",
+    "kr": 275,
+    "note": ""
+   },
+   {
+    "label": "10 timer",
+    "kr": 330,
+    "note": ""
+   },
+   {
+    "label": "Ekstra time",
+    "kr": 50,
+    "note": ""
+   },
+   {
+    "label": "Familiekort 2 voksne + 2 børn u. 14, 4 timer",
+    "kr": 550,
+    "note": ""
+   },
+   {
+    "label": "Familiekort 1 voksen + 1 barn u. 14, 3 timer",
+    "kr": 300,
+    "note": ""
+   },
+   {
+    "label": "Stør 6 timer pr. stang",
+    "kr": 75,
+    "note": ""
+   },
+   {
+    "label": "Stør 24 timer pr. stang",
+    "kr": 250,
+    "note": ""
+   },
+   {
+    "label": "Stangleje inkl. prop og krog",
+    "kr": 75,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred",
+   "guldørred",
+   "stør"
+  ],
+  "stocking": "Store udsætninger af ørreder; i børnesøen ørreder på 0,4–8 kg. Størsøen har stør med en gennemsnitsvægt omkring 30 kg.",
+  "hours": "Kl. 5–22 alle dage (Google Maps). Søens egen side henviser til Facebook for aktuelle tider.",
   "season": "",
-  "lakesCount": null,
-  "kidsLake": null,
-  "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "lakesCount": 3,
+  "kidsLake": true,
+  "flyLake": true,
+  "facilities": [
+   "børnesø",
+   "størsø",
+   "stangleje",
+   "grill ved størsøens fiskepladser"
+  ],
+  "rules": "Maks. 8 ørreder pr. fiskekort pr. dag. 1 stang med 1 agn. Levende agn kun regnorm. Ørreder må ikke genudsættes. Ingen hunde. Børnesøen: børn under 14 år, kun Powerbait eller orm. Størfiskeri er catch & release med modhageløs enkeltkrog. Pensionister halv pris om mandagen. Betaling kontant eller MobilePay.",
+  "sources": [
+   "http://www.simonsputandtake.dk/reglerleje-af-s",
+   "http://www.simonsputandtake.dk/"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 63,
@@ -4008,7 +4578,7 @@
   "visited": false,
   "type": "put & take",
   "region": "vestjylland",
-  "town": "Ringkobing",
+  "town": "Ringkøbing",
   "zip": "6950",
   "address": "Holmsland Klitvej 126, 6950 Ringkøbing, Denmark",
   "lat": 56.102,
@@ -4136,7 +4706,7 @@
   "visited": false,
   "type": "put & take",
   "region": "midtjylland",
-  "town": "Viborg Municipality",
+  "town": "Karup J",
   "zip": "7470",
   "address": "Åhusevej 57, 7470 Viborg",
   "lat": 56.356,
@@ -4168,7 +4738,7 @@
   "visited": false,
   "type": "put & take",
   "region": "midtjylland",
-  "town": "Viborg Municipality",
+  "town": "Karup J",
   "zip": "7470",
   "address": "Uhrevej 80, 7470 Viborg",
   "lat": 56.279,
@@ -4545,10 +5115,10 @@
  },
  {
   "id": 3,
-  "slug": "oersted-fisk-golf",
+  "slug": "oersted-oerredvand",
   "name": "Ørsted Fisk & Golf",
   "mapsName": "Ørsted Fisk & Golf",
-  "level": "listing",
+  "level": "visited",
   "visited": true,
   "type": "put & take",
   "region": "sjaelland",
@@ -4562,18 +5132,105 @@
   "mapsUrl": "https://www.google.com/maps?cid=15873037117003230773",
   "reviews": 591,
   "searchVolume": 480,
-  "prices": [],
-  "species": [],
-  "stocking": "",
-  "hours": "",
+  "prices": [
+   {
+    "label": "2 timer",
+    "kr": 190,
+    "note": ""
+   },
+   {
+    "label": "3 timer",
+    "kr": 210,
+    "note": ""
+   },
+   {
+    "label": "4 timer",
+    "kr": 230,
+    "note": ""
+   },
+   {
+    "label": "6 timer",
+    "kr": 270,
+    "note": ""
+   },
+   {
+    "label": "8 timer",
+    "kr": 300,
+    "note": ""
+   },
+   {
+    "label": "12 timer",
+    "kr": 370,
+    "note": ""
+   },
+   {
+    "label": "Børn 3–11 år, 2 timer",
+    "kr": 150,
+    "note": ""
+   },
+   {
+    "label": "Familie 2 voksne + 2 børn, 2 timer",
+    "kr": 380,
+    "note": ""
+   },
+   {
+    "label": "Stør 2 timer",
+    "kr": 135,
+    "note": ""
+   },
+   {
+    "label": "Stør 12 timer",
+    "kr": 245,
+    "note": ""
+   },
+   {
+    "label": "Ophold pr. gæst",
+    "kr": 40,
+    "note": ""
+   },
+   {
+    "label": "Leje af premium fiskestang",
+    "kr": 75,
+    "note": ""
+   }
+  ],
+  "species": [
+   "regnbueørred",
+   "guldørred",
+   "bækørred",
+   "kildeørred",
+   "tigerørred",
+   "brødding",
+   "stør",
+   "karper",
+   "gedde"
+  ],
+  "stocking": "Daglig udsætning af ørred. Guldørreder typisk 1–2 kg; bæk- og kildeørred enkelte gange om året.",
+  "hours": "Hele året med sæsonafhængige tider, typisk fra kl. 6–7 til 19–21 (se orstedoutdoor.dk/abningstider).",
   "season": "",
-  "lakesCount": null,
-  "kidsLake": null,
-  "flyLake": null,
-  "facilities": [],
-  "rules": "",
-  "sources": [],
-  "lastChecked": ""
+  "lakesCount": 3,
+  "kidsLake": true,
+  "flyLake": true,
+  "facilities": [
+   "toiletter",
+   "opholdsrum",
+   "læskure",
+   "butik med agn og grej",
+   "grillområde",
+   "rensebord",
+   "hytter",
+   "shelter",
+   "naturcamping",
+   "handicapvenlige stier"
+  ],
+  "rules": "Én stang og én krog pr. ørredfiskekort. Fangstbegrænsning efter fiskekortet. Hunde er velkomne i snor. Stør og karper er catch & release (modhageløse kroge, afkrogningsmåtte). Modtager ikke MobilePay. Børnesøen er for børn 3–11 år og vinterlukket.",
+  "sources": [
+   "https://orstedoutdoor.dk/fiskeso/priser-fiskeri",
+   "https://orstedoutdoor.dk/fiskeso/praktisk-info/regler",
+   "https://orstedoutdoor.dk/fiskeso/praktisk-info/fisk-i-soen",
+   "https://orstedoutdoor.dk/abningstider"
+  ],
+  "lastChecked": "2026-11-05"
  },
  {
   "id": 116,

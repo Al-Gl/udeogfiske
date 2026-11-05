@@ -6,6 +6,11 @@ import DidYouKnow from '../../../../components/DidYouKnow.astro';
 import TipBox from '../../../../components/TipBox.astro';
 import StatHighlight from '../../../../components/StatHighlight.astro';
 import Affiliate from '../../../../components/Affiliate.astro';
+import LakeFacts from '../../../../components/put-and-take/LakeFacts.astro';
+import { lakes } from '../../../../lib/lakes';
+
+// Facts block from the put & take master sheet (same data as the other lake pages)
+const lake = lakes.find((l) => l.slug === 'oersted-oerredvand')!;
 
 const related = [
   {
@@ -67,6 +72,7 @@ const faqs = [
     { name: "Forside", url: "/" },
     { name: "Fiskepladser", url: "/fiskepladser/" },
     { name: "Put & Take", url: "/fiskepladser/put-and-take/" },
+    { name: "Sjælland", url: "/fiskepladser/put-and-take/sjaelland/" },
     { name: "Ørsted Ørredvand" },
   ]}
   articleData={{
@@ -87,6 +93,8 @@ const faqs = [
         <span>›</span>
         <a href="/fiskepladser/put-and-take/">Put &amp; Take</a>
         <span>›</span>
+        <a href="/fiskepladser/put-and-take/sjaelland/">Sjælland</a>
+        <span>›</span>
         <span>Ørsted Ørredvand</span>
       </nav>
       <h1 class="pg-title">Ørsted Ørredvand en kold marts måned</h1>
@@ -101,6 +109,8 @@ const faqs = [
         <h2 class="ac-q">Hvad blev resultatet af turen?</h2>
         <p class="ac-a">En regnbueørred på <strong>2,5 kg</strong> landet på Meps Aglia str. 2 i Rainbow Trout, efter en udsigtsløs morgen med fluestang. Vandet var stadig for koldt midt i marts — fiskene stod på bunden, og kun spinnefiskeri tæt på bunden gav hjem. Ud af ca. 20 fiskere på pladsen fangede kun to noget den dag.</p>
       </div>
+
+      <div class="lake-facts-wrap"><LakeFacts lake={lake} /></div>
 
       <StatHighlight value="2,5 kg" caption="Regnbueørred fanget på Meps Aglia str. 2 — efter tre kast med spinnestangen" icon="fish" />
 
@@ -210,6 +220,7 @@ const faqs = [
   .ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
   .ac-a strong { color: #111827; font-weight: 600; }
   .article { max-width: 760px; margin: 0 auto; }
+  .lake-facts-wrap { max-width: 760px; margin: 0 auto; }
   .article p { font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 1.25rem; }
   .article p strong { color: #111827; font-weight: 700; }
   .article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }

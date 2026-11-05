@@ -5732,3 +5732,18 @@ Open: Sjælland (11) and Fyn (7) look under-counted on Maps. Ørsted trip report
 - Backups of the sheet before each scripted change are in the session scratchpad.
 - Converter now reports only the missing lake texts for the 9 lakes, which is the next step.
 - Drive in (from Aldin's note in the sheet): prices, species (regnbue-, guld-, bæk-, tigerørred), catch limits and rules from https://nv-fiskepark.dk/fiskeri/, which is explicitly about Drive In Fiskepark Lynge. No clock times on the site, so hours say "alle ugens dage" and point to Facebook. Niveau = page (visited). Now 10 lakes pass the fact check.
+
+## Review: put & take launch 1, pages built (2026-11-05)
+
+What changed:
+- `src/lib/lakes.ts`: helpers for the lake data (regions, URLs, price stats, nearest lakes, display names).
+- `src/components/put-and-take/`: `LakeFacts` (facts box: address, hours, species, stocking, facilities, price table, rules, "sidst tjekket" + sources + correction email), `LakeTable` (all lakes, filters for børnesø / flue-C&R / own page, "Vis nærmeste søer" sorts by distance in the browser, nothing stored), `RegionPage` (shell for region pages).
+- `src/styles/put-and-take.css`: shared styles copied from the existing spot pages.
+- `[slug].astro`: one page per lake with level page/visited (9 pages). Title/description/FAQ built from the data; TouristAttraction schema via a new optional `extraSchema` prop in MainLayout (only change to the layout).
+- 6 region pages, hub rewrite, Ørsted page gets the facts box + Sjælland in the breadcrumb (trip text untouched).
+- Lake texts in `src/content/lakes/*.md`: only facts from the lakes' own sites, in first person where it's advice. No invented visit stories; the "Jeg har fisket her" badge shows on the 7 visited lakes, and "Mit besøg" sections are added when Aldin sends notes.
+- Guide link to the hub (cannibalisation), sitemap +15 URLs, llms.txt entry rewritten.
+
+Checks: `npm run lakes` OK (7 visited, 3 page, 134 listing); build passes; all new pages return 200 in dev; schema types present (TouristAttraction, FAQPage, ItemList, BreadcrumbList); hub table has 144 rows, Sjælland 13 (incl. Bornholm).
+Not checked: visual layout at desktop/phone width (headless Edge is missing msedge.exe here, and the built-in browser can't open localhost). Aldin to look before pushing.
+Notes: the hub HTML is ~135 KB because the full 144-row table is in the page; fine for now, can be split later. Pre-existing vite warning about /images/regnbueoerred_card.png is unrelated.

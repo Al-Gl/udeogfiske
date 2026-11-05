@@ -1,0 +1,118 @@
+---
+// Sortable list of put & take lakes with small filters and a "nær mig" button.
+// Distance is computed in the browser from the visitor's location; nothing is stored or sent.
+import { type Lake, hasPage, lakeUrl, lakeName, regionName, ownWebsite, websiteLabel, cheapestTicket } from '../../lib/lakes';
+
+interface Props { lakes: Lake[]; showRegion?: boolean; id?: string }
+const { lakes, showRegion = false, id = 'soeer' } = Astro.props;
+const rows = [...lakes].sort((a, b) => Number(hasPage(b)) - Number(hasPage(a)) || a.name.localeCompare(b.name, 'da'));
+---
+
+<div class="lt" id={id}>
+  <div class="lt-tools">
+    <label><input type="checkbox" data-filter="kids" /> Børnesø</label>
+    <label><input type="checkbox" data-filter="fly" /> Flue- eller C&amp;R-sø</label>
+    <label><input type="checkbox" data-filter="page" /> Kun søer med egen side</label>
+    <button type="button" class="lt-near">Vis nærmeste søer</button>
+    <span class="lt-status" aria-live="polite"></span>
+  </div>
+
+  <table class="lt-table">
+    <thead>
+      <tr>
+        <th scope="col">Sø</th>
+        <th scope="col">By</th>
+        {showRegion && <th scope="col">Region</th>}
+        <th scope="col">Pris fra</th>
+        <th scope="col" class="lt-km" hidden>Afstand</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((l) => {
+        const site = ownWebsite(l);
+        return (
+          <tr data-lat={l.lat ?? ''} data-lng={l.lng ?? ''} data-kids={l.kidsLake ? '1' : ''} data-fly={l.flyLake ? '1' : ''} data-page={hasPage(l) ? '1' : ''}>
+            <td data-label="Sø">
+              {hasPage(l)
+                ? <a class="lt-name" href={lakeUrl(l)}>{lakeName(l)}</a>
+                : <span class="lt-name lt-plain">{lakeName(l)}</span>}
+              {!hasPage(l) && site && <a class="lt-site" href={site} rel="noopener nofollow" target="_blank">{websiteLabel(site).split('/')[0]}</a>}
+            </td>
+            <td data-label="By">{l.town}</td>
+            {showRegion && <td data-label="Region">{regionName(l.region)}</td>}
+            <td data-label="Pris fra">{cheapestTicket(l) || '–'}</td>
+            <td data-label="Afstand" class="lt-km" hidden></td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+  <p class="lt-note">Søer med link har deres egen side med priser, regler og fakta. De øvrige er med, så oversigten er komplet – vi tilføjer flere sider løbende.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.lt').forEach((box) => {
+    const body = box.querySelector('tbody')!;
+    const rows = Array.from(body.querySelectorAll<HTMLTableRowElement>('tr'));
+    const boxes = box.querySelectorAll<HTMLInputElement>('[data-filter]');
+    const status = box.querySelector<HTMLElement>('.lt-status')!;
+    const apply = () => {
+      const on = Array.from(boxes).filter((b) => b.checked).map((b) => b.dataset.filter!);
+      let shown = 0;
+      rows.forEach((r) => {
+        const ok = on.every((f) => r.dataset[f] === '1');
+        r.hidden = !ok;
+        if (ok) shown++;
+      });
+      status.textContent = on.length ? `${shown} søer` : '';
+    };
+    boxes.forEach((b) => b.addEventListener('change', apply));
+
+    box.querySelector('.lt-near')!.addEventListener('click', () => {
+      if (!navigator.geolocation) { status.textContent = 'Din browser kan ikke finde din position.'; return; }
+      status.textContent = 'Finder din position …';
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude: la, longitude: lo } = pos.coords;
+        const rad = (x: number) => (x * Math.PI) / 180;
+        rows.forEach((r) => {
+          const lat = parseFloat(r.dataset.lat || ''), lng = parseFloat(r.dataset.lng || '');
+          const km = isNaN(lat) ? Infinity : 2 * 6371 * Math.asin(Math.sqrt(Math.sin(rad(lat - la) / 2) ** 2 + Math.cos(rad(la)) * Math.cos(rad(lat)) * Math.sin(rad(lng - lo) / 2) ** 2));
+          r.dataset.km = String(km);
+          const cell = r.querySelector<HTMLElement>('td.lt-km')!;
+          cell.textContent = isFinite(km) ? `${Math.round(km)} km` : '–';
+          cell.hidden = false;
+        });
+        box.querySelector<HTMLElement>('th.lt-km')!.hidden = false;
+        rows.sort((a, b) => Number(a.dataset.km) - Number(b.dataset.km)).forEach((r) => body.appendChild(r));
+        status.textContent = 'Sorteret efter afstand fra dig';
+      }, () => { status.textContent = 'Vi fik ikke lov at bruge din position.'; }, { timeout: 10000 });
+    });
+  });
+</script>
+
+<style>
+  .lt { margin: 0 0 2.5rem; }
+  .lt-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; margin-bottom: 1rem; font-size: 0.875rem; color: #374151; }
+  .lt-tools label { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+  .lt-near { font: inherit; font-weight: 600; color: #ffffff; background: #0d4a5e; border: 0; border-radius: 8px; padding: 0.45rem 0.9rem; cursor: pointer; }
+  .lt-near:hover { background: #082e3b; }
+  .lt-status { font-size: 0.8125rem; color: #6b7280; }
+  .lt-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  .lt-table th { text-align: left; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; padding: 0.5rem 0.75rem 0.5rem 0; border-bottom: 2px solid #e5e7eb; }
+  .lt-table td { padding: 0.65rem 0.75rem 0.65rem 0; border-bottom: 1px solid #e5e7eb; vertical-align: top; color: #374151; }
+  .lt-name { font-weight: 600; color: #111827; }
+  a.lt-name { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; }
+  .lt-plain { font-weight: 500; }
+  .lt-site { display: block; font-size: 0.8125rem; color: #6b7280; text-decoration: underline; text-underline-offset: 2px; }
+  .lt-note { font-size: 0.8125rem; color: #6b7280; margin-top: 0.75rem; }
+  @media (max-width: 640px) {
+    .lt-table thead { display: none; }
+    .lt-table tr { display: block; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb; }
+    .lt-table tr[hidden] { display: none; }
+    .lt-table td { display: flex; justify-content: space-between; gap: 1rem; border: 0; padding: 0.15rem 0; }
+    .lt-table td[hidden] { display: none; }
+    .lt-table td::before { content: attr(data-label); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; }
+    .lt-table td:first-child { display: block; }
+    .lt-table td:first-child::before { content: none; }
+  }
+</style>

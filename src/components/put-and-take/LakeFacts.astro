@@ -1,0 +1,73 @@
+---
+// Facts box for one put & take lake. Every value comes from the master sheet
+// (via src/data/lakes.json); empty values are shown as "–", never guessed.
+import { type Lake, ownWebsite, websiteLabel, yesNo, formatDate } from '../../lib/lakes';
+
+interface Props { lake: Lake }
+const { lake } = Astro.props;
+const site = ownWebsite(lake);
+const phone = lake.phone.replace(/^\+45/, '').replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+const rows = [
+  ['Adresse', lake.address],
+  ['Åbningstider', lake.hours],
+  ['Fiskearter', lake.species.join(', ')],
+  ['Udsætning', lake.stocking],
+  ['Antal søer', lake.lakesCount ? String(lake.lakesCount) : ''],
+  ['Børnesø', yesNo(lake.kidsLake)],
+  ['Flue- eller C&R-sø', yesNo(lake.flyLake)],
+  ['Faciliteter', lake.facilities.join(', ')],
+].filter(([, v]) => v && v !== '–');
+---
+
+<section class="lf" aria-labelledby="lf-title">
+  <h2 id="lf-title" class="lf-title">Fakta om {lake.name}</h2>
+
+  <dl class="lf-grid">
+    {rows.map(([k, v]) => (<div class="lf-row"><dt>{k}</dt><dd>{v}</dd></div>))}
+    {site && (<div class="lf-row"><dt>Hjemmeside</dt><dd><a href={site} rel="noopener" target="_blank">{websiteLabel(site)}</a></dd></div>)}
+    {phone && (<div class="lf-row"><dt>Telefon</dt><dd><a href={`tel:${lake.phone}`}>{phone}</a></dd></div>)}
+    {lake.mapsUrl && (<div class="lf-row"><dt>Kort</dt><dd><a href={lake.mapsUrl} rel="noopener" target="_blank">Se på Google Maps</a></dd></div>)}
+  </dl>
+
+  {lake.prices.length > 0 && (
+    <>
+      <h3 class="lf-sub">Priser</h3>
+      <table class="lf-prices">
+        <tbody>
+          {lake.prices.map((p) => (
+            <tr><th scope="row">{p.label}</th><td>{p.kr ? `${p.kr.toLocaleString('da-DK')} kr.` : ''}{p.note ? ` ${p.note}` : ''}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  )}
+
+  {lake.rules && (<><h3 class="lf-sub">Regler</h3><p class="lf-rules">{lake.rules}</p></>)}
+
+  <p class="lf-meta">
+    Sidst tjekket {formatDate(lake.lastChecked)} på
+    {lake.sources.map((s, i) => (<>{i > 0 && ', '}<a href={s} rel="noopener nofollow" target="_blank">{websiteLabel(s).split('/')[0]}</a></>))}.
+    Priser og regler kan ændre sig, så tjek søens egen side før turen. Ser du en fejl? Skriv til <a href="mailto:hej@udeogfiske.dk">hej@udeogfiske.dk</a>.
+  </p>
+</section>
+
+<style>
+  .lf { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem 1.5rem 1.25rem; margin: 0 0 2.5rem; }
+  .lf-title { font-size: 1.25rem; font-weight: 700; color: #111827; letter-spacing: -0.015em; margin-bottom: 1rem; }
+  .lf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; }
+  .lf-row dt { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; }
+  .lf-row dd { font-size: 0.9375rem; color: #111827; line-height: 1.55; }
+  .lf-row a, .lf-meta a { color: #0d4a5e; text-decoration: underline; text-underline-offset: 2px; }
+  .lf-sub { font-size: 1rem; font-weight: 600; color: #111827; margin: 1.5rem 0 0.5rem; }
+  .lf-prices { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  .lf-prices th, .lf-prices td { text-align: left; padding: 0.4rem 0; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  .lf-prices th { font-weight: 400; color: #374151; padding-right: 1rem; }
+  .lf-prices td { font-weight: 600; color: #111827; white-space: nowrap; text-align: right; }
+  .lf-rules { font-size: 0.9375rem; color: #374151; line-height: 1.7; }
+  .lf-meta { font-size: 0.8125rem; color: #6b7280; line-height: 1.6; margin-top: 1.25rem; }
+  @media (max-width: 600px) {
+    .lf { padding: 1.25rem 1rem 1rem; }
+    .lf-grid { grid-template-columns: 1fr; }
+    .lf-prices td { white-space: normal; }
+  }
+</style>

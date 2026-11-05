@@ -1,0 +1,54 @@
+/* Shared styles for the put & take hub, region pages and lake pages.
+   Same look as the existing spot pages (copied from /fiskepladser/put-and-take/oersted-oerredvand/). */
+.pt-hero { background: #0d4a5e; padding: 3.5rem 0 3rem; }
+.pt-ctn { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+.pt-narrow { max-width: 760px; margin: 0 auto; }
+.pt-bc { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: rgba(255,255,255,0.6); margin-bottom: 1.25rem; flex-wrap: wrap; }
+.pt-bc a { color: rgba(255,255,255,0.6); transition: color 0.15s; }
+.pt-bc a:hover { color: #ffffff; }
+.pt-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem; }
+.pt-sub { font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.65; max-width: 640px; }
+.pt-badge { display: inline-block; margin-top: 1rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #0d4a5e; background: #ffffff; border-radius: 999px; padding: 0.3rem 0.75rem; }
+.pt-body { padding: 3rem 0 5rem; }
+
+.answer-capsule { background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #0d4a5e; border-radius: 10px; padding: 1.25rem 1.5rem 1.375rem; margin: 0 0 2.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+.ac-label { display: inline-block; font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #0d4a5e; margin-bottom: 0.5rem; }
+.ac-q { font-size: 1.0625rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; margin-bottom: 0.625rem; }
+.ac-a { font-size: 0.9375rem; color: #4b5563; line-height: 1.7; }
+.ac-a strong { color: #111827; font-weight: 600; }
+
+.article p, .article li { font-size: 1rem; color: #374151; line-height: 1.8; }
+.article p { margin-bottom: 1.25rem; }
+.article ul { margin: 0 0 1.25rem 1.25rem; }
+.article strong { color: #111827; font-weight: 700; }
+.article a { color: #0d4a5e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.article a:hover { color: #c47d0a; }
+.article h2 { font-size: 1.625rem; font-weight: 700; color: #111827; letter-spacing: -0.02em; line-height: 1.25; margin: 2.5rem 0 1rem; }
+.article h2:first-child { margin-top: 0; }
+.article h3 { font-size: 1.1875rem; font-weight: 600; color: #111827; margin: 1.75rem 0 0.5rem; }
+
+.pt-h2 { font-size: 1.625rem; font-weight: 700; color: #111827; letter-spacing: -0.02em; line-height: 1.25; margin: 3rem 0 1rem; }
+.faq-heading { font-size: 1.625rem; font-weight: 700; color: #111827; letter-spacing: -0.02em; line-height: 1.25; margin: 3.5rem 0 1rem; }
+
+/* Region cards (hub) */
+.pt-regions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0 0 2.5rem; }
+.pt-region { display: block; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.125rem 1.25rem; transition: border-color 0.15s, transform 0.15s; }
+.pt-region:hover { border-color: #0d4a5e; transform: translateY(-2px); }
+.pt-region strong { display: block; font-size: 1.0625rem; color: #111827; }
+.pt-region span { font-size: 0.875rem; color: #6b7280; }
+
+/* Lake cards (hub, region pages, nearby lakes) */
+.pt-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0 0 2.5rem; }
+.pt-card { display: flex; flex-direction: column; gap: 0.35rem; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.125rem 1.25rem; background: #ffffff; transition: border-color 0.15s, transform 0.15s; }
+a.pt-card:hover { border-color: #0d4a5e; transform: translateY(-2px); }
+.pt-card strong { font-size: 1rem; color: #111827; line-height: 1.35; }
+.pt-card span { font-size: 0.8125rem; color: #6b7280; }
+.pt-card em { font-style: normal; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #c47d0a; }
+
+@media (max-width: 760px) {
+  .pt-regions, .pt-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .pt-regions, .pt-cards { grid-template-columns: 1fr; }
+  .pt-ctn { padding: 0 1rem; }
+}

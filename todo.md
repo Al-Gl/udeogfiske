@@ -2799,3 +2799,19 @@ Wave 0 (starts after Aldin's answers; each step small):
 - [ ] 7. Hub rewrite + 7 region pages (incl. Vestjylland) with lake tables + "nær mig" sort
 - [ ] 8. Sitemap entries for lakes generated from the collection
 - [ ] 9. Build passes, check on localhost; commit; push only on Aldin's go-ahead
+
+## Put & take launch 1: hub + regions + first 10 lakes (plan 2026-11-05, waiting for Aldin's OK)
+
+Aldin marked 13 visited lakes in the sheet: Simons, Ørsted, Drive in, Harlev, Pinds Mølle, Poppelsøen, Hove, Moesholm, Hadsund, Medestedet, Volstrup, Fiskeparken Svejstrup, Gudenådalens Lystfiskersø.
+Order proposed by Aldin: hub → regions → top 10 lakes. Agreed, with three tweaks: one launch for all three; research lake facts before writing the hub (real price range); extra lake discovery for Sjælland/Fyn before their region pages.
+
+- [ ] 1. Aldin: 2-4 lines per visited lake in the first 10 (Simons, Drive in, Harlev, Hove; Ørsted uses the existing trip report): when, what you fished with/caught, honest verdict. Confirm Ørsted Fisk & Golf = Ørsted Ørredvand
+- [ ] 2. `npm run lakes`: sheet → `src/data/lakes.json`, stops if a page/visited lake lacks prices, species, hours, source or check date
+- [ ] 3. Research facts for the 10 lakes from their own sites into the grey columns (Simons, Drive in, Harlev, Ørsted, Hove, Oxriver, Klittens, Hedensted, Søndervig, Børges); Aldin checks them in the sheet
+- [ ] 4. Extra discovery Sjælland + Fyn (fishingindenmark.info, Facebook group, Maps searches by town) → new rows in the sheet
+- [ ] 5. Lake page template (`[slug].astro`) + texts for the 10 lakes; Ørsted keeps its URL and gets the facts block
+- [ ] 6. Hub rewrite `/fiskepladser/put-and-take/` (answer-first, price range from our data, PAA questions, region cards, lake table)
+- [ ] 7. Region pages: nordjylland, vestjylland, midtjylland, sydjylland, fyn, sjaelland (Bornholm as a section on Sjælland until it has 3+ lakes); tables list every lake, linking the ones with pages
+- [ ] 8. Cannibalisation fix: guide `/fiskeguide/put-take-fiskeri/` vs hub (titles + one link each way)
+- [ ] 9. Sitemap + llms.txt entries; build passes; check on localhost (desktop + phone)
+- [ ] 10. review.md; commit; push only on Aldin's go-ahead (one launch)

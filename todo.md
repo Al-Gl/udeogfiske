@@ -2788,12 +2788,14 @@ Added on Aldin's go-ahead (same day): link building gets the most weight. `marke
 
 - [x] 1. `marketing/put-and-take-roadmap.md`: structure (hub, 6 regions, demand-gated area pages, flat lake URLs), 3 lake levels (Listing / Page / Page + besøg), one Markdown file per lake with a schema that blocks half-done lakes, sources, pipeline, waves, risks
 - [x] 2. Pointer in `put-and-take-directory.md` and `marketing/README.md`
-- [ ] 3. Aldin: answer the 5 decisions in §15 of the roadmap (levels, regions, which lakes fished, contact timing, photos)
+- [x] 3. Aldin answered (5 Nov): 3 levels yes · Vestjylland own region (7 regions) · visited lakes marked in a master sheet, pages built from the sheet · lake emails + photos = phase 2
 
 Wave 0 (starts after Aldin's answers; each step small):
-- [ ] 4. Inventory: pull all Danish "fishing pond" listings (135) + name searches in other categories + keyword list → `marketing/research/put-and-take-inventory.csv`, deduped
-- [ ] 5. Content collection `lakes` + zod schema (required facts for level page/visited)
+- [x] 4. Master sheet `marketing/put-and-take/put-and-take-soeer.xlsx`: 197 places from Google Maps (category + 6 name searches), deduped, regions from postcode, search demand per lake, priority; 144 open put & take, 28 to check, 25 closed/other; tab for missing lakes (Skellerup)
+- [ ] 4b. Aldin: mark Besøgt = Ja in the sheet; glance at the 28 "tjek" rows (Type column); confirm Ørsted Fisk & Golf = the Ørsted Ørredvand trip
+- [ ] 4c. Extra discovery for Sjælland (11) and Fyn (7), which look under-counted: fishingindenmark.info spots, Facebook group, reader tips
+- [ ] 5. `npm run lakes`: read the sheet → `src/data/lakes.json`; fail if a page/visited row lacks prices, species, hours, source or check date; lake texts in `src/content/lakes/{slug}.md`
 - [ ] 6. Lake page route `[slug].astro` using the template; check Ørsted naming (Ørredvand vs. Fisk & Golf)
-- [ ] 7. Hub rewrite + 6 region pages with lake tables + "nær mig" sort
+- [ ] 7. Hub rewrite + 7 region pages (incl. Vestjylland) with lake tables + "nær mig" sort
 - [ ] 8. Sitemap entries for lakes generated from the collection
 - [ ] 9. Build passes, check on localhost; commit; push only on Aldin's go-ahead

@@ -5711,3 +5711,15 @@ What changed (planning files only):
 - `put-and-take-directory.md` §2 marked superseded (it said one JSON file and 5 regions); README links the roadmap.
 
 Open: Aldin's 5 decisions (§15). Nothing built yet.
+
+## Review: put & take master sheet (2026-11-05)
+
+What changed:
+- New `marketing/put-and-take/put-and-take-soeer.xlsx` (Excel, Danish): tabs Læs mig / Søer / Lukket & andet / Mangler. Aldin's columns (Besøgt, Niveau, Type, Region, Noter) are orange with dropdowns; Maps data blue; fact columns grey and empty until each batch is researched.
+- Data: 221 Google Maps listings (DataForSEO business listings: "fishing pond" category + name searches put and take / put & take / fiskesø / lystfiskersø / fiskepark / ørredsø) → 197 after merging duplicates. 144 open put & take lakes; 28 to check; 25 closed or not relevant. Each search keyword assigned to one best-matching lake; priority = name searches + 2 × reviews.
+- Top by priority: Oxriver, Simons, Ørsted Fisk & Golf, Klittens, Drive in (Lynge), Søndervig, Hedensted, Børges, Nebel Sø, Henne, Harlev.
+- Roadmap updated with Aldin's decisions: Vestjylland region (7 regions), the sheet is the single source of facts (pages built from it via a converter that blocks incomplete lakes), lake emails and photos moved to phase 2. Link plan updated to match.
+- Scripts in `marketing/put-and-take/tools/`; the sheet writer is marked one-off so it can't overwrite Aldin's edits.
+
+Checks: sheet read back; 172 rows on Søer; slugs unique; fixed a bug where "Fyelmose/Ellemose Put & Take" were typed as natural water (name contains "mose").
+Open: Sjælland (11) and Fyn (7) look under-counted on Maps. Ørsted trip report doesn't name a town, so the match with Ørsted Fisk & Golf (Viby) needs Aldin's confirmation. Skellerup (480/mo) not on Maps.

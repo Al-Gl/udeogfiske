@@ -5775,3 +5775,10 @@ Aldin: cleaner design that does not look AI-made.
 - Prices as a menu list with dotted leaders and tabular numbers; hour tickets and other prices in two columns (one column on phones).
 - Rules as a numbered list (amber numerals). Sources + correction email as a small grey line. "Tjekket …" in small italics.
 - Build passes; checked the output text for Simons and Ørsted.
+
+## Review: put & take launch 1 went live (2026-11-07)
+
+- Aldin: "Lets go live with these pages". The GitHub repo turned out to be public, and the unpushed commits contained the marketing folder (strategy, link prospects with contacts, lake sheet), ROADMAP.md and linkbuilding.md. Aldin chose to keep those private.
+- Backed up the files and a branch (`backup-before-private-push`), rewrote the 10 unpushed commits without those paths (git filter-branch on origin/main..HEAD only; nothing already on GitHub was touched), restored the files on disk (verified identical to backup) and added `marketing/`, `ROADMAP.md`, `linkbuilding.md` to .gitignore. Verified: 0 private paths in the pushed commits, site code identical, build passes.
+- Pushed; live after ~30 s. All 17 put & take URLs return 200 (Drive In 404'd once while the deploy was still rolling out, then 200). sitemap.xml has the new URLs; /marketing/ is not served.
+- Found that `public/_headers` sent `Permissions-Policy: geolocation=()`, which blocks the "Vis nærmeste søer" button. Changed to `geolocation=(self)` (site only; microphone/camera still blocked) and pushed as a follow-up fix.

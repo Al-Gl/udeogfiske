@@ -2815,4 +2815,4 @@ Order proposed by Aldin: hub → regions → top 10 lakes. Agreed, with three tw
 - [x] 7. 6 region pages via `RegionPage` component (Bornholm's 2 lakes shown on Sjælland)
 - [x] 8. Hub title is now "Put and take søer i Danmark"; guide got a link to the hub right under its answer box, and the old deep link was reworded
 - [x] 9. Sitemap (+15 URLs, dates bumped) and llms.txt updated; build passes; all pages 200 on localhost. [ ] Visual check desktop + phone: Aldin (no headless browser available here)
-- [ ] 10. review.md; commit; push only on Aldin's go-ahead (one launch)
+- [x] 10. Pushed live 2026-11-07 on Aldin's go-ahead (marketing files kept out of the public repo first); geolocation header fixed so "nær mig" works

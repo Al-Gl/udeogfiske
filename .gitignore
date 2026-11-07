@@ -40,5 +40,7 @@ data/metrics.json
 # local error/debug logs pasted in for troubleshooting
 error*.txt
 
-# Search Console exports used for marketing research (private property data)
-marketing/research/*gsc*
+# Private strategy and planning files: kept local, never pushed (the GitHub repo is public)
+marketing/
+ROADMAP.md
+linkbuilding.md

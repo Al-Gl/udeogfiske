@@ -2816,3 +2816,11 @@ Order proposed by Aldin: hub → regions → top 10 lakes. Agreed, with three tw
 - [x] 8. Hub title is now "Put and take søer i Danmark"; guide got a link to the hub right under its answer box, and the old deep link was reworded
 - [x] 9. Sitemap (+15 URLs, dates bumped) and llms.txt updated; build passes; all pages 200 on localhost. [ ] Visual check desktop + phone: Aldin (no headless browser available here)
 - [x] 10. Pushed live 2026-11-07 on Aldin's go-ahead (marketing files kept out of the public repo first); geolocation header fixed so "nær mig" works
+
+## Newsletter: November mail (2026-11-08)
+
+Aldin's brief: the sea trout fredning from 16 Nov, you can still catch the silver fish and how to target them, products for catch & release, fjords until mid-November then open coast for silver fish.
+- [x] 1. Draft `newsletter/2026-11/november-fredning.html` on the October frame: Kort fortalt, regler (consistent with /blog/fredning-af-havorred/), blank vs farvet, fjord -> åben kyst, fire novembertips, C&R-grej (the 3 products from /fiskeguide/catch-and-release/), sådan sætter jeg ud, plug for the new put & take overview, links. No named spot (Aldin gave water types only).
+- [x] 2. All links and images checked (200)
+- [ ] 3. Aldin: read the draft; decide on affiliate links in email (Partner-ads/Fiskegrej terms) - fallback link to the C&R guide is in the comment at the top
+- [ ] 4. Aldin: paste into Brevo, test in Gmail + Outlook, send by Thu 12 Nov

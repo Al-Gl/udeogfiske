@@ -5782,3 +5782,11 @@ Aldin: cleaner design that does not look AI-made.
 - Backed up the files and a branch (`backup-before-private-push`), rewrote the 10 unpushed commits without those paths (git filter-branch on origin/main..HEAD only; nothing already on GitHub was touched), restored the files on disk (verified identical to backup) and added `marketing/`, `ROADMAP.md`, `linkbuilding.md` to .gitignore. Verified: 0 private paths in the pushed commits, site code identical, build passes.
 - Pushed; live after ~30 s. All 17 put & take URLs return 200 (Drive In 404'd once while the deploy was still rolling out, then 200). sitemap.xml has the new URLs; /marketing/ is not served.
 - Found that `public/_headers` sent `Permissions-Policy: geolocation=()`, which blocks the "Vis nærmeste søer" button. Changed to `geolocation=(self)` (site only; microphone/camera still blocked) and pushed as a follow-up fix.
+
+## Review: November newsletter draft (2026-11-08)
+
+- New `newsletter/2026-11/november-fredning.html`, built on the unsent October draft so readers get the same frame. Subject "16. november: det her ændrer sig på kysten".
+- Facts match the site: farvede havørreder fredet i saltvand 16/11-15/1 (begge dage inkl.), ferskvand 16/11-28./29.2, blanke over 40 cm må tages, 500 m fra å-udløb, local stricter rules (Bornholm, Vadehavet). C&R steps from the C&R guide (våde hænder, afkrog i vandet, under 10 sek. i luften, flade modhager).
+- Aldin's angle written in first person as his experience: fjorde indtil midten af november, åben kyst efter den 16. for at møde blanke fisk og skåne gydefiskene.
+- Gear: SFG Easy Flip gumminet (399 kr.), Guideline Trout Forceps (159 kr.), Searun Forceps 3-in-One (159 kr.), all in stock in the feed (5 Nov), Partner-ads links with disclosure.
+- Open: affiliate links in email not yet confirmed allowed (same open question as the October draft); send date should be by 12 Nov for the fjord advice to make sense.

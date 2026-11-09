@@ -2824,3 +2824,5 @@ Aldin's brief: the sea trout fredning from 16 Nov, you can still catch the silve
 - [x] 2. All links and images checked (200)
 - [ ] 3. Aldin: read the draft; decide on affiliate links in email (Partner-ads/Fiskegrej terms) - fallback link to the C&R guide is in the comment at the top
 - [ ] 4. Aldin: paste into Brevo, test in Gmail + Outlook, send by Thu 12 Nov
+- [x] 5. v2 on Aldin's request (2026-11-09): `newsletter/2026-11/november-v2-flere-fiskeformer.html` = v1 + "Det kan du også fiske efter i november": høstsild (from /guide-til-fisk/sildefiskeri/: arrives Sept, stays to Christmas, deeper, forfang + 40-80 g pirk), gedde and aborre (autumn high season, big soft baits slow near the bottom in cold water), put and take. Torsk left out (closed in many areas). v1 kept for comparison
+- [ ] 6. Site fix spotted: the sildefiskeri FAQ says fisketegn is needed "mellem 18 og 65 år" and links fisketegn.fiskeristyrelsen.dk; should be up to folkepensionsalderen and fisketegn.dk (check on fisketegn.dk first)

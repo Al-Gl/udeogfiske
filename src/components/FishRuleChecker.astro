@@ -1,6 +1,6 @@
 ---
 // "Må jeg tage fisken med hjem?" — checks species + where + date (+ optional length)
-// against src/data/fiskeregler.ts. All logic runs in the browser; no data leaves the page.
+// against src/data/fiskeregler.ts. Logic: src/lib/fishRules.ts. Runs in the browser; no data leaves the page.
 // Deep links: ?art=havoerred&hvor=kattegat pre-fills the form.
 import { SPECIES, ZONES, AREA_NAMES, RULES_SOURCE } from '../data/fiskeregler';
 
@@ -9,48 +9,75 @@ const { species = 'havoerred', zone = 'kattegat' } = Astro.props;
 const data = { species: SPECIES, zones: ZONES, areas: AREA_NAMES, source: RULES_SOURCE };
 const salt = ZONES.filter((z) => z.water === 'salt');
 const fresh = ZONES.filter((z) => z.water === 'fersk');
+const startWater = ZONES.find((z) => z.key === zone)?.water ?? 'salt';
+const MONTHS = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
 ---
 
-<section class="frc" aria-labelledby="frc-title" data-default-species={species} data-default-zone={zone}>
-  <h2 id="frc-title" class="frc-title">Tjek din fisk</h2>
+<section class="frc" aria-labelledby="frc-title">
+  <header class="frc-head">
+    <h2 id="frc-title">Tjek din fisk</h2>
+    <p>Vælg art, sted og dato. Svaret opdaterer sig, mens du vælger.</p>
+  </header>
 
   <form class="frc-form" onsubmit="return false">
-    <label class="frc-field">
-      <span>Art</span>
-      <select name="art">
-        {SPECIES.map((s) => <option value={s.slug} selected={s.slug === species}>{s.name}</option>)}
-      </select>
-    </label>
-    <label class="frc-field frc-wide">
-      <span>Hvor fisker du?</span>
-      <select name="hvor">
-        <optgroup label="Saltvand">
-          {salt.map((z) => <option value={z.key} selected={z.key === zone}>{z.label}</option>)}
-        </optgroup>
-        <optgroup label="Ferskvand">
-          {fresh.map((z) => <option value={z.key} selected={z.key === zone}>{z.label}</option>)}
-        </optgroup>
-      </select>
-    </label>
-    <label class="frc-field">
-      <span>Dato</span>
-      <input type="date" name="dato" />
-    </label>
-    <label class="frc-field">
-      <span>Længde <em>(valgfri)</em></span>
-      <input type="number" name="laengde" min="1" max="200" inputmode="numeric" placeholder="cm" />
-    </label>
-    <fieldset class="frc-field frc-state" hidden>
+    <div class="frc-water" role="radiogroup" aria-label="Saltvand eller ferskvand">
+      <label><input type="radio" name="vand" value="salt" checked={startWater === 'salt'} /><span>Saltvand</span></label>
+      <label><input type="radio" name="vand" value="fersk" checked={startWater === 'fersk'} /><span>Ferskvand</span></label>
+    </div>
+
+    <div class="frc-grid">
+      <label class="frc-field">
+        <span>Art</span>
+        <select name="art">
+          {SPECIES.map((s) => <option value={s.slug} selected={s.slug === species}>{s.name}</option>)}
+        </select>
+      </label>
+      <label class="frc-field frc-where">
+        <span>Hvor fisker du?</span>
+        <select name="hvor">
+          {salt.map((z) => <option value={z.key} data-water="salt" selected={z.key === zone}>{z.label}</option>)}
+          {fresh.map((z) => <option value={z.key} data-water="fersk" selected={z.key === zone}>{z.label}</option>)}
+        </select>
+      </label>
+      <label class="frc-field">
+        <span>Dato</span>
+        <input type="date" name="dato" />
+      </label>
+      <label class="frc-field">
+        <span>Længde <em>valgfri</em></span>
+        <div class="frc-len"><input type="number" name="laengde" min="1" max="200" inputmode="numeric" placeholder="fx 42" /><b>cm</b></div>
+      </label>
+    </div>
+
+    <fieldset class="frc-state" hidden>
       <legend>Er fisken blank eller farvet?</legend>
-      <label><input type="radio" name="tilstand" value="blank" /> Blank</label>
-      <label><input type="radio" name="tilstand" value="farvet" /> Farvet</label>
-      <label><input type="radio" name="tilstand" value="" checked /> Ved ikke</label>
+      <label><input type="radio" name="tilstand" value="blank" /><span>Blank</span></label>
+      <label><input type="radio" name="tilstand" value="farvet" /><span>Farvet</span></label>
+      <label><input type="radio" name="tilstand" value="" checked /><span>Ved ikke</span></label>
     </fieldset>
   </form>
 
-  <div class="frc-result" aria-live="polite">
-    <p class="frc-verdict"></p>
-    <p class="frc-why"></p>
+  <div class="frc-card" aria-live="polite">
+    <div class="frc-top">
+      <span class="frc-stamp"></span>
+      <div>
+        <p class="frc-verdict"></p>
+        <p class="frc-why"></p>
+      </div>
+    </div>
+
+    <div class="frc-year">
+      <p class="frc-year-title"></p>
+      <div class="frc-bar"><span class="frc-marker" aria-hidden="true"></span></div>
+      <ol class="frc-months" aria-hidden="true">{MONTHS.map((m) => <li>{m}</li>)}</ol>
+      <ul class="frc-legend">
+        <li><i class="k-closed"></i>Fredet</li>
+        <li><i class="k-colored"></i>Kun blanke fisk</li>
+        <li><i class="k-check"></i>Særlige regler</li>
+        <li><i class="k-date"></i>Valgt dato</li>
+      </ul>
+    </div>
+
     <dl class="frc-facts"></dl>
     <ul class="frc-notes"></ul>
   </div>
@@ -66,41 +93,81 @@ const fresh = ZONES.filter((z) => z.water === 'fersk');
 </section>
 
 <script>
-  import { evaluate, mmdd } from '../lib/fishRules';
+  import { evaluate, yearSegments, mmdd } from '../lib/fishRules';
+
+  const STAMP: Record<string, string> = { ok: 'Ja', no: 'Nej', check: 'Tjek' };
 
   document.querySelectorAll<HTMLElement>('.frc').forEach((box) => {
     const data = JSON.parse(box.querySelector('.frc-data')!.textContent!);
     const form = box.querySelector('form')!;
     const f = (n: string) => form.elements.namedItem(n) as HTMLInputElement & HTMLSelectElement;
+    const card = box.querySelector<HTMLElement>('.frc-card')!;
+    const bar = box.querySelector<HTMLElement>('.frc-bar')!;
+    const marker = box.querySelector<HTMLElement>('.frc-marker')!;
     const stateBox = box.querySelector<HTMLElement>('.frc-state')!;
-    const result = box.querySelector<HTMLElement>('.frc-result')!;
+    const hvor = f('hvor');
+    const options = Array.from(hvor.options);
     const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+
+    // Show only the areas for the chosen water type.
+    const water = () => (form.querySelector<HTMLInputElement>('input[name="vand"]:checked')?.value ?? 'salt');
+    function filterAreas() {
+      const w = water();
+      options.forEach((o) => { o.hidden = o.dataset.water !== w; o.disabled = o.dataset.water !== w; });
+      if (hvor.selectedOptions[0]?.dataset.water !== w) hvor.value = options.find((o) => o.dataset.water === w)!.value;
+    }
 
     // Pre-fill from the URL (?art=…&hvor=…) and default the date to today.
     const params = new URLSearchParams(location.search);
-    const art = params.get('art'), hvor = params.get('hvor');
+    const art = params.get('art'), where = params.get('hvor');
     if (art && data.species.some((s: { slug: string }) => s.slug === art)) f('art').value = art;
-    if (hvor && data.zones.some((z: { key: string }) => z.key === hvor)) f('hvor').value = hvor;
+    const zoneFromUrl = data.zones.find((z: { key: string }) => z.key === where);
+    if (zoneFromUrl) {
+      form.querySelector<HTMLInputElement>(`input[name="vand"][value="${zoneFromUrl.water}"]`)!.checked = true;
+      hvor.value = zoneFromUrl.key;
+    }
+    filterAreas();
     const today = new Date();
     f('dato').value = `${today.getFullYear()}-${mmdd(today)}`;
 
     function render() {
+      const date = f('dato').value ? new Date(f('dato').value + 'T12:00:00') : today;
+      const state = (form.querySelector<HTMLInputElement>('input[name="tilstand"]:checked')?.value || '') as '' | 'blank' | 'farvet';
       const r = evaluate(data, {
         art: f('art').value,
-        hvor: f('hvor').value,
-        date: f('dato').value ? new Date(f('dato').value + 'T12:00:00') : today,
+        hvor: hvor.value,
+        date,
         length: f('laengde').value ? parseFloat(f('laengde').value) : undefined,
-        state: (form.querySelector<HTMLInputElement>('input[name="tilstand"]:checked')?.value || '') as '' | 'blank' | 'farvet',
+        state,
       });
       stateBox.hidden = !r.showState;
-      result.dataset.tone = r.tone;
+      card.dataset.tone = r.tone;
+      box.querySelector('.frc-stamp')!.textContent = r.showState && r.tone === 'check' ? 'Kun blanke' : STAMP[r.tone];
       box.querySelector('.frc-verdict')!.textContent = r.verdict;
       box.querySelector('.frc-why')!.textContent = r.why;
+
+      // Year strip
+      const name = f('art').selectedOptions[0].textContent!.toLowerCase();
+      const y = yearSegments(data.species, f('art').value, hvor.value, date);
+      box.querySelector('.frc-year-title')!.textContent = y.segments.length
+        ? `Sådan ser ${date.getFullYear()} ud for ${name} her`
+        : `${name[0].toUpperCase()}${name.slice(1)} er ikke fredet her i ${date.getFullYear()}`;
+      bar.querySelectorAll('.frc-seg').forEach((el) => el.remove());
+      y.segments.forEach((s) => {
+        const el = document.createElement('span');
+        el.className = `frc-seg k-${s.kind}`;
+        el.style.left = `${s.start}%`;
+        el.style.width = `${Math.max(s.end - s.start, 0.6)}%`;
+        bar.insertBefore(el, marker);
+      });
+      marker.style.left = `${y.marker}%`;
+
       box.querySelector('.frc-facts')!.innerHTML = r.facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
       box.querySelector('.frc-notes')!.innerHTML = r.notes.map((n) => `<li>${esc(n)}</li>`).join('');
-      history.replaceState(null, '', `${location.pathname}?${new URLSearchParams({ art: f('art').value, hvor: f('hvor').value })}${location.hash}`);
+      history.replaceState(null, '', `${location.pathname}?${new URLSearchParams({ art: f('art').value, hvor: hvor.value })}${location.hash}`);
     }
 
+    form.querySelectorAll<HTMLInputElement>('input[name="vand"]').forEach((r) => r.addEventListener('change', filterAreas));
     form.addEventListener('input', render);
     form.addEventListener('change', render);
     render();
@@ -108,47 +175,98 @@ const fresh = ZONES.filter((z) => z.water === 'fersk');
 </script>
 
 <style>
-  .frc { border-top: 3px solid #0d4a5e; border-bottom: 1px solid #d6dde2; padding: 1.25rem 0 1.25rem; margin: 0 0 3rem; }
-  .frc-title { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0d4a5e; margin-bottom: 1rem; }
-
-  .frc-form { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem 1.25rem; }
-  .frc-field { display: flex; flex-direction: column; gap: 0.35rem; border: 0; padding: 0; margin: 0; min-width: 0; }
-  .frc-field > span, .frc-field legend { font-size: 0.8125rem; font-weight: 600; color: #374151; }
-  .frc-field em { font-style: normal; font-weight: 400; color: #9ca3af; }
-  .frc-field select, .frc-field input[type="date"], .frc-field input[type="number"] {
-    font: inherit; font-size: 0.96875rem; color: #111827; background: #ffffff;
-    border: 1px solid #c9d2d8; border-radius: 6px; padding: 0.6rem 0.7rem; width: 100%;
+  .frc {
+    --c-ok: #2f6f3e; --c-ok-bg: #eef6f0;
+    --c-no: #b42318; --c-no-bg: #fdf0ee;
+    --c-check: #9a6212; --c-check-bg: #fdf6e8;
+    background: #f3f6f7;
+    border: 1px solid #e3e9ec;
+    border-radius: 16px;
+    padding: 1.75rem;
+    margin: 0 0 3rem;
   }
-  .frc-field select:focus, .frc-field input:focus { outline: 2px solid #0d4a5e; outline-offset: 1px; border-color: #0d4a5e; }
-  .frc-state { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; }
-  .frc-state legend { width: 100%; margin-bottom: 0.35rem; }
-  .frc-state label { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9375rem; color: #1f2937; cursor: pointer; }
-  .frc-state[hidden] { display: none; }
+  .frc-head h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: #0f2f3a; }
+  .frc-head p { font-size: 0.9375rem; color: #5b6b73; margin-top: 0.2rem; }
 
-  .frc-result { margin-top: 1.5rem; padding: 0.25rem 0 0.25rem 1.125rem; border-left: 4px solid #9ca3af; }
-  .frc-result[data-tone="ok"] { border-left-color: #2f6f3e; }
-  .frc-result[data-tone="no"] { border-left-color: #b42318; }
-  .frc-result[data-tone="check"] { border-left-color: #b7791f; }
-  .frc-verdict { font-size: clamp(1.375rem, 3vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: #111827; }
-  .frc-result[data-tone="ok"] .frc-verdict { color: #2f6f3e; }
-  .frc-result[data-tone="no"] .frc-verdict { color: #b42318; }
-  .frc-result[data-tone="check"] .frc-verdict { color: #8a5a12; }
-  .frc-why { font-size: 0.96875rem; color: #374151; line-height: 1.6; margin-top: 0.5rem; }
+  /* Salt / fresh switch */
+  .frc-water { display: inline-flex; background: #e2e9ec; border-radius: 10px; padding: 3px; margin: 1.25rem 0 1rem; }
+  .frc-water label { position: relative; cursor: pointer; }
+  .frc-water input { position: absolute; opacity: 0; pointer-events: none; }
+  .frc-water span { display: block; padding: 0.45rem 1.1rem; font-size: 0.9375rem; font-weight: 600; color: #4b5d66; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .frc-water input:checked + span { background: #ffffff; color: #0d4a5e; box-shadow: 0 1px 2px rgba(15, 47, 58, 0.12); }
+  .frc-water input:focus-visible + span { outline: 2px solid #0d4a5e; outline-offset: 1px; }
+
+  .frc-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 0.875rem 1rem; }
+  .frc-field { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+  .frc-field > span { font-size: 0.8125rem; font-weight: 600; color: #34444c; }
+  .frc-field em { font-style: normal; font-weight: 400; color: #8a979d; margin-left: 0.25rem; }
+  .frc-field select, .frc-field input {
+    font: inherit; font-size: 1rem; color: #111827; background: #ffffff;
+    border: 1px solid #cdd7dc; border-radius: 10px; padding: 0.7rem 0.8rem; width: 100%;
+  }
+  .frc-field select:focus, .frc-field input:focus { outline: 2px solid #0d4a5e; outline-offset: 0; border-color: #0d4a5e; }
+  .frc-len { position: relative; }
+  .frc-len b { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); font-weight: 500; color: #8a979d; font-size: 0.9375rem; pointer-events: none; }
+
+  .frc-state { border: 0; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .frc-state[hidden] { display: none; }
+  .frc-state legend { font-size: 0.8125rem; font-weight: 600; color: #34444c; margin-bottom: 0.4rem; width: 100%; }
+  .frc-state label { cursor: pointer; }
+  .frc-state input { position: absolute; opacity: 0; pointer-events: none; }
+  .frc-state span { display: inline-block; padding: 0.45rem 1rem; font-size: 0.9375rem; font-weight: 500; color: #34444c; background: #ffffff; border: 1px solid #cdd7dc; border-radius: 10px; }
+  .frc-state input:checked + span { border-color: #0d4a5e; color: #0d4a5e; font-weight: 600; box-shadow: inset 0 0 0 1px #0d4a5e; }
+
+  /* Result card */
+  .frc-card { background: #ffffff; border-radius: 14px; margin-top: 1.5rem; overflow: hidden; border: 1px solid #e3e9ec; }
+  .frc-top { display: flex; gap: 1.125rem; align-items: flex-start; padding: 1.375rem 1.375rem 1.25rem; background: var(--tone-bg, #f8fafb); }
+  .frc-card[data-tone="ok"] { --tone: var(--c-ok); --tone-bg: var(--c-ok-bg); }
+  .frc-card[data-tone="no"] { --tone: var(--c-no); --tone-bg: var(--c-no-bg); }
+  .frc-card[data-tone="check"] { --tone: var(--c-check); --tone-bg: var(--c-check-bg); }
+  .frc-stamp {
+    flex: 0 0 auto; min-width: 5.25rem; text-align: center;
+    font-size: 1rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.15;
+    color: var(--tone, #374151); border: 2.5px solid var(--tone, #374151); border-radius: 10px;
+    padding: 0.7rem 0.6rem; background: #ffffff;
+  }
+  .frc-verdict { font-size: clamp(1.25rem, 2.8vw, 1.625rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--tone, #111827); }
+  .frc-why { font-size: 0.96875rem; color: #374151; line-height: 1.6; margin-top: 0.4rem; }
   .frc-why:empty { display: none; }
 
-  .frc-facts { margin-top: 1rem; }
-  .frc-facts div { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 0.55rem 0; border-top: 1px solid #e8ecef; }
-  .frc-facts dt { font-size: 0.8125rem; font-weight: 600; color: #6b7280; }
-  .frc-facts dd { font-size: 0.9375rem; color: #1f2937; }
-  .frc-notes { list-style: none; margin-top: 0.75rem; display: grid; gap: 0.5rem; }
-  .frc-notes li { font-size: 0.875rem; color: #4b5563; line-height: 1.55; padding-left: 1rem; position: relative; }
-  .frc-notes li::before { content: "–"; position: absolute; left: 0; color: #9ca3af; }
+  /* Year strip */
+  .frc-year { padding: 1.25rem 1.375rem 0.25rem; }
+  .frc-year-title { font-size: 0.8125rem; font-weight: 600; color: #34444c; margin-bottom: 0.6rem; }
+  .frc-bar { position: relative; height: 14px; border-radius: 7px; background: #e8eef1; overflow: visible; }
+  .frc-bar :global(.frc-seg) { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .frc-marker { position: absolute; top: -5px; bottom: -5px; width: 3px; margin-left: -1.5px; background: #0f2f3a; border-radius: 2px; }
+  .frc-months { list-style: none; display: grid; grid-template-columns: repeat(12, 1fr); margin-top: 0.4rem; }
+  .frc-months li { font-size: 0.6875rem; font-weight: 600; color: #8a979d; text-align: center; }
+  .frc-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin-top: 0.7rem; }
+  .frc-legend li { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: #5b6b73; }
+  .frc-legend i { width: 14px; height: 10px; border-radius: 3px; display: inline-block; }
+  .frc :global(.k-closed) { background: #d9534a; }
+  .frc :global(.k-colored) { background: #e7a73c; }
+  .frc :global(.k-check) { background: repeating-linear-gradient(135deg, #e7a73c 0 3px, #f6dfb5 3px 6px); }
+  .frc-legend .k-date { width: 3px; height: 14px; background: #0f2f3a; }
 
-  .frc-src { font-size: 0.8125rem; color: #8a949c; line-height: 1.6; margin-top: 1.5rem; }
-  .frc-src a { color: #6b7280; text-decoration: underline; text-underline-offset: 2px; }
+  .frc-facts { padding: 0.75rem 1.375rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem; }
+  .frc-facts :global(div) { padding: 0.7rem 0; border-top: 1px solid #eef2f4; }
+  .frc-facts :global(dt) { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #8a979d; }
+  .frc-facts :global(dd) { font-size: 0.9375rem; color: #1f2937; margin-top: 0.15rem; line-height: 1.5; }
+  .frc-notes { list-style: none; padding: 0.25rem 1.375rem 1.25rem; display: grid; gap: 0.5rem; }
+  .frc-notes:empty { padding-bottom: 0.75rem; }
+  .frc-notes :global(li) { font-size: 0.875rem; color: #4b5563; line-height: 1.55; padding: 0.6rem 0.8rem; background: #f6f8f9; border-radius: 8px; }
+
+  .frc-src { font-size: 0.8125rem; color: #7d8a90; line-height: 1.6; margin-top: 1.125rem; }
+  .frc-src a { color: #5b6b73; text-decoration: underline; text-underline-offset: 2px; }
 
   @media (max-width: 640px) {
-    .frc-form { grid-template-columns: 1fr; }
-    .frc-facts div { grid-template-columns: 1fr; gap: 0.1rem; }
+    .frc { padding: 1.25rem 1rem; border-radius: 12px; }
+    .frc-grid { grid-template-columns: 1fr; }
+    .frc-water { display: flex; }
+    .frc-water label { flex: 1; text-align: center; }
+    .frc-top { flex-direction: column; gap: 0.75rem; padding: 1.125rem 1rem; }
+    .frc-year, .frc-facts { padding-left: 1rem; padding-right: 1rem; }
+    .frc-notes { padding: 0.25rem 1rem 1rem; }
+    .frc-facts { grid-template-columns: 1fr; }
   }
 </style>

@@ -2837,4 +2837,5 @@ Source: Miljøstyrelsen, https://mst.dk/borger/lyst-og-fritidsfiskeri/mindstemaa
 - [x] 4. Links in: fredning blog post, havørred hub, fiskeguide index; sitemap + llms.txt (fisketegn and species pages: later, small)
 - [x] 5. Build passes, pages 200 on localhost, committed. [ ] Aldin: look at it; push on go-ahead
 - [ ] 5b. Every January: re-read the Miljøstyrelsen page, update `years` for torsk/ål and the check date, run `npm run test:rules`
-- [ ] 6. Noted, not part of this task: torskefiskeri page says 30 cm "i de fleste farvande" (official: 35 cm Nordsøen and Bælterne/Østersøen, 30 cm Skagerrak/Kattegat) and should mention the 2026 cod ban in subareas 22-24
+- [x] 6. Torskefiskeri page: 2026 ban in subareas 22-24 added to the rules section, the 35 cm highlight and the FAQ (x2); link to the checker; fisketegn link -> fisketegn.dk. (The 30/35 cm text was already correct; my earlier note misread a caption.)
+- [x] 7. Checker redesign on Aldin's request: panel, saltvand/ferskvand switch, result card with stamp, 12-month year strip, 22 tests

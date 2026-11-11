@@ -2,7 +2,7 @@
 // Run: node --experimental-strip-types scripts/test-fish-rules.mjs
 // Expected answers come from Miljøstyrelsen's rules page (see src/data/fiskeregler.ts).
 import { SPECIES, ZONES, AREA_NAMES } from '../src/data/fiskeregler.ts';
-import { evaluate } from '../src/lib/fishRules.ts';
+import { evaluate, yearSegments } from '../src/lib/fishRules.ts';
 
 const data = { species: SPECIES, zones: ZONES, areas: AREA_NAMES };
 const d = (s) => new Date(s + 'T12:00:00');
@@ -38,5 +38,20 @@ for (const [desc, input, tone, text] of cases) {
   if (!ok) failed++;
   console.log(`${ok ? 'ok  ' : 'FAIL'} ${desc} -> [${r.tone}] ${r.verdict}${r.facts[1] ? ' | ' + r.facts[1][1] : ''}`);
 }
-console.log(failed ? `\n${failed} of ${cases.length} failed` : `\nAll ${cases.length} passed`);
+// Year strip
+const strip = yearSegments(SPECIES, 'havoerred', 'kattegat', d('2026-11-20'));
+const stripOk = strip.segments.length === 2
+  && strip.segments.every((s) => s.kind === 'colored')
+  && strip.segments[0].start === 0 && Math.abs(strip.segments[0].end - (15 / 365) * 100) < 0.01  // 1-15 Jan
+  && Math.abs(strip.segments[1].start - (319 / 365) * 100) < 0.01 && strip.segments[1].end === 100 // 16 Nov -> 31 Dec
+  && strip.marker > strip.segments[1].start;
+if (!stripOk) failed++;
+console.log(`${stripOk ? 'ok  ' : 'FAIL'} Year strip: havørred, Kattegat, 2026 -> ${JSON.stringify(strip.segments.map((s) => [s.kind, s.start.toFixed(1), s.end.toFixed(1)]))}, marker ${strip.marker.toFixed(1)}%`);
+const none = yearSegments(SPECIES, 'hornfisk', 'baelt', d('2026-05-01'));
+const noneOk = none.segments.length === 0;
+if (!noneOk) failed++;
+console.log(`${noneOk ? 'ok  ' : 'FAIL'} Year strip: hornfisk has no periods`);
+
+const total = cases.length + 2;
+console.log(failed ? `\n${failed} of ${total} failed` : `\nAll ${total} passed`);
 process.exit(failed ? 1 : 0);

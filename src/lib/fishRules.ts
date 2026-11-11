@@ -21,6 +21,33 @@ const human = (md: string) => {
   return md === '02-29' ? '28./29. februar' : `${d}. ${MONTHS[m - 1]}`;
 };
 
+// Year strip: the periods for one species + zone in a given year, as percentages of the year,
+// plus where the chosen date sits. Periods over New Year are split in two.
+export type Segment = { start: number; end: number; kind: Period['kind'] };
+export function yearSegments(species: Species[], art: string, zone: string, date: Date) {
+  const year = date.getFullYear();
+  const leap = new Date(year, 1, 29).getMonth() === 1;
+  const daysInYear = leap ? 366 : 365;
+  const dayOf = (md: string) => {
+    const [m, d] = md.split('-').map(Number);
+    const day = m === 2 && d === 29 && !leap ? 28 : d;
+    return Math.round((new Date(year, m - 1, day).getTime() - new Date(year, 0, 1).getTime()) / 86400000);
+  };
+  const pct = (n: number) => (n / daysInYear) * 100;
+  const sp = species.find((s) => s.slug === art);
+  const segments: Segment[] = [];
+  for (const p of sp?.periods ?? []) {
+    if (!p.zones.includes(zone as any) || (p.years && !p.years.includes(year))) continue;
+    const a = dayOf(p.from), b = dayOf(p.to) + 1;
+    if (p.from <= p.to) segments.push({ start: pct(a), end: pct(b), kind: p.kind });
+    else segments.push({ start: 0, end: pct(b), kind: p.kind }, { start: pct(a), end: 100, kind: p.kind });
+  }
+  // Full closures drawn on top of "colored only" so overlaps read correctly
+  const order = { check: 0, colored: 1, closed: 2 } as const;
+  segments.sort((x, y) => order[x.kind] - order[y.kind]);
+  return { segments, marker: pct(dayOf(mmdd(date)) + 0.5) };
+}
+
 export function evaluate(
   data: { species: Species[]; zones: ZoneInfo[]; areas: Record<string, string> },
   input: Input,

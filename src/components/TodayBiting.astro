@@ -1,0 +1,192 @@
+---
+// "Hvad bider i dag?" — today's fish for the reader's area: season data (src/data/season-data.ts),
+// today's legal status (src/lib/fishRules.ts) and live weather from Open-Meteo (fetched only
+// after the reader picks an area). Logic: src/lib/todayBiting.ts. Everything is decided in the
+// browser with the visitor's own date, so the month is never stuck at build time.
+import { SPECIES, ZONES, AREA_NAMES } from '../data/fiskeregler';
+import { monthData } from '../data/season-data';
+import { AREAS } from '../lib/todayBiting';
+
+const data = { rules: { species: SPECIES, zones: ZONES, areas: AREA_NAMES }, months: monthData, areas: AREAS };
+---
+
+<section class="tb" aria-labelledby="tb-title">
+  <header class="tb-head">
+    <div>
+      <h2 id="tb-title">Hvad bider i dag?</h2>
+      <p class="tb-date">Vælg dit område, så ser du dagens fisk, vejret lige nu og reglerne for netop dér.</p>
+    </div>
+  </header>
+
+  <div class="tb-pick">
+    <label class="tb-field">
+      <span>Dit område</span>
+      <select name="omraade">
+        <option value="">Vælg område …</option>
+        {AREAS.map((a) => <option value={a.key}>{a.name}</option>)}
+      </select>
+    </label>
+    <button type="button" class="tb-locate">Brug min position</button>
+  </div>
+  <p class="tb-status" aria-live="polite"></p>
+
+  <div class="tb-out" hidden>
+    <div class="tb-weather">
+      <p class="tb-label">Vejret lige nu <span class="tb-time"></span></p>
+      <dl class="tb-stats"></dl>
+      <ul class="tb-tips"></ul>
+    </div>
+
+    <p class="tb-label tb-fish-label"></p>
+    <div class="tb-fish"></div>
+  </div>
+
+  <noscript><p class="tb-status">Værktøjet kræver JavaScript. Se måned for måned i sæsonguiden nedenfor.</p></noscript>
+
+  <p class="tb-src">
+    Sæson: min <a href="/saesonguide/">sæsonguide</a>. Regler: <a href="/fiskeguide/mindstemaal-og-fredningstider/">Miljøstyrelsen</a>.
+    Vejr: <a href="https://open-meteo.com/" rel="noopener" target="_blank">Open-Meteo.com</a> (CC BY 4.0). Vejrdata hentes først, når du vælger et område.
+  </p>
+
+  <script type="application/json" class="tb-data" set:html={JSON.stringify(data)}></script>
+</section>
+
+<script>
+  import { fishToday, weatherTips, windDir, nearestArea, type Weather } from '../lib/todayBiting';
+
+  const MONTHS = ['januar', 'februar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
+  const KEY = 'udeogfiske-omraade';
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+
+  document.querySelectorAll<HTMLElement>('.tb').forEach((box) => {
+    const data = JSON.parse(box.querySelector('.tb-data')!.textContent!);
+    const select = box.querySelector<HTMLSelectElement>('select[name="omraade"]')!;
+    const status = box.querySelector<HTMLElement>('.tb-status')!;
+    const out = box.querySelector<HTMLElement>('.tb-out')!;
+    const today = new Date();
+    box.querySelector('.tb-date')!.textContent =
+      `${today.toLocaleDateString('da-DK', { weekday: 'long', day: 'numeric', month: 'long' }).replace(/^./, (c) => c.toUpperCase())}. Vælg dit område, så ser du dagens fisk, vejret lige nu og reglerne for netop dér.`;
+
+    async function getWeather(a: { lat: number; lng: number; seaLat: number; seaLng: number }): Promise<Weather> {
+      const tz = 'timezone=Europe%2FCopenhagen';
+      const [w, s] = await Promise.all([
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${a.lat}&longitude=${a.lng}&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,precipitation&wind_speed_unit=ms&${tz}`).then((r) => r.json()),
+        fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${a.seaLat}&longitude=${a.seaLng}&current=sea_surface_temperature&${tz}`).then((r) => r.json()).catch(() => null),
+      ]);
+      const c = w.current;
+      return { air: c.temperature_2m, wind: c.wind_speed_10m, gust: c.wind_gusts_10m, dir: c.wind_direction_10m, cloud: c.cloud_cover, rain: c.precipitation, sea: s?.current?.sea_surface_temperature ?? undefined, time: c.time };
+    }
+
+    async function show(key: string) {
+      const area = data.areas.find((a: { key: string }) => a.key === key);
+      if (!area) { out.hidden = true; return; }
+      try { localStorage.setItem(KEY, key); } catch {}
+      const month = data.months[today.getMonth()];
+      const fish = fishToday(data.rules, month, area, today);
+
+      box.querySelector('.tb-fish-label')!.textContent = `I sæson i ${MONTHS[today.getMonth()]}: sådan er reglerne i dag`;
+      box.querySelector('.tb-fish')!.innerHTML = fish.map((f) => `
+        <article class="tb-card" data-tone="${f.tone}">
+          <p class="tb-card-water">${f.water === 'salt' ? 'Saltvand' : 'Ferskvand'}</p>
+          <h3><a href="${esc(f.href)}">${esc(f.name)}</a></h3>
+          <p class="tb-card-status">${esc(f.label)}</p>
+          <p class="tb-card-detail">${esc(f.detail)}</p>
+          ${f.checkHref ? `<a class="tb-card-link" href="${esc(f.checkHref)}">Tjek reglerne &rarr;</a>` : ''}
+        </article>`).join('');
+      out.hidden = false;
+
+      status.textContent = 'Henter vejret …';
+      try {
+        const w = await getWeather(area);
+        const stats: [string, string][] = [
+          ['Luft', `${Math.round(w.air)} °C`],
+          ...(w.sea !== undefined ? [['Vand', `${w.sea.toFixed(1).replace('.', ',')} °C`] as [string, string]] : []),
+          ['Vind', `${Math.round(w.wind)} m/s ${windDir(w.dir)}`],
+          ['Skyer', `${Math.round(w.cloud)} %`],
+        ];
+        box.querySelector('.tb-stats')!.innerHTML = stats.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+        box.querySelector('.tb-time')!.textContent = w.time ? `· ${area.name}, kl. ${w.time.slice(11, 16)}` : `· ${area.name}`;
+        box.querySelector('.tb-tips')!.innerHTML = weatherTips(w, month.fish).map((t) => `<li>${esc(t)}</li>`).join('');
+        status.textContent = '';
+      } catch {
+        status.textContent = 'Vejret kunne ikke hentes lige nu. Reglerne og fiskene nedenfor gælder stadig.';
+        box.querySelector('.tb-stats')!.innerHTML = '';
+        box.querySelector('.tb-tips')!.innerHTML = '';
+      }
+    }
+
+    select.addEventListener('change', () => show(select.value));
+    box.querySelector('.tb-locate')!.addEventListener('click', () => {
+      if (!navigator.geolocation) { status.textContent = 'Din browser kan ikke finde din position.'; return; }
+      status.textContent = 'Finder din position …';
+      navigator.geolocation.getCurrentPosition(
+        (p) => { const a = nearestArea(p.coords.latitude, p.coords.longitude); select.value = a.key; show(a.key); },
+        () => { status.textContent = 'Vi fik ikke lov at bruge din position. Vælg dit område i listen.'; },
+        { timeout: 10000 },
+      );
+    });
+
+    // Remembered area (this browser only)
+    let saved = '';
+    try { saved = localStorage.getItem(KEY) || ''; } catch {}
+    if (saved && data.areas.some((a: { key: string }) => a.key === saved)) { select.value = saved; show(saved); }
+  });
+</script>
+
+<style>
+  :global(:where(.tb) :where(h2, h3, p, dl, dd, ul, li)) { margin: 0; }
+  .tb { text-align: left; }
+  .tb { background: #f3f6f7; border: 1px solid #e3e9ec; border-radius: 16px; padding: 1.75rem; margin: 0 0 3rem; }
+  .tb-head h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: #0f2f3a; }
+  .tb-date { font-size: 0.9375rem; color: #5b6b73; margin-top: 0.2rem; line-height: 1.55; }
+
+  .tb-pick { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem; margin-top: 1.25rem; }
+  .tb-field { min-width: 0; display: flex; flex-direction: column; gap: 0.35rem; flex: 1 1 18rem; }
+  .tb-field span { font-size: 0.8125rem; font-weight: 600; color: #34444c; }
+  .tb-field select { width: 100%; min-width: 0; font: inherit; font-size: 1rem; color: #111827; background: #ffffff; border: 1px solid #cdd7dc; border-radius: 10px; padding: 0.7rem 0.8rem; }
+  .tb-field select:focus { outline: 2px solid #0d4a5e; border-color: #0d4a5e; }
+  .tb-locate { font: inherit; font-size: 0.9375rem; font-weight: 600; color: #0d4a5e; background: #ffffff; border: 1px solid #cdd7dc; border-radius: 10px; padding: 0.7rem 1rem; cursor: pointer; }
+  .tb-locate:hover { border-color: #0d4a5e; }
+  .tb-status { font-size: 0.875rem; color: #5b6b73; margin-top: 0.6rem; min-height: 1.2em; }
+  .tb-status:empty { min-height: 0; margin: 0; }
+
+  .tb-out { margin-top: 1.25rem; }
+  .tb-out[hidden] { display: none; }
+  .tb-label { font-size: 0.8125rem; font-weight: 600; color: #34444c; margin-bottom: 0.6rem; }
+  .tb-time { font-weight: 400; color: #8a979d; }
+
+  .tb-weather { background: #ffffff; border: 1px solid #e3e9ec; border-radius: 14px; padding: 1.125rem 1.25rem 1rem; }
+  .tb-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+  .tb-stats :global(div) { border-left: 3px solid #0d4a5e; padding-left: 0.7rem; }
+  .tb-stats :global(dt) { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #8a979d; }
+  .tb-stats :global(dd) { font-size: 1.25rem; font-weight: 700; color: #0f2f3a; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  .tb-tips { list-style: none; padding: 0; display: grid; gap: 0.5rem; margin-top: 0.9rem; }
+  .tb-tips:empty { margin: 0; }
+  .tb-tips :global(li) { font-size: 0.9375rem; color: #1f2937; line-height: 1.55; padding: 0.6rem 0.8rem; background: #fdf6e8; border-left: 3px solid #c47d0a; border-radius: 6px; }
+
+  .tb-fish-label { margin-top: 1.5rem; }
+  .tb-fish { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.875rem; }
+  .tb-fish :global(.tb-card) { background: #ffffff; border: 1px solid #e3e9ec; border-top: 4px solid var(--tone, #9ca3af); border-radius: 12px; padding: 0.9rem 1rem 1rem; display: flex; flex-direction: column; }
+  .tb-fish :global(.tb-card[data-tone="ok"]) { --tone: #2f6f3e; }
+  .tb-fish :global(.tb-card[data-tone="no"]) { --tone: #b42318; }
+  .tb-fish :global(.tb-card[data-tone="check"]) { --tone: #c47d0a; }
+  .tb-fish :global(.tb-card-water) { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #8a979d; }
+  .tb-fish :global(h3) { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 0.15rem; }
+  .tb-fish :global(h3 a) { color: #0f2f3a; }
+  .tb-fish :global(h3 a:hover) { color: #0d4a5e; text-decoration: underline; }
+  .tb-fish :global(.tb-card-status) { font-size: 0.9375rem; font-weight: 700; color: var(--tone); margin-top: 0.4rem; }
+  .tb-fish :global(.tb-card-detail) { font-size: 0.875rem; color: #4b5563; line-height: 1.5; margin-top: 0.15rem; }
+  .tb-fish :global(.tb-card-link) { margin-top: auto; padding-top: 0.6rem; font-size: 0.8125rem; font-weight: 600; color: #0d4a5e; }
+
+  .tb-src { font-size: 0.8125rem; color: #7d8a90; line-height: 1.6; margin-top: 1.25rem; }
+  .tb-src a { color: #5b6b73; text-decoration: underline; text-underline-offset: 2px; }
+
+  @media (max-width: 720px) {
+    .tb-stats { grid-template-columns: repeat(2, 1fr); }
+    .tb-fish { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .tb { padding: 1.25rem 1rem; border-radius: 12px; }
+    .tb-locate { width: 100%; }
+  }
+</style>

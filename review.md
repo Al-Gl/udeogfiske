@@ -5804,3 +5804,14 @@ Aldin: cleaner design that does not look AI-made.
 - Noted, not changed: torskefiskeri page says 30 cm "i de fleste farvande" and lacks the 2026 ban; the fredning post mentions longer local fredning in Randers Fjord, which Miljøstyrelsen's page doesn't list (could be a local rule, not checked).
 - Follow-up (2026-11-11, Aldin): torsk page now states the 2026 ban in Bælterne, Øresund and the western Baltic (subareas 22-24) in the rules section, the highlight box and both FAQ copies, says to fish Nordsøen/Skagerrak/Kattegat instead, links to the checker, and uses fisketegn.dk. Correction to my earlier note: the page's 35/30 cm sizes were already right.
 - Checker redesign ("more visually appealing"): light panel with a real heading; Saltvand/Ferskvand switch that filters the area list; white result card with a tinted top, an outlined stamp (JA / NEJ / TJEK / KUN BLANKE) and the verdict; a 12-month year strip showing fredet (red), kun blanke (amber), særlige regler (hatched) and the chosen date; facts in two columns; notes as soft boxes. `yearSegments()` added to `src/lib/fishRules.ts` with 2 new tests (22 total, all pass).
+
+## Review: "Hvad bider i dag?" (2026-11-11)
+
+- New panel at the top of /saesonguide/ (anchor `#i-dag`), same visual language as the rules checker. The reader picks one of 9 areas (or "Brug min position"), then sees:
+  - weather now from Open-Meteo: air, sea temperature, wind with direction, and cloud;
+  - up to two weather tips, taken from advice already on the site;
+  - one card per fish in season this month, each with today's legal status for that area ("Må fanges", "Kun blanke fisk", "Fredet nu", "Forbudt her") and a "Tjek reglerne" link that opens the checker pre-filled.
+- Everything is worked out in the browser on the visitor's own date, so the month is never stuck at build time. Weather is fetched only after an area is picked. The last chosen area is remembered in this browser only, via localStorage.
+- No invented "fishing score". The fish come from the season data, the status from Miljøstyrelsen's rules, and the weather from Open-Meteo, credited under CC BY 4.0.
+- Files: `src/lib/todayBiting.ts` (pure logic), `src/components/TodayBiting.astro`, `src/pages/saesonguide/index.astro` (2 lines). There are 11 new tests; `npm run test:rules` now runs 33 and all pass. Build passes, and the panel was checked in a headless browser at desktop and mobile width.
+- Still noted, not changed: the older "Hvad bider lige nu?" block on the homepage and the kyst page picks the month at build time and still lists torsk without the ban.

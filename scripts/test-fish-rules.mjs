@@ -3,6 +3,8 @@
 // Expected answers come from Miljøstyrelsen's rules page (see src/data/fiskeregler.ts).
 import { SPECIES, ZONES, AREA_NAMES } from '../src/data/fiskeregler.ts';
 import { evaluate, yearSegments } from '../src/lib/fishRules.ts';
+import { AREAS, fishToday, weatherTips, windDir, nearestArea } from '../src/lib/todayBiting.ts';
+import { monthData } from '../src/data/season-data.ts';
 
 const data = { species: SPECIES, zones: ZONES, areas: AREA_NAMES };
 const d = (s) => new Date(s + 'T12:00:00');
@@ -52,6 +54,26 @@ const noneOk = none.segments.length === 0;
 if (!noneOk) failed++;
 console.log(`${noneOk ? 'ok  ' : 'FAIL'} Year strip: hornfisk has no periods`);
 
-const total = cases.length + 2;
+// "Hvad bider i dag?"
+let extra = 2;
+const check = (desc, ok) => { extra++; if (!ok) failed++; console.log(`${ok ? 'ok  ' : 'FAIL'} ${desc}`); };
+const area = (k) => AREAS.find((a) => a.key === k);
+const nov20 = fishToday(data, monthData[10], area('koebenhavn'), d('2026-11-20'));
+const by = (list, n) => list.find((f) => f.name === n);
+check(`I dag, København 20/11: havørred -> ${by(nov20, 'Havørred').label}`, by(nov20, 'Havørred').label === 'Kun blanke fisk');
+check(`I dag, København 20/11: torsk -> ${by(nov20, 'Torsk').label}`, by(nov20, 'Torsk').label === 'Forbudt her' && by(nov20, 'Torsk').tone === 'no');
+check(`I dag, København 20/11: regnbueørred -> ${by(nov20, 'Regnbueørred').detail}`, /put and take/i.test(by(nov20, 'Regnbueørred').detail));
+const novKat = fishToday(data, monthData[10], area('nordsjaelland'), d('2026-11-11'));
+check(`I dag, Isefjorden 11/11: torsk -> ${by(novKat, 'Torsk').label}, ${by(novKat, 'Torsk').detail}`, by(novKat, 'Torsk').label === 'Må fanges' && by(novKat, 'Torsk').detail === 'Mindst 30 cm');
+check(`I dag, Isefjorden 11/11: havørred -> ${by(novKat, 'Havørred').label}, ${by(novKat, 'Havørred').detail}`, by(novKat, 'Havørred').label === 'Må fanges' && by(novKat, 'Havørred').detail === 'Mindst 40 cm');
+const marGedde = fishToday(data, monthData[2], area('fyn'), d('2027-03-20'));
+check(`I dag, Fyn 20/3: gedde (ferskvand) -> ${by(marGedde, 'Gedde').label}`, by(marGedde, 'Gedde').label === 'Fredet nu');
+check('Vejrtips: stærk vind', weatherTips({ air: 6, wind: 12, dir: 270, cloud: 80, rain: 0 }, ['Havørred']).some((t) => t.includes('blæser')));
+check('Vejrtips: gråvejr + let vind -> havørredvejr', weatherTips({ air: 7, wind: 4, dir: 270, cloud: 90, rain: 0 }, ['Havørred']).some((t) => t.includes('havørredvejr')));
+check('Vejrtips: ingen havørred -> intet havørredtip', !weatherTips({ air: 7, wind: 4, dir: 270, cloud: 90, rain: 0 }, ['Makrel']).some((t) => t.includes('havørred')));
+check('Vindretning 240° = SV', windDir(240) === 'SV');
+check('Nærmeste område for Odense (55.40, 10.39) = Fyn', nearestArea(55.40, 10.39).key === 'fyn');
+
+const total = cases.length + extra;
 console.log(failed ? `\n${failed} of ${total} failed` : `\nAll ${total} passed`);
 process.exit(failed ? 1 : 0);

@@ -2839,3 +2839,16 @@ Source: Miljøstyrelsen, https://mst.dk/borger/lyst-og-fritidsfiskeri/mindstemaa
 - [ ] 5b. Every January: re-read the Miljøstyrelsen page, update `years` for torsk/ål and the check date, run `npm run test:rules`
 - [x] 6. Torskefiskeri page: 2026 ban in subareas 22-24 added to the rules section, the 35 cm highlight and the FAQ (x2); link to the checker; fisketegn link -> fisketegn.dk. (The 30/35 cm text was already correct; my earlier note misread a caption.)
 - [x] 7. Checker redesign on Aldin's request: panel, saltvand/ferskvand switch, result card with stamp, 12-month year strip, 22 tests
+
+## Tool: "Hvad bider i dag?" (2026-11-11)
+
+Aldin: create it (after the rules checker went live the same day).
+Plan: reader picks an area (or "brug min position"); for today's date (browser, not build time) show:
+weather now (Open-Meteo: air, wind, cloud; marine API: sea temperature; free, no key, CC BY 4.0 attribution),
+the month's fish from `src/data/season-data.ts`, each with today's legal status for that area via `src/lib/fishRules.ts`,
+and max two weather tips taken from advice already on the site. No made-up "fishing score". Weather is fetched only after the reader picks an area.
+- [x] 1. `src/lib/todayBiting.ts`: areas (weather point, sea point, rules zone), fish -> rules mapping, status labels, weather tips; tests in scripts/test-fish-rules.mjs
+- [x] 2. `src/components/TodayBiting.astro`: same visual language as the rules checker
+- [x] 3. Place it at the top of /saesonguide/ (biggest page by impressions; "hvilke fisk er i sæson nu")
+- [x] 4. Build, check locally, commit; push only on Aldin's go-ahead
+- [ ] 5. Noted: the existing "Hvad bider lige nu?" block (homepage, kyst page) picks the month at build time and recommends torsk without the 2026 ban

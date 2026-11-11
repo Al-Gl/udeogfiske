@@ -2826,3 +2826,15 @@ Aldin's brief: the sea trout fredning from 16 Nov, you can still catch the silve
 - [ ] 4. Aldin: paste into Brevo, test in Gmail + Outlook, send by Thu 12 Nov
 - [x] 5. v2 on Aldin's request (2026-11-09): `newsletter/2026-11/november-v2-flere-fiskeformer.html` = v1 + "Det kan du også fiske efter i november": høstsild (from /guide-til-fisk/sildefiskeri/: arrives Sept, stays to Christmas, deeper, forfang + 40-80 g pirk), gedde and aborre (autumn high season, big soft baits slow near the bottom in cold water), put and take. Torsk left out (closed in many areas). v1 kept for comparison
 - [ ] 6. Site fix spotted: the sildefiskeri FAQ says fisketegn is needed "mellem 18 og 65 år" and links fisketegn.fiskeristyrelsen.dk; should be up to folkepensionsalderen and fisketegn.dk (check on fisketegn.dk first)
+
+## Tool: "Må jeg tage fisken med hjem?" + mindstemål/fredningstider page (2026-11-11)
+
+Aldin approved (2026-11-11): build the checker and its page.
+Source: Miljøstyrelsen, https://mst.dk/borger/lyst-og-fritidsfiskeri/mindstemaal-og-fredningstider (BEK nr 1673 af 10/12/2025; rules moved from lfst.dk, old URLs 404). Read 2026-11-11.
+- [x] 1. `src/data/fiskeregler.ts`: rules for the species Danish anglers target (havørred, laks, bækørred, søørred, regnbueørred, gedde, aborre, sandart, torsk, sild, makrel, hornfisk, rødspætte, skrubbe, pighvar, slethvar, havbars, ål, helt, stalling), per water type and area, straight from the source
+- [x] 2. `src/components/FishRuleChecker.astro` (logic in `src/lib/fishRules.ts`, 20 tests: `npm run test:rules`): species + where + date (+ optional length) -> clear verdict (må tages / kun blanke / fredet / forbudt / tjek lokalt) with the rule behind it; vanilla JS, no framework
+- [x] 3. Page `/fiskeguide/mindstemaal-og-fredningstider/`: checker on top, full table of all species, FAQ, source + check date; same look as the other guide pages
+- [x] 4. Links in: fredning blog post, havørred hub, fiskeguide index; sitemap + llms.txt (fisketegn and species pages: later, small)
+- [x] 5. Build passes, pages 200 on localhost, committed. [ ] Aldin: look at it; push on go-ahead
+- [ ] 5b. Every January: re-read the Miljøstyrelsen page, update `years` for torsk/ål and the check date, run `npm run test:rules`
+- [ ] 6. Noted, not part of this task: torskefiskeri page says 30 cm "i de fleste farvande" (official: 35 cm Nordsøen and Bælterne/Østersøen, 30 cm Skagerrak/Kattegat) and should mention the 2026 cod ban in subareas 22-24

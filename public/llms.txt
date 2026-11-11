@@ -30,6 +30,7 @@ Sproget er dansk. Hovedemner: saltvands- og ferskvandsfiskeri i Danmark — hav�
 - [Catch and Release](https://udeogfiske.dk/fiskeguide/catch-and-release/): Skånsom genudsætning — forskning fra DTU Aqua og bedste praksis.
 - [Fiskeri for børn](https://udeogfiske.dk/fiskeguide/fiskeri-for-born/): Begyndervenligt fiskeri med børn.
 - [Fisketegn](https://udeogfiske.dk/fiskeguide/fisketegn/): Hvornår og hvordan du skal have statens lystfisketegn.
+- [Mindstemål og fredningstider](https://udeogfiske.dk/fiskeguide/mindstemaal-og-fredningstider/): Værktøj og tabel: må du tage fisken med hjem? Mindstemål og fredningstider for 20 arter (havørred, laks, gedde, aborre, sandart, torsk, sild, makrel, fladfisk, havbars, ål m.fl.) pr. farvand og dato. Kilde: Miljøstyrelsen (BEK nr. 1673 af 10/12/2025), tjekket 11. november 2026.
 - [Bliv lystfisker](https://udeogfiske.dk/fiskeguide/bliv-lystfisker/): Kurser, fiskeguide-uddannelsen og den nemmeste vej til din første fangst som ny lystfisker.
 
 ## Fiskeudstyr (grej)

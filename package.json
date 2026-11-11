@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lakes": "node scripts/lakes/sheet-to-json.mjs"
+    "lakes": "node scripts/lakes/sheet-to-json.mjs",
+    "test:rules": "node --experimental-strip-types --no-warnings scripts/test-fish-rules.mjs"
   },
   "dependencies": {
     "astro": "^6.1.8"

@@ -36,15 +36,22 @@ const speciesList = [
 type Cell = 'top' | 'good' | 'low';
 const cellLabel: Record<Cell, string> = { top: 'Top sæson', good: 'I sæson', low: 'Lav aktivitet' };
 
-const matrix = speciesList.map(s => ({
-  ...s,
-  months: monthData.map<Cell>(m => {
+const matrix = speciesList.map(s => {
+  const months = monthData.map<Cell>(m => {
     const idx = m.fish.indexOf(s.name);
     if (idx === 0) return 'top';
     if (idx > 0) return 'good';
     return 'low';
-  }),
-}));
+  });
+  // Neighbouring in-season months join into one bar (joinL/joinR drop the rounded end).
+  const on = (i: number) => i >= 0 && i < 12 && months[i] !== 'low';
+  return { ...s, months, joins: months.map((_, i) => ({ l: on(i) && on(i - 1), r: on(i) && on(i + 1) })) };
+});
+
+const monthLetter = ["J","F","M","A","M","J","J","A","S","O","N","D"];
+const seasonBand = [
+  { name: "Vinter", span: 2 }, { name: "Forår", span: 3 }, { name: "Sommer", span: 3 }, { name: "Efterår", span: 3 }, { name: "Vinter", span: 1 },
+];
 
 const monthIndex = new Date().getMonth();
 const currentMonthName = monthFull[monthIndex];
@@ -130,27 +137,32 @@ const faq = [
     </div>
   </section>
 
-  <section class="sg-legend-wrap">
-    <div class="sg-ctn">
-      <ul class="sg-legend" role="list" aria-label="Forklaring til farverne">
-        <li><span class="sg-swatch top"></span> Top sæson <em>— art med højeste fokus i måneden</em></li>
-        <li><span class="sg-swatch good"></span> I sæson <em>— aktiv og fangbar</em></li>
-        <li><span class="sg-swatch low"></span> Lav aktivitet <em>— uden for sæson</em></li>
-      </ul>
-    </div>
-  </section>
-
   <section class="sg-matrix-wrap">
     <div class="sg-ctn">
-      <div class="sg-matrix-scroll">
+      <div class="sg-cal">
+        <header class="sg-cal-hd">
+          <div>
+            <h2 class="sg-cal-title">Sæsonkalender</h2>
+            <p class="sg-cal-sub">Ni arter, tolv måneder. Klik på en art for at læse guiden.</p>
+          </div>
+          <ul class="sg-cal-legend" aria-label="Forklaring til farverne">
+            <li><span class="sg-key sg-key-top"></span>Top sæson</li>
+            <li><span class="sg-key sg-key-good"></span>I sæson</li>
+            <li><span class="sg-key sg-key-now"></span>Nu: {currentMonthName.toLowerCase()}</li>
+          </ul>
+        </header>
+
         <table class="sg-matrix" aria-label="Sæsonkalender for danske fisk">
           <thead>
+            <tr class="sg-band-row" aria-hidden="true">
+              <td class="sg-corner"></td>
+              {seasonBand.map(s => <td colspan={s.span} class="sg-band"><span>{s.name}</span></td>)}
+            </tr>
             <tr>
               <th scope="col" class="sg-corner"><span class="sg-visually-hidden">Fiskeart</span></th>
               {monthFull.map((m, i) => (
                 <th scope="col" class={`sg-mhead ${i === monthIndex ? 'is-now' : ''}`}>
-                  <span class="sg-mhead-short">{monthShort[i]}</span>
-                  <span class="sg-mhead-full">{m}</span>
+                  <abbr title={m}>{monthShort[i]}</abbr>
                 </th>
               ))}
             </tr>
@@ -162,14 +174,12 @@ const faq = [
                   <a href={row.href} class="sg-species-link">
                     <span class="sg-species-img" style={`background-image: url('${row.image}');`} aria-hidden="true"></span>
                     <span class="sg-species-name">{row.name}</span>
-                    <svg class="sg-species-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                      <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
                   </a>
                 </th>
                 {row.months.map((cell, i) => (
                   <td
-                    class={`sg-cell sg-cell-${cell} ${i === monthIndex ? 'is-now' : ''}`}
+                    class={`sg-cell sg-cell-${cell} ${row.joins[i].l ? 'join-l' : ''} ${row.joins[i].r ? 'join-r' : ''} ${i === monthIndex ? 'is-now' : ''}`}
+                    data-m={monthLetter[i]}
                     title={`${row.name} — ${monthFull[i]}: ${cellLabel[cell]}`}
                     aria-label={`${row.name} ${monthFull[i]}: ${cellLabel[cell]}`}
                   >
@@ -181,7 +191,6 @@ const faq = [
           </tbody>
         </table>
       </div>
-      <p class="sg-scroll-hint" aria-hidden="true">Scroll vandret for at se hele året →</p>
     </div>
   </section>
 
@@ -489,243 +498,206 @@ const faq = [
     .sg-aside-card { position: static; }
   }
 
-  /* ── Legend ── */
-  .sg-legend-wrap {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 1.5rem 0;
+  /* ── Season calendar (timeline bars) ── */
+  .sg-matrix-wrap {
+    background: #f8fafc;
+    padding: 3rem 0 3.5rem;
   }
 
-  .sg-legend {
+  .sg-cal {
+    background: #ffffff;
+    border: 1px solid #e3e9ec;
+    border-radius: 16px;
+    padding: 1.75rem 1.75rem 1.25rem;
+  }
+
+  .sg-cal-hd {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #e3e9ec;
+  }
+
+  .sg-cal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f2f3a;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .sg-cal-sub {
+    font-size: 0.9375rem;
+    color: #5b6b73;
+    margin: 0.2rem 0 0;
+  }
+
+  .sg-cal-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    justify-content: center;
-    align-items: center;
   }
 
-  .sg-legend li {
+  .sg-cal-legend li {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #111827;
+    font-size: 0.8125rem;
     font-weight: 600;
+    color: #34444c;
   }
 
-  .sg-legend em {
-    font-style: normal;
-    font-weight: 400;
-    color: #6b7280;
-    margin-left: 0.25rem;
-  }
-
-  .sg-swatch {
-    width: 22px;
-    height: 22px;
-    border-radius: 5px;
-    display: inline-block;
-    border: 1px solid transparent;
-    flex-shrink: 0;
-  }
-  .sg-swatch.top {
-    background: linear-gradient(180deg, #fef3c7 0%, #fcd34d 100%);
-    border-color: #f59e0b;
-    box-shadow: inset 0 3px 0 #c47d0a;
-  }
-  .sg-swatch.good {
-    background: linear-gradient(180deg, #eff6ff 0%, #bfdbfe 100%);
-    border-color: #93c5fd;
-    box-shadow: inset 0 3px 0 #3b82f6;
-  }
-  .sg-swatch.low {
-    background: #fafafa;
-    border: 1px dashed #e5e7eb;
-  }
-
-  /* ── Matrix ── */
-  .sg-matrix-wrap {
-    background: #f8fafc;
-    padding: 3rem 0 2rem;
-  }
-
-  .sg-matrix-scroll {
-    overflow-x: auto;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -22px rgba(13, 74, 94, 0.18);
-  }
+  .sg-key { display: inline-block; width: 22px; height: 10px; border-radius: 999px; }
+  .sg-key-top { background: #0d4a5e; }
+  .sg-key-good { background: #b9d5dd; }
+  .sg-key-now { width: 14px; height: 14px; border-radius: 4px; background: #fbecd0; border: 1px solid #e9c98f; }
 
   .sg-matrix {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    min-width: 720px;
+    border-collapse: collapse;
+    table-layout: fixed;
   }
 
-  .sg-corner,
-  .sg-mhead {
-    position: sticky;
-    top: 0;
-    background: #ffffff;
-    z-index: 2;
-    padding: 0.875rem 0.5rem;
-    border-bottom: 2px solid #e5e7eb;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #6b7280;
+  .sg-corner { width: 190px; padding: 0; border: 0; }
+
+  /* Season band above the months */
+  .sg-band {
+    padding: 0.75rem 3px 0.4rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    color: #8a979d;
   }
-
-  .sg-corner {
-    text-align: left;
-    width: 200px;
-    min-width: 180px;
-    left: 0;
-    z-index: 3;
-    border-right: 2px solid #e5e7eb;
+  .sg-band span {
+    display: block;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid #dde5e9;
   }
 
   .sg-mhead {
+    padding: 0.35rem 0 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #5b6b73;
     text-align: center;
-    width: 66px;
   }
-
-  .sg-mhead-short { display: block; }
-  .sg-mhead-full { display: none; }
-
+  .sg-mhead abbr { text-decoration: none; }
   .sg-mhead.is-now {
-    color: #c47d0a;
-    background: #fff7ed;
+    color: #8a5606;
+    background: #fbecd0;
+    border-radius: 8px 8px 0 0;
   }
 
   .sg-species {
-    position: sticky;
-    left: 0;
-    background: #ffffff;
-    z-index: 1;
-    border-right: 2px solid #e5e7eb;
-    padding: 0;
+    padding: 0.4rem 1rem 0.4rem 0;
+    text-align: left;
+    font-weight: 400;
   }
 
   .sg-species-link {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
-    padding: 0.625rem 0.75rem;
+    gap: 0.75rem;
     text-decoration: none;
     color: inherit;
-    transition: background 0.18s ease;
-  }
-
-  .sg-species-link:hover {
-    background: #f8fafc;
   }
 
   .sg-species-img {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     background-size: cover;
     background-position: center;
-    background-color: #e5e7eb;
-    border: 1px solid #e5e7eb;
+    background-color: #e3e9ec;
   }
 
   .sg-species-name {
-    flex: 1;
     font-size: 0.9375rem;
     font-weight: 600;
-    color: #111827;
+    color: #0f2f3a;
     letter-spacing: -0.01em;
   }
 
-  .sg-species-arrow {
+  .sg-species-link:hover .sg-species-name {
     color: #0d4a5e;
-    opacity: 0;
-    transform: translateX(-4px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    flex-shrink: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
-  .sg-species-link:hover .sg-species-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .sg-matrix tbody tr {
-    border-top: 1px solid #f1f5f9;
-  }
-
-  .sg-matrix tbody tr:hover .sg-species { background: #f8fafc; }
-  .sg-matrix tbody tr:hover td.sg-cell { background-color: rgba(248, 250, 252, 0.5); }
+  .sg-matrix tbody tr { border-top: 1px solid #eef2f4; }
 
   .sg-cell {
-    padding: 4px;
-    border-bottom: 1px solid #f1f5f9;
-    background: #ffffff;
-    height: 48px;
+    position: relative;
+    padding: 0;
+    height: 52px;
   }
 
-  /* The actual coloured block lives inside .sg-cell-inner so we can keep
-     cell padding + give the colour rounded corners (matches SeasonCalendar's pill look). */
+  /* Faint month gridline, drawn under the bars */
+  .sg-cell::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: #f1f4f6;
+  }
+
+  .sg-cell.is-now { background: #fdf3e1; }
+  .sg-cell.is-now::before { display: none; }
+
   .sg-cell-inner {
+    position: relative;
+    z-index: 1;
     display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    height: 20px;
+    margin: 0 5px;
+    border-radius: 999px;
   }
 
-  /* TOP — orange-amber gradient with strong border-top accent (visual peak). */
-  .sg-cell-top .sg-cell-inner {
-    background: linear-gradient(180deg, #fef3c7 0%, #fcd34d 100%);
-    border-color: #f59e0b;
-    box-shadow: inset 0 3px 0 #c47d0a, 0 1px 2px rgba(196, 125, 10, 0.18);
-  }
+  .sg-cell-low .sg-cell-inner { background: transparent; }
+  .sg-cell-good .sg-cell-inner { background: #b9d5dd; }
+  .sg-cell-top .sg-cell-inner { background: #0d4a5e; }
 
-  /* GOOD — soft blue gradient. */
-  .sg-cell-good .sg-cell-inner {
-    background: linear-gradient(180deg, #eff6ff 0%, #bfdbfe 100%);
-    border-color: #93c5fd;
-    box-shadow: inset 0 3px 0 #3b82f6, 0 1px 2px rgba(59, 130, 246, 0.12);
-  }
+  .sg-cell.join-l .sg-cell-inner { margin-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; }
+  .sg-cell.join-r .sg-cell-inner { margin-right: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; }
 
-  /* LOW — barely-there. Hairline border to show "empty / out of season". */
-  .sg-cell-low .sg-cell-inner {
-    background: #fafafa;
-    border-color: #f1f5f9;
-    border-style: dashed;
-    opacity: 0.7;
-  }
+  .sg-matrix tbody tr:hover { background: #f7fafb; }
 
-  .sg-cell:hover .sg-cell-inner {
-    transform: scale(1.02);
-    filter: brightness(1.03);
-  }
-
-  .sg-cell.is-now .sg-cell-inner {
-    outline: 2px solid #c47d0a;
-    outline-offset: 1px;
-  }
-
-  .sg-scroll-hint {
-    display: none;
-    font-size: 0.8125rem;
-    color: #6b7280;
-    margin: 0.875rem 0 0;
-    text-align: center;
-  }
-
+  /* Mobile: no sideways scroll. Each fish = name + a full-width 12-month bar with month letters. */
   @media (max-width: 760px) {
-    .sg-scroll-hint { display: block; }
+    .sg-cal { padding: 1.25rem 1rem 0.75rem; border-radius: 12px; }
+    .sg-matrix, .sg-matrix tbody { display: block; }
+    .sg-matrix thead { display: none; }
+    .sg-matrix tbody tr {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      padding: 0.9rem 0 0.75rem;
+    }
+    .sg-matrix tbody tr:hover { background: transparent; }
+    .sg-species { grid-column: 1 / -1; padding: 0 0 0.6rem; }
+    .sg-species-img { width: 28px; height: 28px; }
+    .sg-cell { display: block; height: auto; padding-top: 4px; }
+    .sg-cell::before { display: none; }
+    .sg-cell.is-now { border-radius: 6px; }
+    .sg-cell-inner { height: 14px; margin: 0 2px; }
+    .sg-cell::after {
+      content: attr(data-m);
+      display: block;
+      text-align: center;
+      font-size: 0.6875rem;
+      color: #8a979d;
+      margin-top: 0.35rem;
+      padding-bottom: 2px;
+    }
+    .sg-cell.is-now::after { color: #8a5606; font-weight: 700; }
   }
 
   /* ── Season callouts (4 cards: Vinter / Forår / Sommer / Efterår) ── */

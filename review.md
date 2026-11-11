@@ -5829,3 +5829,15 @@ Aldin: cleaner design that does not look AI-made.
 - "Brug min position" picks the nearest water; Aalborg gives Limfjorden.
 - Old saved choices (the 9 region keys) are ignored, except Bornholm, which kept its key.
 - 6 new tests, 39 in total, all pass. Build passes, and the page was checked in a headless browser.
+
+## Review: season calendar redesign (2026-11-11)
+
+- Aldin wanted the calendar on /saesonguide/ to look sharp and modern. He picked joined timeline bars, and only the calendar for now.
+- One white panel now holds the heading "Sæsonkalender", the legend (Top sæson / I sæson / Nu: måned) and the table. The separate legend strip is gone.
+- A thin labelled season band (Vinter, Forår, Sommer, Efterår) sits over the month names.
+- Months in season next to each other join into one rounded bar: dark teal for top season, light teal for in season. Off-season months are empty, with faint gridlines. The old gradient tiles and shadows are gone.
+- The current month is one soft amber column, replacing the orange outline in every row.
+- Species: small round photo and name, linking to the guide.
+- Mobile: no sideways scroll any more. Each fish gets its own block with a full-width 12-month bar and month letters underneath.
+- Same data and the same table markup; aria-labels and title tooltips are kept. Only `src/pages/saesonguide/index.astro` changed (markup, about 10 lines of frontmatter for the join logic, and the calendar CSS). Build passes; checked at desktop and mobile width.
+- Noted, not changed: the new bars make gaps in the data easy to see. The calendar is built from the "top 3 fish per month" list, so havørred shows nothing in June and August, aborre only in January and August, and gedde only in February and March. That reads oddly. A fuller data set per species would fix it.

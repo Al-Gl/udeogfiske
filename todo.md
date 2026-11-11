@@ -2875,3 +2875,17 @@ Plan: about 22 fishing waters, grouped by region in the dropdown. Each has its o
 - [x] 3. Test every sea point against the Open-Meteo marine API (it must return a sea temperature)
 - [x] 4. Component: dropdown with `<optgroup>` per region. "Brug min position" picks the nearest water. Saved choices from the old 9 keys are ignored (fall back to "Vælg område")
 - [x] 5. Tests: Limfjorden torsk = 30 → 35 cm; Esbjerg havørred 11/11 = "Fredet nu"; Ringkøbing Fjord; nearest water for Aalborg = Limfjorden. Build, check in headless browser, commit
+
+## Season guide: calendar redesign (2026-11-11)
+
+Aldin: the calendar (species × month matrix on /saesonguide/) looks outdated. Make it sharp and modern.
+Today: separate gradient tiles with inset shadows, an orange outline on the current month in every row, the legend in a separate strip, and on mobile a sideways scroll showing only 3 months.
+Direction: flat and calm, matching the "Hvad bider i dag?" panel and the rules checker. No gradients, shadows or icons.
+- [x] 1. One panel: heading + legend inside the panel header (legend strip section removed)
+- [x] 2. Season band over the months (Vinter / Forår / Sommer / Efterår as thin labelled segments)
+- [x] 3. Rows as timelines: neighbouring in-season months join into one continuous rounded bar. Top months = solid deep teal, in season = light teal, off season = empty with faint month gridlines
+- [x] 4. Current month = one full-height soft column with a small "Nu" marker at the top (replaces the per-cell outlines)
+- [x] 5. Species column: small round photo + name, whole row clickable to the guide, quiet hover
+- [x] 6. Mobile: no sideways scroll. Each species becomes a full-width card: name, then a 12-segment bar with month letters (J F M A M J J A S O N D) underneath
+- [x] 7. Same data, same table markup for accessibility (aria-labels kept). Build, screenshot desktop + mobile, review.md, commit
+Not in scope unless Aldin says so: the "Måned for måned" cards and the season cards further down.

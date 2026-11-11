@@ -6,19 +6,39 @@ import type { Species } from '../data/fiskeregler';
 import type { MonthEntry } from '../data/season-data';
 import { evaluate } from './fishRules.ts';
 
-export type Area = { key: string; name: string; zone: string; fresh: string; lat: number; lng: number; seaLat: number; seaLng: number };
+export type Area = { key: string; region: string; name: string; zone: string; fresh: string; lat: number; lng: number; seaLat: number; seaLng: number };
 
-// Weather point = a town in the area; sea point = open water nearby (sea temperature only exists at sea).
+// One entry per fishing water, because the rules zone changes inside a region (Limfjorden = Nordsøen,
+// Esbjerg = Vadehavet ...). Kattegat's southern border is the line Hasenøre (just south of Ebeltoft)
+// – Gniben, and Gilbjerg Hoved – Kullen (reguleringsbekendtgørelsen, bilag 1): Aarhus Bugt, Horsens
+// Fjord and Nordfyn lie south of it = Bælterne.
+// Weather point = a town on that water; sea point = water where Open-Meteo has a sea temperature
+// (all tested 2026-11-11; most of Limfjorden returns none, Nibe Bredning does).
+const a = (region: string, key: string, name: string, zone: string, lat: number, lng: number, seaLat: number, seaLng: number): Area =>
+  ({ key, region, name, zone, fresh: zone === 'bornholm' ? 'fersk-bornholm' : 'fersk', lat, lng, seaLat, seaLng });
 export const AREAS: Area[] = [
-  { key: 'nordjylland', name: 'Nordjylland', zone: 'kattegat', fresh: 'fersk', lat: 57.05, lng: 9.92, seaLat: 57.10, seaLng: 10.60 },
-  { key: 'vestjylland', name: 'Vestjylland', zone: 'nordsoen', fresh: 'fersk', lat: 56.00, lng: 8.13, seaLat: 56.00, seaLng: 7.95 },
-  { key: 'oestjylland', name: 'Østjylland og Djursland', zone: 'kattegat', fresh: 'fersk', lat: 56.16, lng: 10.21, seaLat: 56.15, seaLng: 10.40 },
-  { key: 'sydjylland', name: 'Sydjylland og Lillebælt', zone: 'baelt', fresh: 'fersk', lat: 55.49, lng: 9.47, seaLat: 55.45, seaLng: 9.80 },
-  { key: 'fyn', name: 'Fyn', zone: 'baelt', fresh: 'fersk', lat: 55.40, lng: 10.39, seaLat: 55.35, seaLng: 10.95 },
-  { key: 'nordsjaelland', name: 'Nordsjælland og Isefjorden', zone: 'kattegat', fresh: 'fersk', lat: 55.85, lng: 11.80, seaLat: 56.10, seaLng: 11.90 },
-  { key: 'koebenhavn', name: 'København og Øresund', zone: 'baelt', fresh: 'fersk', lat: 55.68, lng: 12.57, seaLat: 55.75, seaLng: 12.75 },
-  { key: 'sydsjaelland', name: 'Syd- og Vestsjælland, Lolland-Falster', zone: 'baelt', fresh: 'fersk', lat: 55.25, lng: 11.76, seaLat: 55.05, seaLng: 11.60 },
-  { key: 'bornholm', name: 'Bornholm', zone: 'bornholm', fresh: 'fersk-bornholm', lat: 55.10, lng: 14.90, seaLat: 55.10, seaLng: 15.20 },
+  a('Nordjylland', 'skagen', 'Skagen og Skagerrak', 'kattegat', 57.60, 10.20, 57.75, 10.20),
+  a('Nordjylland', 'nj-oestkyst', 'Østkysten (Frederikshavn–Hals)', 'kattegat', 57.33, 10.52, 57.30, 10.70),
+  a('Nordjylland', 'limfjorden', 'Limfjorden', 'nordsoen', 57.00, 9.50, 57.02, 9.60),
+  a('Nordjylland', 'thy', 'Thy og Hanstholm', 'nordsoen', 57.12, 8.62, 57.15, 8.40),
+  a('Nordjylland', 'mariager', 'Mariager Fjord', 'kattegat', 56.65, 9.98, 56.70, 10.40),
+  a('Vestjylland', 'vestkysten', 'Vestkysten (Thyborøn–Hvide Sande)', 'nordsoen', 56.30, 8.13, 56.30, 7.95),
+  a('Vestjylland', 'ringkobing', 'Ringkøbing og Nissum Fjord', 'ringkobing', 56.09, 8.24, 56.00, 8.20),
+  a('Vestjylland', 'vadehavet', 'Esbjerg og Vadehavet', 'vadehavet', 55.47, 8.45, 55.40, 8.25),
+  a('Østjylland', 'djursland', 'Djursland og Randers Fjord', 'kattegat', 56.41, 10.88, 56.40, 11.05),
+  a('Østjylland', 'aarhus', 'Aarhus Bugt og Mols', 'baelt', 56.16, 10.21, 56.10, 10.40),
+  a('Østjylland', 'horsens', 'Horsens Fjord og Juelsminde', 'baelt', 55.71, 10.01, 55.75, 10.20),
+  a('Sydjylland', 'lillebaelt', 'Vejle Fjord og Lillebælt', 'baelt', 55.57, 9.75, 55.45, 9.80),
+  a('Sydjylland', 'als', 'Als og Flensborg Fjord', 'baelt', 54.91, 9.79, 54.85, 10.00),
+  a('Fyn', 'nordfyn', 'Nordfyn og Fyns Hoved', 'baelt', 55.55, 10.30, 55.65, 10.55),
+  a('Fyn', 'sydfyn', 'Sydfyn og Øhavet', 'baelt', 55.06, 10.61, 54.95, 10.80),
+  a('Sjælland', 'isefjorden', 'Isefjorden og Roskilde Fjord', 'kattegat', 55.80, 11.85, 55.85, 11.82),
+  a('Sjælland', 'nordkysten', 'Nordkysten (Hundested–Gilleleje)', 'kattegat', 56.12, 12.31, 56.15, 12.10),
+  a('Sjælland', 'oeresund', 'Øresund og København', 'baelt', 55.68, 12.57, 55.75, 12.75),
+  a('Sjælland', 'koege', 'Køge Bugt og Stevns', 'baelt', 55.46, 12.18, 55.40, 12.45),
+  a('Sjælland', 'vestsjaelland', 'Vestsjælland og Storebælt', 'baelt', 55.33, 11.14, 55.35, 10.95),
+  a('Sjælland', 'lolland-falster', 'Møn, Lolland og Falster', 'baelt', 54.77, 11.87, 54.65, 12.10),
+  a('Bornholm', 'bornholm', 'Bornholm', 'bornholm', 55.10, 14.90, 55.10, 15.20),
 ];
 
 // Season-data fish name -> rules species + water. null = no single rule (handled with a note).

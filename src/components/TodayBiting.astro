@@ -7,6 +7,7 @@ import { SPECIES, ZONES, AREA_NAMES } from '../data/fiskeregler';
 import { monthData } from '../data/season-data';
 import { AREAS } from '../lib/todayBiting';
 
+const regions = [...new Set(AREAS.map((a) => a.region))];
 const data = { rules: { species: SPECIES, zones: ZONES, areas: AREA_NAMES }, months: monthData, areas: AREAS };
 ---
 
@@ -14,16 +15,20 @@ const data = { rules: { species: SPECIES, zones: ZONES, areas: AREA_NAMES }, mon
   <header class="tb-head">
     <div>
       <h2 id="tb-title">Hvad bider i dag?</h2>
-      <p class="tb-date">Vælg dit område, så ser du dagens fisk, vejret lige nu og reglerne for netop dér.</p>
+      <p class="tb-date">Vælg hvor du fisker, så ser du dagens fisk, vejret lige nu og reglerne for netop dét vand.</p>
     </div>
   </header>
 
   <div class="tb-pick">
     <label class="tb-field">
-      <span>Dit område</span>
+      <span>Hvor fisker du?</span>
       <select name="omraade">
-        <option value="">Vælg område …</option>
-        {AREAS.map((a) => <option value={a.key}>{a.name}</option>)}
+        <option value="">Vælg fiskevand …</option>
+        {regions.map((r) => (
+          <optgroup label={r}>
+            {AREAS.filter((a) => a.region === r).map((a) => <option value={a.key}>{a.name}</option>)}
+          </optgroup>
+        ))}
       </select>
     </label>
     <button type="button" class="tb-locate">Brug min position</button>
@@ -65,7 +70,7 @@ const data = { rules: { species: SPECIES, zones: ZONES, areas: AREA_NAMES }, mon
     const out = box.querySelector<HTMLElement>('.tb-out')!;
     const today = new Date();
     box.querySelector('.tb-date')!.textContent =
-      `${today.toLocaleDateString('da-DK', { weekday: 'long', day: 'numeric', month: 'long' }).replace(/^./, (c) => c.toUpperCase())}. Vælg dit område, så ser du dagens fisk, vejret lige nu og reglerne for netop dér.`;
+      `${today.toLocaleDateString('da-DK', { weekday: 'long', day: 'numeric', month: 'long' }).replace(/^./, (c) => c.toUpperCase())}. Vælg hvor du fisker, så ser du dagens fisk, vejret lige nu og reglerne for netop dét vand.`;
 
     async function getWeather(a: { lat: number; lng: number; seaLat: number; seaLng: number }): Promise<Weather> {
       const tz = 'timezone=Europe%2FCopenhagen';

@@ -5815,3 +5815,17 @@ Aldin: cleaner design that does not look AI-made.
 - No invented "fishing score". The fish come from the season data, the status from Miljøstyrelsen's rules, and the weather from Open-Meteo, credited under CC BY 4.0.
 - Files: `src/lib/todayBiting.ts` (pure logic), `src/components/TodayBiting.astro`, `src/pages/saesonguide/index.astro` (2 lines). There are 11 new tests; `npm run test:rules` now runs 33 and all pass. Build passes, and the panel was checked in a headless browser at desktop and mobile width.
 - Still noted, not changed: the older "Hvad bider lige nu?" block on the homepage and the kyst page picks the month at build time and still lists torsk without the ban.
+
+## Review: "Hvad bider i dag?", finer areas (2026-11-11)
+
+- The 9 regions are now 22 fishing waters, grouped by region in the dropdown (now labelled "Hvor fisker du?"). Each water has its own weather point, sea-temperature point and rules zone.
+- This also fixes wrong answers in the first version:
+  - Limfjorden and Thy follow the Nordsøen rules (torsk 35 cm).
+  - Esbjerg shows the Vadehavet fredning.
+  - Ringkøbing and Nissum Fjord show havørred totalfredet.
+  - Aarhus Bugt, Mols, Horsens Fjord and Nordfyn are Bælterne, not Kattegat.
+- Kattegat border: checked against the reguleringsbekendtgørelse (BEK 1571/2025, bilag 1). It runs Hasenøre (just south of Ebeltoft) to Gniben, and Gilbjerg Hoved to Kullen.
+- All 22 sea points were tested against Open-Meteo's marine API. Most of Limfjorden has no sea temperature there, so Limfjorden uses Nibe Bredning.
+- "Brug min position" picks the nearest water; Aalborg gives Limfjorden.
+- Old saved choices (the 9 region keys) are ignored, except Bornholm, which kept its key.
+- 6 new tests, 39 in total, all pass. Build passes, and the page was checked in a headless browser.

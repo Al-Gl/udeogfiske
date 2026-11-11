@@ -2852,3 +2852,26 @@ and max two weather tips taken from advice already on the site. No made-up "fish
 - [x] 3. Place it at the top of /saesonguide/ (biggest page by impressions; "hvilke fisk er i sæson nu")
 - [x] 4. Build, check locally, commit; push only on Aldin's go-ahead
 - [ ] 5. Noted: the existing "Hvad bider lige nu?" block (homepage, kyst page) picks the month at build time and recommends torsk without the 2026 ban
+
+## "Hvad bider i dag?": finer areas (2026-11-11)
+
+Aldin: narrow the areas down. "Nordjylland" alone is too coarse.
+Why it matters, beyond the weather: the rules zone differs inside one region.
+- Limfjorden counts as Nordsøen, not Kattegat (torsk 35 cm, not 30).
+- Esbjerg and Ribe are Vadehavet (all havørred fredet 16/9–15/1).
+- Ringkøbing and Nissum Fjord have their own rules.
+So the current 9 areas give wrong answers in places. Do not push the current version.
+
+Plan: about 22 fishing waters, grouped by region in the dropdown. Each has its own weather point, sea point and rules zone.
+- [x] 1. Replace `AREAS` in `src/lib/todayBiting.ts` with the list below (add a `region` field for grouping)
+  - Nordjylland: Skagen og Skagerrak (kattegat) · Østkysten Frederikshavn–Hals (kattegat) · Limfjorden (nordsoen) · Thy og Hanstholm (nordsoen) · Mariager Fjord (kattegat)
+  - Vestjylland: Vestkysten Thyborøn–Hvide Sande (nordsoen) · Ringkøbing og Nissum Fjord (ringkobing) · Esbjerg og Vadehavet (vadehavet)
+  - Østjylland: Djursland og Randers Fjord (kattegat) · Aarhus Bugt (kattegat) · Horsens Fjord og Juelsminde (baelt, verified)
+  - Sydjylland: Vejle Fjord og Lillebælt (baelt) · Als og Flensborg Fjord (baelt)
+  - Fyn: Nordfyn og Fyns Hoved (baelt) · Sydfyn og Øhavet (baelt)
+  - Sjælland: Isefjorden og Roskilde Fjord (kattegat) · Nordkysten Hundested–Gilleleje (kattegat) · Øresund (baelt) · Køge Bugt og Stevns (baelt) · Vestsjælland og Storebælt (baelt) · Møn, Lolland og Falster (baelt)
+  - Bornholm (bornholm)
+- [x] 2. Check the Kattegat/Bælterne border (the Hasenøre–Gniben line) against Miljøstyrelsen's / the executive order's definition, so Horsens, Juelsminde, Nordfyn and Sejerø Bugt land in the right zone
+- [x] 3. Test every sea point against the Open-Meteo marine API (it must return a sea temperature)
+- [x] 4. Component: dropdown with `<optgroup>` per region. "Brug min position" picks the nearest water. Saved choices from the old 9 keys are ignored (fall back to "Vælg område")
+- [x] 5. Tests: Limfjorden torsk = 30 → 35 cm; Esbjerg havørred 11/11 = "Fredet nu"; Ringkøbing Fjord; nearest water for Aalborg = Limfjorden. Build, check in headless browser, commit

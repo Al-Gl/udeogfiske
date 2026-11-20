@@ -1,0 +1,146 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const partners = [
+  {
+    name: 'The Drunken Connoisseurs',
+    url: 'https://thedrunkenconnoisseurs.dk/',
+    desc: 'En dansk smagningsklub for whisky, rom og cognac. Ærlige anmeldelser og guides til, hvad der er værd at hælde i glasset efter en lang dag ved vandet.',
+  },
+  {
+    name: 'The Balkan Pour',
+    url: 'https://thebalkanpour.com/',
+    desc: 'En engelsksproget guide til øl, vin og rakija fra Balkan — bryggerier, vinhuse og alt det, man skal smage på en tur til Kroatien, Bosnien, Serbien eller Montenegro.',
+  },
+  {
+    name: 'The Astronomy Space',
+    url: 'https://theastronomy.space/',
+    desc: 'Til dig, der også kigger op, når du står ved kysten i mørket. Guides til stjernebilleder, planeter og stjernekiggeri — på engelsk.',
+  },
+];
+---
+
+<MainLayout
+  title="Samarbejdspartnere – Ude og Fiske"
+  description="Se Ude og Fiskes samarbejdspartnere: The Drunken Connoisseurs (whisky og rom), The Balkan Pour (øl, vin og rakija fra Balkan) og The Astronomy Space (stjernekiggeri)."
+  canonical="https://udeogfiske.dk/samarbejdspartnere/"
+  pageType="about"
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Samarbejdspartnere" },
+  ]}
+>
+
+  <section class="pg-hero">
+    <div class="pg-ctn">
+      <nav class="pg-bc">
+        <a href="/">Forside</a>
+        <span>›</span>
+        <span>Samarbejdspartnere</span>
+      </nav>
+      <h1 class="pg-title">Vores samarbejdspartnere</h1>
+      <p class="pg-sub">Når jeg ikke står med en fiskestang, bruger jeg tid på et par andre sider. Her er de — hvis du er til en god dram, Balkan eller stjernehimlen.</p>
+    </div>
+  </section>
+
+  <section class="pg-body">
+    <div class="pg-ctn">
+      <div class="pg-grid">
+        {partners.map((p) => (
+          <a class="pg-card" href={p.url} target="_blank" rel="noopener">
+            <h2 class="pg-card-title">{p.name}</h2>
+            <p class="pg-card-desc">{p.desc}</p>
+            <span class="pg-card-link">Besøg siden →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .pg-hero {
+    background: #0d4a5e;
+    padding: 3.5rem 0 3rem;
+  }
+
+  .pg-ctn {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .pg-bc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.25rem;
+  }
+
+  .pg-bc a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+  .pg-bc a:hover { color: rgba(255,255,255,0.85); }
+
+  .pg-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.875rem;
+  }
+
+  .pg-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 560px;
+  }
+
+  .pg-body { padding: 3.5rem 0 5rem; }
+
+  .pg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .pg-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    text-decoration: none;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+
+  .pg-card:hover {
+    border-color: #0d4a5e;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  .pg-card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .pg-card-desc {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .pg-card-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0d4a5e;
+  }
+</style>

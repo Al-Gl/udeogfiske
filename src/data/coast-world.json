@@ -4,62 +4,34 @@
     "w": 3200,
     "h": 1786,
     "title": "Kysten fra oven",
-    "text": "Her ser du en klassisk dansk havørredkyst fra skrænten: badekar, tangbælte, pynt, ålegræs og stenrev. Vælg et sted i bunden eller klik på en pin. De orange steder kan du dykke ned i."
+    "text": "Her ser du en typisk dansk havørredkyst fra skrænten: pynten, revlerne med badekarret imellem, tangbæltet, ålegræsset, en muslingebanke og et stenrev. Vælg et sted i bunden eller klik på en pin for at dykke ned."
   },
   "hotspots": [
     {
-      "id": "badekar",
-      "title": "Badekarret",
-      "x": 32,
-      "y": 53,
-      "text": "Badekarret er den dybere sandrende, der ligger få meter fra strandkanten, lige inden for den første revle. Der er kun en meter eller to vand, men havørreden kommer helt herind og patruljerer langs renden. Den er her især i koldt, stille vejr og i skumringen, når der er ro på kysten.",
-      "prey": [
-        "Rejer",
-        "Tanglopper",
-        "Kutlinger",
-        "Børsteorme"
-      ],
-      "when": "Bedst i den kolde tid fra oktober til april og i skumringen. Om sommeren mest om natten.",
-      "scene": {
-        "image": "/images/kystverden/badekar.webp",
-        "w": 3200,
-        "h": 1786,
-        "focus": "40% 60%"
-      }
-    },
-    {
-      "id": "tang",
-      "title": "Tangbæltet",
-      "x": 52,
-      "y": 55,
-      "text": "Det mørke bælte af blæretang er kystens spisekammer. Mellem tangen lever rejer, tanglopper, småkrabber og kutlinger, og havørreden jager langs kanten af tangen. Læg mærke til de lyse sandpletter inde i tangen. Det er dér, du lettest ser en fisk komme forbi.",
-      "prey": [
-        "Rejer",
-        "Tanglopper",
-        "Småkrabber",
-        "Kutlinger"
-      ],
-      "when": "Hele året. Især i bølger og lidt uklart vand, hvor fisken føler sig tryg tæt på land."
-    },
-    {
       "id": "pynt",
       "title": "Pynten & strømskellet",
-      "x": 27,
-      "y": 31,
-      "text": "Ude ved pynten presses strømmen sammen. Hvor hurtigt og roligt vand mødes, opstår et strømskel, som du ofte kan se som en linje eller et mønster i overfladen. Strømmen fører småfisk og krebsdyr med sig, og havørreden står i det rolige vand ved siden af og venter på, at maden kommer forbi.",
+      "x": 17,
+      "y": 17,
+      "text": "Ude ved pynten presses strømmen sammen. Hvor hurtigt og roligt vand mødes, opstår et strømskel, som du ofte kan se som en linje af skum, tang og små krusninger i overfladen. Strømmen fører småfisk og krebsdyr med sig, og havørreden står i det rolige vand ved siden af og venter på, at maden kommer forbi.",
       "prey": [
         "Småfisk",
         "Rejer",
         "Tanglopper i drift"
       ],
-      "when": "Når der er strøm og vind langs kysten. Stille dage uden strøm giver langt mindre liv ved pynten."
+      "when": "Når der er strøm og vind langs kysten. Stille dage uden strøm giver langt mindre liv ved pynten.",
+      "scene": {
+        "image": "/images/kystverden/pynt.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "55% 50%"
+      }
     },
     {
       "id": "aalegraes",
-      "title": "Ålegræsset & revlebruddet",
-      "x": 64,
-      "y": 50,
-      "text": "Hvor ålegræsset slutter og sandet falder af mod dybere vand, er der en tydelig kant. I ålegræsset gemmer hundestejler, rejer og unge fisk sig, og over sandet står tobis, der kan grave sig ned på et splitsekund. Havørreden svømmer langs kanten og tager det, der vover sig ud i det åbne.",
+      "title": "Ålegræsset",
+      "x": 28,
+      "y": 26,
+      "text": "Længere ude ser bunden mørkegrøn ud. Det er ålegræs, lange grønne blade, der står tæt som en eng. I ålegræsset gemmer hundestejler, rejer og unge fisk sig, og over de lyse sandpletter står tobis, der kan grave sig ned på et splitsekund. Havørreden svømmer langs kanten, hvor græsset slutter, og tager det, der vover sig ud i det åbne.",
       "prey": [
         "Tobis",
         "Hundestejler",
@@ -71,15 +43,95 @@
         "image": "/images/kystverden/aalegraes.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "55% 50%"
+        "focus": "50% 45%"
+      }
+    },
+    {
+      "id": "revlebrud",
+      "title": "Revlebruddet",
+      "x": 48,
+      "y": 33,
+      "text": "Revlen er en lang, lav sandbanke, der ligger parallelt med kysten. Et sted er den brudt, og gennem hullet løber vandet fra badekarret ud og ind med bølger og strøm. Revlebruddet er en naturlig port: småfisk, rejer og tanglopper bliver ført igennem, og havørreden bruger den samme vej, når den skal ind til eller ud fra badekarret.",
+      "prey": [
+        "Rejer",
+        "Tanglopper",
+        "Småfisk",
+        "Kutlinger"
+      ],
+      "when": "Når der er pålandsvind og bølger, der presser vand ind over revlen, og vandet løber ud gennem bruddet igen.",
+      "scene": {
+        "image": "/images/kystverden/revlebrud.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "35% 55%"
+      }
+    },
+    {
+      "id": "tang",
+      "title": "Tangbæltet",
+      "x": 70,
+      "y": 37,
+      "text": "Ude bag revlen bliver bunden stenet, og stenene er dækket af blæretang og savtang. Det mørke bælte er kystens spisekammer. Mellem tangen lever rejer, tanglopper, småkrabber og kutlinger, og havørreden jager langs kanten af tangen. De lyse sandpletter inde i tangen er dér, du lettest ser en fisk komme forbi.",
+      "prey": [
+        "Rejer",
+        "Tanglopper",
+        "Småkrabber",
+        "Kutlinger"
+      ],
+      "when": "Hele året. Især i bølger og lidt uklart vand, hvor fisken føler sig tryg.",
+      "scene": {
+        "image": "/images/kystverden/tang.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "50% 60%"
+      }
+    },
+    {
+      "id": "badekar",
+      "title": "Badekarret",
+      "x": 30,
+      "y": 46,
+      "text": "Badekarret er den dybere rende mellem stranden og revlen. Det er der, vandet bliver mørkere grønt, lige før det lyse sand på revlen. Der er kun en meter eller to vand, men havørreden kommer helt herind og patruljerer langs renden. Den er her især i koldt, stille vejr og i skumringen, når der er ro på kysten.",
+      "prey": [
+        "Rejer",
+        "Tanglopper",
+        "Kutlinger",
+        "Børsteorme"
+      ],
+      "when": "Bedst i den kolde tid fra oktober til april og i skumringen. Om sommeren mest om natten.",
+      "scene": {
+        "image": "/images/kystverden/badekar.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "35% 55%"
+      }
+    },
+    {
+      "id": "muslingebanke",
+      "title": "Muslingebanken",
+      "x": 60,
+      "y": 55,
+      "text": "De mørke, næsten sorte pletter på sandbunden er ofte en muslingebanke: tusindvis af blåmuslinger, der sidder tæt sammen. Banken giver ly og mad til krabber, søstjerner, børsteorme og kutlinger, og hvor der er krabber og kutlinger, kommer havørreden også. Den svømmer gerne lavt hen over banken og langs kanten ud mod sandet.",
+      "prey": [
+        "Småkrabber",
+        "Kutlinger",
+        "Børsteorme",
+        "Rejer"
+      ],
+      "when": "Hele året, især i mellemdybt vand, når fisken står lidt længere ude.",
+      "scene": {
+        "image": "/images/kystverden/muslingebanke.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "50% 55%"
       }
     },
     {
       "id": "rev",
-      "title": "Stenrevet & muslingebanken",
+      "title": "Stenrevet",
       "x": 90,
-      "y": 64,
-      "text": "Stenrevet blev lagt af isen under sidste istid. Stenene er dækket af blåmuslinger, blæretang og bladtang, og mellem dem lever krabber, rejer, kutlinger og ulke. Havørreden står gerne i læ bag en stor sten, hvor strømmen er svag, og skyder frem efter de byttedyr, strømmen bringer forbi.",
+      "y": 50,
+      "text": "Stenrevet blev lagt af isen under sidste istid. De store sten er dækket af blåmuslinger, blæretang, bladtang og rødalger, og mellem dem lever krabber, rejer, kutlinger og ulke. Havørreden står gerne i læ bag en stor sten, hvor strømmen er svag, og skyder frem efter de byttedyr, strømmen bringer forbi.",
       "prey": [
         "Kutlinger",
         "Rejer",
@@ -91,8 +143,7 @@
         "image": "/images/kystverden/rev.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "72% 50%",
-        "cardLeft": true
+        "focus": "45% 45%"
       }
     }
   ]

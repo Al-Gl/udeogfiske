@@ -7,7 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import world from '../data/coast-world.json';
 ---
 
-<section class="ke" data-world={JSON.stringify(world)}>
+<section class="ke" data-world={JSON.stringify(world)} style={`--ke-bg: url(${world.root.image})`}>
   <div class="ke-map" role="region" aria-label="Interaktivt billede af kysten"></div>
   <img class="ke-scene" alt="" aria-hidden="true" />
   <div class="ke-spins"></div>
@@ -67,13 +67,15 @@ import world from '../data/coast-world.json';
     L.imageOverlay(world.root.image, bounds, { alt: world.root.title }).addTo(map);
 
     // "Cover" zoom: the smallest zoom where the picture fills the whole screen.
-    let cover = 0;
+    // Upright screens (phones) start further out, at "contain", so the whole coast is visible across the width.
+    let cover = 0, home = 0;
     const fitCover = (keepView) => {
       const size = map.getSize();
       cover = Math.log2(Math.max(size.x / W, size.y / H));
-      map.setMinZoom(cover);
+      home = size.y > size.x ? Math.log2(Math.min(size.x / W, size.y / H)) : cover;
+      map.setMinZoom(home);
       map.setMaxZoom(cover + 2.5);
-      if (!keepView || map.getZoom() < cover) map.setView(bounds.getCenter(), cover, { animate: false });
+      if (!keepView || map.getZoom() < home) map.setView(bounds.getCenter(), home, { animate: false });
     };
     fitCover(false);
     map.on('resize', () => fitCover(true));
@@ -82,7 +84,8 @@ import world from '../data/coast-world.json';
     const clamp = (ll, z) => {
       const size = map.getSize(), k = Math.pow(2, z);
       const hw = size.x / 2 / k, hh = size.y / 2 / k;
-      return L.latLng(Math.min(Math.max(ll.lat, hh), H - hh), Math.min(Math.max(ll.lng, hw), W - hw));
+      const fit = (v, half, len) => (half * 2 >= len ? len / 2 : Math.min(Math.max(v, half), len - half)); // view bigger than picture: centre it
+      return L.latLng(fit(ll.lat, hh, H), fit(ll.lng, hw, W));
     };
     const glide = (ll, z, duration) => new Promise<void>((done) => {
       const target = clamp(ll, z);
@@ -220,7 +223,7 @@ import world from '../data/coast-world.json';
       busy = true;
       showCard(null);
       await hideScene();
-      await glide(bounds.getCenter(), cover, 1.3);
+      await glide(bounds.getCenter(), home, 1.3);
       busy = false;
     }
 
@@ -242,7 +245,13 @@ import world from '../data/coast-world.json';
     overflow: hidden;
     background: #0d4a5e;
   }
-  .ke-map { position: absolute; inset: 0; background: #0d4a5e; }
+  /* Behind the picture: a blurred, darkened copy fills the space above/below it when zoomed fully out on phones */
+  .ke::before {
+    content: ''; position: absolute; inset: -40px;
+    background: var(--ke-bg) center / cover no-repeat;
+    filter: blur(24px) brightness(0.65);
+  }
+  .ke-map { position: absolute; inset: 0; background: transparent; }
 
   .ke-scene {
     position: absolute;

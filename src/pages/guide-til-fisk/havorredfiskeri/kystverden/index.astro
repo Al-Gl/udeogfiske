@@ -1,0 +1,63 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import CoastExplorer from '../../../../components/CoastExplorer.astro';
+import GuideLink from '../../../../components/GuideLink.astro';
+---
+
+<MainLayout
+  title="Kystverden: Hvor står havørreden på kysten? | Ude og Fiske"
+  description="Udforsk en dansk havørredkyst interaktivt. Zoom ind på badekarret, tangbæltet, pynten, ålegræsset og stenrevet, og se hvad havørreden lever af dér."
+  canonical="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/kystverden/"
+  ogImage="https://udeogfiske.dk/images/kystverden/root.webp"
+  pageType="article"
+  noindex={true}
+  breadcrumbs={[
+    { name: "Forside", url: "/" },
+    { name: "Guide til fisk", url: "/guide-til-fisk/" },
+    { name: "Havørredfiskeri", url: "/guide-til-fisk/havorredfiskeri/" },
+    { name: "Kystverden" },
+  ]}
+>
+  <section class="kv-hero">
+    <div class="kv-ctn">
+      <nav class="kv-bc">
+        <a href="/">Forside</a><span>›</span>
+        <a href="/guide-til-fisk/havorredfiskeri/">Havørredfiskeri</a><span>›</span>
+        <span>Kystverden</span>
+      </nav>
+      <h1 class="kv-title">Kystverden: Hvor står havørreden?</h1>
+      <p class="kv-sub">Kig ned i vandet på en klassisk dansk kyst. Klik på en pin, så zoomer du ind og ser, hvad der lever dér, og hvorfor havørreden kommer forbi.</p>
+    </div>
+  </section>
+
+  <section class="kv-body">
+    <div class="kv-ctn kv-wide">
+      <CoastExplorer />
+    </div>
+    <div class="kv-ctn">
+      <h2>Hvorfor er havørreden så tæt på land?</h2>
+      <p>Havørreden følger maden. De fleste byttedyr på en dansk kyst lever på det lave vand: rejer og tanglopper i tangen, kutlinger mellem stenene og tobis over sandet. Derfor står fisken tit kun få meter fra strandkanten, især når vandet er koldt, eller når lyset er svagt.</p>
+      <p>Når jeg kommer til en ny kyst, starter jeg med at kigge ned i vandet fra skrænten med polariserede briller. Så kan du se, hvor bunden skifter mellem sand, tang, ålegræs og sten. Det er de skift, havørreden bruger.</p>
+
+      <GuideLink
+        href="/guide-til-fisk/havorredfiskeri/"
+        title="Læs hele havørredguiden"
+        desc="Sæson, vejr, fiskepladser og teknik til havørred på den danske kyst."
+      />
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .kv-hero { background: #0d4a5e; padding: 3.5rem 0 3rem; }
+  .kv-ctn { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+  .kv-wide { max-width: 1240px; }
+  .kv-bc { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.8125rem; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; }
+  .kv-bc a { color: rgba(255,255,255,0.5); }
+  .kv-bc a:hover { color: rgba(255,255,255,0.85); }
+  .kv-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: #fff; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.875rem; }
+  .kv-sub { font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65; max-width: 600px; }
+  .kv-body { padding: 1.5rem 0 5rem; }
+  .kv-body h2 { font-size: 1.5rem; font-weight: 700; color: #111827; margin: 2rem 0 0.75rem; }
+  .kv-body p { font-size: 1rem; color: #374151; line-height: 1.75; margin: 0 0 1rem; }
+</style>

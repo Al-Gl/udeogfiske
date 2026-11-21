@@ -1,0 +1,273 @@
+---
+// "Kystverden": a zoomable coast picture with pins. Pins with a `scene` fly in and crossfade to a
+// close-up picture; the others only open the info card. Data: src/data/coast-world.json.
+// Leaflet (CRS.Simple) treats the picture as a flat map, so pins are placed in % of the picture.
+import 'leaflet/dist/leaflet.css';
+import world from '../data/coast-world.json';
+---
+
+<section class="ke" data-world={JSON.stringify(world)}>
+  <div class="ke-stage">
+    <div class="ke-map" role="region" aria-label="Interaktivt kort over kysten"></div>
+    <button class="ke-back" type="button" hidden>← Tilbage til oversigt</button>
+  </div>
+
+  <aside class="ke-card" aria-live="polite">
+    <p class="ke-kicker">Kystverden</p>
+    <h2 class="ke-title">{world.root.title}</h2>
+    <p class="ke-text">{world.root.text}</p>
+    <div class="ke-extra" hidden>
+      <h3>Det lever her</h3>
+      <ul class="ke-prey"></ul>
+      <h3>Hvornår</h3>
+      <p class="ke-when"></p>
+    </div>
+    <ul class="ke-list">
+      {world.hotspots.map((h) => (
+        <li><button type="button" data-id={h.id}>{h.title}</button></li>
+      ))}
+    </ul>
+  </aside>
+</section>
+
+<script>
+  import L from 'leaflet';
+
+  for (const root of document.querySelectorAll<HTMLElement>('.ke')) {
+    const world = JSON.parse(root.dataset.world!);
+    const stage = root.querySelector<HTMLElement>('.ke-stage')!;
+    const back = root.querySelector<HTMLButtonElement>('.ke-back')!;
+    const title = root.querySelector('.ke-title')!;
+    const text = root.querySelector('.ke-text')!;
+    const extra = root.querySelector<HTMLElement>('.ke-extra')!;
+    const prey = root.querySelector('.ke-prey')!;
+    const when = root.querySelector('.ke-when')!;
+
+    // Picture size → map bounds. Pin (x%, y% from top-left) → [lat, lng].
+    const bounds = (s) => L.latLngBounds([0, 0], [s.h, s.w]);
+    const toLatLng = (h) => L.latLng(world.root.h * (1 - h.y / 100), world.root.w * (h.x / 100));
+
+    const map = L.map(root.querySelector<HTMLElement>('.ke-map')!, {
+      crs: L.CRS.Simple, zoomSnap: 0, attributionControl: false, maxBoundsViscosity: 1, zoomControl: false,
+    });
+    L.control.zoom({ position: 'topright', zoomInTitle: 'Zoom ind', zoomOutTitle: 'Zoom ud' }).addTo(map);
+    let overlay = L.imageOverlay(world.root.image, bounds(world.root), { alt: world.root.title }).addTo(map);
+
+    const fit = (s) => {
+      const b = bounds(s);
+      map.setMaxBounds(b.pad(0.05));
+      map.setMinZoom(-10);
+      map.fitBounds(b, { animate: false });
+      map.setMinZoom(map.getZoom());
+      map.setMaxZoom(map.getZoom() + 2);
+    };
+    fit(world.root);
+
+    const pins = L.layerGroup().addTo(map);
+    for (const h of world.hotspots) {
+      const icon = L.divIcon({
+        className: 'ke-pin' + (h.scene ? ' ke-pin-major' : ''),
+        html: '<span class="ke-pulse"></span><span class="ke-dot"></span><span class="ke-label">' + h.title + '</span>',
+        iconSize: [22, 22],
+      });
+      L.marker(toLatLng(h), { icon, title: h.title, alt: h.title, keyboard: true })
+        .on('click', () => open(h))
+        .addTo(pins);
+    }
+
+    const showCard = (h) => {
+      title.textContent = h.title;
+      text.textContent = h.text;
+      prey.innerHTML = '';
+      for (const p of h.prey) { const li = document.createElement('li'); li.textContent = p; prey.append(li); }
+      when.textContent = h.when;
+      extra.hidden = false;
+    };
+
+    // Fade the map out, swap the picture, fade back in.
+    const swap = (s, alt) => new Promise<void>((done) => {
+      stage.classList.add('is-fading');
+      setTimeout(() => {
+        map.removeLayer(overlay);
+        overlay = L.imageOverlay(s.image, bounds(s), { alt }).addTo(map);
+        fit(s);
+        stage.classList.remove('is-fading');
+        done();
+      }, 350);
+    });
+
+    let busy = false;
+    async function open(h) {
+      if (busy) return;
+      showCard(h);
+      if (!h.scene) { map.flyTo(toLatLng(h), map.getMinZoom() + 0.75, { duration: 0.6 }); return; }
+      busy = true;
+      map.flyTo(toLatLng(h), map.getMaxZoom(), { duration: 0.7 });
+      await new Promise((r) => map.once('moveend', r));
+      map.removeLayer(pins);
+      await swap(h.scene, h.title);
+      back.hidden = false;
+      back.focus();
+      busy = false;
+    }
+
+    back.addEventListener('click', async () => {
+      back.hidden = true;
+      await swap(world.root, world.root.title);
+      pins.addTo(map);
+      title.textContent = world.root.title;
+      text.textContent = world.root.text;
+      extra.hidden = true;
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('.ke-list button').forEach((b) =>
+      b.addEventListener('click', async () => {
+        const h = world.hotspots.find((x) => x.id === b.dataset.id);
+        stage.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        if (!back.hidden) { back.hidden = true; await swap(world.root, world.root.title); pins.addTo(map); }
+        open(h);
+      }));
+  }
+</script>
+
+<style>
+  .ke {
+    display: grid;
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+  @media (min-width: 960px) {
+    .ke { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; }
+  }
+
+  .ke-stage {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0d4a5e;
+    transition: opacity 0.35s ease;
+  }
+  .ke-stage.is-fading { opacity: 0; }
+
+  .ke-map {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    background: #0d4a5e;
+  }
+
+  .ke-back {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1000;
+    padding: 0.55rem 0.95rem;
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    color: #0d4a5e;
+    font-weight: 600;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    cursor: pointer;
+  }
+  .ke-back:hover { background: #f0f7f9; }
+
+  .ke-card {
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .ke-kicker {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0d4a5e;
+    margin: 0 0 0.35rem;
+  }
+  .ke-title { font-size: 1.35rem; font-weight: 700; color: #111827; margin: 0 0 0.6rem; }
+  .ke-text { font-size: 0.9375rem; color: #374151; line-height: 1.7; margin: 0; }
+  .ke-extra h3 {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin: 1.1rem 0 0.4rem;
+  }
+  .ke-prey { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 0; }
+  .ke-prey :global(li) {
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: #e6f2f5;
+    color: #0d4a5e;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .ke-when { font-size: 0.9rem; color: #374151; line-height: 1.6; margin: 0; }
+
+  .ke-list {
+    list-style: none;
+    padding: 1rem 0 0;
+    margin: 1.25rem 0 0;
+    border-top: 1px solid #e5e7eb;
+    display: grid;
+    gap: 0.35rem;
+  }
+  .ke-list button {
+    width: 100%;
+    text-align: left;
+    padding: 0.45rem 0.6rem;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #0d4a5e;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .ke-list button:hover, .ke-list button:focus-visible { background: #f0f7f9; }
+
+  /* Pins (Leaflet divIcons live outside this component's scope, hence :global) */
+  :global(.ke-pin) { position: relative; }
+  :global(.ke-pin .ke-dot) {
+    position: absolute; inset: 4px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #0d4a5e;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+  :global(.ke-pin-major .ke-dot) { background: #f59e0b; border-color: #fff; }
+  :global(.ke-pin .ke-pulse) {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+    animation: ke-pulse 1.8s ease-out infinite;
+  }
+  :global(.ke-pin .ke-label) {
+    position: absolute;
+    left: 50%;
+    top: 26px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    background: rgba(13,74,94,0.88);
+    color: #fff;
+    font: 600 0.75rem/1.4 system-ui, sans-serif;
+    pointer-events: none;
+  }
+  :global(.ke-pin:focus-visible) { outline: 3px solid #f59e0b; outline-offset: 4px; border-radius: 50%; }
+  @keyframes -global-ke-pulse {
+    0% { transform: scale(0.6); opacity: 0.9; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.ke-pin .ke-pulse) { animation: none; }
+    .ke-stage { transition: none; }
+  }
+  @media (max-width: 600px) {
+    :global(.ke-pin .ke-label) { display: none; }
+  }
+</style>

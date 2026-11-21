@@ -1,59 +1,99 @@
 {
   "root": {
     "image": "/images/kystverden/root.webp",
-    "w": 1376,
-    "h": 768,
+    "w": 3200,
+    "h": 1786,
     "title": "Kysten fra oven",
-    "text": "Her ser du en klassisk dansk havørredkyst fra skrænten: badekar, tangbælte, pynt, ålegræs og stenrev. Klik på en pin for at se, hvad der lever dér, og hvorfor havørreden kommer forbi."
+    "text": "Her ser du en klassisk dansk havørredkyst fra skrænten: badekar, tangbælte, pynt, ålegræs og stenrev. Vælg et sted i bunden eller klik på en pin. De orange steder kan du dykke ned i."
   },
   "hotspots": [
     {
       "id": "badekar",
       "title": "Badekarret",
-      "x": 38,
+      "x": 32,
       "y": 53,
       "text": "Badekarret er den dybere sandrende, der ligger få meter fra strandkanten, lige inden for den første revle. Der er kun en meter eller to vand, men havørreden kommer helt herind og patruljerer langs renden. Den er her især i koldt, stille vejr og i skumringen, når der er ro på kysten.",
-      "prey": ["Rejer", "Tanglopper", "Kutlinger", "Børsteorme"],
+      "prey": [
+        "Rejer",
+        "Tanglopper",
+        "Kutlinger",
+        "Børsteorme"
+      ],
       "when": "Bedst i den kolde tid fra oktober til april og i skumringen. Om sommeren mest om natten.",
-      "scene": { "image": "/images/kystverden/badekar.webp", "w": 1376, "h": 768 }
+      "scene": {
+        "image": "/images/kystverden/badekar.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "40% 60%"
+      }
     },
     {
       "id": "tang",
       "title": "Tangbæltet",
-      "x": 56,
-      "y": 56,
+      "x": 52,
+      "y": 55,
       "text": "Det mørke bælte af blæretang er kystens spisekammer. Mellem tangen lever rejer, tanglopper, småkrabber og kutlinger, og havørreden jager langs kanten af tangen. Læg mærke til de lyse sandpletter inde i tangen. Det er dér, du lettest ser en fisk komme forbi.",
-      "prey": ["Rejer", "Tanglopper", "Småkrabber", "Kutlinger"],
+      "prey": [
+        "Rejer",
+        "Tanglopper",
+        "Småkrabber",
+        "Kutlinger"
+      ],
       "when": "Hele året. Især i bølger og lidt uklart vand, hvor fisken føler sig tryg tæt på land."
     },
     {
       "id": "pynt",
       "title": "Pynten & strømskellet",
-      "x": 30,
+      "x": 27,
       "y": 31,
       "text": "Ude ved pynten presses strømmen sammen. Hvor hurtigt og roligt vand mødes, opstår et strømskel, som du ofte kan se som en linje eller et mønster i overfladen. Strømmen fører småfisk og krebsdyr med sig, og havørreden står i det rolige vand ved siden af og venter på, at maden kommer forbi.",
-      "prey": ["Småfisk", "Rejer", "Tanglopper i drift"],
+      "prey": [
+        "Småfisk",
+        "Rejer",
+        "Tanglopper i drift"
+      ],
       "when": "Når der er strøm og vind langs kysten. Stille dage uden strøm giver langt mindre liv ved pynten."
     },
     {
       "id": "aalegraes",
       "title": "Ålegræsset & revlebruddet",
-      "x": 66,
-      "y": 44,
+      "x": 64,
+      "y": 50,
       "text": "Hvor ålegræsset slutter og sandet falder af mod dybere vand, er der en tydelig kant. I ålegræsset gemmer hundestejler, rejer og unge fisk sig, og over sandet står tobis, der kan grave sig ned på et splitsekund. Havørreden svømmer langs kanten og tager det, der vover sig ud i det åbne.",
-      "prey": ["Tobis", "Hundestejler", "Rejer", "Kutlinger"],
+      "prey": [
+        "Tobis",
+        "Hundestejler",
+        "Rejer",
+        "Kutlinger"
+      ],
       "when": "Forår og forsommer, når tobisen er aktiv over sandet.",
-      "scene": { "image": "/images/kystverden/aalegraes.webp", "w": 1376, "h": 768 }
+      "scene": {
+        "image": "/images/kystverden/aalegraes.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "55% 50%"
+      }
     },
     {
       "id": "rev",
       "title": "Stenrevet & muslingebanken",
-      "x": 89,
-      "y": 62,
+      "x": 90,
+      "y": 64,
       "text": "Stenrevet blev lagt af isen under sidste istid. Stenene er dækket af blåmuslinger, blæretang og bladtang, og mellem dem lever krabber, rejer, kutlinger og ulke. Havørreden står gerne i læ bag en stor sten, hvor strømmen er svag, og skyder frem efter de byttedyr, strømmen bringer forbi.",
-      "prey": ["Kutlinger", "Rejer", "Småkrabber", "Børsteorme"],
+      "prey": [
+        "Kutlinger",
+        "Rejer",
+        "Småkrabber",
+        "Børsteorme"
+      ],
       "when": "Hele året, især når der er strøm og lidt bølger over revet.",
-      "scene": { "image": "/images/kystverden/rev.webp", "w": 1376, "h": 768 }
+      "scene": {
+        "image": "/images/kystverden/rev.webp",
+        "w": 3200,
+        "h": 1786,
+        "focus": "72% 50%",
+        "cardLeft": true
+      }
     }
   ]
 }

@@ -1,18 +1,20 @@
 ---
-// "Kystverden": a zoomable coast picture with pins. Pins with a `scene` fly in and crossfade to a
-// close-up picture; the others only open the info card. Data: src/data/coast-world.json.
-// Leaflet (CRS.Simple) treats the picture as a flat map, so pins are placed in % of the picture.
+// "Kystverden": a full-screen, zoomable coast picture with pins and spot buttons.
+// Picking a spot glides the camera to it; spots with a `scene` then crossfade to a close-up that settles
+// from slightly enlarged to normal. "Tilbage" plays it in reverse. Data: src/data/coast-world.json.
+// Leaflet (CRS.Simple) treats the overview picture as a flat map, so pins are placed in % of the picture.
 import 'leaflet/dist/leaflet.css';
 import world from '../data/coast-world.json';
 ---
 
 <section class="ke" data-world={JSON.stringify(world)}>
-  <div class="ke-stage">
-    <div class="ke-map" role="region" aria-label="Interaktivt kort over kysten"></div>
-    <button class="ke-back" type="button" hidden>← Tilbage til oversigt</button>
-  </div>
+  <div class="ke-map" role="region" aria-label="Interaktivt billede af kysten"></div>
+  <img class="ke-scene" alt="" aria-hidden="true" />
 
-  <aside class="ke-card" aria-live="polite">
+  <button class="ke-back" type="button" hidden>← Tilbage til oversigt</button>
+
+  <aside class="ke-card is-open" aria-live="polite">
+    <button class="ke-close" type="button" aria-label="Luk">×</button>
     <p class="ke-kicker">Kystverden</p>
     <h2 class="ke-title">{world.root.title}</h2>
     <p class="ke-text">{world.root.text}</p>
@@ -22,252 +24,316 @@ import world from '../data/coast-world.json';
       <h3>Hvornår</h3>
       <p class="ke-when"></p>
     </div>
-    <ul class="ke-list">
-      {world.hotspots.map((h) => (
-        <li><button type="button" data-id={h.id}>{h.title}</button></li>
-      ))}
-    </ul>
   </aside>
+
+  <nav class="ke-bar" aria-label="Vælg et sted på kysten">
+    {world.hotspots.map((h) => (
+      <button type="button" data-id={h.id} class={h.scene ? 'is-major' : ''}>{h.title}</button>
+    ))}
+  </nav>
 </section>
 
 <script>
+  // @ts-nocheck — small untyped DOM/Leaflet glue; Leaflet ships no types.
   import L from 'leaflet';
 
-  for (const root of document.querySelectorAll<HTMLElement>('.ke')) {
+  const root = document.querySelector<HTMLElement>('.ke');
+  if (root) {
     const world = JSON.parse(root.dataset.world!);
-    const stage = root.querySelector<HTMLElement>('.ke-stage')!;
-    const back = root.querySelector<HTMLButtonElement>('.ke-back')!;
-    const title = root.querySelector('.ke-title')!;
-    const text = root.querySelector('.ke-text')!;
-    const extra = root.querySelector<HTMLElement>('.ke-extra')!;
-    const prey = root.querySelector('.ke-prey')!;
-    const when = root.querySelector('.ke-when')!;
+    const W = world.root.w, H = world.root.h;
+    const $ = (s) => root.querySelector(s);
+    const scene = $('.ke-scene') as HTMLImageElement;
+    const back = $('.ke-back') as HTMLButtonElement;
+    const card = $('.ke-card') as HTMLElement;
+    const extra = $('.ke-extra') as HTMLElement;
+    const barButtons = [...root.querySelectorAll<HTMLButtonElement>('.ke-bar button')];
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const wait = (ms) => new Promise((r) => setTimeout(r, still ? 0 : ms));
 
-    // Picture size → map bounds. Pin (x%, y% from top-left) → [lat, lng].
-    const bounds = (s) => L.latLngBounds([0, 0], [s.h, s.w]);
-    const toLatLng = (h) => L.latLng(world.root.h * (1 - h.y / 100), world.root.w * (h.x / 100));
+    const bounds = L.latLngBounds([0, 0], [H, W]);
+    const toLatLng = (h) => L.latLng(H * (1 - h.y / 100), W * (h.x / 100));
 
-    const map = L.map(root.querySelector<HTMLElement>('.ke-map')!, {
-      crs: L.CRS.Simple, zoomSnap: 0, attributionControl: false, maxBoundsViscosity: 1, zoomControl: false,
+    const map = L.map($('.ke-map'), {
+      crs: L.CRS.Simple, zoomSnap: 0, zoomDelta: 0.5, attributionControl: false, zoomControl: false,
+      maxBounds: bounds, maxBoundsViscosity: 1,
     });
-    L.control.zoom({ position: 'topright', zoomInTitle: 'Zoom ind', zoomOutTitle: 'Zoom ud' }).addTo(map);
-    let overlay = L.imageOverlay(world.root.image, bounds(world.root), { alt: world.root.title }).addTo(map);
+    L.imageOverlay(world.root.image, bounds, { alt: world.root.title }).addTo(map);
 
-    const fit = (s) => {
-      const b = bounds(s);
-      map.setMaxBounds(b.pad(0.05));
-      map.setMinZoom(-10);
-      map.fitBounds(b, { animate: false });
-      map.setMinZoom(map.getZoom());
-      map.setMaxZoom(map.getZoom() + 2);
+    // "Cover" zoom: the smallest zoom where the picture fills the whole screen.
+    let cover = 0;
+    const fitCover = (keepView) => {
+      const size = map.getSize();
+      cover = Math.log2(Math.max(size.x / W, size.y / H));
+      map.setMinZoom(cover);
+      map.setMaxZoom(cover + 2.5);
+      if (!keepView || map.getZoom() < cover) map.setView(bounds.getCenter(), cover, { animate: false });
     };
-    fit(world.root);
+    fitCover(false);
+    map.on('resize', () => fitCover(true));
 
+    // Keep a target view inside the picture, so the camera never glides past an edge and jumps back.
+    const clamp = (ll, z) => {
+      const size = map.getSize(), k = Math.pow(2, z);
+      const hw = size.x / 2 / k, hh = size.y / 2 / k;
+      return L.latLng(Math.min(Math.max(ll.lat, hh), H - hh), Math.min(Math.max(ll.lng, hw), W - hw));
+    };
+    const glide = (ll, z, duration) => new Promise<void>((done) => {
+      const target = clamp(ll, z);
+      if (still) { map.setView(target, z, { animate: false }); return done(); }
+      map.once('moveend', () => done());
+      map.flyTo(target, z, { duration, easeLinearity: 0.15 });
+    });
+
+    // Pins
     const pins = L.layerGroup().addTo(map);
     for (const h of world.hotspots) {
       const icon = L.divIcon({
         className: 'ke-pin' + (h.scene ? ' ke-pin-major' : ''),
         html: '<span class="ke-pulse"></span><span class="ke-dot"></span><span class="ke-label">' + h.title + '</span>',
-        iconSize: [22, 22],
+        iconSize: [24, 24],
       });
-      L.marker(toLatLng(h), { icon, title: h.title, alt: h.title, keyboard: true })
-        .on('click', () => open(h))
-        .addTo(pins);
+      L.marker(toLatLng(h), { icon, title: h.title, alt: h.title, keyboard: true }).on('click', () => open(h)).addTo(pins);
     }
 
+    // Info card
     const showCard = (h) => {
-      title.textContent = h.title;
-      text.textContent = h.text;
-      prey.innerHTML = '';
-      for (const p of h.prey) { const li = document.createElement('li'); li.textContent = p; prey.append(li); }
-      when.textContent = h.when;
-      extra.hidden = false;
+      $('.ke-title').textContent = h ? h.title : world.root.title;
+      $('.ke-text').textContent = h ? h.text : world.root.text;
+      extra.hidden = !h;
+      if (h) {
+        const prey = $('.ke-prey');
+        prey.innerHTML = '';
+        for (const p of h.prey) { const li = document.createElement('li'); li.textContent = p; prey.append(li); }
+        $('.ke-when').textContent = h.when;
+      }
+      card.classList.add('is-open');
+      barButtons.forEach((b) => b.classList.toggle('is-active', !!h && b.dataset.id === h.id));
     };
+    $('.ke-close').addEventListener('click', () => card.classList.remove('is-open'));
 
-    // Fade the map out, swap the picture, fade back in.
-    const swap = (s, alt) => new Promise<void>((done) => {
-      stage.classList.add('is-fading');
-      setTimeout(() => {
-        map.removeLayer(overlay);
-        overlay = L.imageOverlay(s.image, bounds(s), { alt }).addTo(map);
-        fit(s);
-        stage.classList.remove('is-fading');
-        done();
-      }, 350);
-    });
+    // Close-up on top of the map: fades in while it settles from 1.12× to 1×.
+    let inScene = null;
+    const narrow = () => matchMedia('(max-width: 700px)').matches;
+    const showScene = async (h) => {
+      scene.src = h.scene.image;
+      scene.alt = h.title;
+      scene.style.objectPosition = h.scene.focus || 'center';
+      card.classList.toggle('is-left', !!h.scene.cardLeft);
+      await scene.decode().catch(() => {});
+      root.classList.add('in-scene');
+      inScene = h;
+      back.hidden = false;
+      if (narrow()) card.classList.remove('is-open'); // phones: let the picture speak; tap the button again for the text
+    };
+    const hideScene = async () => {
+      if (!inScene) return;
+      root.classList.remove('in-scene');
+      back.hidden = true;
+      inScene = null;
+      card.classList.remove('is-left');
+      await wait(500);
+    };
 
     let busy = false;
     async function open(h) {
       if (busy) return;
-      showCard(h);
-      if (!h.scene) { map.flyTo(toLatLng(h), map.getMinZoom() + 0.75, { duration: 0.6 }); return; }
+      if (inScene === h) return showCard(h); // already there: just bring the text back
       busy = true;
-      map.flyTo(toLatLng(h), map.getMaxZoom(), { duration: 0.7 });
-      await new Promise((r) => map.once('moveend', r));
-      map.removeLayer(pins);
-      await swap(h.scene, h.title);
-      back.hidden = false;
-      back.focus();
+      showCard(h);
+      await hideScene();
+      if (h.scene) {
+        await glide(toLatLng(h), cover + 1.8, 1.5);
+        await showScene(h);
+        back.focus();
+      } else {
+        await glide(toLatLng(h), cover + 0.8, 1.2);
+      }
       busy = false;
     }
 
-    back.addEventListener('click', async () => {
-      back.hidden = true;
-      await swap(world.root, world.root.title);
-      pins.addTo(map);
-      title.textContent = world.root.title;
-      text.textContent = world.root.text;
-      extra.hidden = true;
-    });
+    async function overview() {
+      if (busy) return;
+      busy = true;
+      showCard(null);
+      await hideScene();
+      await glide(bounds.getCenter(), cover, 1.3);
+      busy = false;
+    }
 
-    root.querySelectorAll<HTMLButtonElement>('.ke-list button').forEach((b) =>
-      b.addEventListener('click', async () => {
-        const h = world.hotspots.find((x) => x.id === b.dataset.id);
-        stage.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-        if (!back.hidden) { back.hidden = true; await swap(world.root, world.root.title); pins.addTo(map); }
-        open(h);
-      }));
+    back.addEventListener('click', overview);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && inScene) overview(); });
+    barButtons.forEach((b) => b.addEventListener('click', () => open(world.hotspots.find((x) => x.id === b.dataset.id))));
+
+    // Fetch the close-ups once the overview is up, so the crossfade never waits on the network.
+    setTimeout(() => world.hotspots.forEach((h) => { if (h.scene) new Image().src = h.scene.image; }), 1500);
   }
 </script>
 
 <style>
   .ke {
-    display: grid;
-    gap: 1.25rem;
-    margin: 2rem 0;
-  }
-  @media (min-width: 960px) {
-    .ke { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; }
-  }
-
-  .ke-stage {
     position: relative;
-    border-radius: 12px;
+    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     background: #0d4a5e;
-    transition: opacity 0.35s ease;
   }
-  .ke-stage.is-fading { opacity: 0; }
+  .ke-map { position: absolute; inset: 0; background: #0d4a5e; }
 
-  .ke-map {
-    aspect-ratio: 16 / 9;
+  .ke-scene {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    background: #0d4a5e;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.12);
+    transition: opacity 0.8s ease, transform 1.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    pointer-events: none;
+    z-index: 500;
   }
+  .ke.in-scene .ke-scene { opacity: 1; transform: scale(1); pointer-events: auto; }
+  .ke.in-scene :global(.ke-pin) { opacity: 0; pointer-events: none; }
 
   .ke-back {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 1000;
-    padding: 0.55rem 0.95rem;
+    top: 4.5rem;
+    left: 1rem;
+    z-index: 1100;
+    padding: 0.6rem 1rem;
     border: 0;
     border-radius: 999px;
     background: #fff;
     color: #0d4a5e;
-    font-weight: 600;
-    font-size: 0.875rem;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
     cursor: pointer;
   }
   .ke-back:hover { background: #f0f7f9; }
 
+  /* Info card: panel on the right (desktop), sheet above the button bar (phones) */
   .ke-card {
-    padding: 1.5rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background: #fff;
+    position: absolute;
+    z-index: 1100;
+    top: 4.5rem;
+    right: 1rem;
+    width: 340px;
+    max-height: calc(100% - 10rem);
+    overflow-y: auto;
+    padding: 1.4rem 1.5rem 1.5rem;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    transform: translateX(calc(100% + 2rem));
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
+  .ke-card.is-open { transform: none; }
+  @media (min-width: 701px) {
+    .ke-card.is-left { right: auto; left: 1rem; top: 7.75rem; transform: translateX(calc(-100% - 2rem)); }
+    .ke-card.is-left.is-open { transform: none; }
+  }
+  @media (max-width: 700px) {
+    .ke-card {
+      top: auto;
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 4.75rem;
+      width: auto;
+      max-height: 45dvh;
+      transform: translateY(calc(100% + 6rem));
+    }
+  }
+  .ke-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.7rem;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #6b7280;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .ke-close:hover { background: #f0f7f9; color: #111827; }
   .ke-kicker {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #0d4a5e;
-    margin: 0 0 0.35rem;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #0d4a5e; margin: 0 0 0.35rem;
   }
-  .ke-title { font-size: 1.35rem; font-weight: 700; color: #111827; margin: 0 0 0.6rem; }
+  .ke-title { font-size: 1.35rem; font-weight: 700; color: #111827; margin: 0 2rem 0.6rem 0; }
   .ke-text { font-size: 0.9375rem; color: #374151; line-height: 1.7; margin: 0; }
   .ke-extra h3 {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #6b7280;
-    margin: 1.1rem 0 0.4rem;
+    font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: #6b7280; margin: 1.1rem 0 0.4rem;
   }
   .ke-prey { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 0; }
   .ke-prey :global(li) {
-    padding: 0.2rem 0.65rem;
-    border-radius: 999px;
-    background: #e6f2f5;
-    color: #0d4a5e;
-    font-size: 0.8125rem;
-    font-weight: 600;
+    padding: 0.2rem 0.65rem; border-radius: 999px; background: #e6f2f5; color: #0d4a5e;
+    font-size: 0.8125rem; font-weight: 600;
   }
   .ke-when { font-size: 0.9rem; color: #374151; line-height: 1.6; margin: 0; }
 
-  .ke-list {
-    list-style: none;
-    padding: 1rem 0 0;
-    margin: 1.25rem 0 0;
-    border-top: 1px solid #e5e7eb;
-    display: grid;
-    gap: 0.35rem;
+  /* Spot buttons along the bottom */
+  .ke-bar {
+    position: absolute;
+    z-index: 1100;
+    left: 0;
+    right: 0;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
-  .ke-list button {
-    width: 100%;
-    text-align: left;
-    padding: 0.45rem 0.6rem;
-    border: 0;
-    border-radius: 8px;
-    background: transparent;
-    color: #0d4a5e;
+  @media (max-width: 900px) { .ke-bar { justify-content: flex-start; } }
+  .ke-bar button {
+    flex: none;
+    padding: 0.65rem 1.1rem;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    background: rgba(13,74,94,0.82);
+    backdrop-filter: blur(6px);
+    color: #fff;
     font-weight: 600;
     font-size: 0.9rem;
+    white-space: nowrap;
     cursor: pointer;
+    transition: background 0.2s, color 0.2s;
   }
-  .ke-list button:hover, .ke-list button:focus-visible { background: #f0f7f9; }
+  .ke-bar button.is-major::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 0.5rem; border-radius: 50%; background: #f59e0b; vertical-align: 1px; }
+  .ke-bar button:hover { background: rgba(13,74,94,0.95); }
+  .ke-bar button.is-active { background: #fff; color: #0d4a5e; }
 
   /* Pins (Leaflet divIcons live outside this component's scope, hence :global) */
-  :global(.ke-pin) { position: relative; }
+  :global(.ke-pin) { transition: opacity 0.4s; }
   :global(.ke-pin .ke-dot) {
-    position: absolute; inset: 4px;
-    border-radius: 50%;
-    background: #fff;
-    border: 3px solid #0d4a5e;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    position: absolute; inset: 4px; border-radius: 50%;
+    background: #fff; border: 3px solid #0d4a5e; box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   }
   :global(.ke-pin-major .ke-dot) { background: #f59e0b; border-color: #fff; }
   :global(.ke-pin .ke-pulse) {
-    position: absolute; inset: 0;
-    border-radius: 50%;
+    position: absolute; inset: 0; border-radius: 50%;
     background: rgba(255,255,255,0.7);
     animation: ke-pulse 1.8s ease-out infinite;
   }
   :global(.ke-pin .ke-label) {
-    position: absolute;
-    left: 50%;
-    top: 26px;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    padding: 0.15rem 0.5rem;
-    border-radius: 6px;
-    background: rgba(13,74,94,0.88);
-    color: #fff;
-    font: 600 0.75rem/1.4 system-ui, sans-serif;
-    pointer-events: none;
+    position: absolute; left: 50%; top: 28px; transform: translateX(-50%);
+    white-space: nowrap; padding: 0.15rem 0.5rem; border-radius: 6px;
+    background: rgba(13,74,94,0.88); color: #fff;
+    font: 600 0.75rem/1.4 system-ui, sans-serif; pointer-events: none;
   }
   :global(.ke-pin:focus-visible) { outline: 3px solid #f59e0b; outline-offset: 4px; border-radius: 50%; }
   @keyframes -global-ke-pulse {
     0% { transform: scale(0.6); opacity: 0.9; }
     100% { transform: scale(2.2); opacity: 0; }
   }
+  @media (max-width: 600px) { :global(.ke-pin .ke-label) { display: none; } }
   @media (prefers-reduced-motion: reduce) {
     :global(.ke-pin .ke-pulse) { animation: none; }
-    .ke-stage { transition: none; }
-  }
-  @media (max-width: 600px) {
-    :global(.ke-pin .ke-label) { display: none; }
+    .ke-scene, .ke-card { transition: none; }
   }
 </style>

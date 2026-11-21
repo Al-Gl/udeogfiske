@@ -28,6 +28,8 @@ interface Props {
   /** Extra schema.org nodes appended to the @graph (e.g. a TouristAttraction) */
   extraSchema?: any[];
   noindex?: boolean;
+  /** Full-screen pages (e.g. Kystverden): no site header, footer, newsletter popup or ads */
+  bare?: boolean;
 }
 
 const {
@@ -44,6 +46,7 @@ const {
   itemList,
   extraSchema,
   noindex = false,
+  bare = false,
 } = Astro.props;
 
 const buildEntity = (e: SchemaEntity) => ({
@@ -520,7 +523,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
 
   <body>
     <a href="#indhold" class="skip-link">Spring til indhold</a>
-    <header class="sh">
+    {!bare && <header class="sh">
       <div class="sh-bar"></div>
       <div class="sh-inner">
         <a href="/" class="sh-logo" aria-label="Ude og Fiske — forside">
@@ -550,15 +553,15 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
           <a href="/om-mig/" class="sh-cta">Kontakt</a>
         </nav>
       </div>
-    </header>
+    </header>}
 
     <main id="indhold">
       <slot />
     </main>
 
-    <NewsletterPopup />
+    {!bare && <NewsletterPopup />}
 
-    <footer class="sf">
+    {!bare && <footer class="sf">
       <div class="sf-grid">
         <div>
           <div class="sf-brand">Ude og Fiske</div>
@@ -589,11 +592,11 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
         · <button type="button" class="sf-cookie-btn" onclick="window.uofCookies&&window.uofCookies.open()">Cookieindstillinger</button>
         <span data-nl-link hidden>· <button type="button" class="sf-cookie-btn" data-nl-open>Nyhedsbrev</button></span>
       </div>
-    </footer>
+    </footer>}
 
     <CookieConsent />
-    <GoogleAdSidebar />
-    <GoogleAdBottomBanner />
+    {!bare && <GoogleAdSidebar />}
+    {!bare && <GoogleAdBottomBanner />}
 
     <script is:inline>
       // Header depth cue on scroll.

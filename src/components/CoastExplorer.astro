@@ -10,14 +10,20 @@ import world from '../data/coast-world.json';
 <section class="ke" data-world={JSON.stringify(world)}>
   <div class="ke-map" role="region" aria-label="Interaktivt billede af kysten"></div>
   <img class="ke-scene" alt="" aria-hidden="true" />
+  <div class="ke-spins"></div>
 
   <button class="ke-back" type="button" hidden>← Tilbage til oversigt</button>
 
   <aside class="ke-card is-open" aria-live="polite">
     <button class="ke-close" type="button" aria-label="Luk">×</button>
+    <button class="ke-up" type="button" hidden></button>
     <p class="ke-kicker">Kystverden</p>
     <h2 class="ke-title">{world.root.title}</h2>
     <p class="ke-text">{world.root.text}</p>
+    <div class="ke-items" hidden>
+      <h3>I billedet</h3>
+      <ul class="ke-itemlist"></ul>
+    </div>
     <div class="ke-extra" hidden>
       <h3>Det lever her</h3>
       <ul class="ke-prey"></ul>
@@ -96,32 +102,89 @@ import world from '../data/coast-world.json';
     }
 
     // Info card
+    const spins = $('.ke-spins') as HTMLElement;
+    const up = $('.ke-up') as HTMLButtonElement;
+    const items = $('.ke-items') as HTMLElement;
+    const markItem = (id) => {
+      for (const b of root.querySelectorAll('.ke-spin, .ke-itemlist button')) b.classList.toggle('is-active', b.dataset.id === id);
+    };
     const showCard = (h) => {
       $('.ke-title').textContent = h ? h.title : world.root.title;
       $('.ke-text').textContent = h ? h.text : world.root.text;
       extra.hidden = !h;
+      up.hidden = true;
+      const list = h && h.scene && h.scene.pins;
+      items.hidden = !list;
       if (h) {
         const prey = $('.ke-prey');
         prey.innerHTML = '';
         for (const p of h.prey) { const li = document.createElement('li'); li.textContent = p; prey.append(li); }
         $('.ke-when').textContent = h.when;
       }
+      if (list) {
+        const ul = $('.ke-itemlist');
+        ul.innerHTML = '';
+        for (const p of list) {
+          const b = document.createElement('button');
+          b.type = 'button'; b.textContent = p.title; b.dataset.id = p.id;
+          b.addEventListener('click', () => showItem(h, p));
+          const li = document.createElement('li'); li.append(b); ul.append(li);
+        }
+      }
+      markItem(null);
       card.classList.add('is-open');
       barButtons.forEach((b) => b.classList.toggle('is-active', !!h && b.dataset.id === h.id));
+    };
+    // One thing inside a close-up (plant, fish, stone…): its own text, with a link back to the spot.
+    const showItem = (h, p) => {
+      $('.ke-title').textContent = p.title;
+      $('.ke-text').textContent = p.text;
+      extra.hidden = true;
+      up.textContent = '← ' + h.title;
+      up.onclick = () => showCard(h);
+      up.hidden = false;
+      markItem(p.id);
+      card.classList.add('is-open');
     };
     $('.ke-close').addEventListener('click', () => card.classList.remove('is-open'));
 
     // Close-up on top of the map: fades in while it settles from 1.12× to 1×.
     let inScene = null;
     const narrow = () => matchMedia('(max-width: 700px)').matches;
+    // Place the close-up's pins on the picture as it is cropped ("cover" + focus), so they sit on the right thing.
+    const placeSpins = () => {
+      if (!inScene) return;
+      const s = inScene.scene, cw = root.clientWidth, ch = root.clientHeight;
+      const k = Math.max(cw / s.w, ch / s.h), rw = s.w * k, rh = s.h * k;
+      const [fx, fy] = (s.focus || '50% 50%').split(' ').map(parseFloat);
+      const ox = (cw - rw) * fx / 100, oy = (ch - rh) * fy / 100;
+      for (const b of spins.children) {
+        const x = ox + rw * b.dataset.x / 100, y = oy + rh * b.dataset.y / 100;
+        b.style.left = x + 'px'; b.style.top = y + 'px';
+        b.hidden = x < 16 || x > cw - 16 || y < 16 || y > ch - 16; // cropped away (phones): use the card's buttons
+      }
+    };
+    window.addEventListener('resize', placeSpins);
     const showScene = async (h) => {
       scene.src = h.scene.image;
       scene.alt = h.title;
       scene.style.objectPosition = h.scene.focus || 'center';
       card.classList.toggle('is-left', !!h.scene.cardLeft);
+      spins.innerHTML = '';
+      for (const p of h.scene.pins || []) {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'ke-pin ke-spin';
+        b.dataset.x = p.x; b.dataset.y = p.y; b.dataset.id = p.id;
+        b.setAttribute('aria-label', p.title);
+        b.innerHTML = '<span class="ke-pulse"></span><span class="ke-dot"></span><span class="ke-label"></span>';
+        b.querySelector('.ke-label').textContent = p.title;
+        b.addEventListener('click', () => showItem(h, p));
+        spins.append(b);
+      }
       await scene.decode().catch(() => {});
-      root.classList.add('in-scene');
       inScene = h;
+      placeSpins();
+      root.classList.add('in-scene');
       back.hidden = false;
       if (narrow()) card.classList.remove('is-open'); // phones: let the picture speak; tap the button again for the text
     };
@@ -192,7 +255,36 @@ import world from '../data/coast-world.json';
     z-index: 500;
   }
   .ke.in-scene .ke-scene { opacity: 1; transform: scale(1); pointer-events: auto; }
-  .ke.in-scene :global(.ke-pin) { opacity: 0; pointer-events: none; }
+  .ke.in-scene .ke-map :global(.ke-pin) { opacity: 0; pointer-events: none; }
+
+  /* Pins inside a close-up: fade in once the picture has settled */
+  .ke-spins { position: absolute; inset: 0; z-index: 600; pointer-events: none; opacity: 0; transition: opacity 0.4s; }
+  .ke.in-scene .ke-spins { opacity: 1; transition: opacity 0.6s 1.2s; }
+  .ke.in-scene .ke-spins :global(.ke-spin) { pointer-events: auto; }
+  .ke-spins :global(.ke-spin) {
+    position: absolute; width: 24px; height: 24px; margin: -12px 0 0 -12px;
+    padding: 0; border: 0; background: none; cursor: pointer;
+  }
+  .ke-spins :global(.ke-spin[hidden]) { display: none; }
+  .ke-spins :global(.ke-spin.is-active .ke-dot) { background: #f59e0b; border-color: #fff; }
+
+  .ke-up {
+    display: block; margin: 0 2rem 0.5rem 0; padding: 0; border: 0; background: none;
+    color: #0d4a5e; font-weight: 700; font-size: 0.85rem; cursor: pointer;
+  }
+  .ke-up[hidden] { display: none; }
+  .ke-up:hover { text-decoration: underline; }
+  .ke-items h3 {
+    font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: #6b7280; margin: 1.1rem 0 0.4rem;
+  }
+  .ke-itemlist { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 0; }
+  .ke-itemlist :global(button) {
+    padding: 0.3rem 0.75rem; border: 1px solid #0d4a5e; border-radius: 999px; background: #fff; color: #0d4a5e;
+    font-size: 0.8125rem; font-weight: 600; cursor: pointer;
+  }
+  .ke-itemlist :global(button:hover) { background: #e6f2f5; }
+  .ke-itemlist :global(button.is-active) { background: #0d4a5e; color: #fff; }
 
   .ke-back {
     position: absolute;

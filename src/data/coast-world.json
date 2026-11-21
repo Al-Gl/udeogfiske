@@ -23,7 +23,30 @@
         "image": "/images/kystverden/pynt.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "55% 50%"
+        "focus": "55% 50%",
+        "pins": [
+          {
+            "id": "strom",
+            "title": "Strømskellet",
+            "x": 45,
+            "y": 30,
+            "text": "Linjen i overfladen er strømskellet, hvor strømmen fra pynten møder det roligere vand. Her samles skum, tang og alt det, strømmen fører med sig. Havørreden står i kanten af det rolige vand og lader maden komme til sig."
+          },
+          {
+            "id": "drivtang",
+            "title": "Drivtangen",
+            "x": 58,
+            "y": 68,
+            "text": "Løsrevet tang driver med strømmen og samler sig langs strømskellet. Med tangen følger tanglopper og små rejer, og det gør linjen til et smalt madbånd ud for pynten."
+          },
+          {
+            "id": "sten",
+            "title": "Stenene på pynten",
+            "x": 25,
+            "y": 88,
+            "text": "Pynten er bygget af sten, som isen efterlod, og som bølgerne har vasket sandet væk fra. Stenene giver fæste for tang, og de presser strømmen sammen, så den bliver stærkere lige ud for pynten."
+          }
+        ]
       }
     },
     {
@@ -43,7 +66,30 @@
         "image": "/images/kystverden/aalegraes.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "50% 45%"
+        "focus": "50% 45%",
+        "pins": [
+          {
+            "id": "plante",
+            "title": "Ålegræsset",
+            "x": 22,
+            "y": 55,
+            "text": "Ålegræs er ikke tang, men en blomsterplante med rødder, der vokser på sandbund. Rødderne holder på sandet, og de lange blade giver skjul for rejer, hundestejler og unge fisk. Ålegræsset gik stærkt tilbage i de danske farvande i 1930'erne på grund af en sygdom, og i dag afhænger det af klart vand for at kunne vokse dybt."
+          },
+          {
+            "id": "orred",
+            "title": "Havørreden",
+            "x": 57,
+            "y": 38,
+            "text": "Havørreden svømmer langs kanten, hvor ålegræsset slutter og sandet begynder. Her kan den overraske de små fisk og rejer, der vover sig ud fra skjulet i græsset."
+          },
+          {
+            "id": "tobis",
+            "title": "Tobisen",
+            "x": 66,
+            "y": 72,
+            "text": "De små sølvblanke fisk over sandet er tobis. De lever i stimer tæt ved bunden og graver sig ned i sandet, når der er fare, og om natten. Om foråret er tobis vigtig føde for havørreden ved kanten af ålegræsset."
+          }
+        ]
       }
     },
     {
@@ -63,7 +109,30 @@
         "image": "/images/kystverden/revlebrud.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "52% 35%"
+        "focus": "52% 35%",
+        "pins": [
+          {
+            "id": "revle",
+            "title": "Revlen",
+            "x": 25,
+            "y": 25,
+            "text": "Revlen er en lav sandbanke, som bølgerne har bygget op. Den flytter sig med storme og årstider, og ved lavvande kan den næsten ligge tør. Den virker som en dæmning, der holder på vandet i badekarret."
+          },
+          {
+            "id": "brud",
+            "title": "Bruddet",
+            "x": 52,
+            "y": 30,
+            "text": "Her er revlen brudt af en dybere rende. Når bølgerne har presset vand ind over revlen, løber det ud igen gennem bruddet, så der står strøm i renden. Strømmen fører føde med sig, og havørreden bruger bruddet som port ind og ud af badekarret."
+          },
+          {
+            "id": "badekar",
+            "title": "Badekarret",
+            "x": 40,
+            "y": 62,
+            "text": "Det mørke vand foran stranden er badekarret, den dybere rende mellem stranden og revlen. Gennem bruddet er badekarret forbundet med det åbne hav, så fisken kan trække ind og ud."
+          }
+        ]
       }
     },
     {
@@ -83,7 +152,30 @@
         "image": "/images/kystverden/tang.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "50% 60%"
+        "focus": "50% 60%",
+        "pins": [
+          {
+            "id": "blaere",
+            "title": "Blæretangen",
+            "x": 28,
+            "y": 68,
+            "text": "Blæretang kender du på de små luftblærer, der holder den oprejst i vandet, så den kan nå lyset. Den sidder fast på stenene og danner tætte buske, hvor små dyr kan gemme sig."
+          },
+          {
+            "id": "reje",
+            "title": "Rejen",
+            "x": 46,
+            "y": 69,
+            "text": "Mellem tangen lever der masser af små rejer. De er noget af det, havørreden oftest jager langs kysten, og om dagen gemmer de sig i tangen."
+          },
+          {
+            "id": "sand",
+            "title": "Sandpletten",
+            "x": 66,
+            "y": 70,
+            "text": "De lyse pletter af sand og grus mellem tangen er åbne pladser i tangbæltet. Her har byttet ingen steder at gemme sig, og her er det lettest for dig at se en fisk komme forbi."
+          }
+        ]
       }
     },
     {
@@ -103,7 +195,30 @@
         "image": "/images/kystverden/badekar.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "35% 55%"
+        "focus": "35% 55%",
+        "pins": [
+          {
+            "id": "orred",
+            "title": "Havørreden",
+            "x": 60,
+            "y": 54,
+            "text": "Havørreden svømmer roligt langs renden i badekarret. Her er vandet dybt nok til, at den føler sig tryg, og tæt nok på land til, at der er rejer, tanglopper og kutlinger at jage."
+          },
+          {
+            "id": "kant",
+            "title": "Kanten mod revlen",
+            "x": 45,
+            "y": 31,
+            "text": "Hvor det mørke vand bliver lyst, går badekarrets dybere rende over i den lave revle. Fisken følger gerne den kant, når den patruljerer."
+          },
+          {
+            "id": "tang",
+            "title": "Tangen på stenene",
+            "x": 42,
+            "y": 79,
+            "text": "Langs strandkanten sidder blæretang på stenene. Her lever rejer og tanglopper, og det er dem, havørreden kommer helt ind i badekarret for at finde."
+          }
+        ]
       }
     },
     {
@@ -123,7 +238,37 @@
         "image": "/images/kystverden/muslingebanke.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "50% 55%"
+        "focus": "50% 55%",
+        "pins": [
+          {
+            "id": "muslinger",
+            "title": "Blåmuslingerne",
+            "x": 52,
+            "y": 64,
+            "text": "Blåmuslinger sidder tæt sammen og holder fast i hinanden med tynde tråde. De lever af at filtrere små alger ud af vandet, og en stor banke er med til at holde vandet klart."
+          },
+          {
+            "id": "sostjerne",
+            "title": "Søstjernen",
+            "x": 33,
+            "y": 59,
+            "text": "Søstjerner lever af muslinger. De trækker skallerne lidt fra hinanden med armene og fordøjer muslingen inde i dens egen skal."
+          },
+          {
+            "id": "krabbe",
+            "title": "Strandkrabben",
+            "x": 30,
+            "y": 84,
+            "text": "Strandkrabber finder både mad og skjul i muslingebanken. De mindre krabber er god føde for havørreden."
+          },
+          {
+            "id": "orred",
+            "title": "Havørreden",
+            "x": 48,
+            "y": 43,
+            "text": "Havørreden svømmer lavt hen over banken og langs kanten ud mod sandet, på jagt efter krabber, kutlinger og rejer."
+          }
+        ]
       }
     },
     {
@@ -143,7 +288,30 @@
         "image": "/images/kystverden/rev.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "45% 45%"
+        "focus": "45% 45%",
+        "pins": [
+          {
+            "id": "sten",
+            "title": "Den store sten",
+            "x": 62,
+            "y": 22,
+            "text": "De store sten på revet blev ført hertil af isen under sidste istid. De er dækket af blåmuslinger, tang og rødalger og giver læ for strømmen. Et stenrev er et af kystens rigeste levesteder."
+          },
+          {
+            "id": "orred",
+            "title": "Havørreden",
+            "x": 40,
+            "y": 41,
+            "text": "Havørreden står i det rolige vand i læ af stenene. Herfra kan den skyde frem efter de kutlinger, rejer og småkrabber, som strømmen fører forbi."
+          },
+          {
+            "id": "krabbe",
+            "title": "Strandkrabben",
+            "x": 46,
+            "y": 69,
+            "text": "Strandkrabben lever mellem stenene og spiser blandt andet små muslinger. De mindre krabber står på havørredens menu, især lige efter de har skiftet skal og er bløde."
+          }
+        ]
       }
     }
   ]

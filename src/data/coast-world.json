@@ -51,7 +51,7 @@
       "title": "Revlebruddet",
       "x": 48,
       "y": 33,
-      "text": "Revlen er en lang, lav sandbanke, der ligger parallelt med kysten. Et sted er den brudt, og gennem hullet løber vandet fra badekarret ud og ind med bølger og strøm. Revlebruddet er en naturlig port: småfisk, rejer og tanglopper bliver ført igennem, og havørreden bruger den samme vej, når den skal ind til eller ud fra badekarret.",
+      "text": "Revlen er en lang, lav sandbanke, der ligger parallelt med kysten. Et sted er den brudt af en dybere rende, og gennem den løber vandet ind og ud mellem havet og badekarret, når bølger og strøm presser på. Revlebruddet er en naturlig port: småfisk, rejer og tanglopper bliver ført igennem, og havørreden bruger den samme vej, når den skal ind til eller ud fra badekarret.",
       "prey": [
         "Rejer",
         "Tanglopper",
@@ -63,7 +63,7 @@
         "image": "/images/kystverden/revlebrud.webp",
         "w": 3200,
         "h": 1786,
-        "focus": "35% 55%"
+        "focus": "52% 45%"
       }
     },
     {

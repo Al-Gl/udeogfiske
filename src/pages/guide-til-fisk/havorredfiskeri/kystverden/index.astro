@@ -1,12 +1,14 @@
 ---
-// Full-screen page: only the coast explorer, with a slim floating top bar (no site header/footer).
+// Kystverden: the coast explorer fills the screen and stays sticky; the article below slides up over it when you scroll.
 import MainLayout from '../../../../layouts/MainLayout.astro';
 import CoastExplorer from '../../../../components/CoastExplorer.astro';
+import TipBox from '../../../../components/TipBox.astro';
+import GuideLink from '../../../../components/GuideLink.astro';
 ---
 
 <MainLayout
   title="Kystverden: Hvor står havørreden på kysten? | Ude og Fiske"
-  description="Udforsk en dansk havørredkyst interaktivt. Zoom ind på badekarret, tangbæltet, pynten, ålegræsset og stenrevet, og se hvad havørreden lever af dér."
+  description="Udforsk en dansk havørredkyst interaktivt. Zoom ind på badekarret, revlebruddet, tangbæltet, ålegræsset, muslingebanken og stenrevet, og se hvad havørreden lever af dér."
   canonical="https://udeogfiske.dk/guide-til-fisk/havorredfiskeri/kystverden/"
   ogImage="https://udeogfiske.dk/images/kystverden/root.webp"
   pageType="article"
@@ -25,24 +27,78 @@ import CoastExplorer from '../../../../components/CoastExplorer.astro';
       <span>Ude og Fiske</span>
     </a>
     <h1 class="kv-title">Kystverden</h1>
+    <a href="#om-kystverden" class="kv-link kv-more">Sådan virker det ↓</a>
     <a href="/guide-til-fisk/havorredfiskeri/" class="kv-link">← Havørredguiden</a>
   </header>
 
   <CoastExplorer />
+
+  <section class="kv-sheet" id="om-kystverden">
+    <div class="kv-inner">
+      <div class="kv-capsule">
+        <span class="kv-capsule-label">Kort fortalt</span>
+        <h2>Hvad er Kystverden?</h2>
+        <p>Kystverden er et interaktivt billede af en typisk dansk havørredkyst, set fra skrænten. Du klikker på et sted på kysten, zoomer ned under overfladen og ser, hvad der lever dér, og hvorfor havørreden kommer forbi.</p>
+      </div>
+
+      <p>Når jeg står på skrænten over en kyst, jeg ikke kender, er det første jeg gør at læse vandet: hvor er det lyst, hvor er det mørkt, og hvor ligger stenene. Kystverden er lavet for at vise præcis det. Billedet øverst er en kyst, som du kan finde mange steder i Danmark, med en pynt, revler, et badekar, tang, ålegræs, en muslingebanke og et stenrev. Hvert sted kan du zoome ind på og se under overfladen.</p>
+
+      <h2>Hvordan bruger du Kystverden?</h2>
+      <ol>
+        <li><strong>Vælg et sted.</strong> Klik på en af prikkerne i billedet eller på knapperne i bunden. Billedet glider hen til stedet og skifter til et nærbillede under eller lige over vandet.</li>
+        <li><strong>Klik på det, du ser.</strong> I nærbilledet viser de hvide prikker planter, fisk, krabber og sten. Klikker du på en af dem, fortæller boksen, hvad det er, og hvordan det hænger sammen med stedet. På mobilen finder du de samme ting under "I billedet" i boksen.</li>
+        <li><strong>Læs boksen.</strong> For hvert sted står der, hvad der lever dér, og hvornår på året stedet er bedst.</li>
+        <li><strong>Gå tilbage.</strong> Klik på "Tilbage til oversigt" eller tryk Esc, så zoomer billedet ud igen. I oversigten kan du selv zoome med + og −, med et dobbeltklik eller med to fingre på mobilen.</li>
+      </ol>
+
+      <h2>Hvad viser billedet af kysten?</h2>
+      <p>Billedet læses bedst fra stranden og udad, for sådan er kysten bygget op:</p>
+      <ul>
+        <li><strong>Badekarret</strong> er den dybere rende lige ud for stranden, hvor vandet bliver mørkere grønt.</li>
+        <li><strong>Revlen</strong> er den lyse sandbanke, der ligger langs kysten og holder på vandet i badekarret. <strong>Revlebruddet</strong> er hullet i revlen, hvor vandet og fisken løber ind og ud.</li>
+        <li><strong>Tangbæltet</strong> er de mørke pletter af sten og tang ude bag revlen. Det er kystens spisekammer.</li>
+        <li><strong>Ålegræsset</strong> er den mørkegrønne bund længere ude, hvor tobis, hundestejler og rejer lever.</li>
+        <li><strong>Muslingebanken</strong> er de næsten sorte pletter på sandbunden.</li>
+        <li><strong>Stenrevet</strong> er de store sten til højre, som fortsætter ud under vandet.</li>
+        <li><strong>Pynten og strømskellet</strong> er stenpynten til venstre, hvor strømmen presses sammen.</li>
+      </ul>
+      <p>Det, der binder det hele sammen, er føden. Havørreden er ikke tilfældigt på et sted. Den bevæger sig mellem de steder, hvor der er rejer, tanglopper, kutlinger og småfisk, og den bruger kanterne, hvor to slags bund mødes, til at jage.</p>
+
+      <h2>Hvordan læser du kysten fra skrænten?</h2>
+      <p>Du behøver ikke et kort over bunden for at finde de samme steder på din egen kyst. Farven på vandet fortæller det meste:</p>
+      <ul>
+        <li><strong>Lyst, gulgrønt vand:</strong> sandbund og lavt vand, for eksempel en revle.</li>
+        <li><strong>Mørke, brunlige pletter:</strong> sten med tang.</li>
+        <li><strong>Mørkegrønt vand:</strong> ålegræs eller dybere vand, for eksempel badekarret.</li>
+        <li><strong>En linje af skum eller tang i overfladen:</strong> et strømskel.</li>
+      </ul>
+      <p>Kig især efter kanterne. Overgangen fra lyst til mørkt vand er ofte dér, hvor havørreden patruljerer. Det virker bedst i stille vejr. I blæst og uklart vand er bunden svær at se.</p>
+
+      <TipBox>
+        <p>Gå op på skrænten, før du går ned til vandet, og tag polaroidbriller på. Brillerne fjerner genskinnet fra overfladen, så du kan se bunden, og jo højere du står, jo mere af kysten kan du læse. Brug fem minutter deroppe, før du tager det første kast.</p>
+      </TipBox>
+
+      <h2>Er billederne i Kystverden rigtige fotos?</h2>
+      <p>Nej. Billederne er lavet med kunstig intelligens (AI) ud fra en beskrivelse af en typisk dansk havørredkyst. De viser ikke ét bestemt sted, men en kyst som dem, du finder mange steder i Danmark. Jeg har valgt billederne ud og sørget for, at kysten ligner en rigtig dansk kyst, men på billederne ligger stederne tættere sammen og er lettere at se end i virkeligheden. På en rigtig kyst skal du ofte gå et stykke for at finde både et revlebrud, et stenrev og en muslingebanke.</p>
+
+      <h2>Hvor kan du læse mere om havørredfiskeri?</h2>
+      <GuideLink href="/guide-til-fisk/havorredfiskeri/" title="Læs havørredguiden" desc="Min samlede guide til havørredfiskeri på kysten." />
+      <GuideLink href="/guide-til-fisk/havorredfiskeri/spinnefiskeri-havorred/" title="Spinnefiskeri efter havørred" desc="Sådan fisker du kysten af med spinnestang." />
+      <GuideLink href="/fiskepladser/" title="Find en fiskeplads" desc="Kyster og pladser i hele Danmark." />
+    </div>
+  </section>
 </MainLayout>
 
 <style>
-  :global(html), :global(body) { overflow: hidden; height: 100%; }
-
   .kv-top {
-    position: fixed;
+    position: absolute; /* scrolls away with the page; the explorer under it is sticky */
     z-index: 1200;
     top: 0.75rem;
     left: 1rem;
     right: 1rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
     pointer-events: none;
   }
   .kv-top > * { pointer-events: auto; }
@@ -59,13 +115,52 @@ import CoastExplorer from '../../../../components/CoastExplorer.astro';
     font-weight: 700;
     font-size: 0.9rem;
     text-decoration: none;
+    white-space: nowrap;
   }
   .kv-logo img { width: 28px; height: 28px; border-radius: 50%; background: #fff; }
   .kv-title { margin: 0; padding: 0.55rem 1rem; font-size: 0.95rem; letter-spacing: 0.02em; }
-  .kv-link { margin-left: auto; padding: 0.55rem 1rem; }
-  .kv-link:hover, .kv-logo:hover { background: rgba(13,74,94,0.95); }
+  .kv-link { padding: 0.55rem 1rem; }
+  .kv-more { margin-left: auto; background: #fff; color: #0d4a5e; }
+  .kv-more:hover { background: #f0f7f9; }
+  .kv-link:not(.kv-more):hover, .kv-logo:hover { background: rgba(13,74,94,0.95); }
 
   @media (max-width: 600px) {
     .kv-logo span, .kv-title { display: none; }
+    .kv-top { gap: 0.4rem; }
+    .kv-link { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
   }
+
+  /* The article: a sheet that slides up over the sticky explorer */
+  .kv-sheet {
+    position: relative;
+    z-index: 2;
+    margin-top: -0.75rem; /* a thin rounded edge peeks up under the spot buttons */
+    padding: 3rem 1.25rem 4rem;
+    background: #fff;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -12px 40px rgba(0,0,0,0.25);
+    scroll-margin-top: 0;
+  }
+  .kv-inner { max-width: 760px; margin: 0 auto; }
+  .kv-inner > p, .kv-inner li { font-size: 1rem; color: #374151; line-height: 1.8; }
+  .kv-inner > p { margin: 0 0 1.25rem; }
+  .kv-inner h2 { font-size: 1.5rem; font-weight: 700; color: #111827; margin: 2.5rem 0 1rem; line-height: 1.3; }
+  .kv-inner ol, .kv-inner ul { margin: 0 0 1.25rem; padding-left: 1.4rem; }
+  .kv-inner li { margin-bottom: 0.5rem; }
+  .kv-inner strong { color: #111827; }
+
+  .kv-capsule {
+    margin: 0 0 2rem;
+    padding: 1.25rem 1.4rem;
+    border-left: 4px solid #0d4a5e;
+    border-radius: 0 12px 12px 0;
+    background: #f0f7f9;
+  }
+  .kv-capsule-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0d4a5e;
+  }
+  .kv-capsule h2 { margin: 0.3rem 0 0.5rem; font-size: 1.25rem; }
+  .kv-capsule p { margin: 0; color: #374151; line-height: 1.7; }
+
+  @media (min-width: 700px) { .kv-sheet { padding: 3.5rem 1.5rem 5rem; } }
 </style>

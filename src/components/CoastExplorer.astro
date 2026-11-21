@@ -60,7 +60,8 @@ import world from '../data/coast-world.json';
     const toLatLng = (h) => L.latLng(H * (1 - h.y / 100), W * (h.x / 100));
 
     const map = L.map($('.ke-map'), {
-      crs: L.CRS.Simple, zoomSnap: 0, zoomDelta: 0.5, attributionControl: false, zoomControl: false,
+      // The mouse wheel scrolls the page (to the article below); zoom with +/−, double-click or pinch.
+      crs: L.CRS.Simple, zoomSnap: 0, zoomDelta: 0.5, attributionControl: false, scrollWheelZoom: false,
       maxBounds: bounds, maxBoundsViscosity: 1,
     });
     L.imageOverlay(world.root.image, bounds, { alt: world.root.title }).addTo(map);
@@ -234,7 +235,8 @@ import world from '../data/coast-world.json';
 
 <style>
   .ke {
-    position: relative;
+    position: sticky; /* stays put while the article below slides up over it */
+    top: 0;
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
@@ -256,6 +258,10 @@ import world from '../data/coast-world.json';
   }
   .ke.in-scene .ke-scene { opacity: 1; transform: scale(1); pointer-events: auto; }
   .ke.in-scene .ke-map :global(.ke-pin) { opacity: 0; pointer-events: none; }
+
+  /* Leaflet's +/− buttons: below the top bar, only on the overview */
+  .ke :global(.leaflet-top.leaflet-left) { top: 4.25rem; }
+  .ke.in-scene :global(.leaflet-control-zoom) { display: none; }
 
   /* Pins inside a close-up: fade in once the picture has settled */
   .ke-spins { position: absolute; inset: 0; z-index: 600; pointer-events: none; opacity: 0; transition: opacity 0.4s; }
